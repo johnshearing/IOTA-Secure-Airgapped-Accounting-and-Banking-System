@@ -1,0 +1,7 @@
+These https keys are not secure.   
+They will allow an https connection for test purposes only.  
+Do not uses these keys in a production environment.  
+Generate new keys.  
+
+Install openssl and run the following command to generate https certificates.
+openssl req -newkey rsa:2048 -new -nodes -x509 -days 3650 -keyout key.pem -out cert.pem

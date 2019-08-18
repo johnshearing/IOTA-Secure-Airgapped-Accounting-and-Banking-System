@@ -1,0 +1,50 @@
+<html>
+  <head>
+    <title>IOTA Offline Bundle Signer</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+  </head>
+  <body>
+	  
+	<source>"SomeSourceFile.js"</source>
+	  
+	  
+    <div id="title">
+      <img src="img/iota-offline-icon.png">
+      <span id="titleText">IOTA Offline Bundle Signer</span>
+      <span id="version">v1.20180927.1530</span>
+    </div>
+    
+
+    <form onsubmit="signBundle(); return false;" method="post">
+
+      <div class="inputArea">
+        <input id="seed" type="text" placeholder="Seed" value="TPACESPACESPACESPACESPACESPACESPACESPACESPACESPACESPACESPACESPACESPACESPACESPACE9"> // Seed<br>
+        <input id="fromAddress" type="text" placeholder="From address" value="UMRLGAXYMTPQZZXIOQWCOSPRR9ZBXEIWQAYYHMZOEUWXMEWUKXGNHGALUQBFMIJXDRVS9KGYIUHZAGAK9RGYYWGL9D"> // From address<br>
+        <input id="fromAddressIndex" type="text" placeholder="From address index" value="0"> // From address index<br>
+        <input id="fromAddressBalance" type="text" placeholder="From address balance" value="10"> // From address balance<br>
+        <input id="toAddress" type="text" placeholder="To address" value="GA9MCMZECXHYUBKIDAGHDYXRWRIQUHZCYVPJSHLOMNQLRY9ORAZYETJSO9IWIFNFWRINONKK9XEMFAWACLRXSHHXQZ"> // To address<br>
+        <input id="securityLevel" type="text" placeholder="Security level" value="2"> // Security level<br>
+        <input id="transferAmount" type="text" placeholder="Transfer amount" value="7"> // Transfer amount<br>
+        <input id="remainderAddress" type="text" placeholder="Remainder address" value="QSSYIVLGDHIMN9PJZVVJHUUQRICIRCIJHCRYI9IDYSTVBILWZGBOJVWWDEESYYKGDVQXSAWCXMXMSGFZCWCMDQEQXD"> // Remainder address<br>
+        <textarea rows="6" id="message" type="text" placeholder="Message (optional)" value=""></textarea><br>
+      </div>
+      
+
+      <div class="actionArea">
+        <button id="signButton" type="submit()">Sign bundle</button><br>
+      </div>
+      
+
+      <div class="feedbackArea">
+        Status: <span id="signResult">Not yet signed...</span><br>
+        <textarea rows="6" id="signedBundle" type="text" placeholder="You will see your signed transaction bundle here..."></textarea><br>
+        <div id="qrArea" class="qrArea"></div>
+      </div>
+      
+    </form>
+    
+  </body>
+</html>
+
+<!-- This is a comment -->

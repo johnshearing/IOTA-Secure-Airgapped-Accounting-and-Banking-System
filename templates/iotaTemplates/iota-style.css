@@ -1,0 +1,96 @@
+body {
+  background-color: #222;
+  color: #ddd;
+  font-family: monospace;
+}
+
+a:link,
+a:visited,
+a:active {
+  color: #49a8d0;
+}
+
+a:hover {
+  color: #8bc0d6;
+}
+
+h1 {
+  margin: 6px;
+}
+
+input,
+textarea,
+button {
+  background-color: #33383c;
+  color: #eee;
+  padding: 6px;
+  width: 500px;
+  border: 1px solid #2b2e31;
+  margin: 2px;
+}
+
+.qrButton {
+  background-color: #33383c;
+  color: #eee;
+  padding: 6px;
+  width: 256px;
+  border: 1px solid #2b2e31;
+  margin: 0px;
+}
+
+hr {
+  background-color: #666;
+  height: 1px;
+  border: 0;
+}
+
+.inputArea,
+.actionArea,
+.feedbackArea {
+  background-color: #464e54;
+  margin: 6px;
+  padding: 6px;
+  border-left: solid 4px #63727d;
+  border-right: solid 4px #394146;
+}
+
+#title {
+  margin: 6px;
+  height: 48px;
+  background-color: #3d444a;
+  border-right: solid 4px #31373c;
+}
+
+#title img {
+  width: 46px;
+  height: 46px;
+  display: inline-block;
+  border: solid 1px #2b2e31;
+}
+
+#title #titleText {
+  height: 48px;
+  display: inline-block;
+  vertical-align: middle;
+  font-weight: bold;
+  font-family: monospace;
+  color: #ddd;
+  font-size: 18px;
+  line-height: 9px;
+}
+
+#title #version {
+  font-size: 14px;
+  height: 48px;
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 12px;
+  line-height: 50px;
+  float: right;
+  padding-right: 10px;
+}
+
+.qrTitle {
+  padding: 6px;
+  margin-bottom: 4px;
+}
