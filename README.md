@@ -66,7 +66,7 @@ Small simple systems are inherently more secure and easier to protect because sm
 Since the accounting/banking system we are building is for a decentralized ledger, it does not have to be big or complicated as in centralized systems. Think about how [very simple creatures, like bees, when grouped together perform complex behaviours, like voting, in a very efficient manner without any centralized system to count the votes - without a centralized system to get hacked](https://youtu.be/AonV_MkUFSs). There will be many of these simple accounting/banking systems (bees if you will) that when working together will provide the complex behaviors society needs for efficient collaboration.  
 
 * So Who's In Charge?  
-The rules and laws are in charge - the rules and laws that we set up at the local level. Referring back to bees again - each bee responds to a simple set of rules programmed by evolution. We get to define the rules that our accounting/banking systems will follow. Everyone can make different decisions about how their particular system behaves within the boundaries of the law. So that means individuals are in charge.  
+The rules and laws are in charge - the rules and laws that we set up. Referring back to bees again - each bee responds to a simple set of rules programmed by evolution. We get to define the rules that our accounting/banking systems will follow. Everyone can make different decisions about how their particular system behaves within the boundaries of the law.    
 
 * Smart Contracts - How Our Small Accounting/Banking Systems Interact With Each Other To Do Big Things  
 Think: smart money, Think: smart information  
