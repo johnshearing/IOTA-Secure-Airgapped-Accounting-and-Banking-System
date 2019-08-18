@@ -1,4 +1,4 @@
-# iotaAirgappedClientServerWallet
+# IOTA-Secure-Airgapped-Accounting-System
 This is the last piece of the puzzle in [The PrivateKeyVault family of repositories](https://github.com/johnshearing).  
 It's starting out as NodeJS code generator and database on it's way to becoming a wallet for IOTA.  
 When it matures it will be the first full blown accounting system for IOTA that machines, individuals, corporations, and governments can use for managing their business and for cooperating with each other.  
@@ -40,8 +40,8 @@ To use this application simply follow the instructions below.
 
 #### Install the iotaAirgappedClientServerWallet repository    
 * Then execute the following command at the BASH console.   
-* `git clone https://github.com/johnshearing/iotaAirgappedClientServerWallet.git`  
-* Now the Client/Server wallet is installed in a new directory called **iotaAirgappedClientServerWallet**  
+* `git clone https://github.com/johnshearing/IOTA-Secure-Airgapped-Accounting-System.git`  
+* Now the Client/Server wallet is installed in a new directory called **IOTA-Secure-Airgapped-Accounting-System**  
 * Change the name of the directory to something shorter. Call it **ias** for IOTA Accounting System.  
 * At the BASH console, CD into the **ias** directory    
 
