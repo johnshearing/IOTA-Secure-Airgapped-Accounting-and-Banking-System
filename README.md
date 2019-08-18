@@ -1,17 +1,17 @@
 # IOTA-Secure-Airgapped-Accounting-System
 This is the last piece of the puzzle in [The PrivateKeyVault family of repositories](https://github.com/johnshearing).  
-It's starting out as NodeJS code generator and database on it's way to becoming a wallet for IOTA.  
-When it matures it will be the first full blown accounting system for IOTA that machines, individuals, corporations, and governments can use for managing their business and for cooperating with each other.  
+It's starting out as NodeJS code generator and database on it's way to becoming a muli-sig wallet for IOTA.  
+When it matures it will be the first full blown accounting/banking system for IOTA that machines, individuals, corporations, and governments can use for managing their business and for cooperating with each other.  
 This work in progress is a continuation of tutorial [IOTA-Airgapped-NodeJS-Console-Wallet](https://github.com/johnshearing/IOTA-Airgapped-NodeJS-Console-Wallet).  
  
-This accounting system is being constructed using the methods shown in the following tutorial:  
+This accounting/banking system is being constructed using the methods shown in the following tutorial:  
 [The NodeJS Master Class - No Frameworks, No NPM, No Dependencies](https://pirple.thinkific.com/courses/the-nodejs-master-class)  
 No dependencies makes for easy auditing.  
 
 This app runs in the browser using NodeJS Client server architecture.  
 It runs on a single airgapped [PrivateKeyVault](https://github.com/johnshearing/PrivateKeyVault) for individuals or on an airgapped network for large institutions or government. In the alternative, all this code will run on any device that runs NodeJS.  
 
-When this accounting system is finished, a video tutorial will be made explaining each line of code so you can write everything from scratch if you want to. This will facilitate an audit.  
+When this accounting/banking system is finished, a video tutorial will be made explaining each line of code so you can write everything from scratch if you want to. This will facilitate an audit.  
 
 Let's get started.   
 To use this application simply follow the instructions below.  
@@ -62,20 +62,20 @@ Large centralized systems are very hard to secure. That's why we keep hearing ab
 
 Small simple systems are inherently more secure and easier to protect because small means fewer vulnerabilities and simple means those weaknesses are easier to spot. Furthermore, distributed systems are harder to attack and typically yield less profit for the attacker because they tend to be smaller. That's a deterrent which itself is a strong protection.  
  
-Since the accounting system we are building is for a decentralized ledger, it does not have to be big or complicated as in centralized systems. Think about how [very simple creatures, like bees, when grouped together perform complex behaviours, like voting, in a very efficient manner without any centralized system to count the votes - without a centralized system to get hacked](https://youtu.be/AonV_MkUFSs). There will be many of these simple accounting systems (bees if you will) that when working together will provide the complex behaviors society needs for efficient collaboration.  
+Since the accounting/banking system we are building is for a decentralized ledger, it does not have to be big or complicated as in centralized systems. Think about how [very simple creatures, like bees, when grouped together perform complex behaviours, like voting, in a very efficient manner without any centralized system to count the votes - without a centralized system to get hacked](https://youtu.be/AonV_MkUFSs). There will be many of these simple accounting/banking systems (bees if you will) that when working together will provide the complex behaviors society needs for efficient collaboration.  
 
 * So Who's In Charge?  
-The rules and laws are in charge - the rules and laws that we set up at the local level. Referring back to bees again - each bee responds to a simple set of rules programmed by evolution. We get to define the rules that our accounting systems will follow. Everyone can make different decisions about how their particular accounting system behaves within the boundaries of the law. So that means individuals are in charge.  
+The rules and laws are in charge - the rules and laws that we set up at the local level. Referring back to bees again - each bee responds to a simple set of rules programmed by evolution. We get to define the rules that our accounting/banking systems will follow. Everyone can make different decisions about how their particular system behaves within the boundaries of the law. So that means individuals are in charge.  
 
-* Smart Contracts - How Our Small Accounting Systems Interact With Each Other To Do Big Things  
+* Smart Contracts - How Our Small Accounting/Banking Systems Interact With Each Other To Do Big Things  
 Think: smart money, Think: smart information  
 Now we can embed computer software into the money and data we send which defines how we want them to behave.  
-These smart contracts are created by our accounting systems and then executed on special distributed ledgers called blockchains.  
+These smart contracts are created by our accounting/banking systems and then executed on special distributed ledgers called blockchains.  
 
 * Keeping Control of the Process  
-We don't want our busy little accounting systems moving money, casting votes, or transceiving any kind of information without our explicit knowledge and consent. This is why I have developed this [open source airgapped computer called the PrivateKeyVault](https://github.com/johnshearing/PrivateKeyVault) to run our little accounting systems. This computer ensures that no information moves in or out of the accounting system without a human gatekeeper reviewing the content and explicitly granting permission to allow the transmission. Any computer can be used but is should be airgapped and physically secured to prevent tampering.  
+We don't want our busy little accounting/banking systems moving money, casting votes, or transceiving any kind of information without our explicit knowledge and consent. This is why we have developed this [open source airgapped computer called the PrivateKeyVault](https://github.com/johnshearing/PrivateKeyVault) to run our little accounting/banking systems. This computer ensures that no information moves in or out of the system without a human gatekeeper reviewing the content and explicitly granting permission to allow the transmission. Any computer can be used but is should be airgapped and physically secured to prevent tampering.  
 
-* So much for the overview - back to the job of building our simple accounting system for IOTA.  
+* So much for the overview - back to the job of building our simple accounting/banking system for IOTA.  
 
 #### Features:  
 * Database Functionality.  
@@ -84,7 +84,7 @@ We don't want our busy little accounting systems moving money, casting votes, or
   * All records in the database (no matter from what table) get their unique ids from a single incremented source so that every record has a system wide unique id that identifies when it was created with respect to all the other records in the database. You will see why in a minute.  
   * Any adds, changes, or deletes to a record are recorded in a log that captures the entire record in it's new state. This along with the system wide unique ids allows the entire database to be reconstructed to represent any point in history.  
   * The application is being roughed out now with a simple JSON database [taught by Leslie Lewis in his NodeJS Master Class](https://pirple.thinkific.com/courses/the-nodejs-master-class). Once there is something to play with, simple indexing will be added.  
-  * [Here you can see what has already been implemented and you see the plan in greater detail.](https://github.com/johnshearing/iotaAirgappedClientServerWallet/blob/master/data/dbHistory/README.md)  
+  * [Here you can see what has already been implemented and you see the plan in greater detail.](https://github.com/johnshearing/IOTA-Secure-Airgapped-Accounting-System/blob/master/data/dbHistory/README.md)  
 * A Code Generator:
   * Rather than writing post, get, put, delete, validation, and user interface functions for every table, there will be templates instead that get populated with metadata including all the business rules that make each table, each record, and each field unique. It is common practice to use templates and metadata for generating html and JavaScript on the fly for browser consumption. We are simply extending the practice for the server side NodeJS code as well.  
   * First a simple app will be written and tested. Then templates will be made for every type of function using the simple app as a model. From that point on, any changes to the app are made in the templates and the metadata. After any changes are made, the application is regenerated. This way, major changes to functionality ripple down through the system without having to change the handlers for each table and their user interfaces. This eliminates most programming errors and makes it possible to make big changes to the system as we try to figure out what works and what does not. I did this about 20 years ago using Delphi and SQL Server. It worked great. Now I am going to do it again using NodeJS and JavaScript.  
