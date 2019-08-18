@@ -1,5 +1,5 @@
 # IOTA-Secure-Airgapped-Accounting-and-Banking-System  
-## For Government, Enterprise, Individuals,and Machines  
+## For Government, Enterprise, Individuals, and Machines  
 This is the last piece of the puzzle in [The PrivateKeyVault family of repositories](https://github.com/johnshearing).  
 It's starting out as a NodeJS code generator and database on it's way to becoming a multi-sig wallet for IOTA.  
 When it matures it will be the first full blown accounting/banking system for IOTA that machines, individuals, corporations, and governments can use for managing their business and for cooperating with each other.  
