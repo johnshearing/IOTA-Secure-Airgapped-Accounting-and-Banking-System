@@ -66,12 +66,12 @@ Small simple systems are inherently more secure and easier to protect because sm
 Since the accounting/banking system we are building is for a decentralized ledger, it does not have to be big or complicated as in centralized systems. Think about how [very simple creatures, like bees, when grouped together perform complex behaviours, like voting, in a very efficient manner without any centralized system to count the votes - without a centralized system to get hacked](https://youtu.be/AonV_MkUFSs). There will be many of these simple accounting/banking systems (bees if you will) that when working together will provide the complex behaviors society needs for efficient collaboration.  
 
 * So Who's In Charge?  
-The rules and laws are in charge - the rules and laws that we set up. Referring back to bees again - each bee responds to a simple set of rules programmed by evolution. We get to define the rules that our accounting/banking systems will follow. Everyone can make different decisions about how their particular system behaves within the boundaries of the law.    
+The rules and laws are in charge. Referring back to bees again - each bee responds to a simple set of rules programmed by evolution. We get to program the rules that our accounting/banking systems will follow. Everyone can make different decisions about how their particular system behaves within the boundaries of the law.    
 
 * Smart Contracts - How Our Small Accounting/Banking Systems Interact With Each Other To Do Big Things  
 Think: smart money, Think: smart information  
 Now we can embed computer software into the money and data we send which defines how we want them to behave.  
-These smart contracts are created by our accounting/banking systems and then executed on special distributed ledgers called blockchains.  
+These smart contracts are created and authorized by our accounting/banking systems and then executed on special distributed ledgers called blockchains.  
 
 * Keeping Control of the Process  
 We don't want our busy little accounting/banking systems moving money, casting votes, or transceiving any kind of information without our explicit knowledge and consent. This is why we have developed this [open source airgapped computer called the PrivateKeyVault](https://github.com/johnshearing/PrivateKeyVault) to run our little accounting/banking systems. This computer ensures that no information moves in or out of the system without a human gatekeeper reviewing the content and explicitly granting permission to allow the transmission. Any computer can be used but is should be airgapped and physically secured to prevent tampering.  
