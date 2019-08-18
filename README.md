@@ -9,7 +9,7 @@ This accounting/banking system is being constructed using the methods shown in t
 No dependencies makes for easy auditing.  
 
 This app runs in the browser using NodeJS Client server architecture.  
-It runs on a single airgapped [PrivateKeyVault](https://github.com/johnshearing/PrivateKeyVault) for individuals or on an airgapped network for large institutions or government. In the alternative, all this code will run on any device that runs NodeJS.  
+Built to run on a single airgapped [PrivateKeyVault](https://github.com/johnshearing/PrivateKeyVault) for individuals or on an airgapped network for large institutions or government. All this code will run on any device that can run NodeJS.  
 
 When this accounting/banking system is finished, a video tutorial will be made explaining each line of code so you can write everything from scratch if you want to. This will facilitate an audit.  
 
