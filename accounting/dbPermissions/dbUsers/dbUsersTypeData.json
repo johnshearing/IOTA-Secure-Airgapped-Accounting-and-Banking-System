@@ -1,0 +1,4 @@
+{
+    "id": [{"type" : "number"}],
+    "email": [{"type" : "string"}],
+    "hashedPassword": [{"type" : "string"}]}
