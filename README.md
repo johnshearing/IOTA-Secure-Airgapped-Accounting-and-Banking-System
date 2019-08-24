@@ -1,6 +1,7 @@
-# IOTA-Secure-Airgapped-Accounting-System
+# IOTA-Secure-Airgapped-Accounting-and-Banking-System  
+## For Government, Enterprise, Individuals, and Machines  
 This is the last piece of the puzzle in [The PrivateKeyVault family of repositories](https://github.com/johnshearing).  
-It's starting out as NodeJS code generator and database on it's way to becoming a multi-sig wallet for IOTA.  
+It's starting out as a NodeJS code generator and database on it's way to becoming a multi-sig wallet for IOTA.  
 When it matures it will be the first full blown accounting/banking system for IOTA that machines, individuals, corporations, and governments can use for managing their business and for cooperating with each other.  
 This work in progress is a continuation of tutorial [IOTA-Airgapped-NodeJS-Console-Wallet](https://github.com/johnshearing/IOTA-Airgapped-NodeJS-Console-Wallet).  
  
@@ -9,7 +10,7 @@ This accounting/banking system is being constructed using the methods shown in t
 No dependencies makes for easy auditing.  
 
 This app runs in the browser using NodeJS Client server architecture.  
-It runs on a single airgapped [PrivateKeyVault](https://github.com/johnshearing/PrivateKeyVault) for individuals or on an airgapped network for large institutions or government. In the alternative, all this code will run on any device that runs NodeJS.  
+Built to run on a single airgapped [PrivateKeyVault](https://github.com/johnshearing/PrivateKeyVault) for individuals or on an airgapped network for large institutions or government. All this code will run on any device that can run NodeJS.  
 
 When this accounting/banking system is finished, a video tutorial will be made explaining each line of code so you can write everything from scratch if you want to. This will facilitate an audit.  
 
@@ -65,12 +66,12 @@ Small simple systems are inherently more secure and easier to protect because sm
 Since the accounting/banking system we are building is for a decentralized ledger, it does not have to be big or complicated as in centralized systems. Think about how [very simple creatures, like bees, when grouped together perform complex behaviours, like voting, in a very efficient manner without any centralized system to count the votes - without a centralized system to get hacked](https://youtu.be/AonV_MkUFSs). There will be many of these simple accounting/banking systems (bees if you will) that when working together will provide the complex behaviors society needs for efficient collaboration.  
 
 * So Who's In Charge?  
-The rules and laws are in charge - the rules and laws that we set up at the local level. Referring back to bees again - each bee responds to a simple set of rules programmed by evolution. We get to define the rules that our accounting/banking systems will follow. Everyone can make different decisions about how their particular system behaves within the boundaries of the law. So that means individuals are in charge.  
+The rules and laws are in charge. Referring back to bees again - each bee responds to a simple set of rules programmed by evolution. We get to program the rules that our accounting/banking systems will follow. Everyone can make different decisions about how their particular system behaves within the boundaries of the law.    
 
 * Smart Contracts - How Our Small Accounting/Banking Systems Interact With Each Other To Do Big Things  
 Think: smart money, Think: smart information  
 Now we can embed computer software into the money and data we send which defines how we want them to behave.  
-These smart contracts are created by our accounting/banking systems and then executed on special distributed ledgers called blockchains.  
+These smart contracts are created and authorized by our accounting/banking systems and then executed on special distributed ledgers called blockchains.  
 
 * Keeping Control of the Process  
 We don't want our busy little accounting/banking systems moving money, casting votes, or transceiving any kind of information without our explicit knowledge and consent. This is why we have developed this [open source airgapped computer called the PrivateKeyVault](https://github.com/johnshearing/PrivateKeyVault) to run our little accounting/banking systems. This computer ensures that no information moves in or out of the system without a human gatekeeper reviewing the content and explicitly granting permission to allow the transmission. Any computer can be used but is should be airgapped and physically secured to prevent tampering.  
