@@ -1,0 +1,1 @@
+{"TransactionId":408,"logId":409,"rollback":false,"process":"handlers._users.post","comment":"Append new record","who":"Function needed","dbUsers":{"userId":407,"email":"alice@gmail.com","hashedPassword":"36583a77a098c02ef111e2f2521d77b58e420f2bc7e9bf930ec24b21d42ea2e0","timeStamp":1567304321630,"deleted":false}}
