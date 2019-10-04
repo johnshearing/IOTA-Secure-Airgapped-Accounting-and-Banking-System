@@ -19,11 +19,13 @@ app.config = {
   'sessionToken' : false
 };
 
+
 // AJAX Client (for RESTful API)
 // Create an empty object to contain the client.
 app.client = {}
 
-// Interface for making API calls
+
+// Define interface function for making API calls.
 app.client.request = function(headers,path,method,queryStringObject,payload,callback)
 {
   // Set defaults
@@ -300,6 +302,14 @@ app.bindForms = function()
 // So this function defines what happens after a form has been sucessfully submitted.
 app.formResponseProcessor = function(formId,requestPayload,responsePayload)
 {
+  // If the administrator just created a new user successfully, redirect to a list of users.
+  if(formId == 'userCreate')
+  {
+    window.location = 'users/list';
+  }
+  // End of: If the administrator just created a new user successfully, redirect to a list of users.
+
+
   // If account creation was successful, try to immediately log the user into the new account
   if(formId == 'accountCreate')
   {
@@ -583,6 +593,12 @@ app.loadDataOnPage = function()
   var bodyClasses = document.querySelector("body").classList;
   var primaryClass = typeof(bodyClasses[0]) == 'string' ? bodyClasses[0] : false;
 
+    // Logic for dashboard page
+    if(primaryClass == 'usersList')
+    {
+      app.loadUsersListPage();
+    }
+
   // Logic for account settings page
   if(primaryClass == 'accountEdit')
   {
@@ -652,6 +668,69 @@ app.loadAccountEditPage = function()
   }
 }; // End of: app.loadAccountEditPage = function()
 // End of: Load the account edit page with data from the server.
+
+
+
+
+// Populate the dbUsersList webpage with user records.
+app.loadUsersListPage = function()
+{  
+  // Define which users will be retrieved from dbUsers.json
+  // This is not being used for now so all records will be retrived.
+  var QueryStringObject = {};
+
+  // Ask the server for the JSON records found in the dbUsers file for which match the QueryStringObject.
+  // Then run the callback function defined here which inserts rows into the usersListTable on the webpage
+  // and populates them with data from the file of JSON records returned.
+  app.client.request(undefined,'api/aUsers','GET',QueryStringObject,undefined,function(statusCode,responseTextStream)
+  {
+    // if the call to handlers._users.get which is mapped to api/aUsers called back success.
+    if(statusCode == 200) 
+    {
+
+      // Convert each line of the response to a json object.
+      // Iterate through the objects
+
+      // Create a handle which can be used to manipulate the table on the webpage.
+      var table = document.getElementById("usersListTable");
+
+      // Insert a new row in the table.
+      var tr = table.insertRow(-1);
+      // Make the new row a member of the class 'checkRow'
+      tr.classList.add('checkRow');
+
+      // Insert five new cells into the new row.
+      var td0 = tr.insertCell(0);
+      var td1 = tr.insertCell(1);
+      var td2 = tr.insertCell(2);   
+      var td3 = tr.insertCell(3);          
+
+      // var lineValueObject = JSON.parse(line);
+
+      // load the new cells with data from the responsePayload.
+      td0.innerHTML = responseTextStream.userId;      
+      td1.innerHTML = responseTextStream.email;
+      td2.innerHTML = responseTextStream.timeStamp;      
+      td3.innerHTML = '<a href="/users/edit?email=' + responseTextStream.userId + '">View / Edit / Delete</a>';
+
+      // Show the createCheck CTA
+      document.getElementById("createCheckCTA").style.display = 'block';
+
+    } // End of: if the call to handlers._users.get which is mapped to api/aUsers called back successfully.
+    else // client request to handlers._users.get called back something other than status code was not 200.
+    {
+      // Show 'you have no checks' message
+      document.getElementById("noChecksMessage").style.display = 'table-row';
+
+      // Show the createCheck CTA
+      document.getElementById("createCheckCTA").style.display = 'block';
+
+      console.log("Error trying to load the list of users: ");
+    }
+  }); // End of: app.client.request(undefined,'api/checks','GET'...
+
+} // End of: app.loadUsersListPage = function(){...}
+// End of: Populate the dbUsersList webpage with user records.
 
 
 
