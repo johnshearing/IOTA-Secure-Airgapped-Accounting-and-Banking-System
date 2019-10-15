@@ -25,6 +25,139 @@ app.config = {
 app.client = {}
 
 
+/*
+// Define a client function that fetches a stream of data from the server.
+app.client.fetchStream =  async function(headers,path,method,queryStringObject,payload)
+{
+
+  // Set defaults
+  headers = typeof(headers) == 'object' && headers !== null ? headers : {};
+  path = typeof(path) == 'string' ? path : '/';
+  method = typeof(method) == 'string' && ['POST','GET','PUT','DELETE'].indexOf(method.toUpperCase()) > -1 ? method.toUpperCase() : 'GET';
+  queryStringObject = typeof(queryStringObject) == 'object' && queryStringObject !== null ? queryStringObject : {};
+  payload = typeof(payload) == 'object' && payload !== null ? payload : {};
+  callback = typeof(callback) == 'function' ? callback : false;  
+
+  // For each query string parameter sent, add it to the path
+  var requestUrl = path+'?';
+  var counter = 0;
+  for(var queryKey in queryStringObject)
+  {
+    if(queryStringObject.hasOwnProperty(queryKey))
+    {
+      counter++;
+
+      // If at least one query string parameter has already been added, preprend new ones with an ampersand
+      if(counter > 1)
+      {
+        requestUrl+='&';
+      }
+
+      // Add the key and value
+      requestUrl+=queryKey+'='+queryStringObject[queryKey];
+    }
+  }  
+
+
+  // If there is a current session token set, add that as a header
+  //if(app.config.sessionToken)
+  //{
+  //  xhr.setRequestHeader("token", app.config.sessionToken.id);
+  //}
+
+  let req = new Request(requestUrl, {'method' : method, 'headers' : headers, 'mode' : 'cors'});
+
+  let fetchPromise = await fetch(req)
+  .then
+  (
+    (res) => 
+    {
+      // Verify that we have some sort of 2xx response that we can use
+      if (!res.ok) 
+      {
+        throw res;
+      }
+  
+      // If no content, immediately resolve, don't try to parse JSON
+      if (res.status === 204) 
+      {
+        return;
+      }
+  
+      // Initialize variable to hold chunks of data as they come across.
+      let textBuffer = '';
+  
+      // This does not seem to be use. Delete this after everything else is working.
+      const self = this;
+  
+      // Process the stream.
+      return res.body
+  
+      // Decode as UTF-8 Text
+      .pipeThrough
+      (
+        new TextDecoderStream()
+      )
+  
+      // Split on lines
+      .pipeThrough
+      (
+        new TransformStream
+        (
+          {
+            transform(chunk, controller) 
+            {
+              textBuffer += chunk;
+  
+              const lines = textBuffer.split('\n');
+  
+              for (const line of lines.slice(0, -1)) 
+              {
+                controller.enqueue(line);
+              } // End of: for (const line ...)
+  
+              textBuffer = lines.slice(-1)[0];
+            }, // End of: Transform(chunk, controller){do stuff}
+  
+            flush(controller) 
+            {
+              if (textBuffer) 
+              {
+                controller.enqueue(textBuffer);
+              } // End of: if (textBuffer)
+            } // End of: flush(controller){do stuff}
+          } // End of: parameters for new TransformStream
+        ) // End of: call to constructor new TransformStream
+      ) // End of: parameters for pipeThrough - Split on lines
+  
+      // Parse JSON objects
+      .pipeThrough
+      (
+        new TransformStream
+        (
+          {
+            transform(line, controller) 
+            {
+              if (line) 
+              {
+                controller.enqueue
+                (
+                  JSON.parse(line)
+                ); //End of: call to controller.enqueue function
+              } // End of: if (line)
+            } // End of: transform function
+          } // End of: parameter object for new TransformStream
+        ) // End of: new TransformStream parameters
+      ); // End of: parameters for .pipeThrough - Parse JSON objects
+    } // End of: .then callback function instruction for fetch
+  ); // End of: .then callback parameters for fetch
+} // End of: app.client.fetchPromise =  function(){...}
+// End of: Define a client function that fetches a stream of data from the server.
+*/
+
+
+
+
 // Define interface function for making API calls.
 app.client.request = function(headers,path,method,queryStringObject,payload,callback)
 {
@@ -41,19 +174,19 @@ app.client.request = function(headers,path,method,queryStringObject,payload,call
   var counter = 0;
   for(var queryKey in queryStringObject)
   {
-     if(queryStringObject.hasOwnProperty(queryKey))
-     {
-       counter++;
+    if(queryStringObject.hasOwnProperty(queryKey))
+    {
+      counter++;
 
-       // If at least one query string parameter has already been added, preprend new ones with an ampersand
-       if(counter > 1)
-       {
-         requestUrl+='&';
-       }
+      // If at least one query string parameter has already been added, preprend new ones with an ampersand
+      if(counter > 1)
+      {
+        requestUrl+='&';
+      }
 
-       // Add the key and value
-       requestUrl+=queryKey+'='+queryStringObject[queryKey];
-     }
+      // Add the key and value
+      requestUrl+=queryKey+'='+queryStringObject[queryKey];
+    }
   }
 
   // Form the http request as a JSON type
@@ -673,12 +806,131 @@ app.loadAccountEditPage = function()
 
 
 // Populate the dbUsersList webpage with user records.
-app.loadUsersListPage = function()
+app.loadUsersListPage = async function()
 {  
   // Define which users will be retrieved from dbUsers.json
   // This is not being used for now so all records will be retrived.
   var QueryStringObject = {};
 
+  // Define a client function that calls for data from the server.
+  const fetchPromise = fetch('api/aUsers')
+  .then
+  (
+    (res) => 
+    {
+      // Verify that we have some sort of 2xx response that we can use
+      if (!res.ok) 
+      {
+        throw res;
+      }
+
+      // If no content, immediately resolve, don't try to parse JSON
+      if (res.status === 204) 
+      {
+        return;
+      }
+
+      // Initialize variable to hold chunks of data as they come across.
+      let textBuffer = '';
+
+      // This does not seem to be used. Delete this after everything else is working.
+      const self = this;
+
+      // Process the stream.
+      return res.body
+
+      // Decode as UTF-8 Text
+      .pipeThrough
+      (
+        new TextDecoderStream()
+      )
+
+      // Split on lines
+      .pipeThrough
+      (
+        new TransformStream
+        (
+          {
+            transform(chunk, controller) 
+            {
+              textBuffer += chunk;
+              // console.log(textBuffer);
+
+              const lines = textBuffer.split('\n');
+              // console.log('These are the lines: ', lines);
+
+              for (const line of lines.slice(0, -1))
+              {
+                console.log('This is the line sliced: ', line);
+                controller.enqueue(line);
+              } // End of: for (const line ...)
+
+              textBuffer = lines.slice(-1)[0];
+            }, // End of: Transform(chunk, controller){do stuff}
+
+            flush(controller) 
+            {
+              if (textBuffer) 
+              {
+                controller.enqueue(textBuffer);
+              } // End of: if (textBuffer)
+            } // End of: flush(controller){do stuff}
+          } // End of: parameters for new TransformStream
+        ) // End of: call to constructor new TransformStream
+      ) // End of: parameters for pipeThrough - Split on lines
+
+      // Parse JSON objects
+      .pipeThrough
+      (
+        new TransformStream
+        (
+          {
+            transform(line, controller) 
+            {
+              if (line) 
+              {
+                controller.enqueue
+                (
+                  JSON.parse(line)
+                ); //End of: call to controller.enqueue function
+              } // End of: if (line)
+            } // End of: transform function
+          } // End of: parameter object for new TransformStream
+        ) // End of: new TransformStream parameters
+      ); // End of: parameters for .pipeThrough - Parse JSON objects
+    } // End of: .then callback function instruction for fetch
+  ); // End of: .then callback parameters for fetch
+
+
+  // Call to function which asks server for data.
+  const res = await fetchPromise;
+
+  const reader = res.getReader();
+
+  function read() 
+  {
+    reader.read()
+    .then
+    (
+      ({value, done}) => 
+      {
+        if (value) {
+          // Your object will be here
+          // console.log('I got to this point');
+          // console.log(value);
+          // console.log(value._readableState.buffer.head.data.data.toString('utf8'));
+        } 
+        if (done) {
+          return;
+        }
+        read();
+      }
+    );
+  }
+
+  read();
+
+  /*
   // Ask the server for the JSON records found in the dbUsers file for which match the QueryStringObject.
   // Then run the callback function defined here which inserts rows into the usersListTable on the webpage
   // and populates them with data from the file of JSON records returned.
@@ -687,31 +939,72 @@ app.loadUsersListPage = function()
     // if the call to handlers._users.get which is mapped to api/aUsers called back success.
     if(statusCode == 200) 
     {
+      // The streamed data can be seen on the console as a buffer full of numbers
+      // console.log(responseTextStream._readableState.buffer.head.data.data);
 
-      // Convert each line of the response to a json object.
-      // Iterate through the objects
+
+      responseTextStream.pipeTo(new WritableStream({
+        write(chunk) {
+          console.log("Chunk received", chunk);
+        },
+        close() {
+          console.log("All data successfully read!");
+        },
+        abort(e) {
+          console.error("Something went wrong!", e);
+        }
+      }));
+
 
       // Create a handle which can be used to manipulate the table on the webpage.
       var table = document.getElementById("usersListTable");
 
-      // Insert a new row in the table.
-      var tr = table.insertRow(-1);
-      // Make the new row a member of the class 'checkRow'
-      tr.classList.add('checkRow');
 
-      // Insert five new cells into the new row.
-      var td0 = tr.insertCell(0);
-      var td1 = tr.insertCell(1);
-      var td2 = tr.insertCell(2);   
-      var td3 = tr.insertCell(3);          
+      // The pseudocode below does not work but is shows what I hope to accomplish.      
+      var Astr = responseTextStream;
+      var line = "";
 
-      // var lineValueObject = JSON.parse(line);
+      for(var i=0; i<Astr.length; i++)
+      {
+        var chr = String.fromCharCode(Astr[i]);
+        if(chr == "\n" || chr == "\r")
+        {
+          // Look at each line of json at the console as it is consumed.
+          console.log("line: ",line);
 
-      // load the new cells with data from the responsePayload.
-      td0.innerHTML = responseTextStream.userId;      
-      td1.innerHTML = responseTextStream.email;
-      td2.innerHTML = responseTextStream.timeStamp;      
-      td3.innerHTML = '<a href="/users/edit?email=' + responseTextStream.userId + '">View / Edit / Delete</a>';
+          // Turn the line, which is a json string, back into a json object 
+          var recordObject = JSON.parse(line);
+
+          if(recordObject)
+          {
+            // Insert a new row in the table.
+            var tr = table.insertRow(-1);
+            // Make the new row a member of the class 'checkRow'
+            tr.classList.add('checkRow');
+  
+            // Insert five new cells into the new row.
+            var td0 = tr.insertCell(0);
+            var td1 = tr.insertCell(1);
+            var td2 = tr.insertCell(2);   
+            var td3 = tr.insertCell(3);          
+  
+            // load the new cells with data from the recordObject.
+            td0.innerHTML = recordObject.userId;      
+            td1.innerHTML = recordObject.email;
+            td2.innerHTML = recordObject.timeStamp;      
+            td3.innerHTML = '<a href="/users/edit?email=' + recordObject.userId + '">View / Edit / Delete</a>';
+          } // End of: if(recordObject)
+
+          // clear the line buffer to start the next line.
+          line = "";
+
+        } // End of: if(chr == "\n" || chr == "\r"){do stuff}
+        else 
+        {
+            line += chr;
+        }           
+    
+      }; // End of: for(var i=0; i<Astr.length; i++){...}
 
       // Show the createCheck CTA
       document.getElementById("createCheckCTA").style.display = 'block';
@@ -728,6 +1021,7 @@ app.loadUsersListPage = function()
       console.log("Error trying to load the list of users: ");
     }
   }); // End of: app.client.request(undefined,'api/checks','GET'...
+  */
 
 } // End of: app.loadUsersListPage = function(){...}
 // End of: Populate the dbUsersList webpage with user records.
