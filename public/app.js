@@ -808,6 +808,9 @@ app.loadAccountEditPage = function()
 // Populate the dbUsersList webpage with user records.
 app.loadUsersListPage = async function()
 {  
+  // Create a handle which can be used to manipulate the table on the webpage.
+  var table = document.getElementById("usersListTable");  
+
   // Define which users will be retrieved from dbUsers.json
   // This is not being used for now so all records will be retrived.
   var QueryStringObject = {};
@@ -821,7 +824,14 @@ app.loadUsersListPage = async function()
       // Verify that we have some sort of 2xx response that we can use
       if (!res.ok) 
       {
-        throw res;
+        // throw res;
+        // Show 'you have no checks' message
+        document.getElementById("noChecksMessage").style.display = 'table-row';
+
+        // Show the createCheck CTA
+        document.getElementById("createCheckCTA").style.display = 'block';
+
+        console.log("Error trying to load the list of users: ");        
       }
 
       // If no content, immediately resolve, don't try to parse JSON
@@ -832,9 +842,6 @@ app.loadUsersListPage = async function()
 
       // Initialize variable to hold chunks of data as they come across.
       let textBuffer = '';
-
-      // This does not seem to be used. Delete this after everything else is working.
-      const self = this;
 
       // Process the stream.
       return res.body
@@ -853,19 +860,20 @@ app.loadUsersListPage = async function()
           {
             transform(chunk, controller) 
             {
-              textBuffer += chunk;
-              // console.log(textBuffer);
+              textBuffer += chunk;            
 
+              // Split the string of records on the new line character and store the result in an array named lines.
               const lines = textBuffer.split('\n');
-              // console.log('These are the lines: ', lines);
 
+              // Cycle through all elements in the array except for the last one which is only holding a new line character.
               for (const line of lines.slice(0, -1))
               {
-                console.log('This is the line sliced: ', line);
+                // Put the element from the array into the controller que.
                 controller.enqueue(line);
               } // End of: for (const line ...)
 
-              textBuffer = lines.slice(-1)[0];
+              // Put the last element from the array (the new line character) into the textBuffer but don't put it in the que.
+              textBuffer = lines.slice(-1)[0];             
             }, // End of: Transform(chunk, controller){do stuff}
 
             flush(controller) 
@@ -914,114 +922,40 @@ app.loadUsersListPage = async function()
     (
       ({value, done}) => 
       {
-        if (value) {
-          // Your object will be here
-          // console.log('I got to this point');
-          // console.log(value);
-          // console.log(value._readableState.buffer.head.data.data.toString('utf8'));
-        } 
-        if (done) {
-          return;
-        }
+        if (value) 
+        {
+          // Your object (value) will be here
+
+          // Insert a new row in the table.
+          var tr = table.insertRow(-1);
+          // Make the new row a member of the class 'checkRow'
+          tr.classList.add('checkRow');
+
+          // Insert five new cells into the new row.
+          var td0 = tr.insertCell(0);
+          var td1 = tr.insertCell(1);
+          var td2 = tr.insertCell(2);   
+          var td3 = tr.insertCell(3);          
+
+          // load the new cells with data from the recordObject.
+          td0.innerHTML = value.userId;      
+          td1.innerHTML = value.email;
+          td2.innerHTML = value.timeStamp;      
+          td3.innerHTML = '<a href="/users/edit?email=' + value.userId + '">View / Edit / Delete</a>';
+        } // End of: if(value){do stuff}
+
+        if (done) {return;}
+
         read();
-      }
-    );
-  }
 
+        // Show the createCheck CTA
+        document.getElementById("createCheckCTA").style.display = 'block';
+      } // End of: if a record object (value) is returned.
+    ); // End of: .then callback after read function completes.
+  } // End of: function definition: function read(){do stuff}
+
+  // Call the read function defined above.
   read();
-
-  /*
-  // Ask the server for the JSON records found in the dbUsers file for which match the QueryStringObject.
-  // Then run the callback function defined here which inserts rows into the usersListTable on the webpage
-  // and populates them with data from the file of JSON records returned.
-  app.client.request(undefined,'api/aUsers','GET',QueryStringObject,undefined,function(statusCode,responseTextStream)
-  {
-    // if the call to handlers._users.get which is mapped to api/aUsers called back success.
-    if(statusCode == 200) 
-    {
-      // The streamed data can be seen on the console as a buffer full of numbers
-      // console.log(responseTextStream._readableState.buffer.head.data.data);
-
-
-      responseTextStream.pipeTo(new WritableStream({
-        write(chunk) {
-          console.log("Chunk received", chunk);
-        },
-        close() {
-          console.log("All data successfully read!");
-        },
-        abort(e) {
-          console.error("Something went wrong!", e);
-        }
-      }));
-
-
-      // Create a handle which can be used to manipulate the table on the webpage.
-      var table = document.getElementById("usersListTable");
-
-
-      // The pseudocode below does not work but is shows what I hope to accomplish.      
-      var Astr = responseTextStream;
-      var line = "";
-
-      for(var i=0; i<Astr.length; i++)
-      {
-        var chr = String.fromCharCode(Astr[i]);
-        if(chr == "\n" || chr == "\r")
-        {
-          // Look at each line of json at the console as it is consumed.
-          console.log("line: ",line);
-
-          // Turn the line, which is a json string, back into a json object 
-          var recordObject = JSON.parse(line);
-
-          if(recordObject)
-          {
-            // Insert a new row in the table.
-            var tr = table.insertRow(-1);
-            // Make the new row a member of the class 'checkRow'
-            tr.classList.add('checkRow');
-  
-            // Insert five new cells into the new row.
-            var td0 = tr.insertCell(0);
-            var td1 = tr.insertCell(1);
-            var td2 = tr.insertCell(2);   
-            var td3 = tr.insertCell(3);          
-  
-            // load the new cells with data from the recordObject.
-            td0.innerHTML = recordObject.userId;      
-            td1.innerHTML = recordObject.email;
-            td2.innerHTML = recordObject.timeStamp;      
-            td3.innerHTML = '<a href="/users/edit?email=' + recordObject.userId + '">View / Edit / Delete</a>';
-          } // End of: if(recordObject)
-
-          // clear the line buffer to start the next line.
-          line = "";
-
-        } // End of: if(chr == "\n" || chr == "\r"){do stuff}
-        else 
-        {
-            line += chr;
-        }           
-    
-      }; // End of: for(var i=0; i<Astr.length; i++){...}
-
-      // Show the createCheck CTA
-      document.getElementById("createCheckCTA").style.display = 'block';
-
-    } // End of: if the call to handlers._users.get which is mapped to api/aUsers called back successfully.
-    else // client request to handlers._users.get called back something other than status code was not 200.
-    {
-      // Show 'you have no checks' message
-      document.getElementById("noChecksMessage").style.display = 'table-row';
-
-      // Show the createCheck CTA
-      document.getElementById("createCheckCTA").style.display = 'block';
-
-      console.log("Error trying to load the list of users: ");
-    }
-  }); // End of: app.client.request(undefined,'api/checks','GET'...
-  */
 
 } // End of: app.loadUsersListPage = function(){...}
 // End of: Populate the dbUsersList webpage with user records.
