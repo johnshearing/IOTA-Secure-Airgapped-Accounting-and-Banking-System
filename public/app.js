@@ -25,137 +25,6 @@ app.config = {
 app.client = {}
 
 
-/*
-// Define a client function that fetches a stream of data from the server.
-app.client.fetchStream =  async function(headers,path,method,queryStringObject,payload)
-{
-
-  // Set defaults
-  headers = typeof(headers) == 'object' && headers !== null ? headers : {};
-  path = typeof(path) == 'string' ? path : '/';
-  method = typeof(method) == 'string' && ['POST','GET','PUT','DELETE'].indexOf(method.toUpperCase()) > -1 ? method.toUpperCase() : 'GET';
-  queryStringObject = typeof(queryStringObject) == 'object' && queryStringObject !== null ? queryStringObject : {};
-  payload = typeof(payload) == 'object' && payload !== null ? payload : {};
-  callback = typeof(callback) == 'function' ? callback : false;  
-
-  // For each query string parameter sent, add it to the path
-  var requestUrl = path+'?';
-  var counter = 0;
-  for(var queryKey in queryStringObject)
-  {
-    if(queryStringObject.hasOwnProperty(queryKey))
-    {
-      counter++;
-
-      // If at least one query string parameter has already been added, preprend new ones with an ampersand
-      if(counter > 1)
-      {
-        requestUrl+='&';
-      }
-
-      // Add the key and value
-      requestUrl+=queryKey+'='+queryStringObject[queryKey];
-    }
-  }  
-
-
-  // If there is a current session token set, add that as a header
-  //if(app.config.sessionToken)
-  //{
-  //  xhr.setRequestHeader("token", app.config.sessionToken.id);
-  //}
-
-  let req = new Request(requestUrl, {'method' : method, 'headers' : headers, 'mode' : 'cors'});
-
-  let fetchPromise = await fetch(req)
-  .then
-  (
-    (res) => 
-    {
-      // Verify that we have some sort of 2xx response that we can use
-      if (!res.ok) 
-      {
-        throw res;
-      }
-  
-      // If no content, immediately resolve, don't try to parse JSON
-      if (res.status === 204) 
-      {
-        return;
-      }
-  
-      // Initialize variable to hold chunks of data as they come across.
-      let textBuffer = '';
-  
-      // This does not seem to be use. Delete this after everything else is working.
-      const self = this;
-  
-      // Process the stream.
-      return res.body
-  
-      // Decode as UTF-8 Text
-      .pipeThrough
-      (
-        new TextDecoderStream()
-      )
-  
-      // Split on lines
-      .pipeThrough
-      (
-        new TransformStream
-        (
-          {
-            transform(chunk, controller) 
-            {
-              textBuffer += chunk;
-  
-              const lines = textBuffer.split('\n');
-  
-              for (const line of lines.slice(0, -1)) 
-              {
-                controller.enqueue(line);
-              } // End of: for (const line ...)
-  
-              textBuffer = lines.slice(-1)[0];
-            }, // End of: Transform(chunk, controller){do stuff}
-  
-            flush(controller) 
-            {
-              if (textBuffer) 
-              {
-                controller.enqueue(textBuffer);
-              } // End of: if (textBuffer)
-            } // End of: flush(controller){do stuff}
-          } // End of: parameters for new TransformStream
-        ) // End of: call to constructor new TransformStream
-      ) // End of: parameters for pipeThrough - Split on lines
-  
-      // Parse JSON objects
-      .pipeThrough
-      (
-        new TransformStream
-        (
-          {
-            transform(line, controller) 
-            {
-              if (line) 
-              {
-                controller.enqueue
-                (
-                  JSON.parse(line)
-                ); //End of: call to controller.enqueue function
-              } // End of: if (line)
-            } // End of: transform function
-          } // End of: parameter object for new TransformStream
-        ) // End of: new TransformStream parameters
-      ); // End of: parameters for .pipeThrough - Parse JSON objects
-    } // End of: .then callback function instruction for fetch
-  ); // End of: .then callback parameters for fetch
-} // End of: app.client.fetchPromise =  function(){...}
-// End of: Define a client function that fetches a stream of data from the server.
-*/
-
-
 
 
 // Define interface function for making API calls.
@@ -813,9 +682,10 @@ app.loadUsersListPage = async function()
 
   // Define which users will be retrieved from dbUsers.json
   // This is not being used for now so all records will be retrived.
-  var QueryStringObject = {};
+  // var queryStringObject = {};   
 
   // Define a client function that calls for data from the server.
+  // const fetchPromise = fetch('api/aUsers?email=alice@gmail.com')
   const fetchPromise = fetch('api/aUsers')
   .then
   (

@@ -1,7 +1,194 @@
-<h1>List of Users</h1>
-<h2>Click on a user to view and edit details</h2>
+<h2>Filter, Sort, and Meter the Results</h2>
+
+<div class="formWrapper">
+  <!-- 
+  The form id property below can be used in the function formResponseProcessor perhaps to:
+  reset the query form, 
+  clear out data in the table in preparation for new data,
+  and perhaps to display the filter expression in current use.    
+  It might also be used in the function loadUsersListPage which is called to 
+  load data on the page when the form is first loaded or any time a query is submitted.    
+  Search on the following to see examples of usage in the code.
+  <form id="accountEdit1" action="/api/aUsers" method="GET"> 
+  -->
+  <form id="dbUsersList1" action="/api/aUsers" method="GET">
+    <input type="hidden" name="_method" value="GET"/>
+    <div class="formError">There was an error on this form</div>
+    <div class="formSuccess">This is what your filter looks like</div>
+
+    <!-- 
+    The line at the end of this comment is interesting because it shows how a field can be addressed by class in the code.
+    This has been used when operations must be preformed on several fields in different forms on the same page.
+    It might have other uses as well. 
+    Also of note is that the field is hidden. This is how information can be tracked behind the scenes.
+    This is not being used on this form. This comment is only here for a reminder.
+    Search on the following to see examples of usage in the code.
+    <input class="hiddenPhoneNumberInput"  type="hidden" name="phone" />
+    -->   
+
+
+    <!--
+    The system defined in this comment will be used to select which fields are displayed when the query is returned.
+    We start out with a div.
+    This div will contain a pulldown menu which will be populated with all the fields from the table when the menu is opened.
+    The user will select one of the fields to display which will now be showing on the pulldown menu control.
+    when the selection is made, a new blank pulldown menu will now be placed to the right of the first.
+    This behavior continues everytime a field is selected from a blank pulldown menu until all the fields have been selected.
+    When the user opens any pulldown menu, the code which populates the list will ensure the previously 
+    selected fields will be missing from the list and blank menu item will be added at the beginning.
+    If the user selects any of the other fields then the selected field will replace the one previously selected
+    while the previously selected will now go back onto the list.
+    Selecting the blank menu item will cause the entire pulldown menu to disapear and the one on the right
+    will take it's place.
+    At this point the code must check that a blank pulldown menu exists all the way to the right. 
+    If it does not then it must create one there at the end.
+    The only way a blank pulldown menu would not already exist is if all the fields have been previously selected.
+    As mentioned above, all pulldowns when opened, will be populated with all the fields except those already displayed.
+    Also as mentioned a the pulldown list will have a blank menu item at the top of the list.
+    Finally and not previously mentioned, when opening a pulldown menu, the code will check for neighbors right and left.
+    If there are neighbors found and they are not blank then arrows will also be inserted into the list
+    so that the populated pulldowns can switch places with neighbors to the right or to the left.
+    -->
+
+
+    <div class="inputWrapper">
+      <div class="inputLabel">Select a field to display</div>
+      <!-- The class of the select element below can be used to address the pulldown element when loading data onto the page. -->
+      <!-- Search the code for the term timeoutInput to see how this is done. -->  
+      <!-- The class of the select element below can be used to identify strings of numbers and convert them to integers when submitting a form. -->
+      <!-- Search the code for the term intval to see how this is done. -->
+      <!-- The class of the select element below can be used to identify checkboxes that are part of a multiselect group when submitting a form. -->
+      <!-- In that case an array is made from the multiselect elements when the form is submitted. -->
+      <!-- Search the code for the term multiselect to see how this is done. -->
+      <select class="fieldToDisplay" name="field-01"> 
+        <option value="field-00Value"></option>        
+        <option value="field-01Value">field-01Display</option>
+        <option value="field-02Value">field-02Display</option>
+        <option value="field-03Value">field-03Display</option>                
+      </select>
+    </div>
+
+
+
+    <hr />
+
+
+    <!--The following is used to select a field in the table for the where clause.   
+        This should be populated with fields from the table regardless of what table.  
+        So this will require a separate request just to get the field names.
+        This will be a pulldown menu.
+    -->
+    <div class="inputWrapper">
+      <div class="inputLabel">Phone Number</div>
+      <input class="disabled displayPhoneInput" type="text" name="displayPhone" disabled />
+    </div>
+
+
+    <!--The following will be used to select an operator to be used on the field in the where clause--> 
+    <!--This will be a pulldown menu.-->    
+    <div class="inputWrapper">
+      <div class="inputLabel">First Name</div>
+      <input class="firstNameInput" type="text" name="firstName" placeholder="John" />
+    </div>
+
+    <!--The following will be used to define the comparison in the where clause-->    
+    <!--This will be a textbox.-->    
+    <div class="inputWrapper">
+      <div class="inputLabel">Last Name</div>
+      <input class="lastNameInput" type="text" name="lastName" placeholder="Smith" />
+    </div>   
+
+    <!--The following will be used to start another where clause in the search expression and to
+        define the conjuction (parentheses, and, or, not, nor )
+        This will be a pulldown menu.
+    -->    
+    <div class="inputWrapper">
+        <div class="inputLabel">First Name</div>
+        <input class="firstNameInput" type="text" name="firstName" placeholder="John" />
+    </div>   
+
+    <!--The following will be used to define the sort in the order by clause- ascending or descending-->    
+    <!--This will be a pulldown menu loaded with field names.-->    
+    <div class="inputWrapper">
+        <div class="inputLabel">Last Name</div>
+        <input class="lastNameInput" type="text" name="lastName" placeholder="Smith" />
+    </div> 
+
+    <!--The following will be used to start another order by clause and to
+        define the conjuction (then order by).
+        This will be a button at the end of the first order by clause which 
+        creates another pulldown menu populated with field names.
+    -->    
+    <div class="inputWrapper">
+        <div class="inputLabel">First Name</div>
+        <input class="firstNameInput" type="text" name="firstName" placeholder="John" />
+    </div> 
+
+
+
+
+    <!--The following will be used to define the group by clause-->    
+    <!--This will be a pulldown menu populated with field names.-->    
+    <div class="inputWrapper">
+        <div class="inputLabel">Last Name</div>
+        <input class="lastNameInput" type="text" name="lastName" placeholder="Smith" />
+    </div> 
+
+    <!--The following will be used to start another group by clause and to
+        define the conjuction (then group by).
+        This will be a button at the end of the first group by clause which 
+        creates another pulldown menu populated with field names.
+        It occures to me that this could also be used to define a function.
+    -->    
+    <div class="inputWrapper">
+        <div class="inputLabel">First Name</div>
+        <input class="firstNameInput" type="text" name="firstName" placeholder="John" />
+    </div>
+
+
+
+    <!--The following will be used to define the amount of records that show up on each page in the results-->
+    <!--This will be a pulldown menu.-->    
+    <div class="inputWrapper">
+      <div class="inputLabel">email</div>
+      <input class="emailInput" type="text" name="email" placeholder="js@gmail.com" />
+    </div>
+
+    <!--The following will be used to display the query.-->  
+    <!--I am tempted to make this editable for people that wish to type the search expression in directly.-->   
+    <!--This will be a memo field.-->        
+    <div class="inputWrapper">
+        <div class="inputLabel">email</div>
+        <input class="emailInput" type="text" name="email" placeholder="js@gmail.com" />
+    </div>      
+
+    <!--The following will be used to clear the query expression so that a new query can be formed.-->
+    <!--This will be a button.-->    
+    <div class="inputWrapper">
+        <div class="inputLabel">email</div>
+        <input class="emailInput" type="text" name="email" placeholder="js@gmail.com" />
+    </div>    
+
+    <!--The following will be used to submit the query to the server-->
+    <!--This will be a button.-->
+    <div class="inputWrapper ctaWrapper">
+      <button type="submit" class="cta green">Save Changes</button>
+    </div>
+  </form>
+</div>
+
 <hr />
 
+<!--The following should be populated from the table name or from metadata-->
+<h2>List of Users</h2>
+
+<!--The following should be populated from the table name or from metadata-->
+<h3>Click on a user to view and edit details</h3>
+<hr />
+
+<!--The following table should not be hard coded here but rather created with code at run time-->
+<!--The rows should not be hard coded here but rather created with metadata at run-time-->
+<!--The user should be allowed to select which rows are displayed and in what order.-->
 <table id="usersListTable">
   <tr>
     <th>UserID</th>
