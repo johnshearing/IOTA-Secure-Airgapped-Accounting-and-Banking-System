@@ -29,7 +29,7 @@
 
     <!--
     The system defined in this comment will be used to select which fields are displayed when the query is returned.
-    We start out with a div.
+    We start out with a div of class selectClauseWrapper.
     This div will contain a pulldown menu which will be populated with all the fields from the table when the menu is opened.
     The user will select one of the fields to display which will now be showing on the pulldown menu control.
     when the selection is made, a new blank pulldown menu will now be placed to the right of the first.
@@ -49,130 +49,141 @@
     If there are neighbors found and they are not blank then arrows will also be inserted into the list
     so that the populated pulldowns can switch places with neighbors to the right or to the left.
     -->
-
-
-    <div class="inputWrapper">
-      <div class="inputLabel">Select a field to display</div>
-      <!-- The class of the select element below can be used to address the pulldown element when loading data onto the page. -->
-      <!-- Search the code for the term timeoutInput to see how this is done. -->  
-      <!-- The class of the select element below can be used to identify strings of numbers and convert them to integers when submitting a form. -->
-      <!-- Search the code for the term intval to see how this is done. -->
-      <!-- The class of the select element below can be used to identify checkboxes that are part of a multiselect group when submitting a form. -->
-      <!-- In that case an array is made from the multiselect elements when the form is submitted. -->
-      <!-- Search the code for the term multiselect to see how this is done. -->
-      <select class="fieldToDisplay" name="field-01"> 
-        <option value="field-00Value"></option>        
-        <option value="field-01Value">field-01Display</option>
-        <option value="field-02Value">field-02Display</option>
-        <option value="field-03Value">field-03Display</option>                
-      </select>
+    <div class="selectClauseWrapper">
+      <div class="inputWrapper fieldToDisplayInputWrapper">
+        <div class="inputLabel">Select a field to display</div>
+        <!-- The class of the select element below can be used to address the pulldown element when loading data onto the page. -->
+        <!-- Search the code for the term timeoutInput to see how this is done. -->  
+        <!-- The class of the select element below can be used to identify strings of numbers and convert them to integers when submitting a form. -->
+        <!-- Search the code for the term intval to see how this is done. -->
+        <!-- The class of the select element below can be used to identify checkboxes that are part of a multiselect group when submitting a form. -->
+        <!-- In that case an array is made from the multiselect elements when the form is submitted. -->
+        <!-- Search the code for the term multiselect to see how this is done. -->
+        <select class="fieldToDisplay"> 
+          <option value=""></option>  
+          <option value="uparrow" class="arrows" style="display: none;">&#x021E7;</option> 
+          <option value="downarrow" class="arrows" style="display: none;">&#x021E9;</option>           
+          <option value="userId">userId</option>
+          <option value="email">email</option>
+          <option value="timeStamp">timeStamp</option>               
+        </select>
+      </div>
     </div>
-
-
 
     <hr />
 
-
-    <!--The following is used to select a field in the table for the where clause.   
-        This should be populated with fields from the table regardless of what table.  
-        So this will require a separate request just to get the field names.
-        This will be a pulldown menu.
+    <!--
+    The system defined in this comment will define the where clause used to choose which records will be displayed.
+    We start out with a div of class whereClauseWrapper.
+    This div will contain two pulldown menus and an input text box.
+    The first pulldown menu contains all the fields which might be examined for a condition.
+    The second pulldown menu contains a list of comparison operators.
+    The input text box contains the condition to be compared.
+    After all three elements have be filled out the code will generate another set of 
+    elements for a second where clause if desired.
+    This behavior will continue so that there could be an unlimited number of where clauses.
     -->
-    <div class="inputWrapper">
-      <div class="inputLabel">Phone Number</div>
-      <input class="disabled displayPhoneInput" type="text" name="displayPhone" disabled />
-    </div>
+    <div class="whereClauseWrapper">
+      <!--
+      The following select element is used to select a field in the table for the where clause.   
+      This should be populated with fields from the table the current webpage supports.  
+      So this will require a separate request just to get the field names.
+      -->
+      <div class="inputWrapper">
+        <div class="inputLabel">Select a field to use in the where clause</div>
+        <select class="fieldToCompare" name="fieldToCompare-01"> 
+          <option value="field-00Value"></option>        
+          <option value="field-01Value">field-01Compare</option>
+          <option value="field-02Value">field-02Compare</option>
+          <option value="field-03Value">field-03Compare</option>                
+        </select>
+      </div>
 
+      <!--The following will be used to select an operator to be used on the field in the where clause-->    
+      <div class="inputWrapper">
+        <div class="inputLabel">Select an operator to use in the where clause</div>
+        <select class="comparisonOperator" name="comparisonOperator-01"> 
+          <option value="field-00Value"></option>        
+          <option value="==">is equal to</option>
+          <option value="!=">is not equal to</option>
+          <option value=">">is greater than</option>    
+          <option value=">=">is greater than or equal to</option>    
+          <option value="<">is less than</option>  
+          <option value=">=">is less than or equal to</option>   
+          <option value="B">begins with</option>         
+          <option value="C">contains</option>      
+          <option value="E">ends with</option>  
+          <option value="T">is true</option>    
+          <option value="F">is false</option>                                                                         
+        </select>
+      </div>     
 
-    <!--The following will be used to select an operator to be used on the field in the where clause--> 
-    <!--This will be a pulldown menu.-->    
-    <div class="inputWrapper">
-      <div class="inputLabel">First Name</div>
-      <input class="firstNameInput" type="text" name="firstName" placeholder="John" />
-    </div>
+      <!--The following will be used to define the comparison in the where clause-->      
+      <div class="inputWrapper">
+        <div class="inputLabel">Match Term</div>
+        <input class="matchTermInput" type="text" name="matchTermInput-01" placeholder="Enter a Match Term" />
+      </div>   
 
-    <!--The following will be used to define the comparison in the where clause-->    
-    <!--This will be a textbox.-->    
-    <div class="inputWrapper">
-      <div class="inputLabel">Last Name</div>
-      <input class="lastNameInput" type="text" name="lastName" placeholder="Smith" />
-    </div>   
+    </div>  
 
-    <!--The following will be used to start another where clause in the search expression and to
-        define the conjuction (parentheses, and, or, not, nor )
-        This will be a pulldown menu.
+    <!--
+    The system defined in this comment will define the order by clause used to choose the order in 
+    which records will be displayed.
+    We start out with a div of class orderByClauseWrapper.
+    This div will contain two pulldown menus.
+    The first pulldown menu contains all the fields which might be used to define the order in 
+    which the records will be displayed.
+    The second pulldown menu contains a list of order by operators.
+    There are only two - ascending and descending.
+    After both elements have be filled out the code will generate another set of 
+    elements for a second order by clause if desired.
+    This behavior will continue so that there could be an unlimited number of order by clauses.
     -->    
-    <div class="inputWrapper">
-        <div class="inputLabel">First Name</div>
-        <input class="firstNameInput" type="text" name="firstName" placeholder="John" />
-    </div>   
+    <div class="orderByClauseWrapper">
 
-    <!--The following will be used to define the sort in the order by clause- ascending or descending-->    
-    <!--This will be a pulldown menu loaded with field names.-->    
-    <div class="inputWrapper">
-        <div class="inputLabel">Last Name</div>
-        <input class="lastNameInput" type="text" name="lastName" placeholder="Smith" />
-    </div> 
+      <!--The following will be used to define the sort in the order by clause - ascending or descending-->    
+      <!--This will be a pulldown menu loaded with field names.-->    
+      <div class="inputWrapper">
+        <div class="inputLabel">Select a field to use in the order by clause</div>
+        <select class="fieldToOrderBy" name="fieldToOrderBy-01"> 
+          <option value="field-00Value"></option>        
+          <option value="field-01Value">field-01Orderby</option>
+          <option value="field-02Value">field-02Orderby</option>
+          <option value="field-03Value">field-03Orderby</option>                
+        </select>
+      </div>
+  
+      <!--The following will be used to select the order by operator ascending or descending-->    
+      <div class="inputWrapper">
+        <div class="inputLabel">Select an operator to use in the order by clause</div>
+        <select class="orderByOperator" name="orderByOperator-01"> 
+          <option value="no order"></option>        
+          <option value="ascending">ascending</option>
+          <option value="descending">descending</option>                                                                        
+        </select>
+      </div> 
 
-    <!--The following will be used to start another order by clause and to
-        define the conjuction (then order by).
-        This will be a button at the end of the first order by clause which 
-        creates another pulldown menu populated with field names.
-    -->    
-    <div class="inputWrapper">
-        <div class="inputLabel">First Name</div>
-        <input class="firstNameInput" type="text" name="firstName" placeholder="John" />
-    </div> 
-
-
-
-
-    <!--The following will be used to define the group by clause-->    
-    <!--This will be a pulldown menu populated with field names.-->    
-    <div class="inputWrapper">
-        <div class="inputLabel">Last Name</div>
-        <input class="lastNameInput" type="text" name="lastName" placeholder="Smith" />
-    </div> 
-
-    <!--The following will be used to start another group by clause and to
-        define the conjuction (then group by).
-        This will be a button at the end of the first group by clause which 
-        creates another pulldown menu populated with field names.
-        It occures to me that this could also be used to define a function.
-    -->    
-    <div class="inputWrapper">
-        <div class="inputLabel">First Name</div>
-        <input class="firstNameInput" type="text" name="firstName" placeholder="John" />
     </div>
-
-
 
     <!--The following will be used to define the amount of records that show up on each page in the results-->
     <!--This will be a pulldown menu.-->    
     <div class="inputWrapper">
-      <div class="inputLabel">email</div>
+      <div class="inputLabel">How many records do you want on each page?</div>
+      <!--The class can be used when loading data on the webpage.-->
+      <!--Search in the code for the term emailInput to find an example-->      
       <input class="emailInput" type="text" name="email" placeholder="js@gmail.com" />
     </div>
 
-    <!--The following will be used to display the query.-->  
-    <!--I am tempted to make this editable for people that wish to type the search expression in directly.-->   
-    <!--This will be a memo field.-->        
+    <!--The following will be used to display the query.-->         
     <div class="inputWrapper">
-        <div class="inputLabel">email</div>
-        <input class="emailInput" type="text" name="email" placeholder="js@gmail.com" />
-    </div>      
-
-    <!--The following will be used to clear the query expression so that a new query can be formed.-->
-    <!--This will be a button.-->    
-    <div class="inputWrapper">
-        <div class="inputLabel">email</div>
-        <input class="emailInput" type="text" name="email" placeholder="js@gmail.com" />
-    </div>    
+        <div class="inputLable">Query Expression</div>
+        <textarea class="queryExpressionTextArea" name="queryExpression" rows="10" cols="30" readonly>Your query expression will go here.</textarea>
+    </div>         
 
     <!--The following will be used to submit the query to the server-->
     <!--This will be a button.-->
     <div class="inputWrapper ctaWrapper">
-      <button type="submit" class="cta green">Save Changes</button>
+      <button type="submit" class="cta green">Submit Query</button>
     </div>
   </form>
 </div>

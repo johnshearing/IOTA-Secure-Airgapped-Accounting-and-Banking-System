@@ -302,3 +302,16 @@ td a, td a:hover, td a:active{
   margin-top: 40px;
   display: none;
 }
+
+.queryExpressionTextArea
+{
+  width: 100%;  
+  border-width: 5px;   
+  border-color: black;
+  border-style: solid;
+}
+
+.arrows
+{
+  font-size: x-large;
+}

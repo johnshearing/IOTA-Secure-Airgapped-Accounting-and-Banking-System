@@ -129,7 +129,6 @@ app.bindLogoutButton = function()
 
 
 
-
 // Log the user out then redirect them
 app.logUserOut = function(redirectUser)
 {
@@ -372,7 +371,8 @@ app.formResponseProcessor = function(formId,requestPayload,responsePayload)
   // End of: If forms saved successfully and they have success messages, show them.
 
 
-  // If the user just deleted their account, redirect them to the account-delete page
+  // If the user just deleted their account, redirect them to the accountDeleted page instead 
+  // of redirecting them to the sessionDeleted page which is the default behavior.
   if(formId == 'accountEdit3')
   {
     app.logUserOut(false);
@@ -674,9 +674,75 @@ app.loadAccountEditPage = function()
 
 
 
-// Populate the dbUsersList webpage with user records.
+// Populate the dbUsersList webpage with controls and user records from the table.
 app.loadUsersListPage = async function()
 {  
+
+  // Define the function that fires when the fieldToDisplay selector changes.
+  function onChangeBehaviorForFieldToDisplaySelector (event)  
+  {
+    // Stop it from redirecting anywhere
+    event.preventDefault();
+
+    // Either of the two lines below will work. 
+    // The first uses css selectors but is a bit slower and returns static elements.
+    // let selectorCount = (document.querySelectorAll(".fieldToDisplay").length);    
+    let selectorCount = document.getElementsByClassName("fieldToDisplay").length; 
+
+    // Get the amount of options contained in the select element.
+    let optionsCount = document.querySelectorAll(".fieldToDisplay")[0].childElementCount;
+
+    // Get the amount of fields contained in the select element.
+    // This is the options count minus 3 because there are three options besides the fields.
+    // These are the blank option, and the up and down arrow options.
+    let fieldsCount = optionsCount - 3
+
+    // if the user has selected the blank option remove the selector and it's wrapper. 
+    if(event.target.value == "" && selectorCount > 1)
+    {
+      //event.target.remove;
+      event.target.parentNode.parentNode.removeChild(event.target.parentNode);
+    }    
+    // Otherwise, Clone a new selector element if there are still less selectors than there are fields avaliable for display.
+    else if(selectorCount < fieldsCount && event.target.value != "") // if there are still less selectors than there are fields avaliable for display:
+    {
+      // Clone a new wrapper, the child select element, and children options from the previous and append it to the DOM
+      let elmnt = document.getElementsByClassName("fieldToDisplayInputWrapper")[selectorCount - 1]
+      let cln = elmnt.cloneNode(true);
+      document.getElementsByClassName("selectClauseWrapper")[0].appendChild(cln);     
+
+      // Create an event listener for the onchange event of the newly cloned select element and bind this function to it.
+      document.getElementsByClassName("fieldToDisplay")[selectorCount].addEventListener("change", onChangeBehaviorForFieldToDisplaySelector);      
+    }
+
+  } // End of: function onChangeBehaviorForFieldToDisplaySelector (event)
+  // End of: Define the function that fires when the fieldToDisplay selector changes.  
+
+
+  // Bind the function above to the onChange event of the first (and only for now) fieldToDisplay select element.
+  document.getElementsByClassName("fieldToDisplay")[0].addEventListener("change", onChangeBehaviorForFieldToDisplaySelector);
+
+
+
+  function onFocusBehaviorForFieldToDisplaySelector (event)
+  {
+    // Stop it from redirecting anywhere
+    event.preventDefault();
+
+    // Add all the field names to the list
+
+
+    // Display the selection
+    // console.log(`Listening for focus on ${e.target.value}`);
+  }
+
+  
+  // Add an onFocus event listener to the fieldToDisplay select element
+  document.getElementsByClassName("fieldToDisplay")[0].addEventListener("focus", onFocusBehaviorForFieldToDisplaySelector);
+
+
+
+
   // Create a handle which can be used to manipulate the table on the webpage.
   var table = document.getElementById("usersListTable");  
 
@@ -1030,9 +1096,9 @@ app.init = function(){
   // Bind all form submissions
   app.bindForms();
 
-  // Bind logout logout button
-  app.bindLogoutButton();
-
+  // Bind logout button
+  app.bindLogoutButton(); 
+    
   // Get the token from localstorage
   app.getSessionToken();
 
