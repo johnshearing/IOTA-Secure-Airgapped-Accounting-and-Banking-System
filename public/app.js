@@ -684,9 +684,64 @@ app.loadUsersListPage = async function()
     // Stop it from redirecting anywhere
     event.preventDefault();
 
+    // Start of: Hide options which contain fields that are already displayed on select elements.
+    // 1. Create an empty array to hold the values contained in the select elements.
+    let selectorElementValues = [];
+
+    // 2. Look at each select element and store their values in the array.
+    document.querySelectorAll(".fieldToDisplay").forEach(function(element) 
+    {
+      // if the select elements are not blank or showing arrows
+      if(element.value != "" && element.value != "&#x021E7;" && element.value != "&#x021E9;")
+      {
+        // Push the values onto the array.
+        selectorElementValues.push(element.value);
+      }
+    });   
+
+    // console.log('selectorElementValues: ', selectorElementValues)  ;  
+    
+    // 3. Examine the menu options of the selector having focus and hide any 
+    //    options that exist in the selectElementValues array.
+    //    So if an item has already been selected then it won't show in the 
+    //    list of items to select.
+    document.querySelectorAll(".fieldToDisplay").forEach(function(element) 
+    {
+      let optionElements = element.querySelectorAll('option');  
+      // myVar = Object.values(optionElements);
+      // console.log('Object.values(optionElements): ', myVar);
+  
+      for (let optionElement of optionElements) 
+      {
+        
+        // console.log('optionElement.innerHTML: ', optionElement.innerHTML);
+        // console.log('optionElement.value: ', optionElement.value); 
+        // console.log('selectorElementValues were found inside: ', selectorElementValues.indexOf(optionElement.innerHTML) > -1)
+  
+        if(selectorElementValues.indexOf(optionElement.innerHTML) > -1)
+        {
+          optionElement.style.display = "none"
+        }    
+        else
+        {
+          optionElement.style.display = "list-item"
+        }  
+      }
+    }); 
+    // End of: Hide options which contain fields that are already displayed on select elements.
+
+    // Start of: Remove select elements when blanked out by user or add new blank select elements when needed.
+
     // Either of the two lines below will work. 
-    // The first uses css selectors but is a bit slower and returns static elements.
-    // let selectorCount = (document.querySelectorAll(".fieldToDisplay").length);    
+    // They both seem to return an array of objects which are either an HTMLCollection or a NodeList
+    // See the following page for a good explaination of the difference:
+    // http://xahlee.info/js/js_array_vs_nodelist_vs_html_collection.html
+    // querySelectorAll uses css selectors and it returns a true array that will respond to many array methods.
+    // On the down side querySelectorAll is a bit slower and returns static elements.
+    // getElementsByClassName is a bit faster and it returns live elements but responds to fewer array methods.
+    // See the following pages for a good explaination of how to work with these:
+    // http://xahlee.info/js/js_get_elements.html or https://javascript.info/searching-elements-dom
+    // let selectorCount = document.querySelectorAll(".fieldToDisplay").length;    
     let selectorCount = document.getElementsByClassName("fieldToDisplay").length; 
 
     // Get the amount of options contained in the select element.
@@ -697,14 +752,48 @@ app.loadUsersListPage = async function()
     // These are the blank option, and the up and down arrow options.
     let fieldsCount = optionsCount - 3
 
-    // if the user has selected the blank option remove the selector and it's wrapper. 
+
+    // Define a function to check that no blank select elements exist.
+    let noBlanksExist = function ()
+    {
+      let foundBlank = false
+
+      // Look at each select element to see if any are blank.
+      // Note: getElementsByClassName does not work with .forEach() the way querySelectorAll does 
+      // but it will work with a regular for loop as seen in the onFocus function below.
+      document.querySelectorAll(".fieldToDisplay").forEach(function(element)      
+      {
+        if(element.value == "")
+        {
+          foundBlank = true;
+        }
+      });
+
+      if(foundBlank)
+      {
+        return false;
+      }
+      else
+      {
+        return true;
+      }
+    };
+    // End of: Define a function that will check that no blank select elements exist.
+
+
+    // if the user has selected the blank option and there is more than one select element showing:
     if(event.target.value == "" && selectorCount > 1)
     {
-      //event.target.remove;
+      // Remove the selector and it's wrapper. 
+      // Normally the following would work to remove the selector - event.target.remove;
+      // But we have to go up two ancestors to remove the wrapper as well.
       event.target.parentNode.parentNode.removeChild(event.target.parentNode);
+
+      selectorCount = selectorCount - 1;
     }    
-    // Otherwise, Clone a new selector element if there are still less selectors than there are fields avaliable for display.
-    else if(selectorCount < fieldsCount && event.target.value != "") // if there are still less selectors than there are fields avaliable for display:
+
+    // If there are still less selectors than there are fields avaliable for display and there are no blank select elements already:
+    if(selectorCount < fieldsCount && noBlanksExist()) 
     {
       // Clone a new wrapper, the child select element, and children options from the previous and append it to the DOM
       let elmnt = document.getElementsByClassName("fieldToDisplayInputWrapper")[selectorCount - 1]
@@ -712,8 +801,9 @@ app.loadUsersListPage = async function()
       document.getElementsByClassName("selectClauseWrapper")[0].appendChild(cln);     
 
       // Create an event listener for the onchange event of the newly cloned select element and bind this function to it.
-      document.getElementsByClassName("fieldToDisplay")[selectorCount].addEventListener("change", onChangeBehaviorForFieldToDisplaySelector);      
+      document.getElementsByClassName("fieldToDisplay")[selectorCount].addEventListener("change", onChangeBehaviorForFieldToDisplaySelector);                 
     }
+    // End of: Remove select elements when blanked out by user or add new blank select elements when needed.
 
   } // End of: function onChangeBehaviorForFieldToDisplaySelector (event)
   // End of: Define the function that fires when the fieldToDisplay selector changes.  
@@ -721,25 +811,6 @@ app.loadUsersListPage = async function()
 
   // Bind the function above to the onChange event of the first (and only for now) fieldToDisplay select element.
   document.getElementsByClassName("fieldToDisplay")[0].addEventListener("change", onChangeBehaviorForFieldToDisplaySelector);
-
-
-
-  function onFocusBehaviorForFieldToDisplaySelector (event)
-  {
-    // Stop it from redirecting anywhere
-    event.preventDefault();
-
-    // Add all the field names to the list
-
-
-    // Display the selection
-    // console.log(`Listening for focus on ${e.target.value}`);
-  }
-
-  
-  // Add an onFocus event listener to the fieldToDisplay select element
-  document.getElementsByClassName("fieldToDisplay")[0].addEventListener("focus", onFocusBehaviorForFieldToDisplaySelector);
-
 
 
 

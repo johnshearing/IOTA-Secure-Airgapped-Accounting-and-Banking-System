@@ -31,11 +31,13 @@
     The system defined in this comment will be used to select which fields are displayed when the query is returned.
     We start out with a div of class selectClauseWrapper.
     This div will contain a pulldown menu which will be populated with all the fields from the table when the menu is opened.
+    There will also be a blank menu option at the top.
     The user will select one of the fields to display which will now be showing on the pulldown menu control.
-    when the selection is made, a new blank pulldown menu will now be placed to the right of the first.
-    This behavior continues everytime a field is selected from a blank pulldown menu until all the fields have been selected.
+    When the selection is made, a new blank pulldown menu will now be placed below the first.
+    This behavior continues everytime a field is selected from a blank pulldown menu until the amount of
+    select elements equals the amount of fields that can be selected.
     When the user opens any pulldown menu, the code which populates the list will ensure the previously 
-    selected fields will be missing from the list and blank menu item will be added at the beginning.
+    selected fields will be missing from the list and blank menu item will be at the top.
     If the user selects any of the other fields then the selected field will replace the one previously selected
     while the previously selected will now go back onto the list.
     Selecting the blank menu item will cause the entire pulldown menu to disapear and the one on the right
@@ -60,12 +62,12 @@
         <!-- In that case an array is made from the multiselect elements when the form is submitted. -->
         <!-- Search the code for the term multiselect to see how this is done. -->
         <select class="fieldToDisplay"> 
-          <option value=""></option>  
-          <option value="uparrow" class="arrows" style="display: none;">&#x021E7;</option> 
-          <option value="downarrow" class="arrows" style="display: none;">&#x021E9;</option>           
-          <option value="userId">userId</option>
-          <option value="email">email</option>
-          <option value="timeStamp">timeStamp</option>               
+          <option value="" style="display: list-item;"></option>  
+          <option value="uparrow" style="display: none;" class="arrows">&#x021E7;</option> 
+          <option value="downarrow" style="display: none;" class="arrows">&#x021E9;</option>           
+          <option value="userId" style="display: list-item;">userId</option>
+          <option value="email" style="display: list-item;">email</option>
+          <option value="timeStamp" style="display: list-item;">timeStamp</option>               
         </select>
       </div>
     </div>
