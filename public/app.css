@@ -306,12 +306,24 @@ td a, td a:hover, td a:active{
 .queryExpressionTextArea
 {
   width: 100%;  
-  border-width: 5px;   
+  border-width: 2px;   
   border-color: black;
   border-style: solid;
+  resize: none;
+  overflow: auto;
 }
 
-.arrows
+.selectClauseWrapper, .whereClauseWrapper, .orderByClauseWrapper, .recordLimitWrapper, .queryExpressionWrapper
 {
-  font-size: x-large;
+  width: 100%;  
+  border-width: 2px;   
+  border-color: black;
+  border-style: solid;
+  padding: 10px;
 }
+
+.queryByExampleLabel, .queryByExampleSubmitWrapper
+{
+  margin-top: 5px;  
+}
+

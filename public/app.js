@@ -691,15 +691,13 @@ app.loadUsersListPage = async function()
     // 2. Look at each select element and store their values in the array.
     document.querySelectorAll(".fieldToDisplay").forEach(function(element) 
     {
-      // if the select elements are not blank or showing arrows
-      if(element.value != "" && element.value != "&#x021E7;" && element.value != "&#x021E9;")
+      // if the select elements are not blank
+      if(element.value != "")
       {
         // Push the values onto the array.
         selectorElementValues.push(element.value);
       }
     });   
-
-    // console.log('selectorElementValues: ', selectorElementValues)  ;  
     
     // 3. Examine the menu options of the selector having focus and hide any 
     //    options that exist in the selectElementValues array.
@@ -708,23 +706,16 @@ app.loadUsersListPage = async function()
     document.querySelectorAll(".fieldToDisplay").forEach(function(element) 
     {
       let optionElements = element.querySelectorAll('option');  
-      // myVar = Object.values(optionElements);
-      // console.log('Object.values(optionElements): ', myVar);
   
       for (let optionElement of optionElements) 
       {
-        
-        // console.log('optionElement.innerHTML: ', optionElement.innerHTML);
-        // console.log('optionElement.value: ', optionElement.value); 
-        // console.log('selectorElementValues were found inside: ', selectorElementValues.indexOf(optionElement.innerHTML) > -1)
-  
         if(selectorElementValues.indexOf(optionElement.innerHTML) > -1)
         {
-          optionElement.style.display = "none"
+          optionElement.style.display = "none";
         }    
         else
         {
-          optionElement.style.display = "list-item"
+          optionElement.style.display = "list-item";
         }  
       }
     }); 
@@ -736,31 +727,31 @@ app.loadUsersListPage = async function()
     // They both seem to return an array of objects which are either an HTMLCollection or a NodeList
     // See the following page for a good explaination of the difference:
     // http://xahlee.info/js/js_array_vs_nodelist_vs_html_collection.html
-    // querySelectorAll uses css selectors and it returns a true array that will respond to many array methods.
-    // On the down side querySelectorAll is a bit slower and returns static elements.
+    // querySelectorAll uses css selectors and it returns a NodeList that will respond to many array methods.
+    // On the down side querySelectorAll is a bit slower and returns static elements which has advantages and disadvantages.
     // getElementsByClassName is a bit faster and it returns live elements but responds to fewer array methods.
-    // See the following pages for a good explaination of how to work with these:
+    // See the following pages for a good explaination of what's the difference and how to work with these:
     // http://xahlee.info/js/js_get_elements.html or https://javascript.info/searching-elements-dom
-    // let selectorCount = document.querySelectorAll(".fieldToDisplay").length;    
-    let selectorCount = document.getElementsByClassName("fieldToDisplay").length; 
+    // let selectorCount = document.getElementsByClassName("fieldToDisplay").length;    
+    let selectorCount = document.querySelectorAll(".fieldToDisplay").length;     
 
     // Get the amount of options contained in the select element.
     let optionsCount = document.querySelectorAll(".fieldToDisplay")[0].childElementCount;
 
     // Get the amount of fields contained in the select element.
-    // This is the options count minus 3 because there are three options besides the fields.
-    // These are the blank option, and the up and down arrow options.
-    let fieldsCount = optionsCount - 3
+    // This is the options count minus 1 because there is one option besides the fields.
+    // This is the blank option.
+    let fieldsCount = optionsCount - 1;
 
 
     // Define a function to check that no blank select elements exist.
     let noBlanksExist = function ()
     {
-      let foundBlank = false
+      let foundBlank = false;
 
       // Look at each select element to see if any are blank.
-      // Note: getElementsByClassName does not work with .forEach() the way querySelectorAll does 
-      // but it will work with a regular for loop as seen in the onFocus function below.
+      // Note: getElementsByClassName does not work with .forEach() the way 
+      // querySelectorAll does but it will work with a regular for loop
       document.querySelectorAll(".fieldToDisplay").forEach(function(element)      
       {
         if(element.value == "")
@@ -796,12 +787,12 @@ app.loadUsersListPage = async function()
     if(selectorCount < fieldsCount && noBlanksExist()) 
     {
       // Clone a new wrapper, the child select element, and children options from the previous and append it to the DOM
-      let elmnt = document.getElementsByClassName("fieldToDisplayInputWrapper")[selectorCount - 1]
+      let elmnt = document.querySelectorAll(".fieldToDisplayInputWrapper")[selectorCount - 1];
       let cln = elmnt.cloneNode(true);
-      document.getElementsByClassName("selectClauseWrapper")[0].appendChild(cln);     
+      document.querySelectorAll(".selectClauseWrapper")[0].appendChild(cln);     
 
       // Create an event listener for the onchange event of the newly cloned select element and bind this function to it.
-      document.getElementsByClassName("fieldToDisplay")[selectorCount].addEventListener("change", onChangeBehaviorForFieldToDisplaySelector);                 
+      document.querySelectorAll(".fieldToDisplay")[selectorCount].addEventListener("change", onChangeBehaviorForFieldToDisplaySelector);                 
     }
     // End of: Remove select elements when blanked out by user or add new blank select elements when needed.
 
@@ -810,7 +801,7 @@ app.loadUsersListPage = async function()
 
 
   // Bind the function above to the onChange event of the first (and only for now) fieldToDisplay select element.
-  document.getElementsByClassName("fieldToDisplay")[0].addEventListener("change", onChangeBehaviorForFieldToDisplaySelector);
+  document.querySelectorAll(".fieldToDisplay")[0].addEventListener("change", onChangeBehaviorForFieldToDisplaySelector);
 
 
 

@@ -1,4 +1,6 @@
-<h2>Filter, Sort, and Meter the Results</h2>
+<h2>Filter, Sort, and Meter the Records</h2>
+<h2>All records are returned unaltered if no selections are made.</h2>
+<h2>Press the submit button to see the results</h2>
 
 <div class="formWrapper">
   <!-- 
@@ -29,6 +31,8 @@
 
     <!--
     The system defined in this comment will be used to select which fields are displayed when the query is returned.
+    All the behavior described provided by the function onChangeBehaviorForFieldToDisplaySelector.
+    This comment was the specification from which that function was made.
     We start out with a div of class selectClauseWrapper.
     This div will contain a pulldown menu which will be populated with all the fields from the table when the menu is opened.
     There will also be a blank menu option at the top.
@@ -40,39 +44,33 @@
     selected fields will be missing from the list and blank menu item will be at the top.
     If the user selects any of the other fields then the selected field will replace the one previously selected
     while the previously selected will now go back onto the list.
-    Selecting the blank menu item will cause the entire pulldown menu to disapear and the one on the right
-    will take it's place.
-    At this point the code must check that a blank pulldown menu exists all the way to the right. 
-    If it does not then it must create one there at the end.
+    Selecting the blank menu item will cause the entire pulldown menu to disapear and the one below will take it's place.
+    At this point the code must check that a blank pulldown menu exists at the bottom. 
+    If it does not then it must create one there.
     The only way a blank pulldown menu would not already exist is if all the fields have been previously selected.
     As mentioned above, all pulldowns when opened, will be populated with all the fields except those already displayed.
-    Also as mentioned a the pulldown list will have a blank menu item at the top of the list.
-    Finally and not previously mentioned, when opening a pulldown menu, the code will check for neighbors right and left.
-    If there are neighbors found and they are not blank then arrows will also be inserted into the list
-    so that the populated pulldowns can switch places with neighbors to the right or to the left.
+    Also as mentioned, a the pulldown list will have a blank menu item at the top of the list.
     -->
-    <div class="selectClauseWrapper">
+    <div class="selectClauseWrapper">All fields are displayed if left blank.
       <div class="inputWrapper fieldToDisplayInputWrapper">
-        <div class="inputLabel">Select a field to display</div>
-        <!-- The class of the select element below can be used to address the pulldown element when loading data onto the page. -->
-        <!-- Search the code for the term timeoutInput to see how this is done. -->  
-        <!-- The class of the select element below can be used to identify strings of numbers and convert them to integers when submitting a form. -->
-        <!-- Search the code for the term intval to see how this is done. -->
-        <!-- The class of the select element below can be used to identify checkboxes that are part of a multiselect group when submitting a form. -->
-        <!-- In that case an array is made from the multiselect elements when the form is submitted. -->
-        <!-- Search the code for the term multiselect to see how this is done. -->
+        <div class="inputLabel queryByExampleLabel">Select a field to display.</div>
+        <!--The class of the select element below can be used to address the pulldown element when loading data onto the page.-->
+        <!--Search the code for the term timeoutInput to see how this is done.-->  
+        <!--The class of the select element below can be used to identify strings of numbers and convert them to integers when submitting a form.-->
+        <!--Search the code for the term intval to see how this is done.-->
+        <!--The class of the select element below can be used to identify checkboxes that are part of a multiselect group when submitting a form.-->
+        <!--In that case an array is made from the multiselect elements when the form is submitted.-->
+        <!--Search the code for the term multiselect to see how this is done.-->
         <select class="fieldToDisplay"> 
           <option value="" style="display: list-item;"></option>  
-          <option value="uparrow" style="display: none;" class="arrows">&#x021E7;</option> 
-          <option value="downarrow" style="display: none;" class="arrows">&#x021E9;</option>           
+          <!--<option value="upArrow" style="display: none;" class="arrows">&#x021E7;</option>-->
+          <!--<option value="downArrow" style="display: none;" class="arrows">&#x021E9;</option>-->           
           <option value="userId" style="display: list-item;">userId</option>
           <option value="email" style="display: list-item;">email</option>
           <option value="timeStamp" style="display: list-item;">timeStamp</option>               
         </select>
       </div>
     </div>
-
-    <hr />
 
     <!--
     The system defined in this comment will define the where clause used to choose which records will be displayed.
@@ -85,27 +83,27 @@
     elements for a second where clause if desired.
     This behavior will continue so that there could be an unlimited number of where clauses.
     -->
-    <div class="whereClauseWrapper">
+    <div class="whereClauseWrapper">All records are selected if left blank.
       <!--
       The following select element is used to select a field in the table for the where clause.   
       This should be populated with fields from the table the current webpage supports.  
       So this will require a separate request just to get the field names.
       -->
       <div class="inputWrapper">
-        <div class="inputLabel">Select a field to use in the where clause</div>
+        <div class="inputLabel queryByExampleLabel">Select a field to compare in the where clause</div>
         <select class="fieldToCompare" name="fieldToCompare-01"> 
-          <option value="field-00Value"></option>        
-          <option value="field-01Value">field-01Compare</option>
-          <option value="field-02Value">field-02Compare</option>
-          <option value="field-03Value">field-03Compare</option>                
+          <option value=""></option>        
+          <option value="userId">userId</option>
+          <option value="email">email</option>
+          <option value="timeStamp">timeStamp</option>                
         </select>
       </div>
 
-      <!--The following will be used to select an operator to be used on the field in the where clause-->    
+      <!--The following will be used to select a comparison operator to be used on the field in the where clause-->    
       <div class="inputWrapper">
-        <div class="inputLabel">Select an operator to use in the where clause</div>
+        <div class="inputLabel queryByExampleLabel">Select a comparison operator to use in the where clause</div>
         <select class="comparisonOperator" name="comparisonOperator-01"> 
-          <option value="field-00Value"></option>        
+          <option value=""></option>        
           <option value="==">is equal to</option>
           <option value="!=">is not equal to</option>
           <option value=">">is greater than</option>    
@@ -120,14 +118,25 @@
         </select>
       </div>     
 
-      <!--The following will be used to define the comparison in the where clause-->      
+      <!--The following will be used to define the match term in the where clause-->      
       <div class="inputWrapper">
-        <div class="inputLabel">Match Term</div>
+        <div class="inputLabel queryByExampleLabel">Type in a match term to use in the where clause</div>
         <input class="matchTermInput" type="text" name="matchTermInput-01" placeholder="Enter a Match Term" />
       </div>   
 
-    </div>  
+      <!--The following will be used to select a conjunction operator that will be used to add and then join where clauses-->    
+      <div class="inputWrapper">
+          <div class="inputLabel queryByExampleLabel">Add another where clause if desired</div>
+          <select class="conjunctionOperator" name="cojunctionOperator-01"> 
+            <option value=""></option>              
+            <option value="andWhere">AND WHERE</option>        
+            <option value="orWhere">OR WHERE</option>                                                                         
+          </select>
+        </div>        
 
+    </div>                    
+
+ 
     <!--
     The system defined in this comment will define the order by clause used to choose the order in 
     which records will be displayed.
@@ -141,25 +150,25 @@
     elements for a second order by clause if desired.
     This behavior will continue so that there could be an unlimited number of order by clauses.
     -->    
-    <div class="orderByClauseWrapper">
+    <div class="orderByClauseWrapper">No order is applied if left blank.
 
       <!--The following will be used to define the sort in the order by clause - ascending or descending-->    
       <!--This will be a pulldown menu loaded with field names.-->    
       <div class="inputWrapper">
-        <div class="inputLabel">Select a field to use in the order by clause</div>
+        <div class="inputLabel queryByExampleLabel">Select a field to use in the order by clause</div>
         <select class="fieldToOrderBy" name="fieldToOrderBy-01"> 
-          <option value="field-00Value"></option>        
-          <option value="field-01Value">field-01Orderby</option>
-          <option value="field-02Value">field-02Orderby</option>
-          <option value="field-03Value">field-03Orderby</option>                
+          <option value=""></option>        
+          <option value="userId">userId</option>
+          <option value="email">email</option>
+          <option value="timeStamp">timeStamp</option>               
         </select>
       </div>
   
       <!--The following will be used to select the order by operator ascending or descending-->    
       <div class="inputWrapper">
-        <div class="inputLabel">Select an operator to use in the order by clause</div>
+        <div class="inputLabel queryByExampleLabel">Select an operator to use in the order by clause</div>
         <select class="orderByOperator" name="orderByOperator-01"> 
-          <option value="no order"></option>        
+          <option value=""></option>        
           <option value="ascending">ascending</option>
           <option value="descending">descending</option>                                                                        
         </select>
@@ -167,24 +176,31 @@
 
     </div>
 
+
     <!--The following will be used to define the amount of records that show up on each page in the results-->
-    <!--This will be a pulldown menu.-->    
-    <div class="inputWrapper">
-      <div class="inputLabel">How many records do you want on each page?</div>
-      <!--The class can be used when loading data on the webpage.-->
-      <!--Search in the code for the term emailInput to find an example-->      
-      <input class="emailInput" type="text" name="email" placeholder="js@gmail.com" />
+    <!--This will be a pulldown menu.-->  
+    <div class="recordLimitWrapper">        
+      <div class="inputWrapper">
+        <div class="inputLabel queryByExampleLabel">Select how many records you want displayed on each page?</div>
+        <!--The class of the select element below can be used to identify strings of numbers and convert them to integers when submitting a form.-->
+        <!--Search the code for the term intval to see how this is done.-->      
+        <!--The class can be used when loading data on the webpage.-->
+        <!--Search in the code for the term emailInput to find an example-->      
+        <input class="recordLimitInput intval" type="text" name="recordLimit" value="20" />
+      </div>
     </div>
 
-    <!--The following will be used to display the query.-->         
-    <div class="inputWrapper">
-        <div class="inputLable">Query Expression</div>
-        <textarea class="queryExpressionTextArea" name="queryExpression" rows="10" cols="30" readonly>Your query expression will go here.</textarea>
+    <!--The following will be used to display the query.-->    
+    <div class="queryExpressionWrapper">          
+      <div class="inputWrapper">
+          <div class="inputLabel queryByExampleLabel">The query expression will show up here as selections above are made.</div>
+          <textarea class="queryExpressionTextArea" name="queryExpression" rows="10" cols="30" readonly></textarea>
+      </div>
     </div>         
 
     <!--The following will be used to submit the query to the server-->
     <!--This will be a button.-->
-    <div class="inputWrapper ctaWrapper">
+    <div class="inputWrapper ctaWrapper queryByExampleSubmitWrapper">
       <button type="submit" class="cta green">Submit Query</button>
     </div>
   </form>
@@ -216,5 +232,5 @@
 </table>
 
 <div id="createCheckCTA" class="ctaWrapper">
-  <a class="cta green" href="checks/create">Create a Check</a>
+  <a class="cta green" href="user/create">Create a New User</a>
 </div>
