@@ -678,6 +678,68 @@ app.loadAccountEditPage = function()
 app.loadUsersListPage = async function()
 {  
 
+  // Define the function that fires when the conjunctionSelector changes.
+  function onChangeBehaviorForConjunctionSelector (event)  
+  {
+    // Stop it from redirecting anywhere
+    event.preventDefault();
+
+    // Start of: Delete the filter elements directly below or add new ones depending on user's input.
+
+    // Get a count of how many filter expressions already exist.
+    let whereClauseWrapperCount = document.querySelectorAll(".whereClauseWrapper").length;
+
+    // Get the previous setting if any.
+    let previousSetting = event.target.getAttribute('data-previous');
+
+    // Check the value of the conjunction select element chosen by the user.
+    if (event.target.value == "") // If the blank option was selected we will delete the filter below.
+    {
+      // Get the value of the conjunction control we are about to delete because this value joins the next 
+      // filter down the line (if one exists). We will move this value into the current conjuction selector.
+      event.target.value = event.target.parentNode.parentNode.nextElementSibling.querySelectorAll(".conjunctionSelector")[0].value;
+
+      // Delete the filter below.
+      event.target.parentNode.parentNode.parentNode.removeChild(event.target.parentNode.parentNode.nextElementSibling);
+
+      // Store the new value as an attribute in case we need to work with this select element in the future.
+      event.target.setAttribute('data-previous', event.target.value);
+    }
+    // otherwise if a conjunction was selected where it was previously blank we will add a new filter.
+    else if ((event.target.value == "AND" || event.target.value == "OR") && (previousSetting == ""))
+    {
+      // Blank out the attribute that tracks the previous setting so that the cloned control starts out clean.
+      event.target.setAttribute('data-previous','');
+
+      // Clone a new wrapper, the child select element, and children options from the previous and append it to the DOM
+      let elmnt = document.querySelectorAll(".whereClauseWrapper")[whereClauseWrapperCount - 1];
+      let cln = elmnt.cloneNode(true);
+  
+      // Set all the element values to ""
+      cln.querySelectorAll(".resetElement").forEach(function(element){element.value = "";}); 
+  
+      // Create an event listener for the onchange event of the newly cloned select element and bind this function to it.
+      cln.querySelectorAll(".conjunctionSelector")[0].addEventListener("change", onChangeBehaviorForConjunctionSelector);
+  
+      // Append the new clone to the new where-clause group
+      document.querySelectorAll(".whereClauseGroupWrapper")[0].appendChild(cln);     
+
+      // Now that cloning is done we can use this attribute to keep track of the 
+      // new value of the current conjunction control in case we need to change it again.
+      event.target.setAttribute('data-previous', event.target.value);
+    }
+   
+    // End of: Delete the filter elements directly below or add new ones depending on user's input.
+
+  } // End of: function onChangeBehaviorForConjunctionSelector (event)
+  // End of: Define the function that fires when the conjunctionSelector changes.
+
+  // Bind the function above to the onChange event of the first (and only for now) conjunctionSelector element.
+  document.querySelectorAll(".conjunctionSelector")[0].addEventListener("change", onChangeBehaviorForConjunctionSelector);
+
+
+
+
   // Define the function that fires when the fieldToDisplay selector changes.
   function onChangeBehaviorForFieldToDisplaySelector (event)  
   {
@@ -740,7 +802,7 @@ app.loadUsersListPage = async function()
 
     // Get the amount of fields contained in the select element.
     // This is the options count minus 1 because there is one option besides the fields.
-    // This is the blank option.
+    // The blank option is the extra option.
     let fieldsCount = optionsCount - 1;
 
 
@@ -804,7 +866,6 @@ app.loadUsersListPage = async function()
   document.querySelectorAll(".fieldToDisplay")[0].addEventListener("change", onChangeBehaviorForFieldToDisplaySelector);
 
 
-
   // Create a handle which can be used to manipulate the table on the webpage.
   var table = document.getElementById("usersListTable");  
 
@@ -827,7 +888,7 @@ app.loadUsersListPage = async function()
         document.getElementById("noChecksMessage").style.display = 'table-row';
 
         // Show the createCheck CTA
-        document.getElementById("createCheckCTA").style.display = 'block';
+        document.getElementById("createNewRecordCTA").style.display = 'block';
 
         console.log("Error trying to load the list of users: ");        
       }
@@ -947,7 +1008,7 @@ app.loadUsersListPage = async function()
         read();
 
         // Show the createCheck CTA
-        document.getElementById("createCheckCTA").style.display = 'block';
+        document.getElementById("createNewRecordCTA").style.display = 'block';
       } // End of: if a record object (value) is returned.
     ); // End of: .then callback after read function completes.
   } // End of: function definition: function read(){do stuff}
@@ -1033,7 +1094,7 @@ app.loadChecksListPage = function()
           if(allChecks.length < 5) //Only 5 checks allowed.
           {
             // Show the createCheck CTA
-            document.getElementById("createCheckCTA").style.display = 'block';
+            document.getElementById("createNewRecordCTA").style.display = 'block';
           }
 
         } // End of: if checks were found in the user's file.
@@ -1043,7 +1104,7 @@ app.loadChecksListPage = function()
           document.getElementById("noChecksMessage").style.display = 'table-row';
 
           // Show the createCheck CTA
-          document.getElementById("createCheckCTA").style.display = 'block';
+          document.getElementById("createNewRecordCTA").style.display = 'block';
 
         }
       } // End of: If the user's JSON record was retrieved successfully.

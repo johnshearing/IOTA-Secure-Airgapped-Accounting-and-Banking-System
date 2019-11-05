@@ -51,9 +51,9 @@
     As mentioned above, all pulldowns when opened, will be populated with all the fields except those already displayed.
     Also as mentioned, a the pulldown list will have a blank menu item at the top of the list.
     -->
-    <div class="selectClauseWrapper">All fields are displayed if left blank.
+    <div class="selectClauseWrapper">Select which fields to display. All fields are displayed if nothing is selected.
       <div class="inputWrapper fieldToDisplayInputWrapper">
-        <div class="inputLabel queryByExampleLabel">Select a field to display.</div>
+        <div class="inputLabel queryByExampleLabel"></div>
         <!--The class of the select element below can be used to address the pulldown element when loading data onto the page.-->
         <!--Search the code for the term timeoutInput to see how this is done.-->  
         <!--The class of the select element below can be used to identify strings of numbers and convert them to integers when submitting a form.-->
@@ -62,9 +62,7 @@
         <!--In that case an array is made from the multiselect elements when the form is submitted.-->
         <!--Search the code for the term multiselect to see how this is done.-->
         <select class="fieldToDisplay"> 
-          <option value="" style="display: list-item;"></option>  
-          <!--<option value="upArrow" style="display: none;" class="arrows">&#x021E7;</option>-->
-          <!--<option value="downArrow" style="display: none;" class="arrows">&#x021E9;</option>-->           
+          <option value="" style="display: list-item;"></option>            
           <option value="userId" style="display: list-item;">userId</option>
           <option value="email" style="display: list-item;">email</option>
           <option value="timeStamp" style="display: list-item;">timeStamp</option>               
@@ -73,67 +71,67 @@
     </div>
 
     <!--
-    The system defined in this comment will define the where clause used to choose which records will be displayed.
-    We start out with a div of class whereClauseWrapper.
-    This div will contain two pulldown menus and an input text box.
+    The system defined in this comment will define the where clause filter used to choose which records will be displayed.
+    We start out with a div of class whereClauseGroupWrapper.
+    This div will contain three pulldown menus and an input text box.
     The first pulldown menu contains all the fields which might be examined for a condition.
     The second pulldown menu contains a list of comparison operators.
     The input text box contains the condition to be compared.
-    After all three elements have be filled out the code will generate another set of 
-    elements for a second where clause if desired.
-    This behavior will continue so that there could be an unlimited number of where clauses.
+    The third pulldown menu contains a conjunction (and or) so that a new filter can be added if desired.
+    After the first three elements have be filled out the code will generate another set of 
+    elements for a second where clause if a conjunction is added with the fourth pulldown menu.
+    This behavior will continue so that there could be an unlimited number of where clause filters.
     -->
-    <div class="whereClauseWrapper">All records are selected if left blank.
-      <!--
-      The following select element is used to select a field in the table for the where clause.   
-      This should be populated with fields from the table the current webpage supports.  
-      So this will require a separate request just to get the field names.
-      -->
-      <div class="inputWrapper">
-        <div class="inputLabel queryByExampleLabel">Select a field to compare in the where clause</div>
-        <select class="fieldToCompare" name="fieldToCompare-01"> 
-          <option value=""></option>        
-          <option value="userId">userId</option>
-          <option value="email">email</option>
-          <option value="timeStamp">timeStamp</option>                
-        </select>
-      </div>
+    <div class="whereClauseGroupWrapper">Create a filter expression. All records are selected if left blank.
+      <div class="whereClauseWrapper">
+        <!--
+        The following select element is used to select a field in the table for the where clause.   
+        This should be populated with fields from the table the current webpage supports.  
+        So this will require a separate request just to get the field names.
+        -->
+        <div class="inputWrapper">
+          <div class="inputLabel queryByExampleLabel">Select a field to be examined by the filter.</div>
+          <select class="fieldToCompare resetElement"> 
+            <option value=""></option>        
+            <option value="userId">userId</option>
+            <option value="email">email</option>
+            <option value="timeStamp">timeStamp</option>                
+          </select>
+        </div>
 
-      <!--The following will be used to select a comparison operator to be used on the field in the where clause-->    
-      <div class="inputWrapper">
-        <div class="inputLabel queryByExampleLabel">Select a comparison operator to use in the where clause</div>
-        <select class="comparisonOperator" name="comparisonOperator-01"> 
-          <option value=""></option>        
-          <option value="==">is equal to</option>
-          <option value="!=">is not equal to</option>
-          <option value=">">is greater than</option>    
-          <option value=">=">is greater than or equal to</option>    
-          <option value="<">is less than</option>  
-          <option value=">=">is less than or equal to</option>   
-          <option value="B">begins with</option>         
-          <option value="C">contains</option>      
-          <option value="E">ends with</option>  
-          <option value="T">is true</option>    
-          <option value="F">is false</option>                                                                         
-        </select>
-      </div>     
+        <!--The following will be used to select a comparison operator to be used on the field in the where clause-->    
+        <div class="inputWrapper">
+          <div class="inputLabel queryByExampleLabel">Select a comparison operator to be used by the filter.</div>
+          <select class="comparisonOperator resetElement"> 
+            <option value=""></option>        
+            <option value="==">is equal to</option>
+            <option value="!=">is not equal to</option>
+            <option value=">">is greater than</option>    
+            <option value=">=">is greater than or equal to</option>    
+            <option value="<">is less than</option>  
+            <option value=">=">is less than or equal to</option>   
+            <option value="B">begins with</option>         
+            <option value="C">contains</option>      
+            <option value="E">ends with</option>                                                                          
+          </select>
+        </div>     
 
-      <!--The following will be used to define the match term in the where clause-->      
-      <div class="inputWrapper">
-        <div class="inputLabel queryByExampleLabel">Type in a match term to use in the where clause</div>
-        <input class="matchTermInput" type="text" name="matchTermInput-01" placeholder="Enter a Match Term" />
-      </div>   
+        <!--The following will be used to define the match term in the where clause-->      
+        <div class="inputWrapper">
+          <div class="inputLabel queryByExampleLabel">Type in a match term to be used by the filter.</div>
+          <input class="matchTermInput resetElement" type="text" />
+        </div>   
 
-      <!--The following will be used to select a conjunction operator that will be used to add and then join where clauses-->    
-      <div class="inputWrapper">
-          <div class="inputLabel queryByExampleLabel">Add another where clause if desired</div>
-          <select class="conjunctionOperator" name="cojunctionOperator-01"> 
+        <!--The following will be used to select a conjunction operator that will be used to add and then join where clauses-->    
+        <div class="inputWrapper">
+          <div class="inputLabel queryByExampleLabel">Add another filter expression if desired.</div>
+          <select class="conjunctionSelector resetElement" data-previous=""> 
             <option value=""></option>              
-            <option value="andWhere">AND WHERE</option>        
-            <option value="orWhere">OR WHERE</option>                                                                         
+            <option value="AND">AND</option>        
+            <option value="OR">OR</option>                                                                         
           </select>
         </div>        
-
+      </div>
     </div>                    
 
  
@@ -155,8 +153,8 @@
       <!--The following will be used to define the sort in the order by clause - ascending or descending-->    
       <!--This will be a pulldown menu loaded with field names.-->    
       <div class="inputWrapper">
-        <div class="inputLabel queryByExampleLabel">Select a field to use in the order by clause</div>
-        <select class="fieldToOrderBy" name="fieldToOrderBy-01"> 
+        <div class="inputLabel queryByExampleLabel">Select a field to use in the order by clause.</div>
+        <select class="fieldToOrderBy"> 
           <option value=""></option>        
           <option value="userId">userId</option>
           <option value="email">email</option>
@@ -166,8 +164,8 @@
   
       <!--The following will be used to select the order by operator ascending or descending-->    
       <div class="inputWrapper">
-        <div class="inputLabel queryByExampleLabel">Select an operator to use in the order by clause</div>
-        <select class="orderByOperator" name="orderByOperator-01"> 
+        <div class="inputLabel queryByExampleLabel">Select an operator to use in the order by clause.</div>
+        <select class="orderByOperator"> 
           <option value=""></option>        
           <option value="ascending">ascending</option>
           <option value="descending">descending</option>                                                                        
@@ -181,12 +179,12 @@
     <!--This will be a pulldown menu.-->  
     <div class="recordLimitWrapper">        
       <div class="inputWrapper">
-        <div class="inputLabel queryByExampleLabel">Select how many records you want displayed on each page?</div>
+        <div class="inputLabel queryByExampleLabel">Select how many records you want displayed on each page.</div>
         <!--The class of the select element below can be used to identify strings of numbers and convert them to integers when submitting a form.-->
         <!--Search the code for the term intval to see how this is done.-->      
         <!--The class can be used when loading data on the webpage.-->
         <!--Search in the code for the term emailInput to find an example-->      
-        <input class="recordLimitInput intval" type="text" name="recordLimit" value="20" />
+        <input class="recordLimitInput intval" type="text" value="20" />
       </div>
     </div>
 
@@ -200,8 +198,9 @@
 
     <!--The following will be used to submit the query to the server-->
     <!--This will be a button.-->
-    <div class="inputWrapper ctaWrapper queryByExampleSubmitWrapper">
+    <div id="createNewRecordCTA" class="inputWrapper ctaWrapper queryByExampleSubmitWrapper">
       <button type="submit" class="cta green">Submit Query</button>
+      <a class="cta green" href="user/create">Create a New User</a>
     </div>
   </form>
 </div>
@@ -212,7 +211,7 @@
 <h2>List of Users</h2>
 
 <!--The following should be populated from the table name or from metadata-->
-<h3>Click on a user to view and edit details</h3>
+<h3>Click on a user to view and edit details.</h3>
 <hr />
 
 <!--The following table should not be hard coded here but rather created with code at run time-->
@@ -231,6 +230,3 @@
 
 </table>
 
-<div id="createCheckCTA" class="ctaWrapper">
-  <a class="cta green" href="user/create">Create a New User</a>
-</div>

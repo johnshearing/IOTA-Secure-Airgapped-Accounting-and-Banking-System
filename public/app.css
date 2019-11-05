@@ -298,7 +298,7 @@ td a, td a:hover, td a:active{
   display: none;
 }
 
-#createCheckCTA{
+#createNewRecordCTA{
   margin-top: 40px;
   display: none;
 }
@@ -313,7 +313,7 @@ td a, td a:hover, td a:active{
   overflow: auto;
 }
 
-.selectClauseWrapper, .whereClauseWrapper, .orderByClauseWrapper, .recordLimitWrapper, .queryExpressionWrapper
+.selectClauseWrapper, .whereClauseGroupWrapper, .orderByClauseWrapper, .recordLimitWrapper, .queryExpressionWrapper
 {
   width: 100%;  
   border-width: 2px;   
@@ -324,6 +324,6 @@ td a, td a:hover, td a:active{
 
 .queryByExampleLabel, .queryByExampleSubmitWrapper
 {
-  margin-top: 5px;  
+  margin-top: 8px;  
 }
 
