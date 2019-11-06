@@ -31,7 +31,7 @@
 
     <!--
     The system defined in this comment will be used to select which fields are displayed when the query is returned.
-    All the behavior described provided by the function onChangeBehaviorForFieldToDisplaySelector.
+    All the behavior described is provided by the function onChangeBehaviorForFieldToDisplaySelector.
     This comment was the specification from which that function was made.
     We start out with a div of class selectClauseWrapper.
     This div will contain a pulldown menu which will be populated with all the fields from the table when the menu is opened.
@@ -72,6 +72,7 @@
 
     <!--
     The system defined in this comment will define the where clause filter used to choose which records will be displayed.
+    All the behavior described is provided by the function onChangeBehaviorForConjunctionSelector.    
     We start out with a div of class whereClauseGroupWrapper.
     This div will contain three pulldown menus and an input text box.
     The first pulldown menu contains all the fields which might be examined for a condition.
@@ -103,16 +104,21 @@
         <div class="inputWrapper">
           <div class="inputLabel queryByExampleLabel">Select a comparison operator to be used by the filter.</div>
           <select class="comparisonOperator resetElement"> 
-            <option value=""></option>        
-            <option value="==">is equal to</option>
-            <option value="!=">is not equal to</option>
-            <option value=">">is greater than</option>    
-            <option value=">=">is greater than or equal to</option>    
-            <option value="<">is less than</option>  
-            <option value=">=">is less than or equal to</option>   
-            <option value="B">begins with</option>         
-            <option value="C">contains</option>      
-            <option value="E">ends with</option>                                                                          
+            <option value=""></option> 
+            <option value="matchesExactly">matches exactly</option>             
+            <option value="matchesExactlyCaseSensitive">matches exactly - case sensitive</option>                  
+            <option value="beginsWith">begins with</option>    
+            <option value="doesNotBeginWith">does not begin with</option>                   
+            <option value="contains">contains</option>   
+            <option value="doesNOtContain">does not contain</option>                
+            <option value="endsWith">ends with</option>    
+            <option value="doesNotEndWith">does not end with</option>            
+            <option value="isEqualTo">is equal to</option>
+            <option value="isNotEqualTo">is not equal to</option>
+            <option value="isGreaterThan">is greater than</option>    
+            <option value="isGreaterThanOrEqualTo">is greater than or equal to</option>    
+            <option value="isLessThan">is less than</option>  
+            <option value="isLessThanOrEqualTo">is less than or equal to</option>                                                                          
           </select>
         </div>     
 
@@ -139,39 +145,48 @@
     The system defined in this comment will define the order by clause used to choose the order in 
     which records will be displayed.
     We start out with a div of class orderByClauseWrapper.
-    This div will contain two pulldown menus.
+    This div will contain three pulldown menus.
     The first pulldown menu contains all the fields which might be used to define the order in 
-    which the records will be displayed.
+    which the returned records will be displayed.
     The second pulldown menu contains a list of order by operators.
-    There are only two - ascending and descending.
+    There are only two: ascending and descending.
     After both elements have be filled out the code will generate another set of 
     elements for a second order by clause if desired.
     This behavior will continue so that there could be an unlimited number of order by clauses.
     -->    
-    <div class="orderByClauseWrapper">No order is applied if left blank.
+    <div class="orderByClauseGroupWrapper">No sort order is applied if left blank.
+      <div class="orderByClauseWrapper">
+        <!--The following will be used to define the sort in the order by clause - ascending or descending-->    
+        <!--This will be a pulldown menu loaded with field names.-->    
+        <div class="inputWrapper">
+          <div class="inputLabel queryByExampleLabel">Select a field to use in the order by expression.</div>
+          <select class="fieldToOrderBy resetElement"> 
+            <option value=""></option>        
+            <option value="userId">userId</option>
+            <option value="email">email</option>
+            <option value="timeStamp">timeStamp</option>               
+          </select>
+        </div>
+    
+        <!--The following will be used to select the order by operator ascending or descending-->    
+        <div class="inputWrapper">
+          <div class="inputLabel queryByExampleLabel">Select an operator to use in the order by expression.</div>
+          <select class="orderByOperator resetElement"> 
+            <option value=""></option>        
+            <option value="ascending">ascending</option>
+            <option value="descending">descending</option>                                                                        
+          </select>
+        </div> 
 
-      <!--The following will be used to define the sort in the order by clause - ascending or descending-->    
-      <!--This will be a pulldown menu loaded with field names.-->    
-      <div class="inputWrapper">
-        <div class="inputLabel queryByExampleLabel">Select a field to use in the order by clause.</div>
-        <select class="fieldToOrderBy"> 
-          <option value=""></option>        
-          <option value="userId">userId</option>
-          <option value="email">email</option>
-          <option value="timeStamp">timeStamp</option>               
-        </select>
+        <!--The following will be used to add a new order by clause-->    
+        <div class="inputWrapper">
+          <div class="inputLabel queryByExampleLabel">Add another order by expression if desired.</div>
+          <select class="orderByConjunctionSelector resetElement" data-previous=""> 
+            <option value=""></option>        
+            <option value="thenOrderby">Then Order by</option>                                                                       
+          </select>
+        </div> 
       </div>
-  
-      <!--The following will be used to select the order by operator ascending or descending-->    
-      <div class="inputWrapper">
-        <div class="inputLabel queryByExampleLabel">Select an operator to use in the order by clause.</div>
-        <select class="orderByOperator"> 
-          <option value=""></option>        
-          <option value="ascending">ascending</option>
-          <option value="descending">descending</option>                                                                        
-        </select>
-      </div> 
-
     </div>
 
 
@@ -199,7 +214,12 @@
     <!--The following will be used to submit the query to the server-->
     <!--This will be a button.-->
     <div id="createNewRecordCTA" class="inputWrapper ctaWrapper queryByExampleSubmitWrapper">
+      <!--
+        Let's not use the submit button on this form
       <button type="submit" class="cta green">Submit Query</button>
+      We will use the button below instead.
+      -->
+      <a class="cta green" id="queryButton">Submit Query</a>           
       <a class="cta green" href="user/create">Create a New User</a>
     </div>
   </form>

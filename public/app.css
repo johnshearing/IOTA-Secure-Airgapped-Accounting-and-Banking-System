@@ -313,7 +313,7 @@ td a, td a:hover, td a:active{
   overflow: auto;
 }
 
-.selectClauseWrapper, .whereClauseGroupWrapper, .orderByClauseWrapper, .recordLimitWrapper, .queryExpressionWrapper
+.selectClauseWrapper, .whereClauseGroupWrapper, .orderByClauseGroupWrapper, .recordLimitWrapper, .queryExpressionWrapper
 {
   width: 100%;  
   border-width: 2px;   

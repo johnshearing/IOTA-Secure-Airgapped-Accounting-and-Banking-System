@@ -254,6 +254,8 @@ app.bindForms = function()
         } // End of: for(var 1...
         // End of: Load the payload object with the names and values of the elements in the form.
 
+
+
         // If the method is DELETE, the payload should be a queryStringObject instead
         var queryStringObject = method == 'DELETE' ? payload : {};
 
@@ -678,6 +680,99 @@ app.loadAccountEditPage = function()
 app.loadUsersListPage = async function()
 {  
 
+  // Define the function that fires when the query button is clicked.
+  function onClickEventBehaviorOfQueryButton(event)
+  {
+    // Stop it from redirecting anywhere
+    event.preventDefault();
+
+    // Start of: build a query by examining the control elements.
+    // Only the where and order by clauses matter for the fetch.
+    // The select clause and records per page control can be examined
+    // and used after the records have been returned by the fetch.
+
+    // 1. Make an array from the where clause elements.
+
+    // 2. Make an array from the order by elements.
+
+    // 3. Make a query string from the where clause array.
+
+    // 4. Add to the query string from order by array.
+
+
+    // End of: build a query by examining the control elements.
+
+
+    // send the query off with the fetch function below.
+    runQuery();
+
+  }
+  // End of: Define the function that fires when the query button is clicked.  
+
+  // Bind the function above to the onClick event of the query button.
+  document.querySelector("#queryButton").addEventListener("click", onClickEventBehaviorOfQueryButton);
+
+
+  // Define the function that fires when the order by conjunctionSelector changes.
+  function onChangeBehaviorForOrderByConjunctionSelector (event)  
+  {
+    // Stop it from redirecting anywhere
+    event.preventDefault();
+
+    // Start of: Delete the filter elements directly below or add new ones depending on user's input.
+
+    // Get a count of how many order by expressions already exist.
+    let orderByClauseWrapperCount = document.querySelectorAll(".orderByClauseWrapper").length;
+
+    // Get the previous setting if any.
+    let previousSetting = event.target.getAttribute('data-previous');
+
+    // Check the value of the conjunction select element chosen by the user.
+    if (event.target.value == "") // If the blank option was selected we will delete the filter below.
+    {
+      // Get the value of the conjunction control we are about to delete because this value joins the next 
+      // filter down the line (if one exists). We will move this value into the current conjuction selector.
+      event.target.value = event.target.parentNode.parentNode.nextElementSibling.querySelectorAll(".orderByConjunctionSelector")[0].value;
+
+      // Delete the filter below.
+      event.target.parentNode.parentNode.parentNode.removeChild(event.target.parentNode.parentNode.nextElementSibling);
+
+      // Store the new value as an attribute in case we need to work with this select element in the future.
+      event.target.setAttribute('data-previous', event.target.value);
+    }
+    // otherwise if a conjunction was selected where it was previously blank we will add a new filter.
+    else if (event.target.value != "" && previousSetting == "")
+    {
+      // Blank out the attribute that tracks the previous setting so that the cloned control starts out clean.
+      event.target.setAttribute('data-previous','');
+
+      // Clone a new wrapper, the child select element, and children options from the previous and append it to the DOM
+      let elmnt = document.querySelectorAll(".orderByClauseWrapper")[orderByClauseWrapperCount - 1];
+      let cln = elmnt.cloneNode(true);
+  
+      // Set all the element values to ""
+      cln.querySelectorAll(".resetElement").forEach(function(element){element.value = "";}); 
+  
+      // Create an event listener for the onchange event of the newly cloned select element and bind this function to it.
+      cln.querySelectorAll(".orderByConjunctionSelector")[0].addEventListener("change", onChangeBehaviorForOrderByConjunctionSelector);
+  
+      // Append the new clone to the new where-clause group
+      document.querySelectorAll(".orderByClauseGroupWrapper")[0].appendChild(cln);     
+
+      // Now that cloning is done we can use this attribute to keep track of the 
+      // new value of the current conjunction control in case we need to change it again.
+      event.target.setAttribute('data-previous', event.target.value);
+    }
+   
+    // End of: Delete the filter elements directly below or add new ones depending on user's input.
+
+  } // End of: function onChangeBehaviorForConjunctionSelector (event)
+  // End of: Define the function that fires when the order by conjunctionSelector changes.
+
+  // Bind the function above to the onChange event of the first (and only for now) conjunctionSelector element.
+  document.querySelectorAll(".orderByConjunctionSelector")[0].addEventListener("change", onChangeBehaviorForOrderByConjunctionSelector);
+
+
   // Define the function that fires when the conjunctionSelector changes.
   function onChangeBehaviorForConjunctionSelector (event)  
   {
@@ -736,8 +831,6 @@ app.loadUsersListPage = async function()
 
   // Bind the function above to the onChange event of the first (and only for now) conjunctionSelector element.
   document.querySelectorAll(".conjunctionSelector")[0].addEventListener("change", onChangeBehaviorForConjunctionSelector);
-
-
 
 
   // Define the function that fires when the fieldToDisplay selector changes.
@@ -861,7 +954,6 @@ app.loadUsersListPage = async function()
   } // End of: function onChangeBehaviorForFieldToDisplaySelector (event)
   // End of: Define the function that fires when the fieldToDisplay selector changes.  
 
-
   // Bind the function above to the onChange event of the first (and only for now) fieldToDisplay select element.
   document.querySelectorAll(".fieldToDisplay")[0].addEventListener("change", onChangeBehaviorForFieldToDisplaySelector);
 
@@ -869,152 +961,157 @@ app.loadUsersListPage = async function()
   // Create a handle which can be used to manipulate the table on the webpage.
   var table = document.getElementById("usersListTable");  
 
-  // Define which users will be retrieved from dbUsers.json
-  // This is not being used for now so all records will be retrived.
-  // var queryStringObject = {};   
-
-  // Define a client function that calls for data from the server.
-  // const fetchPromise = fetch('api/aUsers?email=alice@gmail.com')
-  const fetchPromise = fetch('api/aUsers')
-  .then
-  (
-    (res) => 
-    {
-      // Verify that we have some sort of 2xx response that we can use
-      if (!res.ok) 
-      {
-        // throw res;
-        // Show 'you have no checks' message
-        document.getElementById("noChecksMessage").style.display = 'table-row';
-
-        // Show the createCheck CTA
-        document.getElementById("createNewRecordCTA").style.display = 'block';
-
-        console.log("Error trying to load the list of users: ");        
-      }
-
-      // If no content, immediately resolve, don't try to parse JSON
-      if (res.status === 204) 
-      {
-        return;
-      }
-
-      // Initialize variable to hold chunks of data as they come across.
-      let textBuffer = '';
-
-      // Process the stream.
-      return res.body
-
-      // Decode as UTF-8 Text
-      .pipeThrough
-      (
-        new TextDecoderStream()
-      )
-
-      // Split on lines
-      .pipeThrough
-      (
-        new TransformStream
-        (
-          {
-            transform(chunk, controller) 
-            {
-              textBuffer += chunk;            
-
-              // Split the string of records on the new line character and store the result in an array named lines.
-              const lines = textBuffer.split('\n');
-
-              // Cycle through all elements in the array except for the last one which is only holding a new line character.
-              for (const line of lines.slice(0, -1))
-              {
-                // Put the element from the array into the controller que.
-                controller.enqueue(line);
-              } // End of: for (const line ...)
-
-              // Put the last element from the array (the new line character) into the textBuffer but don't put it in the que.
-              textBuffer = lines.slice(-1)[0];             
-            }, // End of: Transform(chunk, controller){do stuff}
-
-            flush(controller) 
-            {
-              if (textBuffer) 
-              {
-                controller.enqueue(textBuffer);
-              } // End of: if (textBuffer)
-            } // End of: flush(controller){do stuff}
-          } // End of: parameters for new TransformStream
-        ) // End of: call to constructor new TransformStream
-      ) // End of: parameters for pipeThrough - Split on lines
-
-      // Parse JSON objects
-      .pipeThrough
-      (
-        new TransformStream
-        (
-          {
-            transform(line, controller) 
-            {
-              if (line) 
-              {
-                controller.enqueue
-                (
-                  JSON.parse(line)
-                ); //End of: call to controller.enqueue function
-              } // End of: if (line)
-            } // End of: transform function
-          } // End of: parameter object for new TransformStream
-        ) // End of: new TransformStream parameters
-      ); // End of: parameters for .pipeThrough - Parse JSON objects
-    } // End of: .then callback function instruction for fetch
-  ); // End of: .then callback parameters for fetch
-
-
-  // Call to function which asks server for data.
-  const res = await fetchPromise;
-
-  const reader = res.getReader();
-
-  function read() 
+  // This function is called when the submit query button is pressed.
+  let runQuery = async function()
   {
-    reader.read()
+    // Define which users will be retrieved from dbUsers.json
+    // This is not being used for now so all records will be retrived.
+    // var queryStringObject = {};   
+
+    // Define a client function that calls for data from the server.
+    // const fetchPromise = fetch('api/aUsers?email=alice@gmail.com')
+    const fetchPromise = fetch('api/aUsers')
     .then
     (
-      ({value, done}) => 
+      (res) => 
       {
-        if (value) 
+        // Verify that we have some sort of 2xx response that we can use
+        if (!res.ok) 
         {
-          // Your object (value) will be here
+          // throw res;
+          // Show 'you have no checks' message
+          document.getElementById("noChecksMessage").style.display = 'table-row';
 
-          // Insert a new row in the table.
-          var tr = table.insertRow(-1);
-          // Make the new row a member of the class 'checkRow'
-          tr.classList.add('checkRow');
+          // Show the createCheck CTA
+          document.getElementById("createNewRecordCTA").style.display = 'block';
 
-          // Insert five new cells into the new row.
-          var td0 = tr.insertCell(0);
-          var td1 = tr.insertCell(1);
-          var td2 = tr.insertCell(2);   
-          var td3 = tr.insertCell(3);          
+          console.log("Error trying to load the list of users: ");        
+        }
 
-          // load the new cells with data from the recordObject.
-          td0.innerHTML = value.userId;      
-          td1.innerHTML = value.email;
-          td2.innerHTML = value.timeStamp;      
-          td3.innerHTML = '<a href="/users/edit?email=' + value.userId + '">View / Edit / Delete</a>';
-        } // End of: if(value){do stuff}
+        // If no content, immediately resolve, don't try to parse JSON
+        if (res.status === 204) 
+        {
+          return;
+        }
 
-        if (done) {return;}
+        // Initialize variable to hold chunks of data as they come across.
+        let textBuffer = '';
 
-        read();
+        // Process the stream.
+        return res.body
 
-        // Show the createCheck CTA
-        document.getElementById("createNewRecordCTA").style.display = 'block';
-      } // End of: if a record object (value) is returned.
-    ); // End of: .then callback after read function completes.
-  } // End of: function definition: function read(){do stuff}
+        // Decode as UTF-8 Text
+        .pipeThrough
+        (
+          new TextDecoderStream()
+        )
 
-  // Call the read function defined above.
-  read();
+        // Split on lines
+        .pipeThrough
+        (
+          new TransformStream
+          (
+            {
+              transform(chunk, controller) 
+              {
+                textBuffer += chunk;            
+
+                // Split the string of records on the new line character and store the result in an array named lines.
+                const lines = textBuffer.split('\n');
+
+                // Cycle through all elements in the array except for the last one which is only holding a new line character.
+                for (const line of lines.slice(0, -1))
+                {
+                  // Put the element from the array into the controller que.
+                  controller.enqueue(line);
+                } // End of: for (const line ...)
+
+                // Put the last element from the array (the new line character) into the textBuffer but don't put it in the que.
+                textBuffer = lines.slice(-1)[0];             
+              }, // End of: Transform(chunk, controller){do stuff}
+
+              flush(controller) 
+              {
+                if (textBuffer) 
+                {
+                  controller.enqueue(textBuffer);
+                } // End of: if (textBuffer)
+              } // End of: flush(controller){do stuff}
+            } // End of: parameters for new TransformStream
+          ) // End of: call to constructor new TransformStream
+        ) // End of: parameters for pipeThrough - Split on lines
+
+        // Parse JSON objects
+        .pipeThrough
+        (
+          new TransformStream
+          (
+            {
+              transform(line, controller) 
+              {
+                if (line) 
+                {
+                  controller.enqueue
+                  (
+                    JSON.parse(line)
+                  ); //End of: call to controller.enqueue function
+                } // End of: if (line)
+              } // End of: transform function
+            } // End of: parameter object for new TransformStream
+          ) // End of: new TransformStream parameters
+        ); // End of: parameters for .pipeThrough - Parse JSON objects
+      } // End of: .then callback function instruction for fetch
+    ); // End of: .then callback parameters for fetch
+
+
+    // Call to function which asks server for data.
+    const res = await fetchPromise;
+
+    const reader = res.getReader();
+
+    function read() 
+    {
+      reader.read()
+      .then
+      (
+        ({value, done}) => 
+        {
+          if (value) 
+          {
+            // Your object (value) will be here
+
+            // Insert a new row in the table.
+            var tr = table.insertRow(-1);
+            // Make the new row a member of the class 'checkRow'
+            tr.classList.add('checkRow');
+
+            // Insert five new cells into the new row.
+            var td0 = tr.insertCell(0);
+            var td1 = tr.insertCell(1);
+            var td2 = tr.insertCell(2);   
+            var td3 = tr.insertCell(3);          
+
+            // load the new cells with data from the recordObject.
+            td0.innerHTML = value.userId;      
+            td1.innerHTML = value.email;
+            td2.innerHTML = value.timeStamp;      
+            td3.innerHTML = '<a href="/users/edit?email=' + value.userId + '">View / Edit / Delete</a>';
+          } // End of: if(value){do stuff}
+
+          if (done) {return;}
+
+          read();
+
+        } // End of: the actual anonymous callback arrow function.
+      ); // End of: .then callback after read function completes.
+    } // End of: function definition: function read(){do stuff}
+
+    // Call the "read" function defined above when the submit query button is pressed.
+    read();
+  }; // End of: let runQuery = function(){...}
+
+  // Show the createCheck CTA
+  document.getElementById("createNewRecordCTA").style.display = 'block';
 
 } // End of: app.loadUsersListPage = function(){...}
 // End of: Populate the dbUsersList webpage with user records.
