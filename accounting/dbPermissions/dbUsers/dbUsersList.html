@@ -105,20 +105,20 @@
           <div class="inputLabel queryByExampleLabel">Select a comparison operator to be used by the filter.</div>
           <select class="comparisonOperator resetElement"> 
             <option value=""></option> 
-            <option value="matchesExactly">matches exactly</option>             
-            <option value="matchesExactlyCaseSensitive">matches exactly - case sensitive</option>                  
-            <option value="beginsWith">begins with</option>    
-            <option value="doesNotBeginWith">does not begin with</option>                   
-            <option value="contains">contains</option>   
-            <option value="doesNOtContain">does not contain</option>                
-            <option value="endsWith">ends with</option>    
-            <option value="doesNotEndWith">does not end with</option>            
-            <option value="isEqualTo">is equal to</option>
-            <option value="isNotEqualTo">is not equal to</option>
-            <option value="isGreaterThan">is greater than</option>    
-            <option value="isGreaterThanOrEqualTo">is greater than or equal to</option>    
-            <option value="isLessThan">is less than</option>  
-            <option value="isLessThanOrEqualTo">is less than or equal to</option>                                                                          
+            <option value="MatchesExactly">Matches Exactly</option>             
+            <option value="MatchesExactlyCaseSensitive">Matches Exactly - Case Sensitive</option>                  
+            <option value="BeginsWith">Begins With</option>    
+            <option value="DoesNotBeginWith">Does Not Begin With</option>                   
+            <option value="Contains">Contains</option>   
+            <option value="DoesNotContain">Does Not Contain</option>                
+            <option value="EndsWith">Ends With</option>    
+            <option value="DoesNotEndWith">Does Not End With</option>            
+            <option value="IsEqualTo">Is Equal To</option>
+            <option value="IsNotEqualTo">Is Not Equal To</option>
+            <option value="IsGreaterThan">Is Greater Than</option>    
+            <option value="IsGreaterThanOrEqualTo">Is Greater Than Or Equal To</option>    
+            <option value="IsLessThan">Is Less Than</option>  
+            <option value="IsLessThanOrEqualTo">Is Less Than Or Equal To</option>                                                                          
           </select>
         </div>     
 
@@ -130,11 +130,11 @@
 
         <!--The following will be used to select a conjunction operator that will be used to add and then join where clauses-->    
         <div class="inputWrapper">
-          <div class="inputLabel queryByExampleLabel">Add another filter expression if desired.</div>
+          <div class="inputLabel queryByExampleLabel">Add another filter expression if desired or leave this blank if not.</div>
           <select class="conjunctionSelector resetElement" data-previous=""> 
             <option value=""></option>              
-            <option value="AND">AND</option>        
-            <option value="OR">OR</option>                                                                         
+            <option value="ANDWHERE">AND</option>        
+            <option value="ORWHERE">OR</option>                                                                         
           </select>
         </div>        
       </div>
@@ -183,7 +183,7 @@
           <div class="inputLabel queryByExampleLabel">Add another order by expression if desired.</div>
           <select class="orderByConjunctionSelector resetElement" data-previous=""> 
             <option value=""></option>        
-            <option value="thenOrderby">Then Order by</option>                                                                       
+            <option value="ThenOrderBy">Then Order By</option>                                                                       
           </select>
         </div> 
       </div>
@@ -206,7 +206,7 @@
     <!--The following will be used to display the query.-->    
     <div class="queryExpressionWrapper">          
       <div class="inputWrapper">
-          <div class="inputLabel queryByExampleLabel">The query expression will show up here as selections above are made.</div>
+          <div class="inputLabel queryByExampleLabel">Query Expression</div>
           <textarea class="queryExpressionTextArea" name="queryExpression" rows="10" cols="30" readonly></textarea>
       </div>
     </div>         

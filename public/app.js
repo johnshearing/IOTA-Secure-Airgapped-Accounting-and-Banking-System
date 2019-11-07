@@ -681,32 +681,176 @@ app.loadUsersListPage = async function()
 {  
 
   // Define the function that fires when the query button is clicked.
+  // The following function builds a query by examining the control 
+  // elements for the filter and the order by clause. 
+  // Then it sends the query off to the server and manages the response.
   function onClickEventBehaviorOfQueryButton(event)
   {
     // Stop it from redirecting anywhere
     event.preventDefault();
 
-    // Start of: build a query by examining the control elements.
-    // Only the where and order by clauses matter for the fetch.
-    // The select clause and records per page control can be examined
-    // and used after the records have been returned by the fetch.
+    // This will contain the finished query expression that we will send to the server.
+    let queryExpression = "?";
+
+
+    // Define a function that will check if every element in an array is blank.
+    // This will be used to determine if the user filled out the form.
+    function allBlanks(arrayOfValues) 
+    {
+      function isBlank(thisValue) 
+      {
+        // The following will examine one of the elements of the array  
+        // and return true if blank - otherwise it will return false.
+        return thisValue == "";
+      }  
+
+      // .every is an array method that will call the function isBlank 
+      // once for every element in the array selectorElementValues.
+      // it will return true if every element is blank.
+      return arrayOfValues.every(isBlank);
+    } // End of: function allBlanks(arrayOfValues){...} 
+    // End of: Define a function that will check if every element in an array is blank.
+
+
+    // Start of: Begin building a query expression by examining the filter control elements.
+    // Only the where and order by clauses matter for the fetch from the server.
+    // The select clause controls and records-per-page control can be 
+    // examined and used after the records have been returned by the fetch.
 
     // 1. Make an array from the where clause elements.
+    // Create an empty array to hold the values contained in the where clause select elements.
 
-    // 2. Make an array from the order by elements.
+    // Create a handle to address the group wrapper. 
+    // We can use this to keep the search for control elements limited to the where clause controls.
+    let whereClauseGroupWrapper = document.querySelectorAll(".whereClauseGroupWrapper")[0];
 
-    // 3. Make a query string from the where clause array.
+    // Create an empty array to hold the values of the where clause controls elements.
+    let whereClauseElementValues = [];
 
-    // 4. Add to the query string from order by array.
+    // Store the values of each select element in the new array.
+    // .resetElement is just a class that all the elements of interest have in common.
+    whereClauseGroupWrapper.querySelectorAll(".resetElement").forEach(function(element) 
+    {
+      // Push the values onto the array.
+      whereClauseElementValues.push(element.value);
+
+    }); 
+
+    // 2. Ensure all but the last element contains a value or that none of the 
+    // elements contain values and then generate the query expression.
+    // In other words: 
+    // Make sure the user filled out the filter form(s) completely or not at all.
+    // If the filter form(s) is/are completely filled out the create the query expression.
+
+    // Find out which element in the array is the first element to contain a blank value.
+    // If it's the last one then we know the form has been filled out completely.
+    let indexOfFirstWhereClauseBlankSelector = whereClauseElementValues.indexOf("")
+
+    // Find out if all the values in the array selectorElementValues are blank.
+    // If they are then we know that the form was not filled out at all in 
+    // which case we should ignore the form.
+
+    // If not all the elements are blank then then user has made a filter expression.
+    let userHasMadeAFilterExpression = !allBlanks(whereClauseElementValues);
+
+    if(userHasMadeAFilterExpression)
+    {
+      // If the first blank is the very last element in the array then
+      // we know that the form has been filled out compelely.
+      if(indexOfFirstWhereClauseBlankSelector == whereClauseElementValues.length -1) 
+      {
+
+        queryExpression = queryExpression + "WHERE" + ":;"
+
+        // The form has been filled out completely so populate the query expression with data from the controls.
+        whereClauseElementValues.forEach(function(element){
+          if(element != "")
+          {
+            queryExpression = queryExpression + element + ":;"
+          } 
+        });
+      }
+      else // The user did not fill out the form competely so bail out of the process.
+      {
+        alert('The filter expression must be filled out completely or must be completely blank' + '\n' + 'Please check your work.')
+        return // Stop the process.
+      }
+
+    } // End of: if(userHasMadeAFilterExpression){...}
+    // End of: Begin build a query expression by examining the filter control elements.
 
 
-    // End of: build a query by examining the control elements.
 
+    // Start of: Add any orderby clauses to the query expression.
+    // 1. Make an array from the orderby clause elements.
+    // Create an empty array to hold the values contained in the orderby clause select elements.
+
+    // Create a handle to address the group wrapper. 
+    // We can use this to keep the search for control elements limited to the orderby clause controls.
+    let orderByClauseGroupWrapper = document.querySelectorAll(".orderByClauseGroupWrapper")[0];
+
+    // Create an empty array to hold the values of the orderby clause controls elements.
+    let orderByClauseElementValues = [];
+
+    // Store the values of each select element in the new array.
+    // .resetElement is just a class that all the elements of interest have in common.
+    orderByClauseGroupWrapper.querySelectorAll(".resetElement").forEach(function(element) 
+    {
+      // Push the values onto the array.
+      orderByClauseElementValues.push(element.value);
+
+    }); 
+
+    // 2. Ensure all but the last element contains a value or that none of the 
+    // elements contain values and then add to the query expression.
+    // In other words: 
+    // Make sure the user filled out the orderby form(s) completely or not at all.
+    // If the orderby form(s) is/are completely filled out then add to the query expression.
+
+    // Find out which element in the array is the first element to contain a blank value.
+    // If it's the last one then we know the form has been filled out completely.
+    let indexOfFirstOrderByClauseBlankSelector = orderByClauseElementValues.indexOf("")
+
+    // Find out if all the values in the array selectorElementValues are blank.
+    // If they are then we know that the form was not filled out at all in 
+    // which case we should ignore the form.
+
+    // If not all the elements are blank then then user has made a filter expression.
+    let userHasMadeAnOrderByExpression = !allBlanks(orderByClauseElementValues);
+
+    if(userHasMadeAnOrderByExpression)
+    {
+      // If the first blank is the very last element in the array then
+      // we know that the form has been filled out compelely.
+      if(indexOfFirstOrderByClauseBlankSelector == orderByClauseElementValues.length -1) 
+      {
+
+        queryExpression = queryExpression + "ORDERBY" + ":;"
+
+        // The form has been filled out completely so populate the query expression with data from the controls.
+        orderByClauseElementValues.forEach(function(element){
+          if(element != "")
+          {
+            queryExpression = queryExpression + element + ":;"
+          } 
+        });
+
+      }
+      else // The user did not fill out the form competely so bail out of the process.
+      {
+        alert('The order-by expression must be filled out completely or must be completely blank' + '\n' + 'Please check your work.')
+        return // Stop the process.
+      }
+
+    } // End of: if(userHasMadeAFilterExpression){...}
+    // End of: Add any orderby clauses to the query expression.
+
+    document.querySelectorAll(".queryExpressionTextArea")[0].innerHTML = queryExpression;
 
     // send the query off with the fetch function below.
-    runQuery();
+    runQuery(queryExpression);
 
-  }
+  } // End of: function onClickEventBehaviorOfQueryButton(event)
   // End of: Define the function that fires when the query button is clicked.  
 
   // Bind the function above to the onClick event of the query button.
@@ -801,7 +945,7 @@ app.loadUsersListPage = async function()
       event.target.setAttribute('data-previous', event.target.value);
     }
     // otherwise if a conjunction was selected where it was previously blank we will add a new filter.
-    else if ((event.target.value == "AND" || event.target.value == "OR") && (previousSetting == ""))
+    else if ((event.target.value == "ANDWHERE" || event.target.value == "ORWHERE") && (previousSetting == ""))
     {
       // Blank out the attribute that tracks the previous setting so that the cloned control starts out clean.
       event.target.setAttribute('data-previous','');
@@ -961,8 +1105,10 @@ app.loadUsersListPage = async function()
   // Create a handle which can be used to manipulate the table on the webpage.
   var table = document.getElementById("usersListTable");  
 
+  //!!!!!!!!!!Need to look into the difference between these two ways of defining a function. They both seem to work.
   // This function is called when the submit query button is pressed.
-  let runQuery = async function()
+  // let runQuery = async function()
+  async function runQuery()
   {
     // Define which users will be retrieved from dbUsers.json
     // This is not being used for now so all records will be retrived.
