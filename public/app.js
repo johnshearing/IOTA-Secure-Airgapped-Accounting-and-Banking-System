@@ -845,6 +845,63 @@ app.loadUsersListPage = async function()
     } // End of: if(userHasMadeAFilterExpression){...}
     // End of: Add any orderby clauses to the query expression.
 
+    // Start of: Replace troublesome symbols in the query expression
+
+    // DON'T USE THE FOLLOWING SYMBOLS OR THE %ESCAPES IN THE QUERY EXPRESSION
+    // CODE BELOW SWAPS THESE FOR SOMETHING COMPLETELY DIFFERENT.
+    // PoundStops the Process-%23
+    // Ampersand breaks the expression into two parts-%26
+    // Equal stops the process-%3D
+
+    // THE FOLLOWING SYMBOLS PRODUCE UNEXPECTED BEHAVIOR:
+    // cODE BELOW SWAPS THESE FOR SOMETHING COMPLETELY DIFFERENT.    
+    // Backslash is escaped with another backslash no matter what-%5C
+    // Single Quote inserts Esc automatically and inserts a back slash in the result-%27
+    // Plus shows as a space-%2B 
+    
+    // THE FOLLOWING SYMBOLS PRODUCE UNEXPECTED BUT HARMLESS BEHAVIOR:
+    // IT'S OK TO LEAVE THESE AS IS. WE WON'T NOTICE THEM IN THE FINAL RESULT.
+    // Space inserts the Esc automatically-%20
+    // DoubleQInsertsEscAutomatically-%22   
+    // LessThanInsertsEscAutomatically-%3C
+    // GreaterThanInsertsEscAutomatically-%3E     
+
+    // THE FOLLOWING SYMBOLS BEHAVE AS EXPECTED:    
+    // Accent-`
+    // Exclaimation-!
+    // AtSign-@
+    // Dollar-$
+    // Percent-%
+    // Carrot-^
+    // Asterisk-*
+    // OpenParen-(
+    // CloseParen-)
+    // LowDash-_
+    // OpenBrace-{
+    // CloseBrace-}
+    // OpenBracket-[
+    // CloseBracket-]
+    // Pipe-|
+    // Colon-:
+    // Semi-;
+    // Coma-,
+    // Period-.
+    // Question-?-
+    // ForwardSlash-/-:;
+
+    // We are pulling out these troublesome symbols from the queryExpression and replacing 
+    // them with something different before sending them to the server.
+    // We will reverse the process at the server.
+    queryExpression = queryExpression.replace(/#/g, "{[POUND]}");
+    queryExpression = queryExpression.replace(/&/g, "{[AMPERSAND]}");
+    queryExpression = queryExpression.replace(/=/g, "{[EQUALS]}");
+    // Escaping the following with a backslash now stops the system from inserting an extra backslash in the result.
+    queryExpression = queryExpression.replace(/\\/g, "{[BACK-SLASH]}");    
+    queryExpression = queryExpression.replace(/\'/g, "{[SINGLE-QUOTE]}");
+    queryExpression = queryExpression.replace(/\+/g, "{[PLUS]}");
+
+    // End of: Replace troublesome symbols in the query expression
+
     document.querySelectorAll(".queryExpressionTextArea")[0].innerHTML = queryExpression;
 
     // send the query off with the fetch function below.
@@ -1108,7 +1165,7 @@ app.loadUsersListPage = async function()
   //!!!!!!!!!!Need to look into the difference between these two ways of defining a function. They both seem to work.
   // This function is called when the submit query button is pressed.
   // let runQuery = async function()
-  async function runQuery()
+  async function runQuery(queryExpression)
   {
     // Define which users will be retrieved from dbUsers.json
     // This is not being used for now so all records will be retrived.
@@ -1116,7 +1173,7 @@ app.loadUsersListPage = async function()
 
     // Define a client function that calls for data from the server.
     // const fetchPromise = fetch('api/aUsers?email=alice@gmail.com')
-    const fetchPromise = fetch('api/aUsers')
+    const fetchPromise = fetch('api/aUsers' + queryExpression)
     .then
     (
       (res) => 
