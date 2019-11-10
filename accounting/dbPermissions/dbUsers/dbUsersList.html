@@ -104,31 +104,47 @@
         <div class="inputWrapper">
           <div class="inputLabel queryByExampleLabel">Select a comparison operator to be used by the filter.</div>
           <select class="comparisonOperator resetElement"> 
-            <option value=""></option> 
-            <option value="MatchesExactly">Matches Exactly</option>             
-            <option value="MatchesExactlyNotCaseSensitive">Matches Exactly - Not Case Sensitive</option>  
-            <option value="DoesNotMatchExactly">Does Not Match Exactly</option>   
-            <option value="DoesNotMatchExactlyNotCaseSensitive">Does Not Match Exactly - Not Case Sensitive</option>                                     
-            <option value="BeginsWith">Begins With</option>    
-            <option value="BeginsWithNotCaseSensitive">Begins With - Not Case Sensitive</option>                
-            <option value="DoesNotBeginWith">Does Not Begin With</option>     
-            <option value="DoesNotBeginWithNotCaseSensitive">Does Not Begin With - Not Case Sensitive</option>                          
-            <option value="Contains">Contains</option>   
-            <option value="ContainsNotCaseSensitive">Contains - Not Case Sensitive</option>            
-            <option value="DoesNotContain">Does Not Contain</option>   
-            <option value="DoesNotContainNotCaseSensitive">Does Not Contain - Not Case Sensitive</option>                         
-            <option value="EndsWith">Ends With</option>   
-            <option value="EndsWithNotCaseSensitive">Ends With - Not Case Sensitive</option>               
-            <option value="DoesNotEndWith">Does Not End With</option>   
-            <option value="DoesNotEndWithNotCaseSensitive">Does Not End With - Not Case Sensitive</option>                      
-            <option value="IsGreaterThan">Is Greater Than</option>   
-            <option value="IsGreaterThanNotCaseSensitive">Is Greater Than - Not Case Sensitive</option>                          
-            <option value="IsGreaterThanOrEqualTo">Is Greater Than Or Equal To</option>    
-            <option value="IsGreaterThanOrEqualToNotCaseSensitive">Is Greater Than Or Equal To - Not Case Sensitive</option>                
-            <option value="IsLessThan">Is Less Than</option>  
-            <option value="IsLessThanNotCaseSensitive">Is Less Than - Not Case Sensitive</option>              
-            <option value="IsLessThanOrEqualTo">Is Less Than Or Equal To</option>   
-            <option value="IsLessThanOrEqualToNotCaseSensitive">Is Less Than Or Equal To - Not Case Sensitive</option>                                                                                    
+            <option value=""></option>
+            <optgroup label="Upper Case Letters Are Considered The Same As Lower Case Letters">
+              <optgroup label="Positive Matches">
+                <option value="MatchesExactlyNotCaseSensitive">Matches Exactly - Not Case Sensitive</option>
+                <option value="BeginsWithNotCaseSensitive">Begins With - Not Case Sensitive</option> 
+                <option value="ContainsNotCaseSensitive">Contains - Not Case Sensitive</option> 
+                <option value="EndsWithNotCaseSensitive">Ends With - Not Case Sensitive</option>  
+              </optgroup>     
+              <optgroup label="Negative Matches">
+                <option value="DoesNotMatchExactlyNotCaseSensitive">Does Not Match - Not Case Sensitive</option>
+                <option value="DoesNotBeginWithNotCaseSensitive">Does Not Begin With - Not Case Sensitive</option> 
+                <option value="DoesNotContainNotCaseSensitive">Does Not Contain - Not Case Sensitive</option> 
+                <option value="DoesNotEndWithNotCaseSensitive">Does Not End With - Not Case Sensitive</option>
+              </optgroup>                               
+            </optgroup>             
+            <optgroup label="Upper Case Letters Are Considered Different Than Lower Case letters">
+              <optgroup label="Positive Matches">
+                  <option value="MatchesExactly">Matches Exactly - Case Sensitive</option>
+                  <option value="BeginsWith">Begins With - Case Sensitive</option>  
+                  <option value="Contains">Contains - Case Sensitive</option>   
+                  <option value="EndsWith">Ends With - Case Sensitive</option>  
+              </optgroup>     
+              <optgroup label="Negative Matches">
+                  <option value="DoesNotMatchExactly">Does Not Match - Case Sensitive</option> 
+                  <option value="DoesNotBeginWith">Does Not Begin With - Case Sensitive</option>  
+                  <option value="DoesNotContain">Does Not Contain - Case Sensitive</option> 
+                  <option value="DoesNotEndWith">Does Not End With - Case Sensitive</option>    
+              </optgroup>                                                                          
+            </optgroup>                         
+            <optgroup label="Numerical Comparisons"></optgroup>
+              <option value="IsGreaterThan">Is Greater Than - Characters Treated Numerically</option>
+              <option value="IsGreaterThanOrEqualTo">Is Greater Than Or Equal To - Characters Treated Numerically</option> 
+              <option value="IsLessThan">Is Less Than - Characters Treated Numerically</option>  
+              <option value="IsLessThanOrEqualTo">Is Less Than Or Equal To - Characters Treated Numerically</option>   
+            </optgroup>  
+            <optgroup label="Alphabetical Comparisons"></optgroup>
+              <option value="IsGreaterThanNotCaseSensitive">Is Greater Than - Characters Treated Alphabetically</option>
+              <option value="IsGreaterThanOrEqualToNotCaseSensitive">Is Greater Than Or Equal To - Characters Treated Alphabetically</option>
+              <option value="IsLessThanNotCaseSensitive">Is Less Than - Characters Treated Alphabetically</option>
+              <option value="IsLessThanOrEqualToNotCaseSensitive">Is Less Than Or Equal To - Characters Treated Alphabetically</option>              
+            </optgroup> 
           </select>
         </div>     
 
