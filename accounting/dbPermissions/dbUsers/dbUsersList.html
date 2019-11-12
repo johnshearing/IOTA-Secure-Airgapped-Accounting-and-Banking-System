@@ -83,7 +83,11 @@
     elements for a second where clause if a conjunction is added with the fourth pulldown menu.
     This behavior will continue so that there could be an unlimited number of where clause filters.
     -->
-    <div class="whereClauseGroupWrapper">Create a filter expression. All records are selected if left blank.
+    <div class="whereClauseGroupWrapper">
+    Create a filter expression. <br>
+    All filters joined by the conjunction AND will be evaluated first.<br>
+    All records are selected if filters are left blank.
+
       <div class="whereClauseWrapper">
         <!--
         The following select element is used to select a field in the table for the where clause.   
@@ -106,7 +110,7 @@
           <select class="comparisonOperator resetElement"> 
             <option value=""></option>
             <optgroup label="Upper Case Letters Are Considered The Same As Lower Case Letters">
-              <optgroup label="Positive Matches">
+              <optgroup label="Positive Matches">             
                 <option value="MatchesExactlyNotCaseSensitive">Matches Exactly - Not Case Sensitive</option>
                 <option value="BeginsWithNotCaseSensitive">Begins With - Not Case Sensitive</option> 
                 <option value="ContainsNotCaseSensitive">Contains - Not Case Sensitive</option> 
