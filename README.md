@@ -1,6 +1,7 @@
 # IOTA-Secure-Airgapped-Accounting-and-Banking-System  
 ## For Government, Enterprise, Individuals, and Machines  
-This multi signature air-gapped accounting system for IOTA is a NodeJS client/server database and application generator **with no dependencies other than the IOTA javascript library** for manageable security auditing.  
+This multi signature air-gapped accounting system for IOTA is a NodeJS client/server database and application generator **with no dependencies other than the IOTA javascript library**.  
+This makes for manageable security auditing.  
 The small template based code generator creates the client side and the server side code which is the same for all tables in the system. So once the generated behavior of the system for one table in the database has been audited, then the system as a whole is proven to be secure. Thats because the generator uses templates which create the same basic code throughout the entire system.  
 The server side code will run on any computer.  
 The generated user interface runs in the browser.  
