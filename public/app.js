@@ -679,35 +679,55 @@ app.loadAccountEditPage = function()
 // Populate the dbUsersList webpage with controls and user records from the table.
 app.loadUsersListPage = async function()
 {  
-
-  // Create a handle which can be used to manipulate the table on the webpage.
-  let table = document.getElementById("usersListTable");
-
-
-  // Define function that fires when the clear results button is clicked.
-  function onClickEventBehaviorOfClearResultsButton(event)  
-  {
-    // Stop it from redirecting anywhere
-    event.preventDefault();
-
-    // Clear all results from the table.
-    table.remove();
-
-
-  }; // End of: function onClickEventBehaviorOfClearResultsButton(event) = function(){...}
-  // End of: Define function that fires when the clear results button is clicked.
-
-  // Bind the function above to the onClick event of the submit query button.
-  document.querySelector("#clearResultsButton").addEventListener("click", onClickEventBehaviorOfClearResultsButton);
-
-
-
+  // Create a table.
+  let table = document.createElement('table');  
 
   // Define function that fires when the submit query button is clicked.
   function onClickEventBehaviorOfSubmitQueryButton(event)  
   {
     // Stop it from redirecting anywhere
     event.preventDefault();
+
+    // Create a title for the table.    
+    tableCaption = document.createElement('caption');
+    tableCaption.innerHTML = 'List of Users';
+    tableCaption.className = "tableCaption";
+    table.appendChild(tableCaption);    
+    
+
+    // Assign the id usersListTable to the table.
+    let tableIdAttribute = document.createAttribute('id');
+    tableIdAttribute.value = "usersListTable"
+    table.setAttributeNode(tableIdAttribute);
+
+    // Make the first row for the table and put it in the table
+    let tableRow = document.createElement('tr'); 
+    table.appendChild(tableRow);   
+
+    // Make a header for row 1 and put it in the row.
+    let tableHeader = document.createElement('th');  
+    tableHeader.innerHTML = 'UserID'  
+    tableRow.appendChild(tableHeader);   
+
+    // Make a header for row 1 and put it in the row.
+    tableHeader = document.createElement('th');  
+    tableHeader.innerHTML = 'Email Address'  
+    tableRow.appendChild(tableHeader); 
+    
+    // Make a header for row 1 and put it in the row.
+    tableHeader = document.createElement('th');  
+    tableHeader.innerHTML = 'Time Stamp'  
+    tableRow.appendChild(tableHeader);    
+    
+    // Make a header for row 1 and put it in the row.
+    tableHeader = document.createElement('th');  
+    tableHeader.innerHTML = 'Details'  
+    tableRow.appendChild(tableHeader);     
+    
+    // Put the table on the webpage.
+    let tableParent = document.querySelector('.content');
+    tableParent.appendChild(table);
+
 
     // Run the query defined in the textarea on the form.
     runQuery(document.querySelector(".queryExpressionTextArea").value);
@@ -718,6 +738,25 @@ app.loadUsersListPage = async function()
 
   // Bind the function above to the onClick event of the submit query button.
   document.querySelector("#submitQueryButton").addEventListener("click", onClickEventBehaviorOfSubmitQueryButton);
+
+
+
+  // Define function that fires when the clear results button is clicked.
+  function onClickEventBehaviorOfClearResultsButton(event)  
+  {
+    // Stop it from redirecting anywhere
+    event.preventDefault();
+
+    // Clear all results from the table.
+    table.remove();
+    table.innerHTML = "";
+
+
+  }; // End of: function onClickEventBehaviorOfClearResultsButton(event) = function(){...}
+  // End of: Define function that fires when the clear results button is clicked.
+
+  // Bind the function above to the onClick event of the submit query button.
+  document.querySelector("#clearResultsButton").addEventListener("click", onClickEventBehaviorOfClearResultsButton);  
 
 
 
@@ -1206,10 +1245,10 @@ app.loadUsersListPage = async function()
   // This function is called when the submit query button is pressed.
   // let runQuery = async function()
   async function runQuery(queryExpression)
-  {
-    // Define which users will be retrieved from dbUsers.json
-    // This is not being used for now so all records will be retrived.
-    // var queryStringObject = {};   
+  {   
+
+    // Create the table used to display the results.
+
 
     // Define a client function that calls for data from the server.
     // const fetchPromise = fetch('api/aUsers?email=alice@gmail.com')
