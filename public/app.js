@@ -680,11 +680,52 @@ app.loadAccountEditPage = function()
 app.loadUsersListPage = async function()
 {  
 
-  // Define the function that fires when the query button is clicked.
+  // Create a handle which can be used to manipulate the table on the webpage.
+  let table = document.getElementById("usersListTable");
+
+
+  // Define function that fires when the clear results button is clicked.
+  function onClickEventBehaviorOfClearResultsButton(event)  
+  {
+    // Stop it from redirecting anywhere
+    event.preventDefault();
+
+    // Clear all results from the table.
+    table.remove();
+
+
+  }; // End of: function onClickEventBehaviorOfClearResultsButton(event) = function(){...}
+  // End of: Define function that fires when the clear results button is clicked.
+
+  // Bind the function above to the onClick event of the submit query button.
+  document.querySelector("#clearResultsButton").addEventListener("click", onClickEventBehaviorOfClearResultsButton);
+
+
+
+
+  // Define function that fires when the submit query button is clicked.
+  function onClickEventBehaviorOfSubmitQueryButton(event)  
+  {
+    // Stop it from redirecting anywhere
+    event.preventDefault();
+
+    // Run the query defined in the textarea on the form.
+    runQuery(document.querySelector(".queryExpressionTextArea").value);
+
+    table.scrollIntoView();
+  }; // End of: function onClickEventBehaviorOfSubmitQueryButton(event) = function(){...}
+  // End of: Define function that fires when the submit query button is clicked.
+
+  // Bind the function above to the onClick event of the submit query button.
+  document.querySelector("#submitQueryButton").addEventListener("click", onClickEventBehaviorOfSubmitQueryButton);
+
+
+
+  // Define function that fires when generate query button is clicked.
   // The following function builds a query by examining the control 
   // elements for the filter and the order by clause. 
   // Then it sends the query off to the server and manages the response.
-  function onClickEventBehaviorOfQueryButton(event)
+  function onClickEventBehaviorOfGenerateQueryButton(event)
   {
     // Stop it from redirecting anywhere
     event.preventDefault();
@@ -902,16 +943,17 @@ app.loadUsersListPage = async function()
 
     // End of: Replace troublesome symbols in the query expression
 
-    document.querySelectorAll(".queryExpressionTextArea")[0].innerHTML = queryExpression;
+    document.querySelector(".queryExpressionTextArea").value = queryExpression;
 
-    // send the query off with the fetch function below.
-    runQuery(queryExpression);
+    // Send the query off with the fetch function below. 
+    // Commented out because this now has it's own button to run the query.
+    // runQuery(queryExpression);
 
-  } // End of: function onClickEventBehaviorOfQueryButton(event)
-  // End of: Define the function that fires when the query button is clicked.  
+  } // End of: function onClickEventBehaviorOfGenerateQueryButton(event)
+  // End of: Define the function that fires when the generate query button is clicked.  
 
   // Bind the function above to the onClick event of the query button.
-  document.querySelector("#queryButton").addEventListener("click", onClickEventBehaviorOfQueryButton);
+  document.querySelector("#generateQueryButton").addEventListener("click", onClickEventBehaviorOfGenerateQueryButton);
 
 
   // Define the function that fires when the order by conjunctionSelector changes.
@@ -1157,10 +1199,8 @@ app.loadUsersListPage = async function()
 
   // Bind the function above to the onChange event of the first (and only for now) fieldToDisplay select element.
   document.querySelectorAll(".fieldToDisplay")[0].addEventListener("change", onChangeBehaviorForFieldToDisplaySelector);
-
-
-  // Create a handle which can be used to manipulate the table on the webpage.
-  var table = document.getElementById("usersListTable");  
+  
+  
 
   //!!!!!!!!!!Need to look into the difference between these two ways of defining a function. They both seem to work.
   // This function is called when the submit query button is pressed.
@@ -1182,11 +1222,11 @@ app.loadUsersListPage = async function()
         if (!res.ok) 
         {
           // throw res;
-          // Show 'you have no checks' message
-          document.getElementById("noChecksMessage").style.display = 'table-row';
 
           // Show the createCheck CTA
           document.getElementById("createNewRecordCTA").style.display = 'block';
+          document.getElementById("createNewRecordCTA2").style.display = 'block';
+          document.getElementById("createNewRecordCTA3").style.display = 'block';          
 
           console.log("Error trying to load the list of users: ");        
         }
@@ -1311,10 +1351,13 @@ app.loadUsersListPage = async function()
 
     // Call the "read" function defined above when the submit query button is pressed.
     read();
+
   }; // End of: let runQuery = function(){...}
 
   // Show the createCheck CTA
   document.getElementById("createNewRecordCTA").style.display = 'block';
+  document.getElementById("createNewRecordCTA2").style.display = 'block';
+  document.getElementById("createNewRecordCTA3").style.display = 'block';   
 
 } // End of: app.loadUsersListPage = function(){...}
 // End of: Populate the dbUsersList webpage with user records.

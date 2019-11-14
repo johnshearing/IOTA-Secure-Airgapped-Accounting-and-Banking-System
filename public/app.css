@@ -235,7 +235,7 @@ input.disabled{
 }
 
 .inputWrapper{
-  padding: 0 0 20px 0;
+  padding: 0 0 2px 0;
 }
 
 .inputLabel{
@@ -298,8 +298,9 @@ td a, td a:hover, td a:active{
   display: none;
 }
 
-#createNewRecordCTA{
-  margin-top: 40px;
+#createNewRecordCTA, #createNewRecordCTA2, #createNewRecordCTA3
+{
+  margin-top: 10px;
   display: none;
 }
 
@@ -324,6 +325,6 @@ td a, td a:hover, td a:active{
 
 .queryByExampleLabel, .queryByExampleSubmitWrapper
 {
-  margin-top: 8px;  
+  margin-top: 2px;  
 }
 

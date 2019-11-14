@@ -1,4 +1,4 @@
-<h2>Filter, Sort, and Meter the Records</h2>
+<h2>Select, Filter, Sort, and Meter the Records</h2>
 <h2>All records are returned unaltered if no selections are made.</h2>
 <h2>Press the submit button to see the results</h2>
 
@@ -184,7 +184,7 @@
     elements for a second order by clause if desired.
     This behavior will continue so that there could be an unlimited number of order by clauses.
     -->    
-    <div class="orderByClauseGroupWrapper">No sort order is applied if left blank.
+    <div class="orderByClauseGroupWrapper">Sort the Results<br>No sort order is applied if left blank.
       <div class="orderByClauseWrapper">
         <!--The following will be used to define the sort in the order by clause - ascending or descending-->    
         <!--This will be a pulldown menu loaded with field names.-->    
@@ -224,7 +224,7 @@
     <!--This will be a pulldown menu.-->  
     <div class="recordLimitWrapper">        
       <div class="inputWrapper">
-        <div class="inputLabel queryByExampleLabel">Select how many records you want displayed on each page.</div>
+        <div class="inputLabel queryByExampleLabel">Meter the Results<br>Select how many records you want displayed on each page.</div>
         <!--The class of the select element below can be used to identify strings of numbers and convert them to integers when submitting a form.-->
         <!--Search the code for the term intval to see how this is done.-->      
         <!--The class can be used when loading data on the webpage.-->
@@ -237,7 +237,7 @@
     <div class="queryExpressionWrapper">          
       <div class="inputWrapper">
           <div class="inputLabel queryByExampleLabel">Query Expression</div>
-          <textarea class="queryExpressionTextArea" name="queryExpression" rows="10" cols="30" readonly></textarea>
+          <textarea class="queryExpressionTextArea" name="queryExpression" rows="10" cols="30"></textarea>
       </div>
     </div>         
 
@@ -245,13 +245,20 @@
     <!--This will be a button.-->
     <div id="createNewRecordCTA" class="inputWrapper ctaWrapper queryByExampleSubmitWrapper">
       <!--
-        Let's not use the submit button on this form
+      Let's not use the submit button on this form
       <button type="submit" class="cta green">Submit Query</button>
       We will use the button below instead.
       -->
-      <a class="cta green" id="queryButton">Submit Query</a>           
-      <a class="cta green" href="user/create">Create a New User</a>
+      <a class="cta green" id="generateQueryButton">Generate Query</a>
+      <a class="cta green" id="submitQueryButton">Submit Query</a>           
     </div>
+    <div id="createNewRecordCTA2" class="inputWrapper ctaWrapper queryByExampleSubmitWrapper">
+      <a class="cta green" id="clearQueryButton">Clear Query</a>
+      <a class="cta green" id="clearResultsButton">Clear Results</a>           
+    </div>   
+    <div id="createNewRecordCTA3" class="inputWrapper ctaWrapper queryByExampleSubmitWrapper">          
+      <a class="cta green" href="user/create">Create a New User</a>
+    </div>     
   </form>
 </div>
 
@@ -273,9 +280,6 @@
     <th>Email Address</th>
     <th>Time Stamp</th>
     <th>Details</th>
-  </tr>
-  <tr id="noChecksMessage">
-    <td colspan="5">There are no users, please create one!</td>
   </tr>
 
 </table>
