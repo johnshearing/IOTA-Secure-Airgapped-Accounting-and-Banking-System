@@ -679,8 +679,52 @@ app.loadAccountEditPage = function()
 // Populate the dbUsersList webpage with controls and user records from the table.
 app.loadUsersListPage = async function()
 {  
-  // Create a table.
+  // Create table here so all functions below will have access to it.
   let table = document.createElement('table');  
+
+  // Create a handle for the query form template here so all functions below will have access to it.
+  // This template is in the webpage html at the bottom between <script> tags.
+  let formTemplate = document.querySelector('[type="text/formTemplate"]');
+
+
+  // Define a function to load the query form from the template.
+  function loadQueryForm()
+  {
+  let templateClone = formTemplate.cloneNode(true);
+  let templateHTMl = templateClone.textContent;
+  let templateTarget = document.querySelector(".formWrapper");
+  templateTarget.innerHTML = templateHTMl; 
+  };
+
+  // Call the function above to load a new clean queryForm onto the webpage.
+  loadQueryForm();
+
+
+  // Define function that fires when the clear query button is clicked.
+  function onClickEventBehaviorOfClearQueryButton(event)  
+  {
+    // Stop it from redirecting anywhere
+    event.preventDefault();
+
+    // Remove the old query form if any from the webpage.
+    let templateTarget = document.querySelector(".formWrapper");
+    templateTarget.innerHTML = ""; 
+
+    // Call the loadQueryForm function above to load a new clean queryForm onto the webpage.
+    loadQueryForm();
+
+    // Now add back the onChange event listeners for the controls on the form.
+    document.querySelectorAll(".fieldToDisplay")[0].addEventListener("change", onChangeBehaviorForFieldToDisplaySelector);
+    document.querySelectorAll(".conjunctionSelector")[0].addEventListener("change", onChangeBehaviorForConjunctionSelector);    
+    document.querySelectorAll(".orderByConjunctionSelector")[0].addEventListener("change", onChangeBehaviorForOrderByConjunctionSelector);
+
+  }; // End of: function onClickEventBehaviorOfClearQueryButton(event) = function(){...}
+  // End of: Define function that fires when the clear query button is clicked.
+
+  // Bind the function above to the onClick event of the clear query button.
+  document.querySelector("#clearQueryButton").addEventListener("click", onClickEventBehaviorOfClearQueryButton); 
+
+
 
   // Define function that fires when the submit query button is clicked.
   function onClickEventBehaviorOfSubmitQueryButton(event)  
@@ -692,45 +736,79 @@ app.loadUsersListPage = async function()
     tableCaption = document.createElement('caption');
     tableCaption.innerHTML = 'List of Users';
     tableCaption.className = "tableCaption";
-    table.appendChild(tableCaption);    
+    // Only apply the title if one does not already exist.
+    if(!document.querySelector(".tableCaption"))
+    {
+      table.appendChild(tableCaption);
+    }
+
+    // Create an empty array to hold the values contained in each fieldToDisplay selector control.
+    let arrayOfFieldsToDisplay = [];
     
+    // This will populate arrayOfFieldsToDisplay with the values of every fieldToDisplay 
+    // selector control (except the last empty one) shown on the webpage.
+    // In other words: Populate the array with all the selections made by the user.
+    document.querySelectorAll('.fieldToDisplay').forEach(function(node, nodeIndex, nodeList)
+    {
+      if(nodeIndex < nodeList.length - 1)
+      {
+        arrayOfFieldsToDisplay.push(node.value);
+      }
+      else if(nodeIndex = nodeList.length - 1 && node.value != "")
+      {
+        arrayOfFieldsToDisplay.push(node.value);
+      }
 
-    // Assign the id usersListTable to the table.
-    let tableIdAttribute = document.createAttribute('id');
-    tableIdAttribute.value = "usersListTable"
-    table.setAttributeNode(tableIdAttribute);
+    });
 
-    // Make the first row for the table and put it in the table
+    // Make the first empty row for the headers and put it in the table
     let tableRow = document.createElement('tr'); 
     table.appendChild(tableRow);   
 
-    // Make a header for row 1 and put it in the row.
-    let tableHeader = document.createElement('th');  
-    tableHeader.innerHTML = 'UserID'  
-    tableRow.appendChild(tableHeader);   
+    // Check if the user did not select any fields to display.
+    // Nothing selected means all fields should be displayed.
+    if(arrayOfFieldsToDisplay.length == 0) // Nothing selected so display all fields as they are positioned in the table.
+    {
+      // Clear out the array
+      arrayOfFieldsToDisplay = [];
+      
+      // Repopulate arrayOfFieldsToDisplay with all possible options except the first empty option.
+      // In other words: populate the array with every field name it is possble to display.
+      document.querySelector('.fieldToDisplay').querySelectorAll("option").forEach(function(node, nodeIndex)
+      {
+        if (nodeIndex != 0)
+        {
+            arrayOfFieldsToDisplay.push(node.value);
+        }
+      });
+    } // End of: if(arrayOfFieldsToDisplay[0] == "") // Nothing selected
 
-    // Make a header for row 1 and put it in the row.
-    tableHeader = document.createElement('th');  
-    tableHeader.innerHTML = 'Email Address'  
-    tableRow.appendChild(tableHeader); 
+
+    // The user selected some or all of the fields and an order in which they must be displayed.
+
+
+    // Populate the first row with headers containing the names of each field.
+    arrayOfFieldsToDisplay.forEach(function(arrayElement)
+    {
+      // Make a header for row 1 and put it in the row.
+      let tableHeader = document.createElement('th');  
+      tableHeader.innerHTML = arrayElement  
+      tableRow.appendChild(tableHeader);
+    });    
     
-    // Make a header for row 1 and put it in the row.
-    tableHeader = document.createElement('th');  
-    tableHeader.innerHTML = 'Time Stamp'  
-    tableRow.appendChild(tableHeader);    
-    
-    // Make a header for row 1 and put it in the row.
+    // Make an extra header for row 1 so that the user can drill into the record and edit the detail or delete it.
     tableHeader = document.createElement('th');  
     tableHeader.innerHTML = 'Details'  
     tableRow.appendChild(tableHeader);     
-    
-    // Put the table on the webpage.
-    let tableParent = document.querySelector('.content');
-    tableParent.appendChild(table);
 
+    let nameOfPrimaryKey = document.querySelector('.fieldToDisplay').querySelectorAll("option")[1].value;
 
     // Run the query defined in the textarea on the form.
-    runQuery(document.querySelector(".queryExpressionTextArea").value);
+    runQuery(document.querySelector(".queryExpressionTextArea").value, arrayOfFieldsToDisplay, nameOfPrimaryKey);
+
+    // Put the table on the webpage.
+    let tableParent = document.querySelector('.content');
+    tableParent.appendChild(table);    
 
     table.scrollIntoView();
   }; // End of: function onClickEventBehaviorOfSubmitQueryButton(event) = function(){...}
@@ -1244,7 +1322,7 @@ app.loadUsersListPage = async function()
   //!!!!!!!!!!Need to look into the difference between these two ways of defining a function. They both seem to work.
   // This function is called when the submit query button is pressed.
   // let runQuery = async function()
-  async function runQuery(queryExpression)
+  async function runQuery(queryExpression, arrayOfFieldsToDisplay, nameOfPrimaryKey)
   {   
 
     // Create the table used to display the results.
@@ -1360,24 +1438,21 @@ app.loadUsersListPage = async function()
         {
           if (value) 
           {
-            // Your object (value) will be here
-
+            // Your object (value) will be here   
+            
             // Insert a new row in the table.
-            var tr = table.insertRow(-1);
-            // Make the new row a member of the class 'checkRow'
-            tr.classList.add('checkRow');
+            var tr = table.insertRow(-1);            
+            
+            // Insert a new cell for each field to display and populate with data for that field.
+            arrayOfFieldsToDisplay.forEach(function(arrayElement, elementIndex)
+            {
+              let newCell = tr.insertCell(elementIndex);
+              newCell.innerHTML = value[arrayElement];               
+            });   
 
-            // Insert five new cells into the new row.
-            var td0 = tr.insertCell(0);
-            var td1 = tr.insertCell(1);
-            var td2 = tr.insertCell(2);   
-            var td3 = tr.insertCell(3);          
+            let lastCell = tr.insertCell(arrayOfFieldsToDisplay.length);             
+            lastCell.innerHTML = '<a href="/users/edit?email=' + value[nameOfPrimaryKey] + '">View / Edit / Delete</a>';
 
-            // load the new cells with data from the recordObject.
-            td0.innerHTML = value.userId;      
-            td1.innerHTML = value.email;
-            td2.innerHTML = value.timeStamp;      
-            td3.innerHTML = '<a href="/users/edit?email=' + value.userId + '">View / Edit / Delete</a>';
           } // End of: if(value){do stuff}
 
           if (done) {return;}
