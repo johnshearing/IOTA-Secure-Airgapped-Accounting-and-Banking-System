@@ -151,9 +151,19 @@
       <div class="inputWrapper">
         <div class="inputLabel queryByExampleLabel">Select an operator to use in the order by expression.</div>
         <select class="orderByOperator resetElement"> 
-          <option value=""></option>        
-          <option value="ascending">ascending</option>
-          <option value="descending">descending</option>                                                                        
+          <option value=""></option>   
+
+          <optgroup label="Alphabetical Comparisons"></optgroup>  
+          <option value="ascendingAlphaSort">ascending - Characters Ranked Alphabetically</option>
+          <option value="descendingAlphaSort">descending - Characters Ranked Alphabetically</option>            
+          </optgroup>           
+          
+          <optgroup label="Numerical Comparisons"></optgroup>
+          <option value="ascendingNumericSort">ascending - Characters Ranked Numerically</option>
+          <option value="descendingNumericSort">descending - Characters Ranked Numerically</option>           
+          </optgroup>
+
+                                                                       
         </select>
       </div> 
 
@@ -165,15 +175,6 @@
           <option value="ThenOrderBy">Then Order By</option>                                                                       
         </select>
       </div> 
-    </div>
-  </div>
-
-
-  <!--The following is used to define the amount of records that show up on each page in the results--> 
-  <div class="recordLimitWrapper">        
-    <div class="inputWrapper">
-      <div class="inputLabel queryByExampleLabel">Meter the Results<br>Select how many records you want displayed on each page.</div>     
-      <input class="recordLimitInput intval" type="text" value="20" />
     </div>
   </div>
 

@@ -679,13 +679,12 @@ app.loadAccountEditPage = function()
 // Populate the dbUsersList webpage with controls and user records from the table.
 app.loadUsersListPage = async function()
 {  
-  // Create table here so all functions below will have access to it.
+  // Create an HTML table here so all functions below will have access to it.
   let table = document.createElement('table');  
 
   // Create a handle for the query form template here so all functions below will have access to it.
   // This template is in the webpage html at the bottom between <script> tags.
-  let formTemplate = document.querySelector('[type="text/formTemplate"]');
-
+  let formTemplate = document.querySelector('[type="text/formTemplate"]'); 
 
   // Define a function to load the query form from the template.
   function loadQueryForm()
@@ -727,10 +726,13 @@ app.loadUsersListPage = async function()
 
 
   // Define function that fires when the submit query button is clicked.
-  function onClickEventBehaviorOfSubmitQueryButton(event)  
+  async function onClickEventBehaviorOfSubmitQueryButton(event)  
   {
     // Stop it from redirecting anywhere
     event.preventDefault();
+
+    // Create an empty array to hold the values contained in each fieldToDisplay selector control.
+    let arrayOfFieldsToDisplay = [];     
 
     // Create a title for the table.    
     tableCaption = document.createElement('caption');
@@ -742,9 +744,7 @@ app.loadUsersListPage = async function()
       table.appendChild(tableCaption);
     }
 
-    // Create an empty array to hold the values contained in each fieldToDisplay selector control.
-    let arrayOfFieldsToDisplay = [];
-    
+
     // This will populate arrayOfFieldsToDisplay with the values of every fieldToDisplay 
     // selector control (except the last empty one) shown on the webpage.
     // In other words: Populate the array with all the selections made by the user.
@@ -783,10 +783,6 @@ app.loadUsersListPage = async function()
       });
     } // End of: if(arrayOfFieldsToDisplay[0] == "") // Nothing selected
 
-
-    // The user selected some or all of the fields and an order in which they must be displayed.
-
-
     // Populate the first row with headers containing the names of each field.
     arrayOfFieldsToDisplay.forEach(function(arrayElement)
     {
@@ -801,16 +797,45 @@ app.loadUsersListPage = async function()
     tableHeader.innerHTML = 'Details'  
     tableRow.appendChild(tableHeader);     
 
+    // Run the query defined in the textarea on the form.
+    let recordsArray = await runQuery(document.querySelector(".queryExpressionTextArea").value)
+
+    // Sort the recordsArray which was populated after running the query.
+    recordsArray.sort(function(a, b)
+    {
+      //Sort by email
+      if (a.email > b.email) return -1;
+      if (a.email < b.email) return 1;
+      if (a.email === b.email) return 0;
+    })
+    
     let nameOfPrimaryKey = document.querySelector('.fieldToDisplay').querySelectorAll("option")[1].value;
 
-    // Run the query defined in the textarea on the form.
-    runQuery(document.querySelector(".queryExpressionTextArea").value, arrayOfFieldsToDisplay, nameOfPrimaryKey);
+    recordsArray.forEach(function(value)
+    {
+      // Insert a new row in the table.
+      let tr = table.insertRow(-1);            
+      
+      // Insert a new cell for each field to display and populate with data for that field.
+      arrayOfFieldsToDisplay.forEach(function(arrayElement, elementIndex)
+      {
+        let newCell = tr.insertCell(elementIndex);
+        newCell.innerHTML = value[arrayElement];               
+      });   
+
+      // Add an extra cell to the end of the row that contains a link which sends the user
+      // to a new screen where the record can be edited or deleted.
+      let lastCell = tr.insertCell(arrayOfFieldsToDisplay.length);             
+      lastCell.innerHTML = '<a href="/users/edit?email=' + value[nameOfPrimaryKey] + '">View / Edit / Delete</a>';
+    }) 
 
     // Put the table on the webpage.
     let tableParent = document.querySelector('.content');
     tableParent.appendChild(table);    
 
-    table.scrollIntoView();
+    // This scrolls the results into view.
+    document.querySelector("#submitQueryButton").scrollIntoView();
+
   }; // End of: function onClickEventBehaviorOfSubmitQueryButton(event) = function(){...}
   // End of: Define function that fires when the submit query button is clicked.
 
@@ -973,7 +998,7 @@ app.loadUsersListPage = async function()
     // If they are then we know that the form was not filled out at all in 
     // which case we should ignore the form.
 
-    // If not all the elements are blank then then user has made a filter expression.
+    // If not all the elements are blank then then user has made an orderby expression.
     let userHasMadeAnOrderByExpression = !allBlanks(orderByClauseElementValues);
 
     if(userHasMadeAnOrderByExpression)
@@ -1319,18 +1344,12 @@ app.loadUsersListPage = async function()
   
   
 
-  //!!!!!!!!!!Need to look into the difference between these two ways of defining a function. They both seem to work.
   // This function is called when the submit query button is pressed.
-  // let runQuery = async function()
-  async function runQuery(queryExpression, arrayOfFieldsToDisplay, nameOfPrimaryKey)
-  {   
-
-    // Create the table used to display the results.
-
-
+  async function runQuery(queryExpression)
+  {
     // Define a client function that calls for data from the server.
-    // const fetchPromise = fetch('api/aUsers?email=alice@gmail.com')
-    const fetchPromise = fetch('api/aUsers' + queryExpression)
+    //                    !!!
+    const fetchPromise = await fetch('api/aUsers' + queryExpression)
     .then
     (
       (res) => 
@@ -1429,44 +1448,24 @@ app.loadUsersListPage = async function()
 
     const reader = res.getReader();
 
-    function read() 
-    {
-      reader.read()
-      .then
-      (
-        ({value, done}) => 
-        {
-          if (value) 
-          {
-            // Your object (value) will be here   
-            
-            // Insert a new row in the table.
-            var tr = table.insertRow(-1);            
-            
-            // Insert a new cell for each field to display and populate with data for that field.
-            arrayOfFieldsToDisplay.forEach(function(arrayElement, elementIndex)
-            {
-              let newCell = tr.insertCell(elementIndex);
-              newCell.innerHTML = value[arrayElement];               
-            });   
+    // This array will hold all the records
+    let fetchedArray = [];
 
-            let lastCell = tr.insertCell(arrayOfFieldsToDisplay.length);             
-            lastCell.innerHTML = '<a href="/users/edit?email=' + value[nameOfPrimaryKey] + '">View / Edit / Delete</a>';
+    // This returns one record from the table as an object with each field being a key/value pair.
+    let result = await reader.read();
+  
+    // This loop loads the array with records fetched
+    while (!result.done) {
+      const value = result.value;
+      fetchedArray.push(value);
+      // get the next result
+      result = await reader.read();
+    }
+  
+    // Return the records for sorting and displaying on the webpage.
+    return fetchedArray;
 
-          } // End of: if(value){do stuff}
-
-          if (done) {return;}
-
-          read();
-
-        } // End of: the actual anonymous callback arrow function.
-      ); // End of: .then callback after read function completes.
-    } // End of: function definition: function read(){do stuff}
-
-    // Call the "read" function defined above when the submit query button is pressed.
-    read();
-
-  }; // End of: let runQuery = function(){...}
+  }; // End of: async function runQuery(queryExpression)
 
   // Show the createCheck CTA
   document.getElementById("createNewRecordCTA").style.display = 'block';
