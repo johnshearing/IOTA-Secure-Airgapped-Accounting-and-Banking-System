@@ -28,6 +28,9 @@ app.client = {}
 
 
 // Define interface function for making API calls.
+// This XMLHttpRequest is one of 3 ways that we call for data from the server.
+// Here we use XMLHttpRequest to retrive JSON data from a table that contains only one line. 
+// Mostly we are using this type of call right now for managing tokens.
 app.client.request = function(headers,path,method,queryStringObject,payload,callback)
 {
   // Set defaults
@@ -686,6 +689,8 @@ app.loadUsersListPage = async function()
   // This template is in the webpage html at the bottom between <script> tags.
   let formTemplate = document.querySelector('[type="text/formTemplate"]'); 
 
+  
+
   // Define a function to load the query form from the template.
   function loadQueryForm()
   {
@@ -697,6 +702,7 @@ app.loadUsersListPage = async function()
 
   // Call the function above to load a new clean queryForm onto the webpage.
   loadQueryForm();
+
 
 
   // Define function that fires when the clear query button is clicked.
@@ -758,7 +764,6 @@ app.loadUsersListPage = async function()
       {
         arrayOfFieldsToDisplay.push(node.value);
       }
-
     });
 
     // Make the first empty row for the headers and put it in the table
@@ -797,19 +802,39 @@ app.loadUsersListPage = async function()
     tableHeader.innerHTML = 'Details'  
     tableRow.appendChild(tableHeader);     
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    let nameOfPrimaryKey = document.querySelector('.fieldToDisplay').querySelectorAll("option")[1].value;
+
     // Run the query defined in the textarea on the form.
-    let recordsArray = await runQuery(document.querySelector(".queryExpressionTextArea").value)
+    // This call to the server is used when NO sort order is specified by the user.
+    // runQueryThenStreamToDisplay(document.querySelector(".queryExpressionTextArea").value, arrayOfFieldsToDisplay, nameOfPrimaryKey);
+
+    // coment out
+    // Run the query defined in the textarea on the form.
+    // This call to the server is used when a sort order IS specified by the user.    
+    const recordsArray = await runQueryWaitForAllData(document.querySelector(".queryExpressionTextArea").value)
 
     // Sort the recordsArray which was populated after running the query.
     recordsArray.sort(function(a, b)
     {
       //Sort by email
-      if (a.email > b.email) return -1;
-      if (a.email < b.email) return 1;
+      if (a.email < b.email) return -1;
+      if (a.email > b.email) return 1;
       if (a.email === b.email) return 0;
     })
-    
-    let nameOfPrimaryKey = document.querySelector('.fieldToDisplay').querySelectorAll("option")[1].value;
 
     recordsArray.forEach(function(value)
     {
@@ -828,6 +853,7 @@ app.loadUsersListPage = async function()
       let lastCell = tr.insertCell(arrayOfFieldsToDisplay.length);             
       lastCell.innerHTML = '<a href="/users/edit?email=' + value[nameOfPrimaryKey] + '">View / Edit / Delete</a>';
     }) 
+    // coment out
 
     // Put the table on the webpage.
     let tableParent = document.querySelector('.content');
@@ -844,6 +870,49 @@ app.loadUsersListPage = async function()
 
 
 
+  // Define a function that fetches data from the server and waits 
+  // till all data has been received before passing it along.
+  // This is one of 3 ways that we call for data from the server.
+  // We use this function when the user specifies a sort order which
+  // requires that all the data be present before we can start to work
+  // on it.
+  async function runQueryWaitForAllData(queryExpression) 
+  {
+    const res = await fetch('api/aUsers' + queryExpression);
+
+    // Verify that we have some sort of 2xx response that we can use
+    if (!res.ok) 
+    {
+        console.log("Error trying to load the list of users: ");
+        throw res;
+    }
+    // If no content, immediately resolve, don't try to parse JSON
+    if (res.status === 204)
+    {
+        return [];
+    }
+    // Get all the text sent by the server as a single string.
+    const content = await res.text();
+
+    // Split the content string on each new line character and put the results into an array called lines.
+    const lines = content.split("\n");
+
+    // Get rid of the last element in the array. This is just a new line character.
+    lines.splice(lines.length -1, 1);
+
+    // Return a new array to the calling function consisting of JSON objects which contain each record sent by the server.
+    return lines.map(function(line)
+    {
+      if(line != "")
+      {
+        return JSON.parse(line);
+      }
+    });
+  } // End of: async function runQueryWaitForAllData(queryExpression){...}
+  // End of: Define a function that fetches data from the server...
+
+
+
   // Define function that fires when the clear results button is clicked.
   function onClickEventBehaviorOfClearResultsButton(event)  
   {
@@ -853,7 +922,6 @@ app.loadUsersListPage = async function()
     // Clear all results from the table.
     table.remove();
     table.innerHTML = "";
-
 
   }; // End of: function onClickEventBehaviorOfClearResultsButton(event) = function(){...}
   // End of: Define function that fires when the clear results button is clicked.
@@ -961,7 +1029,6 @@ app.loadUsersListPage = async function()
 
     } // End of: if(userHasMadeAFilterExpression){...}
     // End of: Begin build a query expression by examining the filter control elements.
-
 
 
     // Start of: Add any orderby clauses to the query expression.
@@ -1098,6 +1165,7 @@ app.loadUsersListPage = async function()
   document.querySelector("#generateQueryButton").addEventListener("click", onClickEventBehaviorOfGenerateQueryButton);
 
 
+
   // Define the function that fires when the order by conjunctionSelector changes.
   function onChangeBehaviorForOrderByConjunctionSelector (event)  
   {
@@ -1151,11 +1219,12 @@ app.loadUsersListPage = async function()
    
     // End of: Delete the filter elements directly below or add new ones depending on user's input.
 
-  } // End of: function onChangeBehaviorForConjunctionSelector (event)
+  } // End of: function onChangeBehaviorForOrderByConjunctionSelector (event)
   // End of: Define the function that fires when the order by conjunctionSelector changes.
 
   // Bind the function above to the onChange event of the first (and only for now) conjunctionSelector element.
   document.querySelectorAll(".orderByConjunctionSelector")[0].addEventListener("change", onChangeBehaviorForOrderByConjunctionSelector);
+
 
 
   // Define the function that fires when the conjunctionSelector changes.
@@ -1218,6 +1287,7 @@ app.loadUsersListPage = async function()
   document.querySelectorAll(".conjunctionSelector")[0].addEventListener("change", onChangeBehaviorForConjunctionSelector);
 
 
+
   // Define the function that fires when the fieldToDisplay selector changes.
   function onChangeBehaviorForFieldToDisplaySelector (event)  
   {
@@ -1264,7 +1334,7 @@ app.loadUsersListPage = async function()
     // Start of: Remove select elements when blanked out by user or add new blank select elements when needed.
 
     // Either of the two lines below will work. 
-    // They both seem to return an array of objects which are either an HTMLCollection or a NodeList
+    // They both seem to return an array-like objects which are either an HTMLCollection or a NodeList
     // See the following page for a good explaination of the difference:
     // http://xahlee.info/js/js_array_vs_nodelist_vs_html_collection.html
     // querySelectorAll uses css selectors and it returns a NodeList that will respond to many array methods.
@@ -1344,12 +1414,15 @@ app.loadUsersListPage = async function()
   
   
 
-  // This function is called when the submit query button is pressed.
-  async function runQuery(queryExpression)
+  // Define a function that calls for data from the server.
+  // This is one of 3 ways that we call for data from the server.
+  // This function is called when the submit query button is pressed and there is no sort order specified by the user.
+  // As there is no sort order to process, there is no reason to wait for all the data to arrive before displaying it.
+  // So this function streams data right to the webpage without waiting for all of it to arrive.
+  async function runQueryThenStreamToDisplay(queryExpression, arrayOfFieldsToDisplay, nameOfPrimaryKey)
   {
     // Define a client function that calls for data from the server.
-    //                    !!!
-    const fetchPromise = await fetch('api/aUsers' + queryExpression)
+    const fetchPromise = fetch('api/aUsers' + queryExpression)
     .then
     (
       (res) => 
@@ -1448,31 +1521,51 @@ app.loadUsersListPage = async function()
 
     const reader = res.getReader();
 
-    // This array will hold all the records
-    let fetchedArray = [];
+    function read() 
+    {
+      reader.read()
+      .then
+      (
+        ({value, done}) => 
+        {
+          if (value) 
+          {
+            // Your object (value) will be here   
+            
+            // Insert a new row in the table.
+            var tr = table.insertRow(-1);            
+            
+            // Insert a new cell for each field to display and populate with data for that field.
+            arrayOfFieldsToDisplay.forEach(function(arrayElement, elementIndex)
+            {
+              let newCell = tr.insertCell(elementIndex);
+              newCell.innerHTML = value[arrayElement];               
+            });   
 
-    // This returns one record from the table as an object with each field being a key/value pair.
-    let result = await reader.read();
-  
-    // This loop loads the array with records fetched
-    while (!result.done) {
-      const value = result.value;
-      fetchedArray.push(value);
-      // get the next result
-      result = await reader.read();
-    }
-  
-    // Return the records for sorting and displaying on the webpage.
-    return fetchedArray;
+            let lastCell = tr.insertCell(arrayOfFieldsToDisplay.length);             
+            lastCell.innerHTML = '<a href="/users/edit?email=' + value[nameOfPrimaryKey] + '">View / Edit / Delete</a>';
 
-  }; // End of: async function runQuery(queryExpression)
+          } // End of: if(value){do stuff}
+
+          if (done) {return;}
+
+          read();
+
+        } // End of: the actual anonymous callback arrow function.
+      ); // End of: .then callback after read function completes.
+    } // End of: function definition: function read(){do stuff}
+
+    // Call the "read" function defined above when the submit query button is pressed.
+    read();
+
+  }; // End of: async function runQueryStreamToDisplay(queryExpression)
 
   // Show the createCheck CTA
   document.getElementById("createNewRecordCTA").style.display = 'block';
   document.getElementById("createNewRecordCTA2").style.display = 'block';
   document.getElementById("createNewRecordCTA3").style.display = 'block';   
 
-} // End of: app.loadUsersListPage = function(){...}
+} // End of: app.loadUsersListPage = async function(){...}
 // End of: Populate the dbUsersList webpage with user records.
 
 
