@@ -689,7 +689,7 @@ app.loadUsersListPage = async function()
   // This template is in the webpage html at the bottom between <script> tags.
   let formTemplate = document.querySelector('[type="text/formTemplate"]'); 
 
-  
+
 
   // Define a function to load the query form from the template.
   function loadQueryForm()
@@ -796,64 +796,125 @@ app.loadUsersListPage = async function()
       tableHeader.innerHTML = arrayElement  
       tableRow.appendChild(tableHeader);
     });    
-    
+
     // Make an extra header for row 1 so that the user can drill into the record and edit the detail or delete it.
     tableHeader = document.createElement('th');  
     tableHeader.innerHTML = 'Details'  
     tableRow.appendChild(tableHeader);     
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    // The first record in any table will be the primary key. This a global sequ
+    // Used here to populate the last cell of each row in a table with a control to drill in on that record.
     let nameOfPrimaryKey = document.querySelector('.fieldToDisplay').querySelectorAll("option")[1].value;
 
-    // Run the query defined in the textarea on the form.
-    // This call to the server is used when NO sort order is specified by the user.
-    // runQueryThenStreamToDisplay(document.querySelector(".queryExpressionTextArea").value, arrayOfFieldsToDisplay, nameOfPrimaryKey);
+    // Check if there is an order-by clause in the queryExpression.
+    let queryExpression = document.querySelector(".queryExpressionTextArea").value;
 
-    // coment out
-    // Run the query defined in the textarea on the form.
-    // This call to the server is used when a sort order IS specified by the user.    
-    const recordsArray = await runQueryWaitForAllData(document.querySelector(".queryExpressionTextArea").value)
+    let indexOfOrderByClause = queryExpression.indexOf("ORDERBY:;");
 
-    // Sort the recordsArray which was populated after running the query.
-    recordsArray.sort(function(a, b)
+    // If no order-by clause exists in the query expression fetch the data and stream the results directly to the page.
+    if(indexOfOrderByClause === -1)
     {
-      //Sort by email
-      if (a.email < b.email) return -1;
-      if (a.email > b.email) return 1;
-      if (a.email === b.email) return 0;
-    })
-
-    recordsArray.forEach(function(value)
+      // Run the query defined in the textarea on the form.
+      // This call to the server is used when NO sort order is specified by the user.
+      runQueryThenStreamToDisplay(queryExpression, arrayOfFieldsToDisplay, nameOfPrimaryKey);
+    }
+    else // The user specified an order so await for all the results and then sort before presenting to the user.
     {
-      // Insert a new row in the table.
-      let tr = table.insertRow(-1);            
-      
-      // Insert a new cell for each field to display and populate with data for that field.
-      arrayOfFieldsToDisplay.forEach(function(arrayElement, elementIndex)
+      // Get the part of the queryExpression string starting at "ORDERBY:;"
+      let orderByString = queryExpression.substring(indexOfOrderByClause);  
+
+
+      // Fill an array with data from the orderby clause
+      // Make an array out of the queryString where each phrase of the query is an element.
+      let orderByArray = orderByString.split(":;"); 
+
+      // Get rid of the last element in the array. This is just an empty string.
+      orderByArray.splice(orderByArray.length -1, 1);
+
+      // Determine the amount of orderby clauses.
+      // There are three elements in the array for each clause.
+      let amountOfOrderByClauses = orderByArray.length/3; 
+     
+      // Make an array for the names of the fields to sort
+      let fieldsToOrderByArray = [];
+
+      // Make an array for the type of sort to make on the respective field.
+      let typeOfSortArray = []
+
+      // Populate the two new arrays from the orderByArray
+      for (let i = 0; i < amountOfOrderByClauses; i++) 
       {
-        let newCell = tr.insertCell(elementIndex);
-        newCell.innerHTML = value[arrayElement];               
-      });   
+        // Get rid of the first element in the array. It's just the conjunction.
+        orderByArray.splice(0, 1);
 
-      // Add an extra cell to the end of the row that contains a link which sends the user
-      // to a new screen where the record can be edited or deleted.
-      let lastCell = tr.insertCell(arrayOfFieldsToDisplay.length);             
-      lastCell.innerHTML = '<a href="/users/edit?email=' + value[nameOfPrimaryKey] + '">View / Edit / Delete</a>';
-    }) 
-    // coment out
+        // Copy the next element into the fieldsToOrderByArray and then remove the element.
+        fieldsToOrderByArray.push(orderByArray.splice(0, 1)[0]);
+
+        // Copy the next element into the typeOfSortArray and then remove the element.
+        typeOfSortArray.push(orderByArray.splice(0, 1)[0]);
+      }    
+
+      console.log("This is the amountOfOrderByClauses: ", amountOfOrderByClauses)       
+      
+      console.log("This is the fieldsToOrderByArray: ", fieldsToOrderByArray)  
+      
+      console.log("This is the typeOfSortArray: ", typeOfSortArray)      
+
+
+      // Run the query defined in the textarea on the form.
+      // This call to the server is used when a sort order IS specified by the user.    
+      let recordsArray = await runQueryWaitForAllData(queryExpression);
+
+
+      // if the type of sort is either ascendingAlphaSort or descendingAlphaSort then we will 
+      // need to ensure that the data is of string type and that it is converted to lower case.
+      // 1. Cycle through the elements of the typeOfSortArray looking for the characters "Alpha".
+      typeOfSortArray.forEach(function(typeOfSortElement, typeOfSortIndex)
+      {
+        // If the element contains the string "Alpha":
+        if(typeOfSortElement.indexOf("Alpha") != -1)
+        {
+          // Obtain the value of the element in the fieldsToOrderByArray with the same index.   
+          // This will be the name of the field for which every record must be string and lower case.     
+          let nameOfFieldToChange = fieldsToOrderByArray[typeOfSortIndex]; 
+
+          // Now map through the recordsArray.   
+          recordsArray.forEach(function(arrayElement, arrayElementIndex, recordsArray)
+          {
+            // Change the value of the property which is named by the key we obtained 
+            // in the previous step to be of string type and of lower case. 
+            recordsArray[arrayElementIndex][nameOfFieldToChange] =  arrayElement[nameOfFieldToChange].toString().toLowerCase()
+          });     
+        }        
+      });
+
+      // Sort the recordsArray which was populated after running the query.
+      recordsArray.sort(function(a, b)
+      {
+        //Sort by email
+        if (a.email < b.email) return -1;
+        if (a.email > b.email) return 1;
+        if (a.email === b.email) return 0;
+      })
+
+      recordsArray.forEach(function(value)
+      {
+        // Insert a new row in the table.
+        let tr = table.insertRow(-1);            
+        
+        // Insert a new cell for each field to display and populate with data for that field.
+        arrayOfFieldsToDisplay.forEach(function(arrayElement, elementIndex)
+        {
+          let newCell = tr.insertCell(elementIndex);
+          newCell.innerHTML = value[arrayElement];               
+        });   
+
+        // Add an extra cell to the end of the row that contains a link which sends the user
+        // to a new screen where the record can be edited or deleted.
+        let lastCell = tr.insertCell(arrayOfFieldsToDisplay.length);             
+        lastCell.innerHTML = '<a href="/users/edit?email=' + value[nameOfPrimaryKey] + '">View / Edit / Delete</a>';
+      }) 
+    }
 
     // Put the table on the webpage.
     let tableParent = document.querySelector('.content');
