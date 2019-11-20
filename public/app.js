@@ -852,13 +852,7 @@ app.loadUsersListPage = async function()
 
         // Copy the next element into the typeOfSortArray and then remove the element.
         typeOfSortArray.push(orderByArray.splice(0, 1)[0]);
-      }    
-
-      console.log("This is the amountOfOrderByClauses: ", amountOfOrderByClauses)       
-      
-      console.log("This is the fieldsToOrderByArray: ", fieldsToOrderByArray)  
-      
-      console.log("This is the typeOfSortArray: ", typeOfSortArray)      
+      }         
 
 
       // Run the query defined in the textarea on the form.
@@ -866,36 +860,70 @@ app.loadUsersListPage = async function()
       let recordsArray = await runQueryWaitForAllData(queryExpression);
 
 
-      // if the type of sort is either ascendingAlphaSort or descendingAlphaSort then we will 
-      // need to ensure that the data is of string type and that it is converted to lower case.
-      // 1. Cycle through the elements of the typeOfSortArray looking for the characters "Alpha".
-      typeOfSortArray.forEach(function(typeOfSortElement, typeOfSortIndex)
-      {
-        // If the element contains the string "Alpha":
-        if(typeOfSortElement.indexOf("Alpha") != -1)
-        {
-          // Obtain the value of the element in the fieldsToOrderByArray with the same index.   
-          // This will be the name of the field for which every record must be string and lower case.     
-          let nameOfFieldToChange = fieldsToOrderByArray[typeOfSortIndex]; 
-
-          // Now map through the recordsArray.   
-          recordsArray.forEach(function(arrayElement, arrayElementIndex, recordsArray)
-          {
-            // Change the value of the property which is named by the key we obtained 
-            // in the previous step to be of string type and of lower case. 
-            recordsArray[arrayElementIndex][nameOfFieldToChange] =  arrayElement[nameOfFieldToChange].toString().toLowerCase()
-          });     
-        }        
-      });
-
       // Sort the recordsArray which was populated after running the query.
       recordsArray.sort(function(a, b)
       {
-        //Sort by email
-        if (a.email < b.email) return -1;
-        if (a.email > b.email) return 1;
-        if (a.email === b.email) return 0;
-      })
+        // return a.email.toString().toLowerCase().localeCompare(b.email.toString().toLowerCase());
+        
+        let loopCounter = 0;
+        let sortResult = 0;
+
+        while (loopCounter <= amountOfOrderByClauses - 1) 
+        {
+          // If we are ranking alphabetically:
+          if(typeOfSortArray[loopCounter] === 'ascendingAlphaSort')
+          {
+            // Alphabetic Sort
+            sortResult = a[fieldsToOrderByArray[loopCounter]].toString().toLowerCase().localeCompare(b[fieldsToOrderByArray[loopCounter]].toString().toLowerCase());
+
+            if(sortResult === 1){return 1;} // Don't change the order.
+
+            if(sortResult === -1){return -1;} // b ranks higher so swap a and b
+
+          }
+          if(typeOfSortArray[loopCounter] === 'descendingAlphaSort')
+          {
+            // Alphabetic Sort
+            sortResult = a[fieldsToOrderByArray[loopCounter]].toString().toLowerCase().localeCompare(b[fieldsToOrderByArray[loopCounter]].toString().toLowerCase());
+
+            if(sortResult === 1){return -1;} // Don't change the order.
+
+            if(sortResult === -1){return 1;} // b ranks higher so swap a and b
+
+          }          
+          else if (typeOfSortArray[loopCounter] === 'ascendingNumericSort')
+          {
+            // Numeric Sort
+            if (a[fieldsToOrderByArray[loopCounter]] < b[fieldsToOrderByArray[loopCounter]]) return -1;
+
+            if (a[fieldsToOrderByArray[loopCounter]] > b[fieldsToOrderByArray[loopCounter]]) return 1;
+
+          }
+          else if (typeOfSortArray[loopCounter] === 'descendingNumericSort')
+          {
+            // Numeric Sort
+            if (a[fieldsToOrderByArray[loopCounter]] > b[fieldsToOrderByArray[loopCounter]]) return -1;
+
+            if (a[fieldsToOrderByArray[loopCounter]] < b[fieldsToOrderByArray[loopCounter]]) return 1;
+
+          }          
+
+          // If we got this far then records a and b are the same for the field currently being examined. 
+          // Check to see if there are more orderby clauses to test on these two records.
+          // If there are then we will go through the loop again using the next clause as a tie breaker.       
+
+          loopCounter = loopCounter + 1;      
+
+          // If there are no more orderby clauses to 
+          if (loopCounter === amountOfOrderByClauses)
+          {
+            return 0
+          }         
+
+        } // End of: while (loopCounter <= amountOfOrderByClauses - 1){...}
+      }) // end of: recordsArray.sort(function(a, b){...}
+      // Sort the recordsArray which was populated after running the query.      
+
 
       recordsArray.forEach(function(value)
       {
