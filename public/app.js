@@ -600,11 +600,17 @@ app.loadDataOnPage = function()
   var bodyClasses = document.querySelector("body").classList;
   var primaryClass = typeof(bodyClasses[0]) == 'string' ? bodyClasses[0] : false;
 
-    // Logic for dashboard page
-    if(primaryClass == 'usersList')
-    {
-      app.loadUsersListPage();
-    }
+  // Logic for user's edit page
+  if(primaryClass == 'dbUsersEdit')
+  {
+    //app.loadDbUsersEditPage();
+  }  
+
+  // Logic for user's list page
+  if(primaryClass == 'dbUsersList')
+  {
+    app.loadUsersListPage();
+  }
 
   // Logic for account settings page
   if(primaryClass == 'accountEdit')
@@ -690,7 +696,6 @@ app.loadUsersListPage = async function()
   let formTemplate = document.querySelector('[type="text/formTemplate"]'); 
 
 
-
   // Define a function to load the query form from the template.
   function loadQueryForm()
   {
@@ -702,6 +707,56 @@ app.loadUsersListPage = async function()
 
   // Call the function above to load a new clean queryForm onto the webpage.
   loadQueryForm();
+
+
+  // Define the function that fires when the fieldToOrderBy selector changes.
+  function onChangeBehaviorForFieldToOrderBySelector (event)  
+  {
+    // Stop it from redirecting anywhere
+    event.preventDefault();
+
+    // Start of: Hide options which contain fields that are already displayed on select elements.
+    // 1. Create an empty array to hold the values contained in the select elements.
+    let selectorElementValues = [];
+
+    // 2. Look at each select element and store their values in the array.
+    document.querySelectorAll(".fieldToOrderBy").forEach(function(element) 
+    {
+      // if the select elements are not blank
+      if(element.value != "")
+      {
+        // Push the values onto the array.
+        selectorElementValues.push(element.value);
+      }
+    });   
+    
+    // 3. Examine the menu options of the selector having focus and hide any 
+    //    options that exist in the selectElementValues array.
+    //    So if an item has already been selected then it won't show in the 
+    //    list of items to select.
+    document.querySelectorAll(".fieldToOrderBy").forEach(function(element) 
+    {
+      let optionElements = element.querySelectorAll('option');  
+  
+      for (let optionElement of optionElements) 
+      {
+        if(selectorElementValues.indexOf(optionElement.innerHTML) > -1)
+        {
+          optionElement.style.display = "none";
+        }    
+        else
+        {
+          optionElement.style.display = "list-item";
+        }  
+      }
+    }); 
+    // End of: Hide options which contain fields that are already displayed on select elements.
+
+  } // End of: function onChangeBehaviorForfieldToOrderBySelector (event)
+  // End of: Define the function that fires when the fieldToOrderBy selector changes.  
+
+  // Bind the function above to the onChange event of the first (and only for now) fieldToDisplay select element.
+  document.querySelectorAll(".fieldToOrderBy")[0].addEventListener("change", onChangeBehaviorForFieldToOrderBySelector);  
 
 
 
@@ -719,6 +774,7 @@ app.loadUsersListPage = async function()
     loadQueryForm();
 
     // Now add back the onChange event listeners for the controls on the form.
+    document.querySelectorAll(".fieldToOrderBy")[0].addEventListener("change", onChangeBehaviorForFieldToOrderBySelector);
     document.querySelectorAll(".fieldToDisplay")[0].addEventListener("change", onChangeBehaviorForFieldToDisplaySelector);
     document.querySelectorAll(".conjunctionSelector")[0].addEventListener("change", onChangeBehaviorForConjunctionSelector);    
     document.querySelectorAll(".orderByConjunctionSelector")[0].addEventListener("change", onChangeBehaviorForOrderByConjunctionSelector);
@@ -940,7 +996,7 @@ app.loadUsersListPage = async function()
         // Add an extra cell to the end of the row that contains a link which sends the user
         // to a new screen where the record can be edited or deleted.
         let lastCell = tr.insertCell(arrayOfFieldsToDisplay.length);             
-        lastCell.innerHTML = '<a href="/users/edit?email=' + value[nameOfPrimaryKey] + '">View / Edit / Delete</a>';
+        lastCell.innerHTML = '<a href="/users/edit?userId=' + value[nameOfPrimaryKey] + '">View / Edit / Delete</a>';
       }) 
     }
 
@@ -1294,7 +1350,9 @@ app.loadUsersListPage = async function()
   
       // Set all the element values to ""
       cln.querySelectorAll(".resetElement").forEach(function(element){element.value = "";}); 
-  
+
+      cln.querySelectorAll(".fieldToOrderBy")[0].addEventListener("change", onChangeBehaviorForFieldToOrderBySelector);  
+
       // Create an event listener for the onchange event of the newly cloned select element and bind this function to it.
       cln.querySelectorAll(".orderByConjunctionSelector")[0].addEventListener("change", onChangeBehaviorForOrderByConjunctionSelector);
   
@@ -1632,7 +1690,7 @@ app.loadUsersListPage = async function()
             });   
 
             let lastCell = tr.insertCell(arrayOfFieldsToDisplay.length);             
-            lastCell.innerHTML = '<a href="/users/edit?email=' + value[nameOfPrimaryKey] + '">View / Edit / Delete</a>';
+            lastCell.innerHTML = '<a href="/users/edit?userId=' + value[nameOfPrimaryKey] + '">View / Edit / Delete</a>';
 
           } // End of: if(value){do stuff}
 

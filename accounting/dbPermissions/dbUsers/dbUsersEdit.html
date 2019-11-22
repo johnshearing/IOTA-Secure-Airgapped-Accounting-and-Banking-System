@@ -1,30 +1,26 @@
-<h1>Account Settings</h1>
+<h1>User's Settings</h1>
 
 <hr />
 
-<h2>Edit your account details</h2>
+<h2>Edit User's Account Settings</h2>
 
 <div class="formWrapper">
-  <form id="accountEdit1" action="/api/users" method="PUT">
+  <form id="dbUsersEdit1" action="/api/aUsers" method="PUT">
     <input type="hidden" name="_method" value="PUT"/>
     <div class="formError"></div>
     <div class="formSuccess">Your Changes Have Been Saved</div>
-    <input class="hiddenPhoneNumberInput"  type="hidden" name="phone" />
+    <input class="hiddenUserIdInput"  type="hidden" name="userId" />
     <div class="inputWrapper">
-      <div class="inputLabel">Phone Number</div>
-      <input class="disabled displayPhoneInput" type="text" name="displayPhone" disabled />
+      <div class="inputLabel">User's Id</div>
+      <input class="disabled displayUserIdInput" type="text" name="displayUserId" disabled />
     </div>
     <div class="inputWrapper">
-      <div class="inputLabel">First Name</div>
-      <input class="firstNameInput" type="text" name="firstName" placeholder="John" />
+      <div class="inputLabel">Email Address</div>
+      <input class="emailInput" type="text" name="email" placeholder="alice@gmail.com" />
     </div>
     <div class="inputWrapper">
-      <div class="inputLabel">Last Name</div>
-      <input class="lastNameInput" type="text" name="lastName" placeholder="Smith" />
-    </div>
-    <div class="inputWrapper">
-      <div class="inputLabel">email</div>
-      <input class="emailInput" type="text" name="email" placeholder="js@gmail.com" />
+      <div class="inputLabel">Time Stamp</div>
+      <input class="timeStampInput" type="text" name="timeStamp" placeholder="TimeStampHere" disabled/>
     </div>
     <div class="inputWrapper ctaWrapper">
       <button type="submit" class="cta green">Save Changes</button>
@@ -33,13 +29,13 @@
 </div>
 
 <hr />
-<h2>Change Your Password</h2>
+<h2>Change Password</h2>
 <div class="formWrapper">
-  <form id="accountEdit2" action="/api/users" method="PUT">
+  <form id="dbUsersEdit2" action="/api/aUsers" method="PUT">
     <input type="hidden" name="_method" value="PUT"/>
     <div class="formError"></div>
-    <div class="formSuccess">Your New Password Has Been Saved</div>
-    <input class="hiddenPhoneNumberInput" type="hidden" name="phone" />
+    <div class="formSuccess">New Password Has Been Saved</div>
+    <input class="hiddenUserIdInput" type="hidden" name="userId" />
     <div class="inputWrapper">
       <div class="inputLabel">Choose a New Password</div>
       <input type="password" name="password" placeholder="Make it a good one!" />
@@ -52,14 +48,14 @@
 
 
 <hr />
-<h2>Delete Your Account</h2>
+<h2>Delete Account</h2>
 <div class="formWrapper">
-  <form id="accountEdit3" action="/api/users" method="DELETE">
+  <form id="dbUsersEdit3" action="/api/aUsers" method="DELETE">
     <input type="hidden" name="_method" value="DELETE"/>
     <div class="formError"></div>
     <div class="warning">Warning: This action cannot be undone. <br>
       Don't click this button on accident!</div>
-    <input class="hiddenPhoneNumberInput" type="hidden" name="phone" />
+    <input class="hiddenUserIdInput" type="hidden" name="userId" />
     <div class="inputWrapper ctaWrapper">
       <button type="submit" class="cta red">Delete Account</button>
     </div>
