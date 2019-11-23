@@ -8,22 +8,21 @@
   <form id="dbUsersEdit1" action="/api/aUsers" method="PUT">
     <input type="hidden" name="_method" value="PUT"/>
     <div class="formError"></div>
-    <div class="formSuccess">Your Changes Have Been Saved</div>
-    <input class="hiddenUserIdInput"  type="hidden" name="userId" />
+    <div class="formSuccess">Your Changes Have Been Saved</div>    
     <div class="inputWrapper">
       <div class="inputLabel">User's Id</div>
-      <input class="disabled displayUserIdInput" type="text" name="displayUserId" disabled />
+      <input class="disabled displayUserIdInput" type="text" name="userId" value="{selected.userId}" disabled/>
     </div>
     <div class="inputWrapper">
       <div class="inputLabel">Email Address</div>
-      <input class="emailInput" type="text" name="email" placeholder="alice@gmail.com" />
+      <input class="emailInput" type="text" name="email"/>
     </div>
     <div class="inputWrapper">
       <div class="inputLabel">Time Stamp</div>
-      <input class="timeStampInput" type="text" name="timeStamp" placeholder="TimeStampHere" disabled/>
+      <input class="timeStampInput" type="text" name="timeStamp" disabled/>
     </div>
-    <div class="inputWrapper ctaWrapper">
-      <button type="submit" class="cta green">Save Changes</button>
+    <div class="inputWrapper ctaWrapper smallTopMargin">
+        <button type="submit" class="cta green">Save Changes</button>       
     </div>
   </form>
 </div>
@@ -35,13 +34,13 @@
     <input type="hidden" name="_method" value="PUT"/>
     <div class="formError"></div>
     <div class="formSuccess">New Password Has Been Saved</div>
-    <input class="hiddenUserIdInput" type="hidden" name="userId" />
+    <input class="hiddenInput"  type="hidden" name="userId" value="{selected.userId}"/> 
     <div class="inputWrapper">
       <div class="inputLabel">Choose a New Password</div>
       <input type="password" name="password" placeholder="Make it a good one!" />
     </div>
-    <div class="inputWrapper ctaWrapper">
-      <button type="submit" class="cta green">Save Password</button>
+    <div class="inputWrapper ctaWrapper smallTopMargin"> 
+      <button type="submit" class="cta green">Save Password</button>          
     </div>
   </form>
 </div>
@@ -55,9 +54,9 @@
     <div class="formError"></div>
     <div class="warning">Warning: This action cannot be undone. <br>
       Don't click this button on accident!</div>
-    <input class="hiddenUserIdInput" type="hidden" name="userId" />
+      <input class="hiddenInput"  type="hidden" name="userId" value="{selected.userId}"/> 
     <div class="inputWrapper ctaWrapper">
-      <button type="submit" class="cta red">Delete Account</button>
+      <button type="submit" class="cta red">Delete Account</button>       
     </div>
   </form>
 </div>

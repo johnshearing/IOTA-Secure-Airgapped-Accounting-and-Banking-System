@@ -3,20 +3,20 @@
 <h2>Press the submit button to see the results</h2>
 <div class="formWrapper"></div>
 <div class="buttonWrapper">
-  <div id="createNewRecordCTA" class="inputWrapper ctaWrapper queryByExampleSubmitWrapper">
+  <div class="inputWrapper ctaWrapper smallTopMargin">
     <!--The following button calls code that generates a query string based on user input-->
     <a class="cta green" id="generateQueryButton">Generate Query</a>
     <!--The following button calls code that sends the query string to the server and then processes the results. -->  
     <a class="cta green" id="submitQueryButton">Submit Query</a>           
   </div>
     
-  <div id="createNewRecordCTA2" class="inputWrapper ctaWrapper queryByExampleSubmitWrapper">
+  <div class="inputWrapper ctaWrapper smallTopMargin">
     <!--The following button clears all the query controls on the webpage-->
     <a class="cta green" id="clearQueryButton">Clear Query</a>
     <!--The following button removes all the results on the webpage that were returned from the previous query-->
     <a class="cta green" id="clearResultsButton">Clear Results</a>           
   </div>   
-  <div id="createNewRecordCTA3" class="inputWrapper ctaWrapper queryByExampleSubmitWrapper">   
+  <div class="inputWrapper ctaWrapper smallTopMargin">   
     <!--The following button brings the user to a new webpage where a new record may be added to the table-->       
     <a class="cta green" href="users/create">Create a New User</a>
   </div> 
@@ -34,7 +34,7 @@
   <!--Below is used to select which fields are displayed when the query is returned.-->
   <div class="selectClauseWrapper">Select which fields to display. All fields are displayed if nothing is selected.
     <div class="inputWrapper fieldToDisplayInputWrapper">
-      <div class="inputLabel queryByExampleLabel"></div>
+      <div class="inputLabel smallTopMargin"></div>
       <select class="fieldToDisplay"> 
         <option value="" style="display: list-item;"></option>            
         <option value="userId" style="display: list-item;">userId</option>
@@ -57,7 +57,7 @@
       So this will require a separate request just to get the field names.
       -->
       <div class="inputWrapper">
-        <div class="inputLabel queryByExampleLabel">Select a field to be examined by the filter.</div>
+        <div class="inputLabel smallTopMargin">Select a field to be examined by the filter.</div>
         <select class="fieldToCompare resetElement"> 
           <option value=""></option>        
           <option value="userId">userId</option>
@@ -68,7 +68,7 @@
 
       <!--The following is used to select a comparison operator to be used on the field in the where clause-->    
       <div class="inputWrapper">
-        <div class="inputLabel queryByExampleLabel">Select a comparison operator to be used by the filter.</div>
+        <div class="inputLabel smallTopMargin">Select a comparison operator to be used by the filter.</div>
         <select class="comparisonOperator resetElement"> 
           <option value=""></option>
           <optgroup label="Upper Case Letters Are Considered The Same As Lower Case Letters">
@@ -116,13 +116,13 @@
 
       <!--The following is used to define the match term in the where clause-->      
       <div class="inputWrapper">
-        <div class="inputLabel queryByExampleLabel">Type in a match term to be used by the filter.</div>
+        <div class="inputLabel smallTopMargin">Type in a match term to be used by the filter.</div>
         <input class="matchTermInput resetElement" type="text" />
       </div>   
 
       <!--The following is used to select a conjunction operator that will be used to add and then join where clauses-->    
       <div class="inputWrapper">
-        <div class="inputLabel queryByExampleLabel">Add another filter expression if desired or leave this blank if not.</div>
+        <div class="inputLabel smallTopMargin">Add another filter expression if desired or leave this blank if not.</div>
         <select class="conjunctionSelector resetElement" data-previous=""> 
           <option value=""></option>              
           <option value="ANDWHERE">AND</option>        
@@ -138,7 +138,7 @@
     <div class="orderByClauseWrapper">
       <!--The following is used to select the field to order by -->      
       <div class="inputWrapper">
-        <div class="inputLabel queryByExampleLabel">Select a field to use in the order by expression.</div>
+        <div class="inputLabel smallTopMargin">Select a field to use in the order by expression.</div>
         <select class="fieldToOrderBy resetElement"> 
           <option value=""></option>        
           <option value="userId">userId</option>
@@ -149,7 +149,7 @@
   
       <!--The following is used to select the order by operator ascending or descending-->    
       <div class="inputWrapper">
-        <div class="inputLabel queryByExampleLabel">Select an operator to use in the order by expression.</div>
+        <div class="inputLabel smallTopMargin">Select an operator to use in the order by expression.</div>
         <select class="orderByOperator resetElement"> 
           <option value=""></option>   
 
@@ -167,7 +167,7 @@
 
       <!--The following is used to add a new order by clause-->    
       <div class="inputWrapper">
-        <div class="inputLabel queryByExampleLabel">Add another order by expression if desired.</div>
+        <div class="inputLabel smallTopMargin">Add another order by expression if desired.</div>
         <select class="orderByConjunctionSelector resetElement" data-previous=""> 
           <option value=""></option>        
           <option value="ThenOrderBy">Then Order By</option>                                                                       
@@ -179,7 +179,7 @@
   <!--The following textarea is used to display and edit the query string.-->    
   <div class="queryExpressionWrapper">          
     <div class="inputWrapper">
-        <div class="inputLabel queryByExampleLabel">Query Expression</div>
+        <div class="inputLabel smallTopMargin">Query Expression</div>
         <textarea class="queryExpressionTextArea" name="queryExpression" rows="10" cols="30"></textarea>
     </div>
   </div>         

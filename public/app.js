@@ -603,13 +603,13 @@ app.loadDataOnPage = function()
   // Logic for user's edit page
   if(primaryClass == 'dbUsersEdit')
   {
-    //app.loadDbUsersEditPage();
+    app.loadDbUsersEditPage();
   }  
 
   // Logic for user's list page
   if(primaryClass == 'dbUsersList')
   {
-    app.loadUsersListPage();
+    app.loadDbUsersListPage();
   }
 
   // Logic for account settings page
@@ -631,6 +631,68 @@ app.loadDataOnPage = function()
   }
 }; // End of: app.loadDataOnPage = function(){...}
 // End of: Load data on the page. This function is a router.
+
+
+
+// Load the dbUsersEdit page with data from the server.
+app.loadDbUsersEditPage = async function()
+{
+  // Get the email and timeStamp.
+  // 1. Get the userId
+  // The template function inserts the userId into the html before serving it to the client.
+  let userId = document.querySelector("form input[name=userId]").value;
+
+  // 2. Create a queryExpression with a key of userId and a value of the 
+  // particular userId that the user clicked on in the list.
+  let queryExpression = "?WHERE:;userId:;MatchesExactly:;" + userId + ":;";
+
+  // Run the query defined below to get the email address and timeStamp from the userID.    
+  let recordArray = await runQueryOnUserId(queryExpression);
+
+  // Get the record object from the array returned by the query.
+  let recordObject = recordArray[0];
+
+  // Put the data into the forms as values where needed
+  document.querySelector("#dbUsersEdit1 .emailInput").value = recordObject.email;
+  document.querySelector("#dbUsersEdit1 .timeStampInput").value = recordObject.timeStamp;  
+
+  // Define a function to get the email address and the timeStamp from the userID
+  async function runQueryOnUserId(queryExpression) 
+  {
+    const res = await fetch('api/aUsers' + queryExpression);
+
+    // Verify that we have some sort of 2xx response that we can use
+    if (!res.ok) 
+    {
+        console.log("Error trying to load the list of users: ");
+        // throw res;
+    }
+    // If no content, immediately resolve, don't try to parse JSON
+    if (res.status === 204)
+    {
+        return [];
+    }
+    // Get all the text sent by the server as a single string.
+    const content = await res.text();
+
+    // Split the content string on each new line character and put the results into an array called lines.
+    const lines = content.split("\n");
+
+    // Get rid of the last element in the array. This is just a new line character.
+    lines.splice(lines.length -1, 1);
+
+    // Return a new array to the calling function consisting of JSON objects which contain each record sent by the server.
+    return lines.map(function(line)
+    {
+      if(line != "")
+      {
+        return JSON.parse(line);
+      }
+    });
+  } // End of: async function runQueryOnUserId(queryExpression){...}
+  // End of: Define a function to get the email address and the timeStamp from the userID
+
+}; // End of: app.loadDbUsersEditPage = function(){...}
 
 
 
@@ -686,7 +748,7 @@ app.loadAccountEditPage = function()
 
 
 // Populate the dbUsersList webpage with controls and user records from the table.
-app.loadUsersListPage = async function()
+app.loadDbUsersListPage = async function()
 {  
   // Create an HTML table here so all functions below will have access to it.
   let table = document.createElement('table');  
@@ -1577,13 +1639,7 @@ app.loadUsersListPage = async function()
         // Verify that we have some sort of 2xx response that we can use
         if (!res.ok) 
         {
-          // throw res;
-
-          // Show the createCheck CTA
-          document.getElementById("createNewRecordCTA").style.display = 'block';
-          document.getElementById("createNewRecordCTA2").style.display = 'block';
-          document.getElementById("createNewRecordCTA3").style.display = 'block';          
-
+          // throw res;         
           console.log("Error trying to load the list of users: ");        
         }
 
@@ -1705,12 +1761,7 @@ app.loadUsersListPage = async function()
     // Call the "read" function defined above when the submit query button is pressed.
     read();
 
-  }; // End of: async function runQueryStreamToDisplay(queryExpression)
-
-  // Show the createCheck CTA
-  document.getElementById("createNewRecordCTA").style.display = 'block';
-  document.getElementById("createNewRecordCTA2").style.display = 'block';
-  document.getElementById("createNewRecordCTA3").style.display = 'block';   
+  }; // End of: async function runQueryStreamToDisplay(queryExpression)  
 
 } // End of: app.loadUsersListPage = async function(){...}
 // End of: Populate the dbUsersList webpage with user records.
