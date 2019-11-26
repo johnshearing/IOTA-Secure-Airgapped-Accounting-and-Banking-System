@@ -653,8 +653,8 @@ app.loadDbUsersEditPage = async function()
   let recordObject = recordArray[0];
 
   // Put the data into the forms as values where needed
-  document.querySelector("#dbUsersEdit1 .emailInput").value = recordObject.email;
-  document.querySelector("#dbUsersEdit1 .timeStampInput").value = recordObject.timeStamp;  
+  document.querySelectorAll(".emailInput").forEach(function (element){element.value = recordObject.email});
+  document.querySelectorAll(".timeStampInput").forEach(function(element){element.value = recordObject.timeStamp});  
 
   // Define a function to get the email address and the timeStamp from the userID
   async function runQueryOnUserId(queryExpression) 
