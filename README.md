@@ -37,7 +37,7 @@ We don't want our busy little accounting/banking systems moving money, casting v
 
 #### Features:  
 * Database Functionality.  
-  * Table locking is used to make the application multiuser. Row and field locking should not be required because each of these small distributed systems are only supposed to support a small number of users. An unlimited amount of users and complex behavior can be supported through the interactions of these simple systems.  
+  * Table locking is used to make the application multiuser. Row and field locking should not be required because each of these small distributed systems are only supposed to support a small number of users. An unlimited amount of users and very complex behavior can be supported through the interactions of these simple systems with smart contracts.  
   * Transaction rollbacks are initiated if any part of a transaction fails.  
   * All records in the database (no matter from what table) get their unique ids from a single incremented source so that every record has a system wide unique id that identifies when it was created with respect to all the other records in the database.    
   * Any adds, changes, or deletes to a record are recorded in a log that captures the entire record in it's new state. This along with the system wide unique ids allows the entire database to be reconstructed to represent any point in history.  
