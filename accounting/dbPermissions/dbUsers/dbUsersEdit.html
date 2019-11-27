@@ -34,8 +34,7 @@
     <input type="hidden" name="_method" value="PUT"/>
     <div class="formError"></div>
     <div class="formSuccess">New Password Has Been Saved</div>
-    <input class="hiddenInput"  type="hidden" name="userId" value="{selected.userId}"/> 
-    <input class="hiddenInput emailInput"  type="hidden" name="email"/>     
+    <input class="hiddenInput"  type="hidden" name="userId" value="{selected.userId}"/>     
     <div class="inputWrapper">
       <div class="inputLabel">Choose a New Password</div>
       <input type="password" name="password" placeholder="Make it a good one!" />
@@ -50,12 +49,13 @@
 <hr />
 <h2>Delete Account</h2>
 <div class="formWrapper">
-  <form id="dbUsersEdit3" action="/api/aUsers" method="DELETE">
-    <input type="hidden" name="_method" value="DELETE"/>
+  <form id="dbUsersEdit3" action="/api/aUsers" method="PUT">
+    <input type="hidden" name="_method" value="PUT"/>
     <div class="formError"></div>
     <div class="warning">Warning: This action cannot be undone. <br>
       Don't click this button on accident!</div>
       <input class="hiddenInput"  type="hidden" name="userId" value="{selected.userId}"/> 
+      <input class="hiddenInput"  type="hidden" name="deleted" value="true"/>       
     <div class="inputWrapper ctaWrapper">
       <button type="submit" class="cta red">Delete Account</button>       
     </div>

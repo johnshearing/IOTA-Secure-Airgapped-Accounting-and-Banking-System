@@ -251,7 +251,6 @@ app.bindForms = function()
               {
                 payload[nameOfElement] = valueOfElement;
               }
-
             } // End of: nameOfElement was something other than '_method'
           } // End of: if(elements[i].type !== 'submit'){...}
         } // End of: for(var 1...
@@ -260,7 +259,7 @@ app.bindForms = function()
 
 
         // If the method is DELETE, the payload should be a queryStringObject instead
-        var queryStringObject = method == 'DELETE' ? payload : {};
+        var queryStringObject = method == 'DELETE' ? payload : {};              
 
         // Call the API
         app.client.request(undefined,path,method,queryStringObject,payload,function(statusCode,responsePayload)
@@ -308,6 +307,13 @@ app.bindForms = function()
 // So this function defines what happens after a form has been sucessfully submitted.
 app.formResponseProcessor = function(formId,requestPayload,responsePayload)
 {
+  // If the administrator just deleted a user then navigate back to the user list.
+  if(formId == 'dbUsersEdit3')
+  {
+    window.location = 'users/list';
+  }
+  // End of: If the administrator just deleted a user then navigate back to the user list. 
+
   // If the administrator just created a new user successfully, redirect to a list of users.
   if(formId == 'userCreate')
   {
