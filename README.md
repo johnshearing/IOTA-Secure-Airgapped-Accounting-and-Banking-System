@@ -8,14 +8,13 @@ The generated user interface runs in the browser.
   
 When this system matures it will be the first full blown accounting/banking system for IOTA that machines, individuals, corporations, and governments can use for managing their business and for cooperating with each other.  
 
+Built to run on a single airgapped [PrivateKeyVault](https://github.com/johnshearing/PrivateKeyVault) for individuals or on an airgapped network for large institutions or government. All this code will run on any device that can run NodeJS.  
 This is the last piece of the puzzle in [The PrivateKeyVault family of repositories](https://github.com/johnshearing).  
 This work in progress is a continuation of tutorial [IOTA-Airgapped-NodeJS-Console-Wallet](https://github.com/johnshearing/IOTA-Airgapped-NodeJS-Console-Wallet).  
  
 This accounting/banking system is being constructed using the methods shown in the following tutorial:  
 [The NodeJS Master Class - No Frameworks, No NPM, No Dependencies](https://pirple.thinkific.com/courses/the-nodejs-master-class)  
 No dependencies makes for easy auditing. When this accounting/banking system is finished, a video tutorial will be made explaining each line of code so you can write everything from scratch if you want to. This will also facilitate an audit.  
-
-Built to run on a single airgapped [PrivateKeyVault](https://github.com/johnshearing/PrivateKeyVault) for individuals or on an airgapped network for large institutions or government. All this code will run on any device that can run NodeJS.  
 
 
 #### What's Different and Where's the Opportunity?
