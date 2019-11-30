@@ -80,3 +80,8 @@
 {"userId":843,"email":"ernst@gmail.plu","hashedPassword":"36583a77a098c02ef111e2f2521d77b58e420f2bc7e9bf930ec24b21d42ea2e0","timeStamp":1574891545138,"deleted":false}
 {"userId":843,"email":"ernst@gmail.plu","hashedPassword":"36583a77a098c02ef111e2f2521d77b58e420f2bc7e9bf930ec24b21d42ea2e0","timeStamp":1574891553467,"deleted":true}
 {"userId":463,"email":"byron@gmail.com","hashedPassword":"36583a77a098c02ef111e2f2521d77b58e420f2bc7e9bf930ec24b21d42ea2e0","timeStamp":1574891621141,"deleted":true}
+{"userId":695,"email":"bob@hotmail.swe","hashedPassword":"36583a77a098c02ef111e2f2521d77b58e420f2bc7e9bf930ec24b21d42ea2e0","timeStamp":1575063548811,"deleted":false}
+{"userId":695,"email":"bob@hotmail.com","hashedPassword":"36583a77a098c02ef111e2f2521d77b58e420f2bc7e9bf930ec24b21d42ea2e0","timeStamp":1575063598901,"deleted":false}
+{"userId":703,"email":"sally@hotmail.grp","hashedPassword":"36583a77a098c02ef111e2f2521d77b58e420f2bc7e9bf930ec24b21d42ea2e0","timeStamp":1575078598764,"deleted":false}
+{"userId":703,"email":"sally@hotmail.grp","hashedPassword":"f2aca44a95ae334e655eed608b5e9027a3fb9d7ad664bbb3c7e7b70a0c38bb4b","timeStamp":1575078613530,"deleted":false}
+{"userId":703,"email":"sally@hotmail.grp","hashedPassword":"f2aca44a95ae334e655eed608b5e9027a3fb9d7ad664bbb3c7e7b70a0c38bb4b","timeStamp":1575078631477,"deleted":true}
