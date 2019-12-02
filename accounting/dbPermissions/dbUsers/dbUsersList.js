@@ -1,24 +1,10 @@
 /*
- * Frontend Logic for application
+ * Frontend Browser JavaScript For dbUsersList Webpage
  *
  */
 
 // Container for frontend application
 var app = {};
-
-// Create an object to store the session token.
-// The session token is a string of 20 random characters.
-// You get a session token pressing the submit button at the login page which
-// runs the anonymous function defined in app.bindForms
-// You keep the session token in localStorage until the browser is completly closed.
-// If the tabsheet where this code is hosted is closed while the browser is left open 
-// then the token remains in memory for use if you open a new tab and navigate back to 
-// the application. 
-// The token expires in one hour if you do not have the application open.
-app.config = {
-  'sessionToken' : false
-};
-
 
 // AJAX Client (for RESTful API)
 // Create an empty object to contain the client.
@@ -76,10 +62,10 @@ app.client.request = function(headers,path,method,queryStringObject,payload,call
   }
 
   // If there is a current session token set, add that as a header
-  if(app.config.sessionToken)
-  {
-    xhr.setRequestHeader("token", app.config.sessionToken.id);
-  }
+  // if(app.config.sessionToken)
+  // {
+  //   xhr.setRequestHeader("token", app.config.sessionToken.id);
+  // }
 
   // When the request comes back, handle the response
   xhr.onreadystatechange = function()
@@ -112,258 +98,6 @@ app.client.request = function(headers,path,method,queryStringObject,payload,call
 
 }; // End of: app.client.request = function(headers,path,method,queryStringObject,payload,callback){...}
 // End of: Interface for making API calls
-
-
-
-
-// Log the user out then redirect them
-app.logUserOut = function(redirectUser)
-{
-  // Set redirectUser to default to true
-  redirectUser = typeof(redirectUser) == 'boolean' ? redirectUser : true;
-
-  // Get the current token id
-  var tokenId = typeof(app.config.sessionToken.id) == 'string' ? app.config.sessionToken.id : false;
-
-  // Send the current token to the tokens endpoint to delete it
-  var queryStringObject = {'id' : tokenId};
-
-  app.client.request(undefined,'api/tokens','DELETE',queryStringObject,undefined,function(statusCode,responsePayload)
-  {
-    // Set app.config.sessionToken and localStorage.token to false then revoke permissions to user specific webpages.
-    app.setSessionToken(false);
-
-    // Send the user to the logged out page
-    if(redirectUser){
-      window.location = '/session/deleted';
-    }
-
-  });
-}; // End of: app.logUserOut = function(redirectUser){...}
-
-
-
-
-// Get the session token from localstorage and use it to load the app.config object.
-// The only time this function is called is when the page loads. Called from app.init
-app.getSessionToken = function()
-{
-  var tokenString = localStorage.getItem('token');  
-
-  // If there was a value found for the key "token" in localStorage
-  if(typeof(tokenString) == 'string')
-  {
-    try
-    {
-      // Turn the token string into an object
-      var token = JSON.parse(tokenString);
-
-      // Store the token object in a larger scope for use outside this function.
-      app.config.sessionToken = token;
-
-    
-      if(typeof(token) == 'object')
-      {
-        // Grant permission to access user specific webpages.
-        app.setLoggedInClass(true);
-      } 
-      else // token not an object
-      {
-        // Revoke permission to access user specific webpages.
-        app.setLoggedInClass(false);
-      }
-    }
-    catch(e)
-    {
-      // Delete the globally scoped token object.
-      app.config.sessionToken = false;
-
-      // Revoke permission to user specific webpages.
-      app.setLoggedInClass(false);
-    }
-
-  } // End of: if(typeof(tokenString) == 'string'){...}
-}; // End of: app.getSessionToken = function(){...}
-// End of: Get the session token from localstorage and use it to load the app.config object.
-
-
-
-
-// Set (or remove) the loggedIn class from the body
-// This is where permission to user specific webpages are granted or revoked.
-app.setLoggedInClass = function(add)
-{
-  var target = document.querySelector("body");
-  if(add)
-  {
-    // Grant permission to user specific webpages.
-    target.classList.add('loggedIn');
-  } 
-  else 
-  {
-    // Revoke permission to user specific webpages.
-    target.classList.remove('loggedIn');
-  }
-}; // End of: app.setLoggedInClass = function(add){...}
-// End of: Set (or remove) the loggedIn class from the body
-
-
-
-
-// Write the session token value (or boolean false if none) locally to app.config.sessionToken and to localStorage.token
-// Then grant or revoke permission to access user specific pages as appropriate.
-app.setSessionToken = function(token)
-{
-  // Store the token object in a larger scope for use outside this function.
-  app.config.sessionToken = token;
-
-  // Turn the token string into an object.
-  var tokenString = JSON.stringify(token);
-
-  // Store the stringified token in browser memory.
-  // This allows the token (the users session) to persist even if the current browser tab is closed. 
-  // If the entire browser is closed then the token will be lost and the user will be required to log in again.
-  // !!!!!!!!!! SECURITY ALERT!!!!!!!!!!!
-  // It is possible to steal the token.
-  // This circumvents the requirment to log in.
-  // To simulate this attack, copy the token from localStorage onto the clipboard and then close the browser.
-  // Then open a new browser and insert the token into local storage using the console.
-  // Then run app.getSessionToken from the console which uses the token in localStorage to
-  // get access to the server api and to user specific webpages. 
-  localStorage.setItem('token',tokenString);
-
-
-  if(typeof(token) == 'object')
-  {
-    // Grant permission to user specific webpages.    
-    app.setLoggedInClass(true);
-  } 
-  else 
-  {
-    // Revoke permission to user specific webpages.    
-    app.setLoggedInClass(false);
-  }
-}; // End of: app.setSessionToken = function(token){...}
-// End of: Write the session token value (or boolean false if none) locally...
-
-
-
-
-// Renew the token
-// Called by tokenRenewalLoop
-// If the browser was just opened then app.config.sessionToken will be set false and there will be no token in localStorage.
-// So this function wiil terminate when currentToken is checked (No renewal).
-// If you are not currently logged in then the app.config.sessionToken will be false so again, no renewal.
-// If you are currently logged in then your token will be renewed every minute when tokenRenewalLoop calls this function.
-// Oddly, if you log in and then close the tab for this application but leave the browser open on another tab then
-// you can open a new tab and navigate back to your session (localhost:3000) as long as the token has not expired (1 hour).
-// If more than an hour has passed then you will be logged out as soon has you try to make a request to the server.
-app.renewToken = function(callback)
-{
-  var currentToken = typeof(app.config.sessionToken) == 'object' ? app.config.sessionToken : false;
-
-  if(currentToken) // If a token exists in local memory.
-  {
-    // Update the token with a new expiration
-    var payload = 
-    {
-      'id' : currentToken.id,
-      'extend' : true,
-    };
-
-    // Request to update the token file on the server with an expiration time extended to one hour from now.
-    app.client.request(undefined,'api/tokens','PUT',undefined,payload,function(statusCode,responsePayload)
-    {
-      // If the token on the server was updated successfully:
-      if(statusCode == 200)
-      {
-        // Form a query for the new token details.
-        var queryStringObject = {'id' : currentToken.id};
-
-        // Get the updated token from the server.
-        app.client.request(undefined,'api/tokens','GET',queryStringObject,undefined,function(statusCode,responsePayload)
-        {
-          // if we successfully retrived the updated token from the server.
-          if(statusCode == 200)
-          {
-            // Write the token to app.config.sessionToken and localStorage.token then grant permission to access user specific pages.
-            app.setSessionToken(responsePayload);
-
-            // Call back (no error) to tokenRenewalLoop which logs success to the client's console.
-            callback(false);
-          } 
-          else 
-          {
-            // Set app.config.sessionToken and localStorage.token to false then revoke permissions to user specific webpages.
-            app.setSessionToken(false);
-
-            // Call back to tokenRenewalLoop which just logs success to the client's console.
-            callback(true);
-          }
-        });
-      } 
-      else // status code was not 200. Something went wrong.
-      {
-        // Set app.config.sessionToken and localStorage.token to false then revoke permissions to user specific webpages.
-        app.setSessionToken(false);
-
-        // Call back error to tokenRenewalLoop which does nothing.
-        callback(true);
-      }
-    });
-  } // End of: If a token exists in local memory.
-  else // There was no token in local memory.
-  {
-    // Set app.config.sessionToken and localStorage.token to false then revoke permissions to user specific webpages.
-    app.setSessionToken(false);
-
-    // Call back error to tokenRenewalLoop which does nothing.
-    callback(true);
-  } // End of: Else there was no token in local memory.
-
-}; // app.renewToken = function(callback){...}
-// End of: Renew the token
-
-
-
-
-// Loop to renew token often
-app.tokenRenewalLoop = function()
-{
-  setInterval(function()
-  {
-    app.renewToken(function(err)
-    {
-      if(!err)
-      {
-        console.log("Token renewed successfully @ "+Date.now());
-      }
-    });
-  },1000 * 60);
-};
-// End of: Loop to renew token often
-
-
-
-
-// Load data on the page
-// This function is a router. 
-// It is called from app.init when the page loads.
-// This router calls other functions specific to the page for which data is to be loaded.
-app.loadDataOnPage = function()
-{
-  // Get the current page from the body class
-  var bodyClasses = document.querySelector("body").classList;
-  var primaryClass = typeof(bodyClasses[0]) == 'string' ? bodyClasses[0] : false; 
-
-  // Logic for user's list page
-  if(primaryClass == 'dbUsersList')
-  {
-    app.loadDbUsersListPage();
-  }
-
-}; // End of: app.loadDataOnPage = function(){...}
-// End of: Load data on the page. This function is a router.
 
 
 
@@ -1392,15 +1126,9 @@ app.loadDbUsersListPage = async function()
 
 // Init (bootstrapping)
 app.init = function(){
-    
-  // Get the token from localstorage
-  app.getSessionToken();
-
-  // Renew token
-  app.tokenRenewalLoop();
 
   // Load data on page
-  app.loadDataOnPage();
+  app.loadDbUsersListPage();
 
 };
 // End of: Init (bootstrapping)
