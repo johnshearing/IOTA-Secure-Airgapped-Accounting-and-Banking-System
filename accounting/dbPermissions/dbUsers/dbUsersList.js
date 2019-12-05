@@ -413,7 +413,7 @@ app.loadDbUsersListPage = async function()
         // Add an extra cell to the end of the row that contains a link which sends the user
         // to a new screen where the record can be edited or deleted.
         let lastCell = tr.insertCell(arrayOfFieldsToDisplay.length);             
-        lastCell.innerHTML = '<a href="/users/edit?userId=' + value[nameOfPrimaryKey] + '">View / Edit / Delete</a>';
+        lastCell.innerHTML = '<a href="/dbUsers/edit?userId=' + value[nameOfPrimaryKey] + '">View / Edit / Delete</a>';
       }) 
     }
 
@@ -440,7 +440,7 @@ app.loadDbUsersListPage = async function()
   // on it.
   async function runQueryWaitForAllData(queryExpression) 
   {
-    const res = await fetch('api/aUsers' + queryExpression);
+    const res = await fetch('api/dbUsers' + queryExpression);
 
     // Verify that we have some sort of 2xx response that we can use
     if (!res.ok) 
@@ -986,7 +986,7 @@ app.loadDbUsersListPage = async function()
   async function runQueryThenStreamToDisplay(queryExpression, arrayOfFieldsToDisplay, nameOfPrimaryKey)
   {
     // Define a client function that calls for data from the server.
-    const fetchPromise = fetch('api/aUsers' + queryExpression)
+    const fetchPromise = fetch('api/dbUsers' + queryExpression)
     .then
     (
       (res) => 
@@ -1101,7 +1101,7 @@ app.loadDbUsersListPage = async function()
             });   
 
             let lastCell = tr.insertCell(arrayOfFieldsToDisplay.length);             
-            lastCell.innerHTML = '<a href="/users/edit?userId=' + value[nameOfPrimaryKey] + '">View / Edit / Delete</a>';
+            lastCell.innerHTML = '<a href="/dbUsers/edit?userId=' + value[nameOfPrimaryKey] + '">View / Edit / Delete</a>';
 
           } // End of: if(value){do stuff}
 

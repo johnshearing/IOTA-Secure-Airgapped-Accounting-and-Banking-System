@@ -249,7 +249,7 @@ app.formResponseProcessor = function(formId,requestPayload,responsePayload)
   // If the administrator just deleted a user then navigate back to the user list.
   if(formId == 'dbUsersEdit3')
   {
-    window.location = 'users/list';
+    window.location = 'dbUsers/list';
   }
   // End of: If the administrator just deleted a user then navigate back to the user list. 
 
@@ -297,7 +297,7 @@ app.loadDbUsersEditPage = async function()
   // Define a function to get the email address and the timeStamp from the userID
   async function runQueryOnUserId(queryExpression) 
   {
-    const res = await fetch('api/aUsers' + queryExpression);
+    const res = await fetch('api/dbUsers' + queryExpression);
 
     // Verify that we have some sort of 2xx response that we can use
     if (!res.ok) 

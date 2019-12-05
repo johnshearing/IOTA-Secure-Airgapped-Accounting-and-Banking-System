@@ -1,9 +1,9 @@
 //From here to the bottom is saved code. 
-//Do not delete until users/list is working and commented.
+//Do not delete until dbUsers/list is working and commented.
 
 // Define the users get subhandler function.
 // Streams the dbUsers file or part of it back to the client.
-handlers._users.get = function(data, callback)
+handlers._dbUsers.get = function(data, callback)
 {
   // Check that the email address is valid.
   // Checking that the email address in the queryStringObject is of type string and that the length is 10 characters and
@@ -155,6 +155,6 @@ handlers._users.get = function(data, callback)
     callback(400, {'Error' : 'Missing required field'});
   } // End of: else the phone number did not pass data type and length validation.
 
-}; // End of: handlers._users.get = function(...
+}; // End of: handlers._dbUsers.get = function(...
 // End of: Define the user's get subhandler function.
 // End of: Users - get subhandler
