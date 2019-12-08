@@ -13,6 +13,7 @@
 const server = require('./lib/server');
 const workers = require('./lib/workers');
 var cli = require('./lib/repl');
+var meta = require('./lib/meta');
 
 // Declare the app.
 var app = {};
@@ -22,19 +23,24 @@ var app = {};
 app.init = function()
 {
   // Start the server for communication with users via http or https
-  server.init();
+  // server.init();
 
   // Start the workers or background tasks.
   // workers.init();
+
+  // Testing the build of a given webpage.
+  meta.build.AddWebpage(1285)
 
 
   // Start the Command Line Interface (CLI).
   // Make sure the CLI starts last. 
   // That's so console.log messages from workers.init and server.init do no confuse users at the command prompt
+  /*
   setTimeout(function()
   {
     cli.init();
   }, 5000);
+  */
 
 };
 
