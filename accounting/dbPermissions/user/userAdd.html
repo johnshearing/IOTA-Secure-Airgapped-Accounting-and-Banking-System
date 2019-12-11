@@ -2,15 +2,15 @@
 <h2>Use a password with completly random characters</h2>
 
 <div class="formWrapper">
-  <form id="dbUsersAdd" action="/api/dbUsers" method="POST">
+  <form id="userAdd" action="/api/user" method="POST">
     <div class="formError"></div>
     <div class="inputWrapper">
-      <div class="inputLabel">email</div>
+      <div class="inputLabel">Email Address</div>
       <input type="text" name="email" placeholder="alice@gmail.com" />
     </div>
     <div class="inputWrapper">
       <div class="inputLabel">Choose a Password</div>
-      <input type="password" name="password" placeholder="Make it a good one!" />
+      <input type="password" name="password" placeholder="Use random symbols" />
     </div>
     <div class="inputWrapper ctaWrapper smallTopMargin">
       <button type="submit" class="cta blue">Create User</button>

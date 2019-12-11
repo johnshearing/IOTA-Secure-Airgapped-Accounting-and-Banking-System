@@ -308,16 +308,16 @@ app.bindForms = function()
 app.formResponseProcessor = function(formId,requestPayload,responsePayload)
 {
   // If the administrator just deleted a user then navigate back to the user list.
-  if(formId == 'dbUsersEdit3')
+  if(formId == 'userEdit3')
   {
-    window.location = 'dbUsers/list';
+    window.location = 'user/list';
   }
   // End of: If the administrator just deleted a user then navigate back to the user list. 
 
   // If the administrator just created a new user successfully, redirect to a list of users.
-  if(formId == 'dbUsersAdd')
+  if(formId == 'userAdd')
   {
-    window.location = 'dbUsers/list';
+    window.location = 'user/list';
   }
   // End of: If the administrator just created a new user successfully, redirect to a list of users.
 
@@ -371,7 +371,7 @@ app.formResponseProcessor = function(formId,requestPayload,responsePayload)
 
   // If forms saved successfully and they have success messages, show them.
   // First create an array naming all forms that have success messages.
-  var formsWithSuccessMessages = ['accountEdit1', 'accountEdit2','checksEdit1', 'dbUsersEdit1', 'dbUsersEdit2', 'dbUsersEdit3'];
+  var formsWithSuccessMessages = ['accountEdit1', 'accountEdit2','checksEdit1', 'userEdit1', 'userEdit2', 'userEdit3'];
 
   // If the form just successfully submitted is a member of the above array:
   if(formsWithSuccessMessages.indexOf(formId) > -1)
@@ -607,15 +607,15 @@ app.loadDataOnPage = function()
   var primaryClass = typeof(bodyClasses[0]) == 'string' ? bodyClasses[0] : false;
 
   // Logic for user's edit page
-  if(primaryClass == 'dbUsersEdit')
+  if(primaryClass == 'userEdit')
   {
-    app.loadDbUsersEditPage();
+    app.loaduserEditPage();
   }  
 
   // Logic for user's list page
-  if(primaryClass == 'dbUsersList')
+  if(primaryClass == 'userList')
   {
-    app.loadDbUsersListPage();
+    app.loaduserListPage();
   }
 
   // Logic for account settings page
@@ -640,8 +640,8 @@ app.loadDataOnPage = function()
 
 
 
-// Load the dbUsersEdit page with data from the server.
-app.loadDbUsersEditPage = async function()
+// Load the userEdit page with data from the server.
+app.loadUserEditPage = async function()
 {
   // Get the email and timeStamp.
   // 1. Get the userId
@@ -665,7 +665,7 @@ app.loadDbUsersEditPage = async function()
   // Define a function to get the email address and the timeStamp from the userID
   async function runQueryOnUserId(queryExpression) 
   {
-    const res = await fetch('api/dbUsers' + queryExpression);
+    const res = await fetch('api/user' + queryExpression);
 
     // Verify that we have some sort of 2xx response that we can use
     if (!res.ok) 
@@ -698,7 +698,7 @@ app.loadDbUsersEditPage = async function()
   } // End of: async function runQueryOnUserId(queryExpression){...}
   // End of: Define a function to get the email address and the timeStamp from the userID
 
-}; // End of: app.loadDbUsersEditPage = function(){...}
+}; // End of: app.loadUserEditPage = function(){...}
 
 
 
@@ -753,8 +753,8 @@ app.loadAccountEditPage = function()
 
 
 
-// Populate the dbUsersList webpage with controls and user records from the table.
-app.loadDbUsersListPage = async function()
+// Populate the userList webpage with controls and user records from the table.
+app.loadUserListPage = async function()
 {  
   // Create an HTML table here so all functions below will have access to it.
   let table = document.createElement('table');  
@@ -1064,7 +1064,7 @@ app.loadDbUsersListPage = async function()
         // Add an extra cell to the end of the row that contains a link which sends the user
         // to a new screen where the record can be edited or deleted.
         let lastCell = tr.insertCell(arrayOfFieldsToDisplay.length);             
-        lastCell.innerHTML = '<a href="/dbUsers/edit?userId=' + value[nameOfPrimaryKey] + '">View / Edit / Delete</a>';
+        lastCell.innerHTML = '<a href="/user/edit?userId=' + value[nameOfPrimaryKey] + '">View / Edit / Delete</a>';
       }) 
     }
 
@@ -1091,7 +1091,7 @@ app.loadDbUsersListPage = async function()
   // on it.
   async function runQueryWaitForAllData(queryExpression) 
   {
-    const res = await fetch('api/dbUsers' + queryExpression);
+    const res = await fetch('api/user' + queryExpression);
 
     // Verify that we have some sort of 2xx response that we can use
     if (!res.ok) 
@@ -1637,7 +1637,7 @@ app.loadDbUsersListPage = async function()
   async function runQueryThenStreamToDisplay(queryExpression, arrayOfFieldsToDisplay, nameOfPrimaryKey)
   {
     // Define a client function that calls for data from the server.
-    const fetchPromise = fetch('api/dbUsers' + queryExpression)
+    const fetchPromise = fetch('api/user' + queryExpression)
     .then
     (
       (res) => 
@@ -1752,7 +1752,7 @@ app.loadDbUsersListPage = async function()
             });   
 
             let lastCell = tr.insertCell(arrayOfFieldsToDisplay.length);             
-            lastCell.innerHTML = '<a href="/dbUsers/edit?userId=' + value[nameOfPrimaryKey] + '">View / Edit / Delete</a>';
+            lastCell.innerHTML = '<a href="/user/edit?userId=' + value[nameOfPrimaryKey] + '">View / Edit / Delete</a>';
 
           } // End of: if(value){do stuff}
 
@@ -1770,7 +1770,7 @@ app.loadDbUsersListPage = async function()
   }; // End of: async function runQueryStreamToDisplay(queryExpression)  
 
 } // End of: app.loadUsersListPage = async function(){...}
-// End of: Populate the dbUsersList webpage with user records.
+// End of: Populate the userList webpage with user records.
 
 
 

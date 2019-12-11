@@ -1,5 +1,5 @@
 /*
- * Frontend Browser JavaScript For dbUsersList Webpage
+ * Frontend Browser JavaScript For userList Webpage
  *
  */
 
@@ -102,8 +102,8 @@ app.client.request = function(headers,path,method,queryStringObject,payload,call
 
 
 
-// Populate the dbUsersList webpage with controls and user records from the table.
-app.loadDbUsersListPage = async function()
+// Populate the userList webpage with controls and user records from the table.
+app.loadUserListPage = async function()
 {  
   // Create an HTML table here so all functions below will have access to it.
   let table = document.createElement('table');  
@@ -413,7 +413,7 @@ app.loadDbUsersListPage = async function()
         // Add an extra cell to the end of the row that contains a link which sends the user
         // to a new screen where the record can be edited or deleted.
         let lastCell = tr.insertCell(arrayOfFieldsToDisplay.length);             
-        lastCell.innerHTML = '<a href="/dbUsers/edit?userId=' + value[nameOfPrimaryKey] + '">View / Edit / Delete</a>';
+        lastCell.innerHTML = '<a href="/user/edit?userId=' + value[nameOfPrimaryKey] + '">View / Edit / Delete</a>';
       }) 
     }
 
@@ -440,7 +440,7 @@ app.loadDbUsersListPage = async function()
   // on it.
   async function runQueryWaitForAllData(queryExpression) 
   {
-    const res = await fetch('api/dbUsers' + queryExpression);
+    const res = await fetch('api/user' + queryExpression);
 
     // Verify that we have some sort of 2xx response that we can use
     if (!res.ok) 
@@ -986,7 +986,7 @@ app.loadDbUsersListPage = async function()
   async function runQueryThenStreamToDisplay(queryExpression, arrayOfFieldsToDisplay, nameOfPrimaryKey)
   {
     // Define a client function that calls for data from the server.
-    const fetchPromise = fetch('api/dbUsers' + queryExpression)
+    const fetchPromise = fetch('api/user' + queryExpression)
     .then
     (
       (res) => 
@@ -1101,7 +1101,7 @@ app.loadDbUsersListPage = async function()
             });   
 
             let lastCell = tr.insertCell(arrayOfFieldsToDisplay.length);             
-            lastCell.innerHTML = '<a href="/dbUsers/edit?userId=' + value[nameOfPrimaryKey] + '">View / Edit / Delete</a>';
+            lastCell.innerHTML = '<a href="/user/edit?userId=' + value[nameOfPrimaryKey] + '">View / Edit / Delete</a>';
 
           } // End of: if(value){do stuff}
 
@@ -1118,8 +1118,8 @@ app.loadDbUsersListPage = async function()
 
   }; // End of: async function runQueryStreamToDisplay(queryExpression)  
 
-} // End of: app.loadUsersListPage = async function(){...}
-// End of: Populate the dbUsersList webpage with user records.
+} // End of: app.loadUserListPage = async function(){...}
+// End of: Populate the userList webpage with user records.
 
 
 
@@ -1128,7 +1128,7 @@ app.loadDbUsersListPage = async function()
 app.init = function(){
 
   // Load data on page
-  app.loadDbUsersListPage();
+  app.loadUserListPage();
 
 };
 // End of: Init (bootstrapping)

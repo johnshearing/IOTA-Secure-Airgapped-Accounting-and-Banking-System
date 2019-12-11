@@ -27,12 +27,12 @@ Look in `data.js`. The functions are `gsuidLockReadIncUnlock()` and `nextId()`
 * The system signs the lock folder for the user by placing a text document into the folder which identifies the user. I may choose to let nodejs modify the properties of the folder instead.  
 * The system will not allow anyone else to remove the folder and then only through the program logic to enforce security.  
 
-The second file in this folder is called dbLog.json. If it does not exist then it must be created when the system is first used. This will be done in an initialization script. Any adds, changes, or deletes to a record will be recorded in dbLog.json which captures the entire record in it's new state and tells who made the entry, by what method and when the entry was made.  
+The second file in this folder is called transaction.json. If it does not exist then it must be created when the system is first used. This will be done in an initialization script. Any adds, changes, or deletes to a record will be recorded in transaction.json which captures the entire record in it's new state and tells who made the entry, by what method and when the entry was made.  
 
 This along with the Global Sequential Unique ID allows the entire database to be reconstructed to represent any point in history.  
 
 The following has not been implemented yet but here is the plan:  
-The dbLog.json file only gets appended to but it will be locked along with all other files that are part of the transaction. When the entire transaction has been completed then all the files will be unlocked. If the transaction can not be completed then everything will be rolled back to it's original state.  
+The transaction.json file only gets appended to but it will be locked along with all other files that are part of the transaction. When the entire transaction has been completed then all the files will be unlocked. If the transaction can not be completed then everything will be rolled back to it's original state.  
 
 Most of the database system will be relational (table-joins and indexes) but the parts that deal with seeds and addresses will be NoSQL. Relational because most accounting functionality involves reporting which requires indexes and normalization for speed and schema so that there is consistent data to report on. However, when dealing with seeds and addresses, no reporting is involved but rather security is the primary concern.  
 

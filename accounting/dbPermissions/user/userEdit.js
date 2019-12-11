@@ -247,16 +247,16 @@ app.bindForms = function()
 app.formResponseProcessor = function(formId,requestPayload,responsePayload)
 {
   // If the administrator just deleted a user then navigate back to the user list.
-  if(formId == 'dbUsersEdit3')
+  if(formId == 'userEdit3')
   {
-    window.location = 'dbUsers/list';
+    window.location = 'user/list';
   }
   // End of: If the administrator just deleted a user then navigate back to the user list. 
 
 
   // If forms saved successfully and they have success messages, show them.
   // First create an array naming all forms that have success messages.
-  var formsWithSuccessMessages = ['dbUsersEdit1', 'dbUsersEdit2'];
+  var formsWithSuccessMessages = ['userEdit1', 'userEdit2'];
 
   // If the form just successfully submitted is a member of the above array:
   if(formsWithSuccessMessages.indexOf(formId) > -1)
@@ -272,8 +272,8 @@ app.formResponseProcessor = function(formId,requestPayload,responsePayload)
 
 
 
-// Load the dbUsersEdit page with data from the server.
-app.loadDbUsersEditPage = async function()
+// Load the userEdit page with data from the server.
+app.loadUserEditPage = async function()
 {
   // Get the email and timeStamp.
   // 1. Get the userId
@@ -297,7 +297,7 @@ app.loadDbUsersEditPage = async function()
   // Define a function to get the email address and the timeStamp from the userID
   async function runQueryOnUserId(queryExpression) 
   {
-    const res = await fetch('api/dbUsers' + queryExpression);
+    const res = await fetch('api/user' + queryExpression);
 
     // Verify that we have some sort of 2xx response that we can use
     if (!res.ok) 
@@ -330,7 +330,7 @@ app.loadDbUsersEditPage = async function()
   } // End of: async function runQueryOnUserId(queryExpression){...}
   // End of: Define a function to get the email address and the timeStamp from the userID
 
-}; // End of: app.loadDbUsersEditPage = function(){...}
+}; // End of: app.loadUserEditPage = function(){...}
 
 
 
@@ -342,7 +342,7 @@ app.init = function(){
   app.bindForms();
 
   // Load data on page
-  app.loadDbUsersEditPage();
+  app.loadUserEditPage();
 };
 // End of: Init (bootstrapping)
 

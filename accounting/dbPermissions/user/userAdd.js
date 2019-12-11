@@ -250,9 +250,9 @@ app.bindForms = function()
 app.formResponseProcessor = function(formId,requestPayload,responsePayload)
 {
   // If the administrator just created a new user successfully, redirect to a list of users.
-  if(formId == 'dbUsersAdd')
+  if(formId == 'userAdd')
   {
-    window.location = 'dbUsers/list';
+    window.location = 'user/list';
   }
   // End of: If the administrator just created a new user successfully, redirect to a list of users.
 

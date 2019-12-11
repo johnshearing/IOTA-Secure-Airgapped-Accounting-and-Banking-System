@@ -1,9 +1,9 @@
 //From here to the bottom is saved code. 
-//Do not delete until dbUsers/list is working and commented.
+//Do not delete until user/list is working and commented.
 
 // Define the users get subhandler function.
-// Streams the dbUsers file or part of it back to the client.
-handlers._dbUsers.get = function(data, callback)
+// Streams the user file or part of it back to the client.
+handlers._user.get = function(data, callback)
 {
   // Check that the email address is valid.
   // Checking that the email address in the queryStringObject is of type string and that the length is 10 characters and
@@ -33,7 +33,7 @@ handlers._dbUsers.get = function(data, callback)
         // That's because a deleted record in this system is simply an identical record appended with 
         // the deleted field set to true. 
         // So depending on how many times the email address has been added and deleted there may 
-        // be several pairs of records in the dbUsers table with identical email addresses.
+        // be several pairs of records in the user table with identical email addresses.
         // Each pair will have different userIds.
         // The table can be packed occasionally to get rid of these deleted record pairs. 
         // Deletes are handled as appends with the deleted field set to true because
@@ -43,7 +43,7 @@ handlers._dbUsers.get = function(data, callback)
         // Again, only the last record matters because the last record contains the most uptodate information.
         // Since updates are unlimited, there may actually be many records with the same userId.
 
-        // We will look at each record in the dbUsers file to check for deletion and to look for the most uptodate record.
+        // We will look at each record in the user file to check for deletion and to look for the most uptodate record.
         // Only the last record for a particular userId matters.
         // It's like that old game "She loves me, She loves me not".
         // The following code appends the variable userId as the key and lineValueObject as the value to 
@@ -58,11 +58,11 @@ handlers._dbUsers.get = function(data, callback)
 
         const sourceStream = new Readable();
 
-        // This function sets up a stream where each chunk of data is a complete line in the dbUsers file.
+        // This function sets up a stream where each chunk of data is a complete line in the user file.
         let readInterface = readline.createInterface
         (
           { // specify the file to be read.
-            input: fs.createReadStream(_data.baseDir + '/dbPermissions/dbUsers' + '/' + 'dbUsers' + '.json'),
+            input: fs.createReadStream(_data.baseDir + '/dbPermissions/user' + '/' + 'user' + '.json'),
           }
         );
 
@@ -70,7 +70,7 @@ handlers._dbUsers.get = function(data, callback)
         // Look at each record in the file.
         readInterface.on('line', function(line) 
         {
-          // Convert the JSON string (a single line from the dbUsers file) into lineValueObject.
+          // Convert the JSON string (a single line from the user file) into lineValueObject.
           // These objects will returned to the client to populate the userList in the browser.
           let lineValueObject = JSON.parse(line);       
 
@@ -98,7 +98,7 @@ handlers._dbUsers.get = function(data, callback)
         // End of: Look at each record...
 
 
-        // This listener fires after we have looked through all the records in the dbUsers file.
+        // This listener fires after we have looked through all the records in the user file.
         // The callback function defined here will stream the list of users back to the clients browser.
         readInterface.on('close', function() 
         {          
@@ -120,15 +120,27 @@ handlers._dbUsers.get = function(data, callback)
 
 
         // Create a writable stream and specify the file which will receive the data from the readable stream.
-        let destinationStream = fs.createWriteStream(_data.baseDir + '/dbPermissions/dbUsers' + '/' + 'test' + '.txt', {flags : 'a'});
+        let destinationStream = fs.createWriteStream(_data.baseDir + '/dbPermissions/user' + '/' + 'test' + '.txt', {flags : 'a'});
 
 
         pipeline
         (
           sourceStream,
           destinationStream,
-          function(error){if(error){console.log('There was an error.');}}
-        );
+          function(pipelineError)
+          {
+            if(pipelineError)
+            {
+              helpers.log // Log the error.
+              (
+                7,
+                'teygxqkxg2ar4df6ozgl' + '\n' + 
+                'Pipeline error. The message was as follows' + '\n' +                                             
+                pipelineError + '\n'                                                 
+              ); // End of: helpers.log // Log the error.
+            } // End of: if(pipelineError){...}
+          } // End of: function(piplineError){...}
+        ); // End of: Pipeline
             
         // Return the status code OK, the contents of the file, and the contentType determined above.
         callback(200, sourceStream);
@@ -155,6 +167,6 @@ handlers._dbUsers.get = function(data, callback)
     callback(400, {'Error' : 'Missing required field'});
   } // End of: else the phone number did not pass data type and length validation.
 
-}; // End of: handlers._dbUsers.get = function(...
+}; // End of: handlers._user.get = function(...
 // End of: Define the user's get subhandler function.
-// End of: Users - get subhandler
+// End of: user - get subhandler
