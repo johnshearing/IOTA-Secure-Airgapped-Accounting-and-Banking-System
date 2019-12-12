@@ -62,7 +62,7 @@ handlers._user.get = function(data, callback)
         let readInterface = readline.createInterface
         (
           { // specify the file to be read.
-            input: fs.createReadStream(_data.baseDir + '/dbPermissions/user' + '/' + 'user' + '.json'),
+            input: fs.createReadStream(_data.baseDir + '/database/dbPermission/user' + '/' + 'user' + '.json'),
           }
         );
 
@@ -120,7 +120,7 @@ handlers._user.get = function(data, callback)
 
 
         // Create a writable stream and specify the file which will receive the data from the readable stream.
-        let destinationStream = fs.createWriteStream(_data.baseDir + '/dbPermissions/user' + '/' + 'test' + '.txt', {flags : 'a'});
+        let destinationStream = fs.createWriteStream(_data.baseDir + '/database/dbPermission/user' + '/' + 'test' + '.txt', {flags : 'a'});
 
 
         pipeline
