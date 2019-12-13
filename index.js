@@ -28,19 +28,14 @@ app.init = function()
   // Start the workers or background tasks.
   // workers.init();
 
-  // Testing the build of a given webpage.
-  meta.build.addWebPage(1285)
-
-
   // Start the Command Line Interface (CLI).
   // Make sure the CLI starts last. 
   // That's so console.log messages from workers.init and server.init do no confuse users at the command prompt
-  /*
-  setTimeout(function()
-  {
-    cli.init();
-  }, 5000);
-  */
+  // setTimeout(function(){cli.init();}, 5000);
+
+  // Testing the build of a given webpage.
+  // meta.build.addWebPage(1285)
+  meta.build.editWebPage(1285);  
 };
 
 
