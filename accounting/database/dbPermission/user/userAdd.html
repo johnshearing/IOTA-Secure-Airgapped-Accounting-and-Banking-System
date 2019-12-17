@@ -1,17 +1,19 @@
-<h1>Add a Record to the User Table</h1>
+<h1>Create A New Account</h1>
+<h2>Use a password with completly random characters</h2>
+
 <div class="formWrapper">
   <form id="userAdd" action="/api/user" method="POST">
     <div class="formError"></div>
     <div class="inputWrapper">
-      <div class="inputLabel">Email</div>
-      <input name="email" type="text"/>
+      <div class="inputLabel">Email Address</div>
+      <input name="email" type="text" placeholder="alice@gmail.com"/>
     </div>
     <div class="inputWrapper">
       <div class="inputLabel">Choose a Password</div>
-      <input name="password" type="password"/>
+      <input name="password" type="password" placeholder="Use random symbols"/>
     </div>
     <div class="inputWrapper ctaWrapper smallTopMargin">
-      <button type="submit" class="cta blue">Save New User</button>
+      <button type="submit" class="cta blue">Create User</button>
     </div>
   </form>
 </div>

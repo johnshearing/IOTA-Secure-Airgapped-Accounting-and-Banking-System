@@ -1,28 +1,28 @@
-<h1>SELECT, FILTER, AND SORT, USERS</h1>
+<h1>Select, Filter, and Sort, {tableLabel} Records</h1>
 </br>
 <h2>
-  All records are returned in order of creation if no selections are made</br>
-  Press the submit button to see the results
+  All records are returned in order of creation if no selections are made.</br>
+  Press the submit button to see the results.
 </h2>
 <div class="formWrapper"></div>
 <div class="buttonWrapper">
   <div class="inputWrapper ctaWrapper smallTopMargin">
     <!--The following button calls code that generates a query string based on user input-->
     <a class="cta green" id="generateQueryButton">Generate Query</a>
-    <!--The following button calls code that sends the query string to the server and then processes the results. -->
-    <a class="cta green" id="submitQueryButton">Submit Query</a>
+    <!--The following button calls code that sends the query string to the server and then processes the results. -->  
+    <a class="cta green" id="submitQueryButton">Submit Query</a>           
   </div>
-
+    
   <div class="inputWrapper ctaWrapper smallTopMargin">
     <!--The following button clears all the query controls on the webpage-->
     <a class="cta green" id="clearQueryButton">Clear Query</a>
     <!--The following button removes all the results on the webpage that were returned from the previous query-->
-    <a class="cta green" id="clearResultsButton">Clear Results</a>
-  </div>
-  <div class="inputWrapper ctaWrapper smallTopMargin">
-    <!--The following button brings the user to a new webpage where a new record may be added to the table-->
+    <a class="cta green" id="clearResultsButton">Clear Results</a>           
+  </div>   
+  <div class="inputWrapper ctaWrapper smallTopMargin">   
+    <!--The following button brings the user to a new webpage where a new record may be added to the table-->       
     <a class="cta green" href="user/add">Create a New User</a>
-  </div>
+  </div> 
 </div>
 
 <hr />
@@ -39,10 +39,10 @@
     <div class="inputWrapper fieldToDisplayInputWrapper">
       <div class="inputLabel smallTopMargin"></div>
       <select class="fieldToDisplay"> 
-        <option value="" style="display: list-item;"></option>
+        <option value="" style="display: list-item;"></option>            
         <option value="userId" style="display: list-item;">userId</option>
         <option value="email" style="display: list-item;">email</option>
-        <option value="timeStamp" style="display: list-item;">timeStamp</option>
+        <option value="timeStamp" style="display: list-item;">timeStamp</option>               
       </select>
     </div>
   </div>
@@ -55,17 +55,17 @@
 
     <div class="whereClauseWrapper">
       <!--
-      The following select element is used to select a field in the table for the where clause.
-      This should be populated with fields from the table the current webpage supports.
+      The following select element is used to select a field in the table for the where clause.   
+      This should be populated with fields from the table the current webpage supports.  
       So this will require a separate request just to get the field names.
       -->
       <div class="inputWrapper">
         <div class="inputLabel smallTopMargin">Select a field to be examined by the filter.</div>
-        <select class="fieldToCompare resetElement">
-          <option value=""></option>
+        <select class="fieldToCompare resetElement"> 
+          <option value=""></option>        
           <option value="userId">userId</option>
           <option value="email">email</option>
-          <option value="timeStamp">timeStamp</option> 
+          <option value="timeStamp">timeStamp</option>                
         </select>
       </div>
 
@@ -133,22 +133,23 @@
         </select>
       </div>        
     </div>
-  </div>  
+  </div>                    
 
-  <!--Below defines the order by clause used to choose the order in which records will be displayed.-->
+
+  <!--Below defines the order by clause used to choose the order in which records will be displayed.-->    
   <div class="orderByClauseGroupWrapper">Sort the Results<br>No sort order is applied if left blank.
     <div class="orderByClauseWrapper">
-      <!--The following is used to select the field to order by -->
+      <!--The following is used to select the field to order by -->      
       <div class="inputWrapper">
         <div class="inputLabel smallTopMargin">Select a field to use in the order by expression.</div>
-        <select class="fieldToOrderBy resetElement">
-          <option value=""></option>
+        <select class="fieldToOrderBy resetElement"> 
+          <option value=""></option>        
           <option value="userId">userId</option>
           <option value="email">email</option>
-          <option value="timeStamp">timeStamp</option> 
+          <option value="timeStamp">timeStamp</option>               
         </select>
       </div>
-
+  
       <!--The following is used to select the order by operator ascending or descending-->    
       <div class="inputWrapper">
         <div class="inputLabel smallTopMargin">Select an operator to use in the order by expression.</div>
@@ -181,9 +182,8 @@
   <!--The following textarea is used to display and edit the query string.-->    
   <div class="queryExpressionWrapper">          
     <div class="inputWrapper">
-      <div class="inputLabel smallTopMargin">Query Expression</div>
-      <textarea class="queryExpressionTextArea" name="queryExpression" rows="10" cols="30"></textarea>
+        <div class="inputLabel smallTopMargin">Query Expression</div>
+        <textarea class="queryExpressionTextArea" name="queryExpression" rows="10" cols="30"></textarea>
     </div>
   </div>         
 </script>
-

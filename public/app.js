@@ -371,7 +371,7 @@ app.formResponseProcessor = function(formId,requestPayload,responsePayload)
 
   // If forms saved successfully and they have success messages, show them.
   // First create an array naming all forms that have success messages.
-  var formsWithSuccessMessages = ['accountEdit1', 'accountEdit2','checksEdit1', 'userEdit1', 'userEdit2', 'userEdit3'];
+  var formsWithSuccessMessages = ['accountEdit1', 'accountEdit2','checksEdit1', 'userEditForm', 'userDeleteForm', 'userEdit3'];
 
   // If the form just successfully submitted is a member of the above array:
   if(formsWithSuccessMessages.indexOf(formId) > -1)
