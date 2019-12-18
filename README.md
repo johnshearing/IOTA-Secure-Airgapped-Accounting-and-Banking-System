@@ -6,7 +6,7 @@ The small template based code generator creates the client side user interface a
 The server side code will run on most any computer using most any operating system.  
 The generated user interface runs in the browser.  
   
-This is software generates accounting/banking systems for cryptocurrency that individuals, corporations, and governments can use for managing their business and for cooperating with each other. 
+This is software generates secure accounting/banking systems for cryptocurrency that individuals, corporations, and governments can use for managing their business and for cooperating with each other. 
 
 Built to run on a single airgapped [PrivateKeyVault](https://github.com/johnshearing/PrivateKeyVault) for individuals or on an airgapped network for large institutions or government. All this code will run on any device that can run NodeJS.  
 This is the last piece of the puzzle in [The PrivateKeyVault family of repositories](https://github.com/johnshearing).   
