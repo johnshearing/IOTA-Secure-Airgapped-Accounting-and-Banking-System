@@ -11,7 +11,7 @@ This is software generates accounting/banking systems for cryptocurrency that in
 Built to run on a single airgapped [PrivateKeyVault](https://github.com/johnshearing/PrivateKeyVault) for individuals or on an airgapped network for large institutions or government. All this code will run on any device that can run NodeJS.  
 This is the last piece of the puzzle in [The PrivateKeyVault family of repositories](https://github.com/johnshearing).   
  
-The code is extremely well commented to facilitate an audit. A video tutorial will be made shortly explaining each line of code so you can write everything from scratch if you want to. This will also facilitate an audit.  
+The code generator and all the generated code is extremely well commented and very easy read so as to facilitate an audit. A video tutorial will be made shortly explaining each line of code so you can write everything from scratch if you want to. This will also facilitate an audit.  
 
 #### Features:  
 * Database Functionality.  
