@@ -15,15 +15,17 @@ The code generator and all the generated code is extremely well commented and ve
 
 #### Features:  
 * Database Functionality.  
-  * Table locking is used to make the application multiuser. An unlimited amount of users and very complex behavior can be supported through the interactions of these simple systems with smart contracts.  
+  * Simple JSON database is human readable and easy to reason about.  
+  * Table locking is used to make the application multiuser. 
+   * An unlimited amount of users and very complex behavior can be supported through the interactions of these simple systems with smart contracts.  
   * Transaction rollbacks are initiated if any part of a transaction fails.  
   * All records in the database (no matter from what table) get their unique ids from a single incremented source so that every record has a system wide unique id that identifies when it was created with respect to all the other records in the database.    
   * Any adds, changes, or deletes to a record are recorded in a log that captures the entire record in it's new state. This along with the system wide unique ids allows the entire database to be reconstructed to represent any point in history.  
 * A Code Generator:
   * Rather than writing Post, Get, Put, Delete, Validation, and user interface functions for every table, there are templates instead that get populated with metadata from a data dictionary including all the business rules that make each table, each record, and each field unique.   
-  * First a simple app was written and tested. Then code templates were made for every type of function using the simple app as a model. From this point on, changes to the app are made in the templates and the metadata. After any changes are made, the application is regenerated. This way, major changes to functionality ripple down through the entire system without having to change the handlers for each table and their user interfaces. This eliminates most programming errors and allows us to make big changes to the system in a very short amount of time. Any fixes are made in one place and ripple down to all affected parts.  
+  * First a simple app was written and tested. Then code templates were made for every type of function using the simple app as a model. From that point on, changes to the app have been made in the templates and the metadata. After any changes are made, the application is regenerated. This way, major changes to functionality ripple down through the entire system without having to change the handlers for each table and their user interfaces. This eliminates most programming errors, enforces a uniform user experience, and allows us to make big changes to the system in a very short amount of time. Any fixes are made in one place and ripple down to all affected parts.  
   
-  * The big payoff here is in the audit. As a system grows in size it becomes exponentially harder to audit. So rather than trying to audit the generated code. All we need to do is audit the code generator and the metadata used to generate the application. This is a much smaller and more manageable job that will lead to much tighter security and faster fixes when security flaws are discovered.  
+  * The big payoff here is in the audit. As a system grows in size it becomes exponentially harder to audit. So rather than trying to audit the generated code. All we need to do is audit the code generator and the metadata used to generate the application. This is a much smaller and more manageable job thats lead to much tighter security and faster fixes when security flaws are discovered.  
 * [Generate truly random seeds](https://github.com/johnshearing/IOTA-Airgapped-NodeJS-Console-Wallet#generating-seeds-with-a-true-random-number-generator) (not pseudo-random) with special hardware built into every raspberry pi 2, or use another method if you want,
 * Generate keystore files for seeds.  
   * This is an encrypted file containing just a seed.  
