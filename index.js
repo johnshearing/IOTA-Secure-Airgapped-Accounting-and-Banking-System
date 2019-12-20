@@ -23,7 +23,7 @@ var app = {};
 app.init = function()
 {
   // Start the server for communication with users via http or https
-  server.init();
+  // server.init();
 
   // Start the workers or background tasks.
   // workers.init();
@@ -37,7 +37,8 @@ app.init = function()
   // The parameter is tableId in metadata.json.
   // meta.build.addWebPage(1285)
   // meta.build.editWebPage(1285);
-  // meta.build.listWebPage(1285);      
+  // meta.build.listWebPage(1285);  
+  meta.build.handlers(1285);   
 };
 
 
