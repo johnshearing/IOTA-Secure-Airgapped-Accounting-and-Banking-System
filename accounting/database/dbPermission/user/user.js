@@ -299,180 +299,364 @@ user._user = {};
 // Required data: email, password
 user._user.post = function(data, callback)
 {
-  // Create variables for the post from the clients request object.
-  // The variables will be loaded from the object if validation is passed otherwise will be assigned the value false.
-  var email = typeof(data.payload.email) == 'string' && data.payload.email.trim().length > 0 ? data.payload.email.trim() : false;
-  var password = typeof(data.payload.password) == 'string' && data.payload.password.trim().length > 0 ? data.payload.password.trim() : false;
+  // Get email from payload.
+  let email = data.payload.email;
 
-  //if every field passed the validation process above then do the following.
-  if(email && password)
+  // passIfNotEmpty
+  if(!email){return callback(400, {'Error' : 'No email was entered'});}
+  
+  // passIfString
+  if (typeof(email) != 'string'){return callback(400, {'Error' : 'email must be of datatype string'});} 
+
+  // passIfHasAmpersand
+  if (email.indexOf("@") === -1){return callback(400, {'Error' : 'Not a valid email'});} 
+
+  // Get password from payload
+  let password = data.payload.password;
+
+  // passIfNotEmpty
+  if(!password){return callback(400, {'Error' : 'No password was entered'});}
+
+  // passIfString
+  if (typeof(password) != 'string'){return callback(400, {'Error' : 'password must be of datatype string'});} 
+
+  // passIfHasNumber
+  if(function(password){let str = String(password); for( let i = 0; i < str.length; i++){if(!isNaN(str.charAt(i))){return true;}}return false} === false){return callback(400, {'Error' : 'password must contain a number.'});};
+  
+
+  // Will toggle this to false if we find the email address already exists in user.
+  let emailIsUnused = true;
+
+  // Using this to track the primary key of a record that we might encounter with the candidate email address.
+  // If we encounter this primary key again we will check to see if the email address has been changed.
+  // If it has then the candidate email address will be marked as available again.
+  let uniqueIdOfRecordHoldingCandidateEmail = false; 
+                        
+
+  // To ensure the email address is unique we will read every record in 
+  // user and compare with the email address provided.
+
+  // This function sets up a stream where each chunk of data is a complete line in the user file.
+  let readInterface = readline.createInterface
+  (
+    { // specify the file to be read.
+      input: fs.createReadStream(_data.baseDir + '/database/dbPermission/user' + '/' + 'user' + '.json')
+    }
+  );
+  
+  // Look at each record in the file and set a flag if the email address matches the email address provided by the user.
+  readInterface.on('line', function(line) 
   {
-    // Will toggle this to false if we find the email address already exists in user.
-    let emailIsUnused = true;
+    // Convert the JSON string from user into an object.
+    lineObject = JSON.parse(line);
 
-    // Using this to track the primary key of a record that we might encounter with the candidate email address.
-    // If we encounter this primary key again we will check to see if the email address has been changed.
-    // If it has then the candidate email address will be marked as available again.
-    let uniqueIdOfRecordHoldingCandidateEmail = false; 
-                         
+    // Several different record sets with the supplied email address and the same userId 
+    // may exist already if the record has been changed or deleted prior to this operation.
 
-    // To ensure the email address is unique we will read every record in 
-    // user and compare with the email address provided.
+    // A modified record is simply a new record with the same userId as an existing record.
+    // The newest record is the valid record and the older record is history.  
+    // So position matters. These tables should never be sorted.
+    // These tables can be packed however to get rid of historical records.
 
-    // This function sets up a stream where each chunk of data is a complete line in the user file.
-    let readInterface = readline.createInterface
-    (
-      { // specify the file to be read.
-        input: fs.createReadStream(_data.baseDir + '/database/dbPermission/user' + '/' + 'user' + '.json')
-      }
-    );
-    
-    // Look at each record in the file and set a flag if the email address matches the email address provided by the user.
-    readInterface.on('line', function(line) 
+    // The transaction log also maintains the history and the current state of the entire database.
+    // So the transaction log can be used to check the integrity of the every table.
+    // No records in the transaction log should be removed.
+
+    // A deleted record in this system is simply an identical record appended with 
+    // the deleted field set to true. 
+    // So depending on how many times the email address has been added and deleted there may 
+    // be several sets of records in the user table currently that have the same email 
+    // address and the same userId.
+    // The table can be packed occasionally to get rid of these deleted record sets. 
+    // Deletes are handled as appends with the deleted field set to true because real 
+    // deletes tie up the table for a long time.
+
+    // In this table, the email address is a unique key as well as the userId.
+
+    // When adding a record we first make sure that the record does NOT already exist.
+    // There should be no record with the current email address or if there is then 
+    // the last record with this email address must have the deleted field set to true.
+
+    // When changing a record we:
+    // 1. Make sure that the record with this email address does indeed exist and...
+    // 2. that the last instance of a record with this email address is not deleted.
+  
+    // It is ok to add a new record with this same email address again when the last instance 
+    // of this record encountered in the stream has the deleted flag set to true. 
+    // In that case, the userId will be different but the email address will be the same.         
+
+    // As explained above, only the last matching record for a particular email address matters.
+    // It's like that old game "She loves me, She loves me not".
+
+    if (email == lineObject.email) // we found a matching entry
     {
-      // Convert the JSON string from user into an object.
-      lineObject = JSON.parse(line);
-
-      // Several different record sets with the supplied email address and the same userId 
-      // may exist already if the record has been changed or deleted prior to this operation.
-
-      // A modified record is simply a new record with the same userId as an existing record.
-      // The newest record is the valid record and the older record is history.  
-      // So position matters. These tables should never be sorted.
-      // These tables can be packed however to get rid of historical records.
-
-      // The transaction log also maintains the history and the current state of the entire database.
-      // So the transaction log can be used to check the integrity of the every table.
-      // No records in the transaction log should be removed.
-
-      // A deleted record in this system is simply an identical record appended with 
-      // the deleted field set to true. 
-      // So depending on how many times the email address has been added and deleted there may 
-      // be several sets of records in the user table currently that have the same email 
-      // address and the same userId.
-      // The table can be packed occasionally to get rid of these deleted record sets. 
-      // Deletes are handled as appends with the deleted field set to true because real 
-      // deletes tie up the table for a long time.
-
-      // In this table, the email address is a unique key as well as the userId.
-
-      // When adding a record we first make sure that the record does NOT already exist.
-      // There should be no record with the current email address or if there is then 
-      // the last record with this email address must have the deleted field set to true.
-
-      // When changing a record we:
-      // 1. Make sure that the record with this email address does indeed exist and...
-      // 2. that the last instance of a record with this email address is not deleted.
-    
-      // It is ok to add a new record with this same email address again when the last instance 
-      // of this record encountered in the stream has the deleted flag set to true. 
-      // In that case, the userId will be different but the email address will be the same.         
-
-      // As explained above, only the last matching record for a particular email address matters.
-      // It's like that old game "She loves me, She loves me not".
-
-      if (email == lineObject.email) // we found a matching entry
+      if (lineObject.deleted == false) // The record has not been deleted so it's a duplicate. Not unique.
       {
-        if (lineObject.deleted == false) // The record has not been deleted so it's a duplicate. Not unique.
-        {
-          emailIsUnused = false; // This flag used in the on close event listener below. 
+        emailIsUnused = false; // This flag used in the on close event listener below. 
 
-          // If this record (record with this primary key) is encountered further down where it has been deleted 
-          // or where the email address has been changed with a put operation:
-          // Then the candidate address will be available again as we continue searching through the records.
-          // We are already checking if this email address becomes available again by deletion.
-          // Now we need to check if the email address becomes available because the record with this primary 
-          // key gets changed with a new email address.
-          // That will make the candidate email address unique and available again.
-          // So record this global sequential unique id (the userId in this case).
-          // If we find the gsuid again, then check if the email address has changed.
-          // If it has been changed then:
-          // 1. Set the emailIsUnused flag to true again
-          // 2. clear out the variable tracking the uniqueId of the record.
-          uniqueIdOfRecordHoldingCandidateEmail = lineObject.userId;
-        }
-        // The matching record we found has been deleted so it may as well not exist. The new record is still unique.
-        else 
-        {
-          emailIsUnused = true;
-        } 
-      } // End of: if we found a matching entry
-
-      // If we have seen this primary key before and flagged the email address already taken 
-      // because it was identical to the email address we are trying to add and it had not been deleted:
-
-      // Ok, the current record is not holding the candidate email address but 
-      // maybe it was in the past and someone changed it.
-      // if the candidate email address is flagged unavailable and we are looking at the record that was flagged:
-      else if(emailIsUnused === false && uniqueIdOfRecordHoldingCandidateEmail === lineObject.userId)
+        // If this record (record with this primary key) is encountered further down where it has been deleted 
+        // or where the email address has been changed with a put operation:
+        // Then the candidate address will be available again as we continue searching through the records.
+        // We are already checking if this email address becomes available again by deletion.
+        // Now we need to check if the email address becomes available because the record with this primary 
+        // key gets changed with a new email address.
+        // That will make the candidate email address unique and available again.
+        // So record this global sequential unique id (the userId in this case).
+        // If we find the gsuid again, then check if the email address has changed.
+        // If it has been changed then:
+        // 1. Set the emailIsUnused flag to true again
+        // 2. clear out the variable tracking the uniqueId of the record.
+        uniqueIdOfRecordHoldingCandidateEmail = lineObject.userId;
+      }
+      // The matching record we found has been deleted so it may as well not exist. The new record is still unique.
+      else 
       {
-        // Check if the email address is no longer holding the candidate email address.
-        // If it is not holding the candidate email address then flag the email address 
-        // available again and clear out the variable tracking this primary key.
         emailIsUnused = true;
-        uniqueIdOfRecordHoldingCandidateEmail = false;
+      } 
+    } // End of: if we found a matching entry
+
+    // If we have seen this primary key before and flagged the email address already taken 
+    // because it was identical to the email address we are trying to add and it had not been deleted:
+
+    // Ok, the current record is not holding the candidate email address but 
+    // maybe it was in the past and someone changed it.
+    // if the candidate email address is flagged unavailable and we are looking at the record that was flagged:
+    else if(emailIsUnused === false && uniqueIdOfRecordHoldingCandidateEmail === lineObject.userId)
+    {
+      // Check if the email address is no longer holding the candidate email address.
+      // If it is not holding the candidate email address then flag the email address 
+      // available again and clear out the variable tracking this primary key.
+      emailIsUnused = true;
+      uniqueIdOfRecordHoldingCandidateEmail = false;
+    }
+
+  }); // End of: readInterface.on('line', function(line){...}
+  // End of: Look at each record...
+
+
+
+
+  // This listener fires after we have discovered if the email address is 
+  // unique or not, and have then closed the readable stream from user.
+  // The callback function defined here will append the record if the email 
+  // address was found to be unique.
+  readInterface.on('close', function() 
+  {
+    // If the email already exists then exit this process without appending the record.
+    if (!emailIsUnused) 
+    {      
+      helpers.log
+      (
+        5,
+        '1trx8iyyv07jk0e6spuh' + '\n' +
+        'The email address: ' + email + ' already exists' + '\n'                                  
+      ); // End of: helpers.log(...)
+
+      return callback(400, {'Error' : 'The email address already exists'});
+    }      
+
+
+    // If we made it to this point then email is unique so continue on with the append opperation.
+
+    // Any calculated fields are processed here.
+    // Hash the password
+    var hashedPassword = helpers.hash(password);
+
+    // If the password was not hashed successfully then exit this process without appending the record.
+    if(!hashedPassword)
+    {
+      helpers.log
+      (
+        5,
+        'ss1dgd6y1qva11tca7s3' + '\n' +
+        'Could not hash the user\'s password' + '\n'                                  
+      ); // End of: helpers.log(...)
+
+      return callback(500, {'Error' : 'Could not hash the password'});
+    } // End of: else the password was not hashed successfully.
+
+
+
+    // If we made it to this point then the hash function successfully returned the hashed password so continue on.
+  
+
+
+    // Get the next global sequential unique Id and lock the database
+    // Locking the database makes the system multiuser.
+    // All writes to any table must first get a lock on gsuid.json
+    // gsuid.json stays locked until the operation is completely finished and _data.removeLock is called.
+    // This ensures that only one process is writing to the database at any one time.  
+    // If the transaction fails or if it requires a rollback then the lock will remain until an administrator removes it.
+    // This will halt all writes to the database until the administrator has had a chance to investigate.       
+    _data.nextId(function(error, nextIdObject)
+    {
+
+      // If we were unable to get the next gsuid then exit this process without appending the record. 
+      if(error || !nextIdObject)
+      {
+        helpers.log
+        (
+          5,
+          'fkk9ccm69fhi2ihcohr0' + '\n' +
+          'Unable to get the next gsuid.' + '\n' +
+          'The following was the error' + '\n' +
+          JSON.stringify(error) + '\n'                                   
+        ); // End of: helpers.log(...)
+
+        return callback('Unable to get the next gsuid.');
       }
 
-    }); // End of: readInterface.on('line', function(line){...}
-    // End of: Look at each record...
 
-    // This listener fires after we have discovered if the email address is 
-    // unique or not, and have then closed the readable stream from user.
-    // The callback function defined here will append the record if the email 
-    // address was found to be unique.
-    readInterface.on('close', function() 
-    {
-      if (emailIsUnused) // The email address is unique so proceed with append operation.
+      // If we got this far then we were able to lock the gsuid.json file and get the next 
+      // unique id number for this record so continue on.
+
+
+
+      // Create the user object. 
+      // This object will be appended to user.json.
+      var userObject = 
       {
-        // Hash the password
-        var hashedPassword = helpers.hash(password);
+          "userId" : nextIdObject.nextId,
+          "email" : email,
+          "hashedPassword" : hashedPassword,
+          "timeStamp" : Date.now(),
+          "deleted" : false
+      };
 
-        if(hashedPassword) // The hash function successfully returned the hashed password.
+      // Create the logObject.
+      // This object will be written to history.json which maintains a history of 
+      // all changes to all tables in the database.
+      var logObject =
+      {
+        "historyId" : nextIdObject.nextId + 1,                 
+        "transactionId" : nextIdObject.nextId + 2,            
+        "rollback" : false,
+        "process" : "aHandlers._user.post",
+        "comment" : "Post new record",
+        "who" : "No login yet",    
+        "user" : userObject   
+      }
+
+      // Calling the function which creates an entry into the database log file.
+      _data.append
+      (
+        'database/dbHistory', 
+        'history', 
+        logObject, 
+        function(err)
         {
-          // Get the next global sequential unique Id and lock the database
-          // Locking the database makes the system multiuser.
-          // All writes to any table must first get a lock on gsuid.json
-          // gsuid.json stays locked until the operation is completely finished and _data.removeLock is called.
-          // This ensures that only one process is writing to the database at any one time.          
-          _data.nextId(function(error, nextIdObject)
+          // If there was an error appending to the history file then exit this process
+          if (err)  
           {
-            // if we were able to lock the gsuid.json file and get the next unique id number for this record
-            if(!error && nextIdObject)
-            {
-              // Create the user object. 
-              // This object will be appended to user.json.
-              var userObject = 
-              {
-                  "userId" : nextIdObject.nextId,
-                  "email" : email,
-                  "hashedPassword" : hashedPassword,
-                  "timeStamp" : Date.now(),
-                  "deleted" : false
-              };
+            helpers.log
+            (
+              7,
+              'u9w77t06613xh1b1fwo6' + '\n' +
+              'There was an error appending to the history file' + '\n' +
+              'An error here does not necessarily mean the append to history did not happen.' + '\n' +  
+              'But an error at this point in the code surely means there was no append to user' + '\n' +                                          
+              'CHECK TO SEE IF history and user ARE STILL IN SYNC' + '\n' +                    
+              'The following was the record we tried to append:' + '\n' +
+              JSON.stringify(logObject) + '\n' +                   
+              'The following is the error message:' + '\n' +                  
+              err  + '\n'
+            );
 
-              // Create the logObject.
-              // This object will be written to history.json which maintains a history of 
-              // all changes to all tables in the database.
-              var logObject =
+            return callback(500, {'Error' : 'Could not create the new user.'});
+          }
+
+
+
+          // The history file has been appended to successfully so continue on.
+
+
+
+          // Calling the function which appends a record to the file user.json
+          _data.append
+          (
+          '/database/dbPermission/user', 
+          'user', 
+          userObject, 
+          function(err)
+          {
+            if (!err)  // The file has been appended to successfully.
+            {
+              // Call to function which removes lock
+              _data.removeLock
+              (function(error)
+              // start of callback code which is run after attempting to remove the lock.
               {
-                "historyId" : nextIdObject.nextId + 1,                 
-                "transactionId" : nextIdObject.nextId + 2,            
-                "rollback" : false,
+                if(!error) // Database lock was successfully removed.
+                {
+                  callback(200); 
+                }
+                else // Good write but unable to remove lock on database.
+                {
+                  helpers.log // Log the error.
+                  (
+                    7,
+                    'nx0xkbqr92hequnnegto' + '\n' +
+                    'Successful write to user but unable to remove lock on database' + '\n' +
+                    'The following record was appended to user:' + '\n' +                            
+                    JSON.stringify(logObject) + '\n' +   
+                    'The following was the error message:' + '\n' +                                             
+                    error + '\n'
+                  ); // End of: helpers.log. Log the error.
+
+                  return callback(500, {'Error' : 'Successful write to user but unable to remove lock on database'});
+
+                } // End of: else Good write but unable to remove lock on database.
+
+              } // End of callback code which is run after attempting to remove the lock.
+              ); // End of: _data.removeLock(function(error){...}
+              // End of: Call to function which removes lock
+
+            }    // End of: if (!err)  //The file has been appended to successfully.
+            else // There was an error appending to user.
+            {
+              helpers.log // Log the error.
+              (
+                5,
+                'oynxrq4bi74o9efvhzbj' + '\n' +
+                'There was an error when appending to the user file.' + '\n' +
+                'The following record may or may not have been appended to user:' + '\n' +                            
+                JSON.stringify(logObject) + '\n' +
+                'Attempting to rollback the entry.' + '\n' +    
+                'The following was the error message:' + '\n' +                                             
+                err + '\n'            
+              );
+
+              // Assemble rollback record for the user file which will negate previous entry if any.  
+              userObject = 
+              {
+                "userId" : nextIdObject.nextId,
+                "email" : email,
+                "hashedPassword" : hashedPassword,
+                "timeStamp" : Date.now(),
+                "deleted" : true
+              };                        
+
+              // Assemble rollback record for the history file which will negate previous entry if any.
+              logObject =
+              {
+                "historyId" : nextIdObject.nextId + 3,                             
+                "transactionId" : nextIdObject.nextId + 2,                        
+                "rollback" : true,
                 "process" : "aHandlers._user.post",
-                "comment" : "Post new record",
-                "who" : "No login yet",    
+                "comment" : "Error posting. Appending a delete.",                        
+                "who" : "Function needed",    
                 "user" : userObject   
               }
 
-              // Calling the function which creates an entry into the database log file.
-              _data.append
+              // Start the rollback process.
+              _data.append // Append a rollback entry in history.
               (
                 'database/dbHistory', 
                 'history', 
                 logObject, 
                 function(err)
                 {
-                  if (!err)  // The history file has been appended to successfully.
+                  if (!err) // The roll back entry in history was appended successfully.
                   {
                     // Calling the function which appends a record to the file user.json
                     _data.append
@@ -482,229 +666,65 @@ user._user.post = function(data, callback)
                       userObject, 
                       function(err)
                       {
-                        if (!err)  // The file has been appended to successfully.
+                        if (!err) // The rollback record for user was appended successfully.
                         {
-                          // Call to function which removes lock
-                          _data.removeLock
-                          (function(error)
-                          // start of callback code which is run after attempting to remove the lock.
-                          {
-                            if(!error) // Database lock was successfully removed.
-                            {
-                              callback(200); 
-                            }
-                            else // Good write but unable to remove lock on database.
-                            {
-                              helpers.log // Log the error.
-                              (
-                                7,
-                                'nx0xkbqr92hequnnegto' + '\n' +
-                                'Successful write to user but unable to remove lock on database' + '\n' +
-                                'The following record was appended to user:' + '\n' +                            
-                                JSON.stringify(logObject) + '\n' +   
-                                'The following was the error message:' + '\n' +                                             
-                                error + '\n'
-                              ); // End of: helpers.log. Log the error.
-
-                              callback(500, {'Error' : 'Successful write to user but unable to remove lock on database'});
-
-                            } // End of: else Good write but unable to remove lock on database.
-
-                          } // End of callback code which is run after attempting to remove the lock.
-                          ); // End of: _data.removeLock(function(error){...}
-                          // End of: Call to function which removes lock
-
-                        }    // End of: if (!err)  //The file has been appended to successfully.
-                        else // There was an error appending to user.
-                        {
-                          helpers.log // Log the error.
+                          helpers.log
                           (
                             5,
-                            'oynxrq4bi74o9efvhzbj' + '\n' +
-                            'There was an error when appending to the user file.' + '\n' +
-                            'The following record may or may not have been appended to user:' + '\n' +                            
-                            JSON.stringify(logObject) + '\n' +
-                            'Attempting to rollback the entry.' + '\n' +    
-                            'The following was the error message:' + '\n' +                                             
-                            err + '\n'
-                          );
-
-                          // Assemble rollback record for the user file which will negate previous entry if any.  
-                          userObject = 
-                          {
-                              "userId" : nextIdObject.nextId,
-                              "email" : email,
-                              "hashedPassword" : hashedPassword,
-                              "timeStamp" : Date.now(),
-                              "deleted" : true
-                          };                        
-
-                          // Assemble rollback record for the history file which will negate previous entry if any.
-                          logObject =
-                          {
-                            "historyId" : nextIdObject.nextId + 3,                             
-                            "transactionId" : nextIdObject.nextId + 2,                        
-                            "rollback" : true,
-                            "process" : "aHandlers._user.post",
-                            "comment" : "Error posting. Appending a delete.",                        
-                            "who" : "Function needed",    
-                            "user" : userObject   
-                          }
-
-                          // Start the rollback process.
-                          _data.append // Append a rollback the entry in history.
+                            'uv6z3xrz7bquio9dqeci' + '\n' +
+                            'Rollback entry in the user file was appended successfully' + '\n' +
+                            'The following was the record we rolled back:' + '\n' +
+                            JSON.stringify(logObject) + '\n'                                   
+                          ); // End of: helpers.log(...)
+                        }
+                        else // There was an error when rolling back record for user.
+                        {
+                          helpers.log
                           (
-                            'database/dbHistory', 
-                            'history', 
-                            logObject, 
-                            function(err)
-                            {
-                              if (!err) // The roll back entry in history was appended successfully.
-                              {
-                                // Calling the function which appends a record to the file user.json
-                                _data.append
-                                (
-                                  '/database/dbPermission/user', 
-                                  'user', 
-                                  userObject, 
-                                  function(err)
-                                  {
-                                    if (!err) // The rollback record for user was appended successfully.
-                                    {
-                                      helpers.log
-                                      (
-                                        5,
-                                        'uv6z3xrz7bquio9dqeci' + '\n' +
-                                        'Rollback entry in the user file was appended successfully' + '\n' +
-                                        'The following was the record we rolled back:' + '\n' +
-                                        JSON.stringify(logObject) + '\n'                                   
-                                      ); // End of: helpers.log(...)
-                                    }
-                                    else // There was an error when rolling back record for user.
-                                    {
-                                      helpers.log
-                                      (
-                                        7,
-                                        'wp2bc2t9l2lo02tkwxkt' + '\n' +
-                                        'There was an error appending a rollback entry in the user file' + '\n' +
-                                        'The following record may or may not have been rolled back:' + '\n' +
-                                        JSON.stringify(logObject) + '\n' +   
-                                        'An error here does not necessarily mean the deleteing append to user did not happen.' + '\n' +                                        
-                                        'CHECK TO SEE IF history and user ARE STILL IN SYNC' + '\n' + 
-                                        'The following is the error message:' + '\n' +                                                                     
-                                        err  + '\n'
-                                      ); // End of: helpers.log(...)
-                                    }
+                            7,
+                            'wp2bc2t9l2lo02tkwxkt' + '\n' +
+                            'There was an error appending a rollback entry in the user file' + '\n' +
+                            'The following record may or may not have been rolled back:' + '\n' +
+                            JSON.stringify(logObject) + '\n' +   
+                            'An error here does not necessarily mean the deleteing append to user did not happen.' + '\n' +                                        
+                            'CHECK TO SEE IF history and user ARE STILL IN SYNC' + '\n' + 
+                            'The following is the error message:' + '\n' +                                                                     
+                            err  + '\n'
+                          ); // End of: helpers.log(...)
+                        }
 
-                                  } // End of: callback function(err){...}
-                                ); // End of: _data.append(...)
-
-                              } // End of: The roll back entry in history was appended successfully.
-                              else // There was an error when appending a rollback entry in history.
-                              { 
-                                helpers.log
-                                (
-                                  7,
-                                  'tg5xm6k7vvofwxp789o0' + '\n' +
-                                  'There was an error appending a rollback entry in the history file' + '\n' +
-                                  'A rollback entry may or may not have been written in the user file' + '\n' +  
-                                  'CHECK TO SEE IF history and user ARE STILL IN SYNC' + '\n' +                                      
-                                  'The following was the record we tried to roll back:' + '\n' +
-                                  JSON.stringify(logObject) + '\n' +        
-                                  'The following is the error message:' + '\n' +
-                                  err  + '\n'
-                                );
-                              } // End of: else There was an error when appending a rollback entry in history.
-                            } // End of: callback function(err){...}
-                          ); // End of: _data.append(...)
-
-                          callback(500, {'Error' : 'Could not create the new user.'});
-
-                        } // End of: else // There was an error appending to user.
-                      } // End of: callback function
-                      ); // End of: Calling the function which appends a record to the file user.json 
-
-                  } //End of: The history file has been appended to successfully.
-                  else // There was an error appending to the history file.
-                  {
+                      } // End of: callback function(err){...}
+                    ); // End of: _data.append(...)
+                    
+                  } // End of: The roll back entry in history was appended successfully.
+                  else // There was an error when appending a rollback entry in history.
+                  { 
                     helpers.log
                     (
                       7,
-                      'u9w77t06613xh1b1fwo6' + '\n' +
-                      'There was an error appending to the history file' + '\n' +
-                      'An error here does not necessarily mean the append to history did not happen.' + '\n' +  
-                      'But an error at this point in the code surely means there was no append to user' + '\n' +                                          
-                      'CHECK TO SEE IF history and user ARE STILL IN SYNC' + '\n' +                    
-                      'The following was the record we tried to append:' + '\n' +
-                      JSON.stringify(logObject) + '\n' +                   
-                      'The following is the error message:' + '\n' +                  
+                      'tg5xm6k7vvofwxp789o0' + '\n' +
+                      'There was an error appending a rollback entry in the history file' + '\n' +
+                      'A rollback entry may or may not have been written in the user file' + '\n' +  
+                      'CHECK TO SEE IF history and user ARE STILL IN SYNC' + '\n' +                                      
+                      'The following was the record we tried to roll back:' + '\n' +
+                      JSON.stringify(logObject) + '\n' +        
+                      'The following is the error message:' + '\n' +
                       err  + '\n'
                     );
+                  } // End of: else There was an error when appending a rollback entry in history.
+                } // End of: callback function(err){...}
+              ); // End of: _data.append(...) Append a rollback entry in history.
 
-                    callback(500, {'Error' : 'Could not create the new user.'});
-                  }
-                } // End of: callback function
-              ); // End of: _data.append(dbHistory...)
-              // End of: Calling the function which creates an entry into history. 
+              return callback(500, {'Error' : 'Could not create the new user.'});              
 
-            } // End of: if we were able to lock the gsuid.json file and get the next unique id number for this record
-            else // We were unable to get the next gsuid.
-            {
-              helpers.log
-              (
-                5,
-                'fkk9ccm69fhi2ihcohr0' + '\n' +
-                'Unable to get the next gsuid.' + '\n' +
-                'The following was the error' + '\n' +
-                JSON.stringify(error) + '\n'                                   
-              ); // End of: helpers.log(...)
-
-              callback('Unable to get the next gsuid.');
-            }
-
-          }); // End of: lib.nextId(function(err, nextIdObject)
-
-        } // End of: The hash function successfully returned the hashed password.
-        else // The password was not hashed successfully.
-        {
-          helpers.log
-          (
-            5,
-            'ss1dgd6y1qva11tca7s3' + '\n' +
-            'Could not hash the user\'s password' + '\n'                                  
-          ); // End of: helpers.log(...)
-
-          callback(500, {'Error' : 'Could not hash the user\'s password'});
-        } // End of: else the password was not hashed successfully.
-
-      }
-      else // The email address already exists so exit this process without appending the record.
-      {      
-        helpers.log
-        (
-          5,
-          '1trx8iyyv07jk0e6spuh' + '\n' +
-          'The email address: ' + email + ' already exists' + '\n'                                  
-        ); // End of: helpers.log(...)
-
-        callback(400, {'Error' : 'The email address already exists'});
-      }      
-
-    }); // End of: readInterface.on('close', function(){...}
-
-  } // End of: If field validation has been passed successfully.
-  else // Field validation failed.
-  {
-    helpers.log
-    (
-      5,
-      '822ilaf6jt36lxymtdoe' + '\n' +
-      'Missing required fields' + '\n'                                  
-    ); // End of: helpers.log(...)
-
-      callback(400, {'Error' : 'Missing required fields'});
-  } // End of: else field validation failed.
-
+            } // End of: else // There was an error appending to user.
+          } // End of: callback function
+          ); // End of: Calling the function which appends a record to the file user.json 
+        } // End of: callback function
+      ); // End of: _data.append(dbHistory...)
+      // End of: Calling the function which creates an entry into history. 
+    }); // End of: lib.nextId(function(err, nextIdObject)
+  }); // End of: readInterface.on('close', function(){...}
 }; // End of: handlers._user.post = function(...
 // End of: user - post subhandler
 

@@ -143,3 +143,4 @@
 {"userId":1700,"email":"hans@gmail.com","hashedPassword":"36583a77a098c02ef111e2f2521d77b58e420f2bc7e9bf930ec24b21d42ea2e0","timeStamp":1576731277716,"deleted":false}
 {"userId":635,"email":"barb@gmail.net","hashedPassword":"36583a77a098c02ef111e2f2521d77b58e420f2bc7e9bf930ec24b21d42ea2e0","timeStamp":1576892560529,"deleted":false}
 {"userId":1710,"email":"sam@gmail.com","hashedPassword":"36583a77a098c02ef111e2f2521d77b58e420f2bc7e9bf930ec24b21d42ea2e0","timeStamp":1576892587735,"deleted":false}
+{"userId":1715,"email":"yoda@gmail.com","hashedPassword":"36583a77a098c02ef111e2f2521d77b58e420f2bc7e9bf930ec24b21d42ea2e0","timeStamp":1576973769420,"deleted":false}
