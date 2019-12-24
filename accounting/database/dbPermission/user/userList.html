@@ -21,7 +21,7 @@
   </div>
   <div class="inputWrapper ctaWrapper smallTopMargin">
     <!--The following button brings the user to a new webpage where a new record may be added to the table-->
-    <a class="cta green" href="user/add">Create a New User</a>
+    <a class="cta green" href="${recordObject.table.tableName}/add">Create a New ${recordObject.table.tableName}</a>
   </div>
 </div>
 
@@ -525,9 +525,7 @@ app.loaduserListPage = async function()
 
       // Sort the recordsArray which was populated after running the query.
       recordsArray.sort(function(a, b)
-      {
-        // return a.email.toString().toLowerCase().localeCompare(b.email.toString().toLowerCase());
-        
+      { 
         let loopCounter = 0;
         let sortResult = 0;
 

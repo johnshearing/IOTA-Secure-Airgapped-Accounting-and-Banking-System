@@ -324,7 +324,7 @@ app.formResponseProcessor = function(formId,requestPayload,responsePayload)
 // Load the userEdit page with data from the server.
 app.loaduserEditPage = async function()
 {
-  // Get the email and timeStamp.
+  // Get the published fields and the timeStamp.
   // 1. Get the userId
   // The template function inserts the userId into the html before serving it to the client.
   let userId = document.querySelector("form input[name=userId]").value;
@@ -333,7 +333,7 @@ app.loaduserEditPage = async function()
   // particular userId that the user clicked on in the list.
   let queryExpression = "?WHERE:;userId:;MatchesExactly:;" + userId + ":;";
 
-  // Run the query defined below to get the email address and timeStamp from the userID.    
+  // Run the query defined below to get the published fields and the timeStamp for the userID.    
   let recordArray = await runQueryOnuserId(queryExpression);
 
   // Get the record object from the array returned by the query.
@@ -343,7 +343,7 @@ app.loaduserEditPage = async function()
   document.querySelectorAll(".emailInput").forEach(function (element){element.value = recordObject.email});
   document.querySelectorAll(".timeStampInput").forEach(function(element){element.value = recordObject.timeStamp});  
 
-  // Define a function to get the email address and the timeStamp from the userID
+  // Define a function to get the published fields and the timeStamp from the userID
   async function runQueryOnuserId(queryExpression) 
   {
     const res = await fetch('api/user' + queryExpression);
@@ -377,7 +377,7 @@ app.loaduserEditPage = async function()
       }
     });
   } // End of: async function runQueryOnuserId(queryExpression){...}
-  // End of: Define a function to get the email address and the timeStamp from the userID
+  // End of: Define a function to get the email and the timeStamp from the userID
 
 }; // End of: app.loaduserEditPage = function(){...}
 
