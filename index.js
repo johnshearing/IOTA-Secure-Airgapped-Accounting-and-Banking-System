@@ -12,8 +12,10 @@
 // Dependencies
 const server = require('./lib/server');
 const workers = require('./lib/workers');
-var cli = require('./lib/repl');
-var meta = require('./lib/meta');
+const cli = require('./lib/repl');
+const meta = require('./lib/meta');
+const helpers = require('./lib/aHelpers');
+
 
 // Declare the app.
 var app = {};
@@ -23,7 +25,7 @@ var app = {};
 app.init = function()
 {
   // Start the server for communication with users via http or https
-  // server.init();
+  server.init();
 
   // Start the workers or background tasks.
   // workers.init();
@@ -32,6 +34,9 @@ app.init = function()
   // Make sure the CLI starts last. 
   // That's so console.log messages from workers.init and server.init do no confuse users at the command prompt
   // setTimeout(function(){cli.init();}, 5000);
+
+  // Get a random number at the console.
+  // console.log(helpers.createRandomString(20));  
 
   // Build webpages for working with tables.
   // The parameter is tableId in metadata.json.

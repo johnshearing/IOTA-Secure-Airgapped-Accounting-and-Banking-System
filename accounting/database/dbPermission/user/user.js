@@ -302,25 +302,31 @@ user._user.post = function(data, callback)
   // Get email from payload;
   let email = data.payload.email;
 
-  // passIfNotEmpty
-  if(!email){return callback(400, {'Error' : 'No email was entered'});}
+  // passIfString Default behavior from meta.js
+  // qif5xwvzgr7efln9xtr8
+  if (typeof(email) != 'string'){return callback(400, {'Error' : 'email must be of datatype string'});};
 
-  // passIfString
-  if (typeof(email) != 'string'){return callback(400, {'Error' : 'email must be of datatype string'});}
+  // passIfNotEmpty Default behavior from meta.js
+  // eojwivwlhxkm1b837n2o
+  if(!email || email.trim().length === 0){return callback(400, {'Error' : 'No email was entered'});}else{email = email.trim()};
 
   // passIfHasAmpersand
+  // uet9z3uuzgy5hmytmsxf 
   if (email.indexOf("@") === -1){return callback(400, {'Error' : 'Not a valid email'});}
 
   // Get password from payload;
   let password = data.payload.password;
 
-  // passIfNotEmpty
-  if(!password){return callback(400, {'Error' : 'No password was entered'});}
+  // passIfString Default behavior from meta.js
+  // qif5xwvzgr7efln9xtr8
+  if (typeof(password) != 'string'){return callback(400, {'Error' : 'password must be of datatype string'});};
 
-  // passIfString
-  if (typeof(password) != 'string'){return callback(400, {'Error' : 'password must be of datatype string'});}
+  // passIfNotEmpty
+  // bet9z4ufzg97hmfdhmxt 
+  if(!password){return callback(400, {'Error' : 'No password was entered'});};
 
   // passIfHasNumber
+  // 5et9z9uuzgy5hmfdmmxf 
   if(function(password){let str = String(password); for( let i = 0; i < str.length; i++){if(!isNaN(str.charAt(i))){return true;}}return false} === false){return callback(400, {'Error' : 'password must contain a number.'});};
 
 
@@ -449,7 +455,7 @@ user._user.post = function(data, callback)
       helpers.log
       (
         5,
-        'zzxxveijd1d2hnutg0a6' + '\n' +
+        '6dgqop2ngtbfjej4sgho' + '\n' +
         'The email address: ' + email + ' already exists' + '\n'                                  
       ); // End of: helpers.log(...)
 
@@ -459,7 +465,8 @@ user._user.post = function(data, callback)
     // If we made it to this point then the candidate email is unique so continue on with the append opperation.    
 
             
-    // Any calculated fields are processed here.
+    // Password calculation is processed here.
+    // het9z9uuzgy5hmfwdgkz
     // Hash the password
     var hashedPassword = helpers.hash(password);
 
@@ -493,7 +500,7 @@ user._user.post = function(data, callback)
         helpers.log
         (
           5,
-          'c7b1tz04xlrrszc9d0rh' + '\n' +
+          'eoqq30ksj1pgorgrc59c' + '\n' +
           'Unable to get the next gsuid.' + '\n' +
           'The following was the error' + '\n' +
           JSON.stringify(error) + '\n'                                   
@@ -547,7 +554,7 @@ user._user.post = function(data, callback)
             helpers.log
             (
               7,
-              'p0se1oa23iulbyfmghk9' + '\n' +
+              '1yhjgxzpf197hf54xqnn' + '\n' +
               'There was an error appending to the history file' + '\n' +
               'An error here does not necessarily mean the append to history did not happen.' + '\n' +  
               'But an error at this point in the code surely means there was no append to user' + '\n' +                                          
@@ -591,7 +598,7 @@ user._user.post = function(data, callback)
                   helpers.log // Log the error.
                   (
                     7,
-                    '35eqgr5t25wmjoz54ne9' + '\n' +
+                    'wx9gefa8qnmbs446lsqx' + '\n' +
                     'Successful write to user but unable to remove lock on database' + '\n' +
                     'The following record was appended to the user file:' + '\n' +                            
                     JSON.stringify(logObject) + '\n' +   
@@ -613,7 +620,7 @@ user._user.post = function(data, callback)
               helpers.log // Log the error.
               (
                 5,
-                'k62ulq8o0hw6ywgy21z9' + '\n' +
+                'yvd10227ru86a3vg6aev' + '\n' +
                 'There was an error when appending to the user file.' + '\n' +
                 'The following record may or may not have been appended to the user file:' + '\n' +                            
                 JSON.stringify(logObject) + '\n' +
@@ -667,7 +674,7 @@ user._user.post = function(data, callback)
                           helpers.log
                           (
                             5,
-                            'cegix9btvnyof2ljex5a' + '\n' +
+                            '5i463rjvjfcsfx4mwp7z' + '\n' +
                             'Rollback entry in the user file was appended successfully' + '\n' +
                             'The following was the record we rolled back:' + '\n' +
                             JSON.stringify(logObject) + '\n'                                   
@@ -678,7 +685,7 @@ user._user.post = function(data, callback)
                           helpers.log
                           (
                             7,
-                            '3tgxkzaali67mzo564rx' + '\n' +
+                            'q87jvperiifonsdmmfl1' + '\n' +
                             'There was an error appending a rollback entry in the user file' + '\n' +
                             'The following record may or may not have been rolled back:' + '\n' +
                             JSON.stringify(logObject) + '\n' +   
@@ -698,7 +705,7 @@ user._user.post = function(data, callback)
                     helpers.log
                     (
                       7,
-                      '5mzhu0p7pmt7qhpl0tin' + '\n' +
+                      'nkes6tnwjn8fiab8og9f' + '\n' +
                       'There was an error appending a rollback entry in the history file' + '\n' +
                       'A rollback entry may or may not have been written in the user file' + '\n' +  
                       'CHECK TO SEE IF history and user ARE STILL IN SYNC' + '\n' +                                      

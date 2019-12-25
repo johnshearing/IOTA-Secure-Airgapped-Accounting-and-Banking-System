@@ -60,7 +60,7 @@ user._user.put = function(data, callback){
   let password = typeof(data.payload.password) == 'string' && data.payload.password.trim().length > 0 ? data.payload.password.trim() : false;
   let deleted = typeof(data.payload.deleted) === 'string' && data.payload.deleted === "true" ? true : false;
   
-  //if either field passed the validation process above then do the following.
+  //if any field passed the validation process above then do the following.
   if(userId && (email || password || deleted))
   {
     // Get the next global sequential unique Id and lock the database
