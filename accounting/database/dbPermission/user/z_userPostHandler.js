@@ -1,352 +1,54 @@
-
-/*
-/ Handlers for the "user" table.
-*/
-
-
-// Dependencies
-const fs = require('fs');
-const readline = require('readline');
-const { pipeline, Readable, Writable } = require('stream');
-const StringDecoder = require('string_decoder').StringDecoder;
-const _data = require('../../../../lib/aData');
-const helpers = require('../../../../lib/aHelpers');
-
-
-// Create a container for all the handlers
-let user = {};
-
-
-
-
-// Define the handler function that serves up the HTML page for searching and listing user records.
-user.serveListPage = function(data, callback)
-{
-  // Reject any request that isn't a get
-  if(data.method == 'get')
-  {
-    // The following values will be inserted into the webpage at the corresponding key locations in the templates.
-    var templateData = 
-    {
-      'head.title' : 'User List',
-      'body.class' : 'userList',     
-      'tableName':'user',
-      "tableLabel":"User",    
-      'head.clientCode' : '', // The HTML header template must see something or an empty string.         
-    };
-
-    // Read in a template as a string
-    helpers.getTemplate('../accounting/database/dbPermission/user/userList', templateData, function(errorGetTemplate, str)
-    {
-      if(!errorGetTemplate && str) // If there were no errors and a template was returned
-      {
-        // Add the universal header and footer.
-        helpers.addUniversalTemplates(str, templateData, function(errorAddUnivTemplates, str)
-        {
-          if(!errorAddUnivTemplates && str) // if no error and template was returned:
-          {
-            // Return that page as html
-            callback(200, str, 'html');
-          } 
-          else // there was an error or the concatenated templates were not returned.
-          {
-            helpers.log
-            (            
-              5,
-              '9glj2vyhiqqjaeh2yaac' + '\n' +
-              'There was an error or the concatenated templates were not returned.' + '\n' +
-              'This was the error:' + '\n' +
-              JSON.stringify(errorAddUnivTemplates) + '\n'
-            );
-
-            callback(500, undefined, 'html');
-          }
-        }); // End of: helpers.addUniversalTemplates(str...
-
-      } // End of: If there were no errors and a template was returned
-      else // There was an error or no template was returned.
-      {
-        helpers.log
-        (
-          5,
-          '9hhz2e4be5l9c00rdntc' + '\n' +
-          'There was an error or no template was returned.' + '\n' +
-          'This was the error:' + '\n' +
-          JSON.stringify(errorGetTemplate) + '\n'
-        );
-
-        // Send back status code for Internal Server Error, an undefined payload, and contentType of html.
-        callback(500, undefined, 'html');
-      }
-    }); // End of: call to helpers.getTemplate(...
-
-  } // End of: if the method is get
-  else // Method not get. Only gets allowed.
-  {
-    helpers.log
-    (
-      5,
-      'mozyg64g19pe6j8ur3gg' + '\n' +
-      'Method not get. Only gets allowed.' + '\n'
-    );
-
-    // Send back status code for Not Allowed, an undefined payload, and contentType of html,
-    callback(405, undefined, 'html');
-  } // End of: else method not a get  
-}; // End of: user.serveListPage = function(data, callback){...}
-// End of:// Define the handler function that serves up the HTML page for searching and listing user records.
-
-
-
-
-// Define the handler function that serves up the HTML page for creating new user records.
-user.serveAddPage = function(data, callback)
-{
-  // Reject any request that isn't a get
-  if(data.method == 'get')
-  {
-    // The following values will be inserted into the webpage at the corresponding key locations in the templates.
-    var templateData = 
-    {
-      'head.title' : 'Create a New User',
-      'head.description' : 'For creating a new user record',
-      'body.class' : 'userAdd', 
-      'head.clientCode' : '', // The HTML header template must see something or an empty string.      
-    };
-
-    // Read in a template as a string
-    helpers.getTemplate('../accounting/database/dbPermission/user/userAdd', templateData, function(errorGetTemplate, str)
-    {
-      if(!errorGetTemplate && str) // If there were no errors and a template was returned
-      {
-        // Add the universal header and footer.
-        helpers.addUniversalTemplates(str, templateData, function(errorAddUnivTemplates, str)
-        {
-          if(!errorAddUnivTemplates && str) // if no error and template was returned:
-          {
-            // Return that page as html
-            callback(200, str, 'html');
-          } 
-          else // there was an error or the concatenated templates were not returned.
-          {
-            helpers.log
-            (            
-              5,
-              'ytmdzalnbqgg55yf3rjk' + '\n' +
-              'There was an error or the concatenated templates were not returned.' + '\n' +
-              'This was the error:' + '\n' +
-              JSON.stringify(errorAddUnivTemplates) + '\n'
-            );
-
-            callback(500, undefined, 'html');
-          }
-        }); // End of: helpers.addUniversalTemplates(str...
-
-      } // End of: If there were no errors and a template was returned
-      else // There was an error or no template was returned.
-      {
-        helpers.log
-        (
-          5,
-          'txj63p7lx7ajqy0bpe0m' + '\n' +
-          'There was an error or no template was returned.' + '\n' +
-          'This was the error:' + '\n' +
-          JSON.stringify(errorGetTemplate) + '\n'
-        );
-
-        // Send back status code for Internal Server Error, an undefined payload, and contentType of html.
-        callback(500, undefined, 'html');
-      }
-    }); // End of: call to helpers.getTemplate(...
-
-  } // End of: if the method is get
-  else // Method not get. Only gets allowed.
-  {
-    helpers.log
-    (
-      5,
-      'kyzlqsyvbk9dydn4ztay' + '\n' +
-      'Method not get. Only gets allowed.' + '\n'
-    );
-
-    // Send back status code for Not Allowed, an undefined payload, and contentType of html,
-    callback(405, undefined, 'html');
-  } // End of: else method not a get  
-}; // End of: user.serveAddPage = function(data, callback){...}
-// End of: Define the handler function that serves up the HTML page for creating new user records.
-
-
-
-
-// Define the handler function that serves up the HTML page for editing user records.
-user.serveEditPage = function(data, callback)
-{
-  // Reject any request that isn't a get
-  if(data.method == 'get')
-  {
-    // The following values will be inserted into the webpage at the corresponding key locations in the templates.
-    var templateData = 
-    {
-      'head.title' : 'Edit a User',     
-      'body.class' : 'userEdit',
-      'selected.userId' : data.queryStringObject.userId,  
-      'head.clientCode' : '', // The HTML header template must see something or an empty string.     
-    };
-
-    // Read in a template as a string
-    helpers.getTemplate('../accounting/database/dbPermission/user/userEdit', templateData, function(errorGetTemplate, str)
-    {
-      if(!errorGetTemplate && str) // If there were no errors and a template was returned
-      {
-        // Add the universal header and footer.
-        helpers.addUniversalTemplates(str, templateData, function(errorAddUnivTemplates, str)
-        {
-          if(!errorAddUnivTemplates && str) // if no error and template was returned:
-          {
-            // Return that page as html
-            callback(200, str, 'html');
-          } 
-          else // there was an error or the concatenated templates were not returned.
-          {
-            helpers.log
-            (            
-              5,
-              'k80bb5m9tkf70fp59x1u' + '\n' +
-              'There was an error or the concatenated templates were not returned.' + '\n' +
-              'This was the error:' + '\n' +
-              JSON.stringify(errorAddUnivTemplates) + '\n'
-            );
-
-            callback(500, undefined, 'html');
-          }
-        }); // End of: helpers.addUniversalTemplates(str...
-
-      } // End of: If there were no errors and a template was returned
-      else // There was an error or no template was returned.
-      {
-        helpers.log
-        (
-          5,
-          'wep682i3hwsj43v3tyy5' + '\n' +
-          'There was an error or no template was returned.' + '\n' +
-          'This was the error:' + '\n' +
-          JSON.stringify(errorGetTemplate) + '\n'
-        );
-
-        // Send back status code for Internal Server Error, an undefined payload, and contentType of html.
-        callback(500, undefined, 'html');
-      }
-    }); // End of: call to helpers.getTemplate(...
-
-  } // End of: if the method is get
-  else // Method not get. Only gets allowed.
-  {
-    helpers.log
-    (
-      5,
-      'dkm64kaln86i60upn1rb' + '\n' +
-      'Method not get. Only gets allowed.' + '\n'
-    );
-
-    // Send back status code for Not Allowed, an undefined payload, and contentType of html,
-    callback(405, undefined, 'html');
-  } // End of: else method not a get  
-}; // End of: user.serveEditPage = function(data, callback){...}
-// End of: Define the handler function that serves up the HTML page for editing user records.
-
-
-
-
-// Router for user functions
-// Define a function which calls the requested get, post, put, or delete subhandler function for user 
-// and passes to the chosen subhandler the client's request object and the callback function.
-user.user = function(data, callback)
-{
-  // Create an array of acceptable methods.
-  var acceptableMethods = ['post', 'get', 'put'];
-
-  // if the requested method is one of the acceptable methods:
-  if (acceptableMethods.indexOf(data.method) > -1) 
-  {
-    // then call the appropriate user subhandler.
-    user._user[data.method](data, callback);
-  } 
-  // Otherwise the method was not one of the acceptable methods:
-  else 
-  {
-    helpers.log
-    (
-      5,
-      'j4z4ekm433cqc3h8fguf' + '\n' +
-      'The method was not one of the acceptable methods' + '\n'
-    ); 
-
-    // so send back status 405 (Not Allowed).
-    callback(405);
-  }
-}; // End of: user.user = function(data, callback){...}
-//End of: Router for user functions
-
-
-
-
-// Create a subobject within the handlers object for the user submethods (post, get, put, and delete)
-user._user = {};
-
-
-
-
 // user - post subhandler
 // Define the user post subhandler function.
 // This function appends a record to the user file.
 user._user.post = function(data, callback)
 {
   // Field validation starts here.
-  // Get email from payload
+  // Get email from payload;
   let email = data.payload.email;
 
   // passIfString Default behavior from meta.js
   // qif5xwvzgr7efln9xtr8
-  if(typeof(email) != 'string'){return callback(400, {'Error' : 'email must be of datatype string'});}
+  if (typeof(email) != 'string'){return callback(400, {'Error' : 'email must be of datatype string'});};
 
   // passIfNotEmpty Default behavior from meta.js
   // eojwivwlhxkm1b837n2o
-  if(!email || email.trim().length === 0){return callback(400, {'Error' : 'No email was entered'});}else{email = email.trim()}
+  if(!email || email.trim().length === 0){return callback(400, {'Error' : 'No email was entered'});}else{email = email.trim()};
 
   // passIfHasAmpersand
   // uet9z3uuzgy5hmytmsxf 
-  if(email.indexOf("@") === -1){return callback(400, {'Error' : 'Not a valid email'});}
+  if (email.indexOf("@") === -1){return callback(400, {'Error' : 'Not a valid email'});}
 
-  // Get password from payload
+  // Get password from payload;
   let password = data.payload.password;
 
   // passIfString Default behavior from meta.js
   // qif5xwvzgr7efln9xtr8
-  if(typeof(password) != 'string'){return callback(400, {'Error' : 'password must be of datatype string'});}
+  if (typeof(password) != 'string'){return callback(400, {'Error' : 'password must be of datatype string'});};
 
   // passIfNotEmpty
   // bet9z4ufzg97hmfdhmxt 
-  if(!password){return callback(400, {'Error' : 'No password was entered'});}
+  if(!password){return callback(400, {'Error' : 'No password was entered'});};
 
   // passIfHasNumber
   // 5et9z9uuzgy5hmfdmmxf 
-  // declare a function used to check if the password has a number in it. 
-  function passwordDoesNotHaveNumber (password) 
-  { 
-    let str = String(password); 
-
-    for( let i = 0; i < str.length; i++) 
-    { 
-      if(!isNaN(str.charAt(i))) 
-      { 
-        return false; 
-        break; 
+  // declare a function used to check if the password has a number in it.
+  function passwordDoesNotHaveNumber (password)
+  {
+    let str = String(password);
+    
+    for( let i = 0; i < str.length; i++)
+    {
+      if(!isNaN(str.charAt(i)))
+      {
+        return false;
+        break;
       } 
     } 
-    return true; 
-  }; 
+    return true;
+  };
 
-  if(passwordDoesNotHaveNumber(password)){return callback(400, {'Error' : 'password must contain a number.'});}; 
+  if(passwordDoesNotHaveNumber(password)){return callback(400, {'Error' : 'password must contain a number.'});};
 
 
   // Enforcing uniqueness of the email field.
@@ -398,10 +100,6 @@ user._user.post = function(data, callback)
     // deletes tie up the table for a long time.
 
     // In this table, the email is a unique key as well as the userId.
-    // The userId also serves as the primary key.
-    // The difference is that the userId may never change whereas the email
-    // may be changed to something different if a valid record for that email
-    // does not already exist.    
 
     // When adding a record we first make sure that the record does NOT already exist.
     // There should be no record with the current email or if there is then 
@@ -478,7 +176,7 @@ user._user.post = function(data, callback)
       helpers.log
       (
         5,
-        '4imfkl9dw2yi6q0jx51z' + '\n' +
+        '6dgqop2ngtbfjej4sgho' + '\n' +
         'The email address: ' + email + ' already exists' + '\n'                                  
       ); // End of: helpers.log(...)
 
@@ -523,7 +221,7 @@ user._user.post = function(data, callback)
         helpers.log
         (
           5,
-          'tn7wmzujt0ivhi6u9gzr' + '\n' +
+          'eoqq30ksj1pgorgrc59c' + '\n' +
           'Unable to get the next gsuid.' + '\n' +
           'The following was the error' + '\n' +
           JSON.stringify(error) + '\n'                                   
@@ -577,7 +275,7 @@ user._user.post = function(data, callback)
             helpers.log
             (
               7,
-              'lu3qwehcgj7yxn60e8pn' + '\n' +
+              '1yhjgxzpf197hf54xqnn' + '\n' +
               'There was an error appending to the history file' + '\n' +
               'An error here does not necessarily mean the append to history did not happen.' + '\n' +  
               'But an error at this point in the code surely means there was no append to user' + '\n' +                                          
@@ -621,7 +319,7 @@ user._user.post = function(data, callback)
                   helpers.log // Log the error.
                   (
                     7,
-                    'xwvs3pb9pcutf909dq3x' + '\n' +
+                    'wx9gefa8qnmbs446lsqx' + '\n' +
                     'Successful write to user but unable to remove lock on database' + '\n' +
                     'The following record was appended to the user file:' + '\n' +                            
                     JSON.stringify(logObject) + '\n' +   
@@ -643,7 +341,7 @@ user._user.post = function(data, callback)
               helpers.log // Log the error.
               (
                 5,
-                '3u76envday01875bwm4u' + '\n' +
+                'yvd10227ru86a3vg6aev' + '\n' +
                 'There was an error when appending to the user file.' + '\n' +
                 'The following record may or may not have been appended to the user file:' + '\n' +                            
                 JSON.stringify(logObject) + '\n' +
@@ -697,7 +395,7 @@ user._user.post = function(data, callback)
                           helpers.log
                           (
                             5,
-                            '7sq2v83ra2iwuty9zmgy' + '\n' +
+                            '5i463rjvjfcsfx4mwp7z' + '\n' +
                             'Rollback entry in the user file was appended successfully' + '\n' +
                             'The following was the record we rolled back:' + '\n' +
                             JSON.stringify(logObject) + '\n'                                   
@@ -708,7 +406,7 @@ user._user.post = function(data, callback)
                           helpers.log
                           (
                             7,
-                            '98w6fy4x41furfrfcgpa' + '\n' +
+                            'q87jvperiifonsdmmfl1' + '\n' +
                             'There was an error appending a rollback entry in the user file' + '\n' +
                             'The following record may or may not have been rolled back:' + '\n' +
                             JSON.stringify(logObject) + '\n' +   
@@ -728,7 +426,7 @@ user._user.post = function(data, callback)
                     helpers.log
                     (
                       7,
-                      'p5pcj3f01ozjlpp4f7um' + '\n' +
+                      'nkes6tnwjn8fiab8og9f' + '\n' +
                       'There was an error appending a rollback entry in the history file' + '\n' +
                       'A rollback entry may or may not have been written in the user file' + '\n' +  
                       'CHECK TO SEE IF history and user ARE STILL IN SYNC' + '\n' +                                      
@@ -753,6 +451,3 @@ user._user.post = function(data, callback)
   }); // End of: readInterface.on('close', function(){...}
 }; // End of: user._user.post = function(...
 // End of: user - post subhandler
-
-
-

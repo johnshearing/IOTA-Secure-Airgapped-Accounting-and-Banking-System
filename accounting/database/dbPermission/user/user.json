@@ -62,16 +62,3 @@
 {"userId":699,"email":"cliff@hotmail.com","hashedPassword":"36583a77a098c02ef111e2f2521d77b58e420f2bc7e9bf930ec24b21d42ea2e0","timeStamp":1573582147818,"deleted":false}
 {"userId":703,"email":"sally@hotmail.com","hashedPassword":"36583a77a098c02ef111e2f2521d77b58e420f2bc7e9bf930ec24b21d42ea2e0","timeStamp":1573600238852,"deleted":false}
 {"userId":843,"email":"ernst@gmail.com","hashedPassword":"36583a77a098c02ef111e2f2521d77b58e420f2bc7e9bf930ec24b21d42ea2e0","timeStamp":1574717306920,"deleted":false}
-{"userId":1745,"email":"donald@gmail.com","hashedPassword":"36583a77a098c02ef111e2f2521d77b58e420f2bc7e9bf930ec24b21d42ea2e0","timeStamp":1577219083609,"deleted":false}
-{"userId":1750,"email":"daisy@gmail.com","hashedPassword":"2ad9d03903947c75fd9f541f7147576a728917acbda467729d44b682382bc486","timeStamp":1577219172762,"deleted":false}
-{"userId":1750,"email":"daisy@gmail.net","hashedPassword":"2ad9d03903947c75fd9f541f7147576a728917acbda467729d44b682382bc486","timeStamp":1577226886035,"deleted":false}
-{"userId":1750,"email":"daisy@gmail.net","hashedPassword":"31161e33832cfef8810b075ba7bdd47102cd039a60aeb014e7c10287fa123495","timeStamp":1577226914146,"deleted":false}
-{"userId":1750,"email":"daisy@gmail.net","hashedPassword":"31161e33832cfef8810b075ba7bdd47102cd039a60aeb014e7c10287fa123495","timeStamp":1577226925917,"deleted":true}
-{"userId":1770,"email":"daisy@gmail.net","hashedPassword":"36583a77a098c02ef111e2f2521d77b58e420f2bc7e9bf930ec24b21d42ea2e0","timeStamp":1577226955916,"deleted":false}
-{"userId":1775,"email":15,"hashedPassword":"36583a77a098c02ef111e2f2521d77b58e420f2bc7e9bf930ec24b21d42ea2e0","timeStamp":1577288677733,"deleted":false}
-{"userId":1775,"email":15,"hashedPassword":"36583a77a098c02ef111e2f2521d77b58e420f2bc7e9bf930ec24b21d42ea2e0","timeStamp":1577289048884,"deleted":true}
-{"userId":1785,"email":"boris@gmail.com","hashedPassword":"36583a77a098c02ef111e2f2521d77b58e420f2bc7e9bf930ec24b21d42ea2e0","timeStamp":1577289350569,"deleted":false}
-{"userId":1790,"email":"natasha","hashedPassword":"36583a77a098c02ef111e2f2521d77b58e420f2bc7e9bf930ec24b21d42ea2e0","timeStamp":1577289900405,"deleted":false}
-{"userId":1790,"email":"natasha","hashedPassword":"36583a77a098c02ef111e2f2521d77b58e420f2bc7e9bf930ec24b21d42ea2e0","timeStamp":1577289953825,"deleted":true}
-{"userId":1800,"email":"natasha@gmail.com","hashedPassword":"5a8e1d9d24d7da78027dd474519c76cb24257bd1f97c1c4574e3d6e69b0665ca","timeStamp":1577291509898,"deleted":false}
-{"userId":1800,"email":"natasha@gmail.com","hashedPassword":"36583a77a098c02ef111e2f2521d77b58e420f2bc7e9bf930ec24b21d42ea2e0","timeStamp":1577291534324,"deleted":false}

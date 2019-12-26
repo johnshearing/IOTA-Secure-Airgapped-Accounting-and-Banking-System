@@ -43,7 +43,7 @@ app.init = function()
   // meta.build.addWebPage(1285)
   // meta.build.editWebPage(1285);
   // meta.build.listWebPage(1285);  
-  // meta.build.handlers(1285);   
+  // meta.build.serverSideLogic(1285);       
 };
 
 
