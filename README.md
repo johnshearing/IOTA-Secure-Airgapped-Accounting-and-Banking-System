@@ -2,7 +2,7 @@
 ## For Government, Enterprise, Individuals, and Machines  
 This Air-gapped, stand alone, accounting system for IOTA, Ethereum, and Cardano is a NodeJS client/server database and application generator **with no dependencies other than the javascript libraries for the currencies you may wish to use**.  
 This makes for manageable security auditing.  
-The small formula based code generator creates the client side user interface and the server side code which is the same for all tables in the system. So once the generated behavior for one table in the database has been audited, then the system as a whole is largely proven to be secure. That's because the generator uses templates and a data dictionary to create the same basic code throughout the entire system. Changes to the code are made in one place a ripple down to all parts of the system automatically.  
+The small formula oriented code generator creates the client side user interface and the server side code which is the same for all tables in the system. So once the generated behavior for one table in the database has been audited, then the system as a whole is largely proven to be secure. That's because the generator uses templates and a data dictionary to create the same basic code throughout the entire system. Changes to the code are made in one place a ripple down to all parts of the system automatically.  
 The server side code will run on most any computer using most any operating system.  
 The generated user interface runs in the browser.  
   
