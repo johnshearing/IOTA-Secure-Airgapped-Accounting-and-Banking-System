@@ -1,6 +1,7 @@
 
 /*
 / Handlers for the "user" table.
+/ This program was built by meta.js starting at yx52pvsi0kn9p5o46hrq
 */
 
 
@@ -20,6 +21,7 @@ let user = {};
 
 
 // Define the handler function that serves up the HTML page for searching and listing user records.
+// Behavior from meta.js at gg9ec14lo9rqjk7kxz7f
 user.serveListPage = function(data, callback)
 {
   // Reject any request that isn't a get
@@ -53,7 +55,7 @@ user.serveListPage = function(data, callback)
             helpers.log
             (            
               5,
-              '9glj2vyhiqqjaeh2yaac' + '\n' +
+              'cfc4jcll2nrxt9ymw6e3' + '\n' +
               'There was an error or the concatenated templates were not returned.' + '\n' +
               'This was the error:' + '\n' +
               JSON.stringify(errorAddUnivTemplates) + '\n'
@@ -69,7 +71,7 @@ user.serveListPage = function(data, callback)
         helpers.log
         (
           5,
-          '9hhz2e4be5l9c00rdntc' + '\n' +
+          'sy9n5r7vxfsa4h38o7sw' + '\n' +
           'There was an error or no template was returned.' + '\n' +
           'This was the error:' + '\n' +
           JSON.stringify(errorGetTemplate) + '\n'
@@ -86,7 +88,7 @@ user.serveListPage = function(data, callback)
     helpers.log
     (
       5,
-      'mozyg64g19pe6j8ur3gg' + '\n' +
+      '8hpuaexgm92f5q2ezcsk' + '\n' +
       'Method not get. Only gets allowed.' + '\n'
     );
 
@@ -100,6 +102,7 @@ user.serveListPage = function(data, callback)
 
 
 // Define the handler function that serves up the HTML page for creating new user records.
+// Behavior from meta.js at xenz5eipqot8nym0eev3
 user.serveAddPage = function(data, callback)
 {
   // Reject any request that isn't a get
@@ -132,7 +135,7 @@ user.serveAddPage = function(data, callback)
             helpers.log
             (            
               5,
-              'ytmdzalnbqgg55yf3rjk' + '\n' +
+              'm0nt7fyozux6aamresod' + '\n' +
               'There was an error or the concatenated templates were not returned.' + '\n' +
               'This was the error:' + '\n' +
               JSON.stringify(errorAddUnivTemplates) + '\n'
@@ -148,7 +151,7 @@ user.serveAddPage = function(data, callback)
         helpers.log
         (
           5,
-          'txj63p7lx7ajqy0bpe0m' + '\n' +
+          '59duyih7mdtonl8rtqvv' + '\n' +
           'There was an error or no template was returned.' + '\n' +
           'This was the error:' + '\n' +
           JSON.stringify(errorGetTemplate) + '\n'
@@ -165,7 +168,7 @@ user.serveAddPage = function(data, callback)
     helpers.log
     (
       5,
-      'kyzlqsyvbk9dydn4ztay' + '\n' +
+      'axzkqc0l8od7l6pvz5jn' + '\n' +
       'Method not get. Only gets allowed.' + '\n'
     );
 
@@ -179,6 +182,7 @@ user.serveAddPage = function(data, callback)
 
 
 // Define the handler function that serves up the HTML page for editing user records.
+// Behavior from meta.js at 2a4tb24fsq3de66ti8c4
 user.serveEditPage = function(data, callback)
 {
   // Reject any request that isn't a get
@@ -211,7 +215,7 @@ user.serveEditPage = function(data, callback)
             helpers.log
             (            
               5,
-              'k80bb5m9tkf70fp59x1u' + '\n' +
+              'zjna7ryif6ja9gst6cr6' + '\n' +
               'There was an error or the concatenated templates were not returned.' + '\n' +
               'This was the error:' + '\n' +
               JSON.stringify(errorAddUnivTemplates) + '\n'
@@ -227,7 +231,7 @@ user.serveEditPage = function(data, callback)
         helpers.log
         (
           5,
-          'wep682i3hwsj43v3tyy5' + '\n' +
+          'ia7f9651kyizskwx1iji' + '\n' +
           'There was an error or no template was returned.' + '\n' +
           'This was the error:' + '\n' +
           JSON.stringify(errorGetTemplate) + '\n'
@@ -244,7 +248,7 @@ user.serveEditPage = function(data, callback)
     helpers.log
     (
       5,
-      'dkm64kaln86i60upn1rb' + '\n' +
+      'depghb5z6hp73xjh1pga' + '\n' +
       'Method not get. Only gets allowed.' + '\n'
     );
 
@@ -260,6 +264,7 @@ user.serveEditPage = function(data, callback)
 // Router for user functions
 // Define a function which calls the requested get, post, put, or delete subhandler function for user 
 // and passes to the chosen subhandler the client's request object and the callback function.
+// Behavior from meta.js at lw39etuyhw7wb82hv9ct
 user.user = function(data, callback)
 {
   // Create an array of acceptable methods.
@@ -277,7 +282,7 @@ user.user = function(data, callback)
     helpers.log
     (
       5,
-      'j4z4ekm433cqc3h8fguf' + '\n' +
+      'kurzs6q9nlgs1ysl1mk0' + '\n' +
       'The method was not one of the acceptable methods' + '\n'
     ); 
 
@@ -299,37 +304,35 @@ user._user = {};
 // user - post subhandler
 // Define the user post subhandler function.
 // This function appends a record to the user file.
+// Behavior from meta.js at 1723qxikk1l3ru0vfrny 
 user._user.post = function(data, callback)
 {
   // Field validation starts here.
   // Get email from payload
   let email = data.payload.email;
 
-  // passIfString Default behavior from meta.js
-  // qif5xwvzgr7efln9xtr8
+  // passIfString Default behavior from meta.js at qif5xwvzgr7efln9xtr8
   if(typeof(email) != 'string'){return callback(400, {'Error' : 'email must be of datatype string'});}
 
-  // passIfNotEmpty Default behavior from meta.js
-  // eojwivwlhxkm1b837n2o
+  // passIfNotEmpty Default behavior from meta.js at eojwivwlhxkm1b837n2o
   if(!email || email.trim().length === 0){return callback(400, {'Error' : 'No email was entered'});}else{email = email.trim()}
 
   // passIfHasAmpersand
-  // uet9z3uuzgy5hmytmsxf 
+  // Behavior from data dictionary at uet9z3uuzgy5hmytmsxf 
   if(email.indexOf("@") === -1){return callback(400, {'Error' : 'Not a valid email'});}
 
   // Get password from payload
   let password = data.payload.password;
 
-  // passIfString Default behavior from meta.js
-  // qif5xwvzgr7efln9xtr8
+  // passIfString Default behavior from meta.js at qif5xwvzgr7efln9xtr8
   if(typeof(password) != 'string'){return callback(400, {'Error' : 'password must be of datatype string'});}
 
   // passIfNotEmpty
-  // bet9z4ufzg97hmfdhmxt 
+  // Behavior from data dictionary at bet9z4ufzg97hmfdhmxt 
   if(!password){return callback(400, {'Error' : 'No password was entered'});}
 
   // passIfHasNumber
-  // 5et9z9uuzgy5hmfdmmxf 
+  // Behavior from data dictionary at 5et9z9uuzgy5hmfdmmxf 
   // declare a function used to check if the password has a number in it. 
   function passwordDoesNotHaveNumber (password) 
   { 
@@ -351,6 +354,7 @@ user._user.post = function(data, callback)
 
   // Enforcing uniqueness of the email field.
   // Will toggle this to false if we find the email already exists in user.
+  // Behavior from meta.js at rmkfkaef7xo3gyvnvgm4
   let emailIsUnused = true;
 
   // Using this to track the primary key of a record that we might encounter with the candidate email address.
@@ -470,6 +474,7 @@ user._user.post = function(data, callback)
   // unique or not, and have then closed the readable stream from user.
   // The callback function defined here will append the record if the email 
   // was found to be unique.
+  // Behavior from meta.js at aiwaoocd1uegzjbqeydk
   readInterface.on('close', function() 
   {
     // If the email already exists then exit this process without appending the record.
@@ -478,20 +483,20 @@ user._user.post = function(data, callback)
       helpers.log
       (
         5,
-        '4imfkl9dw2yi6q0jx51z' + '\n' +
+        '3xz9mkr7hy7naugn61gp' + '\n' +
         'The email address: ' + email + ' already exists' + '\n'                                  
       ); // End of: helpers.log(...)
 
       return callback(400, {'Error' : 'The email already exists'});
     }
 
-    // If we made it to this point then the candidate email is unique so continue on with the append opperation.    
+    // If we made it to this point then the candidate email is unique so continue on with the append opperation.
+    // Behavior from meta.js at gwwelr17hmxvq4spdrcl    
 
             
-    // Password calculation is processed here.
-    // het9z9uuzgy5hmfwdgkz
+    // Password calculation from data dictionary at het9z9uuzgy5hmfwdgkz is processed here.
     // Hash the password
-    var hashedPassword = helpers.hash(password);
+    let hashedPassword = helpers.hash(password);
 
     // If the password was not hashed successfully then exit this process without appending the record.
     if(!hashedPassword)
@@ -499,7 +504,7 @@ user._user.post = function(data, callback)
       helpers.log
       (
         5,
-        'zet9z4uuzg95hmfdmmx5' + '\n' +
+        'het9z9uuzgy5hmfwdgkz' + '\n' +
         'Could not hash the password' + '\n'
       ); // End of: helpers.log(...)
 
@@ -513,7 +518,8 @@ user._user.post = function(data, callback)
     // gsuid.json stays locked until the operation is completely finished and _data.removeLock is called.
     // This ensures that only one process is writing to the database at any one time.  
     // If the transaction fails or if it requires a rollback then the lock will remain until an administrator removes it.
-    // This will halt all writes to the database until the administrator has had a chance to investigate.       
+    // This will halt all writes to the database until the administrator has had a chance to investigate.
+    // Behavior from meta.js at lc2gqx4uqgw9o0hjtkdp       
     _data.nextId(function(error, nextIdObject)
     {
 
@@ -523,13 +529,13 @@ user._user.post = function(data, callback)
         helpers.log
         (
           5,
-          'tn7wmzujt0ivhi6u9gzr' + '\n' +
+          '4befm91xs04ng9k5rnb5' + '\n' +
           'Unable to get the next gsuid.' + '\n' +
           'The following was the error' + '\n' +
           JSON.stringify(error) + '\n'                                   
         ); // End of: helpers.log(...)
 
-        return callback('Unable to get the next gsuid.');
+        return callback(423, {'Error' : 'Database is Locked'});
       }
 
 
@@ -564,6 +570,7 @@ user._user.post = function(data, callback)
       }
 
       // Calling the function which creates an entry into the database log file.
+      // Behavior from meta.js at ugc5u97p0sb9z5o7dpmh
       _data.append
       (
         'database/dbHistory', 
@@ -577,7 +584,7 @@ user._user.post = function(data, callback)
             helpers.log
             (
               7,
-              'lu3qwehcgj7yxn60e8pn' + '\n' +
+              'r8yu6e18uw5jir12j7vm' + '\n' +
               'There was an error appending to the history file' + '\n' +
               'An error here does not necessarily mean the append to history did not happen.' + '\n' +  
               'But an error at this point in the code surely means there was no append to user' + '\n' +                                          
@@ -621,7 +628,7 @@ user._user.post = function(data, callback)
                   helpers.log // Log the error.
                   (
                     7,
-                    'xwvs3pb9pcutf909dq3x' + '\n' +
+                    'mz2bvy6t9asv1kpcpltk' + '\n' +
                     'Successful write to user but unable to remove lock on database' + '\n' +
                     'The following record was appended to the user file:' + '\n' +                            
                     JSON.stringify(logObject) + '\n' +   
@@ -643,7 +650,7 @@ user._user.post = function(data, callback)
               helpers.log // Log the error.
               (
                 5,
-                '3u76envday01875bwm4u' + '\n' +
+                'hb8ngow34qat9bfitgwj' + '\n' +
                 'There was an error when appending to the user file.' + '\n' +
                 'The following record may or may not have been appended to the user file:' + '\n' +                            
                 JSON.stringify(logObject) + '\n' +
@@ -697,7 +704,7 @@ user._user.post = function(data, callback)
                           helpers.log
                           (
                             5,
-                            '7sq2v83ra2iwuty9zmgy' + '\n' +
+                            'qi0gg94n9lj8cmyewq0n' + '\n' +
                             'Rollback entry in the user file was appended successfully' + '\n' +
                             'The following was the record we rolled back:' + '\n' +
                             JSON.stringify(logObject) + '\n'                                   
@@ -708,7 +715,7 @@ user._user.post = function(data, callback)
                           helpers.log
                           (
                             7,
-                            '98w6fy4x41furfrfcgpa' + '\n' +
+                            'omv7d30ig8vcwrfm4ech' + '\n' +
                             'There was an error appending a rollback entry in the user file' + '\n' +
                             'The following record may or may not have been rolled back:' + '\n' +
                             JSON.stringify(logObject) + '\n' +   
@@ -728,7 +735,7 @@ user._user.post = function(data, callback)
                     helpers.log
                     (
                       7,
-                      'p5pcj3f01ozjlpp4f7um' + '\n' +
+                      '6ul4mr6meh04j5r98xry' + '\n' +
                       'There was an error appending a rollback entry in the history file' + '\n' +
                       'A rollback entry may or may not have been written in the user file' + '\n' +  
                       'CHECK TO SEE IF history and user ARE STILL IN SYNC' + '\n' +                                      
@@ -756,3 +763,532 @@ user._user.post = function(data, callback)
 
 
 
+// user - put handler
+// Define the user put subhandler function 
+// This function updates a record.
+// Required data: userId
+// Note: At least one other field must be specified.
+// Behavior from meta.js at mzimrkdf1we1bjw96zgp
+user._user.put = function(data, callback)
+{
+  // Field validation starts here.
+  // Get userId from payload
+  let userId = data.payload.userId;
+
+  // PrimaryKey validation. 
+  // Default behavior from meta.js at o65yzg6ddze2fkvcgw5s
+  // If userId is a valid string then convert it to a number.  
+  if (typeof(userId) === 'string'){userId = parseInt(userId, 10);}else{return callback(400, {'Error' : 'userId must be a of string type'});}
+
+    // Get email from payload
+  let email = data.payload.email;
+
+  // stringTypeTrimAmpersand
+  // Behavior from data dictionary at og5gtmcsk6od74wkr9vj 
+  // If email is of string type and is not empty 
+  if (typeof(email) === 'string' && email.trim().length > 0) 
+  { 
+    // The user entered something in the edit form so check for an ampersand. 
+    if(email.indexOf('@') != -1) 
+    { 
+      // pass if ampersand 
+      email = email.trim() 
+    } 
+    else // No ampersand so reject the edit. 
+    { 
+      return callback(400, {'Error' : 'Not a valid email'}); 
+    } 
+  } 
+  // Else, the user may have entered some other datatype like a number or 
+  // perhaps nothing at all if using the Delete form or the Password form. 
+  else 
+  { 
+    // If the user entered nothing: 
+    if(email === undefined) 
+    { 
+      // Then user is trying to delete a record or change the password 
+      email = false 
+    } 
+    else // The user entered something invalid so reject the edit. 
+    { 
+      return callback(400, {'Error' : 'Not a valid email'}); 
+    } 
+  }
+
+  // Get password from payload
+  let password = data.payload.password;
+
+  // passwordValidation
+  // Behavior from data dictionary at e09hmheqvsxzbi50n4ny 
+  // If password is of string type and is not empty 
+  if (typeof(password) === 'string' && password.trim().length > 0) 
+  { 
+    // The user entered something in the password form so check that the 
+    // user put a number in the password to make it more secure. 
+    // Start out assuming that there is no number in the password. 
+
+    // declare a function used to check if the password has a number in it. 
+    function passwordHasNumber (password) 
+    { 
+      let str = String(password); 
+
+      for( let i = 0; i < str.length; i++) 
+      { 
+        if(!isNaN(str.charAt(i))) 
+        { 
+          return true; 
+          break; 
+        } 
+      } 
+
+      return false; 
+    }; 
+
+    if(passwordHasNumber(password)) 
+    { 
+      // If we are here then the user inserted a number in the password. 
+      // There is no need to do anything but let it pass through as is. 
+      // Notice we are not trimming the password. 
+      // If the user wants white space in the password, that's ok. 
+    } 
+    else // No number in the password so reject the edit. 
+    { 
+      return callback(400, {'Error' : 'password must contain a number.'}); 
+    } 
+  } 
+  // Else, the user may have entered some other datatype like an array or 
+  // perhaps nothing at all if using the Delete form or the Edit form. 
+  else 
+  { 
+    // If the user entered nothing: 
+    if(password === undefined) 
+    { 
+      // Then user is using the Delete form or the Edit form. 
+      password = false 
+    } 
+    else // The user entered something invalid so reject the edit. 
+    { 
+      return callback(400, {'Error' : 'Not a valid password'}); 
+    } 
+  }
+
+  // Check if the deleted flag is of type string and that the value is exactly equal to "true".
+  // That would mean the user wants to delete the record. Otherwise the users does not want to delete the record.
+  // Set deleted to boolean true if validation is passed otherwise set it to false.
+  // Behavior from meta.js at ts2g5rn5uw6mvup58vph
+  let deleted = typeof(data.payload.deleted) === 'string' && data.payload.deleted === "true" ? true : false;
+
+  
+  //if all fields fail validation then exit this process without writing changes to the table.
+  if(!email && !password && !deleted)
+  {
+    helpers.log
+    (
+      5,
+      '55k5bzshow1te78jm4wk' + '\n' +
+      'No fields pass the validation process' + '\n'                                  
+    ); // End of: helpers.log(...)
+
+      return callback(400, {'Error' : 'Missing required fields'});
+  } // End of: Field validation failed - Exit this process.
+
+  // If we made it this far then field validation has been passed successfully so continue with the process.
+
+  // Get the next global sequential unique Id and lock the database
+  // Locking the database makes the system multiuser.
+  // All writes to any table must first get a lock on gsuid.json
+  // gsuid.json stays locked until the operation is completely finished and _data.removeLock is called.
+  // This ensures that only one process is writing to the database at any one time.  
+  // Behavior from meta.js at wzoyt9ohnvst1pe5etn0        
+  _data.nextId(function(error, nextIdObject)
+  {
+    // If lock failed or unable to get the next gsuid.
+    if(error || !nextIdObject)
+    {
+      helpers.log
+      (
+        5,
+        '84xrzty5c5n68lazjox0' + '\n' +
+        'Unable to get the next gsuid.' + '\n' +
+        'The following was the error' + '\n' +
+        JSON.stringify(error) + '\n'                                   
+      ); // End of: helpers.log(...)
+
+      return callback(423, {'Error' : 'Database is Locked'});
+    } // End of: If lock failed or unable to get the next gsuid.
+
+
+    // If we made it here then we were able to lock the gsuid.json file and get 
+    // the next unique id number for this record. So continue with the process.
+
+
+    // Create the user object. 
+    // This object will be appended to user.json.
+    // Add in all fields even if no data is available yet. 
+    // This is to establish the order in which the fields will be writen to the table. 
+    // Behavior from 3bd1sa5ve4aqrfspunrt in meta.js         
+    let userObject = 
+    {
+      "userId" : userId,
+      "email" : email,
+      "hashedPassword" : "" ,
+      "timeStamp" : Date.now(),
+      "deleted" : ""
+    };
+
+    dataObject = {};
+    dataObject.uniqueField01Name = "email";
+    dataObject.uniqueField01Value = userObject.email;
+    dataObject.path = '/database/dbPermission/user/user.json';
+    dataObject.queryString = 'WHERE:;userId:;MatchesExactly:;' + userId + ':;';
+
+    // This function returns the most recent record for this userId after checking that 
+    // email is unique and that the a record with the supplied userId exists to modify.
+    // Behavior from meta.js at 6pmnh29cub4p4g2fmb04
+    helpers.getMostRecent(dataObject, function(errorFromGetMostRecent, payload)
+    {
+      // If there was an error returned by getMostRecent when attempting to get the most current record.        
+      if(errorFromGetMostRecent)
+      {
+        // Call to function which removes lock
+        _data.removeLock
+        (function(errorFromRemoveLock)
+        // start of callback code which is run after attempting to remove the lock.
+        {
+          if(!errorFromRemoveLock) // Database lock was successfully removed.
+          {
+            if(errorFromGetMostRecent)
+            {
+              helpers.log // Log the error.
+              (
+                7,
+                'oz2sewuwmddwty1ujja0' + '\n' + 
+                'The following was the error message from getMostRecent:' + '\n' +                                             
+                errorFromGetMostRecent + '\n'                                                 
+              ); // End of: helpers.log // Log the error.
+
+              return callback(500, {'Error' : errorFromGetMostRecent});      
+            }
+          }
+          else // Error from getMostRecent and also unable to remove lock on database.
+          {
+            if(errorFromGetMostRecent)
+            {
+              helpers.log // Log the error.
+              (
+                7,
+                'd371kc3awzs7kyu882f1' + '\n' +
+                'The following was the error message from getMostRecent:' + '\n' +                                             
+                errorFromGetMostRecent + '\n'  +
+                'Also unable to remove lock on database.' + '\n' + 
+                'The following was the error message from removeLock:' + '\n' +                                      
+                errorFromRemoveLock + '\n'
+              ); // End of: helpers.log // Log the error.
+
+              return callback(500, {'Error' : errorFromGetMostRecent + " and " + errorFromRemoveLock});      
+            } // End of: if(errorFromGetMostRecent){...}
+          } // End of: unable to remove lock on database after getMostRecent returned a failed read.
+
+        } // End of callback code which is run after attempting to remove the lock.
+        ); // End of: _data.removeLock(function(error){...}
+        // End of: Call to function which removes lock after failed read from getMostRecent
+      } // End of: There was indeed an error returned by getMostRecent when attempting to get the most current record.          
+
+
+      // If we got this far then we got the most recent record from getMostRecent without any problem. 
+      // So Continue with the process.
+
+
+      // Used to decode the payload buffer into readable text.
+      let decoder = new StringDecoder('utf8');    
+
+      // This instance of the Writable object gives us a place for a callback to run when the payload is received.
+      const writable = new Writable();
+
+      // Called by pipeline below. Does something useful with the payload
+      // Behavior from meta.js at 74l4ugm91cza7uv38jac
+      writable.write = function(payload)
+      {
+        let stringContainer = '';                 
+        stringContainer = stringContainer + decoder.write(payload);
+        let recordObject = JSON.parse(stringContainer);
+
+
+        // Preprocessing for email
+        if(email) // If the user supplied data for email
+        {
+          // No preprocessing was specifed for email. Use it as was supplied by the user.
+        }
+        else // If the user did not supply data for email
+        {
+          // Save email from the most recent record.
+          userObject.email = recordObject.email;
+        }
+        // Preprocessing for password
+        if(password) // If the user supplied data for password
+        {
+          // Password calculation from data dictionary at jet9znuuzg95hmfdmmx5 is processed here.
+          // Hash the password
+          let hashedPassword = helpers.hash(password);
+
+          // If the password was not hashed successfully then exit this process without appending the record.
+          if(!hashedPassword)
+          {
+            helpers.log
+            (
+              5,
+              'jet9znuuzg95hmfdmmx5' + '\n' +
+              'Could not hash the password' + '\n'
+            ); // End of: helpers.log(...)
+
+            return callback(500, {'Error' : 'Could not hash the password'});
+          } // End of: else the password was not hashed successfully.
+
+          // Saving calculation on password supplied by the user to hashedPassword
+          userObject.hashedPassword = hashedPassword;
+
+        } // End of: If the user supplied data for password
+        else // If the user did not supply data for password
+        {
+          // saving hashedPassword from the most recent record.
+          userObject.hashedPassword = recordObject.hashedPassword;
+        }
+
+        // If we are appending a delete make sure that everything else is coming from the most recent saved record.
+        if(deleted)
+        {
+          userObject.email = recordObject.email;
+          userObject.hashedPassword = recordObject.hashedPassword;
+          userObject.deleted = true;
+        }
+        else
+        {
+          userObject.deleted = false;
+        }
+
+
+        // Create the logObject.
+        // This object will be written to history.json which maintains a history of 
+        // all changes to all tables in the database.
+        // Behavior from meta.js at 8ymdma3uxbjrggohz977
+        var logObject =
+        {           
+          "historyId" : nextIdObject.nextId + 1,    
+          "transactionId" : nextIdObject.nextId + 2,                 
+          "rollback" : false,
+          "process" : "user._user.put",
+          "comment" : "Changing a record",
+          "who" : "No login yet.",    
+          "user" : userObject   
+        }
+
+        // Calling the function which creates an entry into the database log file.
+        _data.append
+        (
+          'database/dbHistory', 
+          'history', 
+          logObject, 
+          function(err)
+          {
+            if (!err)  //The history file has been appended to successfully.
+            {
+              // Calling the function which appends a record to the file user.json
+              _data.append
+              (
+                '/database/dbPermission/user', 
+                'user', 
+                userObject, 
+                function(err)
+                {
+                  if (!err)  //The file has been appended to successfully.
+                  {
+                    // Call to function which removes lock
+                    _data.removeLock
+                    (function(error)
+                    // start of callback code which is run after attempting to remove the lock.
+                    {
+                      if(!error) // Database lock was successfully removed.
+                      {
+                        callback(200); 
+                      }
+                      else // Good write but unable to remove lock on database.
+                      {
+                        helpers.log // Log the error.
+                        (
+                          7,
+                          'f8wuama7s58ooh7odwqp' + '\n' +
+                          'Successful write to user but unable to remove lock on database' + '\n' +
+                          'The following record was appended to user:' + '\n' +                            
+                          JSON.stringify(logObject) + '\n' +   
+                          'The following was the error message:' + '\n' +                                             
+                          error + '\n'
+                        ); // End of: helpers.log // Log the error.
+
+                        callback(500, {'Error' : 'Successful write to user but unable to remove lock on database'});
+
+                      } // End of: else Good write but unable to remove lock on database.
+
+                    } // End of callback code which is run after attempting to remove the lock.
+                    ); // End of: _data.removeLock(function(error){...}
+                    // End of: Call to function which removes lock
+
+                  }    // End of: if (!err)  //The file has been appended to successfully.
+                  else // There was an error appending to user.
+                  {
+                    helpers.log // Log the error.
+                    (
+                      5,
+                      '7goodnyul65tan0yyxfm' + '\n' +
+                      'There was an error when appending to the user file.' + '\n' +
+                      'The following record may or may not have been appended to user:' + '\n' +                            
+                      JSON.stringify(logObject) + '\n' +
+                      'Attempting to rollback the entry.' + '\n' +    
+                      'The following was the error message:' + '\n' +                                             
+                      err + '\n'
+                    );
+
+                    // Assemble rollback record for the user file which will negate previous entry if any.
+                    // Behavior from meta.js at 8l4zwqs63qwmp81rjcpw  
+                    userObject = 
+                    {
+                        "userId" : recordObject.nextId,
+                        "email" : recordObject.email,
+                        "hashedPassword" : recordObject.hashedPassword,
+                        "timeStamp" : recordObject.timeStamp,
+                        "deleted" : recordObject.deleted
+                    };                        
+
+                    // Assemble rollback record for the history file which will negate previous entry if any.
+                    logObject =
+                    {                    
+                      "historyId" : nextIdObject.nextId + 3,    
+                      "transactionId" : nextIdObject.nextId + 2,                                
+                      "rollback" : true,
+                      "process" : "user._user.put",
+                      "comment" : "Error during Put. Appending rollback",                        
+                      "who" : "No login yet",    
+                      "user" : userObject   
+                    }
+
+                    // Start the rollback process.
+                    _data.append // Append a rollback the entry in history.
+                    (
+                      'database/dbHistory', 
+                      'history', 
+                      logObject, 
+                      function(err)
+                      {
+                        if (!err) // The roll back entry in history was appended successfully.
+                        {
+                          // Calling the function which appends a record to the file user.json
+                          _data.append
+                          (
+                            '/database/dbPermission/user', 
+                            'user', 
+                            userObject, 
+                            function(err)
+                            {
+                              if (!err) // The rollback record for user was appended successfully.
+                              {
+                                helpers.log
+                                (
+                                  5,
+                                  '4pt1s8ojs44qvr92udca' + '\n' +
+                                  'Rollback entry in the user file was appended successfully' + '\n' +
+                                  'The following was the record we rolled back:' + '\n' +
+                                  JSON.stringify(logObject) + '\n'                                   
+                                ); // End of: helpers.log(...)
+                              }
+                              else // There was an error when rolling back record for user.
+                              {
+                                helpers.log
+                                (
+                                  7,
+                                  'iaqcjzwkeqak4bc3n679' + '\n' +
+                                  'There was an error appending a rollback entry in the user file' + '\n' +
+                                  'The following record may or may not have been rolled back:' + '\n' +
+                                  JSON.stringify(logObject) + '\n' +   
+                                  'An error here does not necessarily mean the deleting append to user did not happen.' + '\n' +                                        
+                                  'CHECK TO SEE IF history and user ARE STILL IN SYNC' + '\n' + 
+                                  'The following is the error message:' + '\n' +                                                                     
+                                  err  + '\n'
+                                ); // End of: helpers.log(...)
+                              }
+
+                            } // End of: callback function(err){...}
+                          ); // End of: _data.append(...)
+
+                        } // End of: The roll back entry in history was appended successfully.
+                        else // There was an error when appending a rollback entry in history.
+                        { 
+                          helpers.log
+                          (
+                            7,
+                            'sf9qr0zbruhmjewyemwl' + '\n' +
+                            'There was an error appending a rollback entry in the history file' + '\n' +
+                            'A rollback entry may or may not have been written in the user file' + '\n' +  
+                            'CHECK TO SEE IF history and user ARE STILL IN SYNC' + '\n' +                                      
+                            'The following was the record we tried to roll back:' + '\n' +
+                            JSON.stringify(logObject) + '\n' +        
+                            'The following is the error message:' + '\n' +
+                            err  + '\n'
+                          );
+                        } // End of: else There was an error when appending a rollback entry in history.
+                      } // End of: callback function(err){...}
+                    ); // End of: _data.append(...)
+
+                    callback(500, {'Error' : 'Could not create the new user.'});
+
+                  } // End of: else // There was an error appending to user.
+                } // End of: callback function
+                ); // End of: Calling the function which appends a record to the file user.json 
+
+            } //End of: The history file has been appended to successfully.
+            else // There was an error appending to the history file.
+            {
+              helpers.log
+              (
+                7,
+                'dapi9qug5fd1bhqpdu3m' + '\n' +
+                'There was an error appending to the history file' + '\n' +
+                'An error here does not necessarily mean the append to history did not happen.' + '\n' +  
+                'But an error at this point in the code surely means there was no append to user' + '\n' +                                          
+                'CHECK TO SEE IF history and user ARE STILL IN SYNC' + '\n' +                    
+                'The following was the record we tried to append:' + '\n' +
+                JSON.stringify(logObject) + '\n' +                   
+                'The following is the error message:' + '\n' +                  
+                err  + '\n'
+              );
+
+              callback(500, {'Error' : 'Could not create the new user.'});
+            }
+          } // End of: callback function
+        ); // End of: _data.append(dbHistory...)
+        // End of: Calling the function which creates an entry into history. 
+
+      }; // End of: writable.write = function(payload){...}
+
+      // Passes the payload stream to the writable object which calls writable.write 
+      // which does something useful with the payload.
+      pipeline
+      (
+        payload,
+        writable,
+        function(pipelineError)
+        {
+          if(pipelineError)
+          {
+            helpers.log // Log the error.
+            (
+              7,
+              '85qtt3tlilvv0bfso54r' + '\n' + 
+              'Pipeline error. The message was as follows' + '\n' +                                             
+              pipelineError + '\n'                                                 
+            ); // End of: helpers.log // Log the error.
+          } // End of: if(pipelineError){...}
+        } // End of: function(piplineError){...}
+      ); // End of: Pipeline
+    }); //End of: helpers.getMostRecent(dataObject, function(errorFromGetMostRecent, payload)
+  }); // End of: lib.nextId(function(err, nextIdObject)
+}; // End of: handlers._user.put = function(...
+// End of: Define the user put subhandler function
