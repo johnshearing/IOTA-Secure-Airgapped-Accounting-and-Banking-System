@@ -55,7 +55,7 @@ user.serveListPage = function(data, callback)
             helpers.log
             (            
               5,
-              'cfc4jcll2nrxt9ymw6e3' + '\n' +
+              'hku859a2973umzpgwtae' + '\n' +
               'There was an error or the concatenated templates were not returned.' + '\n' +
               'This was the error:' + '\n' +
               JSON.stringify(errorAddUnivTemplates) + '\n'
@@ -71,7 +71,7 @@ user.serveListPage = function(data, callback)
         helpers.log
         (
           5,
-          'sy9n5r7vxfsa4h38o7sw' + '\n' +
+          'h80dz0vte7dzgb26l2zi' + '\n' +
           'There was an error or no template was returned.' + '\n' +
           'This was the error:' + '\n' +
           JSON.stringify(errorGetTemplate) + '\n'
@@ -88,7 +88,7 @@ user.serveListPage = function(data, callback)
     helpers.log
     (
       5,
-      '8hpuaexgm92f5q2ezcsk' + '\n' +
+      'l1m0eqh0ck7zqpgmna16' + '\n' +
       'Method not get. Only gets allowed.' + '\n'
     );
 
@@ -135,7 +135,7 @@ user.serveAddPage = function(data, callback)
             helpers.log
             (            
               5,
-              'm0nt7fyozux6aamresod' + '\n' +
+              '4h6aoro75lcxm4b077pf' + '\n' +
               'There was an error or the concatenated templates were not returned.' + '\n' +
               'This was the error:' + '\n' +
               JSON.stringify(errorAddUnivTemplates) + '\n'
@@ -151,7 +151,7 @@ user.serveAddPage = function(data, callback)
         helpers.log
         (
           5,
-          '59duyih7mdtonl8rtqvv' + '\n' +
+          'nzcgcbo5c8p5n8ehjnti' + '\n' +
           'There was an error or no template was returned.' + '\n' +
           'This was the error:' + '\n' +
           JSON.stringify(errorGetTemplate) + '\n'
@@ -168,7 +168,7 @@ user.serveAddPage = function(data, callback)
     helpers.log
     (
       5,
-      'axzkqc0l8od7l6pvz5jn' + '\n' +
+      '4vvc5bqglxjqvrqkuodq' + '\n' +
       'Method not get. Only gets allowed.' + '\n'
     );
 
@@ -215,7 +215,7 @@ user.serveEditPage = function(data, callback)
             helpers.log
             (            
               5,
-              'zjna7ryif6ja9gst6cr6' + '\n' +
+              'rul2g40r447mfdx9u7d3' + '\n' +
               'There was an error or the concatenated templates were not returned.' + '\n' +
               'This was the error:' + '\n' +
               JSON.stringify(errorAddUnivTemplates) + '\n'
@@ -231,7 +231,7 @@ user.serveEditPage = function(data, callback)
         helpers.log
         (
           5,
-          'ia7f9651kyizskwx1iji' + '\n' +
+          'vbfbagf10op1zj0krapm' + '\n' +
           'There was an error or no template was returned.' + '\n' +
           'This was the error:' + '\n' +
           JSON.stringify(errorGetTemplate) + '\n'
@@ -248,7 +248,7 @@ user.serveEditPage = function(data, callback)
     helpers.log
     (
       5,
-      'depghb5z6hp73xjh1pga' + '\n' +
+      '12xlygn0zij6msnoou45' + '\n' +
       'Method not get. Only gets allowed.' + '\n'
     );
 
@@ -282,7 +282,7 @@ user.user = function(data, callback)
     helpers.log
     (
       5,
-      'kurzs6q9nlgs1ysl1mk0' + '\n' +
+      'yd9p7016a1lbzfl826wn' + '\n' +
       'The method was not one of the acceptable methods' + '\n'
     ); 
 
@@ -357,7 +357,7 @@ user._user.post = function(data, callback)
   // Behavior from meta.js at rmkfkaef7xo3gyvnvgm4
   let emailIsUnused = true;
 
-  // Using this to track the primary key of a record that we might encounter with the candidate email address.
+  // Using this to track the primary key of a record that we might encounter with the candidate email.
   // If we encounter this primary key again we will check to see if the email has been changed.
   // If it has then the candidate email will be marked as available again.
   let uniqueIdOfRecordHoldingCandidateEmail = false; 
@@ -433,7 +433,7 @@ user._user.post = function(data, callback)
         // Then the candidate email will be available again as we continue searching through the records.
         // We are already checking if this email becomes available again by deletion.
         // Now we need to check if the email becomes available because the record with this primary 
-        // key gets changed with a new email address.
+        // key gets changed with a new email.
         // That will make the candidate email unique and available again.
         // So record this global sequential unique id (the userId in this case).
         // If we find the gsuid again, then check if the email has changed.
@@ -483,8 +483,8 @@ user._user.post = function(data, callback)
       helpers.log
       (
         5,
-        '3xz9mkr7hy7naugn61gp' + '\n' +
-        'The email address: ' + email + ' already exists' + '\n'                                  
+        'qdbs6npcynosxhny2j0d' + '\n' +
+        'The email : ' + email + ' already exists' + '\n'                                  
       ); // End of: helpers.log(...)
 
       return callback(400, {'Error' : 'The email already exists'});
@@ -529,7 +529,7 @@ user._user.post = function(data, callback)
         helpers.log
         (
           5,
-          '4befm91xs04ng9k5rnb5' + '\n' +
+          '6japw5kc9tiwxm419q04' + '\n' +
           'Unable to get the next gsuid.' + '\n' +
           'The following was the error' + '\n' +
           JSON.stringify(error) + '\n'                                   
@@ -584,7 +584,7 @@ user._user.post = function(data, callback)
             helpers.log
             (
               7,
-              'r8yu6e18uw5jir12j7vm' + '\n' +
+              '8vte1uayg8mnpb0jbnw3' + '\n' +
               'There was an error appending to the history file' + '\n' +
               'An error here does not necessarily mean the append to history did not happen.' + '\n' +  
               'But an error at this point in the code surely means there was no append to user' + '\n' +                                          
@@ -628,7 +628,7 @@ user._user.post = function(data, callback)
                   helpers.log // Log the error.
                   (
                     7,
-                    'mz2bvy6t9asv1kpcpltk' + '\n' +
+                    '4lqv0n9b6qakvgivwvpu' + '\n' +
                     'Successful write to user but unable to remove lock on database' + '\n' +
                     'The following record was appended to the user file:' + '\n' +                            
                     JSON.stringify(logObject) + '\n' +   
@@ -650,7 +650,7 @@ user._user.post = function(data, callback)
               helpers.log // Log the error.
               (
                 5,
-                'hb8ngow34qat9bfitgwj' + '\n' +
+                'm86auqmgvflxvd379zb9' + '\n' +
                 'There was an error when appending to the user file.' + '\n' +
                 'The following record may or may not have been appended to the user file:' + '\n' +                            
                 JSON.stringify(logObject) + '\n' +
@@ -704,7 +704,7 @@ user._user.post = function(data, callback)
                           helpers.log
                           (
                             5,
-                            'qi0gg94n9lj8cmyewq0n' + '\n' +
+                            '5dpors92tdschmwdpzpo' + '\n' +
                             'Rollback entry in the user file was appended successfully' + '\n' +
                             'The following was the record we rolled back:' + '\n' +
                             JSON.stringify(logObject) + '\n'                                   
@@ -715,7 +715,7 @@ user._user.post = function(data, callback)
                           helpers.log
                           (
                             7,
-                            'omv7d30ig8vcwrfm4ech' + '\n' +
+                            'vh3ofejj35wy2y2xfhyi' + '\n' +
                             'There was an error appending a rollback entry in the user file' + '\n' +
                             'The following record may or may not have been rolled back:' + '\n' +
                             JSON.stringify(logObject) + '\n' +   
@@ -735,7 +735,7 @@ user._user.post = function(data, callback)
                     helpers.log
                     (
                       7,
-                      '6ul4mr6meh04j5r98xry' + '\n' +
+                      '0sd8osw4clmwqyxowlxe' + '\n' +
                       'There was an error appending a rollback entry in the history file' + '\n' +
                       'A rollback entry may or may not have been written in the user file' + '\n' +  
                       'CHECK TO SEE IF history and user ARE STILL IN SYNC' + '\n' +                                      
@@ -760,6 +760,7 @@ user._user.post = function(data, callback)
   }); // End of: readInterface.on('close', function(){...}
 }; // End of: user._user.post = function(...
 // End of: user - post subhandler
+
 
 
 
@@ -885,7 +886,7 @@ user._user.put = function(data, callback)
     helpers.log
     (
       5,
-      '55k5bzshow1te78jm4wk' + '\n' +
+      'pc9elhffznu6qt16u70r' + '\n' +
       'No fields pass the validation process' + '\n'                                  
     ); // End of: helpers.log(...)
 
@@ -908,7 +909,7 @@ user._user.put = function(data, callback)
       helpers.log
       (
         5,
-        '84xrzty5c5n68lazjox0' + '\n' +
+        'xdqqhjprxonqvbgat7p9' + '\n' +
         'Unable to get the next gsuid.' + '\n' +
         'The following was the error' + '\n' +
         JSON.stringify(error) + '\n'                                   
@@ -943,7 +944,7 @@ user._user.put = function(data, callback)
     dataObject.queryString = 'WHERE:;userId:;MatchesExactly:;' + userId + ':;';
 
     // This function returns the most recent record for this userId after checking that 
-    // email is unique and that the a record with the supplied userId exists to modify.
+    // data for unique fields is indeed unique and that the a record with the supplied userId exists to modify.
     // Behavior from meta.js at 6pmnh29cub4p4g2fmb04
     helpers.getMostRecent(dataObject, function(errorFromGetMostRecent, payload)
     {
@@ -962,7 +963,7 @@ user._user.put = function(data, callback)
               helpers.log // Log the error.
               (
                 7,
-                'oz2sewuwmddwty1ujja0' + '\n' + 
+                'q27qddpz55fqpol1gxkf' + '\n' + 
                 'The following was the error message from getMostRecent:' + '\n' +                                             
                 errorFromGetMostRecent + '\n'                                                 
               ); // End of: helpers.log // Log the error.
@@ -977,7 +978,7 @@ user._user.put = function(data, callback)
               helpers.log // Log the error.
               (
                 7,
-                'd371kc3awzs7kyu882f1' + '\n' +
+                '5ymvb274rs0678792u3v' + '\n' +
                 'The following was the error message from getMostRecent:' + '\n' +                                             
                 errorFromGetMostRecent + '\n'  +
                 'Also unable to remove lock on database.' + '\n' + 
@@ -1116,7 +1117,7 @@ user._user.put = function(data, callback)
                         helpers.log // Log the error.
                         (
                           7,
-                          'f8wuama7s58ooh7odwqp' + '\n' +
+                          'z3hxsnkzd5vn34vkdsar' + '\n' +
                           'Successful write to user but unable to remove lock on database' + '\n' +
                           'The following record was appended to user:' + '\n' +                            
                           JSON.stringify(logObject) + '\n' +   
@@ -1138,7 +1139,7 @@ user._user.put = function(data, callback)
                     helpers.log // Log the error.
                     (
                       5,
-                      '7goodnyul65tan0yyxfm' + '\n' +
+                      '19z2qgrxeitbb2le5aru' + '\n' +
                       'There was an error when appending to the user file.' + '\n' +
                       'The following record may or may not have been appended to user:' + '\n' +                            
                       JSON.stringify(logObject) + '\n' +
@@ -1193,7 +1194,7 @@ user._user.put = function(data, callback)
                                 helpers.log
                                 (
                                   5,
-                                  '4pt1s8ojs44qvr92udca' + '\n' +
+                                  '7u1e2a02xfrnjnw6pjjt' + '\n' +
                                   'Rollback entry in the user file was appended successfully' + '\n' +
                                   'The following was the record we rolled back:' + '\n' +
                                   JSON.stringify(logObject) + '\n'                                   
@@ -1204,7 +1205,7 @@ user._user.put = function(data, callback)
                                 helpers.log
                                 (
                                   7,
-                                  'iaqcjzwkeqak4bc3n679' + '\n' +
+                                  'xw3se3i243oyges2fnmb' + '\n' +
                                   'There was an error appending a rollback entry in the user file' + '\n' +
                                   'The following record may or may not have been rolled back:' + '\n' +
                                   JSON.stringify(logObject) + '\n' +   
@@ -1224,7 +1225,7 @@ user._user.put = function(data, callback)
                           helpers.log
                           (
                             7,
-                            'sf9qr0zbruhmjewyemwl' + '\n' +
+                            'rvd4q0u3iuo9wewg9jre' + '\n' +
                             'There was an error appending a rollback entry in the history file' + '\n' +
                             'A rollback entry may or may not have been written in the user file' + '\n' +  
                             'CHECK TO SEE IF history and user ARE STILL IN SYNC' + '\n' +                                      
@@ -1249,7 +1250,7 @@ user._user.put = function(data, callback)
               helpers.log
               (
                 7,
-                'dapi9qug5fd1bhqpdu3m' + '\n' +
+                'ollafecfxgyek1sg2wj6' + '\n' +
                 'There was an error appending to the history file' + '\n' +
                 'An error here does not necessarily mean the append to history did not happen.' + '\n' +  
                 'But an error at this point in the code surely means there was no append to user' + '\n' +                                          
@@ -1281,7 +1282,7 @@ user._user.put = function(data, callback)
             helpers.log // Log the error.
             (
               7,
-              '85qtt3tlilvv0bfso54r' + '\n' + 
+              '7lx8jeemedoxwv44afqt' + '\n' + 
               'Pipeline error. The message was as follows' + '\n' +                                             
               pipelineError + '\n'                                                 
             ); // End of: helpers.log // Log the error.
@@ -1292,3 +1293,532 @@ user._user.put = function(data, callback)
   }); // End of: lib.nextId(function(err, nextIdObject)
 }; // End of: handlers._user.put = function(...
 // End of: Define the user put subhandler function
+
+
+
+
+// Define the user get subhandler function.
+// Streams the user file or part of it back to the client.
+user._user.get = function(data, callback)
+{
+  let amountOfWhereClauses = 0; // We haven't found any yet.
+  let amountOfOrderByClauses = 0; // We haven't found any yet.
+
+  // No value set but declared here because we need access to these thoughout the entire function.
+  let queryArray, queryString;
+
+  // If there is a query expression.
+  if (data.hasOwnProperty('queryString') || typeof(Object.keys(data.queryStringObject)[0]) != 'undefined')
+  {
+
+    if (data.hasOwnProperty('queryString'))
+    {
+      // In this case the queryString is coming from userEdit page.
+      queryString = data.queryString
+    }
+    else
+    {
+      // In this case the queryString is coming from the userList page.
+      // For some reason the string comes in as an array element in the object's 
+      // key instead of it's value. That's why the Object.keys(...)[0] method.
+      queryString = Object.keys(data.queryStringObject)[0];
+    }
+
+    // Make an array out of the queryString where each phrase of the query is an element.
+    queryArray = queryString.split(":;");
+
+    // Define a function to restore encoded characters that the 
+    // client may pass to the server in the query string.
+    function restoreCharacters(elementValue, elementIndex, queryArray) 
+    {
+      switch(elementValue) {
+        case "{[POUND]}":
+          queryArray[elementIndex] = "#";
+        break;
+        case "{[AMPERSAND]}":
+          queryArray[elementIndex] = "&";
+        break;
+        case "{[EQUALS]}":
+          queryArray[elementIndex] = "=";
+        break;
+        case "{[BACK-SLASH]}":
+          queryArray[elementIndex] = "\\";
+        break;
+        case "{[SINGLE-QUOTE]}":
+          queryArray[elementIndex] = "'";
+        break;
+        case "{[PLUS]}":
+          queryArray[elementIndex] = "+";
+        break;                                        
+      }
+    }
+
+    // Call the function defined above once for each element in the queryArray to decode
+    // special characters that the client may have passed to the server in the query string.
+    queryArray.forEach(restoreCharacters);    
+    
+    let lengthOfQueryArray = queryArray.length;    
+
+    // Look at the first element to find out if we have a where clause or an orderby clause.
+    let firstQueryElement = queryArray[0];
+    let indexOfNextPossibleOrderBy = 0
+
+    if(firstQueryElement == 'WHERE') // The user filled out a where clause.
+    {
+      // Find out howmany ANDWHERE clauses there are starting at index 4 and counting forward by 4 until ANDWHERE is not found.
+      // We are counting by four because we only want to check elements where the ANDWHERE value would carry the correct context.
+      // In other words we only want to look where a conjuction would be found. Not a field value and not a comparison operator. 
+      amountOfWhereClauses = 1; // We know about the first one so far.
+      let indexOfNextPossibleANDORWHERE = amountOfWhereClauses * 4
+      let proceedWithLoop = true;
+
+      while (indexOfNextPossibleANDORWHERE < lengthOfQueryArray -1 && proceedWithLoop == true) 
+      {
+        if(queryArray[indexOfNextPossibleANDORWHERE] == "ANDWHERE" || queryArray[indexOfNextPossibleANDORWHERE] == "ORWHERE")
+        {
+          amountOfWhereClauses = amountOfWhereClauses + 1;
+          indexOfNextPossibleANDORWHERE = amountOfWhereClauses * 4
+        }
+        else
+        {
+          indexOfNextPossibleOrderBy = indexOfNextPossibleANDORWHERE
+          proceedWithLoop = false;
+        }
+      }
+    }
+    else // The firstQueryElement wasn't 'WHERE' So it must be 'ORDERBY'
+    {
+      // If we have something and there are no where clauses then we must be starting with an orderby clause.
+      amountOfOrderByClauses = 1
+    }
+
+    // Now we are going to find out how many orderby clauses there are.
+    proceedWithLoop = true;
+
+    while (indexOfNextPossibleOrderBy < lengthOfQueryArray - 1 && proceedWithLoop == true) 
+    {
+      if(queryArray[indexOfNextPossibleOrderBy] == "ORDERBY" || queryArray[indexOfNextPossibleOrderBy] == "ThenOrderBy")
+      {
+        amountOfOrderByClauses = amountOfOrderByClauses + 1;
+        indexOfNextPossibleOrderBy = indexOfNextPossibleOrderBy + 3;
+      }
+      else
+      {
+        proceedWithLoop = false;
+      }
+    }
+
+  } // End of: if (typeof(data.queryStringObject[0]) !== 'undefined'){...}
+  // End of: If the user created a query expression.
+
+
+  
+  // Create an empty map data structure which will be used to merge user records that have the same unique fields.
+  // Chose map data structure over objects because maps are guaranteed to maintain the same order where as objects are not.
+  let userMap = new Map();
+  
+  // This function sets up a stream where each chunk of data is a complete line in the user file.
+  let readInterface = readline.createInterface
+  (
+    { // specify the file to be read.
+      input: fs.createReadStream(_data.baseDir + '/database/dbPermission/user' + '/' + 'user' + '.json'),
+    }
+  );
+
+
+
+  // Look at each record in the file.
+  readInterface.on('line', function(line) 
+  {
+    // Convert the JSON string (a single line from the user file) into lineValueObject.
+    // These objects will written back to a new file after deleting some un-needed key/value pairs.
+    let lineValueObject = JSON.parse(line);
+    let recordWasDeleted = false;    
+
+    // Declare a variable to serve as a key in the map to manage the lineValueObject.
+    let userId = lineValueObject.userId;      
+
+    if(lineValueObject.deleted === true) // if the record in the file user.json had the delete field set to true:
+    {
+      // Remove this record from the map 
+      userMap.delete(userId);
+      recordWasDeleted = true;
+    }
+    else if(amountOfWhereClauses > 0) // else if the user created one or more filter expressions
+    {
+      let whereClauseCount = 1; // Represents the filter expression we are currently evaluating.
+      let index = 1; // Used to navigate the queryArray.
+      let shouldDeleteThisRecord = false;
+      let shouldLoopAgain = true;
+  
+      while(whereClauseCount <= amountOfWhereClauses && shouldLoopAgain === true)
+      {
+        switch(queryArray[index + 1]) 
+        {
+          case 'MatchesExactly': // 1
+          {
+            if(lineValueObject[queryArray[index]] != queryArray[index + 2])
+            {
+              shouldDeleteThisRecord = true;
+            }
+          }
+          break;
+
+          case 'MatchesExactlyNotCaseSensitive': // 2
+          {
+            if(lineValueObject[queryArray[index]].toString().toLowerCase() != queryArray[index + 2].toString().toLowerCase())
+            {
+              shouldDeleteThisRecord = true;
+            }             
+          }
+          break;
+          
+          case 'DoesNotMatchExactly': // 3
+            {
+              if(lineValueObject[queryArray[index]] == queryArray[index + 2])
+              {
+                shouldDeleteThisRecord = true;
+              }
+            }
+            break;
+
+          case 'DoesNotMatchExactlyNotCaseSensitive': // 4
+          {
+            if(lineValueObject[queryArray[index]].toString().toLowerCase() == queryArray[index + 2].toString().toLowerCase())
+            {
+              shouldDeleteThisRecord = true;
+            }
+          }
+          break;
+
+          case 'BeginsWith': // 5
+          {
+            if(lineValueObject[queryArray[index]].toString().indexOf(queryArray[index + 2].toString()) != 0)
+            {
+              shouldDeleteThisRecord = true;
+            }
+          }
+          break;
+          
+          case 'BeginsWithNotCaseSensitive': // 6
+          {
+            if(lineValueObject[queryArray[index]].toString().toLowerCase().indexOf(queryArray[index + 2].toString().toLowerCase()) != 0)
+            {
+              shouldDeleteThisRecord = true;
+            }
+          }
+          break;    
+
+          case 'DoesNotBeginWith': // 7
+          {
+            if(lineValueObject[queryArray[index]].toString().indexOf(queryArray[index + 2].toString()) == 0)
+            {
+              shouldDeleteThisRecord = true;
+            }
+          }
+          break;
+
+          case 'DoesNotBeginWithNotCaseSensitive': // 8
+          {
+            if(lineValueObject[queryArray[index]].toString().toLowerCase().indexOf(queryArray[index + 2].toString().toLowerCase()) == 0)          
+            {
+              shouldDeleteThisRecord = true;
+            }
+          }
+          break;          
+
+          case 'Contains': // 9
+          {
+            if(lineValueObject[queryArray[index]].toString().indexOf(queryArray[index + 2].toString()) == -1)
+            {
+              shouldDeleteThisRecord = true;
+            }
+          }
+          break;
+
+          case 'ContainsNotCaseSensitive': // 10
+          {
+            if(lineValueObject[queryArray[index]].toString().toLowerCase().indexOf(queryArray[index + 2].toString().toLowerCase()) == -1)          
+            {
+              shouldDeleteThisRecord = true;
+            }
+          }
+          break;
+
+          case 'DoesNotContain': // 11
+          {
+            if(lineValueObject[queryArray[index]].toString().indexOf(queryArray[index + 2].toString()) > -1)
+            {
+              shouldDeleteThisRecord = true;
+            }
+          }
+          break;
+
+          case 'DoesNotContainNotCaseSensitive': // 12
+          {
+            if(lineValueObject[queryArray[index]].toString().toLowerCase().indexOf(queryArray[index + 2].toString().toLowerCase()) > -1)          
+            {
+              shouldDeleteThisRecord = true;
+            }
+          }
+          break;
+
+          case 'EndsWith': // 13
+          {
+            if(!lineValueObject[queryArray[index]].toString().endsWith(queryArray[index + 2].toString()))
+            {
+              shouldDeleteThisRecord = true;
+            }
+          }
+          break;
+          
+          case 'EndsWithNotCaseSensitive': // 14
+          {
+            if(!lineValueObject[queryArray[index]].toString().toLowerCase().endsWith(queryArray[index + 2].toString().toLowerCase()))
+            {
+              shouldDeleteThisRecord = true;
+            }
+          }
+          break;
+          
+          case 'DoesNotEndWith': // 15
+          {
+            if(lineValueObject[queryArray[index]].toString().endsWith(queryArray[index + 2].toString()))
+            {
+              shouldDeleteThisRecord = true;
+            }
+          }
+          break;
+          
+          case 'DoesNotEndWithNotCaseSensitive': // 16
+          {
+            if(lineValueObject[queryArray[index]].toString().toLowerCase().endsWith(queryArray[index + 2].toString().toLowerCase()))
+            {
+              shouldDeleteThisRecord = true;
+            }
+          }
+          break;
+
+          case 'IsGreaterThan': // 17
+          {
+            if(lineValueObject[queryArray[index]] <= queryArray[index + 2])
+            {
+              shouldDeleteThisRecord = true;
+            }
+          }
+          break;          
+          
+          case 'IsGreaterThanNotCaseSensitive': // 18
+          {
+            if(lineValueObject[queryArray[index]].toString().toLowerCase() <= queryArray[index + 2].toString().toLowerCase())
+            {
+              shouldDeleteThisRecord = true;
+            }
+          }
+          break; 
+          
+          case 'IsGreaterThanOrEqualTo': // 19
+          {
+            if(lineValueObject[queryArray[index]] < queryArray[index + 2])
+            {
+              shouldDeleteThisRecord = true;
+            }
+          }
+          break;
+          
+          case 'IsGreaterThanOrEqualToNotCaseSensitive': // 20
+          {
+            if(lineValueObject[queryArray[index]].toString().toLowerCase() < queryArray[index + 2].toString().toLowerCase())
+            {
+              shouldDeleteThisRecord = true;
+            }
+          }
+          break;
+          
+          case 'IsLessThan': // 21
+          {
+            if(lineValueObject[queryArray[index]] >= queryArray[index + 2])
+            {
+              shouldDeleteThisRecord = true;
+            }
+          }
+          break;
+
+          case 'IsLessThanNotCaseSensitive': // 22
+          {
+            if(lineValueObject[queryArray[index]].toString().toLowerCase() >= queryArray[index + 2].toString().toLowerCase())
+            {
+              shouldDeleteThisRecord = true;
+            }
+          }
+          break;                
+          
+          case 'IsLessThanOrEqualTo': // 23
+          {
+            if(lineValueObject[queryArray[index]] > queryArray[index + 2])
+            {
+              shouldDeleteThisRecord = true;
+            }
+          }
+          break;          
+          
+          case 'IsLessThanOrEqualToNotCaseSensitive': // 24
+          {
+            if(lineValueObject[queryArray[index]].toString().toLowerCase() > queryArray[index + 2].toString().toLowerCase())
+            {
+              shouldDeleteThisRecord = true;
+            }
+          }
+          break;          
+                      
+          default: // When there are no case matches then do this.
+          {
+
+          }
+
+        } // End of: switch(queryArray[index + 1])               
+             
+        // All (ANDWHERE) clauses will be evaluated first.
+        // The order of the clauses will matter.
+
+
+        // If the record failed the specified match condition and has set the delete flag:
+        // Then we need to look for an ORWHERE clause further along in the queryArray that might pass this record.
+        // Any ANDWHERE clauses between are already failures because all AND conditions must pass or none should pass.
+        if(shouldDeleteThisRecord === true)
+        {      
+          let indexOfNextPossibleOrWhere = index + 3;
+          let proceedWithThisWhileLoop = true;     
+          let foundForwardOrWhereClause = false; // Haven't found any yet.
+
+
+          while (indexOfNextPossibleOrWhere <= amountOfWhereClauses * 4 && proceedWithThisWhileLoop == true) 
+          {                       
+            if(queryArray[indexOfNextPossibleOrWhere] == "ORWHERE") //We found a filter that may pass this record.
+            {
+              foundForwardOrWhereClause = true;
+              proceedWithThisWhileLoop = false;
+              // Need to repeat the outside while loop (not this one) at the index for the ORWHERE filter just found.
+            }
+            else // We did not find an ORWHERE filter this time through the while loop
+            {
+              // lets loop again to look further along the queryArray.
+              indexOfNextPossibleOrWhere = indexOfNextPossibleOrWhere + 4;
+              proceedWithThisWhileLoop = true;                           
+            }
+          } // End of: while (indexOfNextPossibleOrWhere < amountOfWhereClauses * 4 -1 && proceedWithLoop == true){...}
+
+          
+          if(foundForwardOrWhereClause === true) // Another ORWHERE clause exists that might pass this record.
+          {
+            // index = index + 4;
+            index = indexOfNextPossibleOrWhere + 1
+            whereClauseCount = whereClauseCount + 1;   
+            shouldLoopAgain = true;  
+            recordWasDeleted = false;    
+            shouldDeleteThisRecord = false;              
+          }
+
+          // FAILING THIS RECORD!!!
+          // Breaking out of both while loops and deleting this record. 
+          else // Else: there are no more ORWHERE filters that could save this record
+          {
+            // Finally remove this record from the map 
+            userMap.delete(userId);
+            recordWasDeleted = true;  
+            shouldLoopAgain = false;  
+            shouldDeleteThisRecord = false;  
+          // There is no more processing for this particular record in readInterface.on    
+          // IT ALL ENDS HERE FOR THIS RECORD!!!                  
+          }
+
+        } //End of: if(shouldDeleteThisRecord === true){...}
+
+        // Else: the current filter passed this record.
+        else // shouldDeleteThisRecord was false.
+        {
+
+        // Since the record passed through this current filter we need to 
+        // see if there is an ANDWHERE filter right next to this current filter. 
+        // Any further ANDWHERE filters right next to this current one must also 
+        // pass the record until there are no more filters or an ORWHERE filter is 
+        // encountered. In that case the loop is stopped and the record is passed.
+
+          let indexOfNextPossibleAndWhere = index + 3; 
+    
+          // If we found an ANDWHERE filter that must pass this record.  
+          if(queryArray[indexOfNextPossibleAndWhere] == "ANDWHERE") 
+          {
+            // Need to repeat the outside while loop (not this one) at the index for the ANDWHERE filter just found.
+            // If the filter is passed then we will be back here again looking for another ANDWHERE clause.
+            index = index + 4;
+            whereClauseCount = whereClauseCount + 1;   
+            shouldLoopAgain = true;  
+            recordWasDeleted = false;    
+            shouldDeleteThisRecord = false; 
+          }
+          else // We did not find an ANDWHERE filter this time through the while loop
+          {
+            // PASSING THIS RECORD!!!
+            // Breaking out of both while loops and passing this record.
+            shouldLoopAgain = false; 
+            recordWasDeleted = false;  
+          }
+
+        } // End of: else: shouldDeleteThisRecord was false
+        
+
+      } // End of: while(whereClauseCount <= amountOfWhereClauses && shouldLoopAgain === true)
+      
+    } //End of: else if(amountOfWhereClauses > 0) // else if the user created one or more filter expressions
+
+    //If the record was not marked for deletion and passed through the filters above:
+    if(recordWasDeleted === false)
+    {
+      // Remove the hashedPassword key/value pair from the lineValueObject before returning it to the requester.
+      delete lineValueObject.hashedPassword;
+
+      // Remove the deleted key/value pair from the lineValueObject before returning it to the requester.
+      delete lineValueObject.deleted;            
+
+      // Update this record in the map.
+      userMap.set(userId, lineValueObject);
+    }
+
+  }); // End of: readInterface.on('line', function(line){...}
+  // End of: Look at each record...
+
+
+  // This listener fires after we have looked through all the records in the user file.
+  // The callback function defined here will stream the user list back to the clients browser.
+  readInterface.on('close', function() 
+  {          
+    // This readable stream will be used to write the result of the merge to a new file.
+    const sourceStream = new Readable(); 
+
+    for (const [key, valueObject] of userMap)
+    {
+      // Convert the data object to a string.
+      let stringData = JSON.stringify(valueObject);     
+
+      // Load the readable stream with data.
+      sourceStream.push(stringData + '\n');                  
+    }       
+
+    // Tell the stream no more data is coming.
+    sourceStream.push(null);     
+
+    callback(200, sourceStream, 'stream');             
+
+  }); // End of: readInterface.on('close', function(){...}   
+
+}; // End of: handlers._user.get = function(data, callback){do stuff}
+// End of: Define the user get subhandler function.  
+
+
+
+
+// Export the module
+module.exports = user;
+
+
