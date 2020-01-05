@@ -1,8 +1,16 @@
-Using [this JSON reference](https://json-schema.org/understanding-json-schema/reference/boolean.html) and [this JSON reference](https://json-schema.org/learn/getting-started-step-by-step.html).  
+The file - metaSchema.json is the schema for the data dictionary.  
 
-Using [this JSON viewer](https://json.bloople.net/) for a quick understanding of records in the data dictionary **metadata.json**.  
+The file - metadata.json is the data dictionary.  
 
-Using [this JSON editor](https://jsonformatter.org/json-editor) to get rid of white space in json records prior to pasting into metadata.json.  
+The script - meta.js is the code generator.  
+
+The generator references the data dictionary for information on how to build the accounting system.  
+
+Using [this JSON reference](https://json-schema.org/understanding-json-schema/reference/boolean.html) and [this JSON reference](https://json-schema.org/learn/getting-started-step-by-step.html) for building the schema.  
+
+Using [this JSON viewer](https://json.bloople.net/) for a quick understanding of records in the data dictionary.  
+
+Using [this JSON editor](https://jsonformatter.org/json-editor) to get rid of white space in json records prior to pasting into the data dictionary.  
 
 Using [this schema editor](https://json-editor.tangramjs.com/editor.html#/) to build a schema for the data dictionary.  
 
