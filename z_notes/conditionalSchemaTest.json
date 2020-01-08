@@ -76,7 +76,8 @@
                                 },
                                 "elementType": {
                                     "type": "string",
-                                    "description": "Specifies the default control that will be used on the generated webpages to aquire user input. These may be overridden by specifications further down in this form.",
+                                    "description": "Specifies the default control that will be used on the generated webpages to aquire user input. These may be overriddent by specifcations further down in this form.",
+                                    "default": "input",
                                     "enum": [
                                         "input",
                                         "select",
@@ -84,27 +85,101 @@
                                         "button",
                                         "datalist"
                                     ]
-                                },
-                                "attributes": {
-                                    "type": "object",
-                                    "description": "Specifies HTML attributes of form elements used to populate newField with data for the record in the table for which we are generating code.",
-                                    "properties": {
-                                        "type": {
-                                            "type": "string",
-                                            "description": "Normally to specify the type of input.",
-                                            "default": "text"
-                                        }
-                                    },
-                                    "required": [
-                                        "type"
-                                    ]
                                 }
                             },
-                            "required": [
-                                "parentField",
-                                "labelText",
-                                "elementType",
-                                "attributes"
+                            "allOf": [
+                                {
+                                    "if": {
+                                        "properties": {
+                                            "elementType": {
+                                                "const": "input"
+                                            }
+                                        }
+                                    },
+                                    "then": {
+                                        "properties": {
+                                            "attributes": {
+                                                "type": "object",
+                                                "description": "Specifies HTML attributes of form elements used to populate newField with data for the record in the table for which we are generating code.",
+                                                "properties": {
+                                                    "type": {
+                                                        "type": "string",
+                                                        "description": "Normally to specify the type of input.",
+                                                        "enum": [
+                                                            "button",
+                                                            "checkbox",
+                                                            "color",
+                                                            "email",
+                                                            "file",
+                                                            "hidden",
+                                                            "image",
+                                                            "month",
+                                                            "number",
+                                                            "password",
+                                                            "radio",
+                                                            "range",
+                                                            "reset",
+                                                            "search",
+                                                            "tel",
+                                                            "text",
+                                                            "time",
+                                                            "url",
+                                                            "week"
+                                                        ]
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "if": {
+                                        "properties": {
+                                            "elementType": {
+                                                "const": "select"
+                                            }
+                                        }
+                                    },
+                                    "then": {
+                                        "properties": {
+                                            "attributes": {
+                                                "selectPlaceHolderForNow": "select attributes will go here later."
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "if": {
+                                        "properties": {
+                                            "elementType": {
+                                                "const": "textarea"
+                                            }
+                                        }
+                                    },
+                                    "then": {
+                                        "properties": {
+                                            "attributes": {
+                                                "textareaPlaceHolderForNow": "textarea attributes will go here later."
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "if": {
+                                        "properties": {
+                                            "elementType": {
+                                                "const": "button"
+                                            }
+                                        }
+                                    },
+                                    "then": {
+                                        "properties": {
+                                            "attributes": {
+                                                "buttonPlaceHolderForNow": "button attributes will go here later."
+                                            }
+                                        }
+                                    }
+                                }
                             ]
                         },
                         "calculation": {
@@ -114,13 +189,7 @@
                                 "placeHolderForNow": {}
                             }
                         }
-                    },
-                    "required": [
-                        "dataType",
-                        "unique",
-                        "defaultElements",
-                        "calculation"
-                    ]
+                    }
                 }
             },
             "required": [
