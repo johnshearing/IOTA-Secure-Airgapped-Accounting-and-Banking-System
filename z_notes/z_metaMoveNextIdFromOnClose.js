@@ -717,9 +717,10 @@ ${recordObject.table.tableName}._${recordObject.table.tableName}.post = function
 
       return callback(400, {'Error' : 'The ${uniqueFieldsArray[0]} already exists'});
     }
+  }); // End of: readInterface.on('close', function(){...}    
 
-    // If we made it to this point then the candidate ${uniqueFieldsArray[0]} is unique so continue on with the append opperation.
-    // Behavior from meta.js at gwwelr17hmxvq4spdrcl    
+  // If we made it to this point then the candidate ${uniqueFieldsArray[0]} is unique so continue on with the append opperation.
+  // Behavior from meta.js at gwwelr17hmxvq4spdrcl    
 `          
 
         } // End of: if(uniqueFieldsArray.length != 0){...}
@@ -760,44 +761,44 @@ ${recordObject.table.tableName}._${recordObject.table.tableName}.post = function
 
         // Start of: Insert code for writing to the database.
         htmlString = htmlString +
-    `
-    // Get the next global sequential unique Id and lock the database
-    // Locking the database makes the system multiuser.
-    // All writes to any table must first get a lock on gsuid.json
-    // gsuid.json stays locked until the operation is completely finished and _data.removeLock is called.
-    // This ensures that only one process is writing to the database at any one time.  
-    // If the transaction fails or if it requires a rollback then the lock will remain until an administrator removes it.
-    // This will halt all writes to the database until the administrator has had a chance to investigate.
-    // Behavior from meta.js at lc2gqx4uqgw9o0hjtkdp       
-    _data.nextId(function(error, nextIdObject)
+  `
+  // Get the next global sequential unique Id and lock the database
+  // Locking the database makes the system multiuser.
+  // All writes to any table must first get a lock on gsuid.json
+  // gsuid.json stays locked until the operation is completely finished and _data.removeLock is called.
+  // This ensures that only one process is writing to the database at any one time.  
+  // If the transaction fails or if it requires a rollback then the lock will remain until an administrator removes it.
+  // This will halt all writes to the database until the administrator has had a chance to investigate.
+  // Behavior from meta.js at lc2gqx4uqgw9o0hjtkdp       
+  _data.nextId(function(error, nextIdObject)
+  {
+
+    // If we were unable to get the next gsuid then exit this process without appending the record. 
+    if(error || !nextIdObject)
     {
+      helpers.log
+      (
+        5,
+        '${helpers.createRandomString(20)}' + '\\n' +
+        'Unable to get the next gsuid.' + '\\n' +
+        'The following was the error' + '\\n' +
+        JSON.stringify(error) + '\\n'                                   
+      ); // End of: helpers.log(...)
 
-      // If we were unable to get the next gsuid then exit this process without appending the record. 
-      if(error || !nextIdObject)
-      {
-        helpers.log
-        (
-          5,
-          '${helpers.createRandomString(20)}' + '\\n' +
-          'Unable to get the next gsuid.' + '\\n' +
-          'The following was the error' + '\\n' +
-          JSON.stringify(error) + '\\n'                                   
-        ); // End of: helpers.log(...)
-
-        return callback(423, {'Error' : 'Database is Locked'});
-      }
+      return callback(423, {'Error' : 'Database is Locked'});
+    }
 
 
-      // If we got this far then we were able to lock the gsuid.json file and get the next 
-      // unique id number for this record so continue on.
+    // If we got this far then we were able to lock the gsuid.json file and get the next 
+    // unique id number for this record so continue on.
 
 
 
-      // Create the ${recordObject.table.tableName} object. 
-      // This object will be appended to ${recordObject.table.tableName}.json.
-      var ${recordObject.table.tableName}Object = 
-      {
-          "${recordObject.table.tableName}Id" : nextIdObject.nextId,
+    // Create the ${recordObject.table.tableName} object. 
+    // This object will be appended to ${recordObject.table.tableName}.json.
+    var ${recordObject.table.tableName}Object = 
+    {
+        "${recordObject.table.tableName}Id" : nextIdObject.nextId,
 `
 
 
@@ -812,117 +813,117 @@ ${recordObject.table.tableName}._${recordObject.table.tableName}.post = function
 
         htmlString = htmlString +          
 `          "timeStamp" : Date.now(),
-          "deleted" : false
-      };
+        "deleted" : false
+    };
 
-      // Create the logObject.
-      // This object will be written to history.json which maintains a history of 
-      // all changes to all tables in the database.
-      var logObject =
+    // Create the logObject.
+    // This object will be written to history.json which maintains a history of 
+    // all changes to all tables in the database.
+    var logObject =
+    {
+      "historyId" : nextIdObject.nextId + 1,                 
+      "transactionId" : nextIdObject.nextId + 2,            
+      "rollback" : false,
+      "process" : "${recordObject.table.tableName}._${recordObject.table.tableName}.post",
+      "comment" : "Post new record",
+      "who" : "No login yet",    
+      "${recordObject.table.tableName}" : ${recordObject.table.tableName}Object   
+    }
+
+    // Calling the function which creates an entry into the database log file.
+    // Behavior from meta.js at ugc5u97p0sb9z5o7dpmh
+    _data.append
+    (
+      'database/dbHistory', 
+      'history', 
+      logObject, 
+      function(err)
       {
-        "historyId" : nextIdObject.nextId + 1,                 
-        "transactionId" : nextIdObject.nextId + 2,            
-        "rollback" : false,
-        "process" : "${recordObject.table.tableName}._${recordObject.table.tableName}.post",
-        "comment" : "Post new record",
-        "who" : "No login yet",    
-        "${recordObject.table.tableName}" : ${recordObject.table.tableName}Object   
-      }
+        // If there was an error appending to the history file then exit this process
+        if (err)  
+        {
+          helpers.log
+          (
+            7,
+            '${helpers.createRandomString(20)}' + '\\n' +
+            'There was an error appending to the history file' + '\\n' +
+            'An error here does not necessarily mean the append to history did not happen.' + '\\n' +  
+            'But an error at this point in the code surely means there was no append to ${recordObject.table.tableName}' + '\\n' +                                          
+            'CHECK TO SEE IF history and ${recordObject.table.tableName} ARE STILL IN SYNC' + '\\n' +                    
+            'The following was the record we tried to append:' + '\\n' +
+            JSON.stringify(logObject) + '\\n' +                   
+            'The following is the error message:' + '\\n' +                  
+            err  + '\\n'
+          );
 
-      // Calling the function which creates an entry into the database log file.
-      // Behavior from meta.js at ugc5u97p0sb9z5o7dpmh
-      _data.append
-      (
-        'database/dbHistory', 
-        'history', 
-        logObject, 
+          return callback(500, {'Error' : 'Could not create a new ${recordObject.table.tableName} record.'});
+        }
+
+
+
+        // The history file has been appended to successfully so continue on.
+
+
+
+        // Calling the function which appends a record to the file ${recordObject.table.tableName}.json
+        _data.append
+        (
+        '/${recordObject.table.directory}', 
+        '${recordObject.table.tableName}', 
+        ${recordObject.table.tableName}Object, 
         function(err)
         {
-          // If there was an error appending to the history file then exit this process
-          if (err)  
+          if (!err)  // The file has been appended to successfully.
           {
-            helpers.log
+            // Call to function which removes lock
+            _data.removeLock
+            (function(error)
+            // start of callback code which is run after attempting to remove the lock.
+            {
+              if(!error) // Database lock was successfully removed.
+              {
+                callback(200); 
+              }
+              else // Good write but unable to remove lock on database.
+              {
+                helpers.log // Log the error.
+                (
+                  7,
+                  '${helpers.createRandomString(20)}' + '\\n' +
+                  'Successful write to ${recordObject.table.tableName} but unable to remove lock on database' + '\\n' +
+                  'The following record was appended to the ${recordObject.table.tableName} file:' + '\\n' +                            
+                  JSON.stringify(logObject) + '\\n' +   
+                  'The following was the error message:' + '\\n' +                                             
+                  error + '\\n'
+                ); // End of: helpers.log. Log the error.
+
+                return callback(500, {'Error' : 'Successful write to ${recordObject.table.tableName} but unable to remove lock on database'});
+
+              } // End of: else Good write but unable to remove lock on database.
+
+            } // End of callback code which is run after attempting to remove the lock.
+            ); // End of: _data.removeLock(function(error){...}
+            // End of: Call to function which removes lock
+
+          }    // End of: if (!err)  //The file has been appended to successfully.
+          else // There was an error appending to ${recordObject.table.tableName}.
+          {
+            helpers.log // Log the error.
             (
-              7,
+              5,
               '${helpers.createRandomString(20)}' + '\\n' +
-              'There was an error appending to the history file' + '\\n' +
-              'An error here does not necessarily mean the append to history did not happen.' + '\\n' +  
-              'But an error at this point in the code surely means there was no append to ${recordObject.table.tableName}' + '\\n' +                                          
-              'CHECK TO SEE IF history and ${recordObject.table.tableName} ARE STILL IN SYNC' + '\\n' +                    
-              'The following was the record we tried to append:' + '\\n' +
-              JSON.stringify(logObject) + '\\n' +                   
-              'The following is the error message:' + '\\n' +                  
-              err  + '\\n'
+              'There was an error when appending to the ${recordObject.table.tableName} file.' + '\\n' +
+              'The following record may or may not have been appended to the ${recordObject.table.tableName} file:' + '\\n' +                            
+              JSON.stringify(logObject) + '\\n' +
+              'Attempting to rollback the entry.' + '\\n' +    
+              'The following was the error message:' + '\\n' +                                             
+              err + '\\n'            
             );
 
-            return callback(500, {'Error' : 'Could not create a new ${recordObject.table.tableName} record.'});
-          }
-
-
-
-          // The history file has been appended to successfully so continue on.
-
-
-
-          // Calling the function which appends a record to the file ${recordObject.table.tableName}.json
-          _data.append
-          (
-          '/${recordObject.table.directory}', 
-          '${recordObject.table.tableName}', 
-          ${recordObject.table.tableName}Object, 
-          function(err)
-          {
-            if (!err)  // The file has been appended to successfully.
+            // Assemble rollback record for the ${recordObject.table.tableName} file which will negate previous entry if any.  
+            ${recordObject.table.tableName}Object = 
             {
-              // Call to function which removes lock
-              _data.removeLock
-              (function(error)
-              // start of callback code which is run after attempting to remove the lock.
-              {
-                if(!error) // Database lock was successfully removed.
-                {
-                  callback(200); 
-                }
-                else // Good write but unable to remove lock on database.
-                {
-                  helpers.log // Log the error.
-                  (
-                    7,
-                    '${helpers.createRandomString(20)}' + '\\n' +
-                    'Successful write to ${recordObject.table.tableName} but unable to remove lock on database' + '\\n' +
-                    'The following record was appended to the ${recordObject.table.tableName} file:' + '\\n' +                            
-                    JSON.stringify(logObject) + '\\n' +   
-                    'The following was the error message:' + '\\n' +                                             
-                    error + '\\n'
-                  ); // End of: helpers.log. Log the error.
-
-                  return callback(500, {'Error' : 'Successful write to ${recordObject.table.tableName} but unable to remove lock on database'});
-
-                } // End of: else Good write but unable to remove lock on database.
-
-              } // End of callback code which is run after attempting to remove the lock.
-              ); // End of: _data.removeLock(function(error){...}
-              // End of: Call to function which removes lock
-
-            }    // End of: if (!err)  //The file has been appended to successfully.
-            else // There was an error appending to ${recordObject.table.tableName}.
-            {
-              helpers.log // Log the error.
-              (
-                5,
-                '${helpers.createRandomString(20)}' + '\\n' +
-                'There was an error when appending to the ${recordObject.table.tableName} file.' + '\\n' +
-                'The following record may or may not have been appended to the ${recordObject.table.tableName} file:' + '\\n' +                            
-                JSON.stringify(logObject) + '\\n' +
-                'Attempting to rollback the entry.' + '\\n' +    
-                'The following was the error message:' + '\\n' +                                             
-                err + '\\n'            
-              );
-
-              // Assemble rollback record for the ${recordObject.table.tableName} file which will negate previous entry if any.  
-              ${recordObject.table.tableName}Object = 
-              {
-                "${recordObject.table.tableName}Id" : nextIdObject.nextId,
+              "${recordObject.table.tableName}Id" : nextIdObject.nextId,
 `
 
 
@@ -936,108 +937,98 @@ ${recordObject.table.tableName}._${recordObject.table.tableName}.post = function
 
         htmlString = htmlString +
 `                "timeStamp" : Date.now(),
-                "deleted" : true
-              };                        
+              "deleted" : true
+            };                        
 
-              // Assemble rollback record for the history file which will negate previous entry if any.
-              logObject =
+            // Assemble rollback record for the history file which will negate previous entry if any.
+            logObject =
+            {
+              "historyId" : nextIdObject.nextId + 3,                             
+              "transactionId" : nextIdObject.nextId + 2,                        
+              "rollback" : true,
+              "process" : "${recordObject.table.tableName}._${recordObject.table.tableName}.post",
+              "comment" : "Error posting. Appending a delete.",                        
+              "who" : "Function needed",    
+              "${recordObject.table.tableName}" : ${recordObject.table.tableName}Object   
+            }
+
+            // Start the rollback process.
+            _data.append // Append a rollback entry in history.
+            (
+              'database/dbHistory', 
+              'history', 
+              logObject, 
+              function(err)
               {
-                "historyId" : nextIdObject.nextId + 3,                             
-                "transactionId" : nextIdObject.nextId + 2,                        
-                "rollback" : true,
-                "process" : "${recordObject.table.tableName}._${recordObject.table.tableName}.post",
-                "comment" : "Error posting. Appending a delete.",                        
-                "who" : "Function needed",    
-                "${recordObject.table.tableName}" : ${recordObject.table.tableName}Object   
-              }
-
-              // Start the rollback process.
-              _data.append // Append a rollback entry in history.
-              (
-                'database/dbHistory', 
-                'history', 
-                logObject, 
-                function(err)
+                if (!err) // The roll back entry in history was appended successfully.
                 {
-                  if (!err) // The roll back entry in history was appended successfully.
-                  {
-                    // Calling the function which appends a record to the file ${recordObject.table.tableName}.json
-                    _data.append
-                    (
-                      '/${recordObject.table.directory}', 
-                      '${recordObject.table.tableName}', 
-                      ${recordObject.table.tableName}Object, 
-                      function(err)
+                  // Calling the function which appends a record to the file ${recordObject.table.tableName}.json
+                  _data.append
+                  (
+                    '/${recordObject.table.directory}', 
+                    '${recordObject.table.tableName}', 
+                    ${recordObject.table.tableName}Object, 
+                    function(err)
+                    {
+                      if (!err) // The rollback record for ${recordObject.table.tableName} was appended successfully.
                       {
-                        if (!err) // The rollback record for ${recordObject.table.tableName} was appended successfully.
-                        {
-                          helpers.log
-                          (
-                            5,
-                            '${helpers.createRandomString(20)}' + '\\n' +
-                            'Rollback entry in the ${recordObject.table.tableName} file was appended successfully' + '\\n' +
-                            'The following was the record we rolled back:' + '\\n' +
-                            JSON.stringify(logObject) + '\\n'                                   
-                          ); // End of: helpers.log(...)
-                        }
-                        else // There was an error when rolling back record for ${recordObject.table.tableName}.
-                        {
-                          helpers.log
-                          (
-                            7,
-                            '${helpers.createRandomString(20)}' + '\\n' +
-                            'There was an error appending a rollback entry in the ${recordObject.table.tableName} file' + '\\n' +
-                            'The following record may or may not have been rolled back:' + '\\n' +
-                            JSON.stringify(logObject) + '\\n' +   
-                            'An error here does not necessarily mean the deleting append to ${recordObject.table.tableName} did not happen.' + '\\n' +                                        
-                            'CHECK TO SEE IF history and ${recordObject.table.tableName} ARE STILL IN SYNC' + '\\n' + 
-                            'The following is the error message:' + '\\n' +                                                                     
-                            err  + '\\n'
-                          ); // End of: helpers.log(...)
-                        }
+                        helpers.log
+                        (
+                          5,
+                          '${helpers.createRandomString(20)}' + '\\n' +
+                          'Rollback entry in the ${recordObject.table.tableName} file was appended successfully' + '\\n' +
+                          'The following was the record we rolled back:' + '\\n' +
+                          JSON.stringify(logObject) + '\\n'                                   
+                        ); // End of: helpers.log(...)
+                      }
+                      else // There was an error when rolling back record for ${recordObject.table.tableName}.
+                      {
+                        helpers.log
+                        (
+                          7,
+                          '${helpers.createRandomString(20)}' + '\\n' +
+                          'There was an error appending a rollback entry in the ${recordObject.table.tableName} file' + '\\n' +
+                          'The following record may or may not have been rolled back:' + '\\n' +
+                          JSON.stringify(logObject) + '\\n' +   
+                          'An error here does not necessarily mean the deleting append to ${recordObject.table.tableName} did not happen.' + '\\n' +                                        
+                          'CHECK TO SEE IF history and ${recordObject.table.tableName} ARE STILL IN SYNC' + '\\n' + 
+                          'The following is the error message:' + '\\n' +                                                                     
+                          err  + '\\n'
+                        ); // End of: helpers.log(...)
+                      }
 
-                      } // End of: callback function(err){...}
-                    ); // End of: _data.append(...)
-                    
-                  } // End of: The roll back entry in history was appended successfully.
-                  else // There was an error when appending a rollback entry in history.
-                  { 
-                    helpers.log
-                    (
-                      7,
-                      '${helpers.createRandomString(20)}' + '\\n' +
-                      'There was an error appending a rollback entry in the history file' + '\\n' +
-                      'A rollback entry may or may not have been written in the ${recordObject.table.tableName} file' + '\\n' +  
-                      'CHECK TO SEE IF history and ${recordObject.table.tableName} ARE STILL IN SYNC' + '\\n' +                                      
-                      'The following was the record we tried to roll back:' + '\\n' +
-                      JSON.stringify(logObject) + '\\n' +        
-                      'The following is the error message:' + '\\n' +
-                      err  + '\\n'
-                    );
-                  } // End of: else There was an error when appending a rollback entry in history.
-                } // End of: callback function(err){...}
-              ); // End of: _data.append(...) Append a rollback entry in history.
+                    } // End of: callback function(err){...}
+                  ); // End of: _data.append(...)
+                  
+                } // End of: The roll back entry in history was appended successfully.
+                else // There was an error when appending a rollback entry in history.
+                { 
+                  helpers.log
+                  (
+                    7,
+                    '${helpers.createRandomString(20)}' + '\\n' +
+                    'There was an error appending a rollback entry in the history file' + '\\n' +
+                    'A rollback entry may or may not have been written in the ${recordObject.table.tableName} file' + '\\n' +  
+                    'CHECK TO SEE IF history and ${recordObject.table.tableName} ARE STILL IN SYNC' + '\\n' +                                      
+                    'The following was the record we tried to roll back:' + '\\n' +
+                    JSON.stringify(logObject) + '\\n' +        
+                    'The following is the error message:' + '\\n' +
+                    err  + '\\n'
+                  );
+                } // End of: else There was an error when appending a rollback entry in history.
+              } // End of: callback function(err){...}
+            ); // End of: _data.append(...) Append a rollback entry in history.
 
-              return callback(500, {'Error' : 'Could not create the new ${recordObject.table.tableName}.'});              
+            return callback(500, {'Error' : 'Could not create the new ${recordObject.table.tableName}.'});              
 
-            } // End of: else // There was an error appending to ${recordObject.table.tableName}.
-          } // End of: callback function
-          ); // End of: Calling the function which appends a record to the file ${recordObject.table.tableName}.json 
+          } // End of: else // There was an error appending to ${recordObject.table.tableName}.
         } // End of: callback function
-      ); // End of: _data.append(dbHistory...)
-      // End of: Calling the function which creates an entry into history. 
-    }); // End of: lib.nextId(function(err, nextIdObject)
-`
-
-          if(uniqueFieldsArray.length != 0)
-          {
-            htmlString = htmlString +
-            "  }); // End of: readInterface.on('close', function(){...}" + "\n"
-          }
-
-
-          htmlString = htmlString +
-`}; // End of: ${recordObject.table.tableName}._${recordObject.table.tableName}.post = function(...
+        ); // End of: Calling the function which appends a record to the file ${recordObject.table.tableName}.json 
+      } // End of: callback function
+    ); // End of: _data.append(dbHistory...)
+    // End of: Calling the function which creates an entry into history. 
+  }); // End of: lib.nextId(function(err, nextIdObject)
+}; // End of: ${recordObject.table.tableName}._${recordObject.table.tableName}.post = function(...
 // End of: ${recordObject.table.tableName} - post subhandler
 
 

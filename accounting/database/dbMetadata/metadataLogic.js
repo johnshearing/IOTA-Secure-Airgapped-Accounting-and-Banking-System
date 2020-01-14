@@ -1,6 +1,6 @@
 
 /*
-/ Handlers for the "user" table.
+/ Handlers for the "metadata" table.
 / This program was built by meta.js starting at yx52pvsi0kn9p5o46hrq
 */
 
@@ -10,19 +10,19 @@ const fs = require('fs');
 const readline = require('readline');
 const { pipeline, Readable, Writable } = require('stream');
 const StringDecoder = require('string_decoder').StringDecoder;
-const _data = require('../../../../lib/aData');
-const helpers = require('../../../../lib/aHelpers');
+const _data = require('../../../lib/aData');
+const helpers = require('../../../lib/aHelpers');
 
 
 // Create a container for all the handlers
-let user = {};
+let metadata = {};
 
 
 
 
-// Define the handler function that serves up the HTML page for searching and listing user records.
+// Define the handler function that serves up the HTML page for searching and listing metadata records.
 // Behavior from meta.js at gg9ec14lo9rqjk7kxz7f
-user.serveListPage = function(data, callback)
+metadata.serveListPage = function(data, callback)
 {
   // Reject any request that isn't a get
   if(data.method == 'get')
@@ -30,15 +30,15 @@ user.serveListPage = function(data, callback)
     // The following values will be inserted into the webpage at the corresponding key locations in the templates.
     var templateData = 
     {
-      'head.title' : 'User List',
-      'body.class' : 'userList',     
-      'tableName':'user',
-      "tableLabel":"User",    
+      'head.title' : 'Metadata List',
+      'body.class' : 'metadataList',     
+      'tableName':'metadata',
+      "tableLabel":"Metadata",    
       'head.clientCode' : '', // The HTML header template must see something or an empty string.         
     };
 
     // Read in a template as a string
-    helpers.getTemplate('../accounting/database/dbPermission/user/userList', templateData, function(errorGetTemplate, str)
+    helpers.getTemplate('../accounting/database/dbMetadata/metadataList', templateData, function(errorGetTemplate, str)
     {
       if(!errorGetTemplate && str) // If there were no errors and a template was returned
       {
@@ -55,7 +55,7 @@ user.serveListPage = function(data, callback)
             helpers.log
             (            
               5,
-              'ixlx15hyooxgx063e461' + '\n' +
+              'k5ye46npxbf9nk5y9iic' + '\n' +
               'There was an error or the concatenated templates were not returned.' + '\n' +
               'This was the error:' + '\n' +
               JSON.stringify(errorAddUnivTemplates) + '\n'
@@ -71,7 +71,7 @@ user.serveListPage = function(data, callback)
         helpers.log
         (
           5,
-          'oyd1bdsa9nrh2zdvg2v2' + '\n' +
+          'rrkwiroj99oxbztuhg2c' + '\n' +
           'There was an error or no template was returned.' + '\n' +
           'This was the error:' + '\n' +
           JSON.stringify(errorGetTemplate) + '\n'
@@ -88,22 +88,22 @@ user.serveListPage = function(data, callback)
     helpers.log
     (
       5,
-      '4az4isb0a4nl8489o7he' + '\n' +
+      'xt0g7vp05vz6arh40po8' + '\n' +
       'Method not get. Only gets allowed.' + '\n'
     );
 
     // Send back status code for Not Allowed, an undefined payload, and contentType of html,
     callback(405, undefined, 'html');
   } // End of: else method not a get  
-}; // End of: user.serveListPage = function(data, callback){...}
-// End of:// Define the handler function that serves up the HTML page for searching and listing user records.
+}; // End of: metadata.serveListPage = function(data, callback){...}
+// End of:// Define the handler function that serves up the HTML page for searching and listing metadata records.
 
 
 
 
-// Define the handler function that serves up the HTML page for creating new user records.
+// Define the handler function that serves up the HTML page for creating new metadata records.
 // Behavior from meta.js at xenz5eipqot8nym0eev3
-user.serveAddPage = function(data, callback)
+metadata.serveAddPage = function(data, callback)
 {
   // Reject any request that isn't a get
   if(data.method == 'get')
@@ -111,14 +111,14 @@ user.serveAddPage = function(data, callback)
     // The following values will be inserted into the webpage at the corresponding key locations in the templates.
     var templateData = 
     {
-      'head.title' : 'Create a New User',
-      'head.description' : 'For creating a new user record',
-      'body.class' : 'userAdd', 
+      'head.title' : 'Create a New Metadata',
+      'head.description' : 'For creating a new metadata record',
+      'body.class' : 'metadataAdd', 
       'head.clientCode' : '', // The HTML header template must see something or an empty string.      
     };
 
     // Read in a template as a string
-    helpers.getTemplate('../accounting/database/dbPermission/user/userAdd', templateData, function(errorGetTemplate, str)
+    helpers.getTemplate('../accounting/database/dbMetadata/metadataAdd', templateData, function(errorGetTemplate, str)
     {
       if(!errorGetTemplate && str) // If there were no errors and a template was returned
       {
@@ -135,7 +135,7 @@ user.serveAddPage = function(data, callback)
             helpers.log
             (            
               5,
-              '9a4mov3zzbeuzydlsauq' + '\n' +
+              'e3ignz01drfbysfgh2au' + '\n' +
               'There was an error or the concatenated templates were not returned.' + '\n' +
               'This was the error:' + '\n' +
               JSON.stringify(errorAddUnivTemplates) + '\n'
@@ -151,7 +151,7 @@ user.serveAddPage = function(data, callback)
         helpers.log
         (
           5,
-          'dnikweu4r586011d8i92' + '\n' +
+          'qfa27y7xwyfclqkkj2d6' + '\n' +
           'There was an error or no template was returned.' + '\n' +
           'This was the error:' + '\n' +
           JSON.stringify(errorGetTemplate) + '\n'
@@ -168,22 +168,22 @@ user.serveAddPage = function(data, callback)
     helpers.log
     (
       5,
-      'b4ul5hxi86y4yjf4se2b' + '\n' +
+      'm41z602oxyp1taazfhrj' + '\n' +
       'Method not get. Only gets allowed.' + '\n'
     );
 
     // Send back status code for Not Allowed, an undefined payload, and contentType of html,
     callback(405, undefined, 'html');
   } // End of: else method not a get  
-}; // End of: user.serveAddPage = function(data, callback){...}
-// End of: Define the handler function that serves up the HTML page for creating new user records.
+}; // End of: metadata.serveAddPage = function(data, callback){...}
+// End of: Define the handler function that serves up the HTML page for creating new metadata records.
 
 
 
 
-// Define the handler function that serves up the HTML page for editing user records.
+// Define the handler function that serves up the HTML page for editing metadata records.
 // Behavior from meta.js at 2a4tb24fsq3de66ti8c4
-user.serveEditPage = function(data, callback)
+metadata.serveEditPage = function(data, callback)
 {
   // Reject any request that isn't a get
   if(data.method == 'get')
@@ -191,14 +191,14 @@ user.serveEditPage = function(data, callback)
     // The following values will be inserted into the webpage at the corresponding key locations in the templates.
     var templateData = 
     {
-      'head.title' : 'Edit a User',     
-      'body.class' : 'userEdit',
-      'selected.userId' : data.queryStringObject.userId,  
+      'head.title' : 'Edit a Metadata',     
+      'body.class' : 'metadataEdit',
+      'selected.metadataId' : data.queryStringObject.metadataId,  
       'head.clientCode' : '', // The HTML header template must see something or an empty string.     
     };
 
     // Read in a template as a string
-    helpers.getTemplate('../accounting/database/dbPermission/user/userEdit', templateData, function(errorGetTemplate, str)
+    helpers.getTemplate('../accounting/database/dbMetadata/metadataEdit', templateData, function(errorGetTemplate, str)
     {
       if(!errorGetTemplate && str) // If there were no errors and a template was returned
       {
@@ -215,7 +215,7 @@ user.serveEditPage = function(data, callback)
             helpers.log
             (            
               5,
-              'digbb8tvn2yz20ixjowc' + '\n' +
+              '8qagl6ipbv7qxovvadkg' + '\n' +
               'There was an error or the concatenated templates were not returned.' + '\n' +
               'This was the error:' + '\n' +
               JSON.stringify(errorAddUnivTemplates) + '\n'
@@ -231,7 +231,7 @@ user.serveEditPage = function(data, callback)
         helpers.log
         (
           5,
-          '8sds9z2bie31vcicddgg' + '\n' +
+          '2dq1zihpxfu4rtrjk3wm' + '\n' +
           'There was an error or no template was returned.' + '\n' +
           'This was the error:' + '\n' +
           JSON.stringify(errorGetTemplate) + '\n'
@@ -248,24 +248,24 @@ user.serveEditPage = function(data, callback)
     helpers.log
     (
       5,
-      '7mtwz97qoii99fu9qv0v' + '\n' +
+      'eamkr5mi72nebhto73tc' + '\n' +
       'Method not get. Only gets allowed.' + '\n'
     );
 
     // Send back status code for Not Allowed, an undefined payload, and contentType of html,
     callback(405, undefined, 'html');
   } // End of: else method not a get  
-}; // End of: user.serveEditPage = function(data, callback){...}
-// End of: Define the handler function that serves up the HTML page for editing user records.
+}; // End of: metadata.serveEditPage = function(data, callback){...}
+// End of: Define the handler function that serves up the HTML page for editing metadata records.
 
 
 
 
-// Router for user functions
-// Define a function which calls the requested get, post, put, or delete subhandler function for user 
+// Router for metadata functions
+// Define a function which calls the requested get, post, put, or delete subhandler function for metadata 
 // and passes to the chosen subhandler the client's request object and the callback function.
 // Behavior from meta.js at lw39etuyhw7wb82hv9ct
-user.user = function(data, callback)
+metadata.metadata = function(data, callback)
 {
   // Create an array of acceptable methods.
   var acceptableMethods = ['post', 'get', 'put'];
@@ -273,8 +273,8 @@ user.user = function(data, callback)
   // if the requested method is one of the acceptable methods:
   if (acceptableMethods.indexOf(data.method) > -1) 
   {
-    // then call the appropriate user subhandler.
-    user._user[data.method](data, callback);
+    // then call the appropriate metadata subhandler.
+    metadata._metadata[data.method](data, callback);
   } 
   // Otherwise the method was not one of the acceptable methods:
   else 
@@ -282,108 +282,92 @@ user.user = function(data, callback)
     helpers.log
     (
       5,
-      'xd95viw7sp8txo46o1fx' + '\n' +
+      'kfpnj0z8cmdfu6mjqlih' + '\n' +
       'The method was not one of the acceptable methods' + '\n'
     ); 
 
     // so send back status 405 (Not Allowed).
     callback(405);
   }
-}; // End of: user.user = function(data, callback){...}
-//End of: Router for user functions
+}; // End of: metadata.metadata = function(data, callback){...}
+//End of: Router for metadata functions
 
 
 
 
-// Create a subobject within the handlers object for the user submethods (post, get, put, and delete)
-user._user = {};
+// Create a subobject within the handlers object for the metadata submethods (post, get, put, and delete)
+metadata._metadata = {};
 
 
 
 
-// user - post subhandler
-// Define the user post subhandler function.
-// This function appends a record to the user file.
+// metadata - post subhandler
+// Define the metadata post subhandler function.
+// This function appends a record to the metadata file.
 // Behavior from meta.js at 1723qxikk1l3ru0vfrny 
-user._user.post = function(data, callback)
+metadata._metadata.post = function(data, callback)
 {
   // Field validation starts here.
-  // Get email from payload
-  let email = data.payload.email;
+  // Get tableName from payload
+  let tableName = data.payload.tableName;
 
   // passIfString Default behavior from meta.js at qif5xwvzgr7efln9xtr8
-  if(typeof(email) != 'string'){return callback(400, {'Error' : 'email must be of datatype string'});}
+  if(typeof(tableName) != 'string'){return callback(400, {'Error' : 'tableName must be of datatype string'});}
 
   // passIfNotEmpty Default behavior from meta.js at eojwivwlhxkm1b837n2o
-  if(!email || email.trim().length === 0){return callback(400, {'Error' : 'No email was entered'});}else{email = email.trim()}
+  if(!tableName || tableName.trim().length === 0){return callback(400, {'Error' : 'No tableName was entered'});}else{tableName = tableName.trim()}
 
-  // passIfHasAmpersand
-  // Behavior from data dictionary at uet9z3uuzgy5hmytmsxf 
-  if(email.indexOf("@") === -1){return callback(400, {'Error' : 'Not a valid email'});}
-
-  // Get password from payload
-  let password = data.payload.password;
+  // Get directory from payload
+  let directory = data.payload.directory;
 
   // passIfString Default behavior from meta.js at qif5xwvzgr7efln9xtr8
-  if(typeof(password) != 'string'){return callback(400, {'Error' : 'password must be of datatype string'});}
+  if(typeof(directory) != 'string'){return callback(400, {'Error' : 'directory must be of datatype string'});}
 
-  // passIfNotEmpty
-  // Behavior from data dictionary at bet9z4ufzg97hmfdhmxt 
-  if(!password){return callback(400, {'Error' : 'No password was entered'});}
+  // passIfNotEmpty Default behavior from meta.js at eojwivwlhxkm1b837n2o
+  if(!directory || directory.trim().length === 0){return callback(400, {'Error' : 'No directory was entered'});}else{directory = directory.trim()}
 
-  // passIfHasNumber
-  // Behavior from data dictionary at 5et9z9uuzgy5hmfdmmxf 
-  // declare a function used to check if the password has a number in it. 
-  function passwordDoesNotHaveNumber (password) 
-  { 
-    let str = String(password); 
+  // Get addRoutes from payload
+  let addRoutes = data.payload.addRoutes;
 
-    for( let i = 0; i < str.length; i++) 
-    { 
-      if(!isNaN(str.charAt(i))) 
-      { 
-        return false; 
-        break; 
-      } 
-    } 
-    return true; 
-  }; 
+  // passIfString Default behavior from meta.js at qif5xwvzgr7efln9xtr8
+  if(typeof(addRoutes) != 'string'){return callback(400, {'Error' : 'addRoutes must be of datatype string'});}
 
-  if(passwordDoesNotHaveNumber(password)){return callback(400, {'Error' : 'password must contain a number.'});}; 
+  // passIfNotEmpty Default behavior from meta.js at eojwivwlhxkm1b837n2o
+  if(!addRoutes || addRoutes.trim().length === 0){return callback(400, {'Error' : 'No addRoutes was entered'});}else{addRoutes = addRoutes.trim()}
 
 
-  // Enforcing uniqueness of the email field.
-  // Will toggle this to false if we find the email already exists in user.
+  // Enforcing uniqueness of the table field.
+  // Will toggle this to false if we find the table already exists in metadata.
   // Behavior from meta.js at rmkfkaef7xo3gyvnvgm4
-  let emailIsUnused = true;
+  let tableIsUnused = true;
 
-  // Using this to track the primary key of a record that we might encounter with the candidate email.
-  // If we encounter this primary key again we will check to see if the email has been changed.
-  // If it has then the candidate email will be marked as available again.
-  let uniqueIdOfRecordHoldingCandidateEmail = false; 
+  // Using this to track the primary key of a record that we might encounter with the candidate table.
+  // If we encounter this primary key again we will check to see if the table has been changed.
+  // If it has then the candidate table will be marked as available again.
+  let uniqueIdOfRecordHoldingCandidateTable = false; 
                         
 
-  // To ensure the email is unique we will read every record in 
-  // user and compare with the email provided.
+  // To ensure the table is unique we will read every record in 
+  // metadata and compare with the table provided.
 
-  // This function sets up a stream where each chunk of data is a complete line in the user file.
+  // This function sets up a stream where each chunk of data is a complete line in the metadata file.
   let readInterface = readline.createInterface
   (
     { // specify the file to be read.
-      input: fs.createReadStream(_data.baseDir + '/database/dbPermission/user' + '/' + 'user' + '.json')
+      input: fs.createReadStream(_data.baseDir + '/database/dbMetadata' + '/' + 'metadata' + '.json')
     }
   );
   
-  // Look at each record in the file and set a flag if the email matches the email provided by the user.
+  // Look at each record in the file and set a flag if the table matches the table provided by the user.
   readInterface.on('line', function(line) 
   {
-    // Convert the JSON string from user into an object.
+    // Convert the JSON string from metadata into an object.
     lineObject = JSON.parse(line);
 
-    // Several different record sets with the supplied email and the same userId 
+    // Several different record sets with the supplied table and the same metadataId 
     // may exist already if the record has been changed or deleted prior to this operation.
 
-    // A modified record is simply a new record with the same userId as an existing record.
+    // A modified record is simply a new record with the same metadataId as an existing record.
     // The newest record is the valid record and the older record is history.  
     // So position matters. These tables should never be sorted.
     // These tables can be packed however to get rid of historical records.
@@ -394,74 +378,74 @@ user._user.post = function(data, callback)
 
     // A deleted record in this system is simply an identical record appended with 
     // the deleted field set to true. 
-    // So depending on how many times the email has been added and deleted there may 
-    // be several sets of records in the user table currently 
-    // that have the same email and the same userId.
+    // So depending on how many times the table has been added and deleted there may 
+    // be several sets of records in the metadata table currently 
+    // that have the same table and the same metadataId.
     // The table can be packed occasionally to get rid of these deleted record sets. 
     // Deletes are handled as appends with the deleted field set to true because real 
     // deletes tie up the table for a long time.
 
-    // In this table, the email is a unique key as well as the userId.
-    // The userId also serves as the primary key.
-    // The difference is that the userId may never change whereas the email
-    // may be changed to something different if a valid record for that email
+    // In this table, the table is a unique key as well as the metadataId.
+    // The metadataId also serves as the primary key.
+    // The difference is that the metadataId may never change whereas the table
+    // may be changed to something different if a valid record for that table
     // does not already exist.    
 
     // When adding a record we first make sure that the record does NOT already exist.
-    // There should be no record with the current email or if there is then 
-    // the last record with this email must have the deleted field set to true.
+    // There should be no record with the current table or if there is then 
+    // the last record with this table must have the deleted field set to true.
 
     // When changing a record we:
-    // 1. Make sure that the record with this email does indeed exist and...
-    // 2. that the last instance of a record with this email is not deleted.
+    // 1. Make sure that the record with this table does indeed exist and...
+    // 2. that the last instance of a record with this table is not deleted.
   
-    // It is ok to add a new record with this same email again when the last instance 
+    // It is ok to add a new record with this same table again when the last instance 
     // of this record encountered in the stream has the deleted flag set to true. 
-    // In that case, the userId will be different but the email will be the same.         
+    // In that case, the metadataId will be different but the table will be the same.         
 
-    // As explained above, only the last matching record for a particular email matters.
+    // As explained above, only the last matching record for a particular table matters.
     // It's like that old game "She loves me, She loves me not".
 
-    if (email == lineObject.email) // we found a matching entry
+    if (table == lineObject.table) // we found a matching entry
     {
       if (lineObject.deleted == false) // The record has not been deleted so it's a duplicate. Not unique.
       {
-        emailIsUnused = false; // This flag used in the on close event listener below. 
+        tableIsUnused = false; // This flag used in the on close event listener below. 
 
         // If this record (record with this primary key) is encountered further down where it has been deleted 
-        // or where the email has been changed with a put operation:
-        // Then the candidate email will be available again as we continue searching through the records.
-        // We are already checking if this email becomes available again by deletion.
-        // Now we need to check if the email becomes available because the record with this primary 
-        // key gets changed with a new email.
-        // That will make the candidate email unique and available again.
-        // So record this global sequential unique id (the userId in this case).
-        // If we find the gsuid again, then check if the email has changed.
+        // or where the table has been changed with a put operation:
+        // Then the candidate table will be available again as we continue searching through the records.
+        // We are already checking if this table becomes available again by deletion.
+        // Now we need to check if the table becomes available because the record with this primary 
+        // key gets changed with a new table.
+        // That will make the candidate table unique and available again.
+        // So record this global sequential unique id (the metadataId in this case).
+        // If we find the gsuid again, then check if the table has changed.
         // If it has been changed then:
-        // 1. Set the emailIsUnused flag to true again
+        // 1. Set the tableIsUnused flag to true again
         // 2. clear out the variable tracking the uniqueId of the record.
-        uniqueIdOfRecordHoldingCandidateEmail = lineObject.userId;
+        uniqueIdOfRecordHoldingCandidateTable = lineObject.metadataId;
       }
       // The matching record we found has been deleted so it may as well not exist. The new record is still unique.
       else 
       {
-        emailIsUnused = true;
+        tableIsUnused = true;
       } 
     } // End of: if we found a matching entry
 
-    // If we have seen this primary key before and flagged the email already taken 
-    // because it was identical to the email we are trying to add and it had not been deleted:
+    // If we have seen this primary key before and flagged the table already taken 
+    // because it was identical to the table we are trying to add and it had not been deleted:
 
-    // Ok, the current record is not holding the candidate email but 
+    // Ok, the current record is not holding the candidate table but 
     // maybe it was in the past and someone changed it.
-    // if the candidate email is flagged unavailable and we are looking at the record that was flagged:
-    else if(emailIsUnused === false && uniqueIdOfRecordHoldingCandidateEmail === lineObject.userId)
+    // if the candidate table is flagged unavailable and we are looking at the record that was flagged:
+    else if(tableIsUnused === false && uniqueIdOfRecordHoldingCandidateTable === lineObject.metadataId)
     {
-      // Check if the email is no longer holding the candidate email.
-      // If it is not holding the candidate email then flag the email 
+      // Check if the table is no longer holding the candidate table.
+      // If it is not holding the candidate table then flag the table 
       // available again and clear out the variable tracking this primary key.
-      emailIsUnused = true;
-      uniqueIdOfRecordHoldingCandidateEmail = false;
+      tableIsUnused = true;
+      uniqueIdOfRecordHoldingCandidateTable = false;
     }
 
   }); // End of: readInterface.on('line', function(line){...}
@@ -470,47 +454,28 @@ user._user.post = function(data, callback)
 
 
 
-  // This listener fires after we have discovered if the email is 
-  // unique or not, and have then closed the readable stream from user.
-  // The callback function defined here will append the record if the email 
+  // This listener fires after we have discovered if the table is 
+  // unique or not, and have then closed the readable stream from metadata.
+  // The callback function defined here will append the record if the table 
   // was found to be unique.
   // Behavior from meta.js at aiwaoocd1uegzjbqeydk
   readInterface.on('close', function() 
   {
-    // If the email already exists then exit this process without appending the record.
-    if (!emailIsUnused) 
+    // If the table already exists then exit this process without appending the record.
+    if (!tableIsUnused) 
     {      
       helpers.log
       (
         5,
-        'aatg26mywpqky9yedjw9' + '\n' +
-        'The email : ' + email + ' already exists' + '\n'                                  
+        'rzpfz52hu6jl6qn340mn' + '\n' +
+        'The table : ' + table + ' already exists' + '\n'                                  
       ); // End of: helpers.log(...)
 
-      return callback(400, {'Error' : 'The email already exists'});
+      return callback(400, {'Error' : 'The table already exists'});
     }
 
-    // If we made it to this point then the candidate email is unique so continue on with the append opperation.
+    // If we made it to this point then the candidate table is unique so continue on with the append opperation.
     // Behavior from meta.js at gwwelr17hmxvq4spdrcl    
-
-            
-    // Password calculation from data dictionary at het9z9uuzgy5hmfwdgkz is processed here.
-    // Hash the password
-    let hashedPassword = helpers.hash(password);
-
-    // If the password was not hashed successfully then exit this process without appending the record.
-    if(!hashedPassword)
-    {
-      helpers.log
-      (
-        5,
-        'het9z9uuzgy5hmfwdgkz' + '\n' +
-        'Could not hash the password' + '\n'
-      ); // End of: helpers.log(...)
-
-      return callback(500, {'Error' : 'Could not hash the password'});
-    } // End of: else the password was not hashed successfully.
-
 
     // Get the next global sequential unique Id and lock the database
     // Locking the database makes the system multiuser.
@@ -529,7 +494,7 @@ user._user.post = function(data, callback)
         helpers.log
         (
           5,
-          'wkesomehxd1v51ej6jp1' + '\n' +
+          '5x7zv2irv2guj3o0hqx3' + '\n' +
           'Unable to get the next gsuid.' + '\n' +
           'The following was the error' + '\n' +
           JSON.stringify(error) + '\n'                                   
@@ -544,13 +509,12 @@ user._user.post = function(data, callback)
 
 
 
-      // Create the user object. 
-      // This object will be appended to user.json.
-      var userObject = 
+      // Create the metadata object. 
+      // This object will be appended to metadata.json.
+      var metadataObject = 
       {
-          "userId" : nextIdObject.nextId,
-          "email" : email,
-          "hashedPassword" : hashedPassword,
+          "metadataId" : nextIdObject.nextId,
+          "table" : table,
           "timeStamp" : Date.now(),
           "deleted" : false
       };
@@ -563,10 +527,10 @@ user._user.post = function(data, callback)
         "historyId" : nextIdObject.nextId + 1,                 
         "transactionId" : nextIdObject.nextId + 2,            
         "rollback" : false,
-        "process" : "user._user.post",
+        "process" : "metadata._metadata.post",
         "comment" : "Post new record",
         "who" : "No login yet",    
-        "user" : userObject   
+        "metadata" : metadataObject   
       }
 
       // Calling the function which creates an entry into the database log file.
@@ -584,18 +548,18 @@ user._user.post = function(data, callback)
             helpers.log
             (
               7,
-              'nvs7izmhoj2nrorb3h8v' + '\n' +
+              'twd7e24r4p5jbofse0ym' + '\n' +
               'There was an error appending to the history file' + '\n' +
               'An error here does not necessarily mean the append to history did not happen.' + '\n' +  
-              'But an error at this point in the code surely means there was no append to user' + '\n' +                                          
-              'CHECK TO SEE IF history and user ARE STILL IN SYNC' + '\n' +                    
+              'But an error at this point in the code surely means there was no append to metadata' + '\n' +                                          
+              'CHECK TO SEE IF history and metadata ARE STILL IN SYNC' + '\n' +                    
               'The following was the record we tried to append:' + '\n' +
               JSON.stringify(logObject) + '\n' +                   
               'The following is the error message:' + '\n' +                  
               err  + '\n'
             );
 
-            return callback(500, {'Error' : 'Could not create a new user record.'});
+            return callback(500, {'Error' : 'Could not create a new metadata record.'});
           }
 
 
@@ -604,12 +568,12 @@ user._user.post = function(data, callback)
 
 
 
-          // Calling the function which appends a record to the file user.json
+          // Calling the function which appends a record to the file metadata.json
           _data.append
           (
-          '/database/dbPermission/user', 
-          'user', 
-          userObject, 
+          '/database/dbMetadata', 
+          'metadata', 
+          metadataObject, 
           function(err)
           {
             if (!err)  // The file has been appended to successfully.
@@ -628,15 +592,15 @@ user._user.post = function(data, callback)
                   helpers.log // Log the error.
                   (
                     7,
-                    'i5t0ervg5d5acpveovw5' + '\n' +
-                    'Successful write to user but unable to remove lock on database' + '\n' +
-                    'The following record was appended to the user file:' + '\n' +                            
+                    'z8l7l8vu9uv3eqxabxc9' + '\n' +
+                    'Successful write to metadata but unable to remove lock on database' + '\n' +
+                    'The following record was appended to the metadata file:' + '\n' +                            
                     JSON.stringify(logObject) + '\n' +   
                     'The following was the error message:' + '\n' +                                             
                     error + '\n'
                   ); // End of: helpers.log. Log the error.
 
-                  return callback(500, {'Error' : 'Successful write to user but unable to remove lock on database'});
+                  return callback(500, {'Error' : 'Successful write to metadata but unable to remove lock on database'});
 
                 } // End of: else Good write but unable to remove lock on database.
 
@@ -645,26 +609,25 @@ user._user.post = function(data, callback)
               // End of: Call to function which removes lock
 
             }    // End of: if (!err)  //The file has been appended to successfully.
-            else // There was an error appending to user.
+            else // There was an error appending to metadata.
             {
               helpers.log // Log the error.
               (
                 5,
-                'kpa16ie8q7n515sv5spt' + '\n' +
-                'There was an error when appending to the user file.' + '\n' +
-                'The following record may or may not have been appended to the user file:' + '\n' +                            
+                'm6vk4afn2jnopxyq49wj' + '\n' +
+                'There was an error when appending to the metadata file.' + '\n' +
+                'The following record may or may not have been appended to the metadata file:' + '\n' +                            
                 JSON.stringify(logObject) + '\n' +
                 'Attempting to rollback the entry.' + '\n' +    
                 'The following was the error message:' + '\n' +                                             
                 err + '\n'            
               );
 
-              // Assemble rollback record for the user file which will negate previous entry if any.  
-              userObject = 
+              // Assemble rollback record for the metadata file which will negate previous entry if any.  
+              metadataObject = 
               {
-                "userId" : nextIdObject.nextId,
-                "email" : "email",
-                "hashedPassword" : "hashedPassword",
+                "metadataId" : nextIdObject.nextId,
+                "table" : "table",
                 "timeStamp" : Date.now(),
                 "deleted" : true
               };                        
@@ -675,10 +638,10 @@ user._user.post = function(data, callback)
                 "historyId" : nextIdObject.nextId + 3,                             
                 "transactionId" : nextIdObject.nextId + 2,                        
                 "rollback" : true,
-                "process" : "user._user.post",
+                "process" : "metadata._metadata.post",
                 "comment" : "Error posting. Appending a delete.",                        
                 "who" : "Function needed",    
-                "user" : userObject   
+                "metadata" : metadataObject   
               }
 
               // Start the rollback process.
@@ -691,36 +654,36 @@ user._user.post = function(data, callback)
                 {
                   if (!err) // The roll back entry in history was appended successfully.
                   {
-                    // Calling the function which appends a record to the file user.json
+                    // Calling the function which appends a record to the file metadata.json
                     _data.append
                     (
-                      '/database/dbPermission/user', 
-                      'user', 
-                      userObject, 
+                      '/database/dbMetadata', 
+                      'metadata', 
+                      metadataObject, 
                       function(err)
                       {
-                        if (!err) // The rollback record for user was appended successfully.
+                        if (!err) // The rollback record for metadata was appended successfully.
                         {
                           helpers.log
                           (
                             5,
-                            'tts8yols3x5t0d2eq6bd' + '\n' +
-                            'Rollback entry in the user file was appended successfully' + '\n' +
+                            'v77tvxpdk4u48xb7tg55' + '\n' +
+                            'Rollback entry in the metadata file was appended successfully' + '\n' +
                             'The following was the record we rolled back:' + '\n' +
                             JSON.stringify(logObject) + '\n'                                   
                           ); // End of: helpers.log(...)
                         }
-                        else // There was an error when rolling back record for user.
+                        else // There was an error when rolling back record for metadata.
                         {
                           helpers.log
                           (
                             7,
-                            'yik6g7sz0ryt8wawtqcw' + '\n' +
-                            'There was an error appending a rollback entry in the user file' + '\n' +
+                            'yn1d6u7fdb6nlyhedyi4' + '\n' +
+                            'There was an error appending a rollback entry in the metadata file' + '\n' +
                             'The following record may or may not have been rolled back:' + '\n' +
                             JSON.stringify(logObject) + '\n' +   
-                            'An error here does not necessarily mean the deleting append to user did not happen.' + '\n' +                                        
-                            'CHECK TO SEE IF history and user ARE STILL IN SYNC' + '\n' + 
+                            'An error here does not necessarily mean the deleting append to metadata did not happen.' + '\n' +                                        
+                            'CHECK TO SEE IF history and metadata ARE STILL IN SYNC' + '\n' + 
                             'The following is the error message:' + '\n' +                                                                     
                             err  + '\n'
                           ); // End of: helpers.log(...)
@@ -735,10 +698,10 @@ user._user.post = function(data, callback)
                     helpers.log
                     (
                       7,
-                      'b0tlu5etrcmp20f2sur1' + '\n' +
+                      '5xvcvwpadqa5neizalsu' + '\n' +
                       'There was an error appending a rollback entry in the history file' + '\n' +
-                      'A rollback entry may or may not have been written in the user file' + '\n' +  
-                      'CHECK TO SEE IF history and user ARE STILL IN SYNC' + '\n' +                                      
+                      'A rollback entry may or may not have been written in the metadata file' + '\n' +  
+                      'CHECK TO SEE IF history and metadata ARE STILL IN SYNC' + '\n' +                                      
                       'The following was the record we tried to roll back:' + '\n' +
                       JSON.stringify(logObject) + '\n' +        
                       'The following is the error message:' + '\n' +
@@ -748,130 +711,65 @@ user._user.post = function(data, callback)
                 } // End of: callback function(err){...}
               ); // End of: _data.append(...) Append a rollback entry in history.
 
-              return callback(500, {'Error' : 'Could not create the new user.'});              
+              return callback(500, {'Error' : 'Could not create the new metadata.'});              
 
-            } // End of: else // There was an error appending to user.
+            } // End of: else // There was an error appending to metadata.
           } // End of: callback function
-          ); // End of: Calling the function which appends a record to the file user.json 
+          ); // End of: Calling the function which appends a record to the file metadata.json 
         } // End of: callback function
       ); // End of: _data.append(dbHistory...)
       // End of: Calling the function which creates an entry into history. 
     }); // End of: lib.nextId(function(err, nextIdObject)
   }); // End of: readInterface.on('close', function(){...}
-}; // End of: user._user.post = function(...
-// End of: user - post subhandler
+}; // End of: metadata._metadata.post = function(...
+// End of: metadata - post subhandler
 
 
 
 
-// user - put handler
-// Define the user put subhandler function 
+// metadata - put handler
+// Define the metadata put subhandler function 
 // This function updates a record.
-// Required data: userId
+// Required data: metadataId
 // Note: At least one other field must be specified.
 // Behavior from meta.js at mzimrkdf1we1bjw96zgp
-user._user.put = function(data, callback)
+metadata._metadata.put = function(data, callback)
 {
   // Field validation starts here.
-  // Get userId from payload
-  let userId = data.payload.userId;
+  // Get metadataId from payload
+  let metadataId = data.payload.metadataId;
 
   // PrimaryKey validation. 
   // Default behavior from meta.js at o65yzg6ddze2fkvcgw5s
-  // If userId is a valid string then convert it to a number.  
-  if (typeof(userId) === 'string'){userId = parseInt(userId, 10);}else{return callback(400, {'Error' : 'userId must be a of string type'});}
+  // If metadataId is a valid string then convert it to a number.  
+  if (typeof(metadataId) === 'string'){metadataId = parseInt(metadataId, 10);}else{return callback(400, {'Error' : 'metadataId must be a of string type'});}
 
-    // Get email from payload
-  let email = data.payload.email;
+    // Get tableName from payload
+  let tableName = data.payload.tableName;
 
-  // stringTypeTrimAmpersand
-  // Behavior from data dictionary at og5gtmcsk6od74wkr9vj 
-  // If email is of string type and is not empty 
-  if (typeof(email) === 'string' && email.trim().length > 0) 
-  { 
-    // The user entered something in the edit form so check for an ampersand. 
-    if(email.indexOf('@') != -1) 
-    { 
-      // pass if ampersand 
-      email = email.trim() 
-    } 
-    else // No ampersand so reject the edit. 
-    { 
-      return callback(400, {'Error' : 'Not a valid email'}); 
-    } 
-  } 
-  // Else, the user may have entered some other datatype like a number or 
-  // perhaps nothing at all if using the Delete form or the Password form. 
-  else 
-  { 
-    // If the user entered nothing: 
-    if(email === undefined) 
-    { 
-      // Then user is trying to delete a record or change the password 
-      email = false 
-    } 
-    else // The user entered something invalid so reject the edit. 
-    { 
-      return callback(400, {'Error' : 'Not a valid email'}); 
-    } 
-  }
+  // passIfString Default behavior from meta.js at bif5xwvzgr4efln9ftr3
+  if(typeof(tableName) != 'string'){return callback(400, {'Error' : 'tableName must be of datatype string'});}
 
-  // Get password from payload
-  let password = data.payload.password;
+  // passIfNotEmpty Default behavior from meta.js at wovwivwlhx6m1b837n2d
+  if(!tableName || tableName.trim().length === 0){return callback(400, {'Error' : 'No tableName was entered'});}else{tableName = tableName.trim()}
 
-  // passwordValidation
-  // Behavior from data dictionary at e09hmheqvsxzbi50n4ny 
-  // If password is of string type and is not empty 
-  if (typeof(password) === 'string' && password.trim().length > 0) 
-  { 
-    // The user entered something in the password form so check that the 
-    // user put a number in the password to make it more secure. 
-    // Start out assuming that there is no number in the password. 
+  // Get directory from payload
+  let directory = data.payload.directory;
 
-    // declare a function used to check if the password has a number in it. 
-    function passwordHasNumber (password) 
-    { 
-      let str = String(password); 
+  // passIfString Default behavior from meta.js at bif5xwvzgr4efln9ftr3
+  if(typeof(directory) != 'string'){return callback(400, {'Error' : 'directory must be of datatype string'});}
 
-      for( let i = 0; i < str.length; i++) 
-      { 
-        if(!isNaN(str.charAt(i))) 
-        { 
-          return true; 
-          break; 
-        } 
-      } 
+  // passIfNotEmpty Default behavior from meta.js at wovwivwlhx6m1b837n2d
+  if(!directory || directory.trim().length === 0){return callback(400, {'Error' : 'No directory was entered'});}else{directory = directory.trim()}
 
-      return false; 
-    }; 
+  // Get addRoutes from payload
+  let addRoutes = data.payload.addRoutes;
 
-    if(passwordHasNumber(password)) 
-    { 
-      // If we are here then the user inserted a number in the password. 
-      // There is no need to do anything but let it pass through as is. 
-      // Notice we are not trimming the password. 
-      // If the user wants white space in the password, that's ok. 
-    } 
-    else // No number in the password so reject the edit. 
-    { 
-      return callback(400, {'Error' : 'password must contain a number.'}); 
-    } 
-  } 
-  // Else, the user may have entered some other datatype like an array or 
-  // perhaps nothing at all if using the Delete form or the Edit form. 
-  else 
-  { 
-    // If the user entered nothing: 
-    if(password === undefined) 
-    { 
-      // Then user is using the Delete form or the Edit form. 
-      password = false 
-    } 
-    else // The user entered something invalid so reject the edit. 
-    { 
-      return callback(400, {'Error' : 'Not a valid password'}); 
-    } 
-  }
+  // passIfString Default behavior from meta.js at bif5xwvzgr4efln9ftr3
+  if(typeof(addRoutes) != 'string'){return callback(400, {'Error' : 'addRoutes must be of datatype string'});}
+
+  // passIfNotEmpty Default behavior from meta.js at wovwivwlhx6m1b837n2d
+  if(!addRoutes || addRoutes.trim().length === 0){return callback(400, {'Error' : 'No addRoutes was entered'});}else{addRoutes = addRoutes.trim()}
 
   // Check if the deleted flag is of type string and that the value is exactly equal to "true".
   // That would mean the user wants to delete the record. Otherwise the users does not want to delete the record.
@@ -881,12 +779,12 @@ user._user.put = function(data, callback)
 
   
   //if all fields fail validation then exit this process without writing changes to the table.
-  if(!email && !password && !deleted)
+  if(!tableName && !directory && !addRoutes && !deleted)
   {
     helpers.log
     (
       5,
-      'id7qcdfievxleq36g6de' + '\n' +
+      '0egp1jfe2ygm3lxyjnj3' + '\n' +
       'No fields pass the validation process' + '\n'                                  
     ); // End of: helpers.log(...)
 
@@ -909,7 +807,7 @@ user._user.put = function(data, callback)
       helpers.log
       (
         5,
-        'j604ovwmvcmrvx171ol7' + '\n' +
+        'pq2cmvph65r6tx436xs7' + '\n' +
         'Unable to get the next gsuid.' + '\n' +
         'The following was the error' + '\n' +
         JSON.stringify(error) + '\n'                                   
@@ -923,28 +821,27 @@ user._user.put = function(data, callback)
     // the next unique id number for this record. So continue with the process.
 
 
-    // Create the user object. 
-    // This object will be appended to user.json.
+    // Create the metadata object. 
+    // This object will be appended to metadata.json.
     // Add in all fields even if no data is available yet. 
     // This is to establish the order in which the fields will be writen to the table. 
     // Behavior from 3bd1sa5ve4aqrfspunrt in meta.js         
-    let userObject = 
+    let metadataObject = 
     {
-      "userId" : userId,
-      "email" : email,
-      "hashedPassword" : "" ,
+      "metadataId" : metadataId,
+      "table" : "" ,
       "timeStamp" : Date.now(),
       "deleted" : ""
     };
 
     dataObject = {};
-    dataObject.uniqueField01Name = "email";
-    dataObject.uniqueField01Value = userObject.email;
-    dataObject.path = '/database/dbPermission/user/user.json';
-    dataObject.queryString = 'WHERE:;userId:;MatchesExactly:;' + userId + ':;';
+    dataObject.uniqueField01Name = "table";
+    dataObject.uniqueField01Value = metadataObject.table;
+    dataObject.path = '/database/dbMetadata/metadata.json';
+    dataObject.queryString = 'WHERE:;metadataId:;MatchesExactly:;' + metadataId + ':;';
 
-    // This function returns the most recent record for this userId after checking that 
-    // data for unique fields is indeed unique and that the a record with the supplied userId exists to modify.
+    // This function returns the most recent record for this metadataId after checking that 
+    // data for unique fields is indeed unique and that the a record with the supplied metadataId exists to modify.
     // Behavior from meta.js at 6pmnh29cub4p4g2fmb04
     helpers.getMostRecent(dataObject, function(errorFromGetMostRecent, payload)
     {
@@ -963,7 +860,7 @@ user._user.put = function(data, callback)
               helpers.log // Log the error.
               (
                 7,
-                'i7t0ga066i56kkq0u8d4' + '\n' + 
+                'tubdxw973ucelf9nc6x9' + '\n' + 
                 'The following was the error message from getMostRecent:' + '\n' +                                             
                 errorFromGetMostRecent + '\n'                                                 
               ); // End of: helpers.log // Log the error.
@@ -978,7 +875,7 @@ user._user.put = function(data, callback)
               helpers.log // Log the error.
               (
                 7,
-                'phdg5o0r00t76pe5jtb6' + '\n' +
+                '246xnfrjjzrcmo8l14i7' + '\n' +
                 'The following was the error message from getMostRecent:' + '\n' +                                             
                 errorFromGetMostRecent + '\n'  +
                 'Also unable to remove lock on database.' + '\n' + 
@@ -1015,56 +912,45 @@ user._user.put = function(data, callback)
         let recordObject = JSON.parse(stringContainer);
 
 
-        // Preprocessing for email
-        if(email) // If the user supplied data for email
+        // Preprocessing for tableName
+        if(tableName) // If the user supplied data for tableName
         {
-          // No preprocessing was specifed for email. Use it as was supplied by the user.
+          // No preprocessing was specifed for tableName. Use it as was supplied by the user.
         }
-        else // If the user did not supply data for email
+        else // If the user did not supply data for tableName
         {
-          // Save email from the most recent record.
-          userObject.email = recordObject.email;
+          // Save table from the most recent record.
+          metadataObject.table = recordObject.table;
         }
-        // Preprocessing for password
-        if(password) // If the user supplied data for password
+        // Preprocessing for directory
+        if(directory) // If the user supplied data for directory
         {
-          // Password calculation from data dictionary at jet9znuuzg95hmfdmmx5 is processed here.
-          // Hash the password
-          let hashedPassword = helpers.hash(password);
-
-          // If the password was not hashed successfully then exit this process without appending the record.
-          if(!hashedPassword)
-          {
-            helpers.log
-            (
-              5,
-              'jet9znuuzg95hmfdmmx5' + '\n' +
-              'Could not hash the password' + '\n'
-            ); // End of: helpers.log(...)
-
-            return callback(500, {'Error' : 'Could not hash the password'});
-          } // End of: else the password was not hashed successfully.
-
-          // Saving calculation on password supplied by the user to hashedPassword
-          userObject.hashedPassword = hashedPassword;
-
-        } // End of: If the user supplied data for password
-        else // If the user did not supply data for password
-        {
-          // saving hashedPassword from the most recent record.
-          userObject.hashedPassword = recordObject.hashedPassword;
+          // No preprocessing was specifed for directory. Use it as was supplied by the user.
         }
-
+        else // If the user did not supply data for directory
+        {
+          // Save table from the most recent record.
+          metadataObject.table = recordObject.table;
+        }
+        // Preprocessing for addRoutes
+        if(addRoutes) // If the user supplied data for addRoutes
+        {
+          // No preprocessing was specifed for addRoutes. Use it as was supplied by the user.
+        }
+        else // If the user did not supply data for addRoutes
+        {
+          // Save table from the most recent record.
+          metadataObject.table = recordObject.table;
+        }
         // If we are appending a delete make sure that everything else is coming from the most recent saved record.
         if(deleted)
         {
-          userObject.email = recordObject.email;
-          userObject.hashedPassword = recordObject.hashedPassword;
-          userObject.deleted = true;
+          metadataObject.table = recordObject.table;
+          metadataObject.deleted = true;
         }
         else
         {
-          userObject.deleted = false;
+          metadataObject.deleted = false;
         }
 
 
@@ -1077,10 +963,10 @@ user._user.put = function(data, callback)
           "historyId" : nextIdObject.nextId + 1,    
           "transactionId" : nextIdObject.nextId + 2,                 
           "rollback" : false,
-          "process" : "user._user.put",
+          "process" : "metadata._metadata.put",
           "comment" : "Changing a record",
           "who" : "No login yet.",    
-          "user" : userObject   
+          "metadata" : metadataObject   
         }
 
         // Calling the function which creates an entry into the database log file.
@@ -1093,12 +979,12 @@ user._user.put = function(data, callback)
           {
             if (!err)  //The history file has been appended to successfully.
             {
-              // Calling the function which appends a record to the file user.json
+              // Calling the function which appends a record to the file metadata.json
               _data.append
               (
-                '/database/dbPermission/user', 
-                'user', 
-                userObject, 
+                '/database/dbMetadata', 
+                'metadata', 
+                metadataObject, 
                 function(err)
                 {
                   if (!err)  //The file has been appended to successfully.
@@ -1117,15 +1003,15 @@ user._user.put = function(data, callback)
                         helpers.log // Log the error.
                         (
                           7,
-                          'hb0nscxgq4hjunv81amz' + '\n' +
-                          'Successful write to user but unable to remove lock on database' + '\n' +
-                          'The following record was appended to user:' + '\n' +                            
+                          'zmjng4a7hqigmpis2fr0' + '\n' +
+                          'Successful write to metadata but unable to remove lock on database' + '\n' +
+                          'The following record was appended to metadata:' + '\n' +                            
                           JSON.stringify(logObject) + '\n' +   
                           'The following was the error message:' + '\n' +                                             
                           error + '\n'
                         ); // End of: helpers.log // Log the error.
 
-                        callback(500, {'Error' : 'Successful write to user but unable to remove lock on database'});
+                        callback(500, {'Error' : 'Successful write to metadata but unable to remove lock on database'});
 
                       } // End of: else Good write but unable to remove lock on database.
 
@@ -1134,27 +1020,26 @@ user._user.put = function(data, callback)
                     // End of: Call to function which removes lock
 
                   }    // End of: if (!err)  //The file has been appended to successfully.
-                  else // There was an error appending to user.
+                  else // There was an error appending to metadata.
                   {
                     helpers.log // Log the error.
                     (
                       5,
-                      'ccw6zzmxjueg0fc01cps' + '\n' +
-                      'There was an error when appending to the user file.' + '\n' +
-                      'The following record may or may not have been appended to user:' + '\n' +                            
+                      'gkflh90nz2dhyivps8lv' + '\n' +
+                      'There was an error when appending to the metadata file.' + '\n' +
+                      'The following record may or may not have been appended to metadata:' + '\n' +                            
                       JSON.stringify(logObject) + '\n' +
                       'Attempting to rollback the entry.' + '\n' +    
                       'The following was the error message:' + '\n' +                                             
                       err + '\n'
                     );
 
-                    // Assemble rollback record for the user file which will negate previous entry if any.
+                    // Assemble rollback record for the metadata file which will negate previous entry if any.
                     // Behavior from meta.js at 8l4zwqs63qwmp81rjcpw  
-                    userObject = 
+                    metadataObject = 
                     {
-                        "userId" : recordObject.nextId,
-                        "email" : recordObject.email,
-                        "hashedPassword" : recordObject.hashedPassword,
+                        "metadataId" : recordObject.nextId,
+                        "table" : recordObject.table,
                         "timeStamp" : recordObject.timeStamp,
                         "deleted" : recordObject.deleted
                     };                        
@@ -1165,10 +1050,10 @@ user._user.put = function(data, callback)
                       "historyId" : nextIdObject.nextId + 3,    
                       "transactionId" : nextIdObject.nextId + 2,                                
                       "rollback" : true,
-                      "process" : "user._user.put",
+                      "process" : "metadata._metadata.put",
                       "comment" : "Error during Put. Appending rollback",                        
                       "who" : "No login yet",    
-                      "user" : userObject   
+                      "metadata" : metadataObject   
                     }
 
                     // Start the rollback process.
@@ -1181,36 +1066,36 @@ user._user.put = function(data, callback)
                       {
                         if (!err) // The roll back entry in history was appended successfully.
                         {
-                          // Calling the function which appends a record to the file user.json
+                          // Calling the function which appends a record to the file metadata.json
                           _data.append
                           (
-                            '/database/dbPermission/user', 
-                            'user', 
-                            userObject, 
+                            '/database/dbMetadata', 
+                            'metadata', 
+                            metadataObject, 
                             function(err)
                             {
-                              if (!err) // The rollback record for user was appended successfully.
+                              if (!err) // The rollback record for metadata was appended successfully.
                               {
                                 helpers.log
                                 (
                                   5,
-                                  'p6kviryqvh1am3wxq38w' + '\n' +
-                                  'Rollback entry in the user file was appended successfully' + '\n' +
+                                  '080sipb8gf7xmi7f21mm' + '\n' +
+                                  'Rollback entry in the metadata file was appended successfully' + '\n' +
                                   'The following was the record we rolled back:' + '\n' +
                                   JSON.stringify(logObject) + '\n'                                   
                                 ); // End of: helpers.log(...)
                               }
-                              else // There was an error when rolling back record for user.
+                              else // There was an error when rolling back record for metadata.
                               {
                                 helpers.log
                                 (
                                   7,
-                                  '3fxok0fzu1xy2mefvii4' + '\n' +
-                                  'There was an error appending a rollback entry in the user file' + '\n' +
+                                  '59rtclkejley3an0v9hi' + '\n' +
+                                  'There was an error appending a rollback entry in the metadata file' + '\n' +
                                   'The following record may or may not have been rolled back:' + '\n' +
                                   JSON.stringify(logObject) + '\n' +   
-                                  'An error here does not necessarily mean the deleting append to user did not happen.' + '\n' +                                        
-                                  'CHECK TO SEE IF history and user ARE STILL IN SYNC' + '\n' + 
+                                  'An error here does not necessarily mean the deleting append to metadata did not happen.' + '\n' +                                        
+                                  'CHECK TO SEE IF history and metadata ARE STILL IN SYNC' + '\n' + 
                                   'The following is the error message:' + '\n' +                                                                     
                                   err  + '\n'
                                 ); // End of: helpers.log(...)
@@ -1225,10 +1110,10 @@ user._user.put = function(data, callback)
                           helpers.log
                           (
                             7,
-                            '1boj4rwb112kr5ranh6p' + '\n' +
+                            'lmweulbp420jy1fuza3s' + '\n' +
                             'There was an error appending a rollback entry in the history file' + '\n' +
-                            'A rollback entry may or may not have been written in the user file' + '\n' +  
-                            'CHECK TO SEE IF history and user ARE STILL IN SYNC' + '\n' +                                      
+                            'A rollback entry may or may not have been written in the metadata file' + '\n' +  
+                            'CHECK TO SEE IF history and metadata ARE STILL IN SYNC' + '\n' +                                      
                             'The following was the record we tried to roll back:' + '\n' +
                             JSON.stringify(logObject) + '\n' +        
                             'The following is the error message:' + '\n' +
@@ -1238,11 +1123,11 @@ user._user.put = function(data, callback)
                       } // End of: callback function(err){...}
                     ); // End of: _data.append(...)
 
-                    callback(500, {'Error' : 'Could not create the new user.'});
+                    callback(500, {'Error' : 'Could not create the new metadata.'});
 
-                  } // End of: else // There was an error appending to user.
+                  } // End of: else // There was an error appending to metadata.
                 } // End of: callback function
-                ); // End of: Calling the function which appends a record to the file user.json 
+                ); // End of: Calling the function which appends a record to the file metadata.json 
 
             } //End of: The history file has been appended to successfully.
             else // There was an error appending to the history file.
@@ -1250,18 +1135,18 @@ user._user.put = function(data, callback)
               helpers.log
               (
                 7,
-                'l1nedor4k2qf0r8vj7qj' + '\n' +
+                '9psn7ta3oiby4loweobk' + '\n' +
                 'There was an error appending to the history file' + '\n' +
                 'An error here does not necessarily mean the append to history did not happen.' + '\n' +  
-                'But an error at this point in the code surely means there was no append to user' + '\n' +                                          
-                'CHECK TO SEE IF history and user ARE STILL IN SYNC' + '\n' +                    
+                'But an error at this point in the code surely means there was no append to metadata' + '\n' +                                          
+                'CHECK TO SEE IF history and metadata ARE STILL IN SYNC' + '\n' +                    
                 'The following was the record we tried to append:' + '\n' +
                 JSON.stringify(logObject) + '\n' +                   
                 'The following is the error message:' + '\n' +                  
                 err  + '\n'
               );
 
-              callback(500, {'Error' : 'Could not create the new user.'});
+              callback(500, {'Error' : 'Could not create the new metadata.'});
             }
           } // End of: callback function
         ); // End of: _data.append(dbHistory...)
@@ -1282,7 +1167,7 @@ user._user.put = function(data, callback)
             helpers.log // Log the error.
             (
               7,
-              'y0q42amwtoj92wjl1xfh' + '\n' + 
+              'xi342hcwkc5i53nx000v' + '\n' + 
               'Pipeline error. The message was as follows' + '\n' +                                             
               pipelineError + '\n'                                                 
             ); // End of: helpers.log // Log the error.
@@ -1291,15 +1176,15 @@ user._user.put = function(data, callback)
       ); // End of: Pipeline
     }); //End of: helpers.getMostRecent(dataObject, function(errorFromGetMostRecent, payload)
   }); // End of: lib.nextId(function(err, nextIdObject)
-}; // End of: handlers._user.put = function(...
-// End of: Define the user put subhandler function
+}; // End of: handlers._metadata.put = function(...
+// End of: Define the metadata put subhandler function
 
 
 
 
-// Define the user get subhandler function.
-// Streams the user file or part of it back to the client.
-user._user.get = function(data, callback)
+// Define the metadata get subhandler function.
+// Streams the metadata file or part of it back to the client.
+metadata._metadata.get = function(data, callback)
 {
   let amountOfWhereClauses = 0; // We haven't found any yet.
   let amountOfOrderByClauses = 0; // We haven't found any yet.
@@ -1313,12 +1198,12 @@ user._user.get = function(data, callback)
 
     if (data.hasOwnProperty('queryString'))
     {
-      // In this case the queryString is coming from userEdit page.
+      // In this case the queryString is coming from metadataEdit page.
       queryString = data.queryString
     }
     else
     {
-      // In this case the queryString is coming from the userList page.
+      // In this case the queryString is coming from the metadataList page.
       // For some reason the string comes in as an array element in the object's 
       // key instead of it's value. That's why the Object.keys(...)[0] method.
       queryString = Object.keys(data.queryStringObject)[0];
@@ -1413,15 +1298,15 @@ user._user.get = function(data, callback)
 
 
   
-  // Create an empty map data structure which will be used to merge user records that have the same unique fields.
+  // Create an empty map data structure which will be used to merge metadata records that have the same unique fields.
   // Chose map data structure over objects because maps are guaranteed to maintain the same order where as objects are not.
-  let userMap = new Map();
+  let metadataMap = new Map();
   
-  // This function sets up a stream where each chunk of data is a complete line in the user file.
+  // This function sets up a stream where each chunk of data is a complete line in the metadata file.
   let readInterface = readline.createInterface
   (
     { // specify the file to be read.
-      input: fs.createReadStream(_data.baseDir + '/database/dbPermission/user' + '/' + 'user' + '.json'),
+      input: fs.createReadStream(_data.baseDir + '/database/dbMetadata' + '/' + 'metadata' + '.json'),
     }
   );
 
@@ -1430,18 +1315,18 @@ user._user.get = function(data, callback)
   // Look at each record in the file.
   readInterface.on('line', function(line) 
   {
-    // Convert the JSON string (a single line from the user file) into lineValueObject.
+    // Convert the JSON string (a single line from the metadata file) into lineValueObject.
     // These objects will written back to a new file after deleting some un-needed key/value pairs.
     let lineValueObject = JSON.parse(line);
     let recordWasDeleted = false;    
 
     // Declare a variable to serve as a key in the map to manage the lineValueObject.
-    let userId = lineValueObject.userId;      
+    let metadataId = lineValueObject.metadataId;      
 
-    if(lineValueObject.deleted === true) // if the record in the file user.json had the delete field set to true:
+    if(lineValueObject.deleted === true) // if the record in the file metadata.json had the delete field set to true:
     {
       // Remove this record from the map 
-      userMap.delete(userId);
+      metadataMap.delete(metadataId);
       recordWasDeleted = true;
     }
     else if(amountOfWhereClauses > 0) // else if the user created one or more filter expressions
@@ -1724,7 +1609,7 @@ user._user.get = function(data, callback)
           else // Else: there are no more ORWHERE filters that could save this record
           {
             // Finally remove this record from the map 
-            userMap.delete(userId);
+            metadataMap.delete(metadataId);
             recordWasDeleted = true;  
             shouldLoopAgain = false;  
             shouldDeleteThisRecord = false;  
@@ -1775,28 +1660,25 @@ user._user.get = function(data, callback)
     //If the record was not marked for deletion and passed through the filters above:
     if(recordWasDeleted === false)
     {
-      // Remove the hashedPassword key/value pair from the lineValueObject before returning it to the requester.
-      delete lineValueObject.hashedPassword;
-
-      // Remove the deleted key/value pair from the lineValueObject before returning it to the requester.
+            // Remove the deleted key/value pair from the lineValueObject before returning it to the requester.
       delete lineValueObject.deleted;            
 
       // Update this record in the map.
-      userMap.set(userId, lineValueObject);
+      metadataMap.set(metadataId, lineValueObject);
     }
 
   }); // End of: readInterface.on('line', function(line){...}
   // End of: Look at each record...
 
 
-  // This listener fires after we have looked through all the records in the user file.
-  // The callback function defined here will stream the user list back to the clients browser.
+  // This listener fires after we have looked through all the records in the metadata file.
+  // The callback function defined here will stream the metadata list back to the clients browser.
   readInterface.on('close', function() 
   {          
     // This readable stream will be used to write the result of the merge to a new file.
     const sourceStream = new Readable(); 
 
-    for (const [key, valueObject] of userMap)
+    for (const [key, valueObject] of metadataMap)
     {
       // Convert the data object to a string.
       let stringData = JSON.stringify(valueObject);     
@@ -1812,13 +1694,13 @@ user._user.get = function(data, callback)
 
   }); // End of: readInterface.on('close', function(){...}   
 
-}; // End of: handlers._user.get = function(data, callback){do stuff}
-// End of: Define the user get subhandler function.  
+}; // End of: handlers._metadata.get = function(data, callback){do stuff}
+// End of: Define the metadata get subhandler function.  
 
 
 
 
 // Export the module
-module.exports = user;
+module.exports = metadata;
 
 

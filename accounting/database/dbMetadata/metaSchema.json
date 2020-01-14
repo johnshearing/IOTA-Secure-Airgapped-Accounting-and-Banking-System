@@ -98,21 +98,58 @@
                                     "required": [
                                         "type"
                                     ]
+                                },
+                                "validation": {
+                                    "type": "object",
+                                    "description": "Specifies validation code to be run against data from defaultElement when passed from client to server.",
+                                    "properties": {
+                                        "default": {
+                                            "type": "object",
+                                            "description": "The key names the code snippet held in the value. Populate the value with the code snippet using a different JSON editor because the new line character is not accepted here."
+                                        },
+                                        "post": {
+                                            "type": "object",
+                                            "description": "Post overrides default. The key names the code snippet held in the value. Populate the value with the code snippet using a different JSON editor because the new line character is not accepted here."
+                                        },
+                                        "put": {
+                                            "type": "object",
+                                            "description": "Put overrides default. The key names the code snippet held in the value. Populate the value with the code snippet using a different JSON editor because the new line character is not accepted here."
+                                        },
+                                        "get": {
+                                            "type": "object",
+                                            "description": "Get overrides default. The key names the code snippet held in the value. Populate the value with the code snippet using a different JSON editor because the new line character is not accepted here."
+                                        }
+                                    },
+                                    "required": [
+                                        "default",
+                                        "post",
+                                        "put",
+                                        "get"
+                                    ]
                                 }
                             },
                             "required": [
                                 "parentField",
                                 "labelText",
                                 "elementType",
-                                "attributes"
+                                "attributes",
+                                "validation"
                             ]
                         },
                         "calculation": {
                             "type": "object",
                             "description": "Specifies calculations used on defaultElements to produce data for newField. Like hashing a user supplied password and saving the hashed password",
                             "properties": {
-                                "placeHolderForNow": {}
-                            }
+                                "putHandlerPreprocessing": {
+                                    "type": "string",
+                                    "description": "Code that runs in put handler before writing newField to the database. The key names the code snippet held in the value. Populate the value with the code snippet using a different JSON editor because the new line character is not accepted here."
+                                },
+                                "postHandlerPreprocessing": {
+                                    "type": "string",
+                                    "description": "Code that runs in post handler before writing newField to the database. The key names the code snippet held in the value. Populate the value with the code snippet using a different JSON editor because the new line character is not accepted here."
+                                }                                
+                            },
+                            "required": ["putHandlerPreprocessing", "postHandlerPreprocessing"]
                         }
                     },
                     "required": [
