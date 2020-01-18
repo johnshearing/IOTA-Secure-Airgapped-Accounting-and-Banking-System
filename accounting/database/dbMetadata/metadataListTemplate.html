@@ -41,9 +41,9 @@
       <select class="fieldToDisplay"> 
         <option value="" style="display: list-item;"></option>
         <option value="metadataId" style="display: list-item;">metadataId</option>
-        <option value="table.tableName" style="display: list-item;">tableName</option>
+        <option value="table.tableName" style="display: list-item;">table name</option>
         <option value="table.directory" style="display: list-item;">directory</option>
-        <option value="table.addRoutes" style="display: list-item;">addRoutes</option>
+        <option value="table.addRoutes" style="display: list-item;">add routes</option>                
         <option value="timeStamp" style="display: list-item;">timeStamp</option>
       </select>
     </div>
@@ -66,9 +66,7 @@
         <select class="fieldToCompare resetElement">
           <option value=""></option>
           <option value="metadataId">metadataId</option>
-          <option value="tableName">tableName</option>
-          <option value="directory">directory</option>
-          <option value="addRoutes">addRoutes</option>
+          <option value="table">table</option>
           <option value="timeStamp">timeStamp</option> 
         </select>
       </div>
@@ -148,9 +146,7 @@
         <select class="fieldToOrderBy resetElement">
           <option value=""></option>
           <option value="metadataId">metadataId</option>
-          <option value="tableName">tableName</option>
-          <option value="directory">directory</option>
-          <option value="addRoutes">addRoutes</option>
+          <option value="table">table</option>
           <option value="timeStamp">timeStamp</option> 
         </select>
       </div>
@@ -667,7 +663,7 @@ app.loadmetadataListPage = async function()
     // Get all the text sent by the server as a single string.
     const content = await res.text();
 
-    // Split the content string on each new line character and put the results into an array called lines.
+    // Split the content string on each new line character and put the results into an array calleobjValued lines.
     const lines = content.split("\n");
 
     // Get rid of the last element in the array. This is just a new line character.
@@ -1307,25 +1303,25 @@ app.loadmetadataListPage = async function()
             // Insert a new cell for each field to display and populate with data for that field.
             arrayOfFieldsToDisplay.forEach(function(arrayElement, elementIndex)
             {
-              // Converting each property key from dot notation to bracket notation.
-              // Then using bracket notation to drill down into the object.
+                // Converting each property key from dot notation to bracket notation.
+                // Then using bracket notation to drill down into the object.
 
-              // Get a reference to the recordObject called "value"
-              let objValue = value;
+                // Get a reference to the recordObject called "value"
+                let objValue = value;
 
-              // Split the property key into an array delimited by the dot if any.
-              // The array will be used to drill into nested objects.
-              const keyParts = arrayElement.split(".");
+                // Split the property key into an array delimited by the dot if any.
+                // The array will be used to drill into nested objects.
+                const keyParts = arrayElement.split(".");
 
-              // Here is where we do the drilling.
-              for (let keyPart of keyParts) 
-              {
-                // Make objValue point to it's sub-object or it's final value when the loop is finished running.
-                objValue = objValue[keyPart];
-              } 
-
-              let newCell = tr.insertCell(elementIndex);
-              newCell.innerHTML = objValue;               
+                // Here is where we do the drilling.
+                for (let keyPart of keyParts) 
+                {
+                  // Make objValue point to it's sub-object or it's final value when the loop is finished running.
+                  objValue = objValue[keyPart];
+                }    
+              
+              let newCell = tr.insertCell(elementIndex); 
+              newCell.innerHTML = objValue;                           
             });   
 
             let lastCell = tr.insertCell(arrayOfFieldsToDisplay.length);             

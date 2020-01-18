@@ -25,7 +25,7 @@ var app = {};
 app.init = function()
 {
   // Start the server for communication with users via http or https
-  // server.init();
+  server.init();
 
   // Start the workers or background tasks.
   // workers.init();
@@ -36,14 +36,15 @@ app.init = function()
   // setTimeout(function(){cli.init();}, 5000);
 
   // Get a random number at the console.
-  // console.log(helpers.createRandomString(20));  
+  // console.log(helpers.createRandomString(20));
+  
 
   // Build webpages for working with tables.
-  // The parameter is tableId in metadata.json.
+  // The parameter is metadataId in metadata.json.
   // meta.build.addWebPage(1000)
   // meta.build.editWebPage(1000);
   // meta.build.listWebPage(1000);  
-  meta.build.serverSideLogic(1285);    
+  // meta.build.serverSideLogic(1000);    
 };
 
 

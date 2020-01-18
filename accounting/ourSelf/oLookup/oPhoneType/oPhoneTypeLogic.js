@@ -55,7 +55,7 @@ oPhoneType.serveListPage = function(data, callback)
             helpers.log
             (            
               5,
-              'y3rtuyawqcqrpervd6r6' + '\n' +
+              '1ex3q5cqddqp6vvjvny2' + '\n' +
               'There was an error or the concatenated templates were not returned.' + '\n' +
               'This was the error:' + '\n' +
               JSON.stringify(errorAddUnivTemplates) + '\n'
@@ -71,7 +71,7 @@ oPhoneType.serveListPage = function(data, callback)
         helpers.log
         (
           5,
-          'tummskkqddr3k9hl41m4' + '\n' +
+          '8e6f5voyo1otob3x2lud' + '\n' +
           'There was an error or no template was returned.' + '\n' +
           'This was the error:' + '\n' +
           JSON.stringify(errorGetTemplate) + '\n'
@@ -88,7 +88,7 @@ oPhoneType.serveListPage = function(data, callback)
     helpers.log
     (
       5,
-      'm134d7jh6bxsw3i9hoze' + '\n' +
+      '4euo460st8d4xcn7wp3s' + '\n' +
       'Method not get. Only gets allowed.' + '\n'
     );
 
@@ -135,7 +135,7 @@ oPhoneType.serveAddPage = function(data, callback)
             helpers.log
             (            
               5,
-              '2cfd9mczt033tv9uc9j4' + '\n' +
+              '5o6b1fbh568czt869905' + '\n' +
               'There was an error or the concatenated templates were not returned.' + '\n' +
               'This was the error:' + '\n' +
               JSON.stringify(errorAddUnivTemplates) + '\n'
@@ -151,7 +151,7 @@ oPhoneType.serveAddPage = function(data, callback)
         helpers.log
         (
           5,
-          '0pzjbez91egldgj66fpu' + '\n' +
+          'wbnxqcqrkpu0rwfmx2c0' + '\n' +
           'There was an error or no template was returned.' + '\n' +
           'This was the error:' + '\n' +
           JSON.stringify(errorGetTemplate) + '\n'
@@ -168,7 +168,7 @@ oPhoneType.serveAddPage = function(data, callback)
     helpers.log
     (
       5,
-      'ua3xj41f3z2a93hfechv' + '\n' +
+      'vqrj164ym8rdvwvax8ai' + '\n' +
       'Method not get. Only gets allowed.' + '\n'
     );
 
@@ -215,7 +215,7 @@ oPhoneType.serveEditPage = function(data, callback)
             helpers.log
             (            
               5,
-              'imnkarw5b4461vupd2ev' + '\n' +
+              'zlwbjes2szwpdcb1j9s4' + '\n' +
               'There was an error or the concatenated templates were not returned.' + '\n' +
               'This was the error:' + '\n' +
               JSON.stringify(errorAddUnivTemplates) + '\n'
@@ -231,7 +231,7 @@ oPhoneType.serveEditPage = function(data, callback)
         helpers.log
         (
           5,
-          'jkccs3s197d6750uwsy6' + '\n' +
+          'b20ug0gjm5przz98uo5d' + '\n' +
           'There was an error or no template was returned.' + '\n' +
           'This was the error:' + '\n' +
           JSON.stringify(errorGetTemplate) + '\n'
@@ -248,7 +248,7 @@ oPhoneType.serveEditPage = function(data, callback)
     helpers.log
     (
       5,
-      '8q430cqlpniffe9iyfcg' + '\n' +
+      'nelyg7ian163ms23orir' + '\n' +
       'Method not get. Only gets allowed.' + '\n'
     );
 
@@ -282,7 +282,7 @@ oPhoneType.oPhoneType = function(data, callback)
     helpers.log
     (
       5,
-      'wdmergarnfikkv4fi1ti' + '\n' +
+      'fb8garbljp26o8lmxodm' + '\n' +
       'The method was not one of the acceptable methods' + '\n'
     ); 
 
@@ -311,12 +311,9 @@ oPhoneType._oPhoneType.post = function(data, callback)
   // Get phoneType from payload
   let phoneType = data.payload.phoneType;
 
-  // passIfString Default behavior from meta.js at qif5xwvzgr7efln9xtr8
+  // passIfString&NotEmptyThenTrim Default behavior from meta.js at ulg5xxvzgr7efln9xur9
   if(typeof(phoneType) != 'string'){return callback(400, {'Error' : 'phoneType must be of datatype string'});}
-
-  // passIfNotEmpty Default behavior from meta.js at eojwivwlhxkm1b837n2o
   if(!phoneType || phoneType.trim().length === 0){return callback(400, {'Error' : 'No phoneType was entered'});}else{phoneType = phoneType.trim()}
-
 
   // Enforcing uniqueness of the phoneType field.
   // Will toggle this to false if we find the phoneType already exists in oPhoneType.
@@ -449,7 +446,7 @@ oPhoneType._oPhoneType.post = function(data, callback)
       helpers.log
       (
         5,
-        '5qdiyoyp9p4pik2m030t' + '\n' +
+        'wcq0bc62kz6ia0qnel21' + '\n' +
         'The phoneType : ' + phoneType + ' already exists' + '\n'                                  
       ); // End of: helpers.log(...)
 
@@ -476,7 +473,7 @@ oPhoneType._oPhoneType.post = function(data, callback)
         helpers.log
         (
           5,
-          't9m8y25idob2z5nbpz18' + '\n' +
+          'rwl0kpljumhgsunirav7' + '\n' +
           'Unable to get the next gsuid.' + '\n' +
           'The following was the error' + '\n' +
           JSON.stringify(error) + '\n'                                   
@@ -530,7 +527,7 @@ oPhoneType._oPhoneType.post = function(data, callback)
             helpers.log
             (
               7,
-              'mdy6gacppuf9nsrm8de9' + '\n' +
+              's89rve8qk1o50w6eu1qv' + '\n' +
               'There was an error appending to the history file' + '\n' +
               'An error here does not necessarily mean the append to history did not happen.' + '\n' +  
               'But an error at this point in the code surely means there was no append to oPhoneType' + '\n' +                                          
@@ -574,7 +571,7 @@ oPhoneType._oPhoneType.post = function(data, callback)
                   helpers.log // Log the error.
                   (
                     7,
-                    'xb9ewii9dq513f0okl7b' + '\n' +
+                    'i2pdysb5acv0scbz1t9q' + '\n' +
                     'Successful write to oPhoneType but unable to remove lock on database' + '\n' +
                     'The following record was appended to the oPhoneType file:' + '\n' +                            
                     JSON.stringify(logObject) + '\n' +   
@@ -596,7 +593,7 @@ oPhoneType._oPhoneType.post = function(data, callback)
               helpers.log // Log the error.
               (
                 5,
-                'gilzs3z72zdqlbp173nm' + '\n' +
+                'kbfg6cm4pr55uw4n2x9p' + '\n' +
                 'There was an error when appending to the oPhoneType file.' + '\n' +
                 'The following record may or may not have been appended to the oPhoneType file:' + '\n' +                            
                 JSON.stringify(logObject) + '\n' +
@@ -649,7 +646,7 @@ oPhoneType._oPhoneType.post = function(data, callback)
                           helpers.log
                           (
                             5,
-                            'l2qqw9izmyevd6f4p2gf' + '\n' +
+                            'm8uw8y2h9kf8xxpah81p' + '\n' +
                             'Rollback entry in the oPhoneType file was appended successfully' + '\n' +
                             'The following was the record we rolled back:' + '\n' +
                             JSON.stringify(logObject) + '\n'                                   
@@ -660,7 +657,7 @@ oPhoneType._oPhoneType.post = function(data, callback)
                           helpers.log
                           (
                             7,
-                            '1e1z63hy5bjl6j4pxhjf' + '\n' +
+                            '00bkqozt2y4375r3npwa' + '\n' +
                             'There was an error appending a rollback entry in the oPhoneType file' + '\n' +
                             'The following record may or may not have been rolled back:' + '\n' +
                             JSON.stringify(logObject) + '\n' +   
@@ -680,7 +677,7 @@ oPhoneType._oPhoneType.post = function(data, callback)
                     helpers.log
                     (
                       7,
-                      'kujixyysm30hm0jf4tw5' + '\n' +
+                      'b7e9b26k8d4rl1z1lr9k' + '\n' +
                       'There was an error appending a rollback entry in the history file' + '\n' +
                       'A rollback entry may or may not have been written in the oPhoneType file' + '\n' +  
                       'CHECK TO SEE IF history and oPhoneType ARE STILL IN SYNC' + '\n' +                                      
@@ -726,14 +723,33 @@ oPhoneType._oPhoneType.put = function(data, callback)
   // If oPhoneTypeId is a valid string then convert it to a number.  
   if (typeof(oPhoneTypeId) === 'string'){oPhoneTypeId = parseInt(oPhoneTypeId, 10);}else{return callback(400, {'Error' : 'oPhoneTypeId must be a of string type'});}
 
-    // Get phoneType from payload
+  // Get phoneType from payload
   let phoneType = data.payload.phoneType;
 
-  // passIfString Default behavior from meta.js at bif5xwvzgr4efln9ftr3
-  if(typeof(phoneType) != 'string'){return callback(400, {'Error' : 'phoneType must be of datatype string'});}
-
-  // passIfNotEmpty Default behavior from meta.js at wovwivwlhx6m1b837n2d
-  if(!phoneType || phoneType.trim().length === 0){return callback(400, {'Error' : 'No phoneType was entered'});}else{phoneType = phoneType.trim()}
+  // passIfString&NotEmptyThenTrim
+  // Default behavior from meta.js at yif5xwczgr4ebln99trd 
+  // If phoneType is of string type and is not empty 
+  if (typeof(phoneType) === 'string' && phoneType.trim().length > 0) 
+  { 
+    // The user entered something in the edit form
+    phoneType = phoneType.trim()
+  } 
+  // Else, the user may have entered some other datatype like a number or 
+  // perhaps nothing at all if using the Delete form. 
+  else 
+  { 
+    // If the user entered nothing: 
+    if(phoneType === undefined) 
+    { 
+      // Then user is likely trying to delete a record.
+      // So change the value to false and continue processing.
+      phoneType = false 
+    } 
+    else // The user entered something invalid so reject the edit. 
+    { 
+      return callback(400, {'Error' : 'Not a valid phoneType'}); 
+    } 
+  }
 
   // Check if the deleted flag is of type string and that the value is exactly equal to "true".
   // That would mean the user wants to delete the record. Otherwise the users does not want to delete the record.
@@ -748,7 +764,7 @@ oPhoneType._oPhoneType.put = function(data, callback)
     helpers.log
     (
       5,
-      'kavbxhlbw6n1xezm530a' + '\n' +
+      'swdukvl6wvc8cqefcf35' + '\n' +
       'No fields pass the validation process' + '\n'                                  
     ); // End of: helpers.log(...)
 
@@ -771,7 +787,7 @@ oPhoneType._oPhoneType.put = function(data, callback)
       helpers.log
       (
         5,
-        'o418kl04wggag85n5o73' + '\n' +
+        'k8dw1t54n5xryxt7h4p3' + '\n' +
         'Unable to get the next gsuid.' + '\n' +
         'The following was the error' + '\n' +
         JSON.stringify(error) + '\n'                                   
@@ -824,7 +840,7 @@ oPhoneType._oPhoneType.put = function(data, callback)
               helpers.log // Log the error.
               (
                 7,
-                '6xpf1hfvrrq82el8qx0e' + '\n' + 
+                '20b1f6qswyzczrchlzxe' + '\n' + 
                 'The following was the error message from getMostRecent:' + '\n' +                                             
                 errorFromGetMostRecent + '\n'                                                 
               ); // End of: helpers.log // Log the error.
@@ -839,7 +855,7 @@ oPhoneType._oPhoneType.put = function(data, callback)
               helpers.log // Log the error.
               (
                 7,
-                'fo0pgqya6ic6weyyzycd' + '\n' +
+                'z684ir6tw9wjza0gm2x6' + '\n' +
                 'The following was the error message from getMostRecent:' + '\n' +                                             
                 errorFromGetMostRecent + '\n'  +
                 'Also unable to remove lock on database.' + '\n' + 
@@ -947,7 +963,7 @@ oPhoneType._oPhoneType.put = function(data, callback)
                         helpers.log // Log the error.
                         (
                           7,
-                          'n5zn3ngz8204a8qg8tbs' + '\n' +
+                          '8ix51a7guu5ybe6gc7vm' + '\n' +
                           'Successful write to oPhoneType but unable to remove lock on database' + '\n' +
                           'The following record was appended to oPhoneType:' + '\n' +                            
                           JSON.stringify(logObject) + '\n' +   
@@ -969,7 +985,7 @@ oPhoneType._oPhoneType.put = function(data, callback)
                     helpers.log // Log the error.
                     (
                       5,
-                      'e2lez1i0xh9f4dbkrewo' + '\n' +
+                      '0phgbkbv8s0imk0bp51j' + '\n' +
                       'There was an error when appending to the oPhoneType file.' + '\n' +
                       'The following record may or may not have been appended to oPhoneType:' + '\n' +                            
                       JSON.stringify(logObject) + '\n' +
@@ -1023,7 +1039,7 @@ oPhoneType._oPhoneType.put = function(data, callback)
                                 helpers.log
                                 (
                                   5,
-                                  'nckrmicd5pgr4b0939m6' + '\n' +
+                                  '78ecbtflkeej1qwa05nk' + '\n' +
                                   'Rollback entry in the oPhoneType file was appended successfully' + '\n' +
                                   'The following was the record we rolled back:' + '\n' +
                                   JSON.stringify(logObject) + '\n'                                   
@@ -1034,7 +1050,7 @@ oPhoneType._oPhoneType.put = function(data, callback)
                                 helpers.log
                                 (
                                   7,
-                                  'l0kinm2qd2bvtd3bfjv1' + '\n' +
+                                  'qyrn1q00nmliltkshrf8' + '\n' +
                                   'There was an error appending a rollback entry in the oPhoneType file' + '\n' +
                                   'The following record may or may not have been rolled back:' + '\n' +
                                   JSON.stringify(logObject) + '\n' +   
@@ -1054,7 +1070,7 @@ oPhoneType._oPhoneType.put = function(data, callback)
                           helpers.log
                           (
                             7,
-                            '29dkjo8wbn9g1matv6t9' + '\n' +
+                            'z44vvgte3w67t955mlkz' + '\n' +
                             'There was an error appending a rollback entry in the history file' + '\n' +
                             'A rollback entry may or may not have been written in the oPhoneType file' + '\n' +  
                             'CHECK TO SEE IF history and oPhoneType ARE STILL IN SYNC' + '\n' +                                      
@@ -1079,7 +1095,7 @@ oPhoneType._oPhoneType.put = function(data, callback)
               helpers.log
               (
                 7,
-                'kxsl8adhou0qfjrgr3vv' + '\n' +
+                'htwg2gadxw6cqgmmludg' + '\n' +
                 'There was an error appending to the history file' + '\n' +
                 'An error here does not necessarily mean the append to history did not happen.' + '\n' +  
                 'But an error at this point in the code surely means there was no append to oPhoneType' + '\n' +                                          
@@ -1111,7 +1127,7 @@ oPhoneType._oPhoneType.put = function(data, callback)
             helpers.log // Log the error.
             (
               7,
-              'grb54622mmo3iai79qxr' + '\n' + 
+              'q5me7ziqp3k33u1k0nbx' + '\n' + 
               'Pipeline error. The message was as follows' + '\n' +                                             
               pipelineError + '\n'                                                 
             ); // End of: helpers.log // Log the error.
