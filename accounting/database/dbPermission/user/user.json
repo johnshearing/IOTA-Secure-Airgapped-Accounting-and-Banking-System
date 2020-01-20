@@ -65,3 +65,7 @@
 {"userId":635,"email":"barb@gmail.net","hashedPassword":"36583a77a098c02ef111e2f2521d77b58e420f2bc7e9bf930ec24b21d42ea2e0","timeStamp":1577902028168,"deleted":false}
 {"userId":443,"email":"bob@gmail.mar","hashedPassword":"36583a77a098c02ef111e2f2521d77b58e420f2bc7e9bf930ec24b21d42ea2e0","timeStamp":1579043967137,"deleted":false}
 {"userId":443,"email":"bob@gmail.com","hashedPassword":"36583a77a098c02ef111e2f2521d77b58e420f2bc7e9bf930ec24b21d42ea2e0","timeStamp":1579043972079,"deleted":false}
+{"userId":843,"email":"ernst@gmail.bar","hashedPassword":"36583a77a098c02ef111e2f2521d77b58e420f2bc7e9bf930ec24b21d42ea2e0","timeStamp":1579487212256,"deleted":false}
+{"userId":843,"email":"ernst@gmail.bar","hashedPassword":"11f1494f407983384096c2dbf92c0b2d63b066533b8e906c440b1705b416241e","timeStamp":1579487236606,"deleted":false}
+{"userId":843,"email":"ernst@gmail.bar","hashedPassword":"11f1494f407983384096c2dbf92c0b2d63b066533b8e906c440b1705b416241e","timeStamp":1579487240945,"deleted":true}
+{"userId":2565,"email":"bernard@gmail.org","hashedPassword":"74d10f53d51e3092b3bbbf9c6d34dc251f5ed6be2471bb95b005de5c4c2a0b57","timeStamp":1579487291037,"deleted":false}

@@ -531,11 +531,38 @@ app.loaduserListPage = async function()
 
         while (loopCounter <= amountOfOrderByClauses - 1) 
         {
+
+  
+          function drillIntoObject(obj, orderByArray, orderByIndex)
+          {
+              // Converting each property key from dot notation to bracket notation.
+              // Then using bracket notation to drill down into the object.
+
+              // Get a reference to the recordObject called "value"
+              let objValue = obj;
+
+              // Split the property key into an array delimited by the dot if any.
+              // The array will be used to drill into nested objects.
+              const keyParts = orderByArray[orderByIndex].split(".");
+
+              // Here is where we do the drilling.
+              for (let keyPart of keyParts) 
+              {
+                // Make objValue point to it's sub-object or it's final value when the loop is finished running.
+                objValue = objValue[keyPart];
+              } 
+
+              return objValue;
+          };
+            
+          let aFieldValue = drillIntoObject(a, fieldsToOrderByArray, loopCounter);
+          let bFieldValue = drillIntoObject(b, fieldsToOrderByArray, loopCounter);
+
           // If we are ranking alphabetically:
           if(typeOfSortArray[loopCounter] === 'ascendingAlphaSort')
           {
             // Alphabetic Sort
-            sortResult = a[fieldsToOrderByArray[loopCounter]].toString().toLowerCase().localeCompare(b[fieldsToOrderByArray[loopCounter]].toString().toLowerCase());
+            sortResult = aFieldValue.toString().toLowerCase().localeCompare(bFieldValue.toString().toLowerCase());
 
             if(sortResult === 1){return 1;} // Don't change the order.
 
@@ -545,7 +572,7 @@ app.loaduserListPage = async function()
           if(typeOfSortArray[loopCounter] === 'descendingAlphaSort')
           {
             // Alphabetic Sort
-            sortResult = a[fieldsToOrderByArray[loopCounter]].toString().toLowerCase().localeCompare(b[fieldsToOrderByArray[loopCounter]].toString().toLowerCase());
+            sortResult = aFieldValue.toString().toLowerCase().localeCompare(bFieldValue.toString().toLowerCase());
 
             if(sortResult === 1){return -1;} // Don't change the order.
 
@@ -555,17 +582,17 @@ app.loaduserListPage = async function()
           else if (typeOfSortArray[loopCounter] === 'ascendingNumericSort')
           {
             // Numeric Sort
-            if (a[fieldsToOrderByArray[loopCounter]] < b[fieldsToOrderByArray[loopCounter]]) return -1;
+            if (aFieldValue < bFieldValue) return -1;
 
-            if (a[fieldsToOrderByArray[loopCounter]] > b[fieldsToOrderByArray[loopCounter]]) return 1;
+            if (aFieldValue > bFieldValue) return 1;
 
           }
           else if (typeOfSortArray[loopCounter] === 'descendingNumericSort')
           {
             // Numeric Sort
-            if (a[fieldsToOrderByArray[loopCounter]] > b[fieldsToOrderByArray[loopCounter]]) return -1;
+            if (aFieldValue > bFieldValue) return -1;
 
-            if (a[fieldsToOrderByArray[loopCounter]] < b[fieldsToOrderByArray[loopCounter]]) return 1;
+            if (aFieldValue < bFieldValue) return 1;
 
           }          
 
@@ -582,8 +609,8 @@ app.loaduserListPage = async function()
           }         
 
         } // End of: while (loopCounter <= amountOfOrderByClauses - 1){...}
-      }) // end of: recordsArray.sort(function(a, b){...}
-      // Sort the recordsArray which was populated after running the query.      
+      }) // End of: recordsArray.sort(function(a, b){...}
+      // End of: Sort the recordsArray which was populated after running the query.      
 
 
       recordsArray.forEach(function(value)
@@ -594,8 +621,25 @@ app.loaduserListPage = async function()
         // Insert a new cell for each field to display and populate with data for that field.
         arrayOfFieldsToDisplay.forEach(function(arrayElement, elementIndex)
         {
+          // Converting each property key from dot notation to bracket notation.
+          // Then using bracket notation to drill down into the object.
+
+          // Get a reference to the recordObject called "value"
+          let objValue = value;
+
+          // Split the property key into an array delimited by the dot if any.
+          // The array will be used to drill into nested objects.
+          const keyParts = arrayElement.split(".");
+
+          // Here is where we do the drilling.
+          for (let keyPart of keyParts) 
+          {
+            // Make objValue point to it's sub-object or it's final value when the loop is finished running.
+            objValue = objValue[keyPart];
+          } 
+
           let newCell = tr.insertCell(elementIndex);
-          newCell.innerHTML = value[arrayElement];               
+          newCell.innerHTML = objValue;               
         });   
 
         // Add an extra cell to the end of the row that contains a link which sends the user
@@ -1284,8 +1328,25 @@ app.loaduserListPage = async function()
             // Insert a new cell for each field to display and populate with data for that field.
             arrayOfFieldsToDisplay.forEach(function(arrayElement, elementIndex)
             {
+              // Converting each property key from dot notation to bracket notation.
+              // Then using bracket notation to drill down into the object.
+
+              // Get a reference to the recordObject called "value"
+              let objValue = value;
+
+              // Split the property key into an array delimited by the dot if any.
+              // The array will be used to drill into nested objects.
+              const keyParts = arrayElement.split(".");
+
+              // Here is where we do the drilling.
+              for (let keyPart of keyParts) 
+              {
+                // Make objValue point to it's sub-object or it's final value when the loop is finished running.
+                objValue = objValue[keyPart];
+              } 
+
               let newCell = tr.insertCell(elementIndex);
-              newCell.innerHTML = value[arrayElement];               
+              newCell.innerHTML = objValue;               
             });   
 
             let lastCell = tr.insertCell(arrayOfFieldsToDisplay.length);             

@@ -55,7 +55,7 @@ metadata.serveListPage = function(data, callback)
             helpers.log
             (            
               5,
-              'k897mpfnvrdws2gaen05' + '\n' +
+              'q5zw7uus0vkr7w8a6s9e' + '\n' +
               'There was an error or the concatenated templates were not returned.' + '\n' +
               'This was the error:' + '\n' +
               JSON.stringify(errorAddUnivTemplates) + '\n'
@@ -71,7 +71,7 @@ metadata.serveListPage = function(data, callback)
         helpers.log
         (
           5,
-          'b3nii9jt42hxl9bti76v' + '\n' +
+          'njqu93fm6t0lhj8szart' + '\n' +
           'There was an error or no template was returned.' + '\n' +
           'This was the error:' + '\n' +
           JSON.stringify(errorGetTemplate) + '\n'
@@ -88,7 +88,7 @@ metadata.serveListPage = function(data, callback)
     helpers.log
     (
       5,
-      '5ketw60fss6uwu5duc17' + '\n' +
+      'vjyk0y6ga36fbposr2ex' + '\n' +
       'Method not get. Only gets allowed.' + '\n'
     );
 
@@ -135,7 +135,7 @@ metadata.serveAddPage = function(data, callback)
             helpers.log
             (            
               5,
-              '511us458xergjf2efqbh' + '\n' +
+              '8k5jaw56yrvixtq38uv1' + '\n' +
               'There was an error or the concatenated templates were not returned.' + '\n' +
               'This was the error:' + '\n' +
               JSON.stringify(errorAddUnivTemplates) + '\n'
@@ -151,7 +151,7 @@ metadata.serveAddPage = function(data, callback)
         helpers.log
         (
           5,
-          'a0kh99cfaprloif07led' + '\n' +
+          'vb9vebr83wbs6c4bji7w' + '\n' +
           'There was an error or no template was returned.' + '\n' +
           'This was the error:' + '\n' +
           JSON.stringify(errorGetTemplate) + '\n'
@@ -168,7 +168,7 @@ metadata.serveAddPage = function(data, callback)
     helpers.log
     (
       5,
-      '682ubx3ma1jdqxj2svxf' + '\n' +
+      '303f9kyqlvsf6fwgvgtr' + '\n' +
       'Method not get. Only gets allowed.' + '\n'
     );
 
@@ -215,7 +215,7 @@ metadata.serveEditPage = function(data, callback)
             helpers.log
             (            
               5,
-              'k0qec6i49d08kf66jyat' + '\n' +
+              'lka6h2hx3h5t2keghh68' + '\n' +
               'There was an error or the concatenated templates were not returned.' + '\n' +
               'This was the error:' + '\n' +
               JSON.stringify(errorAddUnivTemplates) + '\n'
@@ -231,7 +231,7 @@ metadata.serveEditPage = function(data, callback)
         helpers.log
         (
           5,
-          'fd1a06ftbesj154gfaut' + '\n' +
+          'zakxexbd9qkkdkbixzzc' + '\n' +
           'There was an error or no template was returned.' + '\n' +
           'This was the error:' + '\n' +
           JSON.stringify(errorGetTemplate) + '\n'
@@ -248,7 +248,7 @@ metadata.serveEditPage = function(data, callback)
     helpers.log
     (
       5,
-      'c7b3knv1z75fn0zdrmh5' + '\n' +
+      '267oamzmgxt4cpklnfo2' + '\n' +
       'Method not get. Only gets allowed.' + '\n'
     );
 
@@ -282,7 +282,7 @@ metadata.metadata = function(data, callback)
     helpers.log
     (
       5,
-      '34fu8j5ct5xxwuv34o5a' + '\n' +
+      '29akkkfqns2xm119sjiw' + '\n' +
       'The method was not one of the acceptable methods' + '\n'
     ); 
 
@@ -458,7 +458,7 @@ metadata._metadata.post = function(data, callback)
       helpers.log
       (
         5,
-        '7uhd2xmpasipmaiq73js' + '\n' +
+        'ppazfnjoaaqipoulpntl' + '\n' +
         'The table : ' + table + ' already exists' + '\n'                                  
       ); // End of: helpers.log(...)
 
@@ -485,7 +485,7 @@ metadata._metadata.post = function(data, callback)
         helpers.log
         (
           5,
-          'bcp9gu3586b5suw9g8lo' + '\n' +
+          'rk9viybnnek49tyxcuz1' + '\n' +
           'Unable to get the next gsuid.' + '\n' +
           'The following was the error' + '\n' +
           JSON.stringify(error) + '\n'                                   
@@ -539,7 +539,7 @@ metadata._metadata.post = function(data, callback)
             helpers.log
             (
               7,
-              'vvpl5auhdt5mkillfkd6' + '\n' +
+              'pi146vkw8ntabjsbvufb' + '\n' +
               'There was an error appending to the history file' + '\n' +
               'An error here does not necessarily mean the append to history did not happen.' + '\n' +  
               'But an error at this point in the code surely means there was no append to metadata' + '\n' +                                          
@@ -583,7 +583,7 @@ metadata._metadata.post = function(data, callback)
                   helpers.log // Log the error.
                   (
                     7,
-                    'kpqzpu6tta9js3qfewip' + '\n' +
+                    '1duqlh3jdyow84vehguj' + '\n' +
                     'Successful write to metadata but unable to remove lock on database' + '\n' +
                     'The following record was appended to the metadata file:' + '\n' +                            
                     JSON.stringify(logObject) + '\n' +   
@@ -605,7 +605,7 @@ metadata._metadata.post = function(data, callback)
               helpers.log // Log the error.
               (
                 5,
-                'wtq924gj598o1owens2c' + '\n' +
+                'fn8hfxmr5ka59lbuwj97' + '\n' +
                 'There was an error when appending to the metadata file.' + '\n' +
                 'The following record may or may not have been appended to the metadata file:' + '\n' +                            
                 JSON.stringify(logObject) + '\n' +
@@ -658,7 +658,7 @@ metadata._metadata.post = function(data, callback)
                           helpers.log
                           (
                             5,
-                            'w0sb4vk337j07nq2j6wa' + '\n' +
+                            'kjwrhejp2tb2l6f1ewzy' + '\n' +
                             'Rollback entry in the metadata file was appended successfully' + '\n' +
                             'The following was the record we rolled back:' + '\n' +
                             JSON.stringify(logObject) + '\n'                                   
@@ -669,7 +669,7 @@ metadata._metadata.post = function(data, callback)
                           helpers.log
                           (
                             7,
-                            '6ajykpssjlh2ek8njlwa' + '\n' +
+                            'i3vix4zohpw3gytl5vso' + '\n' +
                             'There was an error appending a rollback entry in the metadata file' + '\n' +
                             'The following record may or may not have been rolled back:' + '\n' +
                             JSON.stringify(logObject) + '\n' +   
@@ -689,7 +689,7 @@ metadata._metadata.post = function(data, callback)
                     helpers.log
                     (
                       7,
-                      '7psp94ks2f5j16lxkmlb' + '\n' +
+                      'ohh03lgbjot3w5vohws9' + '\n' +
                       'There was an error appending a rollback entry in the history file' + '\n' +
                       'A rollback entry may or may not have been written in the metadata file' + '\n' +  
                       'CHECK TO SEE IF history and metadata ARE STILL IN SYNC' + '\n' +                                      
@@ -832,7 +832,7 @@ metadata._metadata.put = function(data, callback)
     helpers.log
     (
       5,
-      '5rfwsqe00bk6y72zqcs2' + '\n' +
+      '5q8ilgblce9vcs4805yc' + '\n' +
       'No fields pass the validation process' + '\n'                                  
     ); // End of: helpers.log(...)
 
@@ -855,7 +855,7 @@ metadata._metadata.put = function(data, callback)
       helpers.log
       (
         5,
-        't1kso975rh1gtxhbbanl' + '\n' +
+        'db4yko3d88spzu6hqc3g' + '\n' +
         'Unable to get the next gsuid.' + '\n' +
         'The following was the error' + '\n' +
         JSON.stringify(error) + '\n'                                   
@@ -908,7 +908,7 @@ metadata._metadata.put = function(data, callback)
               helpers.log // Log the error.
               (
                 7,
-                'whiek3k7ewb0ybhnajud' + '\n' + 
+                'pxblok6txxmtcluwezrn' + '\n' + 
                 'The following was the error message from getMostRecent:' + '\n' +                                             
                 errorFromGetMostRecent + '\n'                                                 
               ); // End of: helpers.log // Log the error.
@@ -923,7 +923,7 @@ metadata._metadata.put = function(data, callback)
               helpers.log // Log the error.
               (
                 7,
-                'gay4ktnz6rx1fzpiac0d' + '\n' +
+                'dlnkd0vsz8cygmh0dl8k' + '\n' +
                 'The following was the error message from getMostRecent:' + '\n' +                                             
                 errorFromGetMostRecent + '\n'  +
                 'Also unable to remove lock on database.' + '\n' + 
@@ -1051,7 +1051,7 @@ metadata._metadata.put = function(data, callback)
                         helpers.log // Log the error.
                         (
                           7,
-                          'wy3df8mttu15isr9dnw8' + '\n' +
+                          '1b76jnkjyu6qysrygasi' + '\n' +
                           'Successful write to metadata but unable to remove lock on database' + '\n' +
                           'The following record was appended to metadata:' + '\n' +                            
                           JSON.stringify(logObject) + '\n' +   
@@ -1073,7 +1073,7 @@ metadata._metadata.put = function(data, callback)
                     helpers.log // Log the error.
                     (
                       5,
-                      'g9mp72wo9ogfxvx98s18' + '\n' +
+                      'n2oq9h8qs3dpotjync25' + '\n' +
                       'There was an error when appending to the metadata file.' + '\n' +
                       'The following record may or may not have been appended to metadata:' + '\n' +                            
                       JSON.stringify(logObject) + '\n' +
@@ -1127,7 +1127,7 @@ metadata._metadata.put = function(data, callback)
                                 helpers.log
                                 (
                                   5,
-                                  'a8fw1yem1ke179npkhxd' + '\n' +
+                                  'fr3fsm2lwa40nroayj71' + '\n' +
                                   'Rollback entry in the metadata file was appended successfully' + '\n' +
                                   'The following was the record we rolled back:' + '\n' +
                                   JSON.stringify(logObject) + '\n'                                   
@@ -1138,7 +1138,7 @@ metadata._metadata.put = function(data, callback)
                                 helpers.log
                                 (
                                   7,
-                                  'gpbp698act4ig7oqgh6d' + '\n' +
+                                  '0nnfqfx7lroys5rrl5vj' + '\n' +
                                   'There was an error appending a rollback entry in the metadata file' + '\n' +
                                   'The following record may or may not have been rolled back:' + '\n' +
                                   JSON.stringify(logObject) + '\n' +   
@@ -1158,7 +1158,7 @@ metadata._metadata.put = function(data, callback)
                           helpers.log
                           (
                             7,
-                            'jp2eyalde7uvdi61h5k4' + '\n' +
+                            'qjq8kykwan82buka7r49' + '\n' +
                             'There was an error appending a rollback entry in the history file' + '\n' +
                             'A rollback entry may or may not have been written in the metadata file' + '\n' +  
                             'CHECK TO SEE IF history and metadata ARE STILL IN SYNC' + '\n' +                                      
@@ -1183,7 +1183,7 @@ metadata._metadata.put = function(data, callback)
               helpers.log
               (
                 7,
-                'c3ar5ud7mcp695yenryh' + '\n' +
+                'jrc36lccd45ku6llv0jy' + '\n' +
                 'There was an error appending to the history file' + '\n' +
                 'An error here does not necessarily mean the append to history did not happen.' + '\n' +  
                 'But an error at this point in the code surely means there was no append to metadata' + '\n' +                                          
@@ -1215,7 +1215,7 @@ metadata._metadata.put = function(data, callback)
             helpers.log // Log the error.
             (
               7,
-              '42c6juwshxf1cqgt2u6i' + '\n' + 
+              'pn4rkszn5dxnc6pifg7d' + '\n' + 
               'Pipeline error. The message was as follows' + '\n' +                                             
               pipelineError + '\n'                                                 
             ); // End of: helpers.log // Log the error.
@@ -1383,14 +1383,41 @@ metadata._metadata.get = function(data, callback)
       let index = 1; // Used to navigate the queryArray.
       let shouldDeleteThisRecord = false;
       let shouldLoopAgain = true;
-  
+
+
+      function drillIntoObject(jsonRecordObject, queryItemArray, itemIndex)
+      {
+          // Converting each property key from dot notation to bracket notation.
+          // Then using bracket notation to drill down into the object.
+
+          // Get a reference to the recordObject called "value"
+          let objValue = jsonRecordObject;
+
+          // Split the property key into an array delimited by the dot if any.
+          // The array will be used to drill into nested objects.
+          const keyParts = queryItemArray[itemIndex].split(".");
+
+          // Here is where we do the drilling.
+          for (let keyPart of keyParts) 
+          {
+            // Make objValue point to it's sub-object or it's final value when the loop is finished running.
+            objValue = objValue[keyPart];
+          } 
+
+          return objValue;
+      };
+
+
+      let fieldValue = drillIntoObject(lineValueObject, queryArray, index);
+
+
       while(whereClauseCount <= amountOfWhereClauses && shouldLoopAgain === true)
       {
         switch(queryArray[index + 1]) 
         {
           case 'MatchesExactly': // 1
           {
-            if(lineValueObject[queryArray[index]] != queryArray[index + 2])
+            if(fieldValue != queryArray[index + 2])
             {
               shouldDeleteThisRecord = true;
             }
@@ -1399,7 +1426,7 @@ metadata._metadata.get = function(data, callback)
 
           case 'MatchesExactlyNotCaseSensitive': // 2
           {
-            if(lineValueObject[queryArray[index]].toString().toLowerCase() != queryArray[index + 2].toString().toLowerCase())
+            if(fieldValue.toString().toLowerCase() != queryArray[index + 2].toString().toLowerCase())
             {
               shouldDeleteThisRecord = true;
             }             
@@ -1408,7 +1435,7 @@ metadata._metadata.get = function(data, callback)
           
           case 'DoesNotMatchExactly': // 3
             {
-              if(lineValueObject[queryArray[index]] == queryArray[index + 2])
+              if(fieldValue == queryArray[index + 2])
               {
                 shouldDeleteThisRecord = true;
               }
@@ -1417,7 +1444,7 @@ metadata._metadata.get = function(data, callback)
 
           case 'DoesNotMatchExactlyNotCaseSensitive': // 4
           {
-            if(lineValueObject[queryArray[index]].toString().toLowerCase() == queryArray[index + 2].toString().toLowerCase())
+            if(fieldValue.toString().toLowerCase() == queryArray[index + 2].toString().toLowerCase())
             {
               shouldDeleteThisRecord = true;
             }
@@ -1426,7 +1453,7 @@ metadata._metadata.get = function(data, callback)
 
           case 'BeginsWith': // 5
           {
-            if(lineValueObject[queryArray[index]].toString().indexOf(queryArray[index + 2].toString()) != 0)
+            if(fieldValue.toString().indexOf(queryArray[index + 2].toString()) != 0)
             {
               shouldDeleteThisRecord = true;
             }
@@ -1435,7 +1462,7 @@ metadata._metadata.get = function(data, callback)
           
           case 'BeginsWithNotCaseSensitive': // 6
           {
-            if(lineValueObject[queryArray[index]].toString().toLowerCase().indexOf(queryArray[index + 2].toString().toLowerCase()) != 0)
+            if(fieldValue.toString().toLowerCase().indexOf(queryArray[index + 2].toString().toLowerCase()) != 0)
             {
               shouldDeleteThisRecord = true;
             }
@@ -1444,7 +1471,7 @@ metadata._metadata.get = function(data, callback)
 
           case 'DoesNotBeginWith': // 7
           {
-            if(lineValueObject[queryArray[index]].toString().indexOf(queryArray[index + 2].toString()) == 0)
+            if(fieldValue.toString().indexOf(queryArray[index + 2].toString()) == 0)
             {
               shouldDeleteThisRecord = true;
             }
@@ -1453,7 +1480,7 @@ metadata._metadata.get = function(data, callback)
 
           case 'DoesNotBeginWithNotCaseSensitive': // 8
           {
-            if(lineValueObject[queryArray[index]].toString().toLowerCase().indexOf(queryArray[index + 2].toString().toLowerCase()) == 0)          
+            if(fieldValue.toString().toLowerCase().indexOf(queryArray[index + 2].toString().toLowerCase()) == 0)          
             {
               shouldDeleteThisRecord = true;
             }
@@ -1462,7 +1489,7 @@ metadata._metadata.get = function(data, callback)
 
           case 'Contains': // 9
           {
-            if(lineValueObject[queryArray[index]].toString().indexOf(queryArray[index + 2].toString()) == -1)
+            if(fieldValue.toString().indexOf(queryArray[index + 2].toString()) == -1)
             {
               shouldDeleteThisRecord = true;
             }
@@ -1471,7 +1498,7 @@ metadata._metadata.get = function(data, callback)
 
           case 'ContainsNotCaseSensitive': // 10
           {
-            if(lineValueObject[queryArray[index]].toString().toLowerCase().indexOf(queryArray[index + 2].toString().toLowerCase()) == -1)          
+            if(fieldValue.toString().toLowerCase().indexOf(queryArray[index + 2].toString().toLowerCase()) == -1)          
             {
               shouldDeleteThisRecord = true;
             }
@@ -1480,7 +1507,7 @@ metadata._metadata.get = function(data, callback)
 
           case 'DoesNotContain': // 11
           {
-            if(lineValueObject[queryArray[index]].toString().indexOf(queryArray[index + 2].toString()) > -1)
+            if(fieldValue.toString().indexOf(queryArray[index + 2].toString()) > -1)
             {
               shouldDeleteThisRecord = true;
             }
@@ -1489,7 +1516,7 @@ metadata._metadata.get = function(data, callback)
 
           case 'DoesNotContainNotCaseSensitive': // 12
           {
-            if(lineValueObject[queryArray[index]].toString().toLowerCase().indexOf(queryArray[index + 2].toString().toLowerCase()) > -1)          
+            if(fieldValue.toString().toLowerCase().indexOf(queryArray[index + 2].toString().toLowerCase()) > -1)          
             {
               shouldDeleteThisRecord = true;
             }
@@ -1498,7 +1525,7 @@ metadata._metadata.get = function(data, callback)
 
           case 'EndsWith': // 13
           {
-            if(!lineValueObject[queryArray[index]].toString().endsWith(queryArray[index + 2].toString()))
+            if(!fieldValue.toString().endsWith(queryArray[index + 2].toString()))
             {
               shouldDeleteThisRecord = true;
             }
@@ -1507,7 +1534,7 @@ metadata._metadata.get = function(data, callback)
           
           case 'EndsWithNotCaseSensitive': // 14
           {
-            if(!lineValueObject[queryArray[index]].toString().toLowerCase().endsWith(queryArray[index + 2].toString().toLowerCase()))
+            if(!fieldValue.toString().toLowerCase().endsWith(queryArray[index + 2].toString().toLowerCase()))
             {
               shouldDeleteThisRecord = true;
             }
@@ -1516,7 +1543,7 @@ metadata._metadata.get = function(data, callback)
           
           case 'DoesNotEndWith': // 15
           {
-            if(lineValueObject[queryArray[index]].toString().endsWith(queryArray[index + 2].toString()))
+            if(fieldValue.toString().endsWith(queryArray[index + 2].toString()))
             {
               shouldDeleteThisRecord = true;
             }
@@ -1525,7 +1552,7 @@ metadata._metadata.get = function(data, callback)
           
           case 'DoesNotEndWithNotCaseSensitive': // 16
           {
-            if(lineValueObject[queryArray[index]].toString().toLowerCase().endsWith(queryArray[index + 2].toString().toLowerCase()))
+            if(fieldValue.toString().toLowerCase().endsWith(queryArray[index + 2].toString().toLowerCase()))
             {
               shouldDeleteThisRecord = true;
             }
@@ -1534,7 +1561,7 @@ metadata._metadata.get = function(data, callback)
 
           case 'IsGreaterThan': // 17
           {
-            if(lineValueObject[queryArray[index]] <= queryArray[index + 2])
+            if(fieldValue <= queryArray[index + 2])
             {
               shouldDeleteThisRecord = true;
             }
@@ -1543,7 +1570,7 @@ metadata._metadata.get = function(data, callback)
           
           case 'IsGreaterThanNotCaseSensitive': // 18
           {
-            if(lineValueObject[queryArray[index]].toString().toLowerCase() <= queryArray[index + 2].toString().toLowerCase())
+            if(fieldValue.toString().toLowerCase() <= queryArray[index + 2].toString().toLowerCase())
             {
               shouldDeleteThisRecord = true;
             }
@@ -1552,7 +1579,7 @@ metadata._metadata.get = function(data, callback)
           
           case 'IsGreaterThanOrEqualTo': // 19
           {
-            if(lineValueObject[queryArray[index]] < queryArray[index + 2])
+            if(fieldValue < queryArray[index + 2])
             {
               shouldDeleteThisRecord = true;
             }
@@ -1561,7 +1588,7 @@ metadata._metadata.get = function(data, callback)
           
           case 'IsGreaterThanOrEqualToNotCaseSensitive': // 20
           {
-            if(lineValueObject[queryArray[index]].toString().toLowerCase() < queryArray[index + 2].toString().toLowerCase())
+            if(fieldValue.toString().toLowerCase() < queryArray[index + 2].toString().toLowerCase())
             {
               shouldDeleteThisRecord = true;
             }
@@ -1570,7 +1597,7 @@ metadata._metadata.get = function(data, callback)
           
           case 'IsLessThan': // 21
           {
-            if(lineValueObject[queryArray[index]] >= queryArray[index + 2])
+            if(fieldValue >= queryArray[index + 2])
             {
               shouldDeleteThisRecord = true;
             }
@@ -1579,7 +1606,7 @@ metadata._metadata.get = function(data, callback)
 
           case 'IsLessThanNotCaseSensitive': // 22
           {
-            if(lineValueObject[queryArray[index]].toString().toLowerCase() >= queryArray[index + 2].toString().toLowerCase())
+            if(fieldValue.toString().toLowerCase() >= queryArray[index + 2].toString().toLowerCase())
             {
               shouldDeleteThisRecord = true;
             }
@@ -1588,7 +1615,7 @@ metadata._metadata.get = function(data, callback)
           
           case 'IsLessThanOrEqualTo': // 23
           {
-            if(lineValueObject[queryArray[index]] > queryArray[index + 2])
+            if(fieldValue > queryArray[index + 2])
             {
               shouldDeleteThisRecord = true;
             }
@@ -1597,7 +1624,7 @@ metadata._metadata.get = function(data, callback)
           
           case 'IsLessThanOrEqualToNotCaseSensitive': // 24
           {
-            if(lineValueObject[queryArray[index]].toString().toLowerCase() > queryArray[index + 2].toString().toLowerCase())
+            if(fieldValue.toString().toLowerCase() > queryArray[index + 2].toString().toLowerCase())
             {
               shouldDeleteThisRecord = true;
             }

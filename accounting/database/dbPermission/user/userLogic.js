@@ -55,7 +55,7 @@ user.serveListPage = function(data, callback)
             helpers.log
             (            
               5,
-              'ixlx15hyooxgx063e461' + '\n' +
+              'gffyx328r76jv39pqsec' + '\n' +
               'There was an error or the concatenated templates were not returned.' + '\n' +
               'This was the error:' + '\n' +
               JSON.stringify(errorAddUnivTemplates) + '\n'
@@ -71,7 +71,7 @@ user.serveListPage = function(data, callback)
         helpers.log
         (
           5,
-          'oyd1bdsa9nrh2zdvg2v2' + '\n' +
+          'ccz8lj59uc2yclpkfr0b' + '\n' +
           'There was an error or no template was returned.' + '\n' +
           'This was the error:' + '\n' +
           JSON.stringify(errorGetTemplate) + '\n'
@@ -88,7 +88,7 @@ user.serveListPage = function(data, callback)
     helpers.log
     (
       5,
-      '4az4isb0a4nl8489o7he' + '\n' +
+      'uip33zqw8co1fmc7kbdq' + '\n' +
       'Method not get. Only gets allowed.' + '\n'
     );
 
@@ -135,7 +135,7 @@ user.serveAddPage = function(data, callback)
             helpers.log
             (            
               5,
-              '9a4mov3zzbeuzydlsauq' + '\n' +
+              '2a1ga5lvr2kuvekew7n6' + '\n' +
               'There was an error or the concatenated templates were not returned.' + '\n' +
               'This was the error:' + '\n' +
               JSON.stringify(errorAddUnivTemplates) + '\n'
@@ -151,7 +151,7 @@ user.serveAddPage = function(data, callback)
         helpers.log
         (
           5,
-          'dnikweu4r586011d8i92' + '\n' +
+          '9hvujp5g3zfbv2c9s586' + '\n' +
           'There was an error or no template was returned.' + '\n' +
           'This was the error:' + '\n' +
           JSON.stringify(errorGetTemplate) + '\n'
@@ -168,7 +168,7 @@ user.serveAddPage = function(data, callback)
     helpers.log
     (
       5,
-      'b4ul5hxi86y4yjf4se2b' + '\n' +
+      'u155n8pv3f2nmleua3al' + '\n' +
       'Method not get. Only gets allowed.' + '\n'
     );
 
@@ -215,7 +215,7 @@ user.serveEditPage = function(data, callback)
             helpers.log
             (            
               5,
-              'digbb8tvn2yz20ixjowc' + '\n' +
+              '40yzwavf1dgskxtr5fjj' + '\n' +
               'There was an error or the concatenated templates were not returned.' + '\n' +
               'This was the error:' + '\n' +
               JSON.stringify(errorAddUnivTemplates) + '\n'
@@ -231,7 +231,7 @@ user.serveEditPage = function(data, callback)
         helpers.log
         (
           5,
-          '8sds9z2bie31vcicddgg' + '\n' +
+          '799izpxl74717hdjsezv' + '\n' +
           'There was an error or no template was returned.' + '\n' +
           'This was the error:' + '\n' +
           JSON.stringify(errorGetTemplate) + '\n'
@@ -248,7 +248,7 @@ user.serveEditPage = function(data, callback)
     helpers.log
     (
       5,
-      '7mtwz97qoii99fu9qv0v' + '\n' +
+      'q44lcpcj9dbhek7e893y' + '\n' +
       'Method not get. Only gets allowed.' + '\n'
     );
 
@@ -282,7 +282,7 @@ user.user = function(data, callback)
     helpers.log
     (
       5,
-      'xd95viw7sp8txo46o1fx' + '\n' +
+      'b0x7gonyqxyeeamnji0w' + '\n' +
       'The method was not one of the acceptable methods' + '\n'
     ); 
 
@@ -483,7 +483,7 @@ user._user.post = function(data, callback)
       helpers.log
       (
         5,
-        'aatg26mywpqky9yedjw9' + '\n' +
+        '6e6tgog36m4cnv3spn5q' + '\n' +
         'The email : ' + email + ' already exists' + '\n'                                  
       ); // End of: helpers.log(...)
 
@@ -529,7 +529,7 @@ user._user.post = function(data, callback)
         helpers.log
         (
           5,
-          'wkesomehxd1v51ej6jp1' + '\n' +
+          'btwh6c1q13r83vayplhz' + '\n' +
           'Unable to get the next gsuid.' + '\n' +
           'The following was the error' + '\n' +
           JSON.stringify(error) + '\n'                                   
@@ -584,7 +584,7 @@ user._user.post = function(data, callback)
             helpers.log
             (
               7,
-              'nvs7izmhoj2nrorb3h8v' + '\n' +
+              'dp4vy6jdcekwt0ufyf61' + '\n' +
               'There was an error appending to the history file' + '\n' +
               'An error here does not necessarily mean the append to history did not happen.' + '\n' +  
               'But an error at this point in the code surely means there was no append to user' + '\n' +                                          
@@ -628,7 +628,7 @@ user._user.post = function(data, callback)
                   helpers.log // Log the error.
                   (
                     7,
-                    'i5t0ervg5d5acpveovw5' + '\n' +
+                    'z83h3r40y6icm9218ji9' + '\n' +
                     'Successful write to user but unable to remove lock on database' + '\n' +
                     'The following record was appended to the user file:' + '\n' +                            
                     JSON.stringify(logObject) + '\n' +   
@@ -650,7 +650,7 @@ user._user.post = function(data, callback)
               helpers.log // Log the error.
               (
                 5,
-                'kpa16ie8q7n515sv5spt' + '\n' +
+                'zr5drt9hjsxpc37lk78o' + '\n' +
                 'There was an error when appending to the user file.' + '\n' +
                 'The following record may or may not have been appended to the user file:' + '\n' +                            
                 JSON.stringify(logObject) + '\n' +
@@ -704,7 +704,7 @@ user._user.post = function(data, callback)
                           helpers.log
                           (
                             5,
-                            'tts8yols3x5t0d2eq6bd' + '\n' +
+                            'cc6n1vnmkuaxoqxsz9wj' + '\n' +
                             'Rollback entry in the user file was appended successfully' + '\n' +
                             'The following was the record we rolled back:' + '\n' +
                             JSON.stringify(logObject) + '\n'                                   
@@ -715,7 +715,7 @@ user._user.post = function(data, callback)
                           helpers.log
                           (
                             7,
-                            'yik6g7sz0ryt8wawtqcw' + '\n' +
+                            'xdpir2wfiu14ebw23z94' + '\n' +
                             'There was an error appending a rollback entry in the user file' + '\n' +
                             'The following record may or may not have been rolled back:' + '\n' +
                             JSON.stringify(logObject) + '\n' +   
@@ -735,7 +735,7 @@ user._user.post = function(data, callback)
                     helpers.log
                     (
                       7,
-                      'b0tlu5etrcmp20f2sur1' + '\n' +
+                      'stsfu17gul71bvrokos6' + '\n' +
                       'There was an error appending a rollback entry in the history file' + '\n' +
                       'A rollback entry may or may not have been written in the user file' + '\n' +  
                       'CHECK TO SEE IF history and user ARE STILL IN SYNC' + '\n' +                                      
@@ -781,7 +781,7 @@ user._user.put = function(data, callback)
   // If userId is a valid string then convert it to a number.  
   if (typeof(userId) === 'string'){userId = parseInt(userId, 10);}else{return callback(400, {'Error' : 'userId must be a of string type'});}
 
-    // Get email from payload
+  // Get email from payload
   let email = data.payload.email;
 
   // stringTypeTrimAmpersand
@@ -886,7 +886,7 @@ user._user.put = function(data, callback)
     helpers.log
     (
       5,
-      'id7qcdfievxleq36g6de' + '\n' +
+      '2wojipkbd54pspycs9ju' + '\n' +
       'No fields pass the validation process' + '\n'                                  
     ); // End of: helpers.log(...)
 
@@ -909,7 +909,7 @@ user._user.put = function(data, callback)
       helpers.log
       (
         5,
-        'j604ovwmvcmrvx171ol7' + '\n' +
+        'mxpbf4q0xkro5uf5ehoc' + '\n' +
         'Unable to get the next gsuid.' + '\n' +
         'The following was the error' + '\n' +
         JSON.stringify(error) + '\n'                                   
@@ -963,7 +963,7 @@ user._user.put = function(data, callback)
               helpers.log // Log the error.
               (
                 7,
-                'i7t0ga066i56kkq0u8d4' + '\n' + 
+                '39bh4pps2nmnsaioor2f' + '\n' + 
                 'The following was the error message from getMostRecent:' + '\n' +                                             
                 errorFromGetMostRecent + '\n'                                                 
               ); // End of: helpers.log // Log the error.
@@ -978,7 +978,7 @@ user._user.put = function(data, callback)
               helpers.log // Log the error.
               (
                 7,
-                'phdg5o0r00t76pe5jtb6' + '\n' +
+                'gl8756ukk91w3flryl8m' + '\n' +
                 'The following was the error message from getMostRecent:' + '\n' +                                             
                 errorFromGetMostRecent + '\n'  +
                 'Also unable to remove lock on database.' + '\n' + 
@@ -1117,7 +1117,7 @@ user._user.put = function(data, callback)
                         helpers.log // Log the error.
                         (
                           7,
-                          'hb0nscxgq4hjunv81amz' + '\n' +
+                          'keop9hpbpy7g5ffhw9up' + '\n' +
                           'Successful write to user but unable to remove lock on database' + '\n' +
                           'The following record was appended to user:' + '\n' +                            
                           JSON.stringify(logObject) + '\n' +   
@@ -1139,7 +1139,7 @@ user._user.put = function(data, callback)
                     helpers.log // Log the error.
                     (
                       5,
-                      'ccw6zzmxjueg0fc01cps' + '\n' +
+                      'md12hy6vm8jwgpmwor5v' + '\n' +
                       'There was an error when appending to the user file.' + '\n' +
                       'The following record may or may not have been appended to user:' + '\n' +                            
                       JSON.stringify(logObject) + '\n' +
@@ -1194,7 +1194,7 @@ user._user.put = function(data, callback)
                                 helpers.log
                                 (
                                   5,
-                                  'p6kviryqvh1am3wxq38w' + '\n' +
+                                  'hml9iz7kvbxgllibpmc4' + '\n' +
                                   'Rollback entry in the user file was appended successfully' + '\n' +
                                   'The following was the record we rolled back:' + '\n' +
                                   JSON.stringify(logObject) + '\n'                                   
@@ -1205,7 +1205,7 @@ user._user.put = function(data, callback)
                                 helpers.log
                                 (
                                   7,
-                                  '3fxok0fzu1xy2mefvii4' + '\n' +
+                                  'b7fdm4udeavwr69jxwee' + '\n' +
                                   'There was an error appending a rollback entry in the user file' + '\n' +
                                   'The following record may or may not have been rolled back:' + '\n' +
                                   JSON.stringify(logObject) + '\n' +   
@@ -1225,7 +1225,7 @@ user._user.put = function(data, callback)
                           helpers.log
                           (
                             7,
-                            '1boj4rwb112kr5ranh6p' + '\n' +
+                            'ucis87ksm3jjjo7nvvm9' + '\n' +
                             'There was an error appending a rollback entry in the history file' + '\n' +
                             'A rollback entry may or may not have been written in the user file' + '\n' +  
                             'CHECK TO SEE IF history and user ARE STILL IN SYNC' + '\n' +                                      
@@ -1250,7 +1250,7 @@ user._user.put = function(data, callback)
               helpers.log
               (
                 7,
-                'l1nedor4k2qf0r8vj7qj' + '\n' +
+                'rc3mnq8527ypnjepkv5c' + '\n' +
                 'There was an error appending to the history file' + '\n' +
                 'An error here does not necessarily mean the append to history did not happen.' + '\n' +  
                 'But an error at this point in the code surely means there was no append to user' + '\n' +                                          
@@ -1282,7 +1282,7 @@ user._user.put = function(data, callback)
             helpers.log // Log the error.
             (
               7,
-              'y0q42amwtoj92wjl1xfh' + '\n' + 
+              'vpkvcu2wpa63ast57326' + '\n' + 
               'Pipeline error. The message was as follows' + '\n' +                                             
               pipelineError + '\n'                                                 
             ); // End of: helpers.log // Log the error.
@@ -1450,14 +1450,41 @@ user._user.get = function(data, callback)
       let index = 1; // Used to navigate the queryArray.
       let shouldDeleteThisRecord = false;
       let shouldLoopAgain = true;
-  
+
+
+      function drillIntoObject(jsonRecordObject, queryItemArray, itemIndex)
+      {
+          // Converting each property key from dot notation to bracket notation.
+          // Then using bracket notation to drill down into the object.
+
+          // Get a reference to the recordObject called "value"
+          let objValue = jsonRecordObject;
+
+          // Split the property key into an array delimited by the dot if any.
+          // The array will be used to drill into nested objects.
+          const keyParts = queryItemArray[itemIndex].split(".");
+
+          // Here is where we do the drilling.
+          for (let keyPart of keyParts) 
+          {
+            // Make objValue point to it's sub-object or it's final value when the loop is finished running.
+            objValue = objValue[keyPart];
+          } 
+
+          return objValue;
+      };
+
+
+      let fieldValue = drillIntoObject(lineValueObject, queryArray, index);
+
+
       while(whereClauseCount <= amountOfWhereClauses && shouldLoopAgain === true)
       {
         switch(queryArray[index + 1]) 
         {
           case 'MatchesExactly': // 1
           {
-            if(lineValueObject[queryArray[index]] != queryArray[index + 2])
+            if(fieldValue != queryArray[index + 2])
             {
               shouldDeleteThisRecord = true;
             }
@@ -1466,7 +1493,7 @@ user._user.get = function(data, callback)
 
           case 'MatchesExactlyNotCaseSensitive': // 2
           {
-            if(lineValueObject[queryArray[index]].toString().toLowerCase() != queryArray[index + 2].toString().toLowerCase())
+            if(fieldValue.toString().toLowerCase() != queryArray[index + 2].toString().toLowerCase())
             {
               shouldDeleteThisRecord = true;
             }             
@@ -1475,7 +1502,7 @@ user._user.get = function(data, callback)
           
           case 'DoesNotMatchExactly': // 3
             {
-              if(lineValueObject[queryArray[index]] == queryArray[index + 2])
+              if(fieldValue == queryArray[index + 2])
               {
                 shouldDeleteThisRecord = true;
               }
@@ -1484,7 +1511,7 @@ user._user.get = function(data, callback)
 
           case 'DoesNotMatchExactlyNotCaseSensitive': // 4
           {
-            if(lineValueObject[queryArray[index]].toString().toLowerCase() == queryArray[index + 2].toString().toLowerCase())
+            if(fieldValue.toString().toLowerCase() == queryArray[index + 2].toString().toLowerCase())
             {
               shouldDeleteThisRecord = true;
             }
@@ -1493,7 +1520,7 @@ user._user.get = function(data, callback)
 
           case 'BeginsWith': // 5
           {
-            if(lineValueObject[queryArray[index]].toString().indexOf(queryArray[index + 2].toString()) != 0)
+            if(fieldValue.toString().indexOf(queryArray[index + 2].toString()) != 0)
             {
               shouldDeleteThisRecord = true;
             }
@@ -1502,7 +1529,7 @@ user._user.get = function(data, callback)
           
           case 'BeginsWithNotCaseSensitive': // 6
           {
-            if(lineValueObject[queryArray[index]].toString().toLowerCase().indexOf(queryArray[index + 2].toString().toLowerCase()) != 0)
+            if(fieldValue.toString().toLowerCase().indexOf(queryArray[index + 2].toString().toLowerCase()) != 0)
             {
               shouldDeleteThisRecord = true;
             }
@@ -1511,7 +1538,7 @@ user._user.get = function(data, callback)
 
           case 'DoesNotBeginWith': // 7
           {
-            if(lineValueObject[queryArray[index]].toString().indexOf(queryArray[index + 2].toString()) == 0)
+            if(fieldValue.toString().indexOf(queryArray[index + 2].toString()) == 0)
             {
               shouldDeleteThisRecord = true;
             }
@@ -1520,7 +1547,7 @@ user._user.get = function(data, callback)
 
           case 'DoesNotBeginWithNotCaseSensitive': // 8
           {
-            if(lineValueObject[queryArray[index]].toString().toLowerCase().indexOf(queryArray[index + 2].toString().toLowerCase()) == 0)          
+            if(fieldValue.toString().toLowerCase().indexOf(queryArray[index + 2].toString().toLowerCase()) == 0)          
             {
               shouldDeleteThisRecord = true;
             }
@@ -1529,7 +1556,7 @@ user._user.get = function(data, callback)
 
           case 'Contains': // 9
           {
-            if(lineValueObject[queryArray[index]].toString().indexOf(queryArray[index + 2].toString()) == -1)
+            if(fieldValue.toString().indexOf(queryArray[index + 2].toString()) == -1)
             {
               shouldDeleteThisRecord = true;
             }
@@ -1538,7 +1565,7 @@ user._user.get = function(data, callback)
 
           case 'ContainsNotCaseSensitive': // 10
           {
-            if(lineValueObject[queryArray[index]].toString().toLowerCase().indexOf(queryArray[index + 2].toString().toLowerCase()) == -1)          
+            if(fieldValue.toString().toLowerCase().indexOf(queryArray[index + 2].toString().toLowerCase()) == -1)          
             {
               shouldDeleteThisRecord = true;
             }
@@ -1547,7 +1574,7 @@ user._user.get = function(data, callback)
 
           case 'DoesNotContain': // 11
           {
-            if(lineValueObject[queryArray[index]].toString().indexOf(queryArray[index + 2].toString()) > -1)
+            if(fieldValue.toString().indexOf(queryArray[index + 2].toString()) > -1)
             {
               shouldDeleteThisRecord = true;
             }
@@ -1556,7 +1583,7 @@ user._user.get = function(data, callback)
 
           case 'DoesNotContainNotCaseSensitive': // 12
           {
-            if(lineValueObject[queryArray[index]].toString().toLowerCase().indexOf(queryArray[index + 2].toString().toLowerCase()) > -1)          
+            if(fieldValue.toString().toLowerCase().indexOf(queryArray[index + 2].toString().toLowerCase()) > -1)          
             {
               shouldDeleteThisRecord = true;
             }
@@ -1565,7 +1592,7 @@ user._user.get = function(data, callback)
 
           case 'EndsWith': // 13
           {
-            if(!lineValueObject[queryArray[index]].toString().endsWith(queryArray[index + 2].toString()))
+            if(!fieldValue.toString().endsWith(queryArray[index + 2].toString()))
             {
               shouldDeleteThisRecord = true;
             }
@@ -1574,7 +1601,7 @@ user._user.get = function(data, callback)
           
           case 'EndsWithNotCaseSensitive': // 14
           {
-            if(!lineValueObject[queryArray[index]].toString().toLowerCase().endsWith(queryArray[index + 2].toString().toLowerCase()))
+            if(!fieldValue.toString().toLowerCase().endsWith(queryArray[index + 2].toString().toLowerCase()))
             {
               shouldDeleteThisRecord = true;
             }
@@ -1583,7 +1610,7 @@ user._user.get = function(data, callback)
           
           case 'DoesNotEndWith': // 15
           {
-            if(lineValueObject[queryArray[index]].toString().endsWith(queryArray[index + 2].toString()))
+            if(fieldValue.toString().endsWith(queryArray[index + 2].toString()))
             {
               shouldDeleteThisRecord = true;
             }
@@ -1592,7 +1619,7 @@ user._user.get = function(data, callback)
           
           case 'DoesNotEndWithNotCaseSensitive': // 16
           {
-            if(lineValueObject[queryArray[index]].toString().toLowerCase().endsWith(queryArray[index + 2].toString().toLowerCase()))
+            if(fieldValue.toString().toLowerCase().endsWith(queryArray[index + 2].toString().toLowerCase()))
             {
               shouldDeleteThisRecord = true;
             }
@@ -1601,7 +1628,7 @@ user._user.get = function(data, callback)
 
           case 'IsGreaterThan': // 17
           {
-            if(lineValueObject[queryArray[index]] <= queryArray[index + 2])
+            if(fieldValue <= queryArray[index + 2])
             {
               shouldDeleteThisRecord = true;
             }
@@ -1610,7 +1637,7 @@ user._user.get = function(data, callback)
           
           case 'IsGreaterThanNotCaseSensitive': // 18
           {
-            if(lineValueObject[queryArray[index]].toString().toLowerCase() <= queryArray[index + 2].toString().toLowerCase())
+            if(fieldValue.toString().toLowerCase() <= queryArray[index + 2].toString().toLowerCase())
             {
               shouldDeleteThisRecord = true;
             }
@@ -1619,7 +1646,7 @@ user._user.get = function(data, callback)
           
           case 'IsGreaterThanOrEqualTo': // 19
           {
-            if(lineValueObject[queryArray[index]] < queryArray[index + 2])
+            if(fieldValue < queryArray[index + 2])
             {
               shouldDeleteThisRecord = true;
             }
@@ -1628,7 +1655,7 @@ user._user.get = function(data, callback)
           
           case 'IsGreaterThanOrEqualToNotCaseSensitive': // 20
           {
-            if(lineValueObject[queryArray[index]].toString().toLowerCase() < queryArray[index + 2].toString().toLowerCase())
+            if(fieldValue.toString().toLowerCase() < queryArray[index + 2].toString().toLowerCase())
             {
               shouldDeleteThisRecord = true;
             }
@@ -1637,7 +1664,7 @@ user._user.get = function(data, callback)
           
           case 'IsLessThan': // 21
           {
-            if(lineValueObject[queryArray[index]] >= queryArray[index + 2])
+            if(fieldValue >= queryArray[index + 2])
             {
               shouldDeleteThisRecord = true;
             }
@@ -1646,7 +1673,7 @@ user._user.get = function(data, callback)
 
           case 'IsLessThanNotCaseSensitive': // 22
           {
-            if(lineValueObject[queryArray[index]].toString().toLowerCase() >= queryArray[index + 2].toString().toLowerCase())
+            if(fieldValue.toString().toLowerCase() >= queryArray[index + 2].toString().toLowerCase())
             {
               shouldDeleteThisRecord = true;
             }
@@ -1655,7 +1682,7 @@ user._user.get = function(data, callback)
           
           case 'IsLessThanOrEqualTo': // 23
           {
-            if(lineValueObject[queryArray[index]] > queryArray[index + 2])
+            if(fieldValue > queryArray[index + 2])
             {
               shouldDeleteThisRecord = true;
             }
@@ -1664,7 +1691,7 @@ user._user.get = function(data, callback)
           
           case 'IsLessThanOrEqualToNotCaseSensitive': // 24
           {
-            if(lineValueObject[queryArray[index]].toString().toLowerCase() > queryArray[index + 2].toString().toLowerCase())
+            if(fieldValue.toString().toLowerCase() > queryArray[index + 2].toString().toLowerCase())
             {
               shouldDeleteThisRecord = true;
             }
