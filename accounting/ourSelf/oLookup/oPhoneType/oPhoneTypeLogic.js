@@ -55,7 +55,7 @@ oPhoneType.serveListPage = function(data, callback)
             helpers.log
             (            
               5,
-              '1ex3q5cqddqp6vvjvny2' + '\n' +
+              'jsygf010m59mbprnv4ij' + '\n' +
               'There was an error or the concatenated templates were not returned.' + '\n' +
               'This was the error:' + '\n' +
               JSON.stringify(errorAddUnivTemplates) + '\n'
@@ -71,7 +71,7 @@ oPhoneType.serveListPage = function(data, callback)
         helpers.log
         (
           5,
-          '8e6f5voyo1otob3x2lud' + '\n' +
+          'osl5sfwtexmokic6g80b' + '\n' +
           'There was an error or no template was returned.' + '\n' +
           'This was the error:' + '\n' +
           JSON.stringify(errorGetTemplate) + '\n'
@@ -88,7 +88,7 @@ oPhoneType.serveListPage = function(data, callback)
     helpers.log
     (
       5,
-      '4euo460st8d4xcn7wp3s' + '\n' +
+      '7vwrnwkbxn52jh2xknnc' + '\n' +
       'Method not get. Only gets allowed.' + '\n'
     );
 
@@ -135,7 +135,7 @@ oPhoneType.serveAddPage = function(data, callback)
             helpers.log
             (            
               5,
-              '5o6b1fbh568czt869905' + '\n' +
+              'ep2rmeu716hvidtv9yym' + '\n' +
               'There was an error or the concatenated templates were not returned.' + '\n' +
               'This was the error:' + '\n' +
               JSON.stringify(errorAddUnivTemplates) + '\n'
@@ -151,7 +151,7 @@ oPhoneType.serveAddPage = function(data, callback)
         helpers.log
         (
           5,
-          'wbnxqcqrkpu0rwfmx2c0' + '\n' +
+          'qoes05oi300s35c4htks' + '\n' +
           'There was an error or no template was returned.' + '\n' +
           'This was the error:' + '\n' +
           JSON.stringify(errorGetTemplate) + '\n'
@@ -168,7 +168,7 @@ oPhoneType.serveAddPage = function(data, callback)
     helpers.log
     (
       5,
-      'vqrj164ym8rdvwvax8ai' + '\n' +
+      'ec4fd7cx0514t7xz0tfc' + '\n' +
       'Method not get. Only gets allowed.' + '\n'
     );
 
@@ -215,7 +215,7 @@ oPhoneType.serveEditPage = function(data, callback)
             helpers.log
             (            
               5,
-              'zlwbjes2szwpdcb1j9s4' + '\n' +
+              'zt9xuv33xqrmlwy8wkyg' + '\n' +
               'There was an error or the concatenated templates were not returned.' + '\n' +
               'This was the error:' + '\n' +
               JSON.stringify(errorAddUnivTemplates) + '\n'
@@ -231,7 +231,7 @@ oPhoneType.serveEditPage = function(data, callback)
         helpers.log
         (
           5,
-          'b20ug0gjm5przz98uo5d' + '\n' +
+          '1rfrjesd8aoulvma7dgf' + '\n' +
           'There was an error or no template was returned.' + '\n' +
           'This was the error:' + '\n' +
           JSON.stringify(errorGetTemplate) + '\n'
@@ -248,7 +248,7 @@ oPhoneType.serveEditPage = function(data, callback)
     helpers.log
     (
       5,
-      'nelyg7ian163ms23orir' + '\n' +
+      'qslnd323njkpn80vvg8a' + '\n' +
       'Method not get. Only gets allowed.' + '\n'
     );
 
@@ -282,7 +282,7 @@ oPhoneType.oPhoneType = function(data, callback)
     helpers.log
     (
       5,
-      'fb8garbljp26o8lmxodm' + '\n' +
+      'qwx758bt30783d7hx3gh' + '\n' +
       'The method was not one of the acceptable methods' + '\n'
     ); 
 
@@ -446,7 +446,7 @@ oPhoneType._oPhoneType.post = function(data, callback)
       helpers.log
       (
         5,
-        'wcq0bc62kz6ia0qnel21' + '\n' +
+        '268c8h0l5ikamst3e6o6' + '\n' +
         'The phoneType : ' + phoneType + ' already exists' + '\n'                                  
       ); // End of: helpers.log(...)
 
@@ -473,7 +473,7 @@ oPhoneType._oPhoneType.post = function(data, callback)
         helpers.log
         (
           5,
-          'rwl0kpljumhgsunirav7' + '\n' +
+          '0s64756vwx15bvhferie' + '\n' +
           'Unable to get the next gsuid.' + '\n' +
           'The following was the error' + '\n' +
           JSON.stringify(error) + '\n'                                   
@@ -527,7 +527,7 @@ oPhoneType._oPhoneType.post = function(data, callback)
             helpers.log
             (
               7,
-              's89rve8qk1o50w6eu1qv' + '\n' +
+              'muxbf88ct4sy04g3fi69' + '\n' +
               'There was an error appending to the history file' + '\n' +
               'An error here does not necessarily mean the append to history did not happen.' + '\n' +  
               'But an error at this point in the code surely means there was no append to oPhoneType' + '\n' +                                          
@@ -571,7 +571,7 @@ oPhoneType._oPhoneType.post = function(data, callback)
                   helpers.log // Log the error.
                   (
                     7,
-                    'i2pdysb5acv0scbz1t9q' + '\n' +
+                    '5f2arfho09yishqvi5yo' + '\n' +
                     'Successful write to oPhoneType but unable to remove lock on database' + '\n' +
                     'The following record was appended to the oPhoneType file:' + '\n' +                            
                     JSON.stringify(logObject) + '\n' +   
@@ -593,7 +593,7 @@ oPhoneType._oPhoneType.post = function(data, callback)
               helpers.log // Log the error.
               (
                 5,
-                'kbfg6cm4pr55uw4n2x9p' + '\n' +
+                'waiom0jy8fahhajxy8gc' + '\n' +
                 'There was an error when appending to the oPhoneType file.' + '\n' +
                 'The following record may or may not have been appended to the oPhoneType file:' + '\n' +                            
                 JSON.stringify(logObject) + '\n' +
@@ -646,7 +646,7 @@ oPhoneType._oPhoneType.post = function(data, callback)
                           helpers.log
                           (
                             5,
-                            'm8uw8y2h9kf8xxpah81p' + '\n' +
+                            'tlcpd2jluwa15j4gk8lq' + '\n' +
                             'Rollback entry in the oPhoneType file was appended successfully' + '\n' +
                             'The following was the record we rolled back:' + '\n' +
                             JSON.stringify(logObject) + '\n'                                   
@@ -657,7 +657,7 @@ oPhoneType._oPhoneType.post = function(data, callback)
                           helpers.log
                           (
                             7,
-                            '00bkqozt2y4375r3npwa' + '\n' +
+                            'jl1o9q7zwem9fncdzot6' + '\n' +
                             'There was an error appending a rollback entry in the oPhoneType file' + '\n' +
                             'The following record may or may not have been rolled back:' + '\n' +
                             JSON.stringify(logObject) + '\n' +   
@@ -677,7 +677,7 @@ oPhoneType._oPhoneType.post = function(data, callback)
                     helpers.log
                     (
                       7,
-                      'b7e9b26k8d4rl1z1lr9k' + '\n' +
+                      'fp7xpn5l7j7ripkww19z' + '\n' +
                       'There was an error appending a rollback entry in the history file' + '\n' +
                       'A rollback entry may or may not have been written in the oPhoneType file' + '\n' +  
                       'CHECK TO SEE IF history and oPhoneType ARE STILL IN SYNC' + '\n' +                                      
@@ -750,7 +750,7 @@ oPhoneType._oPhoneType.put = function(data, callback)
       return callback(400, {'Error' : 'Not a valid phoneType'}); 
     } 
   }
-
+  
   // Check if the deleted flag is of type string and that the value is exactly equal to "true".
   // That would mean the user wants to delete the record. Otherwise the users does not want to delete the record.
   // Set deleted to boolean true if validation is passed otherwise set it to false.
@@ -764,7 +764,7 @@ oPhoneType._oPhoneType.put = function(data, callback)
     helpers.log
     (
       5,
-      'swdukvl6wvc8cqefcf35' + '\n' +
+      'nfo929ysndnvxmwbfzuv' + '\n' +
       'No fields pass the validation process' + '\n'                                  
     ); // End of: helpers.log(...)
 
@@ -787,7 +787,7 @@ oPhoneType._oPhoneType.put = function(data, callback)
       helpers.log
       (
         5,
-        'k8dw1t54n5xryxt7h4p3' + '\n' +
+        '585af239d2erkm3kl5f3' + '\n' +
         'Unable to get the next gsuid.' + '\n' +
         'The following was the error' + '\n' +
         JSON.stringify(error) + '\n'                                   
@@ -840,7 +840,7 @@ oPhoneType._oPhoneType.put = function(data, callback)
               helpers.log // Log the error.
               (
                 7,
-                '20b1f6qswyzczrchlzxe' + '\n' + 
+                'cez3goge8mrsqq0dieg4' + '\n' + 
                 'The following was the error message from getMostRecent:' + '\n' +                                             
                 errorFromGetMostRecent + '\n'                                                 
               ); // End of: helpers.log // Log the error.
@@ -855,7 +855,7 @@ oPhoneType._oPhoneType.put = function(data, callback)
               helpers.log // Log the error.
               (
                 7,
-                'z684ir6tw9wjza0gm2x6' + '\n' +
+                '2crgxoazz4rq970w61r8' + '\n' +
                 'The following was the error message from getMostRecent:' + '\n' +                                             
                 errorFromGetMostRecent + '\n'  +
                 'Also unable to remove lock on database.' + '\n' + 
@@ -963,7 +963,7 @@ oPhoneType._oPhoneType.put = function(data, callback)
                         helpers.log // Log the error.
                         (
                           7,
-                          '8ix51a7guu5ybe6gc7vm' + '\n' +
+                          '33c95d8wp35qkvtewj3r' + '\n' +
                           'Successful write to oPhoneType but unable to remove lock on database' + '\n' +
                           'The following record was appended to oPhoneType:' + '\n' +                            
                           JSON.stringify(logObject) + '\n' +   
@@ -985,7 +985,7 @@ oPhoneType._oPhoneType.put = function(data, callback)
                     helpers.log // Log the error.
                     (
                       5,
-                      '0phgbkbv8s0imk0bp51j' + '\n' +
+                      'fhoquvvk80gels319kio' + '\n' +
                       'There was an error when appending to the oPhoneType file.' + '\n' +
                       'The following record may or may not have been appended to oPhoneType:' + '\n' +                            
                       JSON.stringify(logObject) + '\n' +
@@ -1039,7 +1039,7 @@ oPhoneType._oPhoneType.put = function(data, callback)
                                 helpers.log
                                 (
                                   5,
-                                  '78ecbtflkeej1qwa05nk' + '\n' +
+                                  'yeb9467t80ml82mrxzg9' + '\n' +
                                   'Rollback entry in the oPhoneType file was appended successfully' + '\n' +
                                   'The following was the record we rolled back:' + '\n' +
                                   JSON.stringify(logObject) + '\n'                                   
@@ -1050,7 +1050,7 @@ oPhoneType._oPhoneType.put = function(data, callback)
                                 helpers.log
                                 (
                                   7,
-                                  'qyrn1q00nmliltkshrf8' + '\n' +
+                                  '0m0nvdybpjq5h94q0p6b' + '\n' +
                                   'There was an error appending a rollback entry in the oPhoneType file' + '\n' +
                                   'The following record may or may not have been rolled back:' + '\n' +
                                   JSON.stringify(logObject) + '\n' +   
@@ -1070,7 +1070,7 @@ oPhoneType._oPhoneType.put = function(data, callback)
                           helpers.log
                           (
                             7,
-                            'z44vvgte3w67t955mlkz' + '\n' +
+                            'wkr2nq95ymedwge895m3' + '\n' +
                             'There was an error appending a rollback entry in the history file' + '\n' +
                             'A rollback entry may or may not have been written in the oPhoneType file' + '\n' +  
                             'CHECK TO SEE IF history and oPhoneType ARE STILL IN SYNC' + '\n' +                                      
@@ -1095,7 +1095,7 @@ oPhoneType._oPhoneType.put = function(data, callback)
               helpers.log
               (
                 7,
-                'htwg2gadxw6cqgmmludg' + '\n' +
+                '46otg3539k1swjypbata' + '\n' +
                 'There was an error appending to the history file' + '\n' +
                 'An error here does not necessarily mean the append to history did not happen.' + '\n' +  
                 'But an error at this point in the code surely means there was no append to oPhoneType' + '\n' +                                          
@@ -1127,7 +1127,7 @@ oPhoneType._oPhoneType.put = function(data, callback)
             helpers.log // Log the error.
             (
               7,
-              'q5me7ziqp3k33u1k0nbx' + '\n' + 
+              'wpfc0ccuuoycllqg2uwl' + '\n' + 
               'Pipeline error. The message was as follows' + '\n' +                                             
               pipelineError + '\n'                                                 
             ); // End of: helpers.log // Log the error.
@@ -1295,14 +1295,41 @@ oPhoneType._oPhoneType.get = function(data, callback)
       let index = 1; // Used to navigate the queryArray.
       let shouldDeleteThisRecord = false;
       let shouldLoopAgain = true;
-  
+
+
+      function drillIntoObject(jsonRecordObject, queryItemArray, itemIndex)
+      {
+          // Converting each property key from dot notation to bracket notation.
+          // Then using bracket notation to drill down into the object.
+
+          // Get a reference to the recordObject called "value"
+          let objValue = jsonRecordObject;
+
+          // Split the property key into an array delimited by the dot if any.
+          // The array will be used to drill into nested objects.
+          const keyParts = queryItemArray[itemIndex].split(".");
+
+          // Here is where we do the drilling.
+          for (let keyPart of keyParts) 
+          {
+            // Make objValue point to it's sub-object or it's final value when the loop is finished running.
+            objValue = objValue[keyPart];
+          } 
+
+          return objValue;
+      };
+
+
+      let fieldValue = drillIntoObject(lineValueObject, queryArray, index);
+
+
       while(whereClauseCount <= amountOfWhereClauses && shouldLoopAgain === true)
       {
         switch(queryArray[index + 1]) 
         {
           case 'MatchesExactly': // 1
           {
-            if(lineValueObject[queryArray[index]] != queryArray[index + 2])
+            if(fieldValue != queryArray[index + 2])
             {
               shouldDeleteThisRecord = true;
             }
@@ -1311,7 +1338,7 @@ oPhoneType._oPhoneType.get = function(data, callback)
 
           case 'MatchesExactlyNotCaseSensitive': // 2
           {
-            if(lineValueObject[queryArray[index]].toString().toLowerCase() != queryArray[index + 2].toString().toLowerCase())
+            if(fieldValue.toString().toLowerCase() != queryArray[index + 2].toString().toLowerCase())
             {
               shouldDeleteThisRecord = true;
             }             
@@ -1320,7 +1347,7 @@ oPhoneType._oPhoneType.get = function(data, callback)
           
           case 'DoesNotMatchExactly': // 3
             {
-              if(lineValueObject[queryArray[index]] == queryArray[index + 2])
+              if(fieldValue == queryArray[index + 2])
               {
                 shouldDeleteThisRecord = true;
               }
@@ -1329,7 +1356,7 @@ oPhoneType._oPhoneType.get = function(data, callback)
 
           case 'DoesNotMatchExactlyNotCaseSensitive': // 4
           {
-            if(lineValueObject[queryArray[index]].toString().toLowerCase() == queryArray[index + 2].toString().toLowerCase())
+            if(fieldValue.toString().toLowerCase() == queryArray[index + 2].toString().toLowerCase())
             {
               shouldDeleteThisRecord = true;
             }
@@ -1338,7 +1365,7 @@ oPhoneType._oPhoneType.get = function(data, callback)
 
           case 'BeginsWith': // 5
           {
-            if(lineValueObject[queryArray[index]].toString().indexOf(queryArray[index + 2].toString()) != 0)
+            if(fieldValue.toString().indexOf(queryArray[index + 2].toString()) != 0)
             {
               shouldDeleteThisRecord = true;
             }
@@ -1347,7 +1374,7 @@ oPhoneType._oPhoneType.get = function(data, callback)
           
           case 'BeginsWithNotCaseSensitive': // 6
           {
-            if(lineValueObject[queryArray[index]].toString().toLowerCase().indexOf(queryArray[index + 2].toString().toLowerCase()) != 0)
+            if(fieldValue.toString().toLowerCase().indexOf(queryArray[index + 2].toString().toLowerCase()) != 0)
             {
               shouldDeleteThisRecord = true;
             }
@@ -1356,7 +1383,7 @@ oPhoneType._oPhoneType.get = function(data, callback)
 
           case 'DoesNotBeginWith': // 7
           {
-            if(lineValueObject[queryArray[index]].toString().indexOf(queryArray[index + 2].toString()) == 0)
+            if(fieldValue.toString().indexOf(queryArray[index + 2].toString()) == 0)
             {
               shouldDeleteThisRecord = true;
             }
@@ -1365,7 +1392,7 @@ oPhoneType._oPhoneType.get = function(data, callback)
 
           case 'DoesNotBeginWithNotCaseSensitive': // 8
           {
-            if(lineValueObject[queryArray[index]].toString().toLowerCase().indexOf(queryArray[index + 2].toString().toLowerCase()) == 0)          
+            if(fieldValue.toString().toLowerCase().indexOf(queryArray[index + 2].toString().toLowerCase()) == 0)          
             {
               shouldDeleteThisRecord = true;
             }
@@ -1374,7 +1401,7 @@ oPhoneType._oPhoneType.get = function(data, callback)
 
           case 'Contains': // 9
           {
-            if(lineValueObject[queryArray[index]].toString().indexOf(queryArray[index + 2].toString()) == -1)
+            if(fieldValue.toString().indexOf(queryArray[index + 2].toString()) == -1)
             {
               shouldDeleteThisRecord = true;
             }
@@ -1383,7 +1410,7 @@ oPhoneType._oPhoneType.get = function(data, callback)
 
           case 'ContainsNotCaseSensitive': // 10
           {
-            if(lineValueObject[queryArray[index]].toString().toLowerCase().indexOf(queryArray[index + 2].toString().toLowerCase()) == -1)          
+            if(fieldValue.toString().toLowerCase().indexOf(queryArray[index + 2].toString().toLowerCase()) == -1)          
             {
               shouldDeleteThisRecord = true;
             }
@@ -1392,7 +1419,7 @@ oPhoneType._oPhoneType.get = function(data, callback)
 
           case 'DoesNotContain': // 11
           {
-            if(lineValueObject[queryArray[index]].toString().indexOf(queryArray[index + 2].toString()) > -1)
+            if(fieldValue.toString().indexOf(queryArray[index + 2].toString()) > -1)
             {
               shouldDeleteThisRecord = true;
             }
@@ -1401,7 +1428,7 @@ oPhoneType._oPhoneType.get = function(data, callback)
 
           case 'DoesNotContainNotCaseSensitive': // 12
           {
-            if(lineValueObject[queryArray[index]].toString().toLowerCase().indexOf(queryArray[index + 2].toString().toLowerCase()) > -1)          
+            if(fieldValue.toString().toLowerCase().indexOf(queryArray[index + 2].toString().toLowerCase()) > -1)          
             {
               shouldDeleteThisRecord = true;
             }
@@ -1410,7 +1437,7 @@ oPhoneType._oPhoneType.get = function(data, callback)
 
           case 'EndsWith': // 13
           {
-            if(!lineValueObject[queryArray[index]].toString().endsWith(queryArray[index + 2].toString()))
+            if(!fieldValue.toString().endsWith(queryArray[index + 2].toString()))
             {
               shouldDeleteThisRecord = true;
             }
@@ -1419,7 +1446,7 @@ oPhoneType._oPhoneType.get = function(data, callback)
           
           case 'EndsWithNotCaseSensitive': // 14
           {
-            if(!lineValueObject[queryArray[index]].toString().toLowerCase().endsWith(queryArray[index + 2].toString().toLowerCase()))
+            if(!fieldValue.toString().toLowerCase().endsWith(queryArray[index + 2].toString().toLowerCase()))
             {
               shouldDeleteThisRecord = true;
             }
@@ -1428,7 +1455,7 @@ oPhoneType._oPhoneType.get = function(data, callback)
           
           case 'DoesNotEndWith': // 15
           {
-            if(lineValueObject[queryArray[index]].toString().endsWith(queryArray[index + 2].toString()))
+            if(fieldValue.toString().endsWith(queryArray[index + 2].toString()))
             {
               shouldDeleteThisRecord = true;
             }
@@ -1437,7 +1464,7 @@ oPhoneType._oPhoneType.get = function(data, callback)
           
           case 'DoesNotEndWithNotCaseSensitive': // 16
           {
-            if(lineValueObject[queryArray[index]].toString().toLowerCase().endsWith(queryArray[index + 2].toString().toLowerCase()))
+            if(fieldValue.toString().toLowerCase().endsWith(queryArray[index + 2].toString().toLowerCase()))
             {
               shouldDeleteThisRecord = true;
             }
@@ -1446,7 +1473,7 @@ oPhoneType._oPhoneType.get = function(data, callback)
 
           case 'IsGreaterThan': // 17
           {
-            if(lineValueObject[queryArray[index]] <= queryArray[index + 2])
+            if(fieldValue <= queryArray[index + 2])
             {
               shouldDeleteThisRecord = true;
             }
@@ -1455,7 +1482,7 @@ oPhoneType._oPhoneType.get = function(data, callback)
           
           case 'IsGreaterThanNotCaseSensitive': // 18
           {
-            if(lineValueObject[queryArray[index]].toString().toLowerCase() <= queryArray[index + 2].toString().toLowerCase())
+            if(fieldValue.toString().toLowerCase() <= queryArray[index + 2].toString().toLowerCase())
             {
               shouldDeleteThisRecord = true;
             }
@@ -1464,7 +1491,7 @@ oPhoneType._oPhoneType.get = function(data, callback)
           
           case 'IsGreaterThanOrEqualTo': // 19
           {
-            if(lineValueObject[queryArray[index]] < queryArray[index + 2])
+            if(fieldValue < queryArray[index + 2])
             {
               shouldDeleteThisRecord = true;
             }
@@ -1473,7 +1500,7 @@ oPhoneType._oPhoneType.get = function(data, callback)
           
           case 'IsGreaterThanOrEqualToNotCaseSensitive': // 20
           {
-            if(lineValueObject[queryArray[index]].toString().toLowerCase() < queryArray[index + 2].toString().toLowerCase())
+            if(fieldValue.toString().toLowerCase() < queryArray[index + 2].toString().toLowerCase())
             {
               shouldDeleteThisRecord = true;
             }
@@ -1482,7 +1509,7 @@ oPhoneType._oPhoneType.get = function(data, callback)
           
           case 'IsLessThan': // 21
           {
-            if(lineValueObject[queryArray[index]] >= queryArray[index + 2])
+            if(fieldValue >= queryArray[index + 2])
             {
               shouldDeleteThisRecord = true;
             }
@@ -1491,7 +1518,7 @@ oPhoneType._oPhoneType.get = function(data, callback)
 
           case 'IsLessThanNotCaseSensitive': // 22
           {
-            if(lineValueObject[queryArray[index]].toString().toLowerCase() >= queryArray[index + 2].toString().toLowerCase())
+            if(fieldValue.toString().toLowerCase() >= queryArray[index + 2].toString().toLowerCase())
             {
               shouldDeleteThisRecord = true;
             }
@@ -1500,7 +1527,7 @@ oPhoneType._oPhoneType.get = function(data, callback)
           
           case 'IsLessThanOrEqualTo': // 23
           {
-            if(lineValueObject[queryArray[index]] > queryArray[index + 2])
+            if(fieldValue > queryArray[index + 2])
             {
               shouldDeleteThisRecord = true;
             }
@@ -1509,7 +1536,7 @@ oPhoneType._oPhoneType.get = function(data, callback)
           
           case 'IsLessThanOrEqualToNotCaseSensitive': // 24
           {
-            if(lineValueObject[queryArray[index]].toString().toLowerCase() > queryArray[index + 2].toString().toLowerCase())
+            if(fieldValue.toString().toLowerCase() > queryArray[index + 2].toString().toLowerCase())
             {
               shouldDeleteThisRecord = true;
             }
