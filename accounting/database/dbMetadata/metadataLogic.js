@@ -55,7 +55,7 @@ metadata.serveListPage = function(data, callback)
             helpers.log
             (            
               5,
-              'xof42cfob4wapsulood4' + '\n' +
+              'l1ovcgmamaxvp6rbfcb2' + '\n' +
               'There was an error or the concatenated templates were not returned.' + '\n' +
               'This was the error:' + '\n' +
               JSON.stringify(errorAddUnivTemplates) + '\n'
@@ -71,7 +71,7 @@ metadata.serveListPage = function(data, callback)
         helpers.log
         (
           5,
-          'v8k7v8me13vdxmixcly3' + '\n' +
+          'b4m365vv44lgv7cjomxh' + '\n' +
           'There was an error or no template was returned.' + '\n' +
           'This was the error:' + '\n' +
           JSON.stringify(errorGetTemplate) + '\n'
@@ -88,7 +88,7 @@ metadata.serveListPage = function(data, callback)
     helpers.log
     (
       5,
-      'ucmrukfpqfwt6mpznxoo' + '\n' +
+      'fjltu02fqmzrq3fxyktu' + '\n' +
       'Method not get. Only gets allowed.' + '\n'
     );
 
@@ -135,7 +135,7 @@ metadata.serveAddPage = function(data, callback)
             helpers.log
             (            
               5,
-              '7wf7w6sbztrxx309hcm5' + '\n' +
+              'ka5d2nidsxdh66dndhdn' + '\n' +
               'There was an error or the concatenated templates were not returned.' + '\n' +
               'This was the error:' + '\n' +
               JSON.stringify(errorAddUnivTemplates) + '\n'
@@ -151,7 +151,7 @@ metadata.serveAddPage = function(data, callback)
         helpers.log
         (
           5,
-          'iocqddsxqqo4xdmcphg0' + '\n' +
+          'gj1jovpd3j396wdusqb2' + '\n' +
           'There was an error or no template was returned.' + '\n' +
           'This was the error:' + '\n' +
           JSON.stringify(errorGetTemplate) + '\n'
@@ -168,7 +168,7 @@ metadata.serveAddPage = function(data, callback)
     helpers.log
     (
       5,
-      '499updtds54ql5lvvz22' + '\n' +
+      '51a03e5i6fbvlhk70g9t' + '\n' +
       'Method not get. Only gets allowed.' + '\n'
     );
 
@@ -215,7 +215,7 @@ metadata.serveEditPage = function(data, callback)
             helpers.log
             (            
               5,
-              'rm3q19w3dckkkjgrha9f' + '\n' +
+              'yrm11zdy71bco1cwlndh' + '\n' +
               'There was an error or the concatenated templates were not returned.' + '\n' +
               'This was the error:' + '\n' +
               JSON.stringify(errorAddUnivTemplates) + '\n'
@@ -231,7 +231,7 @@ metadata.serveEditPage = function(data, callback)
         helpers.log
         (
           5,
-          'ibj0kk3z82cis9fnw4z8' + '\n' +
+          '4ubq264a1eph9ytkpqir' + '\n' +
           'There was an error or no template was returned.' + '\n' +
           'This was the error:' + '\n' +
           JSON.stringify(errorGetTemplate) + '\n'
@@ -248,7 +248,7 @@ metadata.serveEditPage = function(data, callback)
     helpers.log
     (
       5,
-      'mahsmtmno2v8k845u18h' + '\n' +
+      'j2shy7kxcp6iuzo3p246' + '\n' +
       'Method not get. Only gets allowed.' + '\n'
     );
 
@@ -282,7 +282,7 @@ metadata.metadata = function(data, callback)
     helpers.log
     (
       5,
-      '1m719ugyqdem2sr4dkoi' + '\n' +
+      'ed0nh0ayaw26h4yloech' + '\n' +
       'The method was not one of the acceptable methods' + '\n'
     ); 
 
@@ -308,165 +308,6 @@ metadata._metadata = {};
 metadata._metadata.post = function(data, callback)
 {
   // Field validation starts here.
-  // Get tableName from payload
-  let tableName = data.payload.tableName;
-
-  // passIfString&NotEmptyThenTrim Default behavior from meta.js at ulg5xxvzgr7efln9xur9
-  if(typeof(tableName) != 'string'){return callback(400, {'Error' : 'tableName must be of datatype string'});}
-  if(!tableName || tableName.trim().length === 0){return callback(400, {'Error' : 'No tableName was entered'});}else{tableName = tableName.trim()}
-  // Get directory from payload
-  let directory = data.payload.directory;
-
-  // passIfString&NotEmptyThenTrim Default behavior from meta.js at ulg5xxvzgr7efln9xur9
-  if(typeof(directory) != 'string'){return callback(400, {'Error' : 'directory must be of datatype string'});}
-  if(!directory || directory.trim().length === 0){return callback(400, {'Error' : 'No directory was entered'});}else{directory = directory.trim()}
-  // Get addRoutes from payload
-  let addRoutes = data.payload.addRoutes;
-
-  // passIfString&NotEmptyThenTrim Default behavior from meta.js at ulg5xxvzgr7efln9xur9
-  if(typeof(addRoutes) != 'string'){return callback(400, {'Error' : 'addRoutes must be of datatype string'});}
-  if(!addRoutes || addRoutes.trim().length === 0){return callback(400, {'Error' : 'No addRoutes was entered'});}else{addRoutes = addRoutes.trim()}
-
-  // Enforcing uniqueness of the table field.
-  // Will toggle this to false if we find the table already exists in metadata.
-  // Behavior from meta.js at rmkfkaef7xo3gyvnvgm4
-  let tableIsUnused = true;
-
-  // Using this to track the primary key of a record that we might encounter with the candidate table.
-  // If we encounter this primary key again we will check to see if the table has been changed.
-  // If it has then the candidate table will be marked as available again.
-  let uniqueIdOfRecordHoldingCandidateTable = false; 
-                        
-
-  // To ensure the table is unique we will read every record in 
-  // metadata and compare with the table provided.
-
-  // This function sets up a stream where each chunk of data is a complete line in the metadata file.
-  let readInterface = readline.createInterface
-  (
-    { // specify the file to be read.
-      input: fs.createReadStream(_data.baseDir + '/database/dbMetadata' + '/' + 'metadata' + '.json')
-    }
-  );
-  
-  // Look at each record in the file and set a flag if the table matches the table provided by the user.
-  readInterface.on('line', function(line) 
-  {
-    // Convert the JSON string from metadata into an object.
-    lineObject = JSON.parse(line);
-
-    // Several different record sets with the supplied table and the same metadataId 
-    // may exist already if the record has been changed or deleted prior to this operation.
-
-    // A modified record is simply a new record with the same metadataId as an existing record.
-    // The newest record is the valid record and the older record is history.  
-    // So position matters. These tables should never be sorted.
-    // These tables can be packed however to get rid of historical records.
-
-    // The transaction log also maintains the history and the current state of the entire database.
-    // So the transaction log can be used to check the integrity of the every table.
-    // No records in the transaction log should be removed.
-
-    // A deleted record in this system is simply an identical record appended with 
-    // the deleted field set to true. 
-    // So depending on how many times the table has been added and deleted there may 
-    // be several sets of records in the metadata table currently 
-    // that have the same table and the same metadataId.
-    // The table can be packed occasionally to get rid of these deleted record sets. 
-    // Deletes are handled as appends with the deleted field set to true because real 
-    // deletes tie up the table for a long time.
-
-    // In this table, the table is a unique key as well as the metadataId.
-    // The metadataId also serves as the primary key.
-    // The difference is that the metadataId may never change whereas the table
-    // may be changed to something different if a valid record for that table
-    // does not already exist.    
-
-    // When adding a record we first make sure that the record does NOT already exist.
-    // There should be no record with the current table or if there is then 
-    // the last record with this table must have the deleted field set to true.
-
-    // When changing a record we:
-    // 1. Make sure that the record with this table does indeed exist and...
-    // 2. that the last instance of a record with this table is not deleted.
-  
-    // It is ok to add a new record with this same table again when the last instance 
-    // of this record encountered in the stream has the deleted flag set to true. 
-    // In that case, the metadataId will be different but the table will be the same.         
-
-    // As explained above, only the last matching record for a particular table matters.
-    // It's like that old game "She loves me, She loves me not".
-
-    if (table == lineObject.table) // we found a matching entry
-    {
-      if (lineObject.deleted == false) // The record has not been deleted so it's a duplicate. Not unique.
-      {
-        tableIsUnused = false; // This flag used in the on close event listener below. 
-
-        // If this record (record with this primary key) is encountered further down where it has been deleted 
-        // or where the table has been changed with a put operation:
-        // Then the candidate table will be available again as we continue searching through the records.
-        // We are already checking if this table becomes available again by deletion.
-        // Now we need to check if the table becomes available because the record with this primary 
-        // key gets changed with a new table.
-        // That will make the candidate table unique and available again.
-        // So record this global sequential unique id (the metadataId in this case).
-        // If we find the gsuid again, then check if the table has changed.
-        // If it has been changed then:
-        // 1. Set the tableIsUnused flag to true again
-        // 2. clear out the variable tracking the uniqueId of the record.
-        uniqueIdOfRecordHoldingCandidateTable = lineObject.metadataId;
-      }
-      // The matching record we found has been deleted so it may as well not exist. The new record is still unique.
-      else 
-      {
-        tableIsUnused = true;
-      } 
-    } // End of: if we found a matching entry
-
-    // If we have seen this primary key before and flagged the table already taken 
-    // because it was identical to the table we are trying to add and it had not been deleted:
-
-    // Ok, the current record is not holding the candidate table but 
-    // maybe it was in the past and someone changed it.
-    // if the candidate table is flagged unavailable and we are looking at the record that was flagged:
-    else if(tableIsUnused === false && uniqueIdOfRecordHoldingCandidateTable === lineObject.metadataId)
-    {
-      // Check if the table is no longer holding the candidate table.
-      // If it is not holding the candidate table then flag the table 
-      // available again and clear out the variable tracking this primary key.
-      tableIsUnused = true;
-      uniqueIdOfRecordHoldingCandidateTable = false;
-    }
-
-  }); // End of: readInterface.on('line', function(line){...}
-  // End of: Look at each record...
-
-
-
-
-  // This listener fires after we have discovered if the table is 
-  // unique or not, and have then closed the readable stream from metadata.
-  // The callback function defined here will append the record if the table 
-  // was found to be unique.
-  // Behavior from meta.js at aiwaoocd1uegzjbqeydk
-  readInterface.on('close', function() 
-  {
-    // If the table already exists then exit this process without appending the record.
-    if (!tableIsUnused) 
-    {      
-      helpers.log
-      (
-        5,
-        'q5q9sdwjosxehoynhe9c' + '\n' +
-        'The table : ' + table + ' already exists' + '\n'                                  
-      ); // End of: helpers.log(...)
-
-      return callback(400, {'Error' : 'The table already exists'});
-    }
-
-    // If we made it to this point then the candidate table is unique so continue on with the append opperation.
-    // Behavior from meta.js at gwwelr17hmxvq4spdrcl    
 
     // Get the next global sequential unique Id and lock the database
     // Locking the database makes the system multiuser.
@@ -485,7 +326,7 @@ metadata._metadata.post = function(data, callback)
         helpers.log
         (
           5,
-          'rxvbg9jn2nvqev2hanfw' + '\n' +
+          'tiez6ysdual0agrwitmv' + '\n' +
           'Unable to get the next gsuid.' + '\n' +
           'The following was the error' + '\n' +
           JSON.stringify(error) + '\n'                                   
@@ -539,7 +380,7 @@ metadata._metadata.post = function(data, callback)
             helpers.log
             (
               7,
-              '3nc8ctujc2ortwv9kj60' + '\n' +
+              'aae1kk3grf5ezbsu1esf' + '\n' +
               'There was an error appending to the history file' + '\n' +
               'An error here does not necessarily mean the append to history did not happen.' + '\n' +  
               'But an error at this point in the code surely means there was no append to metadata' + '\n' +                                          
@@ -583,7 +424,7 @@ metadata._metadata.post = function(data, callback)
                   helpers.log // Log the error.
                   (
                     7,
-                    '358y00ko84ct4amywym9' + '\n' +
+                    'pcwypdruguyr20391r33' + '\n' +
                     'Successful write to metadata but unable to remove lock on database' + '\n' +
                     'The following record was appended to the metadata file:' + '\n' +                            
                     JSON.stringify(logObject) + '\n' +   
@@ -605,7 +446,7 @@ metadata._metadata.post = function(data, callback)
               helpers.log // Log the error.
               (
                 5,
-                'ryzpjjp0dnt4fr73wral' + '\n' +
+                'pupqg4rhxaulpud9aiim' + '\n' +
                 'There was an error when appending to the metadata file.' + '\n' +
                 'The following record may or may not have been appended to the metadata file:' + '\n' +                            
                 JSON.stringify(logObject) + '\n' +
@@ -658,7 +499,7 @@ metadata._metadata.post = function(data, callback)
                           helpers.log
                           (
                             5,
-                            'uq0njgale0rebreatedw' + '\n' +
+                            'r4tkixo7cnd2urbfnlun' + '\n' +
                             'Rollback entry in the metadata file was appended successfully' + '\n' +
                             'The following was the record we rolled back:' + '\n' +
                             JSON.stringify(logObject) + '\n'                                   
@@ -669,7 +510,7 @@ metadata._metadata.post = function(data, callback)
                           helpers.log
                           (
                             7,
-                            'j7ink6p28b0k08ds8xci' + '\n' +
+                            'xsp7twy45pv1c6mdvl8o' + '\n' +
                             'There was an error appending a rollback entry in the metadata file' + '\n' +
                             'The following record may or may not have been rolled back:' + '\n' +
                             JSON.stringify(logObject) + '\n' +   
@@ -689,7 +530,7 @@ metadata._metadata.post = function(data, callback)
                     helpers.log
                     (
                       7,
-                      'ytz1k6z6b9efqvk6rniy' + '\n' +
+                      '2al6xjf7i8u75tjv7r89' + '\n' +
                       'There was an error appending a rollback entry in the history file' + '\n' +
                       'A rollback entry may or may not have been written in the metadata file' + '\n' +  
                       'CHECK TO SEE IF history and metadata ARE STILL IN SYNC' + '\n' +                                      
@@ -711,7 +552,6 @@ metadata._metadata.post = function(data, callback)
       ); // End of: _data.append(dbHistory...)
       // End of: Calling the function which creates an entry into history. 
     }); // End of: lib.nextId(function(err, nextIdObject)
-  }); // End of: readInterface.on('close', function(){...}
 }; // End of: metadata._metadata.post = function(...
 // End of: metadata - post subhandler
 
@@ -735,90 +575,6 @@ metadata._metadata.put = function(data, callback)
   // If metadataId is a valid string then convert it to a number.  
   if (typeof(metadataId) === 'string'){metadataId = parseInt(metadataId, 10);}else{return callback(400, {'Error' : 'metadataId must be a of string type'});}
 
-  // Get tableName from payload
-  let tableName = data.payload.tableName;
-
-  // passIfString&NotEmptyThenTrim
-  // Default behavior from meta.js at yif5xwczgr4ebln99trd 
-  // If tableName is of string type and is not empty 
-  if (typeof(tableName) === 'string' && tableName.trim().length > 0) 
-  { 
-    // The user entered something in the edit form
-    tableName = tableName.trim()
-  } 
-  // Else, the user may have entered some other datatype like a number or 
-  // perhaps nothing at all if using the Delete form. 
-  else 
-  { 
-    // If the user entered nothing: 
-    if(tableName === undefined) 
-    { 
-      // Then user is likely trying to delete a record.
-      // So change the value to false and continue processing.
-      tableName = false 
-    } 
-    else // The user entered something invalid so reject the edit. 
-    { 
-      return callback(400, {'Error' : 'Not a valid tableName'}); 
-    } 
-  }
-  
-  // Get directory from payload
-  let directory = data.payload.directory;
-
-  // passIfString&NotEmptyThenTrim
-  // Default behavior from meta.js at yif5xwczgr4ebln99trd 
-  // If directory is of string type and is not empty 
-  if (typeof(directory) === 'string' && directory.trim().length > 0) 
-  { 
-    // The user entered something in the edit form
-    directory = directory.trim()
-  } 
-  // Else, the user may have entered some other datatype like a number or 
-  // perhaps nothing at all if using the Delete form. 
-  else 
-  { 
-    // If the user entered nothing: 
-    if(directory === undefined) 
-    { 
-      // Then user is likely trying to delete a record.
-      // So change the value to false and continue processing.
-      directory = false 
-    } 
-    else // The user entered something invalid so reject the edit. 
-    { 
-      return callback(400, {'Error' : 'Not a valid directory'}); 
-    } 
-  }
-  
-  // Get addRoutes from payload
-  let addRoutes = data.payload.addRoutes;
-
-  // passIfString&NotEmptyThenTrim
-  // Default behavior from meta.js at yif5xwczgr4ebln99trd 
-  // If addRoutes is of string type and is not empty 
-  if (typeof(addRoutes) === 'string' && addRoutes.trim().length > 0) 
-  { 
-    // The user entered something in the edit form
-    addRoutes = addRoutes.trim()
-  } 
-  // Else, the user may have entered some other datatype like a number or 
-  // perhaps nothing at all if using the Delete form. 
-  else 
-  { 
-    // If the user entered nothing: 
-    if(addRoutes === undefined) 
-    { 
-      // Then user is likely trying to delete a record.
-      // So change the value to false and continue processing.
-      addRoutes = false 
-    } 
-    else // The user entered something invalid so reject the edit. 
-    { 
-      return callback(400, {'Error' : 'Not a valid addRoutes'}); 
-    } 
-  }
-  
   // Check if the deleted flag is of type string and that the value is exactly equal to "true".
   // That would mean the user wants to delete the record. Otherwise the users does not want to delete the record.
   // Set deleted to boolean true if validation is passed otherwise set it to false.
@@ -827,12 +583,12 @@ metadata._metadata.put = function(data, callback)
 
   
   //if all fields fail validation then exit this process without writing changes to the table.
-  if(!tableName && !directory && !addRoutes && !deleted)
+  if(!deleted)
   {
     helpers.log
     (
       5,
-      'ejmpww7lfo9esxehm4xi' + '\n' +
+      '29bmwzjdcsfqdj0zb9oe' + '\n' +
       'No fields pass the validation process' + '\n'                                  
     ); // End of: helpers.log(...)
 
@@ -855,7 +611,7 @@ metadata._metadata.put = function(data, callback)
       helpers.log
       (
         5,
-        'i6kwozt7xuwerxsfnlnm' + '\n' +
+        'd8p5z005fzxmjnllkx5t' + '\n' +
         'Unable to get the next gsuid.' + '\n' +
         'The following was the error' + '\n' +
         JSON.stringify(error) + '\n'                                   
@@ -877,14 +633,12 @@ metadata._metadata.put = function(data, callback)
     let metadataObject = 
     {
       "metadataId" : metadataId,
-      "table" : "" ,
+      "table" : table,
       "timeStamp" : Date.now(),
       "deleted" : ""
     };
 
     dataObject = {};
-    dataObject.uniqueField01Name = "table";
-    dataObject.uniqueField01Value = metadataObject.table;
     dataObject.path = '/database/dbMetadata/metadata.json';
     dataObject.queryString = 'WHERE:;metadataId:;MatchesExactly:;' + metadataId + ':;';
 
@@ -908,7 +662,7 @@ metadata._metadata.put = function(data, callback)
               helpers.log // Log the error.
               (
                 7,
-                '7n0ybihq1zbheeu2oryo' + '\n' + 
+                'ucuwrn3s1wp8d8f0jbde' + '\n' + 
                 'The following was the error message from getMostRecent:' + '\n' +                                             
                 errorFromGetMostRecent + '\n'                                                 
               ); // End of: helpers.log // Log the error.
@@ -923,7 +677,7 @@ metadata._metadata.put = function(data, callback)
               helpers.log // Log the error.
               (
                 7,
-                'w1qd8ww4vd8d663zj3rc' + '\n' +
+                'pu6o6brezr0fwj5qwc6t' + '\n' +
                 'The following was the error message from getMostRecent:' + '\n' +                                             
                 errorFromGetMostRecent + '\n'  +
                 'Also unable to remove lock on database.' + '\n' + 
@@ -960,36 +714,6 @@ metadata._metadata.put = function(data, callback)
         let recordObject = JSON.parse(stringContainer);
 
 
-        // Preprocessing for tableName
-        if(tableName) // If the user supplied data for tableName
-        {
-          // No preprocessing was specifed for tableName. Use it as was supplied by the user.
-        }
-        else // If the user did not supply data for tableName
-        {
-          // Save table from the most recent record.
-          metadataObject.table = recordObject.table;
-        }
-        // Preprocessing for directory
-        if(directory) // If the user supplied data for directory
-        {
-          // No preprocessing was specifed for directory. Use it as was supplied by the user.
-        }
-        else // If the user did not supply data for directory
-        {
-          // Save table from the most recent record.
-          metadataObject.table = recordObject.table;
-        }
-        // Preprocessing for addRoutes
-        if(addRoutes) // If the user supplied data for addRoutes
-        {
-          // No preprocessing was specifed for addRoutes. Use it as was supplied by the user.
-        }
-        else // If the user did not supply data for addRoutes
-        {
-          // Save table from the most recent record.
-          metadataObject.table = recordObject.table;
-        }
         // If we are appending a delete make sure that everything else is coming from the most recent saved record.
         if(deleted)
         {
@@ -1051,7 +775,7 @@ metadata._metadata.put = function(data, callback)
                         helpers.log // Log the error.
                         (
                           7,
-                          '3b8fh88xy8hyhx1ga59t' + '\n' +
+                          'hayiy2hooxhbvunp7prq' + '\n' +
                           'Successful write to metadata but unable to remove lock on database' + '\n' +
                           'The following record was appended to metadata:' + '\n' +                            
                           JSON.stringify(logObject) + '\n' +   
@@ -1073,7 +797,7 @@ metadata._metadata.put = function(data, callback)
                     helpers.log // Log the error.
                     (
                       5,
-                      'ig9x09ah90vw1epacnf9' + '\n' +
+                      'dzvic924ojaylauoc1u8' + '\n' +
                       'There was an error when appending to the metadata file.' + '\n' +
                       'The following record may or may not have been appended to metadata:' + '\n' +                            
                       JSON.stringify(logObject) + '\n' +
@@ -1127,7 +851,7 @@ metadata._metadata.put = function(data, callback)
                                 helpers.log
                                 (
                                   5,
-                                  'ar96xirht41b1zkcbmpg' + '\n' +
+                                  '4edf0y6h3toezgcrmrpd' + '\n' +
                                   'Rollback entry in the metadata file was appended successfully' + '\n' +
                                   'The following was the record we rolled back:' + '\n' +
                                   JSON.stringify(logObject) + '\n'                                   
@@ -1138,7 +862,7 @@ metadata._metadata.put = function(data, callback)
                                 helpers.log
                                 (
                                   7,
-                                  'nc1049jrawfbxb7t7t6t' + '\n' +
+                                  'oowo2s7tl9jjn5iwe1bz' + '\n' +
                                   'There was an error appending a rollback entry in the metadata file' + '\n' +
                                   'The following record may or may not have been rolled back:' + '\n' +
                                   JSON.stringify(logObject) + '\n' +   
@@ -1158,7 +882,7 @@ metadata._metadata.put = function(data, callback)
                           helpers.log
                           (
                             7,
-                            'py6q1mhogz0vswkr4y9g' + '\n' +
+                            'p9fahfy30qf0j6a0c4l0' + '\n' +
                             'There was an error appending a rollback entry in the history file' + '\n' +
                             'A rollback entry may or may not have been written in the metadata file' + '\n' +  
                             'CHECK TO SEE IF history and metadata ARE STILL IN SYNC' + '\n' +                                      
@@ -1183,7 +907,7 @@ metadata._metadata.put = function(data, callback)
               helpers.log
               (
                 7,
-                'ta9z8uxhw6nz8z1pxwqo' + '\n' +
+                'e4hrz7bddifohcmxpp2j' + '\n' +
                 'There was an error appending to the history file' + '\n' +
                 'An error here does not necessarily mean the append to history did not happen.' + '\n' +  
                 'But an error at this point in the code surely means there was no append to metadata' + '\n' +                                          
@@ -1215,7 +939,7 @@ metadata._metadata.put = function(data, callback)
             helpers.log // Log the error.
             (
               7,
-              'ekc7mjvu9ttn14wi21dc' + '\n' + 
+              'gx16aqiikpovboe8kety' + '\n' + 
               'Pipeline error. The message was as follows' + '\n' +                                             
               pipelineError + '\n'                                                 
             ); // End of: helpers.log // Log the error.
@@ -1402,6 +1126,12 @@ metadata._metadata.get = function(data, callback)
           {
             // Make objValue point to it's sub-object or it's final value when the loop is finished running.
             objValue = objValue[keyPart];
+
+            // Not all records will have the same data structure - 
+            // Fields specified in the data dictionary may be missing.
+            // So don't try to get a value if it's not there - 
+            // That would cause an error and stop the table from loading
+            if(objValue === undefined){break};            
           } 
 
           return objValue;
@@ -1413,230 +1143,237 @@ metadata._metadata.get = function(data, callback)
 
       while(whereClauseCount <= amountOfWhereClauses && shouldLoopAgain === true)
       {
-        switch(queryArray[index + 1]) 
+        if (fieldValue === undefined) // Not all records will have the same structure. The field may not exist.
         {
-          case 'MatchesExactly': // 1
+          shouldDeleteThisRecord = true;
+        }
+        else
+        {
+          switch(queryArray[index + 1]) 
           {
-            if(fieldValue != queryArray[index + 2])
+            case 'MatchesExactly': // 1
             {
-              shouldDeleteThisRecord = true;
-            }
-          }
-          break;
-
-          case 'MatchesExactlyNotCaseSensitive': // 2
-          {
-            if(fieldValue.toString().toLowerCase() != queryArray[index + 2].toString().toLowerCase())
-            {
-              shouldDeleteThisRecord = true;
-            }             
-          }
-          break;
-          
-          case 'DoesNotMatchExactly': // 3
-            {
-              if(fieldValue == queryArray[index + 2])
+              if(fieldValue != queryArray[index + 2])
               {
                 shouldDeleteThisRecord = true;
               }
             }
             break;
 
-          case 'DoesNotMatchExactlyNotCaseSensitive': // 4
-          {
-            if(fieldValue.toString().toLowerCase() == queryArray[index + 2].toString().toLowerCase())
+            case 'MatchesExactlyNotCaseSensitive': // 2
             {
-              shouldDeleteThisRecord = true;
+              if(fieldValue.toString().toLowerCase() != queryArray[index + 2].toString().toLowerCase())
+              {
+                shouldDeleteThisRecord = true;
+              }             
             }
-          }
-          break;
+            break;
+            
+            case 'DoesNotMatchExactly': // 3
+              {
+                if(fieldValue == queryArray[index + 2])
+                {
+                  shouldDeleteThisRecord = true;
+                }
+              }
+              break;
 
-          case 'BeginsWith': // 5
-          {
-            if(fieldValue.toString().indexOf(queryArray[index + 2].toString()) != 0)
+            case 'DoesNotMatchExactlyNotCaseSensitive': // 4
             {
-              shouldDeleteThisRecord = true;
+              if(fieldValue.toString().toLowerCase() == queryArray[index + 2].toString().toLowerCase())
+              {
+                shouldDeleteThisRecord = true;
+              }
             }
-          }
-          break;
-          
-          case 'BeginsWithNotCaseSensitive': // 6
-          {
-            if(fieldValue.toString().toLowerCase().indexOf(queryArray[index + 2].toString().toLowerCase()) != 0)
-            {
-              shouldDeleteThisRecord = true;
-            }
-          }
-          break;    
+            break;
 
-          case 'DoesNotBeginWith': // 7
-          {
-            if(fieldValue.toString().indexOf(queryArray[index + 2].toString()) == 0)
+            case 'BeginsWith': // 5
             {
-              shouldDeleteThisRecord = true;
+              if(fieldValue.toString().indexOf(queryArray[index + 2].toString()) != 0)
+              {
+                shouldDeleteThisRecord = true;
+              }
             }
-          }
-          break;
+            break;
+            
+            case 'BeginsWithNotCaseSensitive': // 6
+            {
+              if(fieldValue.toString().toLowerCase().indexOf(queryArray[index + 2].toString().toLowerCase()) != 0)
+              {
+                shouldDeleteThisRecord = true;
+              }
+            }
+            break;    
 
-          case 'DoesNotBeginWithNotCaseSensitive': // 8
-          {
-            if(fieldValue.toString().toLowerCase().indexOf(queryArray[index + 2].toString().toLowerCase()) == 0)          
+            case 'DoesNotBeginWith': // 7
             {
-              shouldDeleteThisRecord = true;
+              if(fieldValue.toString().indexOf(queryArray[index + 2].toString()) == 0)
+              {
+                shouldDeleteThisRecord = true;
+              }
             }
-          }
-          break;          
+            break;
 
-          case 'Contains': // 9
-          {
-            if(fieldValue.toString().indexOf(queryArray[index + 2].toString()) == -1)
+            case 'DoesNotBeginWithNotCaseSensitive': // 8
             {
-              shouldDeleteThisRecord = true;
+              if(fieldValue.toString().toLowerCase().indexOf(queryArray[index + 2].toString().toLowerCase()) == 0)          
+              {
+                shouldDeleteThisRecord = true;
+              }
             }
-          }
-          break;
+            break;          
 
-          case 'ContainsNotCaseSensitive': // 10
-          {
-            if(fieldValue.toString().toLowerCase().indexOf(queryArray[index + 2].toString().toLowerCase()) == -1)          
+            case 'Contains': // 9
             {
-              shouldDeleteThisRecord = true;
+              if(fieldValue.toString().indexOf(queryArray[index + 2].toString()) == -1)
+              {
+                shouldDeleteThisRecord = true;
+              }
             }
-          }
-          break;
+            break;
 
-          case 'DoesNotContain': // 11
-          {
-            if(fieldValue.toString().indexOf(queryArray[index + 2].toString()) > -1)
+            case 'ContainsNotCaseSensitive': // 10
             {
-              shouldDeleteThisRecord = true;
+              if(fieldValue.toString().toLowerCase().indexOf(queryArray[index + 2].toString().toLowerCase()) == -1)          
+              {
+                shouldDeleteThisRecord = true;
+              }
             }
-          }
-          break;
+            break;
 
-          case 'DoesNotContainNotCaseSensitive': // 12
-          {
-            if(fieldValue.toString().toLowerCase().indexOf(queryArray[index + 2].toString().toLowerCase()) > -1)          
+            case 'DoesNotContain': // 11
             {
-              shouldDeleteThisRecord = true;
+              if(fieldValue.toString().indexOf(queryArray[index + 2].toString()) > -1)
+              {
+                shouldDeleteThisRecord = true;
+              }
             }
-          }
-          break;
+            break;
 
-          case 'EndsWith': // 13
-          {
-            if(!fieldValue.toString().endsWith(queryArray[index + 2].toString()))
+            case 'DoesNotContainNotCaseSensitive': // 12
             {
-              shouldDeleteThisRecord = true;
+              if(fieldValue.toString().toLowerCase().indexOf(queryArray[index + 2].toString().toLowerCase()) > -1)          
+              {
+                shouldDeleteThisRecord = true;
+              }
             }
-          }
-          break;
-          
-          case 'EndsWithNotCaseSensitive': // 14
-          {
-            if(!fieldValue.toString().toLowerCase().endsWith(queryArray[index + 2].toString().toLowerCase()))
-            {
-              shouldDeleteThisRecord = true;
-            }
-          }
-          break;
-          
-          case 'DoesNotEndWith': // 15
-          {
-            if(fieldValue.toString().endsWith(queryArray[index + 2].toString()))
-            {
-              shouldDeleteThisRecord = true;
-            }
-          }
-          break;
-          
-          case 'DoesNotEndWithNotCaseSensitive': // 16
-          {
-            if(fieldValue.toString().toLowerCase().endsWith(queryArray[index + 2].toString().toLowerCase()))
-            {
-              shouldDeleteThisRecord = true;
-            }
-          }
-          break;
+            break;
 
-          case 'IsGreaterThan': // 17
-          {
-            if(fieldValue <= queryArray[index + 2])
+            case 'EndsWith': // 13
             {
-              shouldDeleteThisRecord = true;
+              if(!fieldValue.toString().endsWith(queryArray[index + 2].toString()))
+              {
+                shouldDeleteThisRecord = true;
+              }
             }
-          }
-          break;          
-          
-          case 'IsGreaterThanNotCaseSensitive': // 18
-          {
-            if(fieldValue.toString().toLowerCase() <= queryArray[index + 2].toString().toLowerCase())
+            break;
+            
+            case 'EndsWithNotCaseSensitive': // 14
             {
-              shouldDeleteThisRecord = true;
+              if(!fieldValue.toString().toLowerCase().endsWith(queryArray[index + 2].toString().toLowerCase()))
+              {
+                shouldDeleteThisRecord = true;
+              }
             }
-          }
-          break; 
-          
-          case 'IsGreaterThanOrEqualTo': // 19
-          {
-            if(fieldValue < queryArray[index + 2])
+            break;
+            
+            case 'DoesNotEndWith': // 15
             {
-              shouldDeleteThisRecord = true;
+              if(fieldValue.toString().endsWith(queryArray[index + 2].toString()))
+              {
+                shouldDeleteThisRecord = true;
+              }
             }
-          }
-          break;
-          
-          case 'IsGreaterThanOrEqualToNotCaseSensitive': // 20
-          {
-            if(fieldValue.toString().toLowerCase() < queryArray[index + 2].toString().toLowerCase())
+            break;
+            
+            case 'DoesNotEndWithNotCaseSensitive': // 16
             {
-              shouldDeleteThisRecord = true;
+              if(fieldValue.toString().toLowerCase().endsWith(queryArray[index + 2].toString().toLowerCase()))
+              {
+                shouldDeleteThisRecord = true;
+              }
             }
-          }
-          break;
-          
-          case 'IsLessThan': // 21
-          {
-            if(fieldValue >= queryArray[index + 2])
-            {
-              shouldDeleteThisRecord = true;
-            }
-          }
-          break;
+            break;
 
-          case 'IsLessThanNotCaseSensitive': // 22
-          {
-            if(fieldValue.toString().toLowerCase() >= queryArray[index + 2].toString().toLowerCase())
+            case 'IsGreaterThan': // 17
             {
-              shouldDeleteThisRecord = true;
+              if(fieldValue <= queryArray[index + 2])
+              {
+                shouldDeleteThisRecord = true;
+              }
             }
-          }
-          break;                
-          
-          case 'IsLessThanOrEqualTo': // 23
-          {
-            if(fieldValue > queryArray[index + 2])
+            break;          
+            
+            case 'IsGreaterThanNotCaseSensitive': // 18
             {
-              shouldDeleteThisRecord = true;
+              if(fieldValue.toString().toLowerCase() <= queryArray[index + 2].toString().toLowerCase())
+              {
+                shouldDeleteThisRecord = true;
+              }
             }
-          }
-          break;          
-          
-          case 'IsLessThanOrEqualToNotCaseSensitive': // 24
-          {
-            if(fieldValue.toString().toLowerCase() > queryArray[index + 2].toString().toLowerCase())
+            break; 
+            
+            case 'IsGreaterThanOrEqualTo': // 19
             {
-              shouldDeleteThisRecord = true;
+              if(fieldValue < queryArray[index + 2])
+              {
+                shouldDeleteThisRecord = true;
+              }
             }
-          }
-          break;          
-                      
-          default: // When there are no case matches then do this.
-          {
+            break;
+            
+            case 'IsGreaterThanOrEqualToNotCaseSensitive': // 20
+            {
+              if(fieldValue.toString().toLowerCase() < queryArray[index + 2].toString().toLowerCase())
+              {
+                shouldDeleteThisRecord = true;
+              }
+            }
+            break;
+            
+            case 'IsLessThan': // 21
+            {
+              if(fieldValue >= queryArray[index + 2])
+              {
+                shouldDeleteThisRecord = true;
+              }
+            }
+            break;
 
-          }
+            case 'IsLessThanNotCaseSensitive': // 22
+            {
+              if(fieldValue.toString().toLowerCase() >= queryArray[index + 2].toString().toLowerCase())
+              {
+                shouldDeleteThisRecord = true;
+              }
+            }
+            break;                
+            
+            case 'IsLessThanOrEqualTo': // 23
+            {
+              if(fieldValue > queryArray[index + 2])
+              {
+                shouldDeleteThisRecord = true;
+              }
+            }
+            break;          
+            
+            case 'IsLessThanOrEqualToNotCaseSensitive': // 24
+            {
+              if(fieldValue.toString().toLowerCase() > queryArray[index + 2].toString().toLowerCase())
+              {
+                shouldDeleteThisRecord = true;
+              }
+            }
+            break;          
+                        
+            default: // When there are no case matches then do this.
+            {
 
-        } // End of: switch(queryArray[index + 1])               
+            }
+
+          } // End of: switch(queryArray[index + 1])  
+        } // End of: if (fieldValue === undefined){...}
              
         // All (ANDWHERE) clauses will be evaluated first.
         // The order of the clauses will matter.

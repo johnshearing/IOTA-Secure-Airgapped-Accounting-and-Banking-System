@@ -4,6 +4,7 @@
   All records are returned in order of creation if no selections are made</br>
   Press the submit button to see the results
 </h2>
+  <!--Behavior from meta.js at q8911vzpl8wtr8heltqw-->
 <div class="formWrapper"></div>
 <div class="buttonWrapper">
   <div class="inputWrapper ctaWrapper smallTopMargin">
@@ -550,6 +551,12 @@ app.loaduserListPage = async function()
               {
                 // Make objValue point to it's sub-object or it's final value when the loop is finished running.
                 objValue = objValue[keyPart];
+
+                // Not all records will have the same data structure - 
+                // Fields specified in the data dictionary may be missing.
+                // So don't try to get a value if it's not there - 
+                // That would cause an error and stop the table from loading
+                if(objValue === undefined){break};                
               } 
 
               return objValue;
@@ -636,6 +643,12 @@ app.loaduserListPage = async function()
           {
             // Make objValue point to it's sub-object or it's final value when the loop is finished running.
             objValue = objValue[keyPart];
+
+            // Not all records will have the same data structure - 
+            // Fields specified in the data dictionary may be missing.
+            // So don't try to get a value if it's not there - 
+            // That would cause an error and stop the table from loading
+            if(objValue === undefined){break};            
           } 
 
           let newCell = tr.insertCell(elementIndex);
@@ -1343,6 +1356,12 @@ app.loaduserListPage = async function()
               {
                 // Make objValue point to it's sub-object or it's final value when the loop is finished running.
                 objValue = objValue[keyPart];
+
+                // Not all records will have the same data structure - 
+                // Fields specified in the data dictionary may be missing.
+                // So don't try to get a value if it's not there - 
+                // That would cause an error and stop the table from loading
+                if(objValue === undefined){break};                
               } 
 
               let newCell = tr.insertCell(elementIndex);

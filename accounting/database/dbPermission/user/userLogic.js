@@ -55,7 +55,7 @@ user.serveListPage = function(data, callback)
             helpers.log
             (            
               5,
-              'l1rzbf3snlt2j781tazk' + '\n' +
+              '4qtoop5gnh5r54sq5l1h' + '\n' +
               'There was an error or the concatenated templates were not returned.' + '\n' +
               'This was the error:' + '\n' +
               JSON.stringify(errorAddUnivTemplates) + '\n'
@@ -71,7 +71,7 @@ user.serveListPage = function(data, callback)
         helpers.log
         (
           5,
-          '51131ltlfaa10vp3n7co' + '\n' +
+          'uv48nxdkiih4yjm30ujg' + '\n' +
           'There was an error or no template was returned.' + '\n' +
           'This was the error:' + '\n' +
           JSON.stringify(errorGetTemplate) + '\n'
@@ -88,7 +88,7 @@ user.serveListPage = function(data, callback)
     helpers.log
     (
       5,
-      '0p5l9837pk78kq2kjmeo' + '\n' +
+      'kxiosro1lsvpteii3dqu' + '\n' +
       'Method not get. Only gets allowed.' + '\n'
     );
 
@@ -135,7 +135,7 @@ user.serveAddPage = function(data, callback)
             helpers.log
             (            
               5,
-              'eeriakvpewye8eduze6e' + '\n' +
+              '3y5elz2m6jrab1ax8fua' + '\n' +
               'There was an error or the concatenated templates were not returned.' + '\n' +
               'This was the error:' + '\n' +
               JSON.stringify(errorAddUnivTemplates) + '\n'
@@ -151,7 +151,7 @@ user.serveAddPage = function(data, callback)
         helpers.log
         (
           5,
-          '8tw1vznjtkzslu04m54c' + '\n' +
+          'fy8eq2lkja53roml6iha' + '\n' +
           'There was an error or no template was returned.' + '\n' +
           'This was the error:' + '\n' +
           JSON.stringify(errorGetTemplate) + '\n'
@@ -168,7 +168,7 @@ user.serveAddPage = function(data, callback)
     helpers.log
     (
       5,
-      '7ftwlttg5kx46fyis9iv' + '\n' +
+      'r7lkhhb607x2x98n2tbx' + '\n' +
       'Method not get. Only gets allowed.' + '\n'
     );
 
@@ -215,7 +215,7 @@ user.serveEditPage = function(data, callback)
             helpers.log
             (            
               5,
-              'tyv3t1aaoqiywa9nkbnj' + '\n' +
+              'a4b6sbemyd5z8ejjmqe1' + '\n' +
               'There was an error or the concatenated templates were not returned.' + '\n' +
               'This was the error:' + '\n' +
               JSON.stringify(errorAddUnivTemplates) + '\n'
@@ -231,7 +231,7 @@ user.serveEditPage = function(data, callback)
         helpers.log
         (
           5,
-          'xn1qz74onh5nzco5ia6b' + '\n' +
+          '7377ehh1aun88xcwg7mq' + '\n' +
           'There was an error or no template was returned.' + '\n' +
           'This was the error:' + '\n' +
           JSON.stringify(errorGetTemplate) + '\n'
@@ -248,7 +248,7 @@ user.serveEditPage = function(data, callback)
     helpers.log
     (
       5,
-      'psvxwsu6l8yzphmgrqp2' + '\n' +
+      '1vhox2x93stqvip51iey' + '\n' +
       'Method not get. Only gets allowed.' + '\n'
     );
 
@@ -282,7 +282,7 @@ user.user = function(data, callback)
     helpers.log
     (
       5,
-      'x8cbc8gfbewnhq80sof6' + '\n' +
+      'rwjylgk9j1oqg8crcu28' + '\n' +
       'The method was not one of the acceptable methods' + '\n'
     ); 
 
@@ -483,7 +483,7 @@ user._user.post = function(data, callback)
       helpers.log
       (
         5,
-        '1kyeukqg7h5zb4mehs26' + '\n' +
+        'b46e71ftimv6ns70g9q5' + '\n' +
         'The email : ' + email + ' already exists' + '\n'                                  
       ); // End of: helpers.log(...)
 
@@ -529,7 +529,7 @@ user._user.post = function(data, callback)
         helpers.log
         (
           5,
-          'u4eh8i59rpr9zke4r3ud' + '\n' +
+          '3d1vg7novklvd1jm9igq' + '\n' +
           'Unable to get the next gsuid.' + '\n' +
           'The following was the error' + '\n' +
           JSON.stringify(error) + '\n'                                   
@@ -584,7 +584,7 @@ user._user.post = function(data, callback)
             helpers.log
             (
               7,
-              '193qf6thpn8oa4uhvdfh' + '\n' +
+              'w3vsu4g518ed2biqufdg' + '\n' +
               'There was an error appending to the history file' + '\n' +
               'An error here does not necessarily mean the append to history did not happen.' + '\n' +  
               'But an error at this point in the code surely means there was no append to user' + '\n' +                                          
@@ -628,7 +628,7 @@ user._user.post = function(data, callback)
                   helpers.log // Log the error.
                   (
                     7,
-                    '6etcingnr08j8628db0a' + '\n' +
+                    '8hqd69k2z9sqieottl54' + '\n' +
                     'Successful write to user but unable to remove lock on database' + '\n' +
                     'The following record was appended to the user file:' + '\n' +                            
                     JSON.stringify(logObject) + '\n' +   
@@ -650,7 +650,7 @@ user._user.post = function(data, callback)
               helpers.log // Log the error.
               (
                 5,
-                '81epk5u3bbh4rpmk2xvf' + '\n' +
+                '8nynnrl95gn8dr90cedg' + '\n' +
                 'There was an error when appending to the user file.' + '\n' +
                 'The following record may or may not have been appended to the user file:' + '\n' +                            
                 JSON.stringify(logObject) + '\n' +
@@ -704,7 +704,7 @@ user._user.post = function(data, callback)
                           helpers.log
                           (
                             5,
-                            '7or5dczlplmh4vpn3ebm' + '\n' +
+                            '9s5qpuvrcwnqip3dmfgr' + '\n' +
                             'Rollback entry in the user file was appended successfully' + '\n' +
                             'The following was the record we rolled back:' + '\n' +
                             JSON.stringify(logObject) + '\n'                                   
@@ -715,7 +715,7 @@ user._user.post = function(data, callback)
                           helpers.log
                           (
                             7,
-                            'tvpgg51478gyx3qwcyis' + '\n' +
+                            'xel6ni4j2vk2f0od74uy' + '\n' +
                             'There was an error appending a rollback entry in the user file' + '\n' +
                             'The following record may or may not have been rolled back:' + '\n' +
                             JSON.stringify(logObject) + '\n' +   
@@ -735,7 +735,7 @@ user._user.post = function(data, callback)
                     helpers.log
                     (
                       7,
-                      '4ytr06arfiwtdrgd0rsd' + '\n' +
+                      'lri4f2prypjp0ovxxjv0' + '\n' +
                       'There was an error appending a rollback entry in the history file' + '\n' +
                       'A rollback entry may or may not have been written in the user file' + '\n' +  
                       'CHECK TO SEE IF history and user ARE STILL IN SYNC' + '\n' +                                      
@@ -886,7 +886,7 @@ user._user.put = function(data, callback)
     helpers.log
     (
       5,
-      'egwouxc7a0vtu19f3dgj' + '\n' +
+      '3qpanyw6jaqoklkkkt02' + '\n' +
       'No fields pass the validation process' + '\n'                                  
     ); // End of: helpers.log(...)
 
@@ -909,7 +909,7 @@ user._user.put = function(data, callback)
       helpers.log
       (
         5,
-        'p0a6a82q1fd7kms47x6g' + '\n' +
+        'ziinrrw2mwiygqzn60b3' + '\n' +
         'Unable to get the next gsuid.' + '\n' +
         'The following was the error' + '\n' +
         JSON.stringify(error) + '\n'                                   
@@ -963,7 +963,7 @@ user._user.put = function(data, callback)
               helpers.log // Log the error.
               (
                 7,
-                'p4lv646q908tdw9zrzwr' + '\n' + 
+                '7vmg6x4l05xmt9aoyz4z' + '\n' + 
                 'The following was the error message from getMostRecent:' + '\n' +                                             
                 errorFromGetMostRecent + '\n'                                                 
               ); // End of: helpers.log // Log the error.
@@ -978,7 +978,7 @@ user._user.put = function(data, callback)
               helpers.log // Log the error.
               (
                 7,
-                '6706wbfo6uuoox0fxpf5' + '\n' +
+                'dtgmm7upiifhcsifbkor' + '\n' +
                 'The following was the error message from getMostRecent:' + '\n' +                                             
                 errorFromGetMostRecent + '\n'  +
                 'Also unable to remove lock on database.' + '\n' + 
@@ -1117,7 +1117,7 @@ user._user.put = function(data, callback)
                         helpers.log // Log the error.
                         (
                           7,
-                          'kc8wk5dxvywcv6k01wg9' + '\n' +
+                          '4ncpr82kc8ruob9e6lvg' + '\n' +
                           'Successful write to user but unable to remove lock on database' + '\n' +
                           'The following record was appended to user:' + '\n' +                            
                           JSON.stringify(logObject) + '\n' +   
@@ -1139,7 +1139,7 @@ user._user.put = function(data, callback)
                     helpers.log // Log the error.
                     (
                       5,
-                      '2j6ea22f4tqpt0h3td1i' + '\n' +
+                      't8hdfj60hiwzgf0ffi9l' + '\n' +
                       'There was an error when appending to the user file.' + '\n' +
                       'The following record may or may not have been appended to user:' + '\n' +                            
                       JSON.stringify(logObject) + '\n' +
@@ -1194,7 +1194,7 @@ user._user.put = function(data, callback)
                                 helpers.log
                                 (
                                   5,
-                                  'hcnblceiwqlr7r4aa5vj' + '\n' +
+                                  'y3gt45jqi3fm5t6797ba' + '\n' +
                                   'Rollback entry in the user file was appended successfully' + '\n' +
                                   'The following was the record we rolled back:' + '\n' +
                                   JSON.stringify(logObject) + '\n'                                   
@@ -1205,7 +1205,7 @@ user._user.put = function(data, callback)
                                 helpers.log
                                 (
                                   7,
-                                  'uuz7qgck6oeev0vgyapb' + '\n' +
+                                  '4s54a5yzj5s2t58h1ovw' + '\n' +
                                   'There was an error appending a rollback entry in the user file' + '\n' +
                                   'The following record may or may not have been rolled back:' + '\n' +
                                   JSON.stringify(logObject) + '\n' +   
@@ -1225,7 +1225,7 @@ user._user.put = function(data, callback)
                           helpers.log
                           (
                             7,
-                            '9b6othb1fpo3vzei3w2t' + '\n' +
+                            'mvu6jeuzbo4ehbwgr0lk' + '\n' +
                             'There was an error appending a rollback entry in the history file' + '\n' +
                             'A rollback entry may or may not have been written in the user file' + '\n' +  
                             'CHECK TO SEE IF history and user ARE STILL IN SYNC' + '\n' +                                      
@@ -1250,7 +1250,7 @@ user._user.put = function(data, callback)
               helpers.log
               (
                 7,
-                '4jm196l6v7p8ddwd4d87' + '\n' +
+                'p9ya1shaqr49mujvdty7' + '\n' +
                 'There was an error appending to the history file' + '\n' +
                 'An error here does not necessarily mean the append to history did not happen.' + '\n' +  
                 'But an error at this point in the code surely means there was no append to user' + '\n' +                                          
@@ -1282,7 +1282,7 @@ user._user.put = function(data, callback)
             helpers.log // Log the error.
             (
               7,
-              'azl4mpn2kzi4sl0ovv3u' + '\n' + 
+              'btmmhdosl95elf8w8udo' + '\n' + 
               'Pipeline error. The message was as follows' + '\n' +                                             
               pipelineError + '\n'                                                 
             ); // End of: helpers.log // Log the error.
@@ -1469,6 +1469,12 @@ user._user.get = function(data, callback)
           {
             // Make objValue point to it's sub-object or it's final value when the loop is finished running.
             objValue = objValue[keyPart];
+
+            // Not all records will have the same data structure - 
+            // Fields specified in the data dictionary may be missing.
+            // So don't try to get a value if it's not there - 
+            // That would cause an error and stop the table from loading
+            if(objValue === undefined){break};            
           } 
 
           return objValue;
@@ -1480,230 +1486,237 @@ user._user.get = function(data, callback)
 
       while(whereClauseCount <= amountOfWhereClauses && shouldLoopAgain === true)
       {
-        switch(queryArray[index + 1]) 
+        if (fieldValue === undefined) // Not all records will have the same structure. The field may not exist.
         {
-          case 'MatchesExactly': // 1
+          shouldDeleteThisRecord = true;
+        }
+        else
+        {
+          switch(queryArray[index + 1]) 
           {
-            if(fieldValue != queryArray[index + 2])
+            case 'MatchesExactly': // 1
             {
-              shouldDeleteThisRecord = true;
-            }
-          }
-          break;
-
-          case 'MatchesExactlyNotCaseSensitive': // 2
-          {
-            if(fieldValue.toString().toLowerCase() != queryArray[index + 2].toString().toLowerCase())
-            {
-              shouldDeleteThisRecord = true;
-            }             
-          }
-          break;
-          
-          case 'DoesNotMatchExactly': // 3
-            {
-              if(fieldValue == queryArray[index + 2])
+              if(fieldValue != queryArray[index + 2])
               {
                 shouldDeleteThisRecord = true;
               }
             }
             break;
 
-          case 'DoesNotMatchExactlyNotCaseSensitive': // 4
-          {
-            if(fieldValue.toString().toLowerCase() == queryArray[index + 2].toString().toLowerCase())
+            case 'MatchesExactlyNotCaseSensitive': // 2
             {
-              shouldDeleteThisRecord = true;
+              if(fieldValue.toString().toLowerCase() != queryArray[index + 2].toString().toLowerCase())
+              {
+                shouldDeleteThisRecord = true;
+              }             
             }
-          }
-          break;
+            break;
+            
+            case 'DoesNotMatchExactly': // 3
+              {
+                if(fieldValue == queryArray[index + 2])
+                {
+                  shouldDeleteThisRecord = true;
+                }
+              }
+              break;
 
-          case 'BeginsWith': // 5
-          {
-            if(fieldValue.toString().indexOf(queryArray[index + 2].toString()) != 0)
+            case 'DoesNotMatchExactlyNotCaseSensitive': // 4
             {
-              shouldDeleteThisRecord = true;
+              if(fieldValue.toString().toLowerCase() == queryArray[index + 2].toString().toLowerCase())
+              {
+                shouldDeleteThisRecord = true;
+              }
             }
-          }
-          break;
-          
-          case 'BeginsWithNotCaseSensitive': // 6
-          {
-            if(fieldValue.toString().toLowerCase().indexOf(queryArray[index + 2].toString().toLowerCase()) != 0)
-            {
-              shouldDeleteThisRecord = true;
-            }
-          }
-          break;    
+            break;
 
-          case 'DoesNotBeginWith': // 7
-          {
-            if(fieldValue.toString().indexOf(queryArray[index + 2].toString()) == 0)
+            case 'BeginsWith': // 5
             {
-              shouldDeleteThisRecord = true;
+              if(fieldValue.toString().indexOf(queryArray[index + 2].toString()) != 0)
+              {
+                shouldDeleteThisRecord = true;
+              }
             }
-          }
-          break;
+            break;
+            
+            case 'BeginsWithNotCaseSensitive': // 6
+            {
+              if(fieldValue.toString().toLowerCase().indexOf(queryArray[index + 2].toString().toLowerCase()) != 0)
+              {
+                shouldDeleteThisRecord = true;
+              }
+            }
+            break;    
 
-          case 'DoesNotBeginWithNotCaseSensitive': // 8
-          {
-            if(fieldValue.toString().toLowerCase().indexOf(queryArray[index + 2].toString().toLowerCase()) == 0)          
+            case 'DoesNotBeginWith': // 7
             {
-              shouldDeleteThisRecord = true;
+              if(fieldValue.toString().indexOf(queryArray[index + 2].toString()) == 0)
+              {
+                shouldDeleteThisRecord = true;
+              }
             }
-          }
-          break;          
+            break;
 
-          case 'Contains': // 9
-          {
-            if(fieldValue.toString().indexOf(queryArray[index + 2].toString()) == -1)
+            case 'DoesNotBeginWithNotCaseSensitive': // 8
             {
-              shouldDeleteThisRecord = true;
+              if(fieldValue.toString().toLowerCase().indexOf(queryArray[index + 2].toString().toLowerCase()) == 0)          
+              {
+                shouldDeleteThisRecord = true;
+              }
             }
-          }
-          break;
+            break;          
 
-          case 'ContainsNotCaseSensitive': // 10
-          {
-            if(fieldValue.toString().toLowerCase().indexOf(queryArray[index + 2].toString().toLowerCase()) == -1)          
+            case 'Contains': // 9
             {
-              shouldDeleteThisRecord = true;
+              if(fieldValue.toString().indexOf(queryArray[index + 2].toString()) == -1)
+              {
+                shouldDeleteThisRecord = true;
+              }
             }
-          }
-          break;
+            break;
 
-          case 'DoesNotContain': // 11
-          {
-            if(fieldValue.toString().indexOf(queryArray[index + 2].toString()) > -1)
+            case 'ContainsNotCaseSensitive': // 10
             {
-              shouldDeleteThisRecord = true;
+              if(fieldValue.toString().toLowerCase().indexOf(queryArray[index + 2].toString().toLowerCase()) == -1)          
+              {
+                shouldDeleteThisRecord = true;
+              }
             }
-          }
-          break;
+            break;
 
-          case 'DoesNotContainNotCaseSensitive': // 12
-          {
-            if(fieldValue.toString().toLowerCase().indexOf(queryArray[index + 2].toString().toLowerCase()) > -1)          
+            case 'DoesNotContain': // 11
             {
-              shouldDeleteThisRecord = true;
+              if(fieldValue.toString().indexOf(queryArray[index + 2].toString()) > -1)
+              {
+                shouldDeleteThisRecord = true;
+              }
             }
-          }
-          break;
+            break;
 
-          case 'EndsWith': // 13
-          {
-            if(!fieldValue.toString().endsWith(queryArray[index + 2].toString()))
+            case 'DoesNotContainNotCaseSensitive': // 12
             {
-              shouldDeleteThisRecord = true;
+              if(fieldValue.toString().toLowerCase().indexOf(queryArray[index + 2].toString().toLowerCase()) > -1)          
+              {
+                shouldDeleteThisRecord = true;
+              }
             }
-          }
-          break;
-          
-          case 'EndsWithNotCaseSensitive': // 14
-          {
-            if(!fieldValue.toString().toLowerCase().endsWith(queryArray[index + 2].toString().toLowerCase()))
-            {
-              shouldDeleteThisRecord = true;
-            }
-          }
-          break;
-          
-          case 'DoesNotEndWith': // 15
-          {
-            if(fieldValue.toString().endsWith(queryArray[index + 2].toString()))
-            {
-              shouldDeleteThisRecord = true;
-            }
-          }
-          break;
-          
-          case 'DoesNotEndWithNotCaseSensitive': // 16
-          {
-            if(fieldValue.toString().toLowerCase().endsWith(queryArray[index + 2].toString().toLowerCase()))
-            {
-              shouldDeleteThisRecord = true;
-            }
-          }
-          break;
+            break;
 
-          case 'IsGreaterThan': // 17
-          {
-            if(fieldValue <= queryArray[index + 2])
+            case 'EndsWith': // 13
             {
-              shouldDeleteThisRecord = true;
+              if(!fieldValue.toString().endsWith(queryArray[index + 2].toString()))
+              {
+                shouldDeleteThisRecord = true;
+              }
             }
-          }
-          break;          
-          
-          case 'IsGreaterThanNotCaseSensitive': // 18
-          {
-            if(fieldValue.toString().toLowerCase() <= queryArray[index + 2].toString().toLowerCase())
+            break;
+            
+            case 'EndsWithNotCaseSensitive': // 14
             {
-              shouldDeleteThisRecord = true;
+              if(!fieldValue.toString().toLowerCase().endsWith(queryArray[index + 2].toString().toLowerCase()))
+              {
+                shouldDeleteThisRecord = true;
+              }
             }
-          }
-          break; 
-          
-          case 'IsGreaterThanOrEqualTo': // 19
-          {
-            if(fieldValue < queryArray[index + 2])
+            break;
+            
+            case 'DoesNotEndWith': // 15
             {
-              shouldDeleteThisRecord = true;
+              if(fieldValue.toString().endsWith(queryArray[index + 2].toString()))
+              {
+                shouldDeleteThisRecord = true;
+              }
             }
-          }
-          break;
-          
-          case 'IsGreaterThanOrEqualToNotCaseSensitive': // 20
-          {
-            if(fieldValue.toString().toLowerCase() < queryArray[index + 2].toString().toLowerCase())
+            break;
+            
+            case 'DoesNotEndWithNotCaseSensitive': // 16
             {
-              shouldDeleteThisRecord = true;
+              if(fieldValue.toString().toLowerCase().endsWith(queryArray[index + 2].toString().toLowerCase()))
+              {
+                shouldDeleteThisRecord = true;
+              }
             }
-          }
-          break;
-          
-          case 'IsLessThan': // 21
-          {
-            if(fieldValue >= queryArray[index + 2])
-            {
-              shouldDeleteThisRecord = true;
-            }
-          }
-          break;
+            break;
 
-          case 'IsLessThanNotCaseSensitive': // 22
-          {
-            if(fieldValue.toString().toLowerCase() >= queryArray[index + 2].toString().toLowerCase())
+            case 'IsGreaterThan': // 17
             {
-              shouldDeleteThisRecord = true;
+              if(fieldValue <= queryArray[index + 2])
+              {
+                shouldDeleteThisRecord = true;
+              }
             }
-          }
-          break;                
-          
-          case 'IsLessThanOrEqualTo': // 23
-          {
-            if(fieldValue > queryArray[index + 2])
+            break;          
+            
+            case 'IsGreaterThanNotCaseSensitive': // 18
             {
-              shouldDeleteThisRecord = true;
+              if(fieldValue.toString().toLowerCase() <= queryArray[index + 2].toString().toLowerCase())
+              {
+                shouldDeleteThisRecord = true;
+              }
             }
-          }
-          break;          
-          
-          case 'IsLessThanOrEqualToNotCaseSensitive': // 24
-          {
-            if(fieldValue.toString().toLowerCase() > queryArray[index + 2].toString().toLowerCase())
+            break; 
+            
+            case 'IsGreaterThanOrEqualTo': // 19
             {
-              shouldDeleteThisRecord = true;
+              if(fieldValue < queryArray[index + 2])
+              {
+                shouldDeleteThisRecord = true;
+              }
             }
-          }
-          break;          
-                      
-          default: // When there are no case matches then do this.
-          {
+            break;
+            
+            case 'IsGreaterThanOrEqualToNotCaseSensitive': // 20
+            {
+              if(fieldValue.toString().toLowerCase() < queryArray[index + 2].toString().toLowerCase())
+              {
+                shouldDeleteThisRecord = true;
+              }
+            }
+            break;
+            
+            case 'IsLessThan': // 21
+            {
+              if(fieldValue >= queryArray[index + 2])
+              {
+                shouldDeleteThisRecord = true;
+              }
+            }
+            break;
 
-          }
+            case 'IsLessThanNotCaseSensitive': // 22
+            {
+              if(fieldValue.toString().toLowerCase() >= queryArray[index + 2].toString().toLowerCase())
+              {
+                shouldDeleteThisRecord = true;
+              }
+            }
+            break;                
+            
+            case 'IsLessThanOrEqualTo': // 23
+            {
+              if(fieldValue > queryArray[index + 2])
+              {
+                shouldDeleteThisRecord = true;
+              }
+            }
+            break;          
+            
+            case 'IsLessThanOrEqualToNotCaseSensitive': // 24
+            {
+              if(fieldValue.toString().toLowerCase() > queryArray[index + 2].toString().toLowerCase())
+              {
+                shouldDeleteThisRecord = true;
+              }
+            }
+            break;          
+                        
+            default: // When there are no case matches then do this.
+            {
 
-        } // End of: switch(queryArray[index + 1])               
+            }
+
+          } // End of: switch(queryArray[index + 1])  
+        } // End of: if (fieldValue === undefined){...}
              
         // All (ANDWHERE) clauses will be evaluated first.
         // The order of the clauses will matter.

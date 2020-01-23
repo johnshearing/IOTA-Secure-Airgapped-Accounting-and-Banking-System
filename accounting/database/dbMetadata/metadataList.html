@@ -44,7 +44,6 @@
         <option value="metadataId" style="display: list-item;">metadataId</option>
         <option value="table.tableName" style="display: list-item;">table.tableName</option>
         <option value="table.favoriteFlavors.icecream" style="display: list-item;">table.favoriteFlavors.icecream</option>
-        <option value="table.favoriteFlavors.pie" style="display: list-item;">table.favoriteFlavors.pie</option>
         <option value="table.favoriteFlavors.soup" style="display: list-item;">table.favoriteFlavors.soup</option>
         <option value="table.favoriteFlavors.fish" style="display: list-item;">table.favoriteFlavors.fish</option>
         <option value="table.directory" style="display: list-item;">table.directory</option>
@@ -72,6 +71,13 @@
         <select class="fieldToCompare resetElement">
           <option value=""></option>
           <option value="metadataId">metadataId</option>
+          <option value="table.tableName">table.tableName</option>
+          <option value="table.favoriteFlavors.icecream">table.favoriteFlavors.icecream</option>
+          <option value="table.favoriteFlavors.soup">table.favoriteFlavors.soup</option>
+          <option value="table.favoriteFlavors.fish">table.favoriteFlavors.fish</option>
+          <option value="table.directory">table.directory</option>
+          <option value="table.addRoutes">table.addRoutes</option>
+          <option value="table.allowCodeGeneration">table.allowCodeGeneration</option>
           <option value="timeStamp">timeStamp</option> 
         </select>
       </div>
@@ -151,6 +157,13 @@
         <select class="fieldToOrderBy resetElement">
           <option value=""></option>
           <option value="metadataId">metadataId</option>
+          <option value="table.tableName">table.tableName</option>
+          <option value="table.favoriteFlavors.icecream">table.favoriteFlavors.icecream</option>
+          <option value="table.favoriteFlavors.soup">table.favoriteFlavors.soup</option>
+          <option value="table.favoriteFlavors.fish">table.favoriteFlavors.fish</option>
+          <option value="table.directory">table.directory</option>
+          <option value="table.addRoutes">table.addRoutes</option>
+          <option value="table.allowCodeGeneration">table.allowCodeGeneration</option>
           <option value="timeStamp">timeStamp</option> 
         </select>
       </div>
@@ -556,6 +569,12 @@ app.loadmetadataListPage = async function()
               {
                 // Make objValue point to it's sub-object or it's final value when the loop is finished running.
                 objValue = objValue[keyPart];
+
+                // Not all records will have the same data structure - 
+                // Fields specified in the data dictionary may be missing.
+                // So don't try to get a value if it's not there - 
+                // That would cause an error and stop the table from loading
+                if(objValue === undefined){break};                
               } 
 
               return objValue;
@@ -642,6 +661,12 @@ app.loadmetadataListPage = async function()
           {
             // Make objValue point to it's sub-object or it's final value when the loop is finished running.
             objValue = objValue[keyPart];
+
+            // Not all records will have the same data structure - 
+            // Fields specified in the data dictionary may be missing.
+            // So don't try to get a value if it's not there - 
+            // That would cause an error and stop the table from loading
+            if(objValue === undefined){break};            
           } 
 
           let newCell = tr.insertCell(elementIndex);
@@ -1349,6 +1374,12 @@ app.loadmetadataListPage = async function()
               {
                 // Make objValue point to it's sub-object or it's final value when the loop is finished running.
                 objValue = objValue[keyPart];
+
+                // Not all records will have the same data structure - 
+                // Fields specified in the data dictionary may be missing.
+                // So don't try to get a value if it's not there - 
+                // That would cause an error and stop the table from loading
+                if(objValue === undefined){break};                
               } 
 
               let newCell = tr.insertCell(elementIndex);
