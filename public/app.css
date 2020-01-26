@@ -79,7 +79,7 @@ body.loggedIn .header ul li.loggedOut{
 
 .content {
   margin-top: 150px;
-  width: 1000px;
+  /*width: 1000px;*/
   margin: 150px auto;
 }
 
@@ -265,7 +265,7 @@ tr{
 }
 
 th{
-  text-transform: uppercase;
+  text-transform: capitalize;
   font-weight: bold;
   padding: 10px;
   border-color: #000;
@@ -314,7 +314,8 @@ td a, td a:hover, td a:active{
   overflow: auto;
 }
 
-.selectClauseWrapper, .whereClauseGroupWrapper, .orderByClauseGroupWrapper, .recordLimitWrapper, .queryExpressionWrapper
+.selectClauseWrapper, .whereClauseGroupWrapper, .orderByClauseGroupWrapper, 
+.recordLimitWrapper, .queryExpressionWrapper, .objectWrapper
 {
   width: 100%;  
   border-width: 2px;   
@@ -328,7 +329,8 @@ td a, td a:hover, td a:active{
   margin-top: 5px;  
 }
 
-.tableCaption{
+.tableCaption
+{
   text-align: center;
   font-size: 20px;
   text-transform: uppercase;
