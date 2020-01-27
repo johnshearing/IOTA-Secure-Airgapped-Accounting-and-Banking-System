@@ -3,3 +3,5 @@
 {"oPhoneTypeId":2525,"phoneType":"Fax","timeStamp":1579037197098,"deleted":false}
 {"oPhoneTypeId":2520,"phoneType":"Office","timeStamp":1579037206221,"deleted":true}
 {"oPhoneTypeId":2535,"phoneType":"Office","timeStamp":1579043789231,"deleted":false}
+{"oPhoneTypeId":2570,"phoneType":"my new phone type","timeStamp":1580047917727,"deleted":false}
+{"oPhoneTypeId":2570,"phoneType":"my new phone type","timeStamp":1580047927579,"deleted":true}
