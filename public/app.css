@@ -338,10 +338,18 @@ td a, td a:hover, td a:active{
   padding: 0 0 5px 0;
 }
 
+.objectLabel
+{
+  font-weight: bold !important;
+  margin: 5px 0px 0px 0px;
+  padding: 0 0 5px 0;
+  color: #808080;  
+}
+
 .objectWrapper
 {
   width: auto;  
-  margin: 15px 0px;
+  margin: 0px 0px 15px 0px;
   border-width: 2px;   
   border-color: black;
   border-style: solid;
