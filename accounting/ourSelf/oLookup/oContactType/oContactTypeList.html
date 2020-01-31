@@ -1,4 +1,4 @@
-<h1>SELECT, FILTER, AND SORT, PHONE TYPES</h1>
+<h1>SELECT, FILTER, AND SORT, CONTACT TYPES</h1>
 </br>
 <h2>
   All records are returned in order of creation if no selections are made</br>
@@ -22,7 +22,7 @@
   </div>
   <div class="inputWrapper ctaWrapper smallTopMargin">
     <!--The following button brings the user to a new webpage where a new record may be added to the table-->
-    <a class="cta green" href="oPhoneType/add">Create a New oPhoneType</a>
+    <a class="cta green" href="oContactType/add">Create a New oContactType</a>
   </div>
 </div>
 
@@ -41,8 +41,8 @@
       <div class="inputLabel smallTopMargin"></div>
       <select class="fieldToDisplay"> 
         <option value="" style="display: list-item;"></option>
-        <option value="oPhoneTypeId" style="display: list-item;">oPhoneTypeId</option>
-        <option value="phoneType" style="display: list-item;">phoneType</option>
+        <option value="oContactTypeId" style="display: list-item;">oContactTypeId</option>
+        <option value="contactType" style="display: list-item;">contactType</option>
         <option value="timeStamp" style="display: list-item;">timeStamp</option>
       </select>
     </div>
@@ -64,8 +64,8 @@
         <div class="inputLabel smallTopMargin">Select a field to be examined by the filter.</div>
         <select class="fieldToCompare resetElement">
           <option value=""></option>
-          <option value="oPhoneTypeId">oPhoneTypeId</option>
-          <option value="phoneType">phoneType</option>
+          <option value="oContactTypeId">oContactTypeId</option>
+          <option value="contactType">contactType</option>
           <option value="timeStamp">timeStamp</option> 
         </select>
       </div>
@@ -144,8 +144,8 @@
         <div class="inputLabel smallTopMargin">Select a field to use in the order by expression.</div>
         <select class="fieldToOrderBy resetElement">
           <option value=""></option>
-          <option value="oPhoneTypeId">oPhoneTypeId</option>
-          <option value="phoneType">phoneType</option>
+          <option value="oContactTypeId">oContactTypeId</option>
+          <option value="contactType">contactType</option>
           <option value="timeStamp">timeStamp</option> 
         </select>
       </div>
@@ -190,7 +190,7 @@
 
 <script>
 /*
- * Frontend Browser JavaScript For oPhoneTypeList Webpage
+ * Frontend Browser JavaScript For oContactTypeList Webpage
  *
  */
 
@@ -293,8 +293,8 @@ app.client.request = function(headers,path,method,queryStringObject,payload,call
 
 
 
-// Populate the oPhoneTypeList webpage with controls and oPhoneType records from the table.
-app.loadoPhoneTypeListPage = async function()
+// Populate the oContactTypeList webpage with controls and oContactType records from the table.
+app.loadoContactTypeListPage = async function()
 {  
   // Create an HTML table here so all functions below will have access to it.
   let table = document.createElement('table');  
@@ -406,7 +406,7 @@ app.loadoPhoneTypeListPage = async function()
 
     // Create a title for the table.    
     tableCaption = document.createElement('caption');
-    tableCaption.innerHTML = 'List OPHONETYPE Records';
+    tableCaption.innerHTML = 'List OCONTACTTYPE Records';
     tableCaption.className = "tableCaption";
     // Only apply the title if one does not already exist.
     if(!document.querySelector(".tableCaption"))
@@ -658,7 +658,7 @@ app.loadoPhoneTypeListPage = async function()
         // Add an extra cell to the end of the row that contains a link which sends the user
         // to a new screen where the record can be edited or deleted.
         let lastCell = tr.insertCell(arrayOfFieldsToDisplay.length);             
-        lastCell.innerHTML = '<a href="/oPhoneType/edit?oPhoneTypeId=' + value[nameOfPrimaryKey] + '">View / Edit / Delete</a>';
+        lastCell.innerHTML = '<a href="/oContactType/edit?oContactTypeId=' + value[nameOfPrimaryKey] + '">View / Edit / Delete</a>';
       }) 
     }
 
@@ -685,12 +685,12 @@ app.loadoPhoneTypeListPage = async function()
   // on it.
   async function runQueryWaitForAllData(queryExpression) 
   {
-    const res = await fetch('api/oPhoneType' + queryExpression);
+    const res = await fetch('api/oContactType' + queryExpression);
 
     // Verify that we have some sort of 2xx response that we can use
     if (!res.ok) 
     {
-        console.log("Error trying to load the OPHONETYPE list: ");
+        console.log("Error trying to load the OCONTACTTYPE list: ");
         throw res;
     }
     // If no content, immediately resolve, don't try to parse JSON
@@ -1231,7 +1231,7 @@ app.loadoPhoneTypeListPage = async function()
   async function runQueryThenStreamToDisplay(queryExpression, arrayOfFieldsToDisplay, nameOfPrimaryKey)
   {
     // Define a client function that calls for data from the server.
-    const fetchPromise = fetch('api/oPhoneType' + queryExpression)
+    const fetchPromise = fetch('api/oContactType' + queryExpression)
     .then
     (
       (res) => 
@@ -1240,7 +1240,7 @@ app.loadoPhoneTypeListPage = async function()
         if (!res.ok) 
         {
           // throw res;         
-          console.log("Error trying to load the OPHONETYPE list: ");        
+          console.log("Error trying to load the OCONTACTTYPE list: ");        
         }
 
         // If no content, immediately resolve, don't try to parse JSON
@@ -1369,7 +1369,7 @@ app.loadoPhoneTypeListPage = async function()
             });   
 
             let lastCell = tr.insertCell(arrayOfFieldsToDisplay.length);             
-            lastCell.innerHTML = '<a href="/oPhoneType/edit?oPhoneTypeId=' + value[nameOfPrimaryKey] + '">View / Edit / Delete</a>';
+            lastCell.innerHTML = '<a href="/oContactType/edit?oContactTypeId=' + value[nameOfPrimaryKey] + '">View / Edit / Delete</a>';
 
           } // End of: if(value){do stuff}
 
@@ -1386,8 +1386,8 @@ app.loadoPhoneTypeListPage = async function()
 
   }; // End of: async function runQueryStreamToDisplay(queryExpression)  
 
-} // End of: app.loadoPhoneTypeListPage = async function(){...}
-// End of: Populate the oPhoneTypeList webpage with OPHONETYPE records.
+} // End of: app.loadoContactTypeListPage = async function(){...}
+// End of: Populate the oContactTypeList webpage with OCONTACTTYPE records.
 
 
 
@@ -1409,7 +1409,7 @@ app.init = function()
   });  
 
   // Load data on page
-  app.loadoPhoneTypeListPage();  
+  app.loadoContactTypeListPage();  
 
 };
 // End of: Init (bootstrapping)

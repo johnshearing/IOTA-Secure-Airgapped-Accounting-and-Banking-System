@@ -1,6 +1,6 @@
 
 /*
-/ Handlers for the "oPhoneType" table.
+/ Handlers for the "oAddressType" table.
 / This program was built by meta.js starting at yx52pvsi0kn9p5o46hrq
 */
 
@@ -15,14 +15,14 @@ const helpers = require('../../../../lib/aHelpers');
 
 
 // Create a container for all the handlers
-let oPhoneType = {};
+let oAddressType = {};
 
 
 
 
-// Define the handler function that serves up the HTML page for searching and listing oPhoneType records.
+// Define the handler function that serves up the HTML page for searching and listing oAddressType records.
 // Behavior from meta.js at gg9ec14lo9rqjk7kxz7f
-oPhoneType.serveListPage = function(data, callback)
+oAddressType.serveListPage = function(data, callback)
 {
   // Reject any request that isn't a get
   if(data.method == 'get')
@@ -30,15 +30,15 @@ oPhoneType.serveListPage = function(data, callback)
     // The following values will be inserted into the webpage at the corresponding key locations in the templates.
     var templateData = 
     {
-      'head.title' : 'OPhoneType List',
-      'body.class' : 'oPhoneTypeList',     
-      'tableName':'oPhoneType',
-      "tableLabel":"OPhoneType",    
+      'head.title' : 'OAddressType List',
+      'body.class' : 'oAddressTypeList',     
+      'tableName':'oAddressType',
+      "tableLabel":"OAddressType",    
       'head.clientCode' : '', // The HTML header template must see something or an empty string.         
     };
 
     // Read in a template as a string
-    helpers.getTemplate('../accounting/ourSelf/oLookup/oPhoneType/oPhoneTypeList', templateData, function(errorGetTemplate, str)
+    helpers.getTemplate('../accounting/ourSelf/oLookup/oAddressType/oAddressTypeList', templateData, function(errorGetTemplate, str)
     {
       if(!errorGetTemplate && str) // If there were no errors and a template was returned
       {
@@ -55,7 +55,7 @@ oPhoneType.serveListPage = function(data, callback)
             helpers.log
             (            
               5,
-              'ayb10woq7ybzag309qvu' + '\n' +
+              'eoavi1pflh6vlqmsamgp' + '\n' +
               'There was an error or the concatenated templates were not returned.' + '\n' +
               'This was the error:' + '\n' +
               JSON.stringify(errorAddUnivTemplates) + '\n'
@@ -71,7 +71,7 @@ oPhoneType.serveListPage = function(data, callback)
         helpers.log
         (
           5,
-          'wqsiwqa8hlwihj2jamkq' + '\n' +
+          'mvmn0jthso3o4jyalqtl' + '\n' +
           'There was an error or no template was returned.' + '\n' +
           'This was the error:' + '\n' +
           JSON.stringify(errorGetTemplate) + '\n'
@@ -88,22 +88,22 @@ oPhoneType.serveListPage = function(data, callback)
     helpers.log
     (
       5,
-      'cjngr9rsvdc4s3gikk5t' + '\n' +
+      'tqyebr8f4zt2zg5cgjf9' + '\n' +
       'Method not get. Only gets allowed.' + '\n'
     );
 
     // Send back status code for Not Allowed, an undefined payload, and contentType of html,
     callback(405, undefined, 'html');
   } // End of: else method not a get  
-}; // End of: oPhoneType.serveListPage = function(data, callback){...}
-// End of:// Define the handler function that serves up the HTML page for searching and listing oPhoneType records.
+}; // End of: oAddressType.serveListPage = function(data, callback){...}
+// End of:// Define the handler function that serves up the HTML page for searching and listing oAddressType records.
 
 
 
 
-// Define the handler function that serves up the HTML page for creating new oPhoneType records.
+// Define the handler function that serves up the HTML page for creating new oAddressType records.
 // Behavior from meta.js at xenz5eipqot8nym0eev3
-oPhoneType.serveAddPage = function(data, callback)
+oAddressType.serveAddPage = function(data, callback)
 {
   // Reject any request that isn't a get
   if(data.method == 'get')
@@ -111,14 +111,14 @@ oPhoneType.serveAddPage = function(data, callback)
     // The following values will be inserted into the webpage at the corresponding key locations in the templates.
     var templateData = 
     {
-      'head.title' : 'Create a New OPhoneType',
-      'head.description' : 'For creating a new oPhoneType record',
-      'body.class' : 'oPhoneTypeAdd', 
+      'head.title' : 'Create a New OAddressType',
+      'head.description' : 'For creating a new oAddressType record',
+      'body.class' : 'oAddressTypeAdd', 
       'head.clientCode' : '', // The HTML header template must see something or an empty string.      
     };
 
     // Read in a template as a string
-    helpers.getTemplate('../accounting/ourSelf/oLookup/oPhoneType/oPhoneTypeAdd', templateData, function(errorGetTemplate, str)
+    helpers.getTemplate('../accounting/ourSelf/oLookup/oAddressType/oAddressTypeAdd', templateData, function(errorGetTemplate, str)
     {
       if(!errorGetTemplate && str) // If there were no errors and a template was returned
       {
@@ -135,7 +135,7 @@ oPhoneType.serveAddPage = function(data, callback)
             helpers.log
             (            
               5,
-              'lmke0lwzeajvepanitfo' + '\n' +
+              'qpg52sscdnwpd6lra4x7' + '\n' +
               'There was an error or the concatenated templates were not returned.' + '\n' +
               'This was the error:' + '\n' +
               JSON.stringify(errorAddUnivTemplates) + '\n'
@@ -151,7 +151,7 @@ oPhoneType.serveAddPage = function(data, callback)
         helpers.log
         (
           5,
-          'drbo4iuglzytyu6z8z0j' + '\n' +
+          'ji9y52i3d7k9zni69zus' + '\n' +
           'There was an error or no template was returned.' + '\n' +
           'This was the error:' + '\n' +
           JSON.stringify(errorGetTemplate) + '\n'
@@ -168,22 +168,22 @@ oPhoneType.serveAddPage = function(data, callback)
     helpers.log
     (
       5,
-      '306a2xrsqo79iczp73kn' + '\n' +
+      'gahzg7vkljv02du2ft2u' + '\n' +
       'Method not get. Only gets allowed.' + '\n'
     );
 
     // Send back status code for Not Allowed, an undefined payload, and contentType of html,
     callback(405, undefined, 'html');
   } // End of: else method not a get  
-}; // End of: oPhoneType.serveAddPage = function(data, callback){...}
-// End of: Define the handler function that serves up the HTML page for creating new oPhoneType records.
+}; // End of: oAddressType.serveAddPage = function(data, callback){...}
+// End of: Define the handler function that serves up the HTML page for creating new oAddressType records.
 
 
 
 
-// Define the handler function that serves up the HTML page for editing oPhoneType records.
+// Define the handler function that serves up the HTML page for editing oAddressType records.
 // Behavior from meta.js at 2a4tb24fsq3de66ti8c4
-oPhoneType.serveEditPage = function(data, callback)
+oAddressType.serveEditPage = function(data, callback)
 {
   // Reject any request that isn't a get
   if(data.method == 'get')
@@ -191,14 +191,14 @@ oPhoneType.serveEditPage = function(data, callback)
     // The following values will be inserted into the webpage at the corresponding key locations in the templates.
     var templateData = 
     {
-      'head.title' : 'Edit a OPhoneType',     
-      'body.class' : 'oPhoneTypeEdit',
-      'selected.oPhoneTypeId' : data.queryStringObject.oPhoneTypeId,  
+      'head.title' : 'Edit a OAddressType',     
+      'body.class' : 'oAddressTypeEdit',
+      'selected.oAddressTypeId' : data.queryStringObject.oAddressTypeId,  
       'head.clientCode' : '', // The HTML header template must see something or an empty string.     
     };
 
     // Read in a template as a string
-    helpers.getTemplate('../accounting/ourSelf/oLookup/oPhoneType/oPhoneTypeEdit', templateData, function(errorGetTemplate, str)
+    helpers.getTemplate('../accounting/ourSelf/oLookup/oAddressType/oAddressTypeEdit', templateData, function(errorGetTemplate, str)
     {
       if(!errorGetTemplate && str) // If there were no errors and a template was returned
       {
@@ -215,7 +215,7 @@ oPhoneType.serveEditPage = function(data, callback)
             helpers.log
             (            
               5,
-              'n151w0oc996zzx0jfbd4' + '\n' +
+              'dxcxgfrrrg1jo2idx0zd' + '\n' +
               'There was an error or the concatenated templates were not returned.' + '\n' +
               'This was the error:' + '\n' +
               JSON.stringify(errorAddUnivTemplates) + '\n'
@@ -231,7 +231,7 @@ oPhoneType.serveEditPage = function(data, callback)
         helpers.log
         (
           5,
-          'nres96gky008kdwo8crg' + '\n' +
+          'x2rwssz0dhqzt79z436l' + '\n' +
           'There was an error or no template was returned.' + '\n' +
           'This was the error:' + '\n' +
           JSON.stringify(errorGetTemplate) + '\n'
@@ -248,24 +248,24 @@ oPhoneType.serveEditPage = function(data, callback)
     helpers.log
     (
       5,
-      'r6p6kf1uriwum4z65hsw' + '\n' +
+      'lpw4h4sot265yncb4pcl' + '\n' +
       'Method not get. Only gets allowed.' + '\n'
     );
 
     // Send back status code for Not Allowed, an undefined payload, and contentType of html,
     callback(405, undefined, 'html');
   } // End of: else method not a get  
-}; // End of: oPhoneType.serveEditPage = function(data, callback){...}
-// End of: Define the handler function that serves up the HTML page for editing oPhoneType records.
+}; // End of: oAddressType.serveEditPage = function(data, callback){...}
+// End of: Define the handler function that serves up the HTML page for editing oAddressType records.
 
 
 
 
-// Router for oPhoneType functions
-// Define a function which calls the requested get, post, put, or delete subhandler function for oPhoneType 
+// Router for oAddressType functions
+// Define a function which calls the requested get, post, put, or delete subhandler function for oAddressType 
 // and passes to the chosen subhandler the client's request object and the callback function.
 // Behavior from meta.js at lw39etuyhw7wb82hv9ct
-oPhoneType.oPhoneType = function(data, callback)
+oAddressType.oAddressType = function(data, callback)
 {
   // Create an array of acceptable methods.
   var acceptableMethods = ['post', 'get', 'put'];
@@ -273,8 +273,8 @@ oPhoneType.oPhoneType = function(data, callback)
   // if the requested method is one of the acceptable methods:
   if (acceptableMethods.indexOf(data.method) > -1) 
   {
-    // then call the appropriate oPhoneType subhandler.
-    oPhoneType._oPhoneType[data.method](data, callback);
+    // then call the appropriate oAddressType subhandler.
+    oAddressType._oAddressType[data.method](data, callback);
   } 
   // Otherwise the method was not one of the acceptable methods:
   else 
@@ -282,71 +282,71 @@ oPhoneType.oPhoneType = function(data, callback)
     helpers.log
     (
       5,
-      'tjk7rj07yf5h2scl4f65' + '\n' +
+      'fcqnhgnqixf80ja0e44x' + '\n' +
       'The method was not one of the acceptable methods' + '\n'
     ); 
 
     // so send back status 405 (Not Allowed).
     callback(405);
   }
-}; // End of: oPhoneType.oPhoneType = function(data, callback){...}
-//End of: Router for oPhoneType functions
+}; // End of: oAddressType.oAddressType = function(data, callback){...}
+//End of: Router for oAddressType functions
 
 
 
 
-// Create a subobject within the handlers object for the oPhoneType submethods (post, get, put, and delete)
-oPhoneType._oPhoneType = {};
+// Create a subobject within the handlers object for the oAddressType submethods (post, get, put, and delete)
+oAddressType._oAddressType = {};
 
 
 
 
-// oPhoneType - post subhandler
-// Define the oPhoneType post subhandler function.
-// This function appends a record to the oPhoneType file.
+// oAddressType - post subhandler
+// Define the oAddressType post subhandler function.
+// This function appends a record to the oAddressType file.
 // Behavior from meta.js at 1723qxikk1l3ru0vfrny 
-oPhoneType._oPhoneType.post = function(data, callback)
+oAddressType._oAddressType.post = function(data, callback)
 {
   // Field validation starts here.
-  // Get phoneType from payload
-  let phoneType = data.payload.phoneType;
+  // Get addressType from payload
+  let addressType = data.payload.addressType;
 
   // passIfString&NotEmptyThenTrim Default behavior from meta.js at ulg5xxvzgr7efln9xur9
-  if(typeof(phoneType) != 'string'){return callback(400, {'Error' : 'phoneType must be of datatype string'});}
-  if(!phoneType || phoneType.trim().length === 0){return callback(400, {'Error' : 'No phoneType was entered'});}else{phoneType = phoneType.trim()}
+  if(typeof(addressType) != 'string'){return callback(400, {'Error' : 'addressType must be of datatype string'});}
+  if(!addressType || addressType.trim().length === 0){return callback(400, {'Error' : 'No addressType was entered'});}else{addressType = addressType.trim()}
 
-  // Enforcing uniqueness of the phoneType field.
-  // Will toggle this to false if we find the phoneType already exists in oPhoneType.
+  // Enforcing uniqueness of the addressType field.
+  // Will toggle this to false if we find the addressType already exists in oAddressType.
   // Behavior from meta.js at rmkfkaef7xo3gyvnvgm4
-  let phoneTypeIsUnused = true;
+  let addressTypeIsUnused = true;
 
-  // Using this to track the primary key of a record that we might encounter with the candidate phoneType.
-  // If we encounter this primary key again we will check to see if the phoneType has been changed.
-  // If it has then the candidate phoneType will be marked as available again.
-  let uniqueIdOfRecordHoldingCandidatePhoneType = false; 
+  // Using this to track the primary key of a record that we might encounter with the candidate addressType.
+  // If we encounter this primary key again we will check to see if the addressType has been changed.
+  // If it has then the candidate addressType will be marked as available again.
+  let uniqueIdOfRecordHoldingCandidateAddressType = false; 
                         
 
-  // To ensure the phoneType is unique we will read every record in 
-  // oPhoneType and compare with the phoneType provided.
+  // To ensure the addressType is unique we will read every record in 
+  // oAddressType and compare with the addressType provided.
 
-  // This function sets up a stream where each chunk of data is a complete line in the oPhoneType file.
+  // This function sets up a stream where each chunk of data is a complete line in the oAddressType file.
   let readInterface = readline.createInterface
   (
     { // specify the file to be read.
-      input: fs.createReadStream(_data.baseDir + '/ourSelf/oLookup/oPhoneType' + '/' + 'oPhoneType' + '.json')
+      input: fs.createReadStream(_data.baseDir + '/ourSelf/oLookup/oAddressType' + '/' + 'oAddressType' + '.json')
     }
   );
   
-  // Look at each record in the file and set a flag if the phoneType matches the phoneType provided by the user.
+  // Look at each record in the file and set a flag if the addressType matches the addressType provided by the user.
   readInterface.on('line', function(line) 
   {
-    // Convert the JSON string from oPhoneType into an object.
+    // Convert the JSON string from oAddressType into an object.
     lineObject = JSON.parse(line);
 
-    // Several different record sets with the supplied phoneType and the same oPhoneTypeId 
+    // Several different record sets with the supplied addressType and the same oAddressTypeId 
     // may exist already if the record has been changed or deleted prior to this operation.
 
-    // A modified record is simply a new record with the same oPhoneTypeId as an existing record.
+    // A modified record is simply a new record with the same oAddressTypeId as an existing record.
     // The newest record is the valid record and the older record is history.  
     // So position matters. These tables should never be sorted.
     // These tables can be packed however to get rid of historical records.
@@ -357,74 +357,74 @@ oPhoneType._oPhoneType.post = function(data, callback)
 
     // A deleted record in this system is simply an identical record appended with 
     // the deleted field set to true. 
-    // So depending on how many times the phoneType has been added and deleted there may 
-    // be several sets of records in the oPhoneType table currently 
-    // that have the same phoneType and the same oPhoneTypeId.
+    // So depending on how many times the addressType has been added and deleted there may 
+    // be several sets of records in the oAddressType table currently 
+    // that have the same addressType and the same oAddressTypeId.
     // The table can be packed occasionally to get rid of these deleted record sets. 
     // Deletes are handled as appends with the deleted field set to true because real 
     // deletes tie up the table for a long time.
 
-    // In this table, the phoneType is a unique key as well as the oPhoneTypeId.
-    // The oPhoneTypeId also serves as the primary key.
-    // The difference is that the oPhoneTypeId may never change whereas the phoneType
-    // may be changed to something different if a valid record for that phoneType
+    // In this table, the addressType is a unique key as well as the oAddressTypeId.
+    // The oAddressTypeId also serves as the primary key.
+    // The difference is that the oAddressTypeId may never change whereas the addressType
+    // may be changed to something different if a valid record for that addressType
     // does not already exist.    
 
     // When adding a record we first make sure that the record does NOT already exist.
-    // There should be no record with the current phoneType or if there is then 
-    // the last record with this phoneType must have the deleted field set to true.
+    // There should be no record with the current addressType or if there is then 
+    // the last record with this addressType must have the deleted field set to true.
 
     // When changing a record we:
-    // 1. Make sure that the record with this phoneType does indeed exist and...
-    // 2. that the last instance of a record with this phoneType is not deleted.
+    // 1. Make sure that the record with this addressType does indeed exist and...
+    // 2. that the last instance of a record with this addressType is not deleted.
   
-    // It is ok to add a new record with this same phoneType again when the last instance 
+    // It is ok to add a new record with this same addressType again when the last instance 
     // of this record encountered in the stream has the deleted flag set to true. 
-    // In that case, the oPhoneTypeId will be different but the phoneType will be the same.         
+    // In that case, the oAddressTypeId will be different but the addressType will be the same.         
 
-    // As explained above, only the last matching record for a particular phoneType matters.
+    // As explained above, only the last matching record for a particular addressType matters.
     // It's like that old game "She loves me, She loves me not".
 
-    if (phoneType == lineObject.phoneType) // we found a matching entry
+    if (addressType == lineObject.addressType) // we found a matching entry
     {
       if (lineObject.deleted == false) // The record has not been deleted so it's a duplicate. Not unique.
       {
-        phoneTypeIsUnused = false; // This flag used in the on close event listener below. 
+        addressTypeIsUnused = false; // This flag used in the on close event listener below. 
 
         // If this record (record with this primary key) is encountered further down where it has been deleted 
-        // or where the phoneType has been changed with a put operation:
-        // Then the candidate phoneType will be available again as we continue searching through the records.
-        // We are already checking if this phoneType becomes available again by deletion.
-        // Now we need to check if the phoneType becomes available because the record with this primary 
-        // key gets changed with a new phoneType.
-        // That will make the candidate phoneType unique and available again.
-        // So record this global sequential unique id (the oPhoneTypeId in this case).
-        // If we find the gsuid again, then check if the phoneType has changed.
+        // or where the addressType has been changed with a put operation:
+        // Then the candidate addressType will be available again as we continue searching through the records.
+        // We are already checking if this addressType becomes available again by deletion.
+        // Now we need to check if the addressType becomes available because the record with this primary 
+        // key gets changed with a new addressType.
+        // That will make the candidate addressType unique and available again.
+        // So record this global sequential unique id (the oAddressTypeId in this case).
+        // If we find the gsuid again, then check if the addressType has changed.
         // If it has been changed then:
-        // 1. Set the phoneTypeIsUnused flag to true again
+        // 1. Set the addressTypeIsUnused flag to true again
         // 2. clear out the variable tracking the uniqueId of the record.
-        uniqueIdOfRecordHoldingCandidatePhoneType = lineObject.oPhoneTypeId;
+        uniqueIdOfRecordHoldingCandidateAddressType = lineObject.oAddressTypeId;
       }
       // The matching record we found has been deleted so it may as well not exist. The new record is still unique.
       else 
       {
-        phoneTypeIsUnused = true;
+        addressTypeIsUnused = true;
       } 
     } // End of: if we found a matching entry
 
-    // If we have seen this primary key before and flagged the phoneType already taken 
-    // because it was identical to the phoneType we are trying to add and it had not been deleted:
+    // If we have seen this primary key before and flagged the addressType already taken 
+    // because it was identical to the addressType we are trying to add and it had not been deleted:
 
-    // Ok, the current record is not holding the candidate phoneType but 
+    // Ok, the current record is not holding the candidate addressType but 
     // maybe it was in the past and someone changed it.
-    // if the candidate phoneType is flagged unavailable and we are looking at the record that was flagged:
-    else if(phoneTypeIsUnused === false && uniqueIdOfRecordHoldingCandidatePhoneType === lineObject.oPhoneTypeId)
+    // if the candidate addressType is flagged unavailable and we are looking at the record that was flagged:
+    else if(addressTypeIsUnused === false && uniqueIdOfRecordHoldingCandidateAddressType === lineObject.oAddressTypeId)
     {
-      // Check if the phoneType is no longer holding the candidate phoneType.
-      // If it is not holding the candidate phoneType then flag the phoneType 
+      // Check if the addressType is no longer holding the candidate addressType.
+      // If it is not holding the candidate addressType then flag the addressType 
       // available again and clear out the variable tracking this primary key.
-      phoneTypeIsUnused = true;
-      uniqueIdOfRecordHoldingCandidatePhoneType = false;
+      addressTypeIsUnused = true;
+      uniqueIdOfRecordHoldingCandidateAddressType = false;
     }
 
   }); // End of: readInterface.on('line', function(line){...}
@@ -433,27 +433,27 @@ oPhoneType._oPhoneType.post = function(data, callback)
 
 
 
-  // This listener fires after we have discovered if the phoneType is 
-  // unique or not, and have then closed the readable stream from oPhoneType.
-  // The callback function defined here will append the record if the phoneType 
+  // This listener fires after we have discovered if the addressType is 
+  // unique or not, and have then closed the readable stream from oAddressType.
+  // The callback function defined here will append the record if the addressType 
   // was found to be unique.
   // Behavior from meta.js at aiwaoocd1uegzjbqeydk
   readInterface.on('close', function() 
   {
-    // If the phoneType already exists then exit this process without appending the record.
-    if (!phoneTypeIsUnused) 
+    // If the addressType already exists then exit this process without appending the record.
+    if (!addressTypeIsUnused) 
     {      
       helpers.log
       (
         5,
-        '2hqx8eglxrgv2uc4hdew' + '\n' +
-        'The phoneType : ' + phoneType + ' already exists' + '\n'                                  
+        'jfjiv5s1ruvithxmsu3y' + '\n' +
+        'The addressType : ' + addressType + ' already exists' + '\n'                                  
       ); // End of: helpers.log(...)
 
-      return callback(400, {'Error' : 'The phoneType already exists'});
+      return callback(400, {'Error' : 'The addressType already exists'});
     }
 
-    // If we made it to this point then the candidate phoneType is unique so continue on with the append opperation.
+    // If we made it to this point then the candidate addressType is unique so continue on with the append opperation.
     // Behavior from meta.js at gwwelr17hmxvq4spdrcl    
 
     // Get the next global sequential unique Id and lock the database
@@ -473,7 +473,7 @@ oPhoneType._oPhoneType.post = function(data, callback)
         helpers.log
         (
           5,
-          '6wm5rh3gytb2u6v9r3kn' + '\n' +
+          's25vv1c10v8k4y72qj0x' + '\n' +
           'Unable to get the next gsuid.' + '\n' +
           'The following was the error' + '\n' +
           JSON.stringify(error) + '\n'                                   
@@ -488,12 +488,12 @@ oPhoneType._oPhoneType.post = function(data, callback)
 
 
 
-      // Create the oPhoneType object. 
-      // This object will be appended to oPhoneType.json.
-      var oPhoneTypeObject = 
+      // Create the oAddressType object. 
+      // This object will be appended to oAddressType.json.
+      var oAddressTypeObject = 
       {
-          "oPhoneTypeId" : nextIdObject.nextId,
-          "phoneType" : phoneType,
+          "oAddressTypeId" : nextIdObject.nextId,
+          "addressType" : addressType,
           "timeStamp" : Date.now(),
           "deleted" : false
       };
@@ -506,10 +506,10 @@ oPhoneType._oPhoneType.post = function(data, callback)
         "historyId" : nextIdObject.nextId + 1,                 
         "transactionId" : nextIdObject.nextId + 2,            
         "rollback" : false,
-        "process" : "oPhoneType._oPhoneType.post",
+        "process" : "oAddressType._oAddressType.post",
         "comment" : "Post new record",
         "who" : "No login yet",    
-        "oPhoneType" : oPhoneTypeObject   
+        "oAddressType" : oAddressTypeObject   
       }
 
       // Calling the function which creates an entry into the database log file.
@@ -527,18 +527,18 @@ oPhoneType._oPhoneType.post = function(data, callback)
             helpers.log
             (
               7,
-              '65vkiqfkxwuyqgaq76qv' + '\n' +
+              'wtlp6t4r21z2bvm3wbsm' + '\n' +
               'There was an error appending to the history file' + '\n' +
               'An error here does not necessarily mean the append to history did not happen.' + '\n' +  
-              'But an error at this point in the code surely means there was no append to oPhoneType' + '\n' +                                          
-              'CHECK TO SEE IF history and oPhoneType ARE STILL IN SYNC' + '\n' +                    
+              'But an error at this point in the code surely means there was no append to oAddressType' + '\n' +                                          
+              'CHECK TO SEE IF history and oAddressType ARE STILL IN SYNC' + '\n' +                    
               'The following was the record we tried to append:' + '\n' +
               JSON.stringify(logObject) + '\n' +                   
               'The following is the error message:' + '\n' +                  
               err  + '\n'
             );
 
-            return callback(500, {'Error' : 'Could not create a new oPhoneType record.'});
+            return callback(500, {'Error' : 'Could not create a new oAddressType record.'});
           }
 
 
@@ -547,12 +547,12 @@ oPhoneType._oPhoneType.post = function(data, callback)
 
 
 
-          // Calling the function which appends a record to the file oPhoneType.json
+          // Calling the function which appends a record to the file oAddressType.json
           _data.append
           (
-          '/ourSelf/oLookup/oPhoneType', 
-          'oPhoneType', 
-          oPhoneTypeObject, 
+          '/ourSelf/oLookup/oAddressType', 
+          'oAddressType', 
+          oAddressTypeObject, 
           function(err)
           {
             if (!err)  // The file has been appended to successfully.
@@ -571,15 +571,15 @@ oPhoneType._oPhoneType.post = function(data, callback)
                   helpers.log // Log the error.
                   (
                     7,
-                    'tfg6kxnhrfepwiaykutw' + '\n' +
-                    'Successful write to oPhoneType but unable to remove lock on database' + '\n' +
-                    'The following record was appended to the oPhoneType file:' + '\n' +                            
+                    '7mg2wxptoni66fph7lyf' + '\n' +
+                    'Successful write to oAddressType but unable to remove lock on database' + '\n' +
+                    'The following record was appended to the oAddressType file:' + '\n' +                            
                     JSON.stringify(logObject) + '\n' +   
                     'The following was the error message:' + '\n' +                                             
                     error + '\n'
                   ); // End of: helpers.log. Log the error.
 
-                  return callback(500, {'Error' : 'Successful write to oPhoneType but unable to remove lock on database'});
+                  return callback(500, {'Error' : 'Successful write to oAddressType but unable to remove lock on database'});
 
                 } // End of: else Good write but unable to remove lock on database.
 
@@ -588,25 +588,25 @@ oPhoneType._oPhoneType.post = function(data, callback)
               // End of: Call to function which removes lock
 
             }    // End of: if (!err)  //The file has been appended to successfully.
-            else // There was an error appending to oPhoneType.
+            else // There was an error appending to oAddressType.
             {
               helpers.log // Log the error.
               (
                 5,
-                'v9uji62zmqplnd70z4mm' + '\n' +
-                'There was an error when appending to the oPhoneType file.' + '\n' +
-                'The following record may or may not have been appended to the oPhoneType file:' + '\n' +                            
+                'efcdeo5e14mwoxffjuo9' + '\n' +
+                'There was an error when appending to the oAddressType file.' + '\n' +
+                'The following record may or may not have been appended to the oAddressType file:' + '\n' +                            
                 JSON.stringify(logObject) + '\n' +
                 'Attempting to rollback the entry.' + '\n' +    
                 'The following was the error message:' + '\n' +                                             
                 err + '\n'            
               );
 
-              // Assemble rollback record for the oPhoneType file which will negate previous entry if any.  
-              oPhoneTypeObject = 
+              // Assemble rollback record for the oAddressType file which will negate previous entry if any.  
+              oAddressTypeObject = 
               {
-                "oPhoneTypeId" : nextIdObject.nextId,
-                "phoneType" : "phoneType",
+                "oAddressTypeId" : nextIdObject.nextId,
+                "addressType" : "addressType",
                 "timeStamp" : Date.now(),
                 "deleted" : true
               };                        
@@ -617,10 +617,10 @@ oPhoneType._oPhoneType.post = function(data, callback)
                 "historyId" : nextIdObject.nextId + 3,                             
                 "transactionId" : nextIdObject.nextId + 2,                        
                 "rollback" : true,
-                "process" : "oPhoneType._oPhoneType.post",
+                "process" : "oAddressType._oAddressType.post",
                 "comment" : "Error posting. Appending a delete.",                        
                 "who" : "Function needed",    
-                "oPhoneType" : oPhoneTypeObject   
+                "oAddressType" : oAddressTypeObject   
               }
 
               // Start the rollback process.
@@ -633,36 +633,36 @@ oPhoneType._oPhoneType.post = function(data, callback)
                 {
                   if (!err) // The roll back entry in history was appended successfully.
                   {
-                    // Calling the function which appends a record to the file oPhoneType.json
+                    // Calling the function which appends a record to the file oAddressType.json
                     _data.append
                     (
-                      '/ourSelf/oLookup/oPhoneType', 
-                      'oPhoneType', 
-                      oPhoneTypeObject, 
+                      '/ourSelf/oLookup/oAddressType', 
+                      'oAddressType', 
+                      oAddressTypeObject, 
                       function(err)
                       {
-                        if (!err) // The rollback record for oPhoneType was appended successfully.
+                        if (!err) // The rollback record for oAddressType was appended successfully.
                         {
                           helpers.log
                           (
                             5,
-                            'h4ubb0lifiuo3tj96f15' + '\n' +
-                            'Rollback entry in the oPhoneType file was appended successfully' + '\n' +
+                            'fv082cuvknwwtnge5me2' + '\n' +
+                            'Rollback entry in the oAddressType file was appended successfully' + '\n' +
                             'The following was the record we rolled back:' + '\n' +
                             JSON.stringify(logObject) + '\n'                                   
                           ); // End of: helpers.log(...)
                         }
-                        else // There was an error when rolling back record for oPhoneType.
+                        else // There was an error when rolling back record for oAddressType.
                         {
                           helpers.log
                           (
                             7,
-                            'hdsanhtwr9ssclg935t3' + '\n' +
-                            'There was an error appending a rollback entry in the oPhoneType file' + '\n' +
+                            'de3st342keqzs9s7bicp' + '\n' +
+                            'There was an error appending a rollback entry in the oAddressType file' + '\n' +
                             'The following record may or may not have been rolled back:' + '\n' +
                             JSON.stringify(logObject) + '\n' +   
-                            'An error here does not necessarily mean the deleting append to oPhoneType did not happen.' + '\n' +                                        
-                            'CHECK TO SEE IF history and oPhoneType ARE STILL IN SYNC' + '\n' + 
+                            'An error here does not necessarily mean the deleting append to oAddressType did not happen.' + '\n' +                                        
+                            'CHECK TO SEE IF history and oAddressType ARE STILL IN SYNC' + '\n' + 
                             'The following is the error message:' + '\n' +                                                                     
                             err  + '\n'
                           ); // End of: helpers.log(...)
@@ -677,10 +677,10 @@ oPhoneType._oPhoneType.post = function(data, callback)
                     helpers.log
                     (
                       7,
-                      '2neqkryn1uuxithj7hzh' + '\n' +
+                      '45mf68what4243a9c6fe' + '\n' +
                       'There was an error appending a rollback entry in the history file' + '\n' +
-                      'A rollback entry may or may not have been written in the oPhoneType file' + '\n' +  
-                      'CHECK TO SEE IF history and oPhoneType ARE STILL IN SYNC' + '\n' +                                      
+                      'A rollback entry may or may not have been written in the oAddressType file' + '\n' +  
+                      'CHECK TO SEE IF history and oAddressType ARE STILL IN SYNC' + '\n' +                                      
                       'The following was the record we tried to roll back:' + '\n' +
                       JSON.stringify(logObject) + '\n' +        
                       'The following is the error message:' + '\n' +
@@ -690,64 +690,64 @@ oPhoneType._oPhoneType.post = function(data, callback)
                 } // End of: callback function(err){...}
               ); // End of: _data.append(...) Append a rollback entry in history.
 
-              return callback(500, {'Error' : 'Could not create the new oPhoneType.'});              
+              return callback(500, {'Error' : 'Could not create the new oAddressType.'});              
 
-            } // End of: else // There was an error appending to oPhoneType.
+            } // End of: else // There was an error appending to oAddressType.
           } // End of: callback function
-          ); // End of: Calling the function which appends a record to the file oPhoneType.json 
+          ); // End of: Calling the function which appends a record to the file oAddressType.json 
         } // End of: callback function
       ); // End of: _data.append(dbHistory...)
       // End of: Calling the function which creates an entry into history. 
     }); // End of: lib.nextId(function(err, nextIdObject)
   }); // End of: readInterface.on('close', function(){...}
-}; // End of: oPhoneType._oPhoneType.post = function(...
-// End of: oPhoneType - post subhandler
+}; // End of: oAddressType._oAddressType.post = function(...
+// End of: oAddressType - post subhandler
 
 
 
 
-// oPhoneType - put handler
-// Define the oPhoneType put subhandler function 
+// oAddressType - put handler
+// Define the oAddressType put subhandler function 
 // This function updates a record.
-// Required data: oPhoneTypeId
+// Required data: oAddressTypeId
 // Note: At least one other field must be specified.
 // Behavior from meta.js at mzimrkdf1we1bjw96zgp
-oPhoneType._oPhoneType.put = function(data, callback)
+oAddressType._oAddressType.put = function(data, callback)
 {
   // Field validation starts here.
-  // Get oPhoneTypeId from payload
-  let oPhoneTypeId = data.payload.oPhoneTypeId;
+  // Get oAddressTypeId from payload
+  let oAddressTypeId = data.payload.oAddressTypeId;
 
   // PrimaryKey validation. 
   // Default behavior from meta.js at o65yzg6ddze2fkvcgw5s
-  // If oPhoneTypeId is a valid string then convert it to a number.  
-  if (typeof(oPhoneTypeId) === 'string'){oPhoneTypeId = parseInt(oPhoneTypeId, 10);}else{return callback(400, {'Error' : 'oPhoneTypeId must be a of string type'});}
+  // If oAddressTypeId is a valid string then convert it to a number.  
+  if (typeof(oAddressTypeId) === 'string'){oAddressTypeId = parseInt(oAddressTypeId, 10);}else{return callback(400, {'Error' : 'oAddressTypeId must be a of string type'});}
 
-  // Get phoneType from payload
-  let phoneType = data.payload.phoneType;
+  // Get addressType from payload
+  let addressType = data.payload.addressType;
 
   // passIfString&NotEmptyThenTrim
   // Default behavior from meta.js at yif5xwczgr4ebln99trd 
-  // If phoneType is of string type and is not empty 
-  if (typeof(phoneType) === 'string' && phoneType.trim().length > 0) 
+  // If addressType is of string type and is not empty 
+  if (typeof(addressType) === 'string' && addressType.trim().length > 0) 
   { 
     // The user entered something in the edit form
-    phoneType = phoneType.trim()
+    addressType = addressType.trim()
   } 
   // Else, the user may have entered some other datatype like a number or 
   // perhaps nothing at all if using the Delete form. 
   else 
   { 
     // If the user entered nothing: 
-    if(phoneType === undefined) 
+    if(addressType === undefined) 
     { 
       // Then user is likely trying to delete a record.
       // So change the value to false and continue processing.
-      phoneType = false 
+      addressType = false 
     } 
     else // The user entered something invalid so reject the edit. 
     { 
-      return callback(400, {'Error' : 'Not a valid phoneType'}); 
+      return callback(400, {'Error' : 'Not a valid addressType'}); 
     } 
   }
   
@@ -759,12 +759,12 @@ oPhoneType._oPhoneType.put = function(data, callback)
 
   
   //if all fields fail validation then exit this process without writing changes to the table.
-  if(!phoneType && !deleted)
+  if(!addressType && !deleted)
   {
     helpers.log
     (
       5,
-      'htvzmag1kmdl0zj7dgid' + '\n' +
+      'mf1fg3pr7tfg13cl5rjy' + '\n' +
       'No fields pass the validation process' + '\n'                                  
     ); // End of: helpers.log(...)
 
@@ -787,7 +787,7 @@ oPhoneType._oPhoneType.put = function(data, callback)
       helpers.log
       (
         5,
-        'hzovihtv4xpzr8bw09mo' + '\n' +
+        '9f064sryczr2f7gv9839' + '\n' +
         'Unable to get the next gsuid.' + '\n' +
         'The following was the error' + '\n' +
         JSON.stringify(error) + '\n'                                   
@@ -801,27 +801,27 @@ oPhoneType._oPhoneType.put = function(data, callback)
     // the next unique id number for this record. So continue with the process.
 
 
-    // Create the oPhoneType object. 
-    // This object will be appended to oPhoneType.json.
+    // Create the oAddressType object. 
+    // This object will be appended to oAddressType.json.
     // Add in all fields even if no data is available yet. 
     // This is to establish the order in which the fields will be writen to the table. 
     // Behavior from 3bd1sa5ve4aqrfspunrt in meta.js         
-    let oPhoneTypeObject = 
+    let oAddressTypeObject = 
     {
-      "oPhoneTypeId" : oPhoneTypeId,
-      "phoneType" : phoneType,
+      "oAddressTypeId" : oAddressTypeId,
+      "addressType" : addressType,
       "timeStamp" : Date.now(),
       "deleted" : ""
     };
 
     dataObject = {};
-    dataObject.uniqueField01Name = "phoneType";
-    dataObject.uniqueField01Value = oPhoneTypeObject.phoneType;
-    dataObject.path = '/ourSelf/oLookup/oPhoneType/oPhoneType.json';
-    dataObject.queryString = 'WHERE:;oPhoneTypeId:;MatchesExactly:;' + oPhoneTypeId + ':;';
+    dataObject.uniqueField01Name = "addressType";
+    dataObject.uniqueField01Value = oAddressTypeObject.addressType;
+    dataObject.path = '/ourSelf/oLookup/oAddressType/oAddressType.json';
+    dataObject.queryString = 'WHERE:;oAddressTypeId:;MatchesExactly:;' + oAddressTypeId + ':;';
 
-    // This function returns the most recent record for this oPhoneTypeId after checking that 
-    // data for unique fields is indeed unique and that the a record with the supplied oPhoneTypeId exists to modify.
+    // This function returns the most recent record for this oAddressTypeId after checking that 
+    // data for unique fields is indeed unique and that the a record with the supplied oAddressTypeId exists to modify.
     // Behavior from meta.js at 6pmnh29cub4p4g2fmb04
     helpers.getMostRecent(dataObject, function(errorFromGetMostRecent, payload)
     {
@@ -840,7 +840,7 @@ oPhoneType._oPhoneType.put = function(data, callback)
               helpers.log // Log the error.
               (
                 7,
-                'v46x754djef7x4j4gz5g' + '\n' + 
+                'vvd74oi0p9zab2byu62r' + '\n' + 
                 'The following was the error message from getMostRecent:' + '\n' +                                             
                 errorFromGetMostRecent + '\n'                                                 
               ); // End of: helpers.log // Log the error.
@@ -855,7 +855,7 @@ oPhoneType._oPhoneType.put = function(data, callback)
               helpers.log // Log the error.
               (
                 7,
-                'q4ogotmyenjsyhheexf7' + '\n' +
+                '76gb0zhsr0y69k61tkbi' + '\n' +
                 'The following was the error message from getMostRecent:' + '\n' +                                             
                 errorFromGetMostRecent + '\n'  +
                 'Also unable to remove lock on database.' + '\n' + 
@@ -892,25 +892,25 @@ oPhoneType._oPhoneType.put = function(data, callback)
         let recordObject = JSON.parse(stringContainer);
 
 
-        // Preprocessing for phoneType
-        if(phoneType) // If the user supplied data for phoneType
+        // Preprocessing for addressType
+        if(addressType) // If the user supplied data for addressType
         {
-          // No preprocessing was specifed for phoneType. Use it as was supplied by the user.
+          // No preprocessing was specifed for addressType. Use it as was supplied by the user.
         }
-        else // If the user did not supply data for phoneType
+        else // If the user did not supply data for addressType
         {
-          // Save phoneType from the most recent record.
-          oPhoneTypeObject.phoneType = recordObject.phoneType;
+          // Save addressType from the most recent record.
+          oAddressTypeObject.addressType = recordObject.addressType;
         }
         // If we are appending a delete make sure that everything else is coming from the most recent saved record.
         if(deleted)
         {
-          oPhoneTypeObject.phoneType = recordObject.phoneType;
-          oPhoneTypeObject.deleted = true;
+          oAddressTypeObject.addressType = recordObject.addressType;
+          oAddressTypeObject.deleted = true;
         }
         else
         {
-          oPhoneTypeObject.deleted = false;
+          oAddressTypeObject.deleted = false;
         }
 
 
@@ -923,10 +923,10 @@ oPhoneType._oPhoneType.put = function(data, callback)
           "historyId" : nextIdObject.nextId + 1,    
           "transactionId" : nextIdObject.nextId + 2,                 
           "rollback" : false,
-          "process" : "oPhoneType._oPhoneType.put",
+          "process" : "oAddressType._oAddressType.put",
           "comment" : "Changing a record",
           "who" : "No login yet.",    
-          "oPhoneType" : oPhoneTypeObject   
+          "oAddressType" : oAddressTypeObject   
         }
 
         // Calling the function which creates an entry into the database log file.
@@ -939,12 +939,12 @@ oPhoneType._oPhoneType.put = function(data, callback)
           {
             if (!err)  //The history file has been appended to successfully.
             {
-              // Calling the function which appends a record to the file oPhoneType.json
+              // Calling the function which appends a record to the file oAddressType.json
               _data.append
               (
-                '/ourSelf/oLookup/oPhoneType', 
-                'oPhoneType', 
-                oPhoneTypeObject, 
+                '/ourSelf/oLookup/oAddressType', 
+                'oAddressType', 
+                oAddressTypeObject, 
                 function(err)
                 {
                   if (!err)  //The file has been appended to successfully.
@@ -963,15 +963,15 @@ oPhoneType._oPhoneType.put = function(data, callback)
                         helpers.log // Log the error.
                         (
                           7,
-                          'eu91251x8tza0nfmzdh4' + '\n' +
-                          'Successful write to oPhoneType but unable to remove lock on database' + '\n' +
-                          'The following record was appended to oPhoneType:' + '\n' +                            
+                          '5w0e60vvk2vj0gejbwl6' + '\n' +
+                          'Successful write to oAddressType but unable to remove lock on database' + '\n' +
+                          'The following record was appended to oAddressType:' + '\n' +                            
                           JSON.stringify(logObject) + '\n' +   
                           'The following was the error message:' + '\n' +                                             
                           error + '\n'
                         ); // End of: helpers.log // Log the error.
 
-                        callback(500, {'Error' : 'Successful write to oPhoneType but unable to remove lock on database'});
+                        callback(500, {'Error' : 'Successful write to oAddressType but unable to remove lock on database'});
 
                       } // End of: else Good write but unable to remove lock on database.
 
@@ -980,26 +980,26 @@ oPhoneType._oPhoneType.put = function(data, callback)
                     // End of: Call to function which removes lock
 
                   }    // End of: if (!err)  //The file has been appended to successfully.
-                  else // There was an error appending to oPhoneType.
+                  else // There was an error appending to oAddressType.
                   {
                     helpers.log // Log the error.
                     (
                       5,
-                      'm86f77fsodt6inh4ngbq' + '\n' +
-                      'There was an error when appending to the oPhoneType file.' + '\n' +
-                      'The following record may or may not have been appended to oPhoneType:' + '\n' +                            
+                      'tr42mmyz7bbhcb1zg066' + '\n' +
+                      'There was an error when appending to the oAddressType file.' + '\n' +
+                      'The following record may or may not have been appended to oAddressType:' + '\n' +                            
                       JSON.stringify(logObject) + '\n' +
                       'Attempting to rollback the entry.' + '\n' +    
                       'The following was the error message:' + '\n' +                                             
                       err + '\n'
                     );
 
-                    // Assemble rollback record for the oPhoneType file which will negate previous entry if any.
+                    // Assemble rollback record for the oAddressType file which will negate previous entry if any.
                     // Behavior from meta.js at 8l4zwqs63qwmp81rjcpw  
-                    oPhoneTypeObject = 
+                    oAddressTypeObject = 
                     {
-                        "oPhoneTypeId" : recordObject.nextId,
-                        "phoneType" : recordObject.phoneType,
+                        "oAddressTypeId" : recordObject.nextId,
+                        "addressType" : recordObject.addressType,
                         "timeStamp" : recordObject.timeStamp,
                         "deleted" : recordObject.deleted
                     };                        
@@ -1010,10 +1010,10 @@ oPhoneType._oPhoneType.put = function(data, callback)
                       "historyId" : nextIdObject.nextId + 3,    
                       "transactionId" : nextIdObject.nextId + 2,                                
                       "rollback" : true,
-                      "process" : "oPhoneType._oPhoneType.put",
+                      "process" : "oAddressType._oAddressType.put",
                       "comment" : "Error during Put. Appending rollback",                        
                       "who" : "No login yet",    
-                      "oPhoneType" : oPhoneTypeObject   
+                      "oAddressType" : oAddressTypeObject   
                     }
 
                     // Start the rollback process.
@@ -1026,36 +1026,36 @@ oPhoneType._oPhoneType.put = function(data, callback)
                       {
                         if (!err) // The roll back entry in history was appended successfully.
                         {
-                          // Calling the function which appends a record to the file oPhoneType.json
+                          // Calling the function which appends a record to the file oAddressType.json
                           _data.append
                           (
-                            '/ourSelf/oLookup/oPhoneType', 
-                            'oPhoneType', 
-                            oPhoneTypeObject, 
+                            '/ourSelf/oLookup/oAddressType', 
+                            'oAddressType', 
+                            oAddressTypeObject, 
                             function(err)
                             {
-                              if (!err) // The rollback record for oPhoneType was appended successfully.
+                              if (!err) // The rollback record for oAddressType was appended successfully.
                               {
                                 helpers.log
                                 (
                                   5,
-                                  'g2lq90tukme8duy0ukr2' + '\n' +
-                                  'Rollback entry in the oPhoneType file was appended successfully' + '\n' +
+                                  'evf23uzmregkhw4agrb8' + '\n' +
+                                  'Rollback entry in the oAddressType file was appended successfully' + '\n' +
                                   'The following was the record we rolled back:' + '\n' +
                                   JSON.stringify(logObject) + '\n'                                   
                                 ); // End of: helpers.log(...)
                               }
-                              else // There was an error when rolling back record for oPhoneType.
+                              else // There was an error when rolling back record for oAddressType.
                               {
                                 helpers.log
                                 (
                                   7,
-                                  'bm1yc3olrw2rbyvs950y' + '\n' +
-                                  'There was an error appending a rollback entry in the oPhoneType file' + '\n' +
+                                  '92twsyi3hyarj7ilojyf' + '\n' +
+                                  'There was an error appending a rollback entry in the oAddressType file' + '\n' +
                                   'The following record may or may not have been rolled back:' + '\n' +
                                   JSON.stringify(logObject) + '\n' +   
-                                  'An error here does not necessarily mean the deleting append to oPhoneType did not happen.' + '\n' +                                        
-                                  'CHECK TO SEE IF history and oPhoneType ARE STILL IN SYNC' + '\n' + 
+                                  'An error here does not necessarily mean the deleting append to oAddressType did not happen.' + '\n' +                                        
+                                  'CHECK TO SEE IF history and oAddressType ARE STILL IN SYNC' + '\n' + 
                                   'The following is the error message:' + '\n' +                                                                     
                                   err  + '\n'
                                 ); // End of: helpers.log(...)
@@ -1070,10 +1070,10 @@ oPhoneType._oPhoneType.put = function(data, callback)
                           helpers.log
                           (
                             7,
-                            '9p6xslzyzyltq23tbx9w' + '\n' +
+                            '0jtb11xacekuso1176l7' + '\n' +
                             'There was an error appending a rollback entry in the history file' + '\n' +
-                            'A rollback entry may or may not have been written in the oPhoneType file' + '\n' +  
-                            'CHECK TO SEE IF history and oPhoneType ARE STILL IN SYNC' + '\n' +                                      
+                            'A rollback entry may or may not have been written in the oAddressType file' + '\n' +  
+                            'CHECK TO SEE IF history and oAddressType ARE STILL IN SYNC' + '\n' +                                      
                             'The following was the record we tried to roll back:' + '\n' +
                             JSON.stringify(logObject) + '\n' +        
                             'The following is the error message:' + '\n' +
@@ -1083,11 +1083,11 @@ oPhoneType._oPhoneType.put = function(data, callback)
                       } // End of: callback function(err){...}
                     ); // End of: _data.append(...)
 
-                    callback(500, {'Error' : 'Could not create the new oPhoneType.'});
+                    callback(500, {'Error' : 'Could not create the new oAddressType.'});
 
-                  } // End of: else // There was an error appending to oPhoneType.
+                  } // End of: else // There was an error appending to oAddressType.
                 } // End of: callback function
-                ); // End of: Calling the function which appends a record to the file oPhoneType.json 
+                ); // End of: Calling the function which appends a record to the file oAddressType.json 
 
             } //End of: The history file has been appended to successfully.
             else // There was an error appending to the history file.
@@ -1095,18 +1095,18 @@ oPhoneType._oPhoneType.put = function(data, callback)
               helpers.log
               (
                 7,
-                'haekjff35beqv9w065x5' + '\n' +
+                'hf0xlrclgqphiyja7pxl' + '\n' +
                 'There was an error appending to the history file' + '\n' +
                 'An error here does not necessarily mean the append to history did not happen.' + '\n' +  
-                'But an error at this point in the code surely means there was no append to oPhoneType' + '\n' +                                          
-                'CHECK TO SEE IF history and oPhoneType ARE STILL IN SYNC' + '\n' +                    
+                'But an error at this point in the code surely means there was no append to oAddressType' + '\n' +                                          
+                'CHECK TO SEE IF history and oAddressType ARE STILL IN SYNC' + '\n' +                    
                 'The following was the record we tried to append:' + '\n' +
                 JSON.stringify(logObject) + '\n' +                   
                 'The following is the error message:' + '\n' +                  
                 err  + '\n'
               );
 
-              callback(500, {'Error' : 'Could not create the new oPhoneType.'});
+              callback(500, {'Error' : 'Could not create the new oAddressType.'});
             }
           } // End of: callback function
         ); // End of: _data.append(dbHistory...)
@@ -1127,7 +1127,7 @@ oPhoneType._oPhoneType.put = function(data, callback)
             helpers.log // Log the error.
             (
               7,
-              'scoq0j3vzpe6et17kaoh' + '\n' + 
+              'hbza6rrsphkqvtkh432x' + '\n' + 
               'Pipeline error. The message was as follows' + '\n' +                                             
               pipelineError + '\n'                                                 
             ); // End of: helpers.log // Log the error.
@@ -1136,15 +1136,15 @@ oPhoneType._oPhoneType.put = function(data, callback)
       ); // End of: Pipeline
     }); //End of: helpers.getMostRecent(dataObject, function(errorFromGetMostRecent, payload)
   }); // End of: lib.nextId(function(err, nextIdObject)
-}; // End of: handlers._oPhoneType.put = function(...
-// End of: Define the oPhoneType put subhandler function
+}; // End of: handlers._oAddressType.put = function(...
+// End of: Define the oAddressType put subhandler function
 
 
 
 
-// Define the oPhoneType get subhandler function.
-// Streams the oPhoneType file or part of it back to the client.
-oPhoneType._oPhoneType.get = function(data, callback)
+// Define the oAddressType get subhandler function.
+// Streams the oAddressType file or part of it back to the client.
+oAddressType._oAddressType.get = function(data, callback)
 {
   let amountOfWhereClauses = 0; // We haven't found any yet.
   let amountOfOrderByClauses = 0; // We haven't found any yet.
@@ -1158,12 +1158,12 @@ oPhoneType._oPhoneType.get = function(data, callback)
 
     if (data.hasOwnProperty('queryString'))
     {
-      // In this case the queryString is coming from oPhoneTypeEdit page.
+      // In this case the queryString is coming from oAddressTypeEdit page.
       queryString = data.queryString
     }
     else
     {
-      // In this case the queryString is coming from the oPhoneTypeList page.
+      // In this case the queryString is coming from the oAddressTypeList page.
       // For some reason the string comes in as an array element in the object's 
       // key instead of it's value. That's why the Object.keys(...)[0] method.
       queryString = Object.keys(data.queryStringObject)[0];
@@ -1258,15 +1258,15 @@ oPhoneType._oPhoneType.get = function(data, callback)
 
 
   
-  // Create an empty map data structure which will be used to merge oPhoneType records that have the same unique fields.
+  // Create an empty map data structure which will be used to merge oAddressType records that have the same unique fields.
   // Chose map data structure over objects because maps are guaranteed to maintain the same order where as objects are not.
-  let oPhoneTypeMap = new Map();
+  let oAddressTypeMap = new Map();
   
-  // This function sets up a stream where each chunk of data is a complete line in the oPhoneType file.
+  // This function sets up a stream where each chunk of data is a complete line in the oAddressType file.
   let readInterface = readline.createInterface
   (
     { // specify the file to be read.
-      input: fs.createReadStream(_data.baseDir + '/ourSelf/oLookup/oPhoneType' + '/' + 'oPhoneType' + '.json'),
+      input: fs.createReadStream(_data.baseDir + '/ourSelf/oLookup/oAddressType' + '/' + 'oAddressType' + '.json'),
     }
   );
 
@@ -1275,18 +1275,18 @@ oPhoneType._oPhoneType.get = function(data, callback)
   // Look at each record in the file.
   readInterface.on('line', function(line) 
   {
-    // Convert the JSON string (a single line from the oPhoneType file) into lineValueObject.
+    // Convert the JSON string (a single line from the oAddressType file) into lineValueObject.
     // These objects will written back to a new file after deleting some un-needed key/value pairs.
     let lineValueObject = JSON.parse(line);
     let recordWasDeleted = false;    
 
     // Declare a variable to serve as a key in the map to manage the lineValueObject.
-    let oPhoneTypeId = lineValueObject.oPhoneTypeId;      
+    let oAddressTypeId = lineValueObject.oAddressTypeId;      
 
-    if(lineValueObject.deleted === true) // if the record in the file oPhoneType.json had the delete field set to true:
+    if(lineValueObject.deleted === true) // if the record in the file oAddressType.json had the delete field set to true:
     {
       // Remove this record from the map 
-      oPhoneTypeMap.delete(oPhoneTypeId);
+      oAddressTypeMap.delete(oAddressTypeId);
       recordWasDeleted = true;
     }
     else if(amountOfWhereClauses > 0) // else if the user created one or more filter expressions
@@ -1609,7 +1609,7 @@ oPhoneType._oPhoneType.get = function(data, callback)
           else // Else: there are no more ORWHERE filters that could save this record
           {
             // Finally remove this record from the map 
-            oPhoneTypeMap.delete(oPhoneTypeId);
+            oAddressTypeMap.delete(oAddressTypeId);
             recordWasDeleted = true;  
             shouldLoopAgain = false;  
             shouldDeleteThisRecord = false;  
@@ -1664,21 +1664,21 @@ oPhoneType._oPhoneType.get = function(data, callback)
       delete lineValueObject.deleted;            
 
       // Update this record in the map.
-      oPhoneTypeMap.set(oPhoneTypeId, lineValueObject);
+      oAddressTypeMap.set(oAddressTypeId, lineValueObject);
     }
 
   }); // End of: readInterface.on('line', function(line){...}
   // End of: Look at each record...
 
 
-  // This listener fires after we have looked through all the records in the oPhoneType file.
-  // The callback function defined here will stream the oPhoneType list back to the clients browser.
+  // This listener fires after we have looked through all the records in the oAddressType file.
+  // The callback function defined here will stream the oAddressType list back to the clients browser.
   readInterface.on('close', function() 
   {          
     // This readable stream will be used to write the result of the merge to a new file.
     const sourceStream = new Readable(); 
 
-    for (const [key, valueObject] of oPhoneTypeMap)
+    for (const [key, valueObject] of oAddressTypeMap)
     {
       // Convert the data object to a string.
       let stringData = JSON.stringify(valueObject);     
@@ -1694,13 +1694,13 @@ oPhoneType._oPhoneType.get = function(data, callback)
 
   }); // End of: readInterface.on('close', function(){...}   
 
-}; // End of: handlers._oPhoneType.get = function(data, callback){do stuff}
-// End of: Define the oPhoneType get subhandler function.  
+}; // End of: handlers._oAddressType.get = function(data, callback){do stuff}
+// End of: Define the oAddressType get subhandler function.  
 
 
 
 
 // Export the module
-module.exports = oPhoneType;
+module.exports = oAddressType;
 
 
