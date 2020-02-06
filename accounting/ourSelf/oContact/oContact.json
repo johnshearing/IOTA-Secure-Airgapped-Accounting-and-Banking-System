@@ -1,4 +1,1 @@
-{"oContactId":2665,"oContact":{"_oContact":{}},"timeStamp":1580439942205,"deleted":false}
-{"oContactId":2670,"oContact":{"_oContact":{}},"timeStamp":1580507454368,"deleted":false}
-{"oContactId":2675,"oContact":{"_oContact":{}},"timeStamp":1580509973900,"deleted":false}
-{"oContactId":2680,"oContact":{"_oContact":{}},"timeStamp":1580511268738,"deleted":false}
+{"oContactId":2725,"oContact":{"properties":{"firstName":"Santa","lastName":"Clause","email":"santa@gmail.com","phone":{"properties":{"phone1":{"properties":{"phoneType":"Office Phone","phone":"2223334455"}}}},"address":{"properties":{"address1":{"properties":{"addressType":"Office Address","street1":"123 Rudolph Way","street2":"1st Floor","city":"North Pole","state":"Arctic Circle","zip":"12345"}}}}}},"timeStamp":1581019032580}

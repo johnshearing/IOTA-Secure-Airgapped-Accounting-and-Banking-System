@@ -403,7 +403,7 @@ oContact._oContact.post = function(data, callback)
         helpers.log
         (
           5,
-          'opv42nbdpw1oi1527jiv' + '\n' +
+          'n9v6ftqfwp946erj2ami' + '\n' +
           'Unable to get the next gsuid.' + '\n' +
           'The following was the error' + '\n' +
           JSON.stringify(error) + '\n'                                   
@@ -421,41 +421,41 @@ oContact._oContact.post = function(data, callback)
       // Create the oContact object. 
       // This object will be appended to oContact.json.
       let oContactObject = {};
-      oContactObject.oContactId = nextIdObject.nextId;
+      oContactObject.oContactId = nextIdObject.nextId
 
-      oContactObject.oContact = {};
+      oContactObject.oContact = {}
       oContactObject.oContact.properties = {};
-      oContactObject.oContact.properties.firstName = oContact_properties_firstName;
-      oContactObject.oContact.properties.lastName = oContact_properties_lastName;
-      oContactObject.oContact.properties.email = oContact_properties_email;
+      oContactObject.oContact.properties.firstName = oContact_properties_firstName
+      oContactObject.oContact.properties.lastName = oContact_properties_lastName
+      // oContactObject.oContact.properties.fullName = oContact_properties_fullName,
+      oContactObject.oContact.properties.email = oContact_properties_email
 
       oContactObject.oContact.properties.phone = {};
       oContactObject.oContact.properties.phone.properties = {};
-
       oContactObject.oContact.properties.phone.properties.phone1 = {};
       oContactObject.oContact.properties.phone.properties.phone1.properties = {};
-      oContactObject.oContact.properties.phone.properties.phone1.properties.phoneType = oContact_properties_phone_properties_phone1_properties_phoneType;
-      oContactObject.oContact.properties.phone.properties.phone1.properties.phone = oContact_properties_phone_properties_phone1_properties_phone;
+      oContactObject.oContact.properties.phone.properties.phone1.properties.phoneType = oContact_properties_phone_properties_phone1_properties_phoneType
+      oContactObject.oContact.properties.phone.properties.phone1.properties.phone = oContact_properties_phone_properties_phone1_properties_phone      
 
       oContactObject.oContact.properties.address = {};
       oContactObject.oContact.properties.address.properties = {};
-
       oContactObject.oContact.properties.address.properties.address1 = {};
       oContactObject.oContact.properties.address.properties.address1.properties = {};
-      oContactObject.oContact.properties.address.properties.address1.properties.addressType = oContact_properties_address_properties_address1_properties_addressType;
-      oContactObject.oContact.properties.address.properties.address1.properties.street1 = oContact_properties_address_properties_address1_properties_street1;
-      oContactObject.oContact.properties.address.properties.address1.properties.street2 = oContact_properties_address_properties_address1_properties_street2;
-      oContactObject.oContact.properties.address.properties.address1.properties.city = oContact_properties_address_properties_address1_properties_city;
-      oContactObject.oContact.properties.address.properties.address1.properties.state = oContact_properties_address_properties_address1_properties_state;
-      oContactObject.oContact.properties.address.properties.address1.properties.zip = oContact_properties_address_properties_address1_properties_zip;
+      oContactObject.oContact.properties.address.properties.address1.properties.addressType = oContact_properties_address_properties_address1_properties_addressType
+      oContactObject.oContact.properties.address.properties.address1.properties.street1 = oContact_properties_address_properties_address1_properties_street1
+      oContactObject.oContact.properties.address.properties.address1.properties.street2 = oContact_properties_address_properties_address1_properties_street2
+      oContactObject.oContact.properties.address.properties.address1.properties.city = oContact_properties_address_properties_address1_properties_city
+      oContactObject.oContact.properties.address.properties.address1.properties.state = oContact_properties_address_properties_address1_properties_state
+      oContactObject.oContact.properties.address.properties.address1.properties.zip = oContact_properties_address_properties_address1_properties_zip
+
+      oContactObject.timeStamp = Date.now()
+      oContactObject.deleted = false
       
-      oContactObject.timeStamp = Date.now();
-      oContactdeleted = false;
 
       // Create the logObject.
       // This object will be written to history.json which maintains a history of 
       // all changes to all tables in the database.
-      var logObject =
+      let logObject =
       {
         "historyId" : nextIdObject.nextId + 1,                 
         "transactionId" : nextIdObject.nextId + 2,            
@@ -481,7 +481,7 @@ oContact._oContact.post = function(data, callback)
             helpers.log
             (
               7,
-              'xmn3gk7optt2prxp37md' + '\n' +
+              'vax0lq1u24w7pbxpvcwx' + '\n' +
               'There was an error appending to the history file' + '\n' +
               'An error here does not necessarily mean the append to history did not happen.' + '\n' +  
               'But an error at this point in the code surely means there was no append to oContact' + '\n' +                                          
@@ -525,7 +525,7 @@ oContact._oContact.post = function(data, callback)
                   helpers.log // Log the error.
                   (
                     7,
-                    'cgt6v43iiwc0lyselnj1' + '\n' +
+                    'rrxmoqt2s2vw0qhd6am3' + '\n' +
                     'Successful write to oContact but unable to remove lock on database' + '\n' +
                     'The following record was appended to the oContact file:' + '\n' +                            
                     JSON.stringify(logObject) + '\n' +   
@@ -547,7 +547,7 @@ oContact._oContact.post = function(data, callback)
               helpers.log // Log the error.
               (
                 5,
-                't78qxbutlw8ngkus5sxs' + '\n' +
+                'fm289ag515drtznrmjds' + '\n' +
                 'There was an error when appending to the oContact file.' + '\n' +
                 'The following record may or may not have been appended to the oContact file:' + '\n' +                            
                 JSON.stringify(logObject) + '\n' +
@@ -562,6 +562,7 @@ oContact._oContact.post = function(data, callback)
                 "oContactId" : nextIdObject.nextId,
                 "oContact_properties_firstName" : "oContact_properties_firstName",
                 "oContact_properties_lastName" : "oContact_properties_lastName",
+                "oContact_properties_fullName" : "oContact_properties_fullName",
                 "oContact_properties_email" : "oContact_properties_email",
                 "oContact_properties_phone_properties_phone1_properties_phoneType" : "oContact_properties_phone_properties_phone1_properties_phoneType",
                 "oContact_properties_phone_properties_phone1_properties_phone" : "oContact_properties_phone_properties_phone1_properties_phone",
@@ -610,7 +611,7 @@ oContact._oContact.post = function(data, callback)
                           helpers.log
                           (
                             5,
-                            'z1uf65s0w85qv260rdie' + '\n' +
+                            '0jyytafier9uwj638d2n' + '\n' +
                             'Rollback entry in the oContact file was appended successfully' + '\n' +
                             'The following was the record we rolled back:' + '\n' +
                             JSON.stringify(logObject) + '\n'                                   
@@ -621,7 +622,7 @@ oContact._oContact.post = function(data, callback)
                           helpers.log
                           (
                             7,
-                            'sg5a3b5rytx7fsh31080' + '\n' +
+                            '1l5cquk8pzdrplh4hcwd' + '\n' +
                             'There was an error appending a rollback entry in the oContact file' + '\n' +
                             'The following record may or may not have been rolled back:' + '\n' +
                             JSON.stringify(logObject) + '\n' +   
@@ -641,7 +642,7 @@ oContact._oContact.post = function(data, callback)
                     helpers.log
                     (
                       7,
-                      '4no9aj6gd5qzjlpc70an' + '\n' +
+                      '1ynip8vpq7lwfm7d1lfu' + '\n' +
                       'There was an error appending a rollback entry in the history file' + '\n' +
                       'A rollback entry may or may not have been written in the oContact file' + '\n' +  
                       'CHECK TO SEE IF history and oContact ARE STILL IN SYNC' + '\n' +                                      

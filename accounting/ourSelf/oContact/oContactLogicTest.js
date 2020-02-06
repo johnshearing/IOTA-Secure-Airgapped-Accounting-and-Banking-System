@@ -55,7 +55,7 @@ oContact.serveListPage = function(data, callback)
             helpers.log
             (            
               5,
-              '48fex9h08dnuh2c6mgq8' + '\n' +
+              'b55mf7oknxi36wzqui0q' + '\n' +
               'There was an error or the concatenated templates were not returned.' + '\n' +
               'This was the error:' + '\n' +
               JSON.stringify(errorAddUnivTemplates) + '\n'
@@ -71,7 +71,7 @@ oContact.serveListPage = function(data, callback)
         helpers.log
         (
           5,
-          '35pdyy682eqpistum424' + '\n' +
+          'ic6ojzwp5tlyi31gv1eq' + '\n' +
           'There was an error or no template was returned.' + '\n' +
           'This was the error:' + '\n' +
           JSON.stringify(errorGetTemplate) + '\n'
@@ -88,7 +88,7 @@ oContact.serveListPage = function(data, callback)
     helpers.log
     (
       5,
-      'aaznzwyl77nrhpejao7z' + '\n' +
+      '567hlik703s2etncx835' + '\n' +
       'Method not get. Only gets allowed.' + '\n'
     );
 
@@ -135,7 +135,7 @@ oContact.serveAddPage = function(data, callback)
             helpers.log
             (            
               5,
-              'pvirpq1kfekmlwjjgo4k' + '\n' +
+              '3d43i9gddk7plepxt9gg' + '\n' +
               'There was an error or the concatenated templates were not returned.' + '\n' +
               'This was the error:' + '\n' +
               JSON.stringify(errorAddUnivTemplates) + '\n'
@@ -151,7 +151,7 @@ oContact.serveAddPage = function(data, callback)
         helpers.log
         (
           5,
-          'bsaszxummunqrs1bt48z' + '\n' +
+          '7nun5i74npovij69zuoy' + '\n' +
           'There was an error or no template was returned.' + '\n' +
           'This was the error:' + '\n' +
           JSON.stringify(errorGetTemplate) + '\n'
@@ -168,7 +168,7 @@ oContact.serveAddPage = function(data, callback)
     helpers.log
     (
       5,
-      '04e2or5cgyj3ie7bqy06' + '\n' +
+      '8skcfkn6r7tjjcdpn6e6' + '\n' +
       'Method not get. Only gets allowed.' + '\n'
     );
 
@@ -215,7 +215,7 @@ oContact.serveEditPage = function(data, callback)
             helpers.log
             (            
               5,
-              'dpq4w5j2xtyci154qp33' + '\n' +
+              'f07pmx6ps57vbwrsjzxk' + '\n' +
               'There was an error or the concatenated templates were not returned.' + '\n' +
               'This was the error:' + '\n' +
               JSON.stringify(errorAddUnivTemplates) + '\n'
@@ -231,7 +231,7 @@ oContact.serveEditPage = function(data, callback)
         helpers.log
         (
           5,
-          'xsntfo97g652e3iksfmf' + '\n' +
+          'z9787c7upgw5zb39t23e' + '\n' +
           'There was an error or no template was returned.' + '\n' +
           'This was the error:' + '\n' +
           JSON.stringify(errorGetTemplate) + '\n'
@@ -248,7 +248,7 @@ oContact.serveEditPage = function(data, callback)
     helpers.log
     (
       5,
-      'iql1ohsax7rgysf1fpc6' + '\n' +
+      '66pic29h2wapvi9py97b' + '\n' +
       'Method not get. Only gets allowed.' + '\n'
     );
 
@@ -282,7 +282,7 @@ oContact.oContact = function(data, callback)
     helpers.log
     (
       5,
-      'k87j2aa5ox1fcglgkvrv' + '\n' +
+      'ayajtgh5ryw7n94znosv' + '\n' +
       'The method was not one of the acceptable methods' + '\n'
     ); 
 
@@ -386,147 +386,6 @@ oContact._oContact.post = function(data, callback)
   if(!oContact_properties_address_properties_address1_properties_zip || oContact_properties_address_properties_address1_properties_zip.trim().length === 0){return callback(400, {'Error' : 'No oContact_properties_address_properties_address1_properties_zip was entered'});}else{oContact_properties_address_properties_address1_properties_zip = oContact_properties_address_properties_address1_properties_zip.trim()}
 
 
-  // Enforcing uniqueness of the oContact_properties_fullName field.
-  // Will toggle this to false if we find the oContact_properties_fullName already exists in oContact.
-  // Behavior from meta.js at rmkfkaef7xo3gyvnvgm4
-  let oContact_properties_fullName_IsUnused = true;
-
-  // Using this to track the primary key of a record that we might encounter with the candidate oContact_properties_fullName.
-  // If we encounter this primary key again we will check to see if the oContact_properties_fullName has been changed.
-  // If it has then the candidate oContact_properties_fullName will be marked as available again.
-  let uniqueIdOfRecordHoldingCandidate_OContact_properties_fullName = false; 
-                        
-
-  // To ensure the oContact_properties_fullName is unique we will read every record in 
-  // oContact and compare with the oContact_properties_fullName provided.
-
-  // This function sets up a stream where each chunk of data is a complete line in the oContact file.
-  let readInterface = readline.createInterface
-  (
-    { // specify the file to be read.
-      input: fs.createReadStream(_data.baseDir + '/ourSelf/oContact' + '/' + 'oContact' + '.json')
-    }
-  );
-  
-  // Look at each record in the file and set a flag if the oContact_properties_fullName matches the oContact_properties_fullName provided by the user.
-  readInterface.on('line', function(line) 
-  {
-    // Convert the JSON string from oContact into an object.
-    lineObject = JSON.parse(line);
-
-    // Several different record sets with the supplied oContact_properties_fullName and the same oContactId 
-    // may exist already if the record has been changed or deleted prior to this operation.
-
-    // A modified record is simply a new record with the same oContactId as an existing record.
-    // The newest record is the valid record and the older record is history.  
-    // So position matters. These tables should never be sorted.
-    // These tables can be packed however to get rid of historical records.
-
-    // The transaction log also maintains the history and the current state of the entire database.
-    // So the transaction log can be used to check the integrity of the every table.
-    // No records in the transaction log should be removed.
-
-    // A deleted record in this system is simply an identical record appended with 
-    // the deleted field set to true. 
-    // So depending on how many times the oContact_properties_fullName has been added and deleted there may 
-    // be several sets of records in the oContact table currently 
-    // that have the same oContact_properties_fullName and the same oContactId.
-    // The table can be packed occasionally to get rid of these deleted record sets. 
-    // Deletes are handled as appends with the deleted field set to true because real 
-    // deletes tie up the table for a long time.
-
-    // In this table, the oContact_properties_fullName is a unique key as well as the oContactId.
-    // The oContactId also serves as the primary key.
-    // The difference is that the oContactId may never change whereas the oContact_properties_fullName
-    // may be changed to something different if a valid record for that oContact_properties_fullName
-    // does not already exist.    
-
-    // When adding a record we first make sure that the record does NOT already exist.
-    // There should be no record with the current oContact_properties_fullName or if there is then 
-    // the last record with this oContact_properties_fullName must have the deleted field set to true.
-
-    // When changing a record we:
-    // 1. Make sure that the record with this oContact_properties_fullName does indeed exist and...
-    // 2. that the last instance of a record with this oContact_properties_fullName is not deleted.
-  
-    // It is ok to add a new record with this same oContact_properties_fullName again when the last instance 
-    // of this record encountered in the stream has the deleted flag set to true. 
-    // In that case, the oContactId will be different but the oContact_properties_fullName will be the same.         
-
-    // As explained above, only the last matching record for a particular oContact_properties_fullName matters.
-    // It's like that old game "She loves me, She loves me not".
-
-    if (oContact_properties_fullName == lineObject.oContact_properties_fullName) // we found a matching entry
-    {
-      if (lineObject.deleted == false) // The record has not been deleted so it's a duplicate. Not unique.
-      {
-        oContact_properties_fullName_IsUnused = false; // This flag used in the on close event listener below. 
-
-        // If this record (record with this primary key) is encountered further down where it has been deleted 
-        // or where the oContact_properties_fullName has been changed with a put operation:
-        // Then the candidate oContact_properties_fullName will be available again as we continue searching through the records.
-        // We are already checking if this oContact_properties_fullName becomes available again by deletion.
-        // Now we need to check if the oContact_properties_fullName becomes available because the record with this primary 
-        // key gets changed with a new oContact_properties_fullName.
-        // That will make the candidate oContact_properties_fullName unique and available again.
-        // So record this global sequential unique id (the oContactId in this case).
-        // If we find the gsuid again, then check if the oContact_properties_fullName has changed.
-        // If it has been changed then:
-        // 1. Set the oContact_properties_fullName_IsUnused flag to true again
-        // 2. clear out the variable tracking the uniqueId of the record.
-        uniqueIdOfRecordHoldingCandidate_OContact_properties_fullName = lineObject.oContactId;
-      }
-      // The matching record we found has been deleted so it may as well not exist. The new record is still unique.
-      else 
-      {
-        oContact_properties_fullName_IsUnused = true;
-      } 
-    } // End of: if we found a matching entry
-
-    // If we have seen this primary key before and flagged the oContact_properties_fullName already taken 
-    // because it was identical to the oContact_properties_fullName we are trying to add and it had not been deleted:
-
-    // Ok, the current record is not holding the candidate oContact_properties_fullName but 
-    // maybe it was in the past and someone changed it.
-    // if the candidate oContact_properties_fullName is flagged unavailable and we are looking at the record that was flagged:
-    else if(oContact_properties_fullName_IsUnused === false && uniqueIdOfRecordHoldingCandidate_OContact_properties_fullName === lineObject.oContactId)
-    {
-      // Check if the oContact_properties_fullName is no longer holding the candidate oContact_properties_fullName.
-      // If it is not holding the candidate oContact_properties_fullName then flag the oContact_properties_fullName 
-      // available again and clear out the variable tracking this primary key.
-      oContact_properties_fullName_IsUnused = true;
-      uniqueIdOfRecordHoldingCandidate_OContact_properties_fullName = false;
-    }
-
-  }); // End of: readInterface.on('line', function(line){...}
-  // End of: Look at each record...
-
-
-
-
-  // This listener fires after we have discovered if the oContact_properties_fullName is 
-  // unique or not, and have then closed the readable stream from oContact.
-  // The callback function defined here will append the record if the oContact_properties_fullName 
-  // was found to be unique.
-  // Behavior from meta.js at aiwaoocd1uegzjbqeydk
-  readInterface.on('close', function() 
-  {
-    // If the oContact_properties_fullName already exists then exit this process without appending the record.
-    if (!oContact_properties_fullName_IsUnused) 
-    {      
-      helpers.log
-      (
-        5,
-        'n13560692cagvfuqxfq2' + '\n' +
-        'The oContact_properties_fullName : ' + oContact_properties_fullName + ' already exists' + '\n'                                  
-      ); // End of: helpers.log(...)
-
-      return callback(400, {'Error' : 'The oContact_properties_fullName already exists'});
-    }
-
-    // If we made it to this point then the candidate oContact_properties_fullName is unique so continue on with the append opperation.
-    // Behavior from meta.js at gwwelr17hmxvq4spdrcl    
-
     // Get the next global sequential unique Id and lock the database
     // Locking the database makes the system multiuser.
     // All writes to any table must first get a lock on gsuid.json
@@ -544,7 +403,7 @@ oContact._oContact.post = function(data, callback)
         helpers.log
         (
           5,
-          'zixapn0nfdvk4wuj958c' + '\n' +
+          'opv42nbdpw1oi1527jiv' + '\n' +
           'Unable to get the next gsuid.' + '\n' +
           'The following was the error' + '\n' +
           JSON.stringify(error) + '\n'                                   
@@ -561,24 +420,37 @@ oContact._oContact.post = function(data, callback)
 
       // Create the oContact object. 
       // This object will be appended to oContact.json.
-      var oContactObject = 
-      {
-          "oContactId" : nextIdObject.nextId,
-          "oContact.properties.firstName" : oContact.properties.firstName,
-          "oContact.properties.lastName" : oContact.properties.lastName,
-          "oContact.properties.fullName" : oContact.properties.fullName,
-          "oContact.properties.email" : oContact.properties.email,
-          "phone.properties.phone1.properties.phoneType" : phone.properties.phone1.properties.phoneType,
-          "phone.properties.phone1.properties.phone" : phone.properties.phone1.properties.phone,
-          "address.properties.address1.properties.addressType" : address.properties.address1.properties.addressType,
-          "address.properties.address1.properties.street1" : address.properties.address1.properties.street1,
-          "address.properties.address1.properties.street2" : address.properties.address1.properties.street2,
-          "address.properties.address1.properties.city" : address.properties.address1.properties.city,
-          "address.properties.address1.properties.state" : address.properties.address1.properties.state,
-          "address.properties.address1.properties.zip" : address.properties.address1.properties.zip,
-          "timeStamp" : Date.now(),
-          "deleted" : false
-      };
+      let oContactObject = {};
+      oContactObject.oContactId = nextIdObject.nextId;
+
+      oContactObject.oContact = {};
+      oContactObject.oContact.properties = {};
+      oContactObject.oContact.properties.firstName = oContact_properties_firstName;
+      oContactObject.oContact.properties.lastName = oContact_properties_lastName;
+      oContactObject.oContact.properties.email = oContact_properties_email;
+
+      oContactObject.oContact.properties.phone = {};
+      oContactObject.oContact.properties.phone.properties = {};
+
+      oContactObject.oContact.properties.phone.properties.phone1 = {};
+      oContactObject.oContact.properties.phone.properties.phone1.properties = {};
+      oContactObject.oContact.properties.phone.properties.phone1.properties.phoneType = oContact_properties_phone_properties_phone1_properties_phoneType;
+      oContactObject.oContact.properties.phone.properties.phone1.properties.phone = oContact_properties_phone_properties_phone1_properties_phone;
+
+      oContactObject.oContact.properties.address = {};
+      oContactObject.oContact.properties.address.properties = {};
+
+      oContactObject.oContact.properties.address.properties.address1 = {};
+      oContactObject.oContact.properties.address.properties.address1.properties = {};
+      oContactObject.oContact.properties.address.properties.address1.properties.addressType = oContact_properties_address_properties_address1_properties_addressType;
+      oContactObject.oContact.properties.address.properties.address1.properties.street1 = oContact_properties_address_properties_address1_properties_street1;
+      oContactObject.oContact.properties.address.properties.address1.properties.street2 = oContact_properties_address_properties_address1_properties_street2;
+      oContactObject.oContact.properties.address.properties.address1.properties.city = oContact_properties_address_properties_address1_properties_city;
+      oContactObject.oContact.properties.address.properties.address1.properties.state = oContact_properties_address_properties_address1_properties_state;
+      oContactObject.oContact.properties.address.properties.address1.properties.zip = oContact_properties_address_properties_address1_properties_zip;
+      
+      oContactObject.timeStamp = Date.now();
+      oContactdeleted = false;
 
       // Create the logObject.
       // This object will be written to history.json which maintains a history of 
@@ -609,7 +481,7 @@ oContact._oContact.post = function(data, callback)
             helpers.log
             (
               7,
-              'pq77q9gkadqeh9uacis2' + '\n' +
+              'xmn3gk7optt2prxp37md' + '\n' +
               'There was an error appending to the history file' + '\n' +
               'An error here does not necessarily mean the append to history did not happen.' + '\n' +  
               'But an error at this point in the code surely means there was no append to oContact' + '\n' +                                          
@@ -653,7 +525,7 @@ oContact._oContact.post = function(data, callback)
                   helpers.log // Log the error.
                   (
                     7,
-                    'tj7p9wdr2i1kh75a8i7r' + '\n' +
+                    'cgt6v43iiwc0lyselnj1' + '\n' +
                     'Successful write to oContact but unable to remove lock on database' + '\n' +
                     'The following record was appended to the oContact file:' + '\n' +                            
                     JSON.stringify(logObject) + '\n' +   
@@ -675,7 +547,7 @@ oContact._oContact.post = function(data, callback)
               helpers.log // Log the error.
               (
                 5,
-                '7uswglxql9uaa7conc8w' + '\n' +
+                't78qxbutlw8ngkus5sxs' + '\n' +
                 'There was an error when appending to the oContact file.' + '\n' +
                 'The following record may or may not have been appended to the oContact file:' + '\n' +                            
                 JSON.stringify(logObject) + '\n' +
@@ -688,18 +560,17 @@ oContact._oContact.post = function(data, callback)
               oContactObject = 
               {
                 "oContactId" : nextIdObject.nextId,
-                "oContact.properties.firstName" : "oContact.properties.firstName",
-                "oContact.properties.lastName" : "oContact.properties.lastName",
-                "oContact.properties.fullName" : "oContact.properties.fullName",
-                "oContact.properties.email" : "oContact.properties.email",
-                "phone.properties.phone1.properties.phoneType" : "phone.properties.phone1.properties.phoneType",
-                "phone.properties.phone1.properties.phone" : "phone.properties.phone1.properties.phone",
-                "address.properties.address1.properties.addressType" : "address.properties.address1.properties.addressType",
-                "address.properties.address1.properties.street1" : "address.properties.address1.properties.street1",
-                "address.properties.address1.properties.street2" : "address.properties.address1.properties.street2",
-                "address.properties.address1.properties.city" : "address.properties.address1.properties.city",
-                "address.properties.address1.properties.state" : "address.properties.address1.properties.state",
-                "address.properties.address1.properties.zip" : "address.properties.address1.properties.zip",
+                "oContact_properties_firstName" : "oContact_properties_firstName",
+                "oContact_properties_lastName" : "oContact_properties_lastName",
+                "oContact_properties_email" : "oContact_properties_email",
+                "oContact_properties_phone_properties_phone1_properties_phoneType" : "oContact_properties_phone_properties_phone1_properties_phoneType",
+                "oContact_properties_phone_properties_phone1_properties_phone" : "oContact_properties_phone_properties_phone1_properties_phone",
+                "oContact_properties_address_properties_address1_properties_addressType" : "oContact_properties_address_properties_address1_properties_addressType",
+                "oContact_properties_address_properties_address1_properties_street1" : "oContact_properties_address_properties_address1_properties_street1",
+                "oContact_properties_address_properties_address1_properties_street2" : "oContact_properties_address_properties_address1_properties_street2",
+                "oContact_properties_address_properties_address1_properties_city" : "oContact_properties_address_properties_address1_properties_city",
+                "oContact_properties_address_properties_address1_properties_state" : "oContact_properties_address_properties_address1_properties_state",
+                "oContact_properties_address_properties_address1_properties_zip" : "oContact_properties_address_properties_address1_properties_zip",
                 "timeStamp" : Date.now(),
                 "deleted" : true
               };                        
@@ -739,7 +610,7 @@ oContact._oContact.post = function(data, callback)
                           helpers.log
                           (
                             5,
-                            '29ddt6m7z2vzz4wbqmzg' + '\n' +
+                            'z1uf65s0w85qv260rdie' + '\n' +
                             'Rollback entry in the oContact file was appended successfully' + '\n' +
                             'The following was the record we rolled back:' + '\n' +
                             JSON.stringify(logObject) + '\n'                                   
@@ -750,7 +621,7 @@ oContact._oContact.post = function(data, callback)
                           helpers.log
                           (
                             7,
-                            '5fp06w1x1ulbo4tspyt6' + '\n' +
+                            'sg5a3b5rytx7fsh31080' + '\n' +
                             'There was an error appending a rollback entry in the oContact file' + '\n' +
                             'The following record may or may not have been rolled back:' + '\n' +
                             JSON.stringify(logObject) + '\n' +   
@@ -770,7 +641,7 @@ oContact._oContact.post = function(data, callback)
                     helpers.log
                     (
                       7,
-                      'awyyzf4q6j16jfgmj3sx' + '\n' +
+                      '4no9aj6gd5qzjlpc70an' + '\n' +
                       'There was an error appending a rollback entry in the history file' + '\n' +
                       'A rollback entry may or may not have been written in the oContact file' + '\n' +  
                       'CHECK TO SEE IF history and oContact ARE STILL IN SYNC' + '\n' +                                      
@@ -792,7 +663,6 @@ oContact._oContact.post = function(data, callback)
       ); // End of: _data.append(dbHistory...)
       // End of: Calling the function which creates an entry into history. 
     }); // End of: lib.nextId(function(err, nextIdObject)
-  }); // End of: readInterface.on('close', function(){...}
 }; // End of: oContact._oContact.post = function(...
 // End of: oContact - post subhandler
 
