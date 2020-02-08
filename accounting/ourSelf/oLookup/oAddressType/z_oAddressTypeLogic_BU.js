@@ -1,6 +1,6 @@
 
 /*
-/ Handlers for the "oContact" table.
+/ Handlers for the "oAddressType" table.
 / This program was built by meta.js starting at yx52pvsi0kn9p5o46hrq
 */
 
@@ -10,19 +10,19 @@ const fs = require('fs');
 const readline = require('readline');
 const { pipeline, Readable, Writable } = require('stream');
 const StringDecoder = require('string_decoder').StringDecoder;
-const _data = require('../../../lib/aData');
-const helpers = require('../../../lib/aHelpers');
+const _data = require('../../../../lib/aData');
+const helpers = require('../../../../lib/aHelpers');
 
 
 // Create a container for all the handlers
-let oContact = {};
+let oAddressType = {};
 
 
 
 
-// Define the handler function that serves up the HTML page for searching and listing oContact records.
+// Define the handler function that serves up the HTML page for searching and listing oAddressType records.
 // Behavior from meta.js at gg9ec14lo9rqjk7kxz7f
-oContact.serveListPage = function(data, callback)
+oAddressType.serveListPage = function(data, callback)
 {
   // Reject any request that isn't a get
   if(data.method == 'get')
@@ -30,15 +30,15 @@ oContact.serveListPage = function(data, callback)
     // The following values will be inserted into the webpage at the corresponding key locations in the templates.
     var templateData = 
     {
-      'head.title' : 'OContact List',
-      'body.class' : 'oContactList',     
-      'tableName':'oContact',
-      "tableLabel":"OContact",    
+      'head.title' : 'OAddressType List',
+      'body.class' : 'oAddressTypeList',     
+      'tableName':'oAddressType',
+      "tableLabel":"OAddressType",    
       'head.clientCode' : '', // The HTML header template must see something or an empty string.         
     };
 
     // Read in a template as a string
-    helpers.getTemplate('../accounting/ourSelf/oContact/oContactList', templateData, function(errorGetTemplate, str)
+    helpers.getTemplate('../accounting/ourSelf/oLookup/oAddressType/oAddressTypeList', templateData, function(errorGetTemplate, str)
     {
       if(!errorGetTemplate && str) // If there were no errors and a template was returned
       {
@@ -55,7 +55,7 @@ oContact.serveListPage = function(data, callback)
             helpers.log
             (            
               5,
-              'sxu21i8wlpuhidd8uio1' + '\n' +
+              'eoavi1pflh6vlqmsamgp' + '\n' +
               'There was an error or the concatenated templates were not returned.' + '\n' +
               'This was the error:' + '\n' +
               JSON.stringify(errorAddUnivTemplates) + '\n'
@@ -71,7 +71,7 @@ oContact.serveListPage = function(data, callback)
         helpers.log
         (
           5,
-          'bg1hfd5v7pibaico3gtv' + '\n' +
+          'mvmn0jthso3o4jyalqtl' + '\n' +
           'There was an error or no template was returned.' + '\n' +
           'This was the error:' + '\n' +
           JSON.stringify(errorGetTemplate) + '\n'
@@ -88,22 +88,22 @@ oContact.serveListPage = function(data, callback)
     helpers.log
     (
       5,
-      'oigkg59p3d9lk6ng4agc' + '\n' +
+      'tqyebr8f4zt2zg5cgjf9' + '\n' +
       'Method not get. Only gets allowed.' + '\n'
     );
 
     // Send back status code for Not Allowed, an undefined payload, and contentType of html,
     callback(405, undefined, 'html');
   } // End of: else method not a get  
-}; // End of: oContact.serveListPage = function(data, callback){...}
-// End of:// Define the handler function that serves up the HTML page for searching and listing oContact records.
+}; // End of: oAddressType.serveListPage = function(data, callback){...}
+// End of:// Define the handler function that serves up the HTML page for searching and listing oAddressType records.
 
 
 
 
-// Define the handler function that serves up the HTML page for creating new oContact records.
+// Define the handler function that serves up the HTML page for creating new oAddressType records.
 // Behavior from meta.js at xenz5eipqot8nym0eev3
-oContact.serveAddPage = function(data, callback)
+oAddressType.serveAddPage = function(data, callback)
 {
   // Reject any request that isn't a get
   if(data.method == 'get')
@@ -111,14 +111,14 @@ oContact.serveAddPage = function(data, callback)
     // The following values will be inserted into the webpage at the corresponding key locations in the templates.
     var templateData = 
     {
-      'head.title' : 'Create a New OContact',
-      'head.description' : 'For creating a new oContact record',
-      'body.class' : 'oContactAdd', 
+      'head.title' : 'Create a New OAddressType',
+      'head.description' : 'For creating a new oAddressType record',
+      'body.class' : 'oAddressTypeAdd', 
       'head.clientCode' : '', // The HTML header template must see something or an empty string.      
     };
 
     // Read in a template as a string
-    helpers.getTemplate('../accounting/ourSelf/oContact/oContactAdd', templateData, function(errorGetTemplate, str)
+    helpers.getTemplate('../accounting/ourSelf/oLookup/oAddressType/oAddressTypeAdd', templateData, function(errorGetTemplate, str)
     {
       if(!errorGetTemplate && str) // If there were no errors and a template was returned
       {
@@ -135,7 +135,7 @@ oContact.serveAddPage = function(data, callback)
             helpers.log
             (            
               5,
-              'ux4ljv95jgurgzzhjgcw' + '\n' +
+              'qpg52sscdnwpd6lra4x7' + '\n' +
               'There was an error or the concatenated templates were not returned.' + '\n' +
               'This was the error:' + '\n' +
               JSON.stringify(errorAddUnivTemplates) + '\n'
@@ -151,7 +151,7 @@ oContact.serveAddPage = function(data, callback)
         helpers.log
         (
           5,
-          'mnhh3nhr0ss2so3d2dio' + '\n' +
+          'ji9y52i3d7k9zni69zus' + '\n' +
           'There was an error or no template was returned.' + '\n' +
           'This was the error:' + '\n' +
           JSON.stringify(errorGetTemplate) + '\n'
@@ -168,22 +168,22 @@ oContact.serveAddPage = function(data, callback)
     helpers.log
     (
       5,
-      'ygvge4qdnugftuzupdu4' + '\n' +
+      'gahzg7vkljv02du2ft2u' + '\n' +
       'Method not get. Only gets allowed.' + '\n'
     );
 
     // Send back status code for Not Allowed, an undefined payload, and contentType of html,
     callback(405, undefined, 'html');
   } // End of: else method not a get  
-}; // End of: oContact.serveAddPage = function(data, callback){...}
-// End of: Define the handler function that serves up the HTML page for creating new oContact records.
+}; // End of: oAddressType.serveAddPage = function(data, callback){...}
+// End of: Define the handler function that serves up the HTML page for creating new oAddressType records.
 
 
 
 
-// Define the handler function that serves up the HTML page for editing oContact records.
+// Define the handler function that serves up the HTML page for editing oAddressType records.
 // Behavior from meta.js at 2a4tb24fsq3de66ti8c4
-oContact.serveEditPage = function(data, callback)
+oAddressType.serveEditPage = function(data, callback)
 {
   // Reject any request that isn't a get
   if(data.method == 'get')
@@ -191,14 +191,14 @@ oContact.serveEditPage = function(data, callback)
     // The following values will be inserted into the webpage at the corresponding key locations in the templates.
     var templateData = 
     {
-      'head.title' : 'Edit a OContact',     
-      'body.class' : 'oContactEdit',
-      'selected.oContactId' : data.queryStringObject.oContactId,  
+      'head.title' : 'Edit a OAddressType',     
+      'body.class' : 'oAddressTypeEdit',
+      'selected.oAddressTypeId' : data.queryStringObject.oAddressTypeId,  
       'head.clientCode' : '', // The HTML header template must see something or an empty string.     
     };
 
     // Read in a template as a string
-    helpers.getTemplate('../accounting/ourSelf/oContact/oContactEdit', templateData, function(errorGetTemplate, str)
+    helpers.getTemplate('../accounting/ourSelf/oLookup/oAddressType/oAddressTypeEdit', templateData, function(errorGetTemplate, str)
     {
       if(!errorGetTemplate && str) // If there were no errors and a template was returned
       {
@@ -215,7 +215,7 @@ oContact.serveEditPage = function(data, callback)
             helpers.log
             (            
               5,
-              'a9o3org6zg701joxx6va' + '\n' +
+              'dxcxgfrrrg1jo2idx0zd' + '\n' +
               'There was an error or the concatenated templates were not returned.' + '\n' +
               'This was the error:' + '\n' +
               JSON.stringify(errorAddUnivTemplates) + '\n'
@@ -231,7 +231,7 @@ oContact.serveEditPage = function(data, callback)
         helpers.log
         (
           5,
-          'p3zv4d30tcu0umth6tbl' + '\n' +
+          'x2rwssz0dhqzt79z436l' + '\n' +
           'There was an error or no template was returned.' + '\n' +
           'This was the error:' + '\n' +
           JSON.stringify(errorGetTemplate) + '\n'
@@ -248,24 +248,24 @@ oContact.serveEditPage = function(data, callback)
     helpers.log
     (
       5,
-      'zjqclojycxwpgm7sm4wf' + '\n' +
+      'lpw4h4sot265yncb4pcl' + '\n' +
       'Method not get. Only gets allowed.' + '\n'
     );
 
     // Send back status code for Not Allowed, an undefined payload, and contentType of html,
     callback(405, undefined, 'html');
   } // End of: else method not a get  
-}; // End of: oContact.serveEditPage = function(data, callback){...}
-// End of: Define the handler function that serves up the HTML page for editing oContact records.
+}; // End of: oAddressType.serveEditPage = function(data, callback){...}
+// End of: Define the handler function that serves up the HTML page for editing oAddressType records.
 
 
 
 
-// Router for oContact functions
-// Define a function which calls the requested get, post, put, or delete subhandler function for oContact 
+// Router for oAddressType functions
+// Define a function which calls the requested get, post, put, or delete subhandler function for oAddressType 
 // and passes to the chosen subhandler the client's request object and the callback function.
 // Behavior from meta.js at lw39etuyhw7wb82hv9ct
-oContact.oContact = function(data, callback)
+oAddressType.oAddressType = function(data, callback)
 {
   // Create an array of acceptable methods.
   var acceptableMethods = ['post', 'get', 'put'];
@@ -273,8 +273,8 @@ oContact.oContact = function(data, callback)
   // if the requested method is one of the acceptable methods:
   if (acceptableMethods.indexOf(data.method) > -1) 
   {
-    // then call the appropriate oContact subhandler.
-    oContact._oContact[data.method](data, callback);
+    // then call the appropriate oAddressType subhandler.
+    oAddressType._oAddressType[data.method](data, callback);
   } 
   // Otherwise the method was not one of the acceptable methods:
   else 
@@ -282,109 +282,179 @@ oContact.oContact = function(data, callback)
     helpers.log
     (
       5,
-      'f7wigod0qegq9drgbvjw' + '\n' +
+      'fcqnhgnqixf80ja0e44x' + '\n' +
       'The method was not one of the acceptable methods' + '\n'
     ); 
 
     // so send back status 405 (Not Allowed).
     callback(405);
   }
-}; // End of: oContact.oContact = function(data, callback){...}
-//End of: Router for oContact functions
+}; // End of: oAddressType.oAddressType = function(data, callback){...}
+//End of: Router for oAddressType functions
 
 
 
 
-// Create a subobject within the handlers object for the oContact submethods (post, get, put, and delete)
-oContact._oContact = {};
+// Create a subobject within the handlers object for the oAddressType submethods (post, get, put, and delete)
+oAddressType._oAddressType = {};
 
 
 
 
-// oContact - post subhandler
-// Define the oContact post subhandler function.
-// This function appends a record to the oContact file.
+// oAddressType - post subhandler
+// Define the oAddressType post subhandler function.
+// This function appends a record to the oAddressType file.
 // Behavior from meta.js at 1723qxikk1l3ru0vfrny 
-oContact._oContact.post = function(data, callback)
+oAddressType._oAddressType.post = function(data, callback)
 {
   // Field validation starts here.
-  // Get oContact_properties_firstName from payload
-  let oContact_properties_firstName = data.payload["oContact_properties_firstName"];
+  // Get addressType from payload
+  let addressType = data.payload.addressType;
 
   // passIfString&NotEmptyThenTrim Default behavior from meta.js at ulg5xxvzgr7efln9xur9
-  if(typeof(oContact_properties_firstName) != 'string'){return callback(400, {'Error' : 'oContact_properties_firstName must be of datatype string'});}
-  if(!oContact_properties_firstName || oContact_properties_firstName.trim().length === 0){return callback(400, {'Error' : 'No oContact_properties_firstName was entered'});}else{oContact_properties_firstName = oContact_properties_firstName.trim()}
+  if(typeof(addressType) != 'string'){return callback(400, {'Error' : 'addressType must be of datatype string'});}
+  if(!addressType || addressType.trim().length === 0){return callback(400, {'Error' : 'No addressType was entered'});}else{addressType = addressType.trim()}
 
-  // Get oContact_properties_lastName from payload
-  let oContact_properties_lastName = data.payload["oContact_properties_lastName"];
+  // Enforcing uniqueness of the addressType field.
+  // Will toggle this to false if we find the addressType already exists in oAddressType.
+  // Behavior from meta.js at rmkfkaef7xo3gyvnvgm4
+  let addressTypeIsUnused = true;
 
-  // passIfString&NotEmptyThenTrim Default behavior from meta.js at ulg5xxvzgr7efln9xur9
-  if(typeof(oContact_properties_lastName) != 'string'){return callback(400, {'Error' : 'oContact_properties_lastName must be of datatype string'});}
-  if(!oContact_properties_lastName || oContact_properties_lastName.trim().length === 0){return callback(400, {'Error' : 'No oContact_properties_lastName was entered'});}else{oContact_properties_lastName = oContact_properties_lastName.trim()}
+  // Using this to track the primary key of a record that we might encounter with the candidate addressType.
+  // If we encounter this primary key again we will check to see if the addressType has been changed.
+  // If it has then the candidate addressType will be marked as available again.
+  let uniqueIdOfRecordHoldingCandidateAddressType = false; 
+                        
 
-  // Get oContact_properties_email from payload
-  let oContact_properties_email = data.payload["oContact_properties_email"];
+  // To ensure the addressType is unique we will read every record in 
+  // oAddressType and compare with the addressType provided.
 
-  // passIfString&NotEmptyThenTrim Default behavior from meta.js at ulg5xxvzgr7efln9xur9
-  if(typeof(oContact_properties_email) != 'string'){return callback(400, {'Error' : 'oContact_properties_email must be of datatype string'});}
-  if(!oContact_properties_email || oContact_properties_email.trim().length === 0){return callback(400, {'Error' : 'No oContact_properties_email was entered'});}else{oContact_properties_email = oContact_properties_email.trim()}
+  // This function sets up a stream where each chunk of data is a complete line in the oAddressType file.
+  let readInterface = readline.createInterface
+  (
+    { // specify the file to be read.
+      input: fs.createReadStream(_data.baseDir + '/ourSelf/oLookup/oAddressType' + '/' + 'oAddressType' + '.json')
+    }
+  );
+  
+  // Look at each record in the file and set a flag if the addressType matches the addressType provided by the user.
+  readInterface.on('line', function(line) 
+  {
+    // Convert the JSON string from oAddressType into an object.
+    lineObject = JSON.parse(line);
 
-  // Get oContact_properties_phone_properties_phone1_properties_phoneType from payload
-  let oContact_properties_phone_properties_phone1_properties_phoneType = data.payload["oContact_properties_phone_properties_phone1_properties_phoneType"];
+    // Several different record sets with the supplied addressType and the same oAddressTypeId 
+    // may exist already if the record has been changed or deleted prior to this operation.
 
-  // passIfString&NotEmptyThenTrim Default behavior from meta.js at ulg5xxvzgr7efln9xur9
-  if(typeof(oContact_properties_phone_properties_phone1_properties_phoneType) != 'string'){return callback(400, {'Error' : 'oContact_properties_phone_properties_phone1_properties_phoneType must be of datatype string'});}
-  if(!oContact_properties_phone_properties_phone1_properties_phoneType || oContact_properties_phone_properties_phone1_properties_phoneType.trim().length === 0){return callback(400, {'Error' : 'No oContact_properties_phone_properties_phone1_properties_phoneType was entered'});}else{oContact_properties_phone_properties_phone1_properties_phoneType = oContact_properties_phone_properties_phone1_properties_phoneType.trim()}
+    // A modified record is simply a new record with the same oAddressTypeId as an existing record.
+    // The newest record is the valid record and the older record is history.  
+    // So position matters. These tables should never be sorted.
+    // These tables can be packed however to get rid of historical records.
 
-  // Get oContact_properties_phone_properties_phone1_properties_phone from payload
-  let oContact_properties_phone_properties_phone1_properties_phone = data.payload["oContact_properties_phone_properties_phone1_properties_phone"];
+    // The transaction log also maintains the history and the current state of the entire database.
+    // So the transaction log can be used to check the integrity of the every table.
+    // No records in the transaction log should be removed.
 
-  // passIfString&NotEmptyThenTrim Default behavior from meta.js at ulg5xxvzgr7efln9xur9
-  if(typeof(oContact_properties_phone_properties_phone1_properties_phone) != 'string'){return callback(400, {'Error' : 'oContact_properties_phone_properties_phone1_properties_phone must be of datatype string'});}
-  if(!oContact_properties_phone_properties_phone1_properties_phone || oContact_properties_phone_properties_phone1_properties_phone.trim().length === 0){return callback(400, {'Error' : 'No oContact_properties_phone_properties_phone1_properties_phone was entered'});}else{oContact_properties_phone_properties_phone1_properties_phone = oContact_properties_phone_properties_phone1_properties_phone.trim()}
+    // A deleted record in this system is simply an identical record appended with 
+    // the deleted field set to true. 
+    // So depending on how many times the addressType has been added and deleted there may 
+    // be several sets of records in the oAddressType table currently 
+    // that have the same addressType and the same oAddressTypeId.
+    // The table can be packed occasionally to get rid of these deleted record sets. 
+    // Deletes are handled as appends with the deleted field set to true because real 
+    // deletes tie up the table for a long time.
 
-  // Get oContact_properties_address_properties_address1_properties_addressType from payload
-  let oContact_properties_address_properties_address1_properties_addressType = data.payload["oContact_properties_address_properties_address1_properties_addressType"];
+    // In this table, the addressType is a unique key as well as the oAddressTypeId.
+    // The oAddressTypeId also serves as the primary key.
+    // The difference is that the oAddressTypeId may never change whereas the addressType
+    // may be changed to something different if a valid record for that addressType
+    // does not already exist.    
 
-  // passIfString&NotEmptyThenTrim Default behavior from meta.js at ulg5xxvzgr7efln9xur9
-  if(typeof(oContact_properties_address_properties_address1_properties_addressType) != 'string'){return callback(400, {'Error' : 'oContact_properties_address_properties_address1_properties_addressType must be of datatype string'});}
-  if(!oContact_properties_address_properties_address1_properties_addressType || oContact_properties_address_properties_address1_properties_addressType.trim().length === 0){return callback(400, {'Error' : 'No oContact_properties_address_properties_address1_properties_addressType was entered'});}else{oContact_properties_address_properties_address1_properties_addressType = oContact_properties_address_properties_address1_properties_addressType.trim()}
+    // When adding a record we first make sure that the record does NOT already exist.
+    // There should be no record with the current addressType or if there is then 
+    // the last record with this addressType must have the deleted field set to true.
 
-  // Get oContact_properties_address_properties_address1_properties_street1 from payload
-  let oContact_properties_address_properties_address1_properties_street1 = data.payload["oContact_properties_address_properties_address1_properties_street1"];
+    // When changing a record we:
+    // 1. Make sure that the record with this addressType does indeed exist and...
+    // 2. that the last instance of a record with this addressType is not deleted.
+  
+    // It is ok to add a new record with this same addressType again when the last instance 
+    // of this record encountered in the stream has the deleted flag set to true. 
+    // In that case, the oAddressTypeId will be different but the addressType will be the same.         
 
-  // passIfString&NotEmptyThenTrim Default behavior from meta.js at ulg5xxvzgr7efln9xur9
-  if(typeof(oContact_properties_address_properties_address1_properties_street1) != 'string'){return callback(400, {'Error' : 'oContact_properties_address_properties_address1_properties_street1 must be of datatype string'});}
-  if(!oContact_properties_address_properties_address1_properties_street1 || oContact_properties_address_properties_address1_properties_street1.trim().length === 0){return callback(400, {'Error' : 'No oContact_properties_address_properties_address1_properties_street1 was entered'});}else{oContact_properties_address_properties_address1_properties_street1 = oContact_properties_address_properties_address1_properties_street1.trim()}
+    // As explained above, only the last matching record for a particular addressType matters.
+    // It's like that old game "She loves me, She loves me not".
 
-  // Get oContact_properties_address_properties_address1_properties_street2 from payload
-  let oContact_properties_address_properties_address1_properties_street2 = data.payload["oContact_properties_address_properties_address1_properties_street2"];
+    if (addressType == lineObject.addressType) // we found a matching entry
+    {
+      if (lineObject.deleted == false) // The record has not been deleted so it's a duplicate. Not unique.
+      {
+        addressTypeIsUnused = false; // This flag used in the on close event listener below. 
 
-  // passIfString&NotEmptyThenTrim Default behavior from meta.js at ulg5xxvzgr7efln9xur9
-  if(typeof(oContact_properties_address_properties_address1_properties_street2) != 'string'){return callback(400, {'Error' : 'oContact_properties_address_properties_address1_properties_street2 must be of datatype string'});}
-  if(!oContact_properties_address_properties_address1_properties_street2 || oContact_properties_address_properties_address1_properties_street2.trim().length === 0){return callback(400, {'Error' : 'No oContact_properties_address_properties_address1_properties_street2 was entered'});}else{oContact_properties_address_properties_address1_properties_street2 = oContact_properties_address_properties_address1_properties_street2.trim()}
+        // If this record (record with this primary key) is encountered further down where it has been deleted 
+        // or where the addressType has been changed with a put operation:
+        // Then the candidate addressType will be available again as we continue searching through the records.
+        // We are already checking if this addressType becomes available again by deletion.
+        // Now we need to check if the addressType becomes available because the record with this primary 
+        // key gets changed with a new addressType.
+        // That will make the candidate addressType unique and available again.
+        // So record this global sequential unique id (the oAddressTypeId in this case).
+        // If we find the gsuid again, then check if the addressType has changed.
+        // If it has been changed then:
+        // 1. Set the addressTypeIsUnused flag to true again
+        // 2. clear out the variable tracking the uniqueId of the record.
+        uniqueIdOfRecordHoldingCandidateAddressType = lineObject.oAddressTypeId;
+      }
+      // The matching record we found has been deleted so it may as well not exist. The new record is still unique.
+      else 
+      {
+        addressTypeIsUnused = true;
+      } 
+    } // End of: if we found a matching entry
 
-  // Get oContact_properties_address_properties_address1_properties_city from payload
-  let oContact_properties_address_properties_address1_properties_city = data.payload["oContact_properties_address_properties_address1_properties_city"];
+    // If we have seen this primary key before and flagged the addressType already taken 
+    // because it was identical to the addressType we are trying to add and it had not been deleted:
 
-  // passIfString&NotEmptyThenTrim Default behavior from meta.js at ulg5xxvzgr7efln9xur9
-  if(typeof(oContact_properties_address_properties_address1_properties_city) != 'string'){return callback(400, {'Error' : 'oContact_properties_address_properties_address1_properties_city must be of datatype string'});}
-  if(!oContact_properties_address_properties_address1_properties_city || oContact_properties_address_properties_address1_properties_city.trim().length === 0){return callback(400, {'Error' : 'No oContact_properties_address_properties_address1_properties_city was entered'});}else{oContact_properties_address_properties_address1_properties_city = oContact_properties_address_properties_address1_properties_city.trim()}
+    // Ok, the current record is not holding the candidate addressType but 
+    // maybe it was in the past and someone changed it.
+    // if the candidate addressType is flagged unavailable and we are looking at the record that was flagged:
+    else if(addressTypeIsUnused === false && uniqueIdOfRecordHoldingCandidateAddressType === lineObject.oAddressTypeId)
+    {
+      // Check if the addressType is no longer holding the candidate addressType.
+      // If it is not holding the candidate addressType then flag the addressType 
+      // available again and clear out the variable tracking this primary key.
+      addressTypeIsUnused = true;
+      uniqueIdOfRecordHoldingCandidateAddressType = false;
+    }
 
-  // Get oContact_properties_address_properties_address1_properties_state from payload
-  let oContact_properties_address_properties_address1_properties_state = data.payload["oContact_properties_address_properties_address1_properties_state"];
+  }); // End of: readInterface.on('line', function(line){...}
+  // End of: Look at each record...
 
-  // passIfString&NotEmptyThenTrim Default behavior from meta.js at ulg5xxvzgr7efln9xur9
-  if(typeof(oContact_properties_address_properties_address1_properties_state) != 'string'){return callback(400, {'Error' : 'oContact_properties_address_properties_address1_properties_state must be of datatype string'});}
-  if(!oContact_properties_address_properties_address1_properties_state || oContact_properties_address_properties_address1_properties_state.trim().length === 0){return callback(400, {'Error' : 'No oContact_properties_address_properties_address1_properties_state was entered'});}else{oContact_properties_address_properties_address1_properties_state = oContact_properties_address_properties_address1_properties_state.trim()}
 
-  // Get oContact_properties_address_properties_address1_properties_zip from payload
-  let oContact_properties_address_properties_address1_properties_zip = data.payload["oContact_properties_address_properties_address1_properties_zip"];
 
-  // passIfString&NotEmptyThenTrim Default behavior from meta.js at ulg5xxvzgr7efln9xur9
-  if(typeof(oContact_properties_address_properties_address1_properties_zip) != 'string'){return callback(400, {'Error' : 'oContact_properties_address_properties_address1_properties_zip must be of datatype string'});}
-  if(!oContact_properties_address_properties_address1_properties_zip || oContact_properties_address_properties_address1_properties_zip.trim().length === 0){return callback(400, {'Error' : 'No oContact_properties_address_properties_address1_properties_zip was entered'});}else{oContact_properties_address_properties_address1_properties_zip = oContact_properties_address_properties_address1_properties_zip.trim()}
 
+  // This listener fires after we have discovered if the addressType is 
+  // unique or not, and have then closed the readable stream from oAddressType.
+  // The callback function defined here will append the record if the addressType 
+  // was found to be unique.
+  // Behavior from meta.js at aiwaoocd1uegzjbqeydk
+  readInterface.on('close', function() 
+  {
+    // If the addressType already exists then exit this process without appending the record.
+    if (!addressTypeIsUnused) 
+    {      
+      helpers.log
+      (
+        5,
+        'jfjiv5s1ruvithxmsu3y' + '\n' +
+        'The addressType : ' + addressType + ' already exists' + '\n'                                  
+      ); // End of: helpers.log(...)
+
+      return callback(400, {'Error' : 'The addressType already exists'});
+    }
+
+    // If we made it to this point then the candidate addressType is unique so continue on with the append opperation.
+    // Behavior from meta.js at gwwelr17hmxvq4spdrcl    
 
     // Get the next global sequential unique Id and lock the database
     // Locking the database makes the system multiuser.
@@ -403,7 +473,7 @@ oContact._oContact.post = function(data, callback)
         helpers.log
         (
           5,
-          'n9v6ftqfwp946erj2ami' + '\n' +
+          's25vv1c10v8k4y72qj0x' + '\n' +
           'Unable to get the next gsuid.' + '\n' +
           'The following was the error' + '\n' +
           JSON.stringify(error) + '\n'                                   
@@ -418,52 +488,28 @@ oContact._oContact.post = function(data, callback)
 
 
 
-      // Create the oContact object. 
-      // This object will be appended to oContact.json.
-      let oContactObject = {};
-      oContactObject.oContactId = nextIdObject.nextId
-
-      oContactObject.oContact = {}
-      oContactObject.oContact.properties = {};
-      oContactObject.oContact.properties.firstName = oContact_properties_firstName
-      oContactObject.oContact.properties.lastName = oContact_properties_lastName
-      // oContactObject.oContact.properties.fullName = oContact_properties_fullName,
-      oContactObject.oContact.properties.email = oContact_properties_email
-
-      oContactObject.oContact.properties.phone = {};
-      oContactObject.oContact.properties.phone.properties = {};
-      oContactObject.oContact.properties.phone.properties.phone1 = {};
-      oContactObject.oContact.properties.phone.properties.phone1.properties = {};
-      oContactObject.oContact.properties.phone.properties.phone1.properties.phoneType = oContact_properties_phone_properties_phone1_properties_phoneType
-      oContactObject.oContact.properties.phone.properties.phone1.properties.phone = oContact_properties_phone_properties_phone1_properties_phone      
-
-      oContactObject.oContact.properties.address = {};
-      oContactObject.oContact.properties.address.properties = {};
-      oContactObject.oContact.properties.address.properties.address1 = {};
-      oContactObject.oContact.properties.address.properties.address1.properties = {};
-      oContactObject.oContact.properties.address.properties.address1.properties.addressType = oContact_properties_address_properties_address1_properties_addressType
-      oContactObject.oContact.properties.address.properties.address1.properties.street1 = oContact_properties_address_properties_address1_properties_street1
-      oContactObject.oContact.properties.address.properties.address1.properties.street2 = oContact_properties_address_properties_address1_properties_street2
-      oContactObject.oContact.properties.address.properties.address1.properties.city = oContact_properties_address_properties_address1_properties_city
-      oContactObject.oContact.properties.address.properties.address1.properties.state = oContact_properties_address_properties_address1_properties_state
-      oContactObject.oContact.properties.address.properties.address1.properties.zip = oContact_properties_address_properties_address1_properties_zip
-
-      oContactObject.timeStamp = Date.now()
-      oContactObject.deleted = false
-      
+      // Create the oAddressType object. 
+      // This object will be appended to oAddressType.json.
+      var oAddressTypeObject = 
+      {
+          "oAddressTypeId" : nextIdObject.nextId,
+          "addressType" : addressType,
+          "timeStamp" : Date.now(),
+          "deleted" : false
+      };
 
       // Create the logObject.
       // This object will be written to history.json which maintains a history of 
       // all changes to all tables in the database.
-      let logObject =
+      var logObject =
       {
         "historyId" : nextIdObject.nextId + 1,                 
         "transactionId" : nextIdObject.nextId + 2,            
         "rollback" : false,
-        "process" : "oContact._oContact.post",
+        "process" : "oAddressType._oAddressType.post",
         "comment" : "Post new record",
         "who" : "No login yet",    
-        "oContact" : oContactObject   
+        "oAddressType" : oAddressTypeObject   
       }
 
       // Calling the function which creates an entry into the database log file.
@@ -481,18 +527,18 @@ oContact._oContact.post = function(data, callback)
             helpers.log
             (
               7,
-              'vax0lq1u24w7pbxpvcwx' + '\n' +
+              'wtlp6t4r21z2bvm3wbsm' + '\n' +
               'There was an error appending to the history file' + '\n' +
               'An error here does not necessarily mean the append to history did not happen.' + '\n' +  
-              'But an error at this point in the code surely means there was no append to oContact' + '\n' +                                          
-              'CHECK TO SEE IF history and oContact ARE STILL IN SYNC' + '\n' +                    
+              'But an error at this point in the code surely means there was no append to oAddressType' + '\n' +                                          
+              'CHECK TO SEE IF history and oAddressType ARE STILL IN SYNC' + '\n' +                    
               'The following was the record we tried to append:' + '\n' +
               JSON.stringify(logObject) + '\n' +                   
               'The following is the error message:' + '\n' +                  
               err  + '\n'
             );
 
-            return callback(500, {'Error' : 'Could not create a new oContact record.'});
+            return callback(500, {'Error' : 'Could not create a new oAddressType record.'});
           }
 
 
@@ -501,12 +547,12 @@ oContact._oContact.post = function(data, callback)
 
 
 
-          // Calling the function which appends a record to the file oContact.json
+          // Calling the function which appends a record to the file oAddressType.json
           _data.append
           (
-          '/ourSelf/oContact', 
-          'oContact', 
-          oContactObject, 
+          '/ourSelf/oLookup/oAddressType', 
+          'oAddressType', 
+          oAddressTypeObject, 
           function(err)
           {
             if (!err)  // The file has been appended to successfully.
@@ -525,15 +571,15 @@ oContact._oContact.post = function(data, callback)
                   helpers.log // Log the error.
                   (
                     7,
-                    'rrxmoqt2s2vw0qhd6am3' + '\n' +
-                    'Successful write to oContact but unable to remove lock on database' + '\n' +
-                    'The following record was appended to the oContact file:' + '\n' +                            
+                    '7mg2wxptoni66fph7lyf' + '\n' +
+                    'Successful write to oAddressType but unable to remove lock on database' + '\n' +
+                    'The following record was appended to the oAddressType file:' + '\n' +                            
                     JSON.stringify(logObject) + '\n' +   
                     'The following was the error message:' + '\n' +                                             
                     error + '\n'
                   ); // End of: helpers.log. Log the error.
 
-                  return callback(500, {'Error' : 'Successful write to oContact but unable to remove lock on database'});
+                  return callback(500, {'Error' : 'Successful write to oAddressType but unable to remove lock on database'});
 
                 } // End of: else Good write but unable to remove lock on database.
 
@@ -542,36 +588,25 @@ oContact._oContact.post = function(data, callback)
               // End of: Call to function which removes lock
 
             }    // End of: if (!err)  //The file has been appended to successfully.
-            else // There was an error appending to oContact.
+            else // There was an error appending to oAddressType.
             {
               helpers.log // Log the error.
               (
                 5,
-                'fm289ag515drtznrmjds' + '\n' +
-                'There was an error when appending to the oContact file.' + '\n' +
-                'The following record may or may not have been appended to the oContact file:' + '\n' +                            
+                'efcdeo5e14mwoxffjuo9' + '\n' +
+                'There was an error when appending to the oAddressType file.' + '\n' +
+                'The following record may or may not have been appended to the oAddressType file:' + '\n' +                            
                 JSON.stringify(logObject) + '\n' +
                 'Attempting to rollback the entry.' + '\n' +    
                 'The following was the error message:' + '\n' +                                             
                 err + '\n'            
               );
 
-              // Assemble rollback record for the oContact file which will negate previous entry if any.  
-              oContactObject = 
+              // Assemble rollback record for the oAddressType file which will negate previous entry if any.  
+              oAddressTypeObject = 
               {
-                "oContactId" : nextIdObject.nextId,
-                "oContact_properties_firstName" : "oContact_properties_firstName",
-                "oContact_properties_lastName" : "oContact_properties_lastName",
-                "oContact_properties_fullName" : "oContact_properties_fullName",
-                "oContact_properties_email" : "oContact_properties_email",
-                "oContact_properties_phone_properties_phone1_properties_phoneType" : "oContact_properties_phone_properties_phone1_properties_phoneType",
-                "oContact_properties_phone_properties_phone1_properties_phone" : "oContact_properties_phone_properties_phone1_properties_phone",
-                "oContact_properties_address_properties_address1_properties_addressType" : "oContact_properties_address_properties_address1_properties_addressType",
-                "oContact_properties_address_properties_address1_properties_street1" : "oContact_properties_address_properties_address1_properties_street1",
-                "oContact_properties_address_properties_address1_properties_street2" : "oContact_properties_address_properties_address1_properties_street2",
-                "oContact_properties_address_properties_address1_properties_city" : "oContact_properties_address_properties_address1_properties_city",
-                "oContact_properties_address_properties_address1_properties_state" : "oContact_properties_address_properties_address1_properties_state",
-                "oContact_properties_address_properties_address1_properties_zip" : "oContact_properties_address_properties_address1_properties_zip",
+                "oAddressTypeId" : nextIdObject.nextId,
+                "addressType" : "addressType",
                 "timeStamp" : Date.now(),
                 "deleted" : true
               };                        
@@ -582,10 +617,10 @@ oContact._oContact.post = function(data, callback)
                 "historyId" : nextIdObject.nextId + 3,                             
                 "transactionId" : nextIdObject.nextId + 2,                        
                 "rollback" : true,
-                "process" : "oContact._oContact.post",
+                "process" : "oAddressType._oAddressType.post",
                 "comment" : "Error posting. Appending a delete.",                        
                 "who" : "Function needed",    
-                "oContact" : oContactObject   
+                "oAddressType" : oAddressTypeObject   
               }
 
               // Start the rollback process.
@@ -598,36 +633,36 @@ oContact._oContact.post = function(data, callback)
                 {
                   if (!err) // The roll back entry in history was appended successfully.
                   {
-                    // Calling the function which appends a record to the file oContact.json
+                    // Calling the function which appends a record to the file oAddressType.json
                     _data.append
                     (
-                      '/ourSelf/oContact', 
-                      'oContact', 
-                      oContactObject, 
+                      '/ourSelf/oLookup/oAddressType', 
+                      'oAddressType', 
+                      oAddressTypeObject, 
                       function(err)
                       {
-                        if (!err) // The rollback record for oContact was appended successfully.
+                        if (!err) // The rollback record for oAddressType was appended successfully.
                         {
                           helpers.log
                           (
                             5,
-                            '0jyytafier9uwj638d2n' + '\n' +
-                            'Rollback entry in the oContact file was appended successfully' + '\n' +
+                            'fv082cuvknwwtnge5me2' + '\n' +
+                            'Rollback entry in the oAddressType file was appended successfully' + '\n' +
                             'The following was the record we rolled back:' + '\n' +
                             JSON.stringify(logObject) + '\n'                                   
                           ); // End of: helpers.log(...)
                         }
-                        else // There was an error when rolling back record for oContact.
+                        else // There was an error when rolling back record for oAddressType.
                         {
                           helpers.log
                           (
                             7,
-                            '1l5cquk8pzdrplh4hcwd' + '\n' +
-                            'There was an error appending a rollback entry in the oContact file' + '\n' +
+                            'de3st342keqzs9s7bicp' + '\n' +
+                            'There was an error appending a rollback entry in the oAddressType file' + '\n' +
                             'The following record may or may not have been rolled back:' + '\n' +
                             JSON.stringify(logObject) + '\n' +   
-                            'An error here does not necessarily mean the deleting append to oContact did not happen.' + '\n' +                                        
-                            'CHECK TO SEE IF history and oContact ARE STILL IN SYNC' + '\n' + 
+                            'An error here does not necessarily mean the deleting append to oAddressType did not happen.' + '\n' +                                        
+                            'CHECK TO SEE IF history and oAddressType ARE STILL IN SYNC' + '\n' + 
                             'The following is the error message:' + '\n' +                                                                     
                             err  + '\n'
                           ); // End of: helpers.log(...)
@@ -642,10 +677,10 @@ oContact._oContact.post = function(data, callback)
                     helpers.log
                     (
                       7,
-                      '1ynip8vpq7lwfm7d1lfu' + '\n' +
+                      '45mf68what4243a9c6fe' + '\n' +
                       'There was an error appending a rollback entry in the history file' + '\n' +
-                      'A rollback entry may or may not have been written in the oContact file' + '\n' +  
-                      'CHECK TO SEE IF history and oContact ARE STILL IN SYNC' + '\n' +                                      
+                      'A rollback entry may or may not have been written in the oAddressType file' + '\n' +  
+                      'CHECK TO SEE IF history and oAddressType ARE STILL IN SYNC' + '\n' +                                      
                       'The following was the record we tried to roll back:' + '\n' +
                       JSON.stringify(logObject) + '\n' +        
                       'The following is the error message:' + '\n' +
@@ -655,38 +690,67 @@ oContact._oContact.post = function(data, callback)
                 } // End of: callback function(err){...}
               ); // End of: _data.append(...) Append a rollback entry in history.
 
-              return callback(500, {'Error' : 'Could not create the new oContact.'});              
+              return callback(500, {'Error' : 'Could not create the new oAddressType.'});              
 
-            } // End of: else // There was an error appending to oContact.
+            } // End of: else // There was an error appending to oAddressType.
           } // End of: callback function
-          ); // End of: Calling the function which appends a record to the file oContact.json 
+          ); // End of: Calling the function which appends a record to the file oAddressType.json 
         } // End of: callback function
       ); // End of: _data.append(dbHistory...)
       // End of: Calling the function which creates an entry into history. 
     }); // End of: lib.nextId(function(err, nextIdObject)
-}; // End of: oContact._oContact.post = function(...
-// End of: oContact - post subhandler
+  }); // End of: readInterface.on('close', function(){...}
+}; // End of: oAddressType._oAddressType.post = function(...
+// End of: oAddressType - post subhandler
 
 
 
 
-// oContact - put handler
-// Define the oContact put subhandler function 
+// oAddressType - put handler
+// Define the oAddressType put subhandler function 
 // This function updates a record.
-// Required data: oContactId
+// Required data: oAddressTypeId
 // Note: At least one other field must be specified.
 // Behavior from meta.js at mzimrkdf1we1bjw96zgp
-oContact._oContact.put = function(data, callback)
+oAddressType._oAddressType.put = function(data, callback)
 {
   // Field validation starts here.
-  // Get oContactId from payload
-  let oContactId = data.payload.oContactId;
+  // Get oAddressTypeId from payload
+  let oAddressTypeId = data.payload.oAddressTypeId;
 
   // PrimaryKey validation. 
   // Default behavior from meta.js at o65yzg6ddze2fkvcgw5s
-  // If oContactId is a valid string then convert it to a number.  
-  if (typeof(oContactId) === 'string'){oContactId = parseInt(oContactId, 10);}else{return callback(400, {'Error' : 'oContactId must be a of string type'});}
+  // If oAddressTypeId is a valid string then convert it to a number.  
+  if (typeof(oAddressTypeId) === 'string'){oAddressTypeId = parseInt(oAddressTypeId, 10);}else{return callback(400, {'Error' : 'oAddressTypeId must be a of string type'});}
 
+  // Get addressType from payload
+  let addressType = data.payload.addressType;
+
+  // passIfString&NotEmptyThenTrim
+  // Default behavior from meta.js at yif5xwczgr4ebln99trd 
+  // If addressType is of string type and is not empty 
+  if (typeof(addressType) === 'string' && addressType.trim().length > 0) 
+  { 
+    // The user entered something in the edit form
+    addressType = addressType.trim()
+  } 
+  // Else, the user may have entered some other datatype like a number or 
+  // perhaps nothing at all if using the Delete form. 
+  else 
+  { 
+    // If the user entered nothing: 
+    if(addressType === undefined) 
+    { 
+      // Then user is likely trying to delete a record.
+      // So change the value to false and continue processing.
+      addressType = false 
+    } 
+    else // The user entered something invalid so reject the edit. 
+    { 
+      return callback(400, {'Error' : 'Not a valid addressType'}); 
+    } 
+  }
+  
   // Check if the deleted flag is of type string and that the value is exactly equal to "true".
   // That would mean the user wants to delete the record. Otherwise the users does not want to delete the record.
   // Set deleted to boolean true if validation is passed otherwise set it to false.
@@ -695,12 +759,12 @@ oContact._oContact.put = function(data, callback)
 
   
   //if all fields fail validation then exit this process without writing changes to the table.
-  if(!deleted)
+  if(!addressType && !deleted)
   {
     helpers.log
     (
       5,
-      '38bicmtcb37usx0pmh29' + '\n' +
+      'mf1fg3pr7tfg13cl5rjy' + '\n' +
       'No fields pass the validation process' + '\n'                                  
     ); // End of: helpers.log(...)
 
@@ -723,7 +787,7 @@ oContact._oContact.put = function(data, callback)
       helpers.log
       (
         5,
-        'up3k9na8yuzct9z4uvcv' + '\n' +
+        '9f064sryczr2f7gv9839' + '\n' +
         'Unable to get the next gsuid.' + '\n' +
         'The following was the error' + '\n' +
         JSON.stringify(error) + '\n'                                   
@@ -737,25 +801,27 @@ oContact._oContact.put = function(data, callback)
     // the next unique id number for this record. So continue with the process.
 
 
-    // Create the oContact object. 
-    // This object will be appended to oContact.json.
+    // Create the oAddressType object. 
+    // This object will be appended to oAddressType.json.
     // Add in all fields even if no data is available yet. 
     // This is to establish the order in which the fields will be writen to the table. 
     // Behavior from 3bd1sa5ve4aqrfspunrt in meta.js         
-    let oContactObject = 
+    let oAddressTypeObject = 
     {
-      "oContactId" : oContactId,
-      "oContact" : oContact,
+      "oAddressTypeId" : oAddressTypeId,
+      "addressType" : addressType,
       "timeStamp" : Date.now(),
       "deleted" : ""
     };
 
     dataObject = {};
-    dataObject.path = '/ourSelf/oContact/oContact.json';
-    dataObject.queryString = 'WHERE:;oContactId:;MatchesExactly:;' + oContactId + ':;';
+    dataObject.uniqueField01Name = "addressType";
+    dataObject.uniqueField01Value = oAddressTypeObject.addressType;
+    dataObject.path = '/ourSelf/oLookup/oAddressType/oAddressType.json';
+    dataObject.queryString = 'WHERE:;oAddressTypeId:;MatchesExactly:;' + oAddressTypeId + ':;';
 
-    // This function returns the most recent record for this oContactId after checking that 
-    // data for unique fields is indeed unique and that the a record with the supplied oContactId exists to modify.
+    // This function returns the most recent record for this oAddressTypeId after checking that 
+    // data for unique fields is indeed unique and that the a record with the supplied oAddressTypeId exists to modify.
     // Behavior from meta.js at 6pmnh29cub4p4g2fmb04
     helpers.getMostRecent(dataObject, function(errorFromGetMostRecent, payload)
     {
@@ -774,7 +840,7 @@ oContact._oContact.put = function(data, callback)
               helpers.log // Log the error.
               (
                 7,
-                '2ljiuhl4kg9ibdo4hvl4' + '\n' + 
+                'vvd74oi0p9zab2byu62r' + '\n' + 
                 'The following was the error message from getMostRecent:' + '\n' +                                             
                 errorFromGetMostRecent + '\n'                                                 
               ); // End of: helpers.log // Log the error.
@@ -789,7 +855,7 @@ oContact._oContact.put = function(data, callback)
               helpers.log // Log the error.
               (
                 7,
-                'mz1820fwys6mmk4umjue' + '\n' +
+                '76gb0zhsr0y69k61tkbi' + '\n' +
                 'The following was the error message from getMostRecent:' + '\n' +                                             
                 errorFromGetMostRecent + '\n'  +
                 'Also unable to remove lock on database.' + '\n' + 
@@ -826,15 +892,25 @@ oContact._oContact.put = function(data, callback)
         let recordObject = JSON.parse(stringContainer);
 
 
+        // Preprocessing for addressType
+        if(addressType) // If the user supplied data for addressType
+        {
+          // No preprocessing was specifed for addressType. Use it as was supplied by the user.
+        }
+        else // If the user did not supply data for addressType
+        {
+          // Save addressType from the most recent record.
+          oAddressTypeObject.addressType = recordObject.addressType;
+        }
         // If we are appending a delete make sure that everything else is coming from the most recent saved record.
         if(deleted)
         {
-          oContactObject.oContact = recordObject.oContact;
-          oContactObject.deleted = true;
+          oAddressTypeObject.addressType = recordObject.addressType;
+          oAddressTypeObject.deleted = true;
         }
         else
         {
-          oContactObject.deleted = false;
+          oAddressTypeObject.deleted = false;
         }
 
 
@@ -847,10 +923,10 @@ oContact._oContact.put = function(data, callback)
           "historyId" : nextIdObject.nextId + 1,    
           "transactionId" : nextIdObject.nextId + 2,                 
           "rollback" : false,
-          "process" : "oContact._oContact.put",
+          "process" : "oAddressType._oAddressType.put",
           "comment" : "Changing a record",
           "who" : "No login yet.",    
-          "oContact" : oContactObject   
+          "oAddressType" : oAddressTypeObject   
         }
 
         // Calling the function which creates an entry into the database log file.
@@ -863,12 +939,12 @@ oContact._oContact.put = function(data, callback)
           {
             if (!err)  //The history file has been appended to successfully.
             {
-              // Calling the function which appends a record to the file oContact.json
+              // Calling the function which appends a record to the file oAddressType.json
               _data.append
               (
-                '/ourSelf/oContact', 
-                'oContact', 
-                oContactObject, 
+                '/ourSelf/oLookup/oAddressType', 
+                'oAddressType', 
+                oAddressTypeObject, 
                 function(err)
                 {
                   if (!err)  //The file has been appended to successfully.
@@ -887,15 +963,15 @@ oContact._oContact.put = function(data, callback)
                         helpers.log // Log the error.
                         (
                           7,
-                          '8tdc0q97ep32indwy5u8' + '\n' +
-                          'Successful write to oContact but unable to remove lock on database' + '\n' +
-                          'The following record was appended to oContact:' + '\n' +                            
+                          '5w0e60vvk2vj0gejbwl6' + '\n' +
+                          'Successful write to oAddressType but unable to remove lock on database' + '\n' +
+                          'The following record was appended to oAddressType:' + '\n' +                            
                           JSON.stringify(logObject) + '\n' +   
                           'The following was the error message:' + '\n' +                                             
                           error + '\n'
                         ); // End of: helpers.log // Log the error.
 
-                        callback(500, {'Error' : 'Successful write to oContact but unable to remove lock on database'});
+                        callback(500, {'Error' : 'Successful write to oAddressType but unable to remove lock on database'});
 
                       } // End of: else Good write but unable to remove lock on database.
 
@@ -904,26 +980,26 @@ oContact._oContact.put = function(data, callback)
                     // End of: Call to function which removes lock
 
                   }    // End of: if (!err)  //The file has been appended to successfully.
-                  else // There was an error appending to oContact.
+                  else // There was an error appending to oAddressType.
                   {
                     helpers.log // Log the error.
                     (
                       5,
-                      'wg1mr7nw3am4u5vustp0' + '\n' +
-                      'There was an error when appending to the oContact file.' + '\n' +
-                      'The following record may or may not have been appended to oContact:' + '\n' +                            
+                      'tr42mmyz7bbhcb1zg066' + '\n' +
+                      'There was an error when appending to the oAddressType file.' + '\n' +
+                      'The following record may or may not have been appended to oAddressType:' + '\n' +                            
                       JSON.stringify(logObject) + '\n' +
                       'Attempting to rollback the entry.' + '\n' +    
                       'The following was the error message:' + '\n' +                                             
                       err + '\n'
                     );
 
-                    // Assemble rollback record for the oContact file which will negate previous entry if any.
+                    // Assemble rollback record for the oAddressType file which will negate previous entry if any.
                     // Behavior from meta.js at 8l4zwqs63qwmp81rjcpw  
-                    oContactObject = 
+                    oAddressTypeObject = 
                     {
-                        "oContactId" : recordObject.nextId,
-                        "oContact" : recordObject.oContact,
+                        "oAddressTypeId" : recordObject.nextId,
+                        "addressType" : recordObject.addressType,
                         "timeStamp" : recordObject.timeStamp,
                         "deleted" : recordObject.deleted
                     };                        
@@ -934,10 +1010,10 @@ oContact._oContact.put = function(data, callback)
                       "historyId" : nextIdObject.nextId + 3,    
                       "transactionId" : nextIdObject.nextId + 2,                                
                       "rollback" : true,
-                      "process" : "oContact._oContact.put",
+                      "process" : "oAddressType._oAddressType.put",
                       "comment" : "Error during Put. Appending rollback",                        
                       "who" : "No login yet",    
-                      "oContact" : oContactObject   
+                      "oAddressType" : oAddressTypeObject   
                     }
 
                     // Start the rollback process.
@@ -950,36 +1026,36 @@ oContact._oContact.put = function(data, callback)
                       {
                         if (!err) // The roll back entry in history was appended successfully.
                         {
-                          // Calling the function which appends a record to the file oContact.json
+                          // Calling the function which appends a record to the file oAddressType.json
                           _data.append
                           (
-                            '/ourSelf/oContact', 
-                            'oContact', 
-                            oContactObject, 
+                            '/ourSelf/oLookup/oAddressType', 
+                            'oAddressType', 
+                            oAddressTypeObject, 
                             function(err)
                             {
-                              if (!err) // The rollback record for oContact was appended successfully.
+                              if (!err) // The rollback record for oAddressType was appended successfully.
                               {
                                 helpers.log
                                 (
                                   5,
-                                  'uz123r3n2qmmrh2qyive' + '\n' +
-                                  'Rollback entry in the oContact file was appended successfully' + '\n' +
+                                  'evf23uzmregkhw4agrb8' + '\n' +
+                                  'Rollback entry in the oAddressType file was appended successfully' + '\n' +
                                   'The following was the record we rolled back:' + '\n' +
                                   JSON.stringify(logObject) + '\n'                                   
                                 ); // End of: helpers.log(...)
                               }
-                              else // There was an error when rolling back record for oContact.
+                              else // There was an error when rolling back record for oAddressType.
                               {
                                 helpers.log
                                 (
                                   7,
-                                  'bspvk04kau8i201680b6' + '\n' +
-                                  'There was an error appending a rollback entry in the oContact file' + '\n' +
+                                  '92twsyi3hyarj7ilojyf' + '\n' +
+                                  'There was an error appending a rollback entry in the oAddressType file' + '\n' +
                                   'The following record may or may not have been rolled back:' + '\n' +
                                   JSON.stringify(logObject) + '\n' +   
-                                  'An error here does not necessarily mean the deleting append to oContact did not happen.' + '\n' +                                        
-                                  'CHECK TO SEE IF history and oContact ARE STILL IN SYNC' + '\n' + 
+                                  'An error here does not necessarily mean the deleting append to oAddressType did not happen.' + '\n' +                                        
+                                  'CHECK TO SEE IF history and oAddressType ARE STILL IN SYNC' + '\n' + 
                                   'The following is the error message:' + '\n' +                                                                     
                                   err  + '\n'
                                 ); // End of: helpers.log(...)
@@ -994,10 +1070,10 @@ oContact._oContact.put = function(data, callback)
                           helpers.log
                           (
                             7,
-                            '1218gsclrnmkawy92074' + '\n' +
+                            '0jtb11xacekuso1176l7' + '\n' +
                             'There was an error appending a rollback entry in the history file' + '\n' +
-                            'A rollback entry may or may not have been written in the oContact file' + '\n' +  
-                            'CHECK TO SEE IF history and oContact ARE STILL IN SYNC' + '\n' +                                      
+                            'A rollback entry may or may not have been written in the oAddressType file' + '\n' +  
+                            'CHECK TO SEE IF history and oAddressType ARE STILL IN SYNC' + '\n' +                                      
                             'The following was the record we tried to roll back:' + '\n' +
                             JSON.stringify(logObject) + '\n' +        
                             'The following is the error message:' + '\n' +
@@ -1007,11 +1083,11 @@ oContact._oContact.put = function(data, callback)
                       } // End of: callback function(err){...}
                     ); // End of: _data.append(...)
 
-                    callback(500, {'Error' : 'Could not create the new oContact.'});
+                    callback(500, {'Error' : 'Could not create the new oAddressType.'});
 
-                  } // End of: else // There was an error appending to oContact.
+                  } // End of: else // There was an error appending to oAddressType.
                 } // End of: callback function
-                ); // End of: Calling the function which appends a record to the file oContact.json 
+                ); // End of: Calling the function which appends a record to the file oAddressType.json 
 
             } //End of: The history file has been appended to successfully.
             else // There was an error appending to the history file.
@@ -1019,18 +1095,18 @@ oContact._oContact.put = function(data, callback)
               helpers.log
               (
                 7,
-                'x8yt2zcu5pn4is5n4ewk' + '\n' +
+                'hf0xlrclgqphiyja7pxl' + '\n' +
                 'There was an error appending to the history file' + '\n' +
                 'An error here does not necessarily mean the append to history did not happen.' + '\n' +  
-                'But an error at this point in the code surely means there was no append to oContact' + '\n' +                                          
-                'CHECK TO SEE IF history and oContact ARE STILL IN SYNC' + '\n' +                    
+                'But an error at this point in the code surely means there was no append to oAddressType' + '\n' +                                          
+                'CHECK TO SEE IF history and oAddressType ARE STILL IN SYNC' + '\n' +                    
                 'The following was the record we tried to append:' + '\n' +
                 JSON.stringify(logObject) + '\n' +                   
                 'The following is the error message:' + '\n' +                  
                 err  + '\n'
               );
 
-              callback(500, {'Error' : 'Could not create the new oContact.'});
+              callback(500, {'Error' : 'Could not create the new oAddressType.'});
             }
           } // End of: callback function
         ); // End of: _data.append(dbHistory...)
@@ -1051,7 +1127,7 @@ oContact._oContact.put = function(data, callback)
             helpers.log // Log the error.
             (
               7,
-              'wgsaatfgp81cjbdxt82d' + '\n' + 
+              'hbza6rrsphkqvtkh432x' + '\n' + 
               'Pipeline error. The message was as follows' + '\n' +                                             
               pipelineError + '\n'                                                 
             ); // End of: helpers.log // Log the error.
@@ -1060,15 +1136,15 @@ oContact._oContact.put = function(data, callback)
       ); // End of: Pipeline
     }); //End of: helpers.getMostRecent(dataObject, function(errorFromGetMostRecent, payload)
   }); // End of: lib.nextId(function(err, nextIdObject)
-}; // End of: handlers._oContact.put = function(...
-// End of: Define the oContact put subhandler function
+}; // End of: handlers._oAddressType.put = function(...
+// End of: Define the oAddressType put subhandler function
 
 
 
 
-// Define the oContact get subhandler function.
-// Streams the oContact file or part of it back to the client.
-oContact._oContact.get = function(data, callback)
+// Define the oAddressType get subhandler function.
+// Streams the oAddressType file or part of it back to the client.
+oAddressType._oAddressType.get = function(data, callback)
 {
   let amountOfWhereClauses = 0; // We haven't found any yet.
   let amountOfOrderByClauses = 0; // We haven't found any yet.
@@ -1082,12 +1158,12 @@ oContact._oContact.get = function(data, callback)
 
     if (data.hasOwnProperty('queryString'))
     {
-      // In this case the queryString is coming from oContactEdit page.
+      // In this case the queryString is coming from oAddressTypeEdit page.
       queryString = data.queryString
     }
     else
     {
-      // In this case the queryString is coming from the oContactList page.
+      // In this case the queryString is coming from the oAddressTypeList page.
       // For some reason the string comes in as an array element in the object's 
       // key instead of it's value. That's why the Object.keys(...)[0] method.
       queryString = Object.keys(data.queryStringObject)[0];
@@ -1182,15 +1258,15 @@ oContact._oContact.get = function(data, callback)
 
 
   
-  // Create an empty map data structure which will be used to merge oContact records that have the same unique fields.
+  // Create an empty map data structure which will be used to merge oAddressType records that have the same unique fields.
   // Chose map data structure over objects because maps are guaranteed to maintain the same order where as objects are not.
-  let oContactMap = new Map();
+  let oAddressTypeMap = new Map();
   
-  // This function sets up a stream where each chunk of data is a complete line in the oContact file.
+  // This function sets up a stream where each chunk of data is a complete line in the oAddressType file.
   let readInterface = readline.createInterface
   (
     { // specify the file to be read.
-      input: fs.createReadStream(_data.baseDir + '/ourSelf/oContact' + '/' + 'oContact' + '.json'),
+      input: fs.createReadStream(_data.baseDir + '/ourSelf/oLookup/oAddressType' + '/' + 'oAddressType' + '.json'),
     }
   );
 
@@ -1199,18 +1275,18 @@ oContact._oContact.get = function(data, callback)
   // Look at each record in the file.
   readInterface.on('line', function(line) 
   {
-    // Convert the JSON string (a single line from the oContact file) into lineValueObject.
+    // Convert the JSON string (a single line from the oAddressType file) into lineValueObject.
     // These objects will written back to a new file after deleting some un-needed key/value pairs.
     let lineValueObject = JSON.parse(line);
     let recordWasDeleted = false;    
 
     // Declare a variable to serve as a key in the map to manage the lineValueObject.
-    let oContactId = lineValueObject.oContactId;      
+    let oAddressTypeId = lineValueObject.oAddressTypeId;      
 
-    if(lineValueObject.deleted === true) // if the record in the file oContact.json had the delete field set to true:
+    if(lineValueObject.deleted === true) // if the record in the file oAddressType.json had the delete field set to true:
     {
       // Remove this record from the map 
-      oContactMap.delete(oContactId);
+      oAddressTypeMap.delete(oAddressTypeId);
       recordWasDeleted = true;
     }
     else if(amountOfWhereClauses > 0) // else if the user created one or more filter expressions
@@ -1533,7 +1609,7 @@ oContact._oContact.get = function(data, callback)
           else // Else: there are no more ORWHERE filters that could save this record
           {
             // Finally remove this record from the map 
-            oContactMap.delete(oContactId);
+            oAddressTypeMap.delete(oAddressTypeId);
             recordWasDeleted = true;  
             shouldLoopAgain = false;  
             shouldDeleteThisRecord = false;  
@@ -1588,21 +1664,21 @@ oContact._oContact.get = function(data, callback)
       delete lineValueObject.deleted;            
 
       // Update this record in the map.
-      oContactMap.set(oContactId, lineValueObject);
+      oAddressTypeMap.set(oAddressTypeId, lineValueObject);
     }
 
   }); // End of: readInterface.on('line', function(line){...}
   // End of: Look at each record...
 
 
-  // This listener fires after we have looked through all the records in the oContact file.
-  // The callback function defined here will stream the oContact list back to the clients browser.
+  // This listener fires after we have looked through all the records in the oAddressType file.
+  // The callback function defined here will stream the oAddressType list back to the clients browser.
   readInterface.on('close', function() 
   {          
     // This readable stream will be used to write the result of the merge to a new file.
     const sourceStream = new Readable(); 
 
-    for (const [key, valueObject] of oContactMap)
+    for (const [key, valueObject] of oAddressTypeMap)
     {
       // Convert the data object to a string.
       let stringData = JSON.stringify(valueObject);     
@@ -1618,13 +1694,13 @@ oContact._oContact.get = function(data, callback)
 
   }); // End of: readInterface.on('close', function(){...}   
 
-}; // End of: handlers._oContact.get = function(data, callback){do stuff}
-// End of: Define the oContact get subhandler function.  
+}; // End of: handlers._oAddressType.get = function(data, callback){do stuff}
+// End of: Define the oAddressType get subhandler function.  
 
 
 
 
 // Export the module
-module.exports = oContact;
+module.exports = oAddressType;
 
 

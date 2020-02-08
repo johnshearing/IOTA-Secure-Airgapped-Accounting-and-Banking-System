@@ -55,7 +55,7 @@ oContact.serveListPage = function(data, callback)
             helpers.log
             (            
               5,
-              'b55mf7oknxi36wzqui0q' + '\n' +
+              'ghydvuzund2qsnlg7zit' + '\n' +
               'There was an error or the concatenated templates were not returned.' + '\n' +
               'This was the error:' + '\n' +
               JSON.stringify(errorAddUnivTemplates) + '\n'
@@ -71,7 +71,7 @@ oContact.serveListPage = function(data, callback)
         helpers.log
         (
           5,
-          'ic6ojzwp5tlyi31gv1eq' + '\n' +
+          'aw08fqvmeng603a78tlj' + '\n' +
           'There was an error or no template was returned.' + '\n' +
           'This was the error:' + '\n' +
           JSON.stringify(errorGetTemplate) + '\n'
@@ -88,7 +88,7 @@ oContact.serveListPage = function(data, callback)
     helpers.log
     (
       5,
-      '567hlik703s2etncx835' + '\n' +
+      'syl2kgvu14og3xnw1n5d' + '\n' +
       'Method not get. Only gets allowed.' + '\n'
     );
 
@@ -135,7 +135,7 @@ oContact.serveAddPage = function(data, callback)
             helpers.log
             (            
               5,
-              '3d43i9gddk7plepxt9gg' + '\n' +
+              '4ztyos6qaxh175hgvdzm' + '\n' +
               'There was an error or the concatenated templates were not returned.' + '\n' +
               'This was the error:' + '\n' +
               JSON.stringify(errorAddUnivTemplates) + '\n'
@@ -151,7 +151,7 @@ oContact.serveAddPage = function(data, callback)
         helpers.log
         (
           5,
-          '7nun5i74npovij69zuoy' + '\n' +
+          'w61hnd74yeh1xdlqs395' + '\n' +
           'There was an error or no template was returned.' + '\n' +
           'This was the error:' + '\n' +
           JSON.stringify(errorGetTemplate) + '\n'
@@ -168,7 +168,7 @@ oContact.serveAddPage = function(data, callback)
     helpers.log
     (
       5,
-      '8skcfkn6r7tjjcdpn6e6' + '\n' +
+      'f28v5kwsquetr431axg2' + '\n' +
       'Method not get. Only gets allowed.' + '\n'
     );
 
@@ -215,7 +215,7 @@ oContact.serveEditPage = function(data, callback)
             helpers.log
             (            
               5,
-              'f07pmx6ps57vbwrsjzxk' + '\n' +
+              'jpt8lcvyqvnze1l7dii3' + '\n' +
               'There was an error or the concatenated templates were not returned.' + '\n' +
               'This was the error:' + '\n' +
               JSON.stringify(errorAddUnivTemplates) + '\n'
@@ -231,7 +231,7 @@ oContact.serveEditPage = function(data, callback)
         helpers.log
         (
           5,
-          'z9787c7upgw5zb39t23e' + '\n' +
+          'tc10ukwc0w9u9akkuwyv' + '\n' +
           'There was an error or no template was returned.' + '\n' +
           'This was the error:' + '\n' +
           JSON.stringify(errorGetTemplate) + '\n'
@@ -248,7 +248,7 @@ oContact.serveEditPage = function(data, callback)
     helpers.log
     (
       5,
-      '66pic29h2wapvi9py97b' + '\n' +
+      'h4w1j4jg7i4phlx7ltla' + '\n' +
       'Method not get. Only gets allowed.' + '\n'
     );
 
@@ -282,7 +282,7 @@ oContact.oContact = function(data, callback)
     helpers.log
     (
       5,
-      'ayajtgh5ryw7n94znosv' + '\n' +
+      'hibbnhul57tk0dpxjesm' + '\n' +
       'The method was not one of the acceptable methods' + '\n'
     ); 
 
@@ -325,9 +325,15 @@ oContact._oContact.post = function(data, callback)
   // Get oContact_properties_email from payload
   let oContact_properties_email = data.payload["oContact_properties_email"];
 
-  // passIfString&NotEmptyThenTrim Default behavior from meta.js at ulg5xxvzgr7efln9xur9
+  // passIfString Default behavior from meta.js at qif5xwvzgr7efln9xtr8
   if(typeof(oContact_properties_email) != 'string'){return callback(400, {'Error' : 'oContact_properties_email must be of datatype string'});}
+
+  // passIfNotEmpty Default behavior from meta.js at eojwivwlhxkm1b837n2o
   if(!oContact_properties_email || oContact_properties_email.trim().length === 0){return callback(400, {'Error' : 'No oContact_properties_email was entered'});}else{oContact_properties_email = oContact_properties_email.trim()}
+
+  // passIfHasAmpersand
+  // Behavior from data dictionary at uet9z3uuzgy5hmytmsxf 
+  if(oContact_properties_email.indexOf("@") === -1){return callback(400, {'Error' : 'Not a valid email'});}
 
   // Get oContact_properties_phone_properties_phone1_properties_phoneType from payload
   let oContact_properties_phone_properties_phone1_properties_phoneType = data.payload["oContact_properties_phone_properties_phone1_properties_phoneType"];
@@ -386,6 +392,147 @@ oContact._oContact.post = function(data, callback)
   if(!oContact_properties_address_properties_address1_properties_zip || oContact_properties_address_properties_address1_properties_zip.trim().length === 0){return callback(400, {'Error' : 'No oContact_properties_address_properties_address1_properties_zip was entered'});}else{oContact_properties_address_properties_address1_properties_zip = oContact_properties_address_properties_address1_properties_zip.trim()}
 
 
+  // Enforcing uniqueness of the oContact.properties.email field.
+  // Will toggle this to false if we find the oContact.properties.email already exists in oContact.
+  // Behavior from meta.js at rmkfkaef7xo3gyvnvgm4
+  let oContact_properties_email_IsUnused = true;  
+
+  // Using this to track the primary key of a record that we might encounter with the candidate oContact.properties.email.
+  // If we encounter this primary key again we will check to see if the oContact.properties.email has been changed.
+  // If it has then the candidate oContact.properties.email will be marked as available again.
+  let uniqueIdOfRecordHoldingCandidate_OContact_properties_email = false; 
+                        
+
+  // To ensure the oContact.properties.email is unique we will read every record in 
+  // oContact and compare with the oContact.properties.email provided.
+
+  // This function sets up a stream where each chunk of data is a complete line in the oContact file.
+  let readInterface = readline.createInterface
+  (
+    { // specify the file to be read.
+      input: fs.createReadStream(_data.baseDir + '/ourSelf/oContact' + '/' + 'oContact' + '.json')
+    }
+  );
+  
+  // Look at each record in the file and set a flag if the oContact.properties.email matches the oContact.properties.email provided by the user.
+  readInterface.on('line', function(line) 
+  {
+    // Convert the JSON string from oContact into an object.
+    lineObject = JSON.parse(line);
+
+    // Several different record sets with the supplied oContact.properties.email and the same oContactId 
+    // may exist already if the record has been changed or deleted prior to this operation.
+
+    // A modified record is simply a new record with the same oContactId as an existing record.
+    // The newest record is the valid record and the older record is history.  
+    // So position matters. These tables should never be sorted.
+    // These tables can be packed however to get rid of historical records.
+
+    // The transaction log also maintains the history and the current state of the entire database.
+    // So the transaction log can be used to check the integrity of the every table.
+    // No records in the transaction log should be removed.
+
+    // A deleted record in this system is simply an identical record appended with 
+    // the deleted field set to true. 
+    // So depending on how many times the oContact.properties.email has been added and deleted there may 
+    // be several sets of records in the oContact table currently 
+    // that have the same oContact.properties.email and the same oContactId.
+    // The table can be packed occasionally to get rid of these deleted record sets. 
+    // Deletes are handled as appends with the deleted field set to true because real 
+    // deletes tie up the table for a long time.
+
+    // In this table, the oContact.properties.email is a unique key as well as the oContactId.
+    // The oContactId also serves as the primary key.
+    // The difference is that the oContactId may never change whereas the oContact.properties.email
+    // may be changed to something different if a valid record for that oContact.properties.email
+    // does not already exist.    
+
+    // When adding a record we first make sure that the record does NOT already exist.
+    // There should be no record with the current oContact.properties.email or if there is then 
+    // the last record with this oContact.properties.email must have the deleted field set to true.
+
+    // When changing a record we:
+    // 1. Make sure that the record with this oContact.properties.email does indeed exist and...
+    // 2. that the last instance of a record with this oContact.properties.email is not deleted.
+  
+    // It is ok to add a new record with this same oContact.properties.email again when the last instance 
+    // of this record encountered in the stream has the deleted flag set to true. 
+    // In that case, the oContactId will be different but the oContact.properties.email will be the same.         
+
+    // As explained above, only the last matching record for a particular oContact.properties.email matters.
+    // It's like that old game "She loves me, She loves me not".
+
+    if (oContact_properties_email == lineObject.oContact.properties.email) // we found a matching entry
+    {
+      if (lineObject.deleted == false) // The record has not been deleted so it's a duplicate. Not unique.
+      {
+        oContact_properties_email_IsUnused = false; // This flag used in the on close event listener below. 
+
+        // If this record (record with this primary key) is encountered further down where it has been deleted 
+        // or where the oContact.properties.email has been changed with a put operation:
+        // Then the candidate oContact.properties.email will be available again as we continue searching through the records.
+        // We are already checking if this oContact.properties.email becomes available again by deletion.
+        // Now we need to check if the oContact.properties.email becomes available because the record with this primary 
+        // key gets changed with a new oContact.properties.email.
+        // That will make the candidate oContact.properties.email unique and available again.
+        // So record this global sequential unique id (the oContactId in this case).
+        // If we find the gsuid again, then check if the oContact.properties.email has changed.
+        // If it has been changed then:
+        // 1. Set the oContact_properties_email_IsUnused flag to true again
+        // 2. clear out the variable tracking the uniqueId of the record.
+        uniqueIdOfRecordHoldingCandidate_OContact_properties_email = lineObject.oContactId;
+      }
+      // The matching record we found has been deleted so it may as well not exist. The new record is still unique.
+      else 
+      {
+        oContact_properties_email_IsUnused = true;
+      } 
+    } // End of: if we found a matching entry
+
+    // If we have seen this primary key before and flagged the oContact.properties.email already taken 
+    // because it was identical to the oContact.properties.email we are trying to add and it had not been deleted:
+
+    // Ok, the current record is not holding the candidate oContact.properties.email but 
+    // maybe it was in the past and someone changed it.
+    // if the candidate oContact.properties.email is flagged unavailable and we are looking at the record that was flagged:
+    else if(oContact_properties_email_IsUnused === false && uniqueIdOfRecordHoldingCandidate_OContact_properties_email === lineObject.oContactId)
+    {
+      // Check if the oContact.properties.email is no longer holding the candidate oContact.properties.email.
+      // If it is not holding the candidate oContact.properties.email then flag the oContact.properties.email 
+      // available again and clear out the variable tracking this primary key.
+      oContact_properties_email_IsUnused = true;
+      uniqueIdOfRecordHoldingCandidate_OContact.properties.email = false;
+    }
+
+  }); // End of: readInterface.on('line', function(line){...}
+  // End of: Look at each record...
+
+
+
+
+  // This listener fires after we have discovered if the oContact.properties.email is 
+  // unique or not, and have then closed the readable stream from oContact.
+  // The callback function defined here will append the record if the oContact.properties.email 
+  // was found to be unique.
+  // Behavior from meta.js at aiwaoocd1uegzjbqeydk
+  readInterface.on('close', function() 
+  {
+    // If the oContact.properties.email already exists then exit this process without appending the record.
+    if (!oContact_properties_email_IsUnused) 
+    {      
+      helpers.log
+      (
+        5,
+        '2pd2lu7dxclcewc9cjid' + '\n' +
+        'The oContact.properties.email : ' + oContact_properties_email + ' already exists' + '\n'                                  
+      ); // End of: helpers.log(...)
+
+      return callback(400, {'Error' : 'The oContact.properties.email already exists'});
+    }
+
+    // If we made it to this point then the candidate oContact.properties.email is unique so continue on with the append opperation.
+    // Behavior from meta.js at gwwelr17hmxvq4spdrcl    
+
     // Get the next global sequential unique Id and lock the database
     // Locking the database makes the system multiuser.
     // All writes to any table must first get a lock on gsuid.json
@@ -403,7 +550,7 @@ oContact._oContact.post = function(data, callback)
         helpers.log
         (
           5,
-          'opv42nbdpw1oi1527jiv' + '\n' +
+          '1ajtkup23l0a1cz1qqwm' + '\n' +
           'Unable to get the next gsuid.' + '\n' +
           'The following was the error' + '\n' +
           JSON.stringify(error) + '\n'                                   
@@ -450,7 +597,7 @@ oContact._oContact.post = function(data, callback)
       oContactObject.oContact.properties.address.properties.address1.properties.zip = oContact_properties_address_properties_address1_properties_zip;
       
       oContactObject.timeStamp = Date.now();
-      oContactdeleted = false;
+      oContactObject.deleted = false;
 
       // Create the logObject.
       // This object will be written to history.json which maintains a history of 
@@ -481,7 +628,7 @@ oContact._oContact.post = function(data, callback)
             helpers.log
             (
               7,
-              'xmn3gk7optt2prxp37md' + '\n' +
+              '1denv3gwwga1cutff2z2' + '\n' +
               'There was an error appending to the history file' + '\n' +
               'An error here does not necessarily mean the append to history did not happen.' + '\n' +  
               'But an error at this point in the code surely means there was no append to oContact' + '\n' +                                          
@@ -525,7 +672,7 @@ oContact._oContact.post = function(data, callback)
                   helpers.log // Log the error.
                   (
                     7,
-                    'cgt6v43iiwc0lyselnj1' + '\n' +
+                    'sf8q9xoot9pat5imrxw7' + '\n' +
                     'Successful write to oContact but unable to remove lock on database' + '\n' +
                     'The following record was appended to the oContact file:' + '\n' +                            
                     JSON.stringify(logObject) + '\n' +   
@@ -547,7 +694,7 @@ oContact._oContact.post = function(data, callback)
               helpers.log // Log the error.
               (
                 5,
-                't78qxbutlw8ngkus5sxs' + '\n' +
+                'swvms7wdmurvds74i7vg' + '\n' +
                 'There was an error when appending to the oContact file.' + '\n' +
                 'The following record may or may not have been appended to the oContact file:' + '\n' +                            
                 JSON.stringify(logObject) + '\n' +
@@ -556,24 +703,9 @@ oContact._oContact.post = function(data, callback)
                 err + '\n'            
               );
 
-              // Assemble rollback record for the oContact file which will negate previous entry if any.  
-              oContactObject = 
-              {
-                "oContactId" : nextIdObject.nextId,
-                "oContact_properties_firstName" : "oContact_properties_firstName",
-                "oContact_properties_lastName" : "oContact_properties_lastName",
-                "oContact_properties_email" : "oContact_properties_email",
-                "oContact_properties_phone_properties_phone1_properties_phoneType" : "oContact_properties_phone_properties_phone1_properties_phoneType",
-                "oContact_properties_phone_properties_phone1_properties_phone" : "oContact_properties_phone_properties_phone1_properties_phone",
-                "oContact_properties_address_properties_address1_properties_addressType" : "oContact_properties_address_properties_address1_properties_addressType",
-                "oContact_properties_address_properties_address1_properties_street1" : "oContact_properties_address_properties_address1_properties_street1",
-                "oContact_properties_address_properties_address1_properties_street2" : "oContact_properties_address_properties_address1_properties_street2",
-                "oContact_properties_address_properties_address1_properties_city" : "oContact_properties_address_properties_address1_properties_city",
-                "oContact_properties_address_properties_address1_properties_state" : "oContact_properties_address_properties_address1_properties_state",
-                "oContact_properties_address_properties_address1_properties_zip" : "oContact_properties_address_properties_address1_properties_zip",
-                "timeStamp" : Date.now(),
-                "deleted" : true
-              };                        
+              // Assemble rollback record for the oContact file which will negate previous entry if any.                 
+              oContactObject.timeStamp = Date.now();
+              oContactObject.deleted = true;
 
               // Assemble rollback record for the history file which will negate previous entry if any.
               logObject =
@@ -610,7 +742,7 @@ oContact._oContact.post = function(data, callback)
                           helpers.log
                           (
                             5,
-                            'z1uf65s0w85qv260rdie' + '\n' +
+                            'fhafq7f0cevy7vxzsnhi' + '\n' +
                             'Rollback entry in the oContact file was appended successfully' + '\n' +
                             'The following was the record we rolled back:' + '\n' +
                             JSON.stringify(logObject) + '\n'                                   
@@ -621,7 +753,7 @@ oContact._oContact.post = function(data, callback)
                           helpers.log
                           (
                             7,
-                            'sg5a3b5rytx7fsh31080' + '\n' +
+                            'rllv6ggea4p2ofmvaco4' + '\n' +
                             'There was an error appending a rollback entry in the oContact file' + '\n' +
                             'The following record may or may not have been rolled back:' + '\n' +
                             JSON.stringify(logObject) + '\n' +   
@@ -641,7 +773,7 @@ oContact._oContact.post = function(data, callback)
                     helpers.log
                     (
                       7,
-                      '4no9aj6gd5qzjlpc70an' + '\n' +
+                      '8bbmft20c9tghg6vttbe' + '\n' +
                       'There was an error appending a rollback entry in the history file' + '\n' +
                       'A rollback entry may or may not have been written in the oContact file' + '\n' +  
                       'CHECK TO SEE IF history and oContact ARE STILL IN SYNC' + '\n' +                                      
@@ -663,9 +795,1414 @@ oContact._oContact.post = function(data, callback)
       ); // End of: _data.append(dbHistory...)
       // End of: Calling the function which creates an entry into history. 
     }); // End of: lib.nextId(function(err, nextIdObject)
+  }); // End of: readInterface.on('close', function(){...}
 }; // End of: oContact._oContact.post = function(...
 // End of: oContact - post subhandler
 
 
+
+
+// oContact - put handler
+// Define the oContact put subhandler function 
+// This function updates a record.
+// Required data: oContactId
+// Note: At least one other field must be specified.
+// Behavior from meta.js at mzimrkdf1we1bjw96zgp
+oContact._oContact.put = function(data, callback)
+{
+  // Field validation starts here.
+  // Get oContactId from payload
+  let oContactId = data.payload.oContactId;
+
+  // PrimaryKey validation. 
+  // Default behavior from meta.js at o65yzg6ddze2fkvcgw5s
+  // If oContactId is a valid string then convert it to a number.  
+  if (typeof(oContactId) === 'string'){oContactId = parseInt(oContactId, 10);}else{return callback(400, {'Error' : 'oContactId must be a of string type'});}
+
+  // Get oContact_properties_firstName from payload
+  let oContact_properties_firstName = data.payload.oContact_properties_firstName;
+
+  // passIfString&NotEmptyThenTrim
+  // Default behavior from meta.js at yif5xwczgr4ebln99trd 
+  // If oContact_properties_firstName is of string type and is not empty 
+  if (typeof(oContact_properties_firstName) === 'string' && oContact_properties_firstName.trim().length > 0) 
+  { 
+    // The user entered something in the edit form
+    oContact_properties_firstName = oContact_properties_firstName.trim()
+  } 
+  // Else, the user may have entered some other datatype like a number or 
+  // perhaps nothing at all if using the Delete form. 
+  else 
+  { 
+    // If the user entered nothing: 
+    if(oContact_properties_firstName === undefined) 
+    { 
+      // Then user is likely trying to delete a record.
+      // So change the value to false and continue processing.
+      oContact_properties_firstName = false 
+    } 
+    else // The user entered something invalid so reject the edit. 
+    { 
+      return callback(400, {'Error' : 'Not a valid oContact_properties_firstName'}); 
+    } 
+  }
+  
+  // Get oContact_properties_lastName from payload
+  let oContact_properties_lastName = data.payload.oContact_properties_lastName;
+
+  // passIfString&NotEmptyThenTrim
+  // Default behavior from meta.js at yif5xwczgr4ebln99trd 
+  // If oContact_properties_lastName is of string type and is not empty 
+  if (typeof(oContact_properties_lastName) === 'string' && oContact_properties_lastName.trim().length > 0) 
+  { 
+    // The user entered something in the edit form
+    oContact_properties_lastName = oContact_properties_lastName.trim()
+  } 
+  // Else, the user may have entered some other datatype like a number or 
+  // perhaps nothing at all if using the Delete form. 
+  else 
+  { 
+    // If the user entered nothing: 
+    if(oContact_properties_lastName === undefined) 
+    { 
+      // Then user is likely trying to delete a record.
+      // So change the value to false and continue processing.
+      oContact_properties_lastName = false 
+    } 
+    else // The user entered something invalid so reject the edit. 
+    { 
+      return callback(400, {'Error' : 'Not a valid oContact_properties_lastName'}); 
+    } 
+  }
+  
+  // Get oContact_properties_email from payload
+  let oContact_properties_email = data.payload.oContact_properties_email;
+
+  // stringTypeTrimAmpersand
+  // Behavior from data dictionary at og5gtmcsk6od74wkr9vj 
+  // If email is of string type and is not empty 
+  if (typeof(email) === 'string' && email.trim().length > 0) 
+  { 
+    // The user entered something in the edit form so check for an ampersand. 
+    if(email.indexOf('@') != -1) 
+    { 
+      // pass if ampersand 
+      email = email.trim() 
+    } 
+    else // No ampersand so reject the edit. 
+    { 
+      return callback(400, {'Error' : 'Not a valid email'}); 
+    } 
+  } 
+  // Else, the user may have entered some other datatype like a number or 
+  // perhaps nothing at all if using the Delete form or the Password form. 
+  else 
+  { 
+    // If the user entered nothing: 
+    if(email === undefined) 
+    { 
+      // Then user is trying to delete a record or change the password 
+      email = false 
+    } 
+    else // The user entered something invalid so reject the edit. 
+    { 
+      return callback(400, {'Error' : 'Not a valid email'}); 
+    } 
+  }
+
+  // Get oContact_properties_phone_properties_phone1_properties_phoneType from payload
+  let oContact_properties_phone_properties_phone1_properties_phoneType = data.payload.oContact_properties_phone_properties_phone1_properties_phoneType;
+
+  // passIfString&NotEmptyThenTrim
+  // Default behavior from meta.js at yif5xwczgr4ebln99trd 
+  // If oContact_properties_phone_properties_phone1_properties_phoneType is of string type and is not empty 
+  if (typeof(oContact_properties_phone_properties_phone1_properties_phoneType) === 'string' && oContact_properties_phone_properties_phone1_properties_phoneType.trim().length > 0) 
+  { 
+    // The user entered something in the edit form
+    oContact_properties_phone_properties_phone1_properties_phoneType = oContact_properties_phone_properties_phone1_properties_phoneType.trim()
+  } 
+  // Else, the user may have entered some other datatype like a number or 
+  // perhaps nothing at all if using the Delete form. 
+  else 
+  { 
+    // If the user entered nothing: 
+    if(oContact_properties_phone_properties_phone1_properties_phoneType === undefined) 
+    { 
+      // Then user is likely trying to delete a record.
+      // So change the value to false and continue processing.
+      oContact_properties_phone_properties_phone1_properties_phoneType = false 
+    } 
+    else // The user entered something invalid so reject the edit. 
+    { 
+      return callback(400, {'Error' : 'Not a valid oContact_properties_phone_properties_phone1_properties_phoneType'}); 
+    } 
+  }
+  
+  // Get oContact_properties_phone_properties_phone1_properties_phone from payload
+  let oContact_properties_phone_properties_phone1_properties_phone = data.payload.oContact_properties_phone_properties_phone1_properties_phone;
+
+  // passIfString&NotEmptyThenTrim
+  // Default behavior from meta.js at yif5xwczgr4ebln99trd 
+  // If oContact_properties_phone_properties_phone1_properties_phone is of string type and is not empty 
+  if (typeof(oContact_properties_phone_properties_phone1_properties_phone) === 'string' && oContact_properties_phone_properties_phone1_properties_phone.trim().length > 0) 
+  { 
+    // The user entered something in the edit form
+    oContact_properties_phone_properties_phone1_properties_phone = oContact_properties_phone_properties_phone1_properties_phone.trim()
+  } 
+  // Else, the user may have entered some other datatype like a number or 
+  // perhaps nothing at all if using the Delete form. 
+  else 
+  { 
+    // If the user entered nothing: 
+    if(oContact_properties_phone_properties_phone1_properties_phone === undefined) 
+    { 
+      // Then user is likely trying to delete a record.
+      // So change the value to false and continue processing.
+      oContact_properties_phone_properties_phone1_properties_phone = false 
+    } 
+    else // The user entered something invalid so reject the edit. 
+    { 
+      return callback(400, {'Error' : 'Not a valid oContact_properties_phone_properties_phone1_properties_phone'}); 
+    } 
+  }
+  
+  // Get oContact_properties_address_properties_address1_properties_addressType from payload
+  let oContact_properties_address_properties_address1_properties_addressType = data.payload.oContact_properties_address_properties_address1_properties_addressType;
+
+  // passIfString&NotEmptyThenTrim
+  // Default behavior from meta.js at yif5xwczgr4ebln99trd 
+  // If oContact_properties_address_properties_address1_properties_addressType is of string type and is not empty 
+  if (typeof(oContact_properties_address_properties_address1_properties_addressType) === 'string' && oContact_properties_address_properties_address1_properties_addressType.trim().length > 0) 
+  { 
+    // The user entered something in the edit form
+    oContact_properties_address_properties_address1_properties_addressType = oContact_properties_address_properties_address1_properties_addressType.trim()
+  } 
+  // Else, the user may have entered some other datatype like a number or 
+  // perhaps nothing at all if using the Delete form. 
+  else 
+  { 
+    // If the user entered nothing: 
+    if(oContact_properties_address_properties_address1_properties_addressType === undefined) 
+    { 
+      // Then user is likely trying to delete a record.
+      // So change the value to false and continue processing.
+      oContact_properties_address_properties_address1_properties_addressType = false 
+    } 
+    else // The user entered something invalid so reject the edit. 
+    { 
+      return callback(400, {'Error' : 'Not a valid oContact_properties_address_properties_address1_properties_addressType'}); 
+    } 
+  }
+  
+  // Get oContact_properties_address_properties_address1_properties_street1 from payload
+  let oContact_properties_address_properties_address1_properties_street1 = data.payload.oContact_properties_address_properties_address1_properties_street1;
+
+  // passIfString&NotEmptyThenTrim
+  // Default behavior from meta.js at yif5xwczgr4ebln99trd 
+  // If oContact_properties_address_properties_address1_properties_street1 is of string type and is not empty 
+  if (typeof(oContact_properties_address_properties_address1_properties_street1) === 'string' && oContact_properties_address_properties_address1_properties_street1.trim().length > 0) 
+  { 
+    // The user entered something in the edit form
+    oContact_properties_address_properties_address1_properties_street1 = oContact_properties_address_properties_address1_properties_street1.trim()
+  } 
+  // Else, the user may have entered some other datatype like a number or 
+  // perhaps nothing at all if using the Delete form. 
+  else 
+  { 
+    // If the user entered nothing: 
+    if(oContact_properties_address_properties_address1_properties_street1 === undefined) 
+    { 
+      // Then user is likely trying to delete a record.
+      // So change the value to false and continue processing.
+      oContact_properties_address_properties_address1_properties_street1 = false 
+    } 
+    else // The user entered something invalid so reject the edit. 
+    { 
+      return callback(400, {'Error' : 'Not a valid oContact_properties_address_properties_address1_properties_street1'}); 
+    } 
+  }
+  
+  // Get oContact_properties_address_properties_address1_properties_street2 from payload
+  let oContact_properties_address_properties_address1_properties_street2 = data.payload.oContact_properties_address_properties_address1_properties_street2;
+
+  // passIfString&NotEmptyThenTrim
+  // Default behavior from meta.js at yif5xwczgr4ebln99trd 
+  // If oContact_properties_address_properties_address1_properties_street2 is of string type and is not empty 
+  if (typeof(oContact_properties_address_properties_address1_properties_street2) === 'string' && oContact_properties_address_properties_address1_properties_street2.trim().length > 0) 
+  { 
+    // The user entered something in the edit form
+    oContact_properties_address_properties_address1_properties_street2 = oContact_properties_address_properties_address1_properties_street2.trim()
+  } 
+  // Else, the user may have entered some other datatype like a number or 
+  // perhaps nothing at all if using the Delete form. 
+  else 
+  { 
+    // If the user entered nothing: 
+    if(oContact_properties_address_properties_address1_properties_street2 === undefined) 
+    { 
+      // Then user is likely trying to delete a record.
+      // So change the value to false and continue processing.
+      oContact_properties_address_properties_address1_properties_street2 = false 
+    } 
+    else // The user entered something invalid so reject the edit. 
+    { 
+      return callback(400, {'Error' : 'Not a valid oContact_properties_address_properties_address1_properties_street2'}); 
+    } 
+  }
+  
+  // Get oContact_properties_address_properties_address1_properties_city from payload
+  let oContact_properties_address_properties_address1_properties_city = data.payload.oContact_properties_address_properties_address1_properties_city;
+
+  // passIfString&NotEmptyThenTrim
+  // Default behavior from meta.js at yif5xwczgr4ebln99trd 
+  // If oContact_properties_address_properties_address1_properties_city is of string type and is not empty 
+  if (typeof(oContact_properties_address_properties_address1_properties_city) === 'string' && oContact_properties_address_properties_address1_properties_city.trim().length > 0) 
+  { 
+    // The user entered something in the edit form
+    oContact_properties_address_properties_address1_properties_city = oContact_properties_address_properties_address1_properties_city.trim()
+  } 
+  // Else, the user may have entered some other datatype like a number or 
+  // perhaps nothing at all if using the Delete form. 
+  else 
+  { 
+    // If the user entered nothing: 
+    if(oContact_properties_address_properties_address1_properties_city === undefined) 
+    { 
+      // Then user is likely trying to delete a record.
+      // So change the value to false and continue processing.
+      oContact_properties_address_properties_address1_properties_city = false 
+    } 
+    else // The user entered something invalid so reject the edit. 
+    { 
+      return callback(400, {'Error' : 'Not a valid oContact_properties_address_properties_address1_properties_city'}); 
+    } 
+  }
+  
+  // Get oContact_properties_address_properties_address1_properties_state from payload
+  let oContact_properties_address_properties_address1_properties_state = data.payload.oContact_properties_address_properties_address1_properties_state;
+
+  // passIfString&NotEmptyThenTrim
+  // Default behavior from meta.js at yif5xwczgr4ebln99trd 
+  // If oContact_properties_address_properties_address1_properties_state is of string type and is not empty 
+  if (typeof(oContact_properties_address_properties_address1_properties_state) === 'string' && oContact_properties_address_properties_address1_properties_state.trim().length > 0) 
+  { 
+    // The user entered something in the edit form
+    oContact_properties_address_properties_address1_properties_state = oContact_properties_address_properties_address1_properties_state.trim()
+  } 
+  // Else, the user may have entered some other datatype like a number or 
+  // perhaps nothing at all if using the Delete form. 
+  else 
+  { 
+    // If the user entered nothing: 
+    if(oContact_properties_address_properties_address1_properties_state === undefined) 
+    { 
+      // Then user is likely trying to delete a record.
+      // So change the value to false and continue processing.
+      oContact_properties_address_properties_address1_properties_state = false 
+    } 
+    else // The user entered something invalid so reject the edit. 
+    { 
+      return callback(400, {'Error' : 'Not a valid oContact_properties_address_properties_address1_properties_state'}); 
+    } 
+  }
+  
+  // Get oContact_properties_address_properties_address1_properties_zip from payload
+  let oContact_properties_address_properties_address1_properties_zip = data.payload.oContact_properties_address_properties_address1_properties_zip;
+
+  // passIfString&NotEmptyThenTrim
+  // Default behavior from meta.js at yif5xwczgr4ebln99trd 
+  // If oContact_properties_address_properties_address1_properties_zip is of string type and is not empty 
+  if (typeof(oContact_properties_address_properties_address1_properties_zip) === 'string' && oContact_properties_address_properties_address1_properties_zip.trim().length > 0) 
+  { 
+    // The user entered something in the edit form
+    oContact_properties_address_properties_address1_properties_zip = oContact_properties_address_properties_address1_properties_zip.trim()
+  } 
+  // Else, the user may have entered some other datatype like a number or 
+  // perhaps nothing at all if using the Delete form. 
+  else 
+  { 
+    // If the user entered nothing: 
+    if(oContact_properties_address_properties_address1_properties_zip === undefined) 
+    { 
+      // Then user is likely trying to delete a record.
+      // So change the value to false and continue processing.
+      oContact_properties_address_properties_address1_properties_zip = false 
+    } 
+    else // The user entered something invalid so reject the edit. 
+    { 
+      return callback(400, {'Error' : 'Not a valid oContact_properties_address_properties_address1_properties_zip'}); 
+    } 
+  }
+  
+  // Check if the deleted flag is of type string and that the value is exactly equal to "true".
+  // That would mean the user wants to delete the record. Otherwise the users does not want to delete the record.
+  // Set deleted to boolean true if validation is passed otherwise set it to false.
+  // Behavior from meta.js at ts2g5rn5uw6mvup58vph
+  let deleted = typeof(data.payload.deleted) === 'string' && data.payload.deleted === "true" ? true : false;
+
+  
+  //if all fields fail validation then exit this process without writing changes to the table.
+  if(!oContact.properties.firstName && !oContact.properties.lastName && !oContact.properties.email && !phone.properties.phone1.properties.phoneType && !phone.properties.phone1.properties.phone && !address.properties.address1.properties.addressType && !address.properties.address1.properties.street1 && !address.properties.address1.properties.street2 && !address.properties.address1.properties.city && !address.properties.address1.properties.state && !address.properties.address1.properties.zip && !deleted)
+  {
+    helpers.log
+    (
+      5,
+      '15uh9az1ya3kwq0kpigx' + '\n' +
+      'No fields pass the validation process' + '\n'                                  
+    ); // End of: helpers.log(...)
+
+      return callback(400, {'Error' : 'Missing required fields'});
+  } // End of: Field validation failed - Exit this process.
+
+  // If we made it this far then field validation has been passed successfully so continue with the process.
+
+  // Get the next global sequential unique Id and lock the database
+  // Locking the database makes the system multiuser.
+  // All writes to any table must first get a lock on gsuid.json
+  // gsuid.json stays locked until the operation is completely finished and _data.removeLock is called.
+  // This ensures that only one process is writing to the database at any one time.  
+  // Behavior from meta.js at wzoyt9ohnvst1pe5etn0        
+  _data.nextId(function(error, nextIdObject)
+  {
+    // If lock failed or unable to get the next gsuid.
+    if(error || !nextIdObject)
+    {
+      helpers.log
+      (
+        5,
+        'w0vsxmhfe9sgwm770995' + '\n' +
+        'Unable to get the next gsuid.' + '\n' +
+        'The following was the error' + '\n' +
+        JSON.stringify(error) + '\n'                                   
+      ); // End of: helpers.log(...)
+
+      return callback(423, {'Error' : 'Database is Locked'});
+    } // End of: If lock failed or unable to get the next gsuid.
+
+
+    // If we made it here then we were able to lock the gsuid.json file and get 
+    // the next unique id number for this record. So continue with the process.
+
+
+    // Create the oContact object. 
+    // This object will be appended to oContact.json.
+    // Add in all fields even if no data is available yet. 
+    // This is to establish the order in which the fields will be writen to the table. 
+    // Behavior from 3bd1sa5ve4aqrfspunrt in meta.js         
+    let oContactObject = 
+    {
+      "oContactId" : oContactId,
+      "oContact.properties.firstName" : "" ,
+      "oContact.properties.lastName" : "" ,
+      "oContact.properties.email" : "" ,
+      "phone.properties.phone1.properties.phoneType" : "" ,
+      "phone.properties.phone1.properties.phone" : "" ,
+      "address.properties.address1.properties.addressType" : "" ,
+      "address.properties.address1.properties.street1" : "" ,
+      "address.properties.address1.properties.street2" : "" ,
+      "address.properties.address1.properties.city" : "" ,
+      "address.properties.address1.properties.state" : "" ,
+      "address.properties.address1.properties.zip" : "" ,
+      "timeStamp" : Date.now(),
+      "deleted" : ""
+    };
+
+    dataObject = {};
+    dataObject.uniqueField01Name = "oContact.properties.email";
+    dataObject.uniqueField01Value = oContactObject.oContact.properties.email;
+    dataObject.path = '/ourSelf/oContact/oContact.json';
+    dataObject.queryString = 'WHERE:;oContactId:;MatchesExactly:;' + oContactId + ':;';
+
+    // This function returns the most recent record for this oContactId after checking that 
+    // data for unique fields is indeed unique and that the a record with the supplied oContactId exists to modify.
+    // Behavior from meta.js at 6pmnh29cub4p4g2fmb04
+    helpers.getMostRecent(dataObject, function(errorFromGetMostRecent, payload)
+    {
+      // If there was an error returned by getMostRecent when attempting to get the most current record.        
+      if(errorFromGetMostRecent)
+      {
+        // Call to function which removes lock
+        _data.removeLock
+        (function(errorFromRemoveLock)
+        // start of callback code which is run after attempting to remove the lock.
+        {
+          if(!errorFromRemoveLock) // Database lock was successfully removed.
+          {
+            if(errorFromGetMostRecent)
+            {
+              helpers.log // Log the error.
+              (
+                7,
+                '74dnybv8rjoafqwqq3sa' + '\n' + 
+                'The following was the error message from getMostRecent:' + '\n' +                                             
+                errorFromGetMostRecent + '\n'                                                 
+              ); // End of: helpers.log // Log the error.
+
+              return callback(500, {'Error' : errorFromGetMostRecent});      
+            }
+          }
+          else // Error from getMostRecent and also unable to remove lock on database.
+          {
+            if(errorFromGetMostRecent)
+            {
+              helpers.log // Log the error.
+              (
+                7,
+                'e7qc8qp95znquh9icmxe' + '\n' +
+                'The following was the error message from getMostRecent:' + '\n' +                                             
+                errorFromGetMostRecent + '\n'  +
+                'Also unable to remove lock on database.' + '\n' + 
+                'The following was the error message from removeLock:' + '\n' +                                      
+                errorFromRemoveLock + '\n'
+              ); // End of: helpers.log // Log the error.
+
+              return callback(500, {'Error' : errorFromGetMostRecent + " and " + errorFromRemoveLock});      
+            } // End of: if(errorFromGetMostRecent){...}
+          } // End of: unable to remove lock on database after getMostRecent returned a failed read.
+
+        } // End of callback code which is run after attempting to remove the lock.
+        ); // End of: _data.removeLock(function(error){...}
+        // End of: Call to function which removes lock after failed read from getMostRecent
+      } // End of: There was indeed an error returned by getMostRecent when attempting to get the most current record.          
+
+
+      // If we got this far then we got the most recent record from getMostRecent without any problem. 
+      // So Continue with the process.
+
+
+      // Used to decode the payload buffer into readable text.
+      let decoder = new StringDecoder('utf8');    
+
+      // This instance of the Writable object gives us a place for a callback to run when the payload is received.
+      const writable = new Writable();
+
+      // Called by pipeline below. Does something useful with the payload
+      // Behavior from meta.js at 74l4ugm91cza7uv38jac
+      writable.write = function(payload)
+      {
+        let stringContainer = '';                 
+        stringContainer = stringContainer + decoder.write(payload);
+        let recordObject = JSON.parse(stringContainer);
+
+
+        // Preprocessing for oContact_properties_firstName
+        if(oContact_properties_firstName) // If the user supplied data for oContact_properties_firstName
+        {
+          // No preprocessing was specifed for oContact_properties_firstName. Use it as was supplied by the user.
+        }
+        else // If the user did not supply data for oContact_properties_firstName
+        {
+          // Save firstName from the most recent record.
+          oContactObject.firstName = recordObject.firstName;
+        }
+        // Preprocessing for oContact_properties_lastName
+        if(oContact_properties_lastName) // If the user supplied data for oContact_properties_lastName
+        {
+          // No preprocessing was specifed for oContact_properties_lastName. Use it as was supplied by the user.
+        }
+        else // If the user did not supply data for oContact_properties_lastName
+        {
+          // Save lastName from the most recent record.
+          oContactObject.lastName = recordObject.lastName;
+        }
+        // Preprocessing for oContact_properties_email
+        if(oContact_properties_email) // If the user supplied data for oContact_properties_email
+        {
+          // No preprocessing was specifed for oContact_properties_email. Use it as was supplied by the user.
+        }
+        else // If the user did not supply data for oContact_properties_email
+        {
+          // Save email from the most recent record.
+          oContactObject.email = recordObject.email;
+        }
+        // Preprocessing for oContact_properties_phone_properties_phone1_properties_phoneType
+        if(oContact_properties_phone_properties_phone1_properties_phoneType) // If the user supplied data for oContact_properties_phone_properties_phone1_properties_phoneType
+        {
+          // No preprocessing was specifed for oContact_properties_phone_properties_phone1_properties_phoneType. Use it as was supplied by the user.
+        }
+        else // If the user did not supply data for oContact_properties_phone_properties_phone1_properties_phoneType
+        {
+          // Save phoneType from the most recent record.
+          oContactObject.phoneType = recordObject.phoneType;
+        }
+        // Preprocessing for oContact_properties_phone_properties_phone1_properties_phone
+        if(oContact_properties_phone_properties_phone1_properties_phone) // If the user supplied data for oContact_properties_phone_properties_phone1_properties_phone
+        {
+          // No preprocessing was specifed for oContact_properties_phone_properties_phone1_properties_phone. Use it as was supplied by the user.
+        }
+        else // If the user did not supply data for oContact_properties_phone_properties_phone1_properties_phone
+        {
+          // Save phone from the most recent record.
+          oContactObject.phone = recordObject.phone;
+        }
+        // Preprocessing for oContact_properties_address_properties_address1_properties_addressType
+        if(oContact_properties_address_properties_address1_properties_addressType) // If the user supplied data for oContact_properties_address_properties_address1_properties_addressType
+        {
+          // No preprocessing was specifed for oContact_properties_address_properties_address1_properties_addressType. Use it as was supplied by the user.
+        }
+        else // If the user did not supply data for oContact_properties_address_properties_address1_properties_addressType
+        {
+          // Save addressType from the most recent record.
+          oContactObject.addressType = recordObject.addressType;
+        }
+        // Preprocessing for oContact_properties_address_properties_address1_properties_street1
+        if(oContact_properties_address_properties_address1_properties_street1) // If the user supplied data for oContact_properties_address_properties_address1_properties_street1
+        {
+          // No preprocessing was specifed for oContact_properties_address_properties_address1_properties_street1. Use it as was supplied by the user.
+        }
+        else // If the user did not supply data for oContact_properties_address_properties_address1_properties_street1
+        {
+          // Save street1 from the most recent record.
+          oContactObject.street1 = recordObject.street1;
+        }
+        // Preprocessing for oContact_properties_address_properties_address1_properties_street2
+        if(oContact_properties_address_properties_address1_properties_street2) // If the user supplied data for oContact_properties_address_properties_address1_properties_street2
+        {
+          // No preprocessing was specifed for oContact_properties_address_properties_address1_properties_street2. Use it as was supplied by the user.
+        }
+        else // If the user did not supply data for oContact_properties_address_properties_address1_properties_street2
+        {
+          // Save street2 from the most recent record.
+          oContactObject.street2 = recordObject.street2;
+        }
+        // Preprocessing for oContact_properties_address_properties_address1_properties_city
+        if(oContact_properties_address_properties_address1_properties_city) // If the user supplied data for oContact_properties_address_properties_address1_properties_city
+        {
+          // No preprocessing was specifed for oContact_properties_address_properties_address1_properties_city. Use it as was supplied by the user.
+        }
+        else // If the user did not supply data for oContact_properties_address_properties_address1_properties_city
+        {
+          // Save city from the most recent record.
+          oContactObject.city = recordObject.city;
+        }
+        // Preprocessing for oContact_properties_address_properties_address1_properties_state
+        if(oContact_properties_address_properties_address1_properties_state) // If the user supplied data for oContact_properties_address_properties_address1_properties_state
+        {
+          // No preprocessing was specifed for oContact_properties_address_properties_address1_properties_state. Use it as was supplied by the user.
+        }
+        else // If the user did not supply data for oContact_properties_address_properties_address1_properties_state
+        {
+          // Save state from the most recent record.
+          oContactObject.state = recordObject.state;
+        }
+        // Preprocessing for oContact_properties_address_properties_address1_properties_zip
+        if(oContact_properties_address_properties_address1_properties_zip) // If the user supplied data for oContact_properties_address_properties_address1_properties_zip
+        {
+          // No preprocessing was specifed for oContact_properties_address_properties_address1_properties_zip. Use it as was supplied by the user.
+        }
+        else // If the user did not supply data for oContact_properties_address_properties_address1_properties_zip
+        {
+          // Save zip from the most recent record.
+          oContactObject.zip = recordObject.zip;
+        }
+        // If we are appending a delete make sure that everything else is coming from the most recent saved record.
+        if(deleted)
+        {
+          oContactObject.oContact = recordObject.oContact;
+          oContactObject.deleted = true;
+        }
+        else
+        {
+          oContactObject.deleted = false;
+        }
+
+
+        // Create the logObject.
+        // This object will be written to history.json which maintains a history of 
+        // all changes to all tables in the database.
+        // Behavior from meta.js at 8ymdma3uxbjrggohz977
+        var logObject =
+        {           
+          "historyId" : nextIdObject.nextId + 1,    
+          "transactionId" : nextIdObject.nextId + 2,                 
+          "rollback" : false,
+          "process" : "oContact._oContact.put",
+          "comment" : "Changing a record",
+          "who" : "No login yet.",    
+          "oContact" : oContactObject   
+        }
+
+        // Calling the function which creates an entry into the database log file.
+        _data.append
+        (
+          'database/dbHistory', 
+          'history', 
+          logObject, 
+          function(err)
+          {
+            if (!err)  //The history file has been appended to successfully.
+            {
+              // Calling the function which appends a record to the file oContact.json
+              _data.append
+              (
+                '/ourSelf/oContact', 
+                'oContact', 
+                oContactObject, 
+                function(err)
+                {
+                  if (!err)  //The file has been appended to successfully.
+                  {
+                    // Call to function which removes lock
+                    _data.removeLock
+                    (function(error)
+                    // start of callback code which is run after attempting to remove the lock.
+                    {
+                      if(!error) // Database lock was successfully removed.
+                      {
+                        callback(200); 
+                      }
+                      else // Good write but unable to remove lock on database.
+                      {
+                        helpers.log // Log the error.
+                        (
+                          7,
+                          '6swgawmaz86gieuhq2rz' + '\n' +
+                          'Successful write to oContact but unable to remove lock on database' + '\n' +
+                          'The following record was appended to oContact:' + '\n' +                            
+                          JSON.stringify(logObject) + '\n' +   
+                          'The following was the error message:' + '\n' +                                             
+                          error + '\n'
+                        ); // End of: helpers.log // Log the error.
+
+                        callback(500, {'Error' : 'Successful write to oContact but unable to remove lock on database'});
+
+                      } // End of: else Good write but unable to remove lock on database.
+
+                    } // End of callback code which is run after attempting to remove the lock.
+                    ); // End of: _data.removeLock(function(error){...}
+                    // End of: Call to function which removes lock
+
+                  }    // End of: if (!err)  //The file has been appended to successfully.
+                  else // There was an error appending to oContact.
+                  {
+                    helpers.log // Log the error.
+                    (
+                      5,
+                      'vq5mhj80qm0pfew1hgty' + '\n' +
+                      'There was an error when appending to the oContact file.' + '\n' +
+                      'The following record may or may not have been appended to oContact:' + '\n' +                            
+                      JSON.stringify(logObject) + '\n' +
+                      'Attempting to rollback the entry.' + '\n' +    
+                      'The following was the error message:' + '\n' +                                             
+                      err + '\n'
+                    );
+
+                    // Assemble rollback record for the oContact file which will negate previous entry if any.
+                    // Behavior from meta.js at 8l4zwqs63qwmp81rjcpw  
+                    oContactObject = 
+                    {
+                        "oContactId" : recordObject.nextId,
+                        "oContact" : recordObject.oContact,
+                        "timeStamp" : recordObject.timeStamp,
+                        "deleted" : recordObject.deleted
+                    };                        
+
+                    // Assemble rollback record for the history file which will negate previous entry if any.
+                    logObject =
+                    {                    
+                      "historyId" : nextIdObject.nextId + 3,    
+                      "transactionId" : nextIdObject.nextId + 2,                                
+                      "rollback" : true,
+                      "process" : "oContact._oContact.put",
+                      "comment" : "Error during Put. Appending rollback",                        
+                      "who" : "No login yet",    
+                      "oContact" : oContactObject   
+                    }
+
+                    // Start the rollback process.
+                    _data.append // Append a rollback the entry in history.
+                    (
+                      'database/dbHistory', 
+                      'history', 
+                      logObject, 
+                      function(err)
+                      {
+                        if (!err) // The roll back entry in history was appended successfully.
+                        {
+                          // Calling the function which appends a record to the file oContact.json
+                          _data.append
+                          (
+                            '/ourSelf/oContact', 
+                            'oContact', 
+                            oContactObject, 
+                            function(err)
+                            {
+                              if (!err) // The rollback record for oContact was appended successfully.
+                              {
+                                helpers.log
+                                (
+                                  5,
+                                  'ad68jyhwe78nmsb63iov' + '\n' +
+                                  'Rollback entry in the oContact file was appended successfully' + '\n' +
+                                  'The following was the record we rolled back:' + '\n' +
+                                  JSON.stringify(logObject) + '\n'                                   
+                                ); // End of: helpers.log(...)
+                              }
+                              else // There was an error when rolling back record for oContact.
+                              {
+                                helpers.log
+                                (
+                                  7,
+                                  'hngify5rwlkajg8cm3hs' + '\n' +
+                                  'There was an error appending a rollback entry in the oContact file' + '\n' +
+                                  'The following record may or may not have been rolled back:' + '\n' +
+                                  JSON.stringify(logObject) + '\n' +   
+                                  'An error here does not necessarily mean the deleting append to oContact did not happen.' + '\n' +                                        
+                                  'CHECK TO SEE IF history and oContact ARE STILL IN SYNC' + '\n' + 
+                                  'The following is the error message:' + '\n' +                                                                     
+                                  err  + '\n'
+                                ); // End of: helpers.log(...)
+                              }
+
+                            } // End of: callback function(err){...}
+                          ); // End of: _data.append(...)
+
+                        } // End of: The roll back entry in history was appended successfully.
+                        else // There was an error when appending a rollback entry in history.
+                        { 
+                          helpers.log
+                          (
+                            7,
+                            '0wuxeooez57v9gq5pfvi' + '\n' +
+                            'There was an error appending a rollback entry in the history file' + '\n' +
+                            'A rollback entry may or may not have been written in the oContact file' + '\n' +  
+                            'CHECK TO SEE IF history and oContact ARE STILL IN SYNC' + '\n' +                                      
+                            'The following was the record we tried to roll back:' + '\n' +
+                            JSON.stringify(logObject) + '\n' +        
+                            'The following is the error message:' + '\n' +
+                            err  + '\n'
+                          );
+                        } // End of: else There was an error when appending a rollback entry in history.
+                      } // End of: callback function(err){...}
+                    ); // End of: _data.append(...)
+
+                    callback(500, {'Error' : 'Could not create the new oContact.'});
+
+                  } // End of: else // There was an error appending to oContact.
+                } // End of: callback function
+                ); // End of: Calling the function which appends a record to the file oContact.json 
+
+            } //End of: The history file has been appended to successfully.
+            else // There was an error appending to the history file.
+            {
+              helpers.log
+              (
+                7,
+                '3mbed620m54rmtanl38y' + '\n' +
+                'There was an error appending to the history file' + '\n' +
+                'An error here does not necessarily mean the append to history did not happen.' + '\n' +  
+                'But an error at this point in the code surely means there was no append to oContact' + '\n' +                                          
+                'CHECK TO SEE IF history and oContact ARE STILL IN SYNC' + '\n' +                    
+                'The following was the record we tried to append:' + '\n' +
+                JSON.stringify(logObject) + '\n' +                   
+                'The following is the error message:' + '\n' +                  
+                err  + '\n'
+              );
+
+              callback(500, {'Error' : 'Could not create the new oContact.'});
+            }
+          } // End of: callback function
+        ); // End of: _data.append(dbHistory...)
+        // End of: Calling the function which creates an entry into history. 
+
+      }; // End of: writable.write = function(payload){...}
+
+      // Passes the payload stream to the writable object which calls writable.write 
+      // which does something useful with the payload.
+      pipeline
+      (
+        payload,
+        writable,
+        function(pipelineError)
+        {
+          if(pipelineError)
+          {
+            helpers.log // Log the error.
+            (
+              7,
+              'sefl5pirbp1i28nb0t30' + '\n' + 
+              'Pipeline error. The message was as follows' + '\n' +                                             
+              pipelineError + '\n'                                                 
+            ); // End of: helpers.log // Log the error.
+          } // End of: if(pipelineError){...}
+        } // End of: function(piplineError){...}
+      ); // End of: Pipeline
+    }); //End of: helpers.getMostRecent(dataObject, function(errorFromGetMostRecent, payload)
+  }); // End of: lib.nextId(function(err, nextIdObject)
+}; // End of: handlers._oContact.put = function(...
+// End of: Define the oContact put subhandler function
+
+
+
+
+// Define the oContact get subhandler function.
+// Streams the oContact file or part of it back to the client.
+oContact._oContact.get = function(data, callback)
+{
+  let amountOfWhereClauses = 0; // We haven't found any yet.
+  let amountOfOrderByClauses = 0; // We haven't found any yet.
+
+  // No value set but declared here because we need access to these thoughout the entire function.
+  let queryArray, queryString;
+
+  // If there is a query expression.
+  if (data.hasOwnProperty('queryString') || typeof(Object.keys(data.queryStringObject)[0]) != 'undefined')
+  {
+
+    if (data.hasOwnProperty('queryString'))
+    {
+      // In this case the queryString is coming from oContactEdit page.
+      queryString = data.queryString
+    }
+    else
+    {
+      // In this case the queryString is coming from the oContactList page.
+      // For some reason the string comes in as an array element in the object's 
+      // key instead of it's value. That's why the Object.keys(...)[0] method.
+      queryString = Object.keys(data.queryStringObject)[0];
+    }
+
+    // Make an array out of the queryString where each phrase of the query is an element.
+    queryArray = queryString.split(":;");
+
+    // Define a function to restore encoded characters that the 
+    // client may pass to the server in the query string.
+    function restoreCharacters(elementValue, elementIndex, queryArray) 
+    {
+      switch(elementValue) {
+        case "{[POUND]}":
+          queryArray[elementIndex] = "#";
+        break;
+        case "{[AMPERSAND]}":
+          queryArray[elementIndex] = "&";
+        break;
+        case "{[EQUALS]}":
+          queryArray[elementIndex] = "=";
+        break;
+        case "{[BACK-SLASH]}":
+          queryArray[elementIndex] = "\\";
+        break;
+        case "{[SINGLE-QUOTE]}":
+          queryArray[elementIndex] = "'";
+        break;
+        case "{[PLUS]}":
+          queryArray[elementIndex] = "+";
+        break;                                        
+      }
+    }
+
+    // Call the function defined above once for each element in the queryArray to decode
+    // special characters that the client may have passed to the server in the query string.
+    queryArray.forEach(restoreCharacters);    
+    
+    let lengthOfQueryArray = queryArray.length;    
+
+    // Look at the first element to find out if we have a where clause or an orderby clause.
+    let firstQueryElement = queryArray[0];
+    let indexOfNextPossibleOrderBy = 0
+
+    if(firstQueryElement == 'WHERE') // The user filled out a where clause.
+    {
+      // Find out howmany ANDWHERE clauses there are starting at index 4 and counting forward by 4 until ANDWHERE is not found.
+      // We are counting by four because we only want to check elements where the ANDWHERE value would carry the correct context.
+      // In other words we only want to look where a conjuction would be found. Not a field value and not a comparison operator. 
+      amountOfWhereClauses = 1; // We know about the first one so far.
+      let indexOfNextPossibleANDORWHERE = amountOfWhereClauses * 4
+      let proceedWithLoop = true;
+
+      while (indexOfNextPossibleANDORWHERE < lengthOfQueryArray -1 && proceedWithLoop == true) 
+      {
+        if(queryArray[indexOfNextPossibleANDORWHERE] == "ANDWHERE" || queryArray[indexOfNextPossibleANDORWHERE] == "ORWHERE")
+        {
+          amountOfWhereClauses = amountOfWhereClauses + 1;
+          indexOfNextPossibleANDORWHERE = amountOfWhereClauses * 4
+        }
+        else
+        {
+          indexOfNextPossibleOrderBy = indexOfNextPossibleANDORWHERE
+          proceedWithLoop = false;
+        }
+      }
+    }
+    else // The firstQueryElement wasn't 'WHERE' So it must be 'ORDERBY'
+    {
+      // If we have something and there are no where clauses then we must be starting with an orderby clause.
+      amountOfOrderByClauses = 1
+    }
+
+    // Now we are going to find out how many orderby clauses there are.
+    proceedWithLoop = true;
+
+    while (indexOfNextPossibleOrderBy < lengthOfQueryArray - 1 && proceedWithLoop == true) 
+    {
+      if(queryArray[indexOfNextPossibleOrderBy] == "ORDERBY" || queryArray[indexOfNextPossibleOrderBy] == "ThenOrderBy")
+      {
+        amountOfOrderByClauses = amountOfOrderByClauses + 1;
+        indexOfNextPossibleOrderBy = indexOfNextPossibleOrderBy + 3;
+      }
+      else
+      {
+        proceedWithLoop = false;
+      }
+    }
+
+  } // End of: if (typeof(data.queryStringObject[0]) !== 'undefined'){...}
+  // End of: If the user created a query expression.
+
+
+  
+  // Create an empty map data structure which will be used to merge oContact records that have the same unique fields.
+  // Chose map data structure over objects because maps are guaranteed to maintain the same order where as objects are not.
+  let oContactMap = new Map();
+  
+  // This function sets up a stream where each chunk of data is a complete line in the oContact file.
+  let readInterface = readline.createInterface
+  (
+    { // specify the file to be read.
+      input: fs.createReadStream(_data.baseDir + '/ourSelf/oContact' + '/' + 'oContact' + '.json'),
+    }
+  );
+
+
+
+  // Look at each record in the file.
+  readInterface.on('line', function(line) 
+  {
+    // Convert the JSON string (a single line from the oContact file) into lineValueObject.
+    // These objects will written back to a new file after deleting some un-needed key/value pairs.
+    let lineValueObject = JSON.parse(line);
+    let recordWasDeleted = false;    
+
+    // Declare a variable to serve as a key in the map to manage the lineValueObject.
+    let oContactId = lineValueObject.oContactId;      
+
+    if(lineValueObject.deleted === true) // if the record in the file oContact.json had the delete field set to true:
+    {
+      // Remove this record from the map 
+      oContactMap.delete(oContactId);
+      recordWasDeleted = true;
+    }
+    else if(amountOfWhereClauses > 0) // else if the user created one or more filter expressions
+    {
+      let whereClauseCount = 1; // Represents the filter expression we are currently evaluating.
+      let index = 1; // Used to navigate the queryArray.
+      let shouldDeleteThisRecord = false;
+      let shouldLoopAgain = true;
+
+
+      function drillIntoObject(jsonRecordObject, queryItemArray, itemIndex)
+      {
+          // Converting each property key from dot notation to bracket notation.
+          // Then using bracket notation to drill down into the object.
+
+          // Get a reference to the recordObject called "value"
+          let objValue = jsonRecordObject;
+
+          // Split the property key into an array delimited by the dot if any.
+          // The array will be used to drill into nested objects.
+          const keyParts = queryItemArray[itemIndex].split(".");
+
+          // Here is where we do the drilling.
+          for (let keyPart of keyParts) 
+          {
+            // Make objValue point to it's sub-object or it's final value when the loop is finished running.
+            objValue = objValue[keyPart];
+
+            // Not all records will have the same data structure - 
+            // Fields specified in the data dictionary may be missing.
+            // So don't try to get a value if it's not there - 
+            // That would cause an error and stop the table from loading
+            if(objValue === undefined){break};            
+          } 
+
+          return objValue;
+      };
+
+
+      let fieldValue = drillIntoObject(lineValueObject, queryArray, index);
+
+
+      while(whereClauseCount <= amountOfWhereClauses && shouldLoopAgain === true)
+      {
+        if (fieldValue === undefined) // Not all records will have the same structure. The field may not exist.
+        {
+          shouldDeleteThisRecord = true;
+        }
+        else
+        {
+          switch(queryArray[index + 1]) 
+          {
+            case 'MatchesExactly': // 1
+            {
+              if(fieldValue != queryArray[index + 2])
+              {
+                shouldDeleteThisRecord = true;
+              }
+            }
+            break;
+
+            case 'MatchesExactlyNotCaseSensitive': // 2
+            {
+              if(fieldValue.toString().toLowerCase() != queryArray[index + 2].toString().toLowerCase())
+              {
+                shouldDeleteThisRecord = true;
+              }             
+            }
+            break;
+            
+            case 'DoesNotMatchExactly': // 3
+              {
+                if(fieldValue == queryArray[index + 2])
+                {
+                  shouldDeleteThisRecord = true;
+                }
+              }
+              break;
+
+            case 'DoesNotMatchExactlyNotCaseSensitive': // 4
+            {
+              if(fieldValue.toString().toLowerCase() == queryArray[index + 2].toString().toLowerCase())
+              {
+                shouldDeleteThisRecord = true;
+              }
+            }
+            break;
+
+            case 'BeginsWith': // 5
+            {
+              if(fieldValue.toString().indexOf(queryArray[index + 2].toString()) != 0)
+              {
+                shouldDeleteThisRecord = true;
+              }
+            }
+            break;
+            
+            case 'BeginsWithNotCaseSensitive': // 6
+            {
+              if(fieldValue.toString().toLowerCase().indexOf(queryArray[index + 2].toString().toLowerCase()) != 0)
+              {
+                shouldDeleteThisRecord = true;
+              }
+            }
+            break;    
+
+            case 'DoesNotBeginWith': // 7
+            {
+              if(fieldValue.toString().indexOf(queryArray[index + 2].toString()) == 0)
+              {
+                shouldDeleteThisRecord = true;
+              }
+            }
+            break;
+
+            case 'DoesNotBeginWithNotCaseSensitive': // 8
+            {
+              if(fieldValue.toString().toLowerCase().indexOf(queryArray[index + 2].toString().toLowerCase()) == 0)          
+              {
+                shouldDeleteThisRecord = true;
+              }
+            }
+            break;          
+
+            case 'Contains': // 9
+            {
+              if(fieldValue.toString().indexOf(queryArray[index + 2].toString()) == -1)
+              {
+                shouldDeleteThisRecord = true;
+              }
+            }
+            break;
+
+            case 'ContainsNotCaseSensitive': // 10
+            {
+              if(fieldValue.toString().toLowerCase().indexOf(queryArray[index + 2].toString().toLowerCase()) == -1)          
+              {
+                shouldDeleteThisRecord = true;
+              }
+            }
+            break;
+
+            case 'DoesNotContain': // 11
+            {
+              if(fieldValue.toString().indexOf(queryArray[index + 2].toString()) > -1)
+              {
+                shouldDeleteThisRecord = true;
+              }
+            }
+            break;
+
+            case 'DoesNotContainNotCaseSensitive': // 12
+            {
+              if(fieldValue.toString().toLowerCase().indexOf(queryArray[index + 2].toString().toLowerCase()) > -1)          
+              {
+                shouldDeleteThisRecord = true;
+              }
+            }
+            break;
+
+            case 'EndsWith': // 13
+            {
+              if(!fieldValue.toString().endsWith(queryArray[index + 2].toString()))
+              {
+                shouldDeleteThisRecord = true;
+              }
+            }
+            break;
+            
+            case 'EndsWithNotCaseSensitive': // 14
+            {
+              if(!fieldValue.toString().toLowerCase().endsWith(queryArray[index + 2].toString().toLowerCase()))
+              {
+                shouldDeleteThisRecord = true;
+              }
+            }
+            break;
+            
+            case 'DoesNotEndWith': // 15
+            {
+              if(fieldValue.toString().endsWith(queryArray[index + 2].toString()))
+              {
+                shouldDeleteThisRecord = true;
+              }
+            }
+            break;
+            
+            case 'DoesNotEndWithNotCaseSensitive': // 16
+            {
+              if(fieldValue.toString().toLowerCase().endsWith(queryArray[index + 2].toString().toLowerCase()))
+              {
+                shouldDeleteThisRecord = true;
+              }
+            }
+            break;
+
+            case 'IsGreaterThan': // 17
+            {
+              if(fieldValue <= queryArray[index + 2])
+              {
+                shouldDeleteThisRecord = true;
+              }
+            }
+            break;          
+            
+            case 'IsGreaterThanNotCaseSensitive': // 18
+            {
+              if(fieldValue.toString().toLowerCase() <= queryArray[index + 2].toString().toLowerCase())
+              {
+                shouldDeleteThisRecord = true;
+              }
+            }
+            break; 
+            
+            case 'IsGreaterThanOrEqualTo': // 19
+            {
+              if(fieldValue < queryArray[index + 2])
+              {
+                shouldDeleteThisRecord = true;
+              }
+            }
+            break;
+            
+            case 'IsGreaterThanOrEqualToNotCaseSensitive': // 20
+            {
+              if(fieldValue.toString().toLowerCase() < queryArray[index + 2].toString().toLowerCase())
+              {
+                shouldDeleteThisRecord = true;
+              }
+            }
+            break;
+            
+            case 'IsLessThan': // 21
+            {
+              if(fieldValue >= queryArray[index + 2])
+              {
+                shouldDeleteThisRecord = true;
+              }
+            }
+            break;
+
+            case 'IsLessThanNotCaseSensitive': // 22
+            {
+              if(fieldValue.toString().toLowerCase() >= queryArray[index + 2].toString().toLowerCase())
+              {
+                shouldDeleteThisRecord = true;
+              }
+            }
+            break;                
+            
+            case 'IsLessThanOrEqualTo': // 23
+            {
+              if(fieldValue > queryArray[index + 2])
+              {
+                shouldDeleteThisRecord = true;
+              }
+            }
+            break;          
+            
+            case 'IsLessThanOrEqualToNotCaseSensitive': // 24
+            {
+              if(fieldValue.toString().toLowerCase() > queryArray[index + 2].toString().toLowerCase())
+              {
+                shouldDeleteThisRecord = true;
+              }
+            }
+            break;          
+                        
+            default: // When there are no case matches then do this.
+            {
+
+            }
+
+          } // End of: switch(queryArray[index + 1])  
+        } // End of: if (fieldValue === undefined){...}
+             
+        // All (ANDWHERE) clauses will be evaluated first.
+        // The order of the clauses will matter.
+
+
+        // If the record failed the specified match condition and has set the delete flag:
+        // Then we need to look for an ORWHERE clause further along in the queryArray that might pass this record.
+        // Any ANDWHERE clauses between are already failures because all AND conditions must pass or none should pass.
+        if(shouldDeleteThisRecord === true)
+        {      
+          let indexOfNextPossibleOrWhere = index + 3;
+          let proceedWithThisWhileLoop = true;     
+          let foundForwardOrWhereClause = false; // Haven't found any yet.
+
+
+          while (indexOfNextPossibleOrWhere <= amountOfWhereClauses * 4 && proceedWithThisWhileLoop == true) 
+          {                       
+            if(queryArray[indexOfNextPossibleOrWhere] == "ORWHERE") //We found a filter that may pass this record.
+            {
+              foundForwardOrWhereClause = true;
+              proceedWithThisWhileLoop = false;
+              // Need to repeat the outside while loop (not this one) at the index for the ORWHERE filter just found.
+            }
+            else // We did not find an ORWHERE filter this time through the while loop
+            {
+              // lets loop again to look further along the queryArray.
+              indexOfNextPossibleOrWhere = indexOfNextPossibleOrWhere + 4;
+              proceedWithThisWhileLoop = true;                           
+            }
+          } // End of: while (indexOfNextPossibleOrWhere < amountOfWhereClauses * 4 -1 && proceedWithLoop == true){...}
+
+          
+          if(foundForwardOrWhereClause === true) // Another ORWHERE clause exists that might pass this record.
+          {
+            // index = index + 4;
+            index = indexOfNextPossibleOrWhere + 1
+            whereClauseCount = whereClauseCount + 1;   
+            shouldLoopAgain = true;  
+            recordWasDeleted = false;    
+            shouldDeleteThisRecord = false;              
+          }
+
+          // FAILING THIS RECORD!!!
+          // Breaking out of both while loops and deleting this record. 
+          else // Else: there are no more ORWHERE filters that could save this record
+          {
+            // Finally remove this record from the map 
+            oContactMap.delete(oContactId);
+            recordWasDeleted = true;  
+            shouldLoopAgain = false;  
+            shouldDeleteThisRecord = false;  
+          // There is no more processing for this particular record in readInterface.on    
+          // IT ALL ENDS HERE FOR THIS RECORD!!!                  
+          }
+
+        } //End of: if(shouldDeleteThisRecord === true){...}
+
+        // Else: the current filter passed this record.
+        else // shouldDeleteThisRecord was false.
+        {
+
+        // Since the record passed through this current filter we need to 
+        // see if there is an ANDWHERE filter right next to this current filter. 
+        // Any further ANDWHERE filters right next to this current one must also 
+        // pass the record until there are no more filters or an ORWHERE filter is 
+        // encountered. In that case the loop is stopped and the record is passed.
+
+          let indexOfNextPossibleAndWhere = index + 3; 
+    
+          // If we found an ANDWHERE filter that must pass this record.  
+          if(queryArray[indexOfNextPossibleAndWhere] == "ANDWHERE") 
+          {
+            // Need to repeat the outside while loop (not this one) at the index for the ANDWHERE filter just found.
+            // If the filter is passed then we will be back here again looking for another ANDWHERE clause.
+            index = index + 4;
+            whereClauseCount = whereClauseCount + 1;   
+            shouldLoopAgain = true;  
+            recordWasDeleted = false;    
+            shouldDeleteThisRecord = false; 
+          }
+          else // We did not find an ANDWHERE filter this time through the while loop
+          {
+            // PASSING THIS RECORD!!!
+            // Breaking out of both while loops and passing this record.
+            shouldLoopAgain = false; 
+            recordWasDeleted = false;  
+          }
+
+        } // End of: else: shouldDeleteThisRecord was false
+        
+
+      } // End of: while(whereClauseCount <= amountOfWhereClauses && shouldLoopAgain === true)
+      
+    } //End of: else if(amountOfWhereClauses > 0) // else if the user created one or more filter expressions
+
+    //If the record was not marked for deletion and passed through the filters above:
+    if(recordWasDeleted === false)
+    {
+      // Remove the oContact.properties.firstName key/value pair from the lineValueObject before returning it to the requester.
+      delete lineValueObject.oContact.properties.firstName;
+
+// Remove the oContact.properties.lastName key/value pair from the lineValueObject before returning it to the requester.
+      delete lineValueObject.oContact.properties.lastName;
+
+// Remove the oContact.properties.email key/value pair from the lineValueObject before returning it to the requester.
+      delete lineValueObject.oContact.properties.email;
+
+      // Remove the deleted key/value pair from the lineValueObject before returning it to the requester.
+      delete lineValueObject.deleted;            
+
+      // Update this record in the map.
+      oContactMap.set(oContactId, lineValueObject);
+    }
+
+  }); // End of: readInterface.on('line', function(line){...}
+  // End of: Look at each record...
+
+
+  // This listener fires after we have looked through all the records in the oContact file.
+  // The callback function defined here will stream the oContact list back to the clients browser.
+  readInterface.on('close', function() 
+  {          
+    // This readable stream will be used to write the result of the merge to a new file.
+    const sourceStream = new Readable(); 
+
+    for (const [key, valueObject] of oContactMap)
+    {
+      // Convert the data object to a string.
+      let stringData = JSON.stringify(valueObject);     
+
+      // Load the readable stream with data.
+      sourceStream.push(stringData + '\n');                  
+    }       
+
+    // Tell the stream no more data is coming.
+    sourceStream.push(null);     
+
+    callback(200, sourceStream, 'stream');             
+
+  }); // End of: readInterface.on('close', function(){...}   
+
+}; // End of: handlers._oContact.get = function(data, callback){do stuff}
+// End of: Define the oContact get subhandler function.  
+
+
+
+
+// Export the module
+module.exports = oContact;
 
 
