@@ -13,8 +13,24 @@
       <input class="disabled" type="text" name="oContactId" value="{selected.oContactId}" disabled/>
     </div>
     <div class="inputWrapper">
-      <div class="inputLabel">Table</div>
-      <undefined class="tableInput" name="table"/>
+      <div class="inputLabel">First Name</div>
+      <input class="firstNameInput" name="firstName" type="text" placeholder="Enter a First Name"/>
+    </div>
+    <div class="inputWrapper">
+      <div class="inputLabel">Last Name</div>
+      <input class="lastNameInput" name="lastName" type="text" placeholder="Enter a Last Name"/>
+    </div>
+    <div class="inputWrapper">
+      <div class="inputLabel">Email</div>
+      <input class="emailInput" name="email" type="text" placeholder="alice@gmail.com"/>
+    </div>
+    <div class="inputWrapper">
+      <div class="inputLabel">Phone Information</div>
+      <undefined class="phoneInput" name="phone"/>
+    </div>
+    <div class="inputWrapper">
+      <div class="inputLabel">Address Information</div>
+      <undefined class="addressInput" name="address"/>
     </div>
     <div class="inputWrapper">
       <div class="inputLabel">Time Stamp</div>
@@ -322,7 +338,9 @@ app.loadoContactEditPage = async function()
   let recordObject = recordArray[0];
 
   // Put the data into the forms as values where needed
-  document.querySelectorAll(".oContactInput").forEach(function (element){element.value = recordObject.oContact});
+  document.querySelectorAll(".firstNameInput").forEach(function (element){element.value = recordObject.firstName});
+document.querySelectorAll(".lastNameInput").forEach(function (element){element.value = recordObject.lastName});
+document.querySelectorAll(".emailInput").forEach(function (element){element.value = recordObject.email});
   document.querySelectorAll(".timeStampInput").forEach(function(element){element.value = recordObject.timeStamp});  
 
   // Define a function to get the published fields and the timeStamp from the oContactID
