@@ -41,10 +41,10 @@ app.init = function()
 
   // Build webpages for working with tables.
   // The parameter is metadataId in metadata.json.
-  // meta.build.addWebPage(1060);
-  // meta.build.editWebPage(1060);
-  // meta.build.listWebPage(1060);  
-  // meta.build.serverSideLogic(1060);    
+  // meta.build.addWebPage(1065);
+  // meta.build.editWebPage(1065);
+  // meta.build.listWebPage(1065);  
+  // meta.build.serverSideLogic(1065);    
 };
 
 

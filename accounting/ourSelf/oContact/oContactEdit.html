@@ -24,13 +24,49 @@
       <div class="inputLabel">Email</div>
       <input class="emailInput" name="email" type="text" placeholder="alice@gmail.com"/>
     </div>
-    <div class="inputWrapper">
-      <div class="inputLabel">Phone Information</div>
-      <undefined class="phoneInput" name="phone"/>
+    <div class="objectLabel">Phone Information</div>
+    <div class="objectWrapper">
+      <div class="objectLabel">Phone1</div>
+      <div class="objectWrapper">
+        <div class="inputWrapper">
+          <div class="inputLabel">Phone Type</div>
+          <input class="phone_properties_phone1_properties_phoneTypeInput" name="phone_properties_phone1_properties_phoneType" type="text" placeholder="Mobile Phone"/>
+        </div>
+        <div class="inputWrapper">
+          <div class="inputLabel">Phone</div>
+          <input class="phone_properties_phone1_properties_phoneInput" name="phone_properties_phone1_properties_phone" type="text" placeholder="123456789"/>
+        </div>
+      </div>
     </div>
-    <div class="inputWrapper">
-      <div class="inputLabel">Address Information</div>
-      <undefined class="addressInput" name="address"/>
+    <div class="objectLabel">Address Information</div>
+    <div class="objectWrapper">
+      <div class="objectLabel">Address1</div>
+      <div class="objectWrapper">
+        <div class="inputWrapper">
+          <div class="inputLabel">Address Type</div>
+          <input class="address_properties_address1_properties_addressTypeInput" name="address_properties_address1_properties_addressType" type="text" placeholder="Home Address"/>
+        </div>
+        <div class="inputWrapper">
+          <div class="inputLabel">Street 1</div>
+          <input class="address_properties_address1_properties_street1Input" name="address_properties_address1_properties_street1" type="text" placeholder="123 Main St."/>
+        </div>
+        <div class="inputWrapper">
+          <div class="inputLabel">Street 2</div>
+          <input class="address_properties_address1_properties_street2Input" name="address_properties_address1_properties_street2" type="text" placeholder="2nd Floor Apartment"/>
+        </div>
+        <div class="inputWrapper">
+          <div class="inputLabel">City</div>
+          <input class="address_properties_address1_properties_cityInput" name="address_properties_address1_properties_city" type="text" placeholder="My Hometown"/>
+        </div>
+        <div class="inputWrapper">
+          <div class="inputLabel">State</div>
+          <input class="address_properties_address1_properties_stateInput" name="address_properties_address1_properties_state" type="text" placeholder="My Great State"/>
+        </div>
+        <div class="inputWrapper">
+          <div class="inputLabel">Zip Code</div>
+          <input class="address_properties_address1_properties_zipInput" name="address_properties_address1_properties_zip" type="text" placeholder="99999"/>
+        </div>
+      </div>
     </div>
     <div class="inputWrapper">
       <div class="inputLabel">Time Stamp</div>
@@ -338,9 +374,18 @@ app.loadoContactEditPage = async function()
   let recordObject = recordArray[0];
 
   // Put the data into the forms as values where needed
+  // Behaviour from meta.js at 4eyhkvwtznzs8f9pmy08
   document.querySelectorAll(".firstNameInput").forEach(function (element){element.value = recordObject.firstName});
-document.querySelectorAll(".lastNameInput").forEach(function (element){element.value = recordObject.lastName});
-document.querySelectorAll(".emailInput").forEach(function (element){element.value = recordObject.email});
+  document.querySelectorAll(".lastNameInput").forEach(function (element){element.value = recordObject.lastName});
+  document.querySelectorAll(".emailInput").forEach(function (element){element.value = recordObject.email});
+  document.querySelectorAll(".phone_properties_phone1_properties_phoneTypeInput").forEach(function (element){element.value = recordObject.phone.properties.phone1.properties.phoneType});
+  document.querySelectorAll(".phone_properties_phone1_properties_phoneInput").forEach(function (element){element.value = recordObject.phone.properties.phone1.properties.phone});
+  document.querySelectorAll(".address_properties_address1_properties_addressTypeInput").forEach(function (element){element.value = recordObject.address.properties.address1.properties.addressType});
+  document.querySelectorAll(".address_properties_address1_properties_street1Input").forEach(function (element){element.value = recordObject.address.properties.address1.properties.street1});
+  document.querySelectorAll(".address_properties_address1_properties_street2Input").forEach(function (element){element.value = recordObject.address.properties.address1.properties.street2});
+  document.querySelectorAll(".address_properties_address1_properties_cityInput").forEach(function (element){element.value = recordObject.address.properties.address1.properties.city});
+  document.querySelectorAll(".address_properties_address1_properties_stateInput").forEach(function (element){element.value = recordObject.address.properties.address1.properties.state});
+  document.querySelectorAll(".address_properties_address1_properties_zipInput").forEach(function (element){element.value = recordObject.address.properties.address1.properties.zip});
   document.querySelectorAll(".timeStampInput").forEach(function(element){element.value = recordObject.timeStamp});  
 
   // Define a function to get the published fields and the timeStamp from the oContactID
