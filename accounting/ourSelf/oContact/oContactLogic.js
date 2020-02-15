@@ -55,7 +55,7 @@ oContact.serveListPage = function(data, callback)
             helpers.log
             (            
               5,
-              'txzknrhf1kplfljbnnlf' + '\n' +
+              'nurvho9ytzhgfmzmkp2d' + '\n' +
               'There was an error or the concatenated templates were not returned.' + '\n' +
               'This was the error:' + '\n' +
               JSON.stringify(errorAddUnivTemplates) + '\n'
@@ -71,7 +71,7 @@ oContact.serveListPage = function(data, callback)
         helpers.log
         (
           5,
-          '3zna5q26pbklv1b6s739' + '\n' +
+          'h4v1gumwr9kkq06y3nz6' + '\n' +
           'There was an error or no template was returned.' + '\n' +
           'This was the error:' + '\n' +
           JSON.stringify(errorGetTemplate) + '\n'
@@ -88,7 +88,7 @@ oContact.serveListPage = function(data, callback)
     helpers.log
     (
       5,
-      'bmdevmkaybny8oz7ks0b' + '\n' +
+      'czc8b8chu5aj80if10ta' + '\n' +
       'Method not get. Only gets allowed.' + '\n'
     );
 
@@ -135,7 +135,7 @@ oContact.serveAddPage = function(data, callback)
             helpers.log
             (            
               5,
-              '9hqgeh5p5l5b5pu334if' + '\n' +
+              'wz1zvzop3pzdqoiko22c' + '\n' +
               'There was an error or the concatenated templates were not returned.' + '\n' +
               'This was the error:' + '\n' +
               JSON.stringify(errorAddUnivTemplates) + '\n'
@@ -151,7 +151,7 @@ oContact.serveAddPage = function(data, callback)
         helpers.log
         (
           5,
-          'ri9lafjq2mlpwxz2809n' + '\n' +
+          'eg0g7n5ygk4xob586vdf' + '\n' +
           'There was an error or no template was returned.' + '\n' +
           'This was the error:' + '\n' +
           JSON.stringify(errorGetTemplate) + '\n'
@@ -168,7 +168,7 @@ oContact.serveAddPage = function(data, callback)
     helpers.log
     (
       5,
-      '1uemebzyp1rjaxg0zczt' + '\n' +
+      'dpso9if6yte3azfcqb8e' + '\n' +
       'Method not get. Only gets allowed.' + '\n'
     );
 
@@ -215,7 +215,7 @@ oContact.serveEditPage = function(data, callback)
             helpers.log
             (            
               5,
-              'hrm7atu9gbodp3ipqryp' + '\n' +
+              'blttch2n2p946c8a8nyv' + '\n' +
               'There was an error or the concatenated templates were not returned.' + '\n' +
               'This was the error:' + '\n' +
               JSON.stringify(errorAddUnivTemplates) + '\n'
@@ -231,7 +231,7 @@ oContact.serveEditPage = function(data, callback)
         helpers.log
         (
           5,
-          'rpmjuf9x8tx64azc5fcy' + '\n' +
+          'ux3zr0uq517f7uh9ecow' + '\n' +
           'There was an error or no template was returned.' + '\n' +
           'This was the error:' + '\n' +
           JSON.stringify(errorGetTemplate) + '\n'
@@ -248,7 +248,7 @@ oContact.serveEditPage = function(data, callback)
     helpers.log
     (
       5,
-      'jxx6jnbjy54xtetl9nza' + '\n' +
+      'emwqulwr3nqjke4iaao7' + '\n' +
       'Method not get. Only gets allowed.' + '\n'
     );
 
@@ -282,7 +282,7 @@ oContact.oContact = function(data, callback)
     helpers.log
     (
       5,
-      'cabz7jzyyndbc3ce4pz1' + '\n' +
+      'ac6zhsxdo81mysizj1cb' + '\n' +
       'The method was not one of the acceptable methods' + '\n'
     ); 
 
@@ -321,6 +321,9 @@ oContact._oContact.post = function(data, callback)
   // passIfString&NotEmptyThenTrim Default behavior from meta.js at ulg5xxvzgr7efln9xur9
   if(typeof(lastName) != 'string'){return callback(400, {'Error' : 'lastName must be of datatype string'});}
   if(!lastName || lastName.trim().length === 0){return callback(400, {'Error' : 'No lastName was entered'});}else{lastName = lastName.trim()}
+
+  // Get fullName from payload
+  let fullName = data.payload["fullName"];
 
   // Get email from payload
   let email = data.payload["email"];
@@ -523,7 +526,7 @@ oContact._oContact.post = function(data, callback)
       helpers.log
       (
         5,
-        'w3ul9mqvxfn0zobc06od' + '\n' +
+        'k8n8rk4x9b9xm4p0nyj2' + '\n' +
         'The email : ' + email + ' already exists' + '\n'                                  
       ); // End of: helpers.log(...)
 
@@ -550,7 +553,7 @@ oContact._oContact.post = function(data, callback)
         helpers.log
         (
           5,
-          '0dc60koqzbrdjzi0mtok' + '\n' +
+          's574sro5mduua435qgil' + '\n' +
           'Unable to get the next gsuid.' + '\n' +
           'The following was the error' + '\n' +
           JSON.stringify(error) + '\n'                                   
@@ -572,6 +575,7 @@ oContact._oContact.post = function(data, callback)
 
       oContactObject.firstName = firstName;
       oContactObject.lastName = lastName;
+      oContactObject.fullName = fullName;
       oContactObject.email = email;
 
       oContactObject.phone = {};
@@ -626,7 +630,7 @@ oContact._oContact.post = function(data, callback)
             helpers.log
             (
               7,
-              '3pel9bp6kvb7eee6bf2t' + '\n' +
+              'om13gxg9lc1e959d6wyq' + '\n' +
               'There was an error appending to the history file' + '\n' +
               'An error here does not necessarily mean the append to history did not happen.' + '\n' +  
               'But an error at this point in the code surely means there was no append to oContact' + '\n' +                                          
@@ -670,7 +674,7 @@ oContact._oContact.post = function(data, callback)
                   helpers.log // Log the error.
                   (
                     7,
-                    'l4dxoir3pt606bmlib0h' + '\n' +
+                    'hpf7u8sze4stre9n8805' + '\n' +
                     'Successful write to oContact but unable to remove lock on database' + '\n' +
                     'The following record was appended to the oContact file:' + '\n' +                            
                     JSON.stringify(logObject) + '\n' +   
@@ -692,7 +696,7 @@ oContact._oContact.post = function(data, callback)
               helpers.log // Log the error.
               (
                 5,
-                'dnxdraihd0u40f1hz5iv' + '\n' +
+                'z8ufpr5kxj84vdmyw06o' + '\n' +
                 'There was an error when appending to the oContact file.' + '\n' +
                 'The following record may or may not have been appended to the oContact file:' + '\n' +                            
                 JSON.stringify(logObject) + '\n' +
@@ -740,7 +744,7 @@ oContact._oContact.post = function(data, callback)
                           helpers.log
                           (
                             5,
-                            'yfx5101521diui187x4d' + '\n' +
+                            'l41q702a8o9f5ga76siv' + '\n' +
                             'Rollback entry in the oContact file was appended successfully' + '\n' +
                             'The following was the record we rolled back:' + '\n' +
                             JSON.stringify(logObject) + '\n'                                   
@@ -751,7 +755,7 @@ oContact._oContact.post = function(data, callback)
                           helpers.log
                           (
                             7,
-                            'sgoem59kccg1lh9za0tm' + '\n' +
+                            'e6eut9tq9u9d12umqlvq' + '\n' +
                             'There was an error appending a rollback entry in the oContact file' + '\n' +
                             'The following record may or may not have been rolled back:' + '\n' +
                             JSON.stringify(logObject) + '\n' +   
@@ -771,7 +775,7 @@ oContact._oContact.post = function(data, callback)
                     helpers.log
                     (
                       7,
-                      'fez8buqjfntteyh5jeep' + '\n' +
+                      'cy0rk7noytcvrhnsoccx' + '\n' +
                       'There was an error appending a rollback entry in the history file' + '\n' +
                       'A rollback entry may or may not have been written in the oContact file' + '\n' +  
                       'CHECK TO SEE IF history and oContact ARE STILL IN SYNC' + '\n' +                                      
@@ -873,6 +877,9 @@ oContact._oContact.put = function(data, callback)
     } 
   }
   
+  // Get fullName from payload
+  let fullName = data.payload.fullName;
+
   // Get email from payload
   let email = data.payload.email;
 
@@ -1140,12 +1147,12 @@ oContact._oContact.put = function(data, callback)
 
   
   //if all fields fail validation then exit this process without writing changes to the table.
-  if(!firstName && !lastName && !email && !phone.properties.phone1.properties.phoneType && !phone.properties.phone1.properties.phone && !address.properties.address1.properties.addressType && !address.properties.address1.properties.street1 && !address.properties.address1.properties.street2 && !address.properties.address1.properties.city && !address.properties.address1.properties.state && !address.properties.address1.properties.zip && !deleted)
+  if(!firstName && !lastName && !fullName && !email && !phone.properties.phone1.properties.phoneType && !phone.properties.phone1.properties.phone && !address.properties.address1.properties.addressType && !address.properties.address1.properties.street1 && !address.properties.address1.properties.street2 && !address.properties.address1.properties.city && !address.properties.address1.properties.state && !address.properties.address1.properties.zip && !deleted)
   {
     helpers.log
     (
       5,
-      'o7z4gpnfztx2d2sce27t' + '\n' +
+      '0b87kpdizla73zaojyk0' + '\n' +
       'No fields pass the validation process' + '\n'                                  
     ); // End of: helpers.log(...)
 
@@ -1168,7 +1175,7 @@ oContact._oContact.put = function(data, callback)
       helpers.log
       (
         5,
-        '2fnzf46693oi3xybv6q3' + '\n' +
+        'fu0uwp21nmi203a3sd8k' + '\n' +
         'Unable to get the next gsuid.' + '\n' +
         'The following was the error' + '\n' +
         JSON.stringify(error) + '\n'                                   
@@ -1188,10 +1195,11 @@ oContact._oContact.put = function(data, callback)
     // This is to establish the order in which the fields will be written to the table. 
     // Behavior from 3bd1sa5ve4aqrfspunrt in meta.js         
     let oContactObject = {};
-    oContactObject.oContactId = nextIdObject.nextId;
+    oContactObject.oContactId = oContactId;
 
     oContactObject.firstName = firstName;
     oContactObject.lastName = lastName;
+    oContactObject.fullName = fullName;
     oContactObject.email = email;
 
     oContactObject.phone = {};
@@ -1243,7 +1251,7 @@ oContact._oContact.put = function(data, callback)
               helpers.log // Log the error.
               (
                 7,
-                '3ogejea55hjk94xamx1z' + '\n' + 
+                'hev9ix2niqf5xmfoxh0y' + '\n' + 
                 'The following was the error message from getMostRecent:' + '\n' +                                             
                 errorFromGetMostRecent + '\n'                                                 
               ); // End of: helpers.log // Log the error.
@@ -1258,7 +1266,7 @@ oContact._oContact.put = function(data, callback)
               helpers.log // Log the error.
               (
                 7,
-                'iq8b8knp4mdv4jfk492t' + '\n' +
+                'fdrd0v7cq03gy45g6wsi' + '\n' +
                 'The following was the error message from getMostRecent:' + '\n' +                                             
                 errorFromGetMostRecent + '\n'  +
                 'Also unable to remove lock on database.' + '\n' + 
@@ -1305,6 +1313,7 @@ oContact._oContact.put = function(data, callback)
           // Save firstName from the most recent record.
           oContactObject.firstName = recordObject.firstName;
         }
+
         // Preprocessing for lastName
         if(lastName) // If the user supplied data for lastName
         {
@@ -1315,6 +1324,11 @@ oContact._oContact.put = function(data, callback)
           // Save lastName from the most recent record.
           oContactObject.lastName = recordObject.lastName;
         }
+
+        // Preprocessing for fullName
+        // Behavior from data dictionary at 4m8yfgakt2w3gwgipr8c
+        oContactObject.fullName = oContactObject.firstName + oContactObject.lastName
+
         // Preprocessing for email
         if(email) // If the user supplied data for email
         {
@@ -1325,91 +1339,101 @@ oContact._oContact.put = function(data, callback)
           // Save email from the most recent record.
           oContactObject.email = recordObject.email;
         }
-        // Preprocessing for phone_properties_phone1_properties_phoneType
-        if(phone_properties_phone1_properties_phoneType) // If the user supplied data for phone_properties_phone1_properties_phoneType
+
+        // Preprocessing for phone.properties.phone1.properties.phoneType
+        if(phone_properties_phone1_properties_phoneType) // If the user supplied data for phone.properties.phone1.properties.phoneType
         {
-          // No preprocessing was specifed for phone_properties_phone1_properties_phoneType. Use it as was supplied by the user.
+          // No preprocessing was specifed for phone.properties.phone1.properties.phoneType. Use it as was supplied by the user.
         }
-        else // If the user did not supply data for phone_properties_phone1_properties_phoneType
+        else // If the user did not supply data for phone.properties.phone1.properties.phoneType
         {
-          // Save phoneType from the most recent record.
-          oContactObject.phoneType = recordObject.phoneType;
+          // Save phone.properties.phone1.properties.phoneType from the most recent record.
+          oContactObject.phone.properties.phone1.properties.phoneType = recordObject.phone.properties.phone1.properties.phoneType;
         }
-        // Preprocessing for phone_properties_phone1_properties_phone
-        if(phone_properties_phone1_properties_phone) // If the user supplied data for phone_properties_phone1_properties_phone
+
+        // Preprocessing for phone.properties.phone1.properties.phone
+        if(phone_properties_phone1_properties_phone) // If the user supplied data for phone.properties.phone1.properties.phone
         {
-          // No preprocessing was specifed for phone_properties_phone1_properties_phone. Use it as was supplied by the user.
+          // No preprocessing was specifed for phone.properties.phone1.properties.phone. Use it as was supplied by the user.
         }
-        else // If the user did not supply data for phone_properties_phone1_properties_phone
+        else // If the user did not supply data for phone.properties.phone1.properties.phone
         {
-          // Save phone from the most recent record.
-          oContactObject.phone = recordObject.phone;
+          // Save phone.properties.phone1.properties.phone from the most recent record.
+          oContactObject.phone.properties.phone1.properties.phone = recordObject.phone.properties.phone1.properties.phone;
         }
-        // Preprocessing for address_properties_address1_properties_addressType
-        if(address_properties_address1_properties_addressType) // If the user supplied data for address_properties_address1_properties_addressType
+
+        // Preprocessing for address.properties.address1.properties.addressType
+        if(address_properties_address1_properties_addressType) // If the user supplied data for address.properties.address1.properties.addressType
         {
-          // No preprocessing was specifed for address_properties_address1_properties_addressType. Use it as was supplied by the user.
+          // No preprocessing was specifed for address.properties.address1.properties.addressType. Use it as was supplied by the user.
         }
-        else // If the user did not supply data for address_properties_address1_properties_addressType
+        else // If the user did not supply data for address.properties.address1.properties.addressType
         {
-          // Save addressType from the most recent record.
-          oContactObject.addressType = recordObject.addressType;
+          // Save address.properties.address1.properties.addressType from the most recent record.
+          oContactObject.address.properties.address1.properties.addressType = recordObject.address.properties.address1.properties.addressType;
         }
-        // Preprocessing for address_properties_address1_properties_street1
-        if(address_properties_address1_properties_street1) // If the user supplied data for address_properties_address1_properties_street1
+
+        // Preprocessing for address.properties.address1.properties.street1
+        if(address_properties_address1_properties_street1) // If the user supplied data for address.properties.address1.properties.street1
         {
-          // No preprocessing was specifed for address_properties_address1_properties_street1. Use it as was supplied by the user.
+          // No preprocessing was specifed for address.properties.address1.properties.street1. Use it as was supplied by the user.
         }
-        else // If the user did not supply data for address_properties_address1_properties_street1
+        else // If the user did not supply data for address.properties.address1.properties.street1
         {
-          // Save street1 from the most recent record.
-          oContactObject.street1 = recordObject.street1;
+          // Save address.properties.address1.properties.street1 from the most recent record.
+          oContactObject.address.properties.address1.properties.street1 = recordObject.address.properties.address1.properties.street1;
         }
-        // Preprocessing for address_properties_address1_properties_street2
-        if(address_properties_address1_properties_street2) // If the user supplied data for address_properties_address1_properties_street2
+
+        // Preprocessing for address.properties.address1.properties.street2
+        if(address_properties_address1_properties_street2) // If the user supplied data for address.properties.address1.properties.street2
         {
-          // No preprocessing was specifed for address_properties_address1_properties_street2. Use it as was supplied by the user.
+          // No preprocessing was specifed for address.properties.address1.properties.street2. Use it as was supplied by the user.
         }
-        else // If the user did not supply data for address_properties_address1_properties_street2
+        else // If the user did not supply data for address.properties.address1.properties.street2
         {
-          // Save street2 from the most recent record.
-          oContactObject.street2 = recordObject.street2;
+          // Save address.properties.address1.properties.street2 from the most recent record.
+          oContactObject.address.properties.address1.properties.street2 = recordObject.address.properties.address1.properties.street2;
         }
-        // Preprocessing for address_properties_address1_properties_city
-        if(address_properties_address1_properties_city) // If the user supplied data for address_properties_address1_properties_city
+
+        // Preprocessing for address.properties.address1.properties.city
+        if(address_properties_address1_properties_city) // If the user supplied data for address.properties.address1.properties.city
         {
-          // No preprocessing was specifed for address_properties_address1_properties_city. Use it as was supplied by the user.
+          // No preprocessing was specifed for address.properties.address1.properties.city. Use it as was supplied by the user.
         }
-        else // If the user did not supply data for address_properties_address1_properties_city
+        else // If the user did not supply data for address.properties.address1.properties.city
         {
-          // Save city from the most recent record.
-          oContactObject.city = recordObject.city;
+          // Save address.properties.address1.properties.city from the most recent record.
+          oContactObject.address.properties.address1.properties.city = recordObject.address.properties.address1.properties.city;
         }
-        // Preprocessing for address_properties_address1_properties_state
-        if(address_properties_address1_properties_state) // If the user supplied data for address_properties_address1_properties_state
+
+        // Preprocessing for address.properties.address1.properties.state
+        if(address_properties_address1_properties_state) // If the user supplied data for address.properties.address1.properties.state
         {
-          // No preprocessing was specifed for address_properties_address1_properties_state. Use it as was supplied by the user.
+          // No preprocessing was specifed for address.properties.address1.properties.state. Use it as was supplied by the user.
         }
-        else // If the user did not supply data for address_properties_address1_properties_state
+        else // If the user did not supply data for address.properties.address1.properties.state
         {
-          // Save state from the most recent record.
-          oContactObject.state = recordObject.state;
+          // Save address.properties.address1.properties.state from the most recent record.
+          oContactObject.address.properties.address1.properties.state = recordObject.address.properties.address1.properties.state;
         }
-        // Preprocessing for address_properties_address1_properties_zip
-        if(address_properties_address1_properties_zip) // If the user supplied data for address_properties_address1_properties_zip
+
+        // Preprocessing for address.properties.address1.properties.zip
+        if(address_properties_address1_properties_zip) // If the user supplied data for address.properties.address1.properties.zip
         {
-          // No preprocessing was specifed for address_properties_address1_properties_zip. Use it as was supplied by the user.
+          // No preprocessing was specifed for address.properties.address1.properties.zip. Use it as was supplied by the user.
         }
-        else // If the user did not supply data for address_properties_address1_properties_zip
+        else // If the user did not supply data for address.properties.address1.properties.zip
         {
-          // Save zip from the most recent record.
-          oContactObject.zip = recordObject.zip;
+          // Save address.properties.address1.properties.zip from the most recent record.
+          oContactObject.address.properties.address1.properties.zip = recordObject.address.properties.address1.properties.zip;
         }
+
         // If we are appending a delete make sure that everything else is coming from the most recent saved record.
         if(deleted)
         {
           oContactObject.firstName = recordObject.firstName;
           oContactObject.lastName = recordObject.lastName;
+          oContactObject.fullName = recordObject.fullName;
           oContactObject.email = recordObject.email;
           oContactObject.phone = recordObject.phone;
           oContactObject.address = recordObject.address;
@@ -1470,7 +1494,7 @@ oContact._oContact.put = function(data, callback)
                         helpers.log // Log the error.
                         (
                           7,
-                          '364bcmt57phwu33kvmv7' + '\n' +
+                          'corvpraro1hxqjvsgyf8' + '\n' +
                           'Successful write to oContact but unable to remove lock on database' + '\n' +
                           'The following record was appended to oContact:' + '\n' +                            
                           JSON.stringify(logObject) + '\n' +   
@@ -1492,7 +1516,7 @@ oContact._oContact.put = function(data, callback)
                     helpers.log // Log the error.
                     (
                       5,
-                      'mhrjn0y3t2hnc29z7t2f' + '\n' +
+                      'wj9j35a6uqjtk61z4zoh' + '\n' +
                       'There was an error when appending to the oContact file.' + '\n' +
                       'The following record may or may not have been appended to oContact:' + '\n' +                            
                       JSON.stringify(logObject) + '\n' +
@@ -1508,6 +1532,7 @@ oContact._oContact.put = function(data, callback)
                         "oContactId" : recordObject.nextId,
                         "firstName" : recordObject.firstName,
                         "lastName" : recordObject.lastName,
+                        "fullName" : recordObject.fullName,
                         "email" : recordObject.email,
                         "phone" : recordObject.phone,
                         "address" : recordObject.address,
@@ -1550,7 +1575,7 @@ oContact._oContact.put = function(data, callback)
                                 helpers.log
                                 (
                                   5,
-                                  '9gm52n0nx2excqd7jvqa' + '\n' +
+                                  'xtoqtfel1xxgwj3ofv05' + '\n' +
                                   'Rollback entry in the oContact file was appended successfully' + '\n' +
                                   'The following was the record we rolled back:' + '\n' +
                                   JSON.stringify(logObject) + '\n'                                   
@@ -1561,7 +1586,7 @@ oContact._oContact.put = function(data, callback)
                                 helpers.log
                                 (
                                   7,
-                                  'imv6jq4z2dktkebckjsc' + '\n' +
+                                  '21exmoui1lqlwp5jidsv' + '\n' +
                                   'There was an error appending a rollback entry in the oContact file' + '\n' +
                                   'The following record may or may not have been rolled back:' + '\n' +
                                   JSON.stringify(logObject) + '\n' +   
@@ -1581,7 +1606,7 @@ oContact._oContact.put = function(data, callback)
                           helpers.log
                           (
                             7,
-                            'rb1jepykdsg9yan3jocn' + '\n' +
+                            '02f13cgpfcxxr62pxgzf' + '\n' +
                             'There was an error appending a rollback entry in the history file' + '\n' +
                             'A rollback entry may or may not have been written in the oContact file' + '\n' +  
                             'CHECK TO SEE IF history and oContact ARE STILL IN SYNC' + '\n' +                                      
@@ -1606,7 +1631,7 @@ oContact._oContact.put = function(data, callback)
               helpers.log
               (
                 7,
-                '1ojf6ez446ozrx70k0sr' + '\n' +
+                '3vmnunoksbvh9kcoetse' + '\n' +
                 'There was an error appending to the history file' + '\n' +
                 'An error here does not necessarily mean the append to history did not happen.' + '\n' +  
                 'But an error at this point in the code surely means there was no append to oContact' + '\n' +                                          
@@ -1638,7 +1663,7 @@ oContact._oContact.put = function(data, callback)
             helpers.log // Log the error.
             (
               7,
-              'bsbzy02ru7dldc5cb8ci' + '\n' + 
+              'a5s87jv3ik8alv2awlet' + '\n' + 
               'Pipeline error. The message was as follows' + '\n' +                                             
               pipelineError + '\n'                                                 
             ); // End of: helpers.log // Log the error.
@@ -2171,7 +2196,10 @@ oContact._oContact.get = function(data, callback)
     //If the record was not marked for deletion and passed through the filters above:
     if(recordWasDeleted === false)
     {
-            // Remove the deleted key/value pair from the lineValueObject before returning it to the requester.
+      // Remove the fullName key/value pair from the lineValueObject before returning it to the requester.
+      delete lineValueObject.fullName;
+
+      // Remove the deleted key/value pair from the lineValueObject before returning it to the requester.
       delete lineValueObject.deleted;            
 
       // Update this record in the map.
