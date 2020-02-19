@@ -8,6 +8,8 @@
 // For other command line interpreters such as BASH use the following command if you do not want the default staging config.
 // NODE_ENV=mySpecialConfigurationVariable node index.js
 
+"use strict";
+
 
 // Dependencies
 const server = require('./lib/server');
@@ -41,10 +43,10 @@ app.init = function()
 
   // Build webpages for working with tables.
   // The parameter is metadataId in metadata.json.
-  // meta.build.addWebPage(1065);
-  // meta.build.editWebPage(1065);
-  // meta.build.listWebPage(1065);  
-  // meta.build.serverSideLogic(1065);    
+  // meta.build.addWebPage(1285);
+  // meta.build.editWebPage(1285);
+  // meta.build.listWebPage(1285);  
+  // meta.build.serverSideLogic(1285);    
 };
 
 

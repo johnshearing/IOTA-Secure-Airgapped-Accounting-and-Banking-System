@@ -3,6 +3,8 @@
  *
  */
 
+"use strict";
+
 // Container for frontend application
 var app = {};
 

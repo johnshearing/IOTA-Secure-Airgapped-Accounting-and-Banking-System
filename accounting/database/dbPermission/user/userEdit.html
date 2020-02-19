@@ -67,6 +67,8 @@
  *
  */
 
+"use strict";
+
 // Container for frontend application
 var app = {};
 
@@ -340,6 +342,7 @@ app.loaduserEditPage = async function()
   let recordObject = recordArray[0];
 
   // Put the data into the forms as values where needed
+  // Behaviour from meta.js at 4eyhkvwtznzs8f9pmy08
   document.querySelectorAll(".emailInput").forEach(function (element){element.value = recordObject.email});
   document.querySelectorAll(".timeStampInput").forEach(function(element){element.value = recordObject.timeStamp});  
 
