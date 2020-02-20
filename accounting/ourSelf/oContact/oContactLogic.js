@@ -56,7 +56,7 @@ oContact.serveListPage = function(data, callback)
             helpers.log
             (            
               5,
-              'bfnylb8z0gnacfjrxahc' + '\n' +
+              'yebmqq0rmn8fi5p8lw1l' + '\n' +
               'There was an error or the concatenated templates were not returned.' + '\n' +
               'This was the error:' + '\n' +
               JSON.stringify(errorAddUnivTemplates) + '\n'
@@ -72,7 +72,7 @@ oContact.serveListPage = function(data, callback)
         helpers.log
         (
           5,
-          'hiorn5tgu1n9x721p0e7' + '\n' +
+          'yxt6bxnl1wkpo5m2gmck' + '\n' +
           'There was an error or no template was returned.' + '\n' +
           'This was the error:' + '\n' +
           JSON.stringify(errorGetTemplate) + '\n'
@@ -89,7 +89,7 @@ oContact.serveListPage = function(data, callback)
     helpers.log
     (
       5,
-      'oqqg92kdds9ojjurvudx' + '\n' +
+      'ptw8fhrbad4qknuey06n' + '\n' +
       'Method not get. Only gets allowed.' + '\n'
     );
 
@@ -136,7 +136,7 @@ oContact.serveAddPage = function(data, callback)
             helpers.log
             (            
               5,
-              '3adeoub43ims9tjvilkt' + '\n' +
+              '87w5y118gner7bn9mscu' + '\n' +
               'There was an error or the concatenated templates were not returned.' + '\n' +
               'This was the error:' + '\n' +
               JSON.stringify(errorAddUnivTemplates) + '\n'
@@ -152,7 +152,7 @@ oContact.serveAddPage = function(data, callback)
         helpers.log
         (
           5,
-          '3yhgqm6h6qxxcmr6m7hw' + '\n' +
+          '6em6kfzbpmidv2wmgce3' + '\n' +
           'There was an error or no template was returned.' + '\n' +
           'This was the error:' + '\n' +
           JSON.stringify(errorGetTemplate) + '\n'
@@ -169,7 +169,7 @@ oContact.serveAddPage = function(data, callback)
     helpers.log
     (
       5,
-      't3w40ramo2kc9j676o3p' + '\n' +
+      'y3x8kt4q1prhk2e8sm1w' + '\n' +
       'Method not get. Only gets allowed.' + '\n'
     );
 
@@ -216,7 +216,7 @@ oContact.serveEditPage = function(data, callback)
             helpers.log
             (            
               5,
-              'xizl1zfljqrxk061a08i' + '\n' +
+              'xk97opnm1u5r0k2sg00l' + '\n' +
               'There was an error or the concatenated templates were not returned.' + '\n' +
               'This was the error:' + '\n' +
               JSON.stringify(errorAddUnivTemplates) + '\n'
@@ -232,7 +232,7 @@ oContact.serveEditPage = function(data, callback)
         helpers.log
         (
           5,
-          'qujpkzd907ypodtsbgh7' + '\n' +
+          'frcymedzv1r12sj1b41k' + '\n' +
           'There was an error or no template was returned.' + '\n' +
           'This was the error:' + '\n' +
           JSON.stringify(errorGetTemplate) + '\n'
@@ -249,7 +249,7 @@ oContact.serveEditPage = function(data, callback)
     helpers.log
     (
       5,
-      '10o8jjkcsa7niebk24wl' + '\n' +
+      '77k01khv6jnzxsbi19uy' + '\n' +
       'Method not get. Only gets allowed.' + '\n'
     );
 
@@ -283,7 +283,7 @@ oContact.oContact = function(data, callback)
     helpers.log
     (
       5,
-      'z314kf4q1d61uvbugtmm' + '\n' +
+      'jb9jwq7e6pqu3jsx77u5' + '\n' +
       'The method was not one of the acceptable methods' + '\n'
     ); 
 
@@ -523,7 +523,7 @@ oContact._oContact.post = function(data, callback)
       helpers.log
       (
         5,
-        'k2y6ahy3a73j88havsai' + '\n' +
+        'dwupd69jkgoeas1w1qd7' + '\n' +
         'The email : ' + email + ' already exists' + '\n'                                  
       ); // End of: helpers.log(...)
 
@@ -551,7 +551,7 @@ oContact._oContact.post = function(data, callback)
         helpers.log
         (
           5,
-          'y5gpzpkiv0c4kr9ultnc' + '\n' +
+          'w77tcnd4t716i959a1xr' + '\n' +
           'Unable to get the next gsuid.' + '\n' +
           'The following was the error' + '\n' +
           JSON.stringify(error) + '\n'                                   
@@ -636,7 +636,7 @@ oContact._oContact.post = function(data, callback)
             helpers.log
             (
               7,
-              '61ocygp7vznngs3qbpoo' + '\n' +
+              'z50np0cp1u9f2p7mcmfm' + '\n' +
               'There was an error appending to the history file' + '\n' +
               'An error here does not necessarily mean the append to history did not happen.' + '\n' +  
               'But an error at this point in the code surely means there was no append to oContact' + '\n' +                                          
@@ -680,7 +680,7 @@ oContact._oContact.post = function(data, callback)
                   helpers.log // Log the error.
                   (
                     7,
-                    'n5chy5nxnhs7xn2keyqi' + '\n' +
+                    'qn157l2lb0ozzxho07bw' + '\n' +
                     'Successful write to oContact but unable to remove lock on database' + '\n' +
                     'The following record was appended to the oContact file:' + '\n' +                            
                     JSON.stringify(logObject) + '\n' +   
@@ -702,7 +702,7 @@ oContact._oContact.post = function(data, callback)
               helpers.log // Log the error.
               (
                 5,
-                '63570nfrb7tjm74xlrws' + '\n' +
+                'dhs5hafcgrzndoy7mxys' + '\n' +
                 'There was an error when appending to the oContact file.' + '\n' +
                 'The following record may or may not have been appended to the oContact file:' + '\n' +                            
                 JSON.stringify(logObject) + '\n' +
@@ -750,7 +750,7 @@ oContact._oContact.post = function(data, callback)
                           helpers.log
                           (
                             5,
-                            'o41w3f87d1zolm9ptf6q' + '\n' +
+                            's19sqp006ei8p6a2q46c' + '\n' +
                             'Rollback entry in the oContact file was appended successfully' + '\n' +
                             'The following was the record we rolled back:' + '\n' +
                             JSON.stringify(logObject) + '\n'                                   
@@ -761,7 +761,7 @@ oContact._oContact.post = function(data, callback)
                           helpers.log
                           (
                             7,
-                            'ked8fkhuu5rysv2zcx0m' + '\n' +
+                            'su2es93149oe9vt1xemu' + '\n' +
                             'There was an error appending a rollback entry in the oContact file' + '\n' +
                             'The following record may or may not have been rolled back:' + '\n' +
                             JSON.stringify(logObject) + '\n' +   
@@ -781,7 +781,7 @@ oContact._oContact.post = function(data, callback)
                     helpers.log
                     (
                       7,
-                      'v08a3r0cw38yozkywsxo' + '\n' +
+                      'd72ef8vqkp7hhdcqj75w' + '\n' +
                       'There was an error appending a rollback entry in the history file' + '\n' +
                       'A rollback entry may or may not have been written in the oContact file' + '\n' +  
                       'CHECK TO SEE IF history and oContact ARE STILL IN SYNC' + '\n' +                                      
@@ -1133,7 +1133,7 @@ oContact._oContact.put = function(data, callback)
     helpers.log
     (
       5,
-      'so6q9x5rc1bo8qm2zjvo' + '\n' +
+      '3ud7yemu3szbo28orba5' + '\n' +
       'No fields pass the validation process' + '\n'                                  
     ); // End of: helpers.log(...)
 
@@ -1156,7 +1156,7 @@ oContact._oContact.put = function(data, callback)
       helpers.log
       (
         5,
-        '0vjhbqhfna1uwrlhlc70' + '\n' +
+        'jpdxvop5qgytzlpofxfd' + '\n' +
         'Unable to get the next gsuid.' + '\n' +
         'The following was the error' + '\n' +
         JSON.stringify(error) + '\n'                                   
@@ -1232,7 +1232,7 @@ oContact._oContact.put = function(data, callback)
               helpers.log // Log the error.
               (
                 7,
-                'emc44qdq85q1eh930lc4' + '\n' + 
+                'aowutgmi67x7fxt1kxd1' + '\n' + 
                 'The following was the error message from getMostRecent:' + '\n' +                                             
                 errorFromGetMostRecent + '\n'                                                 
               ); // End of: helpers.log // Log the error.
@@ -1247,7 +1247,7 @@ oContact._oContact.put = function(data, callback)
               helpers.log // Log the error.
               (
                 7,
-                'ia0kpqvzb808bvdmzeyl' + '\n' +
+                'm487pm9mrueq4rqz3698' + '\n' +
                 'The following was the error message from getMostRecent:' + '\n' +                                             
                 errorFromGetMostRecent + '\n'  +
                 'Also unable to remove lock on database.' + '\n' + 
@@ -1475,7 +1475,7 @@ oContact._oContact.put = function(data, callback)
                         helpers.log // Log the error.
                         (
                           7,
-                          '5suw1gqrtqwkst27tjuq' + '\n' +
+                          'qr1ib2fs0s78exkqcqn7' + '\n' +
                           'Successful write to oContact but unable to remove lock on database' + '\n' +
                           'The following record was appended to oContact:' + '\n' +                            
                           JSON.stringify(logObject) + '\n' +   
@@ -1497,7 +1497,7 @@ oContact._oContact.put = function(data, callback)
                     helpers.log // Log the error.
                     (
                       5,
-                      'lsuzigqinarshulld1xb' + '\n' +
+                      'rhw67zgijs986p025en4' + '\n' +
                       'There was an error when appending to the oContact file.' + '\n' +
                       'The following record may or may not have been appended to oContact:' + '\n' +                            
                       JSON.stringify(logObject) + '\n' +
@@ -1556,7 +1556,7 @@ oContact._oContact.put = function(data, callback)
                                 helpers.log
                                 (
                                   5,
-                                  'hsj0k8c9lyqiox5p1uc4' + '\n' +
+                                  '2ingc6xxyjdu8yeb4wug' + '\n' +
                                   'Rollback entry in the oContact file was appended successfully' + '\n' +
                                   'The following was the record we rolled back:' + '\n' +
                                   JSON.stringify(logObject) + '\n'                                   
@@ -1567,7 +1567,7 @@ oContact._oContact.put = function(data, callback)
                                 helpers.log
                                 (
                                   7,
-                                  'jrzrz4wqyfwcgwaw9e2n' + '\n' +
+                                  'w18exuheg123uo9x6doh' + '\n' +
                                   'There was an error appending a rollback entry in the oContact file' + '\n' +
                                   'The following record may or may not have been rolled back:' + '\n' +
                                   JSON.stringify(logObject) + '\n' +   
@@ -1587,7 +1587,7 @@ oContact._oContact.put = function(data, callback)
                           helpers.log
                           (
                             7,
-                            'wuz70cvri8n79pxw37cp' + '\n' +
+                            '0jo3xsclsq8z2v3mxi9y' + '\n' +
                             'There was an error appending a rollback entry in the history file' + '\n' +
                             'A rollback entry may or may not have been written in the oContact file' + '\n' +  
                             'CHECK TO SEE IF history and oContact ARE STILL IN SYNC' + '\n' +                                      
@@ -1612,7 +1612,7 @@ oContact._oContact.put = function(data, callback)
               helpers.log
               (
                 7,
-                '8i9hh5fq7bz9n3n4gk8o' + '\n' +
+                'acluls9dkhi5y3oqy0pa' + '\n' +
                 'There was an error appending to the history file' + '\n' +
                 'An error here does not necessarily mean the append to history did not happen.' + '\n' +  
                 'But an error at this point in the code surely means there was no append to oContact' + '\n' +                                          
@@ -1644,7 +1644,7 @@ oContact._oContact.put = function(data, callback)
             helpers.log // Log the error.
             (
               7,
-              'g559xm5081chqf1xgy9v' + '\n' + 
+              '129wwckmxrhrfb7hn2fv' + '\n' + 
               'Pipeline error. The message was as follows' + '\n' +                                             
               pipelineError + '\n'                                                 
             ); // End of: helpers.log // Log the error.
