@@ -18,7 +18,17 @@
     </div>
     <div class="inputWrapper">
       <div class="inputLabel">Last Name</div>
-      <input class="lastNameInput" name="lastName" type="text" placeholder="Enter a Last Name"/>
+      <select class="lastNameInput" name="lastName">
+        <option value="" style="display: list-item;"></option>
+        <option value="Clause" style="display: list-item;">Clause</option>
+        <option value="Snowman" style="display: list-item;">Snowman</option>
+        <option value="Comet" style="display: list-item;">Comet</option>
+        <option value="Cupid" style="display: list-item;">Cupid</option>
+        <option value="Cornelious" style="display: list-item;">Cornelious</option>
+        <option value="Raindeer" style="display: list-item;">Raindeer</option>
+        <option value="Moonracer" style="display: list-item;">Moonracer</option>
+        <option value="Elf" style="display: list-item;">Elf</option>
+      </select>
     </div>
     <div class="inputWrapper">
       <div class="inputLabel">Email</div>
@@ -30,7 +40,13 @@
       <div class="objectWrapper">
         <div class="inputWrapper">
           <div class="inputLabel">Phone Type</div>
-          <input class="phone_properties_phone1_properties_phoneTypeInput" name="phone_properties_phone1_properties_phoneType" type="text" placeholder="Mobile Phone"/>
+          <select class="phone_properties_phone1_properties_phoneTypeInput" name="phone_properties_phone1_properties_phoneType">
+            <option value="" style="display: list-item;"></option>
+            <option value="Mobile" style="display: list-item;">Mobile Phone</option>
+            <option value="Home" style="display: list-item;">Home Phone</option>
+            <option value="Office" style="display: list-item;">Office Phone</option>
+            <option value="Answering Service" style="display: list-item;">Answering Service</option>
+          </select>
         </div>
         <div class="inputWrapper">
           <div class="inputLabel">Phone</div>
@@ -52,7 +68,7 @@
         </div>
         <div class="inputWrapper">
           <div class="inputLabel">Street 2</div>
-          <input class="address_properties_address1_properties_street2Input" name="address_properties_address1_properties_street2" type="text" placeholder="2nd Floor Apartment"/>
+          <input class="address_properties_address1_properties_street2Input" name="address_properties_address1_properties_street2" type="text" placeholder="optional"/>
         </div>
         <div class="inputWrapper">
           <div class="inputLabel">City</div>
