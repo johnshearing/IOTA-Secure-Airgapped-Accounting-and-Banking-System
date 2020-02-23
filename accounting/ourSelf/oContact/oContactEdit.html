@@ -22,7 +22,7 @@
     </div>
     <div class="inputWrapper">
       <div class="inputLabel">Email</div>
-      <input class="emailInput" name="email" type="text" placeholder="alice@gmail.com"/>
+      <input class="emailInput" name="email" type="text" placeholder="Enter an Email Address with @"/>
     </div>
     <div class="objectLabel">Phone Information</div>
     <div class="objectWrapper">
@@ -31,6 +31,7 @@
         <div class="inputWrapper">
           <div class="inputLabel">Phone Type</div>
           <select class="phone_properties_phone1_properties_phoneTypeInput" name="phone_properties_phone1_properties_phoneType">
+            <option value="" style="display: list-item;">Select the Phone Type</option>
             <option value="Mobile" style="display: list-item;">Mobile Phone</option>
             <option value="Home" style="display: list-item;">Home Phone</option>
             <option value="Office" style="display: list-item;">Office Phone</option>
@@ -39,7 +40,7 @@
         </div>
         <div class="inputWrapper">
           <div class="inputLabel">Phone</div>
-          <input class="phone_properties_phone1_properties_phoneInput" name="phone_properties_phone1_properties_phone" type="text" placeholder="123456789"/>
+          <input class="phone_properties_phone1_properties_phoneInput" name="phone_properties_phone1_properties_phone" type="text" placeholder="Enter a Phone Number"/>
         </div>
       </div>
     </div>
@@ -49,27 +50,33 @@
       <div class="objectWrapper">
         <div class="inputWrapper">
           <div class="inputLabel">Address Type</div>
-          <input class="address_properties_address1_properties_addressTypeInput" name="address_properties_address1_properties_addressType" type="text" placeholder="Home Address"/>
+          <select class="address_properties_address1_properties_addressTypeInput" name="address_properties_address1_properties_addressType" placeholder="Enter an Address Type">
+            <option value="" style="display: list-item;">Select the Address Type</option>
+            <option value="Home Address" style="display: list-item;">Home Address</option>
+            <option value="Work Address" style="display: list-item;">Work Address</option>
+            <option value="Billing Address" style="display: list-item;">Billing Address</option>
+            <option value="Shipping Address" style="display: list-item;">Shipping Address</option>
+          </select>
         </div>
         <div class="inputWrapper">
           <div class="inputLabel">Street 1</div>
-          <input class="address_properties_address1_properties_street1Input" name="address_properties_address1_properties_street1" type="text" placeholder="123 Main St."/>
+          <input class="address_properties_address1_properties_street1Input" name="address_properties_address1_properties_street1" type="text" placeholder="Enter a Street Address"/>
         </div>
         <div class="inputWrapper">
           <div class="inputLabel">Street 2</div>
-          <input class="address_properties_address1_properties_street2Input" name="address_properties_address1_properties_street2" type="text" placeholder="optional"/>
+          <input class="address_properties_address1_properties_street2Input" name="address_properties_address1_properties_street2" type="text" placeholder="Optional Field"/>
         </div>
         <div class="inputWrapper">
           <div class="inputLabel">City</div>
-          <input class="address_properties_address1_properties_cityInput" name="address_properties_address1_properties_city" type="text" placeholder="My Hometown"/>
+          <input class="address_properties_address1_properties_cityInput" name="address_properties_address1_properties_city" type="text" placeholder="Enter a City"/>
         </div>
         <div class="inputWrapper">
           <div class="inputLabel">State</div>
-          <input class="address_properties_address1_properties_stateInput" name="address_properties_address1_properties_state" type="text" placeholder="My Great State"/>
+          <input class="address_properties_address1_properties_stateInput" name="address_properties_address1_properties_state" type="text" placeholder="Enter a State"/>
         </div>
         <div class="inputWrapper">
           <div class="inputLabel">Zip Code</div>
-          <input class="address_properties_address1_properties_zipInput" name="address_properties_address1_properties_zip" type="text" placeholder="99999"/>
+          <input class="address_properties_address1_properties_zipInput" name="address_properties_address1_properties_zip" type="text" placeholder="Enter a Zip Code"/>
         </div>
       </div>
     </div>
