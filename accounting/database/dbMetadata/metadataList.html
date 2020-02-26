@@ -22,7 +22,7 @@
   </div>
   <div class="inputWrapper ctaWrapper smallTopMargin">
     <!--The following button brings the user to a new webpage where a new record may be added to the table-->
-    <a class="cta green" href="metadata/add">Create a New metadata</a>
+    <a class="cta green" href="metadata/add">Create New</a>
   </div>
 </div>
 
@@ -42,13 +42,13 @@
       <select class="fieldToDisplay"> 
         <option value="" style="display: list-item;"></option>
         <option value="metadataId" style="display: list-item;">metadataId</option>
-        <option value="table.tableName" style="display: list-item;">table.tableName</option>
-        <option value="table.favoriteFlavors.icecream" style="display: list-item;">table.favoriteFlavors.icecream</option>
-        <option value="table.favoriteFlavors.soup" style="display: list-item;">table.favoriteFlavors.soup</option>
-        <option value="table.favoriteFlavors.fish" style="display: list-item;">table.favoriteFlavors.fish</option>
-        <option value="table.directory" style="display: list-item;">table.directory</option>
-        <option value="table.addRoutes" style="display: list-item;">table.addRoutes</option>
-        <option value="table.allowCodeGeneration" style="display: list-item;">table.allowCodeGeneration</option>
+        <option value="table.properties.tableName" style="display: list-item;">table.properties.tableName</option>
+        <option value="table.favoriteFlavors.properties.icecream" style="display: list-item;">table.favoriteFlavors.properties.icecream</option>
+        <option value="table.favoriteFlavors.properties.soup" style="display: list-item;">table.favoriteFlavors.properties.soup</option>
+        <option value="table.favoriteFlavors.properties.fish" style="display: list-item;">table.favoriteFlavors.properties.fish</option>
+        <option value="table.properties.directory" style="display: list-item;">table.properties.directory</option>
+        <option value="table.properties.addRoutes" style="display: list-item;">table.properties.addRoutes</option>
+        <option value="table.properties.allowCodeGeneration" style="display: list-item;">table.properties.allowCodeGeneration</option>
         <option value="timeStamp" style="display: list-item;">timeStamp</option>
       </select>
     </div>
@@ -211,6 +211,8 @@
  * Frontend Browser JavaScript For metadataList Webpage
  *
  */
+
+"use strict";
 
 // Container for frontend application
 var app = {};
@@ -423,7 +425,7 @@ app.loadmetadataListPage = async function()
     let arrayOfFieldsToDisplay = [];     
 
     // Create a title for the table.    
-    tableCaption = document.createElement('caption');
+    let tableCaption = document.createElement('caption');
     tableCaption.innerHTML = 'List METADATA Records';
     tableCaption.className = "tableCaption";
     // Only apply the title if one does not already exist.
@@ -480,11 +482,11 @@ app.loadmetadataListPage = async function()
     });    
 
     // Make an extra header for row 1 so that the user can drill into the record and edit the detail or delete it.
-    tableHeader = document.createElement('th');  
+    let tableHeader = document.createElement('th');  
     tableHeader.innerHTML = 'Details'  
     tableRow.appendChild(tableHeader);     
 
-    // The first record in any table will be the primary key. This a global sequ
+    // The first record in any table will be the primary key. This a global sequential unique Id
     // Used here to populate the last cell of each row in a table with a control to drill in on that record.
     let nameOfPrimaryKey = document.querySelector('.fieldToDisplay').querySelectorAll("option")[1].value;
 

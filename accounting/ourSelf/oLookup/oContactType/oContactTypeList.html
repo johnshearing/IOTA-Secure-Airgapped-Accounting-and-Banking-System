@@ -22,7 +22,7 @@
   </div>
   <div class="inputWrapper ctaWrapper smallTopMargin">
     <!--The following button brings the user to a new webpage where a new record may be added to the table-->
-    <a class="cta green" href="oContactType/add">Create a New oContactType</a>
+    <a class="cta green" href="oContactType/add">Create New</a>
   </div>
 </div>
 
@@ -193,6 +193,8 @@
  * Frontend Browser JavaScript For oContactTypeList Webpage
  *
  */
+
+"use strict";
 
 // Container for frontend application
 var app = {};
@@ -405,7 +407,7 @@ app.loadoContactTypeListPage = async function()
     let arrayOfFieldsToDisplay = [];     
 
     // Create a title for the table.    
-    tableCaption = document.createElement('caption');
+    let tableCaption = document.createElement('caption');
     tableCaption.innerHTML = 'List OCONTACTTYPE Records';
     tableCaption.className = "tableCaption";
     // Only apply the title if one does not already exist.
@@ -462,11 +464,11 @@ app.loadoContactTypeListPage = async function()
     });    
 
     // Make an extra header for row 1 so that the user can drill into the record and edit the detail or delete it.
-    tableHeader = document.createElement('th');  
+    let tableHeader = document.createElement('th');  
     tableHeader.innerHTML = 'Details'  
     tableRow.appendChild(tableHeader);     
 
-    // The first record in any table will be the primary key. This a global sequ
+    // The first record in any table will be the primary key. This a global sequential unique Id
     // Used here to populate the last cell of each row in a table with a control to drill in on that record.
     let nameOfPrimaryKey = document.querySelector('.fieldToDisplay').querySelectorAll("option")[1].value;
 

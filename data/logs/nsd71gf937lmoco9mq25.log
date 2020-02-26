@@ -1,0 +1,1 @@
+{"check":{"id":"nsd71gf937lmoco9mq25","userPhone":"0123456789","protocol":"http","url":"fish.com","method":"get","successCodes":[200,201,301],"timeoutSeconds":1,"state":"down","lastChecked":false},"outcome":{"error":false,"responseCode":301},"state":"up","alert":false,"time":1582649723268}

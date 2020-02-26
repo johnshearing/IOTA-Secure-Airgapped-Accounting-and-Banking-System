@@ -8,42 +8,42 @@
     <div class="objectWrapper">
       <div class="inputWrapper">
         <div class="inputLabel">Table Name</div>
-        <input name="table" type="text" placeholder="Enter a Table Name"/>
+        <input name="table_properties_tableName" type="text" placeholder="Enter a Table Name"/>
       </div>
       <div class="objectLabel">Favorite Flavor Information</div>
       <div class="objectWrapper">
         <div class="inputWrapper">
           <div class="inputLabel">Icecream</div>
-          <input name="table" type="text" placeholder="myFavoriteIcecreamFlavor"/>
+          <input name="table_properties_favoriteFlavors_properties_icecream" type="text" placeholder="myFavoriteIcecreamFlavor"/>
         </div>
         <div class="inputWrapper">
           <div class="inputLabel">Pie</div>
-          <input name="table" type="text" placeholder="myFavoriteKindOfPie"/>
+          <input name="table_properties_favoriteFlavors_properties_pie" type="text" placeholder="myFavoriteKindOfPie"/>
         </div>
         <div class="inputWrapper">
           <div class="inputLabel">Soup</div>
-          <input name="table" type="text" placeholder="myFavoriteKindOfSoup"/>
+          <input name="table_properties_favoriteFlavors_properties_soup" type="text" placeholder="myFavoriteKindOfSoup"/>
         </div>
         <div class="inputWrapper">
           <div class="inputLabel">Fish</div>
-          <input name="table" type="text" placeholder="myFavoriteKindOfFish"/>
+          <input name="table_properties_favoriteFlavors_properties_fish" type="text" placeholder="myFavoriteKindOfFish"/>
         </div>
       </div>
-      <div class="inputWrapper">
+      <button type="button" class="modObjects green">Add New</button>      <div class="inputWrapper">
         <div class="inputLabel">Directory</div>
-        <input name="table" type="text" placeholder="myDirectory/mySubdirectory"/>
+        <input name="table_properties_directory" type="text" placeholder="myDirectory/mySubdirectory"/>
       </div>
       <div class="inputWrapper">
         <div class="inputLabel">Add Routes and Dependencies</div>
-        <input name="table" type="text" placeholder="true"/>
+        <input name="table_properties_addRoutes" type="text" placeholder="true"/>
       </div>
       <div class="inputWrapper">
         <div class="inputLabel">Allow Code Generation</div>
-        <input name="table" type="text" placeholder="true"/>
+        <input name="table_properties_allowCodeGeneration" type="text" placeholder="true"/>
       </div>
     </div>
     <div class="inputWrapper ctaWrapper smallTopMargin">
-      <button type="submit" class="cta blue">Create Table</button>
+      <button type="submit" class="cta green">Create Table</button>
     </div>
   </form>
 </div>
@@ -53,6 +53,8 @@
  * Frontend Logic for application
  *
  */
+
+"use strict";
 
 // Container for frontend application
 var app = {};

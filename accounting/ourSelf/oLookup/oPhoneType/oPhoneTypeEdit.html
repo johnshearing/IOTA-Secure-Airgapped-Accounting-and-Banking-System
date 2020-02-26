@@ -49,6 +49,8 @@
  *
  */
 
+"use strict";
+
 // Container for frontend application
 var app = {};
 
@@ -322,6 +324,7 @@ app.loadoPhoneTypeEditPage = async function()
   let recordObject = recordArray[0];
 
   // Put the data into the forms as values where needed
+  // Behaviour from meta.js at 4eyhkvwtznzs8f9pmy08
   document.querySelectorAll(".phoneTypeInput").forEach(function (element){element.value = recordObject.phoneType});
   document.querySelectorAll(".timeStampInput").forEach(function(element){element.value = recordObject.timeStamp});  
 

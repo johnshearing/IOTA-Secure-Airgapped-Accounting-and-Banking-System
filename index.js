@@ -27,7 +27,7 @@ var app = {};
 app.init = function()
 {
   // Start the server for communication with users via http or https
-  server.init();
+  // server.init();
 
   // Start the workers or background tasks.
   // workers.init();
@@ -36,17 +36,17 @@ app.init = function()
   // Make sure the CLI starts last. 
   // That's so console.log messages from workers.init and server.init do no confuse users at the command prompt
   // setTimeout(function(){cli.init();}, 5000);
-
-  // Get a random number at the console.
-  // console.log(helpers.createRandomString(20));
   
-
   // Build webpages for working with tables.
   // The parameter is metadataId in metadata.json.
-  // meta.build.addWebPage(1065);
+  meta.build.addWebPage(1065);
   // meta.build.editWebPage(1065);
   // meta.build.listWebPage(1065);  
   // meta.build.serverSideLogic(1065);
+
+
+  // Get a random number at the console.
+  // console.log(helpers.createRandomString(20));  
 };
 
 

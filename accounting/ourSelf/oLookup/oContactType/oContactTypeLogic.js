@@ -4,6 +4,7 @@
 / This program was built by meta.js starting at yx52pvsi0kn9p5o46hrq
 */
 
+"use strict";
 
 // Dependencies
 const fs = require('fs');
@@ -55,7 +56,7 @@ oContactType.serveListPage = function(data, callback)
             helpers.log
             (            
               5,
-              'ef58o9lwv8om4puouk9x' + '\n' +
+              'lem6y91gitoryg1oe7hh' + '\n' +
               'There was an error or the concatenated templates were not returned.' + '\n' +
               'This was the error:' + '\n' +
               JSON.stringify(errorAddUnivTemplates) + '\n'
@@ -71,7 +72,7 @@ oContactType.serveListPage = function(data, callback)
         helpers.log
         (
           5,
-          'sq98s46m1m7lod147c7k' + '\n' +
+          'sx98zxz1ok5idifzr4uj' + '\n' +
           'There was an error or no template was returned.' + '\n' +
           'This was the error:' + '\n' +
           JSON.stringify(errorGetTemplate) + '\n'
@@ -88,7 +89,7 @@ oContactType.serveListPage = function(data, callback)
     helpers.log
     (
       5,
-      'deab2k59i3nysin2k342' + '\n' +
+      'd7pqhey7ru6bsvfm98j7' + '\n' +
       'Method not get. Only gets allowed.' + '\n'
     );
 
@@ -135,7 +136,7 @@ oContactType.serveAddPage = function(data, callback)
             helpers.log
             (            
               5,
-              'lx0vtym9wn8wvfjjsikk' + '\n' +
+              '1i9rvx2dzceyi9i81x0p' + '\n' +
               'There was an error or the concatenated templates were not returned.' + '\n' +
               'This was the error:' + '\n' +
               JSON.stringify(errorAddUnivTemplates) + '\n'
@@ -151,7 +152,7 @@ oContactType.serveAddPage = function(data, callback)
         helpers.log
         (
           5,
-          'cdu5ds9eh7gu24crxs3f' + '\n' +
+          '03phz00yma0x32bwg0d6' + '\n' +
           'There was an error or no template was returned.' + '\n' +
           'This was the error:' + '\n' +
           JSON.stringify(errorGetTemplate) + '\n'
@@ -168,7 +169,7 @@ oContactType.serveAddPage = function(data, callback)
     helpers.log
     (
       5,
-      'f0wugh0b5w7nnvj1f0su' + '\n' +
+      'c4ybzfye5qi1j61fws4t' + '\n' +
       'Method not get. Only gets allowed.' + '\n'
     );
 
@@ -215,7 +216,7 @@ oContactType.serveEditPage = function(data, callback)
             helpers.log
             (            
               5,
-              'g4d9cn3me5havm3pnjen' + '\n' +
+              'c0eqxmxjjrw4j6kbic4n' + '\n' +
               'There was an error or the concatenated templates were not returned.' + '\n' +
               'This was the error:' + '\n' +
               JSON.stringify(errorAddUnivTemplates) + '\n'
@@ -231,7 +232,7 @@ oContactType.serveEditPage = function(data, callback)
         helpers.log
         (
           5,
-          'tikgce14wj36eosixy5f' + '\n' +
+          'r3cxfqi1q0hj15295fpx' + '\n' +
           'There was an error or no template was returned.' + '\n' +
           'This was the error:' + '\n' +
           JSON.stringify(errorGetTemplate) + '\n'
@@ -248,7 +249,7 @@ oContactType.serveEditPage = function(data, callback)
     helpers.log
     (
       5,
-      'acb8ufriwbcvkg1zumcr' + '\n' +
+      'ui6qqxeqeg5vu6frgxkv' + '\n' +
       'Method not get. Only gets allowed.' + '\n'
     );
 
@@ -282,7 +283,7 @@ oContactType.oContactType = function(data, callback)
     helpers.log
     (
       5,
-      'p8ar9b0323xkq5pe3xij' + '\n' +
+      'jktrv2nqn5rwkry99sl9' + '\n' +
       'The method was not one of the acceptable methods' + '\n'
     ); 
 
@@ -309,21 +310,22 @@ oContactType._oContactType.post = function(data, callback)
 {
   // Field validation starts here.
   // Get contactType from payload
-  let contactType = data.payload.contactType;
+  let contactType = data.payload["contactType"];
 
   // passIfString&NotEmptyThenTrim Default behavior from meta.js at ulg5xxvzgr7efln9xur9
   if(typeof(contactType) != 'string'){return callback(400, {'Error' : 'contactType must be of datatype string'});}
   if(!contactType || contactType.trim().length === 0){return callback(400, {'Error' : 'No contactType was entered'});}else{contactType = contactType.trim()}
 
+
   // Enforcing uniqueness of the contactType field.
   // Will toggle this to false if we find the contactType already exists in oContactType.
   // Behavior from meta.js at rmkfkaef7xo3gyvnvgm4
-  let contactTypeIsUnused = true;
+  let contactType_IsUnused = true;  
 
   // Using this to track the primary key of a record that we might encounter with the candidate contactType.
   // If we encounter this primary key again we will check to see if the contactType has been changed.
   // If it has then the candidate contactType will be marked as available again.
-  let uniqueIdOfRecordHoldingCandidateContactType = false; 
+  let uniqueIdOfRecordHoldingCandidate_ContactType = false; 
                         
 
   // To ensure the contactType is unique we will read every record in 
@@ -341,7 +343,7 @@ oContactType._oContactType.post = function(data, callback)
   readInterface.on('line', function(line) 
   {
     // Convert the JSON string from oContactType into an object.
-    lineObject = JSON.parse(line);
+    let lineObject = JSON.parse(line);
 
     // Several different record sets with the supplied contactType and the same oContactTypeId 
     // may exist already if the record has been changed or deleted prior to this operation.
@@ -389,7 +391,7 @@ oContactType._oContactType.post = function(data, callback)
     {
       if (lineObject.deleted == false) // The record has not been deleted so it's a duplicate. Not unique.
       {
-        contactTypeIsUnused = false; // This flag used in the on close event listener below. 
+        contactType_IsUnused = false; // This flag used in the on close event listener below. 
 
         // If this record (record with this primary key) is encountered further down where it has been deleted 
         // or where the contactType has been changed with a put operation:
@@ -401,14 +403,14 @@ oContactType._oContactType.post = function(data, callback)
         // So record this global sequential unique id (the oContactTypeId in this case).
         // If we find the gsuid again, then check if the contactType has changed.
         // If it has been changed then:
-        // 1. Set the contactTypeIsUnused flag to true again
+        // 1. Set the contactType_IsUnused flag to true again
         // 2. clear out the variable tracking the uniqueId of the record.
-        uniqueIdOfRecordHoldingCandidateContactType = lineObject.oContactTypeId;
+        uniqueIdOfRecordHoldingCandidate_ContactType = lineObject.oContactTypeId;
       }
       // The matching record we found has been deleted so it may as well not exist. The new record is still unique.
       else 
       {
-        contactTypeIsUnused = true;
+        contactType_IsUnused = true;
       } 
     } // End of: if we found a matching entry
 
@@ -418,13 +420,13 @@ oContactType._oContactType.post = function(data, callback)
     // Ok, the current record is not holding the candidate contactType but 
     // maybe it was in the past and someone changed it.
     // if the candidate contactType is flagged unavailable and we are looking at the record that was flagged:
-    else if(contactTypeIsUnused === false && uniqueIdOfRecordHoldingCandidateContactType === lineObject.oContactTypeId)
+    else if(contactType_IsUnused === false && uniqueIdOfRecordHoldingCandidate_ContactType === lineObject.oContactTypeId)
     {
       // Check if the contactType is no longer holding the candidate contactType.
       // If it is not holding the candidate contactType then flag the contactType 
       // available again and clear out the variable tracking this primary key.
-      contactTypeIsUnused = true;
-      uniqueIdOfRecordHoldingCandidateContactType = false;
+      contactType_IsUnused = true;
+      uniqueIdOfRecordHoldingCandidate_ContactType = false;
     }
 
   }); // End of: readInterface.on('line', function(line){...}
@@ -441,12 +443,12 @@ oContactType._oContactType.post = function(data, callback)
   readInterface.on('close', function() 
   {
     // If the contactType already exists then exit this process without appending the record.
-    if (!contactTypeIsUnused) 
+    if (!contactType_IsUnused) 
     {      
       helpers.log
       (
         5,
-        'siwou8ab4pzchhlrwkdn' + '\n' +
+        'pc859mvhoptx0kpbj8tc' + '\n' +
         'The contactType : ' + contactType + ' already exists' + '\n'                                  
       ); // End of: helpers.log(...)
 
@@ -454,7 +456,8 @@ oContactType._oContactType.post = function(data, callback)
     }
 
     // If we made it to this point then the candidate contactType is unique so continue on with the append opperation.
-    // Behavior from meta.js at gwwelr17hmxvq4spdrcl    
+    // Behavior from meta.js at gwwelr17hmxvq4spdrcl
+    
 
     // Get the next global sequential unique Id and lock the database
     // Locking the database makes the system multiuser.
@@ -473,7 +476,7 @@ oContactType._oContactType.post = function(data, callback)
         helpers.log
         (
           5,
-          'ianyf0ni7h55ggc1ucvi' + '\n' +
+          'q24nfmu3bzwe1gm5k5di' + '\n' +
           'Unable to get the next gsuid.' + '\n' +
           'The following was the error' + '\n' +
           JSON.stringify(error) + '\n'                                   
@@ -490,13 +493,17 @@ oContactType._oContactType.post = function(data, callback)
 
       // Create the oContactType object. 
       // This object will be appended to oContactType.json.
-      var oContactTypeObject = 
-      {
-          "oContactTypeId" : nextIdObject.nextId,
-          "contactType" : contactType,
-          "timeStamp" : Date.now(),
-          "deleted" : false
-      };
+      let oContactTypeObject = {};
+      oContactTypeObject.oContactTypeId = nextIdObject.nextId;
+
+      oContactTypeObject.contactType = contactType;
+      
+      oContactTypeObject.timeStamp = Date.now();
+      oContactTypeObject.deleted = false;
+
+
+      // Code from the data dictionary marked postHandlerPreprocessing, if any, will be inserted below.
+      
 
       // Create the logObject.
       // This object will be written to history.json which maintains a history of 
@@ -527,7 +534,7 @@ oContactType._oContactType.post = function(data, callback)
             helpers.log
             (
               7,
-              'zytorv0qrdg4klbqqqmv' + '\n' +
+              '6biqgmxkj76wax5jmiu1' + '\n' +
               'There was an error appending to the history file' + '\n' +
               'An error here does not necessarily mean the append to history did not happen.' + '\n' +  
               'But an error at this point in the code surely means there was no append to oContactType' + '\n' +                                          
@@ -571,7 +578,7 @@ oContactType._oContactType.post = function(data, callback)
                   helpers.log // Log the error.
                   (
                     7,
-                    'x7bhyowf8qfozwn0hdwt' + '\n' +
+                    'o9ippr0mjkutujt2nwct' + '\n' +
                     'Successful write to oContactType but unable to remove lock on database' + '\n' +
                     'The following record was appended to the oContactType file:' + '\n' +                            
                     JSON.stringify(logObject) + '\n' +   
@@ -593,7 +600,7 @@ oContactType._oContactType.post = function(data, callback)
               helpers.log // Log the error.
               (
                 5,
-                '3nf77eoq9794uh80n34w' + '\n' +
+                'hnnv1z18h7cxbooujzd3' + '\n' +
                 'There was an error when appending to the oContactType file.' + '\n' +
                 'The following record may or may not have been appended to the oContactType file:' + '\n' +                            
                 JSON.stringify(logObject) + '\n' +
@@ -602,14 +609,9 @@ oContactType._oContactType.post = function(data, callback)
                 err + '\n'            
               );
 
-              // Assemble rollback record for the oContactType file which will negate previous entry if any.  
-              oContactTypeObject = 
-              {
-                "oContactTypeId" : nextIdObject.nextId,
-                "contactType" : "contactType",
-                "timeStamp" : Date.now(),
-                "deleted" : true
-              };                        
+              // Assemble rollback record for the oContactType file which will negate previous entry if any.                 
+              oContactTypeObject.timeStamp = Date.now();
+              oContactTypeObject.deleted = true;
 
               // Assemble rollback record for the history file which will negate previous entry if any.
               logObject =
@@ -646,7 +648,7 @@ oContactType._oContactType.post = function(data, callback)
                           helpers.log
                           (
                             5,
-                            'mh2fx0crx7aw6y40ifwc' + '\n' +
+                            'b2b8efx99fazvk9n3e5g' + '\n' +
                             'Rollback entry in the oContactType file was appended successfully' + '\n' +
                             'The following was the record we rolled back:' + '\n' +
                             JSON.stringify(logObject) + '\n'                                   
@@ -657,7 +659,7 @@ oContactType._oContactType.post = function(data, callback)
                           helpers.log
                           (
                             7,
-                            'eagpf4j4ujasnkvzxc3y' + '\n' +
+                            't6jocaj7buxlycguhhgs' + '\n' +
                             'There was an error appending a rollback entry in the oContactType file' + '\n' +
                             'The following record may or may not have been rolled back:' + '\n' +
                             JSON.stringify(logObject) + '\n' +   
@@ -677,7 +679,7 @@ oContactType._oContactType.post = function(data, callback)
                     helpers.log
                     (
                       7,
-                      '1m4lpk2nw2pw3zx6zyz7' + '\n' +
+                      'flhjuweyy46u5fu59ju7' + '\n' +
                       'There was an error appending a rollback entry in the history file' + '\n' +
                       'A rollback entry may or may not have been written in the oContactType file' + '\n' +  
                       'CHECK TO SEE IF history and oContactType ARE STILL IN SYNC' + '\n' +                                      
@@ -735,7 +737,7 @@ oContactType._oContactType.put = function(data, callback)
     contactType = contactType.trim()
   } 
   // Else, the user may have entered some other datatype like a number or 
-  // perhaps nothing at all if using the Delete form. 
+  // perhaps nothing at all if using the Delete form or if just using the API. 
   else 
   { 
     // If the user entered nothing: 
@@ -764,7 +766,7 @@ oContactType._oContactType.put = function(data, callback)
     helpers.log
     (
       5,
-      'dhpapgpbjdphnb0ypwew' + '\n' +
+      '8ul1doazdxft890p04md' + '\n' +
       'No fields pass the validation process' + '\n'                                  
     ); // End of: helpers.log(...)
 
@@ -787,7 +789,7 @@ oContactType._oContactType.put = function(data, callback)
       helpers.log
       (
         5,
-        '1q9ecgmrvwnhcrx33vo7' + '\n' +
+        'fod778zo5t765qxaacjc' + '\n' +
         'Unable to get the next gsuid.' + '\n' +
         'The following was the error' + '\n' +
         JSON.stringify(error) + '\n'                                   
@@ -804,17 +806,17 @@ oContactType._oContactType.put = function(data, callback)
     // Create the oContactType object. 
     // This object will be appended to oContactType.json.
     // Add in all fields even if no data is available yet. 
-    // This is to establish the order in which the fields will be writen to the table. 
+    // This is to establish the order in which the fields will be written to the table. 
     // Behavior from 3bd1sa5ve4aqrfspunrt in meta.js         
-    let oContactTypeObject = 
-    {
-      "oContactTypeId" : oContactTypeId,
-      "contactType" : contactType,
-      "timeStamp" : Date.now(),
-      "deleted" : ""
-    };
+    let oContactTypeObject = {};
+    oContactTypeObject.oContactTypeId = oContactTypeId;
 
-    dataObject = {};
+    oContactTypeObject.contactType = contactType;
+     
+    oContactTypeObject.timeStamp = Date.now();
+    oContactTypeObject.deleted = false;
+
+    let dataObject = {};
     dataObject.uniqueField01Name = "contactType";
     dataObject.uniqueField01Value = oContactTypeObject.contactType;
     dataObject.path = '/ourSelf/oLookup/oContactType/oContactType.json';
@@ -840,7 +842,7 @@ oContactType._oContactType.put = function(data, callback)
               helpers.log // Log the error.
               (
                 7,
-                '911hgb3q1w8lhfq8i9c2' + '\n' + 
+                'q0cx6wp17utznng5v4ka' + '\n' + 
                 'The following was the error message from getMostRecent:' + '\n' +                                             
                 errorFromGetMostRecent + '\n'                                                 
               ); // End of: helpers.log // Log the error.
@@ -855,7 +857,7 @@ oContactType._oContactType.put = function(data, callback)
               helpers.log // Log the error.
               (
                 7,
-                '7v78lta43tc9tuxfdddw' + '\n' +
+                '8214yb56sb2mxtncey8d' + '\n' +
                 'The following was the error message from getMostRecent:' + '\n' +                                             
                 errorFromGetMostRecent + '\n'  +
                 'Also unable to remove lock on database.' + '\n' + 
@@ -892,16 +894,6 @@ oContactType._oContactType.put = function(data, callback)
         let recordObject = JSON.parse(stringContainer);
 
 
-        // Preprocessing for contactType
-        if(contactType) // If the user supplied data for contactType
-        {
-          // No preprocessing was specifed for contactType. Use it as was supplied by the user.
-        }
-        else // If the user did not supply data for contactType
-        {
-          // Save contactType from the most recent record.
-          oContactTypeObject.contactType = recordObject.contactType;
-        }
         // If we are appending a delete make sure that everything else is coming from the most recent saved record.
         if(deleted)
         {
@@ -963,7 +955,7 @@ oContactType._oContactType.put = function(data, callback)
                         helpers.log // Log the error.
                         (
                           7,
-                          'cyalv17kmssu9xraag2b' + '\n' +
+                          'iu4rd7y8quldh7rkh99u' + '\n' +
                           'Successful write to oContactType but unable to remove lock on database' + '\n' +
                           'The following record was appended to oContactType:' + '\n' +                            
                           JSON.stringify(logObject) + '\n' +   
@@ -985,7 +977,7 @@ oContactType._oContactType.put = function(data, callback)
                     helpers.log // Log the error.
                     (
                       5,
-                      'ngrbo9m3l06a35gx3zsd' + '\n' +
+                      'v555qa5eu1yc5prtbgi9' + '\n' +
                       'There was an error when appending to the oContactType file.' + '\n' +
                       'The following record may or may not have been appended to oContactType:' + '\n' +                            
                       JSON.stringify(logObject) + '\n' +
@@ -1039,7 +1031,7 @@ oContactType._oContactType.put = function(data, callback)
                                 helpers.log
                                 (
                                   5,
-                                  'i868qw85ep1dqvxqgnbn' + '\n' +
+                                  '19lxdzo7fqzfnf08iapf' + '\n' +
                                   'Rollback entry in the oContactType file was appended successfully' + '\n' +
                                   'The following was the record we rolled back:' + '\n' +
                                   JSON.stringify(logObject) + '\n'                                   
@@ -1050,7 +1042,7 @@ oContactType._oContactType.put = function(data, callback)
                                 helpers.log
                                 (
                                   7,
-                                  '7ptvrpy1b8bx4278sn7x' + '\n' +
+                                  '4jmyt7trf0qmvn3kelqr' + '\n' +
                                   'There was an error appending a rollback entry in the oContactType file' + '\n' +
                                   'The following record may or may not have been rolled back:' + '\n' +
                                   JSON.stringify(logObject) + '\n' +   
@@ -1070,7 +1062,7 @@ oContactType._oContactType.put = function(data, callback)
                           helpers.log
                           (
                             7,
-                            '7r2amudpvo4vq90kstfr' + '\n' +
+                            'jpkigxn30egkujg8vgfx' + '\n' +
                             'There was an error appending a rollback entry in the history file' + '\n' +
                             'A rollback entry may or may not have been written in the oContactType file' + '\n' +  
                             'CHECK TO SEE IF history and oContactType ARE STILL IN SYNC' + '\n' +                                      
@@ -1095,7 +1087,7 @@ oContactType._oContactType.put = function(data, callback)
               helpers.log
               (
                 7,
-                '9vxy7x9tyqy2f3f0th1z' + '\n' +
+                '51dmyk34o2wixupj4ubu' + '\n' +
                 'There was an error appending to the history file' + '\n' +
                 'An error here does not necessarily mean the append to history did not happen.' + '\n' +  
                 'But an error at this point in the code surely means there was no append to oContactType' + '\n' +                                          
@@ -1127,7 +1119,7 @@ oContactType._oContactType.put = function(data, callback)
             helpers.log // Log the error.
             (
               7,
-              '91dmwfmlhgv8plxcdjcb' + '\n' + 
+              '3wcdu3pipwloelh4u16r' + '\n' + 
               'Pipeline error. The message was as follows' + '\n' +                                             
               pipelineError + '\n'                                                 
             ); // End of: helpers.log // Log the error.
@@ -1238,7 +1230,7 @@ oContactType._oContactType.get = function(data, callback)
     }
 
     // Now we are going to find out how many orderby clauses there are.
-    proceedWithLoop = true;
+    let proceedWithLoop = true;
 
     while (indexOfNextPossibleOrderBy < lengthOfQueryArray - 1 && proceedWithLoop == true) 
     {

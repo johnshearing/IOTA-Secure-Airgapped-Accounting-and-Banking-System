@@ -356,3 +356,15 @@ td a, td a:hover, td a:active{
   padding: 10px;
 }
 
+.modObjects
+{
+  background-color: #217844;
+  color: #fff;
+  border-radius: 5px;
+  text-align: center;
+  display: block;
+  margin-left: auto;  
+  padding: 5px;
+  width: auto;
+  cursor: pointer;
+}

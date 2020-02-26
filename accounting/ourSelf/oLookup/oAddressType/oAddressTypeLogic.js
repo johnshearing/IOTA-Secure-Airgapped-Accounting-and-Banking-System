@@ -4,6 +4,7 @@
 / This program was built by meta.js starting at yx52pvsi0kn9p5o46hrq
 */
 
+"use strict";
 
 // Dependencies
 const fs = require('fs');
@@ -55,7 +56,7 @@ oAddressType.serveListPage = function(data, callback)
             helpers.log
             (            
               5,
-              'eoavi1pflh6vlqmsamgp' + '\n' +
+              '6zam2mqdo7rbvvkgdd2z' + '\n' +
               'There was an error or the concatenated templates were not returned.' + '\n' +
               'This was the error:' + '\n' +
               JSON.stringify(errorAddUnivTemplates) + '\n'
@@ -71,7 +72,7 @@ oAddressType.serveListPage = function(data, callback)
         helpers.log
         (
           5,
-          'mvmn0jthso3o4jyalqtl' + '\n' +
+          'b51cbvwhfpfq1pru1n4e' + '\n' +
           'There was an error or no template was returned.' + '\n' +
           'This was the error:' + '\n' +
           JSON.stringify(errorGetTemplate) + '\n'
@@ -88,7 +89,7 @@ oAddressType.serveListPage = function(data, callback)
     helpers.log
     (
       5,
-      'tqyebr8f4zt2zg5cgjf9' + '\n' +
+      '2l29gtsazhx1rb28p5pc' + '\n' +
       'Method not get. Only gets allowed.' + '\n'
     );
 
@@ -135,7 +136,7 @@ oAddressType.serveAddPage = function(data, callback)
             helpers.log
             (            
               5,
-              'qpg52sscdnwpd6lra4x7' + '\n' +
+              'yiign7funihrgs9u7ql4' + '\n' +
               'There was an error or the concatenated templates were not returned.' + '\n' +
               'This was the error:' + '\n' +
               JSON.stringify(errorAddUnivTemplates) + '\n'
@@ -151,7 +152,7 @@ oAddressType.serveAddPage = function(data, callback)
         helpers.log
         (
           5,
-          'ji9y52i3d7k9zni69zus' + '\n' +
+          'o6g14fow2efcd00cwsbl' + '\n' +
           'There was an error or no template was returned.' + '\n' +
           'This was the error:' + '\n' +
           JSON.stringify(errorGetTemplate) + '\n'
@@ -168,7 +169,7 @@ oAddressType.serveAddPage = function(data, callback)
     helpers.log
     (
       5,
-      'gahzg7vkljv02du2ft2u' + '\n' +
+      'lu8t27tig6joewbq6x6r' + '\n' +
       'Method not get. Only gets allowed.' + '\n'
     );
 
@@ -215,7 +216,7 @@ oAddressType.serveEditPage = function(data, callback)
             helpers.log
             (            
               5,
-              'dxcxgfrrrg1jo2idx0zd' + '\n' +
+              'eqnxjpiz98mlw6wy41e2' + '\n' +
               'There was an error or the concatenated templates were not returned.' + '\n' +
               'This was the error:' + '\n' +
               JSON.stringify(errorAddUnivTemplates) + '\n'
@@ -231,7 +232,7 @@ oAddressType.serveEditPage = function(data, callback)
         helpers.log
         (
           5,
-          'x2rwssz0dhqzt79z436l' + '\n' +
+          '9193o122x58ii6r6rgnd' + '\n' +
           'There was an error or no template was returned.' + '\n' +
           'This was the error:' + '\n' +
           JSON.stringify(errorGetTemplate) + '\n'
@@ -248,7 +249,7 @@ oAddressType.serveEditPage = function(data, callback)
     helpers.log
     (
       5,
-      'lpw4h4sot265yncb4pcl' + '\n' +
+      '5yd9lgqdkl906oyk4hk4' + '\n' +
       'Method not get. Only gets allowed.' + '\n'
     );
 
@@ -282,7 +283,7 @@ oAddressType.oAddressType = function(data, callback)
     helpers.log
     (
       5,
-      'fcqnhgnqixf80ja0e44x' + '\n' +
+      '1xymm9157df68aog3z8r' + '\n' +
       'The method was not one of the acceptable methods' + '\n'
     ); 
 
@@ -309,21 +310,22 @@ oAddressType._oAddressType.post = function(data, callback)
 {
   // Field validation starts here.
   // Get addressType from payload
-  let addressType = data.payload.addressType;
+  let addressType = data.payload["addressType"];
 
   // passIfString&NotEmptyThenTrim Default behavior from meta.js at ulg5xxvzgr7efln9xur9
   if(typeof(addressType) != 'string'){return callback(400, {'Error' : 'addressType must be of datatype string'});}
   if(!addressType || addressType.trim().length === 0){return callback(400, {'Error' : 'No addressType was entered'});}else{addressType = addressType.trim()}
 
+
   // Enforcing uniqueness of the addressType field.
   // Will toggle this to false if we find the addressType already exists in oAddressType.
   // Behavior from meta.js at rmkfkaef7xo3gyvnvgm4
-  let addressTypeIsUnused = true;
+  let addressType_IsUnused = true;  
 
   // Using this to track the primary key of a record that we might encounter with the candidate addressType.
   // If we encounter this primary key again we will check to see if the addressType has been changed.
   // If it has then the candidate addressType will be marked as available again.
-  let uniqueIdOfRecordHoldingCandidateAddressType = false; 
+  let uniqueIdOfRecordHoldingCandidate_AddressType = false; 
                         
 
   // To ensure the addressType is unique we will read every record in 
@@ -341,7 +343,7 @@ oAddressType._oAddressType.post = function(data, callback)
   readInterface.on('line', function(line) 
   {
     // Convert the JSON string from oAddressType into an object.
-    lineObject = JSON.parse(line);
+    let lineObject = JSON.parse(line);
 
     // Several different record sets with the supplied addressType and the same oAddressTypeId 
     // may exist already if the record has been changed or deleted prior to this operation.
@@ -389,7 +391,7 @@ oAddressType._oAddressType.post = function(data, callback)
     {
       if (lineObject.deleted == false) // The record has not been deleted so it's a duplicate. Not unique.
       {
-        addressTypeIsUnused = false; // This flag used in the on close event listener below. 
+        addressType_IsUnused = false; // This flag used in the on close event listener below. 
 
         // If this record (record with this primary key) is encountered further down where it has been deleted 
         // or where the addressType has been changed with a put operation:
@@ -401,14 +403,14 @@ oAddressType._oAddressType.post = function(data, callback)
         // So record this global sequential unique id (the oAddressTypeId in this case).
         // If we find the gsuid again, then check if the addressType has changed.
         // If it has been changed then:
-        // 1. Set the addressTypeIsUnused flag to true again
+        // 1. Set the addressType_IsUnused flag to true again
         // 2. clear out the variable tracking the uniqueId of the record.
-        uniqueIdOfRecordHoldingCandidateAddressType = lineObject.oAddressTypeId;
+        uniqueIdOfRecordHoldingCandidate_AddressType = lineObject.oAddressTypeId;
       }
       // The matching record we found has been deleted so it may as well not exist. The new record is still unique.
       else 
       {
-        addressTypeIsUnused = true;
+        addressType_IsUnused = true;
       } 
     } // End of: if we found a matching entry
 
@@ -418,13 +420,13 @@ oAddressType._oAddressType.post = function(data, callback)
     // Ok, the current record is not holding the candidate addressType but 
     // maybe it was in the past and someone changed it.
     // if the candidate addressType is flagged unavailable and we are looking at the record that was flagged:
-    else if(addressTypeIsUnused === false && uniqueIdOfRecordHoldingCandidateAddressType === lineObject.oAddressTypeId)
+    else if(addressType_IsUnused === false && uniqueIdOfRecordHoldingCandidate_AddressType === lineObject.oAddressTypeId)
     {
       // Check if the addressType is no longer holding the candidate addressType.
       // If it is not holding the candidate addressType then flag the addressType 
       // available again and clear out the variable tracking this primary key.
-      addressTypeIsUnused = true;
-      uniqueIdOfRecordHoldingCandidateAddressType = false;
+      addressType_IsUnused = true;
+      uniqueIdOfRecordHoldingCandidate_AddressType = false;
     }
 
   }); // End of: readInterface.on('line', function(line){...}
@@ -441,12 +443,12 @@ oAddressType._oAddressType.post = function(data, callback)
   readInterface.on('close', function() 
   {
     // If the addressType already exists then exit this process without appending the record.
-    if (!addressTypeIsUnused) 
+    if (!addressType_IsUnused) 
     {      
       helpers.log
       (
         5,
-        'jfjiv5s1ruvithxmsu3y' + '\n' +
+        '7hf903p9hn20njqpxchj' + '\n' +
         'The addressType : ' + addressType + ' already exists' + '\n'                                  
       ); // End of: helpers.log(...)
 
@@ -454,7 +456,8 @@ oAddressType._oAddressType.post = function(data, callback)
     }
 
     // If we made it to this point then the candidate addressType is unique so continue on with the append opperation.
-    // Behavior from meta.js at gwwelr17hmxvq4spdrcl    
+    // Behavior from meta.js at gwwelr17hmxvq4spdrcl
+    
 
     // Get the next global sequential unique Id and lock the database
     // Locking the database makes the system multiuser.
@@ -473,7 +476,7 @@ oAddressType._oAddressType.post = function(data, callback)
         helpers.log
         (
           5,
-          's25vv1c10v8k4y72qj0x' + '\n' +
+          'bz0y00hbs18oqmu6qty8' + '\n' +
           'Unable to get the next gsuid.' + '\n' +
           'The following was the error' + '\n' +
           JSON.stringify(error) + '\n'                                   
@@ -490,13 +493,17 @@ oAddressType._oAddressType.post = function(data, callback)
 
       // Create the oAddressType object. 
       // This object will be appended to oAddressType.json.
-      var oAddressTypeObject = 
-      {
-          "oAddressTypeId" : nextIdObject.nextId,
-          "addressType" : addressType,
-          "timeStamp" : Date.now(),
-          "deleted" : false
-      };
+      let oAddressTypeObject = {};
+      oAddressTypeObject.oAddressTypeId = nextIdObject.nextId;
+
+      oAddressTypeObject.addressType = addressType;
+      
+      oAddressTypeObject.timeStamp = Date.now();
+      oAddressTypeObject.deleted = false;
+
+
+      // Code from the data dictionary marked postHandlerPreprocessing, if any, will be inserted below.
+      
 
       // Create the logObject.
       // This object will be written to history.json which maintains a history of 
@@ -527,7 +534,7 @@ oAddressType._oAddressType.post = function(data, callback)
             helpers.log
             (
               7,
-              'wtlp6t4r21z2bvm3wbsm' + '\n' +
+              '4xlj6vfswdr8g6gbudjh' + '\n' +
               'There was an error appending to the history file' + '\n' +
               'An error here does not necessarily mean the append to history did not happen.' + '\n' +  
               'But an error at this point in the code surely means there was no append to oAddressType' + '\n' +                                          
@@ -571,7 +578,7 @@ oAddressType._oAddressType.post = function(data, callback)
                   helpers.log // Log the error.
                   (
                     7,
-                    '7mg2wxptoni66fph7lyf' + '\n' +
+                    'yk4u2xr4kk8x52h6udoj' + '\n' +
                     'Successful write to oAddressType but unable to remove lock on database' + '\n' +
                     'The following record was appended to the oAddressType file:' + '\n' +                            
                     JSON.stringify(logObject) + '\n' +   
@@ -593,7 +600,7 @@ oAddressType._oAddressType.post = function(data, callback)
               helpers.log // Log the error.
               (
                 5,
-                'efcdeo5e14mwoxffjuo9' + '\n' +
+                'ho31cujz57mo95bcva35' + '\n' +
                 'There was an error when appending to the oAddressType file.' + '\n' +
                 'The following record may or may not have been appended to the oAddressType file:' + '\n' +                            
                 JSON.stringify(logObject) + '\n' +
@@ -602,14 +609,9 @@ oAddressType._oAddressType.post = function(data, callback)
                 err + '\n'            
               );
 
-              // Assemble rollback record for the oAddressType file which will negate previous entry if any.  
-              oAddressTypeObject = 
-              {
-                "oAddressTypeId" : nextIdObject.nextId,
-                "addressType" : "addressType",
-                "timeStamp" : Date.now(),
-                "deleted" : true
-              };                        
+              // Assemble rollback record for the oAddressType file which will negate previous entry if any.                 
+              oAddressTypeObject.timeStamp = Date.now();
+              oAddressTypeObject.deleted = true;
 
               // Assemble rollback record for the history file which will negate previous entry if any.
               logObject =
@@ -646,7 +648,7 @@ oAddressType._oAddressType.post = function(data, callback)
                           helpers.log
                           (
                             5,
-                            'fv082cuvknwwtnge5me2' + '\n' +
+                            '2dyuhgh7z18qbv1c1dcw' + '\n' +
                             'Rollback entry in the oAddressType file was appended successfully' + '\n' +
                             'The following was the record we rolled back:' + '\n' +
                             JSON.stringify(logObject) + '\n'                                   
@@ -657,7 +659,7 @@ oAddressType._oAddressType.post = function(data, callback)
                           helpers.log
                           (
                             7,
-                            'de3st342keqzs9s7bicp' + '\n' +
+                            '93w832nzwpysrvbned0d' + '\n' +
                             'There was an error appending a rollback entry in the oAddressType file' + '\n' +
                             'The following record may or may not have been rolled back:' + '\n' +
                             JSON.stringify(logObject) + '\n' +   
@@ -677,7 +679,7 @@ oAddressType._oAddressType.post = function(data, callback)
                     helpers.log
                     (
                       7,
-                      '45mf68what4243a9c6fe' + '\n' +
+                      '0yhx2ek2q6krd217vjk8' + '\n' +
                       'There was an error appending a rollback entry in the history file' + '\n' +
                       'A rollback entry may or may not have been written in the oAddressType file' + '\n' +  
                       'CHECK TO SEE IF history and oAddressType ARE STILL IN SYNC' + '\n' +                                      
@@ -735,7 +737,7 @@ oAddressType._oAddressType.put = function(data, callback)
     addressType = addressType.trim()
   } 
   // Else, the user may have entered some other datatype like a number or 
-  // perhaps nothing at all if using the Delete form. 
+  // perhaps nothing at all if using the Delete form or if just using the API. 
   else 
   { 
     // If the user entered nothing: 
@@ -764,7 +766,7 @@ oAddressType._oAddressType.put = function(data, callback)
     helpers.log
     (
       5,
-      'mf1fg3pr7tfg13cl5rjy' + '\n' +
+      'jkikdux4njtgicrvh62t' + '\n' +
       'No fields pass the validation process' + '\n'                                  
     ); // End of: helpers.log(...)
 
@@ -787,7 +789,7 @@ oAddressType._oAddressType.put = function(data, callback)
       helpers.log
       (
         5,
-        '9f064sryczr2f7gv9839' + '\n' +
+        '4074hk0jmvae1drt4qm2' + '\n' +
         'Unable to get the next gsuid.' + '\n' +
         'The following was the error' + '\n' +
         JSON.stringify(error) + '\n'                                   
@@ -804,17 +806,17 @@ oAddressType._oAddressType.put = function(data, callback)
     // Create the oAddressType object. 
     // This object will be appended to oAddressType.json.
     // Add in all fields even if no data is available yet. 
-    // This is to establish the order in which the fields will be writen to the table. 
+    // This is to establish the order in which the fields will be written to the table. 
     // Behavior from 3bd1sa5ve4aqrfspunrt in meta.js         
-    let oAddressTypeObject = 
-    {
-      "oAddressTypeId" : oAddressTypeId,
-      "addressType" : addressType,
-      "timeStamp" : Date.now(),
-      "deleted" : ""
-    };
+    let oAddressTypeObject = {};
+    oAddressTypeObject.oAddressTypeId = oAddressTypeId;
 
-    dataObject = {};
+    oAddressTypeObject.addressType = addressType;
+     
+    oAddressTypeObject.timeStamp = Date.now();
+    oAddressTypeObject.deleted = false;
+
+    let dataObject = {};
     dataObject.uniqueField01Name = "addressType";
     dataObject.uniqueField01Value = oAddressTypeObject.addressType;
     dataObject.path = '/ourSelf/oLookup/oAddressType/oAddressType.json';
@@ -840,7 +842,7 @@ oAddressType._oAddressType.put = function(data, callback)
               helpers.log // Log the error.
               (
                 7,
-                'vvd74oi0p9zab2byu62r' + '\n' + 
+                'k08cqlbk7ekfh9vr39vx' + '\n' + 
                 'The following was the error message from getMostRecent:' + '\n' +                                             
                 errorFromGetMostRecent + '\n'                                                 
               ); // End of: helpers.log // Log the error.
@@ -855,7 +857,7 @@ oAddressType._oAddressType.put = function(data, callback)
               helpers.log // Log the error.
               (
                 7,
-                '76gb0zhsr0y69k61tkbi' + '\n' +
+                '4cyfyvmlu925rmnpig7t' + '\n' +
                 'The following was the error message from getMostRecent:' + '\n' +                                             
                 errorFromGetMostRecent + '\n'  +
                 'Also unable to remove lock on database.' + '\n' + 
@@ -892,16 +894,6 @@ oAddressType._oAddressType.put = function(data, callback)
         let recordObject = JSON.parse(stringContainer);
 
 
-        // Preprocessing for addressType
-        if(addressType) // If the user supplied data for addressType
-        {
-          // No preprocessing was specifed for addressType. Use it as was supplied by the user.
-        }
-        else // If the user did not supply data for addressType
-        {
-          // Save addressType from the most recent record.
-          oAddressTypeObject.addressType = recordObject.addressType;
-        }
         // If we are appending a delete make sure that everything else is coming from the most recent saved record.
         if(deleted)
         {
@@ -963,7 +955,7 @@ oAddressType._oAddressType.put = function(data, callback)
                         helpers.log // Log the error.
                         (
                           7,
-                          '5w0e60vvk2vj0gejbwl6' + '\n' +
+                          'qn7najgqts6i7j0ceyp8' + '\n' +
                           'Successful write to oAddressType but unable to remove lock on database' + '\n' +
                           'The following record was appended to oAddressType:' + '\n' +                            
                           JSON.stringify(logObject) + '\n' +   
@@ -985,7 +977,7 @@ oAddressType._oAddressType.put = function(data, callback)
                     helpers.log // Log the error.
                     (
                       5,
-                      'tr42mmyz7bbhcb1zg066' + '\n' +
+                      'atlc81b7tarq8rgpj9jx' + '\n' +
                       'There was an error when appending to the oAddressType file.' + '\n' +
                       'The following record may or may not have been appended to oAddressType:' + '\n' +                            
                       JSON.stringify(logObject) + '\n' +
@@ -1039,7 +1031,7 @@ oAddressType._oAddressType.put = function(data, callback)
                                 helpers.log
                                 (
                                   5,
-                                  'evf23uzmregkhw4agrb8' + '\n' +
+                                  'wps634cntizn45f053br' + '\n' +
                                   'Rollback entry in the oAddressType file was appended successfully' + '\n' +
                                   'The following was the record we rolled back:' + '\n' +
                                   JSON.stringify(logObject) + '\n'                                   
@@ -1050,7 +1042,7 @@ oAddressType._oAddressType.put = function(data, callback)
                                 helpers.log
                                 (
                                   7,
-                                  '92twsyi3hyarj7ilojyf' + '\n' +
+                                  '1o0ics5ghvwk495vbw51' + '\n' +
                                   'There was an error appending a rollback entry in the oAddressType file' + '\n' +
                                   'The following record may or may not have been rolled back:' + '\n' +
                                   JSON.stringify(logObject) + '\n' +   
@@ -1070,7 +1062,7 @@ oAddressType._oAddressType.put = function(data, callback)
                           helpers.log
                           (
                             7,
-                            '0jtb11xacekuso1176l7' + '\n' +
+                            'g8s4os02x6gazv95ktdb' + '\n' +
                             'There was an error appending a rollback entry in the history file' + '\n' +
                             'A rollback entry may or may not have been written in the oAddressType file' + '\n' +  
                             'CHECK TO SEE IF history and oAddressType ARE STILL IN SYNC' + '\n' +                                      
@@ -1095,7 +1087,7 @@ oAddressType._oAddressType.put = function(data, callback)
               helpers.log
               (
                 7,
-                'hf0xlrclgqphiyja7pxl' + '\n' +
+                'wcikqrfitrt79dgup3vr' + '\n' +
                 'There was an error appending to the history file' + '\n' +
                 'An error here does not necessarily mean the append to history did not happen.' + '\n' +  
                 'But an error at this point in the code surely means there was no append to oAddressType' + '\n' +                                          
@@ -1127,7 +1119,7 @@ oAddressType._oAddressType.put = function(data, callback)
             helpers.log // Log the error.
             (
               7,
-              'hbza6rrsphkqvtkh432x' + '\n' + 
+              'vb4xe6tq0evtqp0co3zh' + '\n' + 
               'Pipeline error. The message was as follows' + '\n' +                                             
               pipelineError + '\n'                                                 
             ); // End of: helpers.log // Log the error.
@@ -1238,7 +1230,7 @@ oAddressType._oAddressType.get = function(data, callback)
     }
 
     // Now we are going to find out how many orderby clauses there are.
-    proceedWithLoop = true;
+    let proceedWithLoop = true;
 
     while (indexOfNextPossibleOrderBy < lengthOfQueryArray - 1 && proceedWithLoop == true) 
     {

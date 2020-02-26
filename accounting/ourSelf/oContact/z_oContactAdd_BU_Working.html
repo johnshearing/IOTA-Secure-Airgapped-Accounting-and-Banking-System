@@ -1,47 +1,84 @@
-<h1>Address Types</h1>
+<h1>Create Our New Contact</h1>
+<h2>Enter Our New Contact</h2>
 
-<hr />
-
-<h2>Edit Address Types</h2>
 <div class="formWrapper">
-  <form id="oAddressTypeEditForm" action="/api/oAddressType" method="PUT">
-    <input type="hidden" name="_method" value="PUT"/>
+  <form id="oContactAdd" action="/api/oContact" method="POST">
     <div class="formError"></div>
-    <div class="formSuccess">Changes to OAddressType have been saved.</div>
     <div class="inputWrapper">
-      <div class="inputLabel">oAddressTypeId</div>
-      <input class="disabled" type="text" name="oAddressTypeId" value="{selected.oAddressTypeId}" disabled/>
+      <div class="inputLabel">First Name</div>
+      <input name="firstName" type="text" placeholder="Enter a First Name"/>
     </div>
     <div class="inputWrapper">
-      <div class="inputLabel">Address Type</div>
-      <input class="addressTypeInput" name="addressType" type="text"/>
+      <div class="inputLabel">Last Name</div>
+      <input name="lastName" type="text" placeholder="Enter a Last Name"/>
     </div>
     <div class="inputWrapper">
-      <div class="inputLabel">Time Stamp</div>
-      <input class="timeStampInput" type="text" name="timeStamp" disabled/>
+      <div class="inputLabel">Email</div>
+      <input name="email" type="text" placeholder="Enter an Email Address"/>
+    </div>
+    <div class="objectLabel">Phone Information</div>
+    <div class="objectWrapper">
+      <div class="objectLabel">Phone1</div>
+      <div class="objectWrapper">
+        <div class="inputWrapper">
+          <div class="inputLabel">Phone Type</div>
+          <select name="phone_properties_phone1_properties_phoneType">
+            <option value="" style="display: list-item;">Select the Phone Type</option>
+            <option value="Mobile" style="display: list-item;">Mobile Phone</option>
+            <option value="Home" style="display: list-item;">Home Phone</option>
+            <option value="Office" style="display: list-item;">Office Phone</option>
+            <option value="Answering Service" style="display: list-item;">Answering Service</option>
+          </select>
+        </div>
+        <div class="inputWrapper">
+          <div class="inputLabel">Phone</div>
+          <input name="phone_properties_phone1_properties_phone" type="text" placeholder="Enter a Phone Number"/>
+        </div>
+      </div>
+      <button type="button" class="modObjects green">Add New</button>      
+    </div>
+    <div class="objectLabel">Address Information</div>
+    <div class="objectWrapper">
+      <div class="objectLabel">Address1</div>
+      <div class="objectWrapper">
+        <div class="inputWrapper">
+          <div class="inputLabel">Address Type</div>
+          <select name="address_properties_address1_properties_addressType" placeholder="Enter an Home Address Type">
+            <option value="" style="display: list-item;">Select the Address Type</option>
+            <option value="Home Address" style="display: list-item;">Home Address</option>
+            <option value="Work Address" style="display: list-item;">Work Address</option>
+            <option value="Billing Address" style="display: list-item;">Billing Address</option>
+            <option value="Shipping Address" style="display: list-item;">Shipping Address</option>
+          </select>
+        </div>
+        <div class="inputWrapper">
+          <div class="inputLabel">Street 1</div>
+          <input name="address_properties_address1_properties_street1" type="text" placeholder="Enter a Street Address"/>
+        </div>
+        <div class="inputWrapper">
+          <div class="inputLabel">Street 2</div>
+          <input name="address_properties_address1_properties_street2" type="text" placeholder="optional"/>
+        </div>
+        <div class="inputWrapper">
+          <div class="inputLabel">City</div>
+          <input name="address_properties_address1_properties_city" type="text" placeholder="Enter a City"/>
+        </div>
+        <div class="inputWrapper">
+          <div class="inputLabel">State</div>
+          <input name="address_properties_address1_properties_state" type="text" placeholder="Enter a State"/>
+        </div>
+        <div class="inputWrapper">
+          <div class="inputLabel">Zip Code</div>
+          <input name="address_properties_address1_properties_zip" type="text" placeholder="Enter a Zip Code"/>
+        </div>
+      </div>
+      <button type="button" class="modObjects green">Add New</button>      
     </div>
     <div class="inputWrapper ctaWrapper smallTopMargin">
-      <button type="submit" class="cta green">Save Edits</button>
+      <button type="submit" class="cta blue">Create Contact</button>
     </div>
   </form>
 </div>
-
-<hr />
-<h2>Delete Address Type</h2>
-<div class="formWrapper">
-  <form id="oAddressTypeDeleteForm" action="/api/oAddressType" method="PUT">
-    <input type="hidden" name="_method" value="PUT"/>
-    <div class="formError"></div>
-    <div class="warning">Warning: This action cannot be undone. <br>
-      Don't click this button on accident!</div>
-      <input class="hiddenInput"  type="hidden" name="oAddressTypeId" value="{selected.oAddressTypeId}"/>
-      <input class="hiddenInput"  type="hidden" name="deleted" value="true"/>
-    <div class="inputWrapper ctaWrapper smallTopMargin">
-      <button type="submit" class="cta red"> Delete OAddressType</button>
-    </div>
-  </form>
-</div>
-
 
 <script>
 /*
@@ -58,6 +95,9 @@ var app = {};
 // AJAX Client (for RESTful API)
 // Create an empty object to contain the client.
 app.client = {}
+
+
+
 
 // Define interface function for making API calls.
 // This XMLHttpRequest is one of 3 ways that we call for data from the server.
@@ -244,9 +284,9 @@ app.bindForms = function()
         // End of: Load the payload object with the names and values of the elements in the form.
 
 
+        // Create and empty queryString Object. Never used but needs to be there.
+        var queryStringObject = {};          
 
-        // If the method is DELETE, the payload should be a queryStringObject instead
-        var queryStringObject = method == 'DELETE' ? payload : {};              
 
         // Call the API
         app.client.request(undefined,path,method,queryStringObject,payload,function(statusCode,responsePayload)
@@ -254,15 +294,23 @@ app.bindForms = function()
           // Display an error on the form if needed
           if(statusCode !== 200)
           {
-            // Try to get the error from the api, or set a default error message
-            var error = typeof(responsePayload.Error) == 'string' ? responsePayload.Error : 'An error has occured, please try again';
 
-            // Set the formError field with the error text
-            document.querySelector("#"+formId+" .formError").innerHTML = error;
+            if(statusCode == 403)
+            {
+               // log the user out
+               // app.logUserOut();
+            } 
+            else // Status code was not 200 nor was it 403
+            {
+              // Try to get the error from the api, or set a default error message
+              var error = typeof(responsePayload.Error) == 'string' ? responsePayload.Error : 'An error has occured, please try again';
 
-            // Show (unhide) the form error field on the form
-            document.querySelector("#"+formId+" .formError").style.display = 'block';
-            // }
+              // Set the formError field with the error text
+              document.querySelector("#"+formId+" .formError").innerHTML = error;
+
+              // Show (unhide) the form error field on the form
+              document.querySelector("#"+formId+" .formError").style.display = 'block';
+            }
           } 
           else // The submit was successful and we got a response back from the server.
           {
@@ -271,7 +319,7 @@ app.bindForms = function()
           }
 
         }); // End of: app.client.request(undefined,path,method,queryStringObject,payload,function(statusCode,responsePayload){...}
-      }); // End of: allForms[i].addEventListener("submit", function(e){...} What runs when users submit the form.
+      }); // End of: allForms[i].addEventListener("submit", function(e){...} What runs when users submits the form.
     } // End of: for(var i = 0; i < allForms.length; i++){...}
   } // End of: if(document.querySelector("form")){...}
 }; // End of: app.bindForms = function(){...}
@@ -286,18 +334,8 @@ app.bindForms = function()
 // So this function defines what happens after a form has been sucessfully submitted.
 app.formResponseProcessor = function(formId,requestPayload,responsePayload)
 {
-  // If the administrator just deleted a record then navigate back to the list page for this table.
-  if(formId.slice(-10) === 'DeleteForm')
-  {
-    window.location = formId.slice(0, -10) + '/list';
-  }
-
-  // If the form has success message:
-  if(document.querySelector("#"+formId+" .formSuccess"))
-  {
-    // Display the success Message
-    document.querySelector("#"+formId+" .formSuccess").style.display = 'block';
-  }
+  // Navigate to the list page for this table.
+  window.location = formId.slice(0, -3) + '/list';  
 
 }; // End of: app.formResponseProcessor = function(formId,requestPayload,responsePayload){...}
 // End of: Form submit post processor - processing after a sucessful form submit.
@@ -305,78 +343,11 @@ app.formResponseProcessor = function(formId,requestPayload,responsePayload)
 
 
 
-// Load the oAddressTypeEdit page with data from the server.
-app.loadoAddressTypeEditPage = async function()
-{
-  // Get the published fields and the timeStamp.
-  // 1. Get the oAddressTypeId
-  // The template function inserts the oAddressTypeId into the html before serving it to the client.
-  let oAddressTypeId = document.querySelector("form input[name=oAddressTypeId]").value;
-
-  // 2. Create a queryExpression with a key of oAddressTypeId and a value of the 
-  // particular oAddressTypeId that the user clicked on in the list.
-  let queryExpression = "?WHERE:;oAddressTypeId:;MatchesExactly:;" + oAddressTypeId + ":;";
-
-  // Run the query defined below to get the published fields and the timeStamp for the oAddressTypeID.    
-  let recordArray = await runQueryOnoAddressTypeId(queryExpression);
-
-  // Get the record object from the array returned by the query.
-  let recordObject = recordArray[0];
-
-  // Put the data into the forms as values where needed
-  // Behaviour from meta.js at 4eyhkvwtznzs8f9pmy08
-  document.querySelectorAll(".addressTypeInput").forEach(function (element){element.value = recordObject.addressType});
-  document.querySelectorAll(".timeStampInput").forEach(function(element){element.value = recordObject.timeStamp});  
-
-  // Define a function to get the published fields and the timeStamp from the oAddressTypeID
-  async function runQueryOnoAddressTypeId(queryExpression) 
-  {
-    const res = await fetch('api/oAddressType' + queryExpression);
-
-    // Verify that we have some sort of 2xx response that we can use
-    if (!res.ok) 
-    {
-        console.log("Error trying to load the oAddressType record: ");
-        // throw res;
-    }
-    // If no content, immediately resolve, don't try to parse JSON
-    if (res.status === 204)
-    {
-        return [];
-    }
-    // Get all the text sent by the server as a single string.
-    const content = await res.text();
-
-    // Split the content string on each new line character and put the results into an array called lines.
-    const lines = content.split("\n");
-
-    // Get rid of the last element in the array. This is just a new line character.
-    lines.splice(lines.length -1, 1);
-
-    // Return a new array to the calling function consisting of JSON objects which contain each record sent by the server.
-    return lines.map(function(line)
-    {
-      if(line != "")
-      {
-        return JSON.parse(line);
-      }
-    });
-  } // End of: async function runQueryOnoAddressTypeId(queryExpression){...}
-  // End of: Define a function to get the published fields and the timeStamp from the oAddressTypeID
-
-}; // End of: app.loadoAddressTypeEditPage = function(){...}
-
-
-
-
 // Init (bootstrapping)
-app.init = function(){
-
+app.init = function()
+{
   // Bind all form submissions
   app.bindForms();
-
-  // Load data on page
-  app.loadoAddressTypeEditPage();
 };
 // End of: Init (bootstrapping)
 
@@ -387,5 +358,7 @@ app.init = function(){
 window.onload = function(){
   app.init();
 };
+
 </script>
+
 

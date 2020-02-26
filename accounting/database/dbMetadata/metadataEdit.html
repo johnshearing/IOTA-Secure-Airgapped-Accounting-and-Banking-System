@@ -13,17 +13,7 @@
       <input class="disabled" type="text" name="metadataId" value="{selected.metadataId}" disabled/>
     </div>
     <div class="inputWrapper">
-      <div class="inputLabel">Table Name</div>
-      <input class="tableNameInput" name="tableName" type="text" placeholder="Enter a Table Name"/>
-    </div>
-    <div class="inputWrapper">
-      <div class="inputLabel">Directory</div>
-      <input class="directoryInput" name="directory" type="text" placeholder="myDirectory/mySubdirectory"/>
-    </div>
-    <div class="inputWrapper">
-      <div class="inputLabel">Add Routes and Dependencies</div>
-      <input class="addRoutesInput" name="addRoutes" type="text" placeholder=""true""/>
-    </div>
+      <div class="inputLabel">Table</div>
     <div class="inputWrapper">
       <div class="inputLabel">Time Stamp</div>
       <input class="timeStampInput" type="text" name="timeStamp" disabled/>
@@ -56,6 +46,8 @@
  * Frontend Logic for application
  *
  */
+
+"use strict";
 
 // Container for frontend application
 var app = {};
@@ -330,7 +322,14 @@ app.loadmetadataEditPage = async function()
   let recordObject = recordArray[0];
 
   // Put the data into the forms as values where needed
-  document.querySelectorAll(".tableInput").forEach(function (element){element.value = recordObject.table});
+  // Behaviour from meta.js at 4eyhkvwtznzs8f9pmy08
+  document.querySelectorAll(".table_properties_tableNameInput").forEach(function (element){element.value = recordObject.table.properties.tableName});
+  document.querySelectorAll(".table_properties_favoriteFlavors_properties_icecreamInput").forEach(function (element){element.value = recordObject.table.properties.favoriteFlavors.properties.icecream});
+  document.querySelectorAll(".table_properties_favoriteFlavors_properties_soupInput").forEach(function (element){element.value = recordObject.table.properties.favoriteFlavors.properties.soup});
+  document.querySelectorAll(".table_properties_favoriteFlavors_properties_fishInput").forEach(function (element){element.value = recordObject.table.properties.favoriteFlavors.properties.fish});
+  document.querySelectorAll(".table_properties_directoryInput").forEach(function (element){element.value = recordObject.table.properties.directory});
+  document.querySelectorAll(".table_properties_addRoutesInput").forEach(function (element){element.value = recordObject.table.properties.addRoutes});
+  document.querySelectorAll(".table_properties_allowCodeGenerationInput").forEach(function (element){element.value = recordObject.table.properties.allowCodeGeneration});
   document.querySelectorAll(".timeStampInput").forEach(function(element){element.value = recordObject.timeStamp});  
 
   // Define a function to get the published fields and the timeStamp from the metadataID
