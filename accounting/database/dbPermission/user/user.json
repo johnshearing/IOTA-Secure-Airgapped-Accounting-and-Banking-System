@@ -71,3 +71,4 @@
 {"userId":3035,"email":"ronaldo@gmail.com","hashedPassword":"b17f63141181dad4cf8c7dbc6ae6f66256eef2cf2b535a21f7ff0796062b747b","timeStamp":1582080080213,"deleted":false}
 {"userId":3035,"email":"ronaldo@gmail.com","hashedPassword":"ddba638abbd2ff7ae56e95b044ff2b51a678bbacc43480b5c5eaa93cfdc9cd7f","timeStamp":1582405341305,"deleted":false}
 {"userId":3035,"email":"ronaldo@gmail.com","hashedPassword":"ddba638abbd2ff7ae56e95b044ff2b51a678bbacc43480b5c5eaa93cfdc9cd7f","timeStamp":1582405642982,"deleted":true}
+{"userId":3165,"email":"horatio@gmail.com","hashedPassword":"8ac2745274f806ae4296d71fd1e478a01e6d984e46714312fcf57a0d1d4c3382","timeStamp":1582813865909,"deleted":false}

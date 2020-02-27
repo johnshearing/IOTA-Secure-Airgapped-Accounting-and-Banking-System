@@ -281,13 +281,60 @@ app.formResponseProcessor = function(formId,requestPayload,responsePayload)
 
 
 
+// Behavior from meta.js at i0hrsc6x02jooocdy71o
+// Bind controls to behaviors when the page loads.
+app.loadoContactAddPage = function()
+{
+  // Define the function that fires when the addNewButton is selected.
+  function onClickBehaviorForAddNewButton (event)  
+  {
+    // Stop it from redirecting anywhere
+    event.preventDefault();
+
+    // Count the element wrappers surrounding the contol elements that 
+    // exist in the same groupWrapper with the target addNew button.
+    let elementWrapperCount = event.target.parentNode.querySelectorAll(".elementWrapper").length;
+
+    // Deep clone a new elementWrapper from the last one inside the target's groupWrapper.
+    let elmnt = event.target.parentNode.querySelectorAll(".elementWrapper")[elementWrapperCount - 1];
+    let cln = elmnt.cloneNode(true);
+
+    // Set all the clone's element values to ""
+    cln.querySelectorAll(".resetElement").forEach(function(element){element.value = "";}); 
+
+    // Create an event listener for the onchange event of fields in this clone.
+    // cln.querySelectorAll(".conjunctionSelector")[0].addEventListener("change", onChangeBehaviorForConjunctionSelector);
+
+    // Append above the addNewButton
+    let targetGroupWrapper = event.target.parentNode;
+    targetGroupWrapper.insertBefore(cln, targetGroupWrapper.childNodes[targetGroupWrapper.childNodes.length -2]);
+
+
+  } // End of: function onClickBehaviorForAddNewButton (event)
+  // End of: Define the function that fires when the addNewButton is pressed.
+
+  // Bind the function above to the onClick event of the addNewButtons.
+  document.querySelectorAll('.addNewButton').forEach(function(currentButton)
+  {
+    currentButton.addEventListener("click", onClickBehaviorForAddNewButton);
+  });
+  
+}; // End of: app.loadoContactEditPage = function(){...}
+
+
+
+
 // Init (bootstrapping)
 app.init = function()
 {
   // Bind all form submissions
   app.bindForms();
+
+  // Load data on page
+  app.loadoContactAddPage();  
 };
 // End of: Init (bootstrapping)
+
 
 
 
