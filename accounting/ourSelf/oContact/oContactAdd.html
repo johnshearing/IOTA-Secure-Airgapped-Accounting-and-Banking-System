@@ -17,9 +17,9 @@
       <input name="email" type="text" placeholder="Enter an Email Address"/>
     </div>
     <div class="objectLabel">Phone Information</div>
-    <div class="objectWrapper phoneGroupWrapper">
-      <div class="objectLabel">Phone1</div>
-      <div class="objectWrapper phoneWrapper"> 
+    <div class="objectWrapper groupWrapper">
+      <div class="objectLabel"></div>
+      <div class="objectWrapper elementWrapper">
         <div class="inputWrapper">
           <div class="inputLabel">Phone Type</div>
           <select class="resetElement" name="phone_properties_phone1_properties_phoneType">
@@ -35,15 +35,15 @@
           <input class="resetElement" name="phone_properties_phone1_properties_phone" type="text" placeholder="Enter a Phone Number"/>
         </div>
       </div>
-      <button type="button" class="modObjects green phoneAddNewButton">Add New</button>
+      <button type="button" class="modObjects green addNewButton">Add New</button>
     </div>
     <div class="objectLabel">Address Information</div>
-    <div class="objectWrapper">
-      <div class="objectLabel">Address1</div>
-      <div class="objectWrapper">
+    <div class="objectWrapper groupWrapper">
+      <div class="objectLabel"></div>
+      <div class="objectWrapper elementWrapper">
         <div class="inputWrapper">
           <div class="inputLabel">Address Type</div>
-          <select name="address_properties_address1_properties_addressType" placeholder="Enter an Home Address Type">
+          <select class="resetElement" name="address_properties_address1_properties_addressType" placeholder="Enter an Home Address Type">
             <option value="" style="display: list-item;">Select the Address Type</option>
             <option value="Home Address" style="display: list-item;">Home Address</option>
             <option value="Work Address" style="display: list-item;">Work Address</option>
@@ -53,34 +53,32 @@
         </div>
         <div class="inputWrapper">
           <div class="inputLabel">Street 1</div>
-          <input name="address_properties_address1_properties_street1" type="text" placeholder="Enter a Street Address"/>
+          <input class="resetElement" name="address_properties_address1_properties_street1" type="text" placeholder="Enter a Street Address"/>
         </div>
         <div class="inputWrapper">
           <div class="inputLabel">Street 2</div>
-          <input name="address_properties_address1_properties_street2" type="text" placeholder="optional"/>
+          <input class="resetElement" name="address_properties_address1_properties_street2" type="text" placeholder="optional"/>
         </div>
         <div class="inputWrapper">
           <div class="inputLabel">City</div>
-          <input name="address_properties_address1_properties_city" type="text" placeholder="Enter a City"/>
+          <input class="resetElement" name="address_properties_address1_properties_city" type="text" placeholder="Enter a City"/>
         </div>
         <div class="inputWrapper">
           <div class="inputLabel">State</div>
-          <input name="address_properties_address1_properties_state" type="text" placeholder="Enter a State"/>
+          <input class="resetElement" name="address_properties_address1_properties_state" type="text" placeholder="Enter a State"/>
         </div>
         <div class="inputWrapper">
           <div class="inputLabel">Zip Code</div>
-          <input name="address_properties_address1_properties_zip" type="text" placeholder="Enter a Zip Code"/>
+          <input class="resetElement" name="address_properties_address1_properties_zip" type="text" placeholder="Enter a Zip Code"/>
         </div>
       </div>
-      <button type="button" class="modObjects green">Add New</button>
+      <button type="button" class="modObjects green addNewButton">Add New</button>
     </div>
     <div class="inputWrapper ctaWrapper smallTopMargin">
       <button type="submit" class="cta green">Create Contact</button>
     </div>
   </form>
 </div>
-
-
 
 <script>
 /*
@@ -344,20 +342,21 @@ app.formResponseProcessor = function(formId,requestPayload,responsePayload)
 
 
 
+
+// Behavior from meta.js at i0hrsc6x02jooocdy71o
 // Bind controls to behaviors when the page loads.
 app.loadoContactAddPage = function()
 {
-  // Define the function that fires when the phoneAddNewButton is selected.
-  function onClickBehaviorForPhoneAddNewButton (event)  
+  // Define the function that fires when the addNewButton is selected.
+  function onClickBehaviorForAddNewButton (event)  
   {
     // Stop it from redirecting anywhere
     event.preventDefault();
 
-    // Get a count of how many phone objects already exist.
-    let phoneWrapperCount = document.querySelectorAll(".phoneWrapper").length;
+    let elementWrapperCount = document.querySelectorAll(".elementWrapper").length;
 
-    // Deep clone a new wrapper from the previous and append it to the DOM
-    let elmnt = document.querySelectorAll(".phoneWrapper")[phoneWrapperCount - 1];
+    // Deep clone a new elementWrapper from the previous and append it to the DOM
+    let elmnt = document.querySelectorAll(".elementWrapper")[elementWrapperCount - 1];
     let cln = elmnt.cloneNode(true);
 
     // Set all the element values to ""
@@ -366,17 +365,20 @@ app.loadoContactAddPage = function()
     // Create an event listener for the onchange event of fields in this clone.
     // cln.querySelectorAll(".conjunctionSelector")[0].addEventListener("change", onChangeBehaviorForConjunctionSelector);
 
-    // Append above the phoneAddNewButton
-    let targetGroupWrapper = document.querySelectorAll(".phoneGroupWrapper")[0];
+    // Append above the addNewButton
+    let targetGroupWrapper = document.querySelectorAll(".groupWrapper")[0];
     targetGroupWrapper.insertBefore(cln, targetGroupWrapper.childNodes[targetGroupWrapper.childNodes.length -2]);
 
 
-  } // End of: function onClickBehaviorForPhoneAddNewButton (event)
-  // End of: Define the function that fires when the PhoneAddNewButton is pressed.
+  } // End of: function onClickBehaviorForAddNewButton (event)
+  // End of: Define the function that fires when the addNewButton is pressed.
 
-  // Bind the function above to the onClick event of the first (and only for now) PhoneAddNewButton.
-  document.querySelectorAll(".phoneAddNewButton")[0].addEventListener("click", onClickBehaviorForPhoneAddNewButton);
-
+  // Bind the function above to the onClick event of the addNewButtons.
+  document.querySelectorAll('.addNewButton').forEach(function(currentButton)
+  {
+    currentButton.addEventListener("click", onClickBehaviorForAddNewButton);
+  });
+  
 }; // End of: app.loadoContactEditPage = function(){...}
 
 
@@ -392,6 +394,7 @@ app.init = function()
   app.loadoContactAddPage();  
 };
 // End of: Init (bootstrapping)
+
 
 
 
