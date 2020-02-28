@@ -34,8 +34,11 @@
           <div class="inputLabel">Phone</div>
           <input class="resetElement" name="phone_properties_phone1_properties_phone" type="text" placeholder="Enter a Phone Number"/>
         </div>
+        <button type="button" class="controlObjectButton moveObjectUpButton blue">Move Up</button>
+        <button type="button" class="controlObjectButton moveObjectDownButton blue">Move Down</button>
+        <button type="button" class="controlObjectButton removeObjectButton red">Remove</button>
       </div>
-      <button type="button" class="modObjects green addNewButton">Add New</button>
+      <button type="button" class="addNewObjectButton">Add New</button>
     </div>
     <div class="objectLabel">Address Information</div>
     <div class="objectWrapper groupWrapper">
@@ -71,8 +74,11 @@
           <div class="inputLabel">Zip Code</div>
           <input class="resetElement" name="address_properties_address1_properties_zip" type="text" placeholder="Enter a Zip Code"/>
         </div>
+        <button type="button" class="controlObjectButton moveObjectUpButton blue">Move Up</button>
+        <button type="button" class="controlObjectButton moveObjectDownButton blue">Move Down</button>
+        <button type="button" class="controlObjectButton removeObjectButton red">Remove</button>
       </div>
-      <button type="button" class="modObjects green addNewButton">Add New</button>
+      <button type="button" class="addNewObjectButton">Add New</button>
     </div>
     <div class="inputWrapper ctaWrapper smallTopMargin">
       <button type="submit" class="cta green">Create Contact</button>
@@ -347,8 +353,8 @@ app.formResponseProcessor = function(formId,requestPayload,responsePayload)
 // Bind controls to behaviors when the page loads.
 app.loadoContactAddPage = function()
 {
-  // Define the function that fires when the addNewButton is selected.
-  function onClickBehaviorForAddNewButton (event)  
+  // Define the function that fires when the addNewObjectButton is selected.
+  function onClickBehaviorForAddNewObjectButton (event)  
   {
     // Stop it from redirecting anywhere
     event.preventDefault();
@@ -367,18 +373,18 @@ app.loadoContactAddPage = function()
     // Create an event listener for the onchange event of fields in this clone.
     // cln.querySelectorAll(".conjunctionSelector")[0].addEventListener("change", onChangeBehaviorForConjunctionSelector);
 
-    // Append above the addNewButton
+    // Append above the addNewObjectButton
     let targetGroupWrapper = event.target.parentNode;
     targetGroupWrapper.insertBefore(cln, targetGroupWrapper.childNodes[targetGroupWrapper.childNodes.length -2]);
 
 
-  } // End of: function onClickBehaviorForAddNewButton (event)
-  // End of: Define the function that fires when the addNewButton is pressed.
+  } // End of: function onClickBehaviorForAddNewObjectButton (event)
+  // End of: Define the function that fires when the addNewObjectButton is pressed.
 
-  // Bind the function above to the onClick event of the addNewButtons.
-  document.querySelectorAll('.addNewButton').forEach(function(currentButton)
+  // Bind the function above to the onClick event of the addNewObjectButtons.
+  document.querySelectorAll('.addNewObjectButton').forEach(function(currentButton)
   {
-    currentButton.addEventListener("click", onClickBehaviorForAddNewButton);
+    currentButton.addEventListener("click", onClickBehaviorForAddNewObjectButton);
   });
   
 }; // End of: app.loadoContactEditPage = function(){...}

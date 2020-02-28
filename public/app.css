@@ -79,7 +79,6 @@ body.loggedIn .header ul li.loggedOut{
 
 .content {
   margin-top: 150px;
-  /*width: 1000px;*/
   margin: 150px auto;
 }
 
@@ -326,7 +325,7 @@ td a, td a:hover, td a:active{
 
 .smallTopMargin
 {
-  margin-top: 5px;  
+    margin-top: 5px;
 }
 
 .tableCaption
@@ -356,9 +355,9 @@ td a, td a:hover, td a:active{
   padding: 10px;
 }
 
-.modObjects
+.addNewObjectButton
 {
-  background-color: #217844;
+  background-color: #217844;  
   color: #fff;
   border-radius: 5px;
   text-align: center;
@@ -367,4 +366,26 @@ td a, td a:hover, td a:active{
   padding: 5px;
   width: auto;
   cursor: pointer;
+}
+
+.controlObjectButton
+{
+  color: #fff;
+  border-radius: 5px;
+  text-align: center;
+  display: inline-block;
+  margin-top: 5px;  
+  padding: 5px;
+  width: auto;
+  cursor: pointer;
+}
+
+.moveObjectUpButton.blue, .moveObjectDownButton.blue
+{
+  background-color: #214478;
+}
+
+.removeObjectButton.red
+{
+  background-color: #c83737;
 }

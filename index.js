@@ -45,7 +45,7 @@ app.init = function()
   // meta.build.serverSideLogic(1065);
 
   // Get a random number at the console.
-  console.log(helpers.createRandomString(20));  
+  // console.log(helpers.createRandomString(20));  
 };
 
 
