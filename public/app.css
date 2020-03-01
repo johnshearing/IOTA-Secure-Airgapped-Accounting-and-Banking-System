@@ -389,3 +389,7 @@ td a, td a:hover, td a:active{
 {
   background-color: #c83737;
 }
+
+.controlObjectButton.disabled{
+  background-color: #efefef;
+}
