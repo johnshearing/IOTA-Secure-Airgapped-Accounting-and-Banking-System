@@ -364,7 +364,6 @@ app.loadoContactAddPage = function()
     moveObjectUpButtonOnTheObjectComingDown.removeAttribute("disabled");
 
     // Find out if we are on the bottom
-    // if(event.target.parentNode === event.target.parentNode.parentNode.lastElementChild)
     if(event.target.parentNode === event.target.parentNode.parentNode.querySelector(".elementWrapper:nth-last-child(2)"))
     {
       // The object coming down will not be able to go down anymore.
@@ -396,7 +395,6 @@ app.loadoContactAddPage = function()
       event.target.setAttribute("disabled", "");
     }   
     
-
   } // End of: function onClickBehaviorForMoveObjectUpButton (event)
   // End of: Define the function that fires when the moveObjectUpButton is pressed.
 
@@ -414,14 +412,43 @@ app.loadoContactAddPage = function()
     // Stop it from redirecting anywhere
     event.preventDefault();
 
-    event.target.parentNode.before(event.target.parentNode.nextSibling);
-    
-    // Find out if we are at the top
-    if(event.target.parentNode === event.target.parentNode.parentNode.lastElementChild)
+    // Enable the moveObjectDownButton on the object coming up.
+    let moveObjectDownButtonOnTheObjectComingUp = event.target.parentNode.nextElementSibling.querySelector(".moveObjectDownButton");
+    moveObjectDownButtonOnTheObjectComingUp.classList.remove('disabled');
+    moveObjectDownButtonOnTheObjectComingUp.removeAttribute("disabled");
+
+    // Find out if we are on the top
+    if(event.target.parentNode === event.target.parentNode.parentNode.querySelector(".elementWrapper:first-child"))
     {
-      event.target.classList.remove('disabled');
-      event.target.removeAttribute("disabled");
-    }     
+      // The object coming up will not be able to go up anymore.
+      // So no need for the moveObjectUpButton. Disable it. 
+      let moveObjectUpButtonOnTheObjectComingUp = event.target.parentNode.nextElementSibling.querySelector(".moveObjectUpButton");      
+      moveObjectUpButtonOnTheObjectComingUp.classList.add("disabled");
+      moveObjectUpButtonOnTheObjectComingUp.setAttribute("disabled", "");
+    } 
+
+    // Since we are moving this elementWrapper down we need to be sure the moveObjectUpButton is enabled.
+    // Need this in case it was sitting at the top where the up button is disabled.
+    // Enable the moveObjectUpButton next to the target down button
+    let moveObjectUpButtonNextToTargetButton = event.target.parentNode.querySelector(".moveObjectUpButton")
+    moveObjectUpButtonNextToTargetButton.classList.remove('disabled');
+    moveObjectUpButtonNextToTargetButton.removeAttribute("disabled");
+
+    // Move this elementWrapper down
+    if(event.target.parentNode.nextElementSibling)
+    {
+      event.target.parentNode.parentNode.insertBefore(event.target.parentNode.nextElementSibling, event.target.parentNode);
+    }
+  
+    // Find out if we are at the bottom
+    // if(event.target.parentNode === event.target.parentNode.parentNode.firstElementChild)
+    if(event.target.parentNode === event.target.parentNode.parentNode.querySelector(".elementWrapper:nth-last-child(2)"))    
+    {
+      // Can't move down anymore than this.
+      // Disable the target moveObjectDownButton.
+      event.target.classList.add("disabled");
+      event.target.setAttribute("disabled", "");
+    }   
 
   } // End of: function onClickBehaviorForMoveObjectDownButton (event)
   // End of: Define the function that fires when the moveObjectDownButton is pressed.
@@ -432,6 +459,7 @@ app.loadoContactAddPage = function()
   {
     currentButton.addEventListener("click", onClickBehaviorForMoveObjectDownButton);
   });
+  // End of: Bind the function above to the onClick event of the moveObjectDownButton.  
 
 
   // Define the function that fires when the removeObjectButton is selected.
@@ -440,10 +468,55 @@ app.loadoContactAddPage = function()
     // Stop it from redirecting anywhere
     event.preventDefault();
 
+    // If we are on the top
+    if(event.target.parentNode === event.target.parentNode.parentNode.querySelector(".elementWrapper:first-child"))
+    {
+      // The object coming up will not be able to go up anymore.
+      // So no need for the moveObjectUpButton. Disable it. 
+      let moveObjectUpButtonOnTheObjectComingUp = event.target.parentNode.nextElementSibling.querySelector(".moveObjectUpButton");      
+      moveObjectUpButtonOnTheObjectComingUp.classList.add("disabled");
+      moveObjectUpButtonOnTheObjectComingUp.setAttribute("disabled", "");
+
+      // If there are only two left
+      if(event.target.parentNode.parentNode.querySelectorAll(".elementWrapper").length === 2)
+      {
+        // We must never delete the last one
+        // So disable the removeObjectButton on the last survivor    
+        
+        let removeObjectButtonOnTheObjectComingUp = event.target.parentNode.nextElementSibling.querySelector(".removeObjectButton");      
+        removeObjectButtonOnTheObjectComingUp.classList.add("disabled");
+        removeObjectButtonOnTheObjectComingUp.setAttribute("disabled", "");
+
+      }
+    } // End of: If there are only two left
+    // End of: If we are on the top
+
+    // If we are on the bottom
+    if(event.target.parentNode === event.target.parentNode.parentNode.querySelector(".elementWrapper:nth-last-child(2)"))
+    {
+      // The object coming down will not be able to go down anymore.
+      // So no need for the moveObjectDownButton. Disable it. 
+      let moveObjectDownButtonOnTheObjectComingDown = event.target.parentNode.previousElementSibling.querySelector(".moveObjectDownButton");      
+      moveObjectDownButtonOnTheObjectComingDown.classList.add("disabled");
+      moveObjectDownButtonOnTheObjectComingDown.setAttribute("disabled", "");
+
+      // If there are only two left
+      if(event.target.parentNode.parentNode.querySelectorAll(".elementWrapper").length === 2)
+      {
+        // We must never delete the last one
+        // So disable the removeObjectButton on the last survivor    
+        
+        let removeObjectButtonOnTheObjectComingDown = event.target.parentNode.previousElementSibling.querySelector(".removeObjectButton");      
+        removeObjectButtonOnTheObjectComingDown.classList.add("disabled");
+        removeObjectButtonOnTheObjectComingDown.setAttribute("disabled", "");
+
+      } // End of: If there are only two left
+    } // End of: If we are on the bottom
+
     // Remove the button's parent node.
     event.target.parentNode.remove()
 
-  } // End of: function onClickBehaviorForRemoveObjectButton (event)
+  } // End of: function onClickBehaviorForRemoveObjectButton (event){...}
   // End of: Define the function that fires when the removeObjectButton is selected.
 
 
@@ -452,6 +525,7 @@ app.loadoContactAddPage = function()
   {
     currentButton.addEventListener("click", onClickBehaviorForRemoveObjectButton);
   });
+  // End of: Bind the function above to the onClick event of the addNewObjectButtons.
 
 
   // Define the function that fires when the addNewObjectButton is selected.
@@ -523,6 +597,7 @@ app.loadoContactAddPage = function()
   {
     currentButton.addEventListener("click", onClickBehaviorForAddNewObjectButton);
   });  
+  // End of: Bind the function above to the onClick event of the addNewObjectButtons.
 
 }; // End of: app.loadoContactEditPage = function(){...}
 
