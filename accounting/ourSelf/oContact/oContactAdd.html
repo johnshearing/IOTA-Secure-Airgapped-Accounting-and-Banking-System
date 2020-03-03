@@ -18,10 +18,10 @@
     </div>
     <div class="objectLabel">Phone Information</div>
     <div class="objectWrapper groupWrapper">
-        <div class="objectWrapper elementWrapper">
+      <div class="objectWrapper elementWrapper">
         <div class="inputWrapper">
           <div class="inputLabel">Phone Type</div>
-          <select class="resetElement" name="phone_properties_phone1_properties_phoneType">
+          <select class="resetElement" name="phone_properties_phone0_properties_phoneType">
             <option value="" style="display: list-item;">Select the Phone Type</option>
             <option value="Mobile" style="display: list-item;">Mobile Phone</option>
             <option value="Home" style="display: list-item;">Home Phone</option>
@@ -31,7 +31,7 @@
         </div>
         <div class="inputWrapper">
           <div class="inputLabel">Phone</div>
-          <input class="resetElement" name="phone_properties_phone1_properties_phone" type="text" placeholder="Enter a Phone Number"/>
+          <input class="resetElement" name="phone_properties_phone0_properties_phone" type="text" placeholder="Enter a Phone Number"/>
         </div>
         <button type="button" class="disabled controlObjectButton moveObjectUpButton blue" disabled>Move Up</button>
         <button type="button" class="disabled controlObjectButton moveObjectDownButton blue" disabled>Move Down</button>
@@ -41,10 +41,10 @@
     </div>
     <div class="objectLabel">Address Information</div>
     <div class="objectWrapper groupWrapper">
-        <div class="objectWrapper elementWrapper">
+      <div class="objectWrapper elementWrapper">
         <div class="inputWrapper">
           <div class="inputLabel">Address Type</div>
-          <select class="resetElement" name="address_properties_address1_properties_addressType" placeholder="Enter an Home Address Type">
+          <select class="resetElement" name="address_properties_address0_properties_addressType" placeholder="Enter an Home Address Type">
             <option value="" style="display: list-item;">Select the Address Type</option>
             <option value="Home Address" style="display: list-item;">Home Address</option>
             <option value="Work Address" style="display: list-item;">Work Address</option>
@@ -54,23 +54,23 @@
         </div>
         <div class="inputWrapper">
           <div class="inputLabel">Street 1</div>
-          <input class="resetElement" name="address_properties_address1_properties_street1" type="text" placeholder="Enter a Street Address"/>
+          <input class="resetElement" name="address_properties_address0_properties_street1" type="text" placeholder="Enter a Street Address"/>
         </div>
         <div class="inputWrapper">
           <div class="inputLabel">Street 2</div>
-          <input class="resetElement" name="address_properties_address1_properties_street2" type="text" placeholder="optional"/>
+          <input class="resetElement" name="address_properties_address0_properties_street2" type="text" placeholder="optional"/>
         </div>
         <div class="inputWrapper">
           <div class="inputLabel">City</div>
-          <input class="resetElement" name="address_properties_address1_properties_city" type="text" placeholder="Enter a City"/>
+          <input class="resetElement" name="address_properties_address0_properties_city" type="text" placeholder="Enter a City"/>
         </div>
         <div class="inputWrapper">
           <div class="inputLabel">State</div>
-          <input class="resetElement" name="address_properties_address1_properties_state" type="text" placeholder="Enter a State"/>
+          <input class="resetElement" name="address_properties_address0_properties_state" type="text" placeholder="Enter a State"/>
         </div>
         <div class="inputWrapper">
           <div class="inputLabel">Zip Code</div>
-          <input class="resetElement" name="address_properties_address1_properties_zip" type="text" placeholder="Enter a Zip Code"/>
+          <input class="resetElement" name="address_properties_address0_properties_zip" type="text" placeholder="Enter a Zip Code"/>
         </div>
         <button type="button" class="disabled controlObjectButton moveObjectUpButton blue" disabled>Move Up</button>
         <button type="button" class="disabled controlObjectButton moveObjectDownButton blue" disabled>Move Down</button>
@@ -394,6 +394,8 @@ app.loadoContactAddPage = function()
       event.target.classList.add("disabled");
       event.target.setAttribute("disabled", "");
     }   
+
+    renumberNamedElementsInGroupWrapper(event.target.parentNode.parentNode);    
     
   } // End of: function onClickBehaviorForMoveObjectUpButton (event)
   // End of: Define the function that fires when the moveObjectUpButton is pressed.
@@ -441,14 +443,15 @@ app.loadoContactAddPage = function()
     }
   
     // Find out if we are at the bottom
-    // if(event.target.parentNode === event.target.parentNode.parentNode.firstElementChild)
-    if(event.target.parentNode === event.target.parentNode.parentNode.querySelector(".elementWrapper:nth-last-child(2)"))    
+        if(event.target.parentNode === event.target.parentNode.parentNode.querySelector(".elementWrapper:nth-last-child(2)"))    
     {
       // Can't move down anymore than this.
       // Disable the target moveObjectDownButton.
       event.target.classList.add("disabled");
       event.target.setAttribute("disabled", "");
     }   
+
+    renumberNamedElementsInGroupWrapper(event.target.parentNode.parentNode);
 
   } // End of: function onClickBehaviorForMoveObjectDownButton (event)
   // End of: Define the function that fires when the moveObjectDownButton is pressed.
@@ -513,8 +516,12 @@ app.loadoContactAddPage = function()
       } // End of: If there are only two left
     } // End of: If we are on the bottom
 
+    let groupWrapper = event.target.parentNode.parentNode;
+
     // Remove the button's parent node.
     event.target.parentNode.remove()
+
+    renumberNamedElementsInGroupWrapper(groupWrapper);    
 
   } // End of: function onClickBehaviorForRemoveObjectButton (event){...}
   // End of: Define the function that fires when the removeObjectButton is selected.
@@ -543,7 +550,7 @@ app.loadoContactAddPage = function()
     let cln = elmnt.cloneNode(true);
 
     // Set all the clone's element values to ""
-    cln.querySelectorAll(".resetElement").forEach(function(element){element.value = "";}); 
+    cln.querySelectorAll(".resetElement").forEach(function(element){element.value = "";});
 
     // Create an event listener for the onclick event of the clone's removeObjectButton.
     cln.querySelector(".removeObjectButton").addEventListener("click", onClickBehaviorForRemoveObjectButton);
@@ -588,6 +595,8 @@ app.loadoContactAddPage = function()
     let targetGroupWrapper = event.target.parentNode;
     targetGroupWrapper.insertBefore(cln, targetGroupWrapper.childNodes[targetGroupWrapper.childNodes.length -2]);
 
+    renumberNamedElementsInGroupWrapper(event.target.parentNode);
+
   } // End of: function onClickBehaviorForAddNewObjectButton (event)
   // End of: Define the function that fires when the addNewObjectButton is pressed.
 
@@ -600,6 +609,38 @@ app.loadoContactAddPage = function()
   // End of: Bind the function above to the onClick event of the addNewObjectButtons.
 
 }; // End of: app.loadoContactEditPage = function(){...}
+
+
+
+
+// Define a function which renumbers field names in children objects as we create, move, or delete their element wrappers
+function renumberNamedElementsInGroupWrapper(groupWrapper)
+{
+  // Loop through the elementWrappers.
+  groupWrapper.querySelectorAll('.elementWrapper').forEach(function(elementWrapper, wrapperIndex)
+  {
+    // Loop through the form elements inside each elementWrapper.
+    elementWrapper.querySelectorAll('.resetElement').forEach(function(fieldElement)
+    {
+      // Get the form lement's name.
+      let previousNameAttribute = fieldElement.getAttribute("name");
+      
+      // Define a function to change the numeral in the name to match it's position in the groupWrapper.
+      function increment_last(str) 
+      {
+        return str.replace(/[0-9]+(?!.*[0-9])/, wrapperIndex);
+      }
+
+      // Call the function above.
+      let nextNameAttribute = increment_last(previousNameAttribute);
+
+      // Set the name of the formElement as calculated above.
+      fieldElement.setAttribute("name", nextNameAttribute)
+
+    }); // End of: elementWrapper.querySelectorAll('.resetElement').forEach(function(fieldElement){...}
+  }); // End of: groupWrapper.querySelectorAll('.elementWrapper').forEach(function(elementWrapper, wrapperIndex)
+} // End of: function renumberNamedElementsInGroupWrapper(groupWrapper){...}
+// End of: Define a function which renumbers field names in children objects as we create, move, or delete their element wrappers
 
 
 

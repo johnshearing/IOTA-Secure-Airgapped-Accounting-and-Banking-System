@@ -15,7 +15,6 @@
 const server = require('./lib/server');
 const workers = require('./lib/workers');
 const cli = require('./lib/repl');
-const meta = require('./lib/meta');
 const helpers = require('./lib/aHelpers');
 
 
@@ -37,13 +36,6 @@ app.init = function()
   // That's so console.log messages from workers.init and server.init do no confuse users at the command prompt
   // setTimeout(function(){cli.init();}, 5000);
   
-  // Build webpages for working with tables.
-  // The parameter is metadataId in metadata.json.
-  // meta.build.addWebPage(1065);
-  // meta.build.editWebPage(1065);
-  // meta.build.listWebPage(1065);  
-  // meta.build.serverSideLogic(1065);
-
   // Get a random number at the console.
   // console.log(helpers.createRandomString(20));  
 };

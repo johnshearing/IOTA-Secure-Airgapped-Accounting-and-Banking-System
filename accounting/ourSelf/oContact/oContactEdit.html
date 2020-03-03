@@ -26,11 +26,11 @@
     </div>
     <div class="objectLabel">Phone Information</div>
     <div class="objectWrapper">
-      <div class="objectLabel">Phone1</div>
+      <div class="objectLabel">Phone0</div>
       <div class="objectWrapper">
         <div class="inputWrapper">
           <div class="inputLabel">Phone Type</div>
-          <select class="phone_properties_phone1_properties_phoneTypeInput" name="phone_properties_phone1_properties_phoneType">
+          <select class="phone_properties_phone0_properties_phoneTypeInput" name="phone_properties_phone0_properties_phoneType">
             <option value="" style="display: list-item;">Select the Phone Type</option>
             <option value="Mobile" style="display: list-item;">Mobile Phone</option>
             <option value="Home" style="display: list-item;">Home Phone</option>
@@ -40,17 +40,17 @@
         </div>
         <div class="inputWrapper">
           <div class="inputLabel">Phone</div>
-          <input class="phone_properties_phone1_properties_phoneInput" name="phone_properties_phone1_properties_phone" type="text" placeholder="Enter a Phone Number"/>
+          <input class="phone_properties_phone0_properties_phoneInput" name="phone_properties_phone0_properties_phone" type="text" placeholder="Enter a Phone Number"/>
         </div>
       </div>
     </div>
     <div class="objectLabel">Address Information</div>
     <div class="objectWrapper">
-      <div class="objectLabel">Address1</div>
+      <div class="objectLabel">Address0</div>
       <div class="objectWrapper">
         <div class="inputWrapper">
           <div class="inputLabel">Address Type</div>
-          <select class="address_properties_address1_properties_addressTypeInput" name="address_properties_address1_properties_addressType" placeholder="Enter an Address Type">
+          <select class="address_properties_address0_properties_addressTypeInput" name="address_properties_address0_properties_addressType" placeholder="Enter an Address Type">
             <option value="" style="display: list-item;">Select the Address Type</option>
             <option value="Home Address" style="display: list-item;">Home Address</option>
             <option value="Work Address" style="display: list-item;">Work Address</option>
@@ -60,23 +60,23 @@
         </div>
         <div class="inputWrapper">
           <div class="inputLabel">Street 1</div>
-          <input class="address_properties_address1_properties_street1Input" name="address_properties_address1_properties_street1" type="text" placeholder="Enter a Street Address"/>
+          <input class="address_properties_address0_properties_street1Input" name="address_properties_address0_properties_street1" type="text" placeholder="Enter a Street Address"/>
         </div>
         <div class="inputWrapper">
           <div class="inputLabel">Street 2</div>
-          <input class="address_properties_address1_properties_street2Input" name="address_properties_address1_properties_street2" type="text" placeholder="Optional Field"/>
+          <input class="address_properties_address0_properties_street2Input" name="address_properties_address0_properties_street2" type="text" placeholder="Optional Field"/>
         </div>
         <div class="inputWrapper">
           <div class="inputLabel">City</div>
-          <input class="address_properties_address1_properties_cityInput" name="address_properties_address1_properties_city" type="text" placeholder="Enter a City"/>
+          <input class="address_properties_address0_properties_cityInput" name="address_properties_address0_properties_city" type="text" placeholder="Enter a City"/>
         </div>
         <div class="inputWrapper">
           <div class="inputLabel">State</div>
-          <input class="address_properties_address1_properties_stateInput" name="address_properties_address1_properties_state" type="text" placeholder="Enter a State"/>
+          <input class="address_properties_address0_properties_stateInput" name="address_properties_address0_properties_state" type="text" placeholder="Enter a State"/>
         </div>
         <div class="inputWrapper">
           <div class="inputLabel">Zip Code</div>
-          <input class="address_properties_address1_properties_zipInput" name="address_properties_address1_properties_zip" type="text" placeholder="Enter a Zip Code"/>
+          <input class="address_properties_address0_properties_zipInput" name="address_properties_address0_properties_zip" type="text" placeholder="Enter a Zip Code"/>
         </div>
       </div>
     </div>
@@ -392,14 +392,14 @@ app.loadoContactEditPage = async function()
   document.querySelectorAll(".firstNameInput").forEach(function (element){element.value = recordObject.firstName});
   document.querySelectorAll(".lastNameInput").forEach(function (element){element.value = recordObject.lastName});
   document.querySelectorAll(".emailInput").forEach(function (element){element.value = recordObject.email});
-  document.querySelectorAll(".phone_properties_phone1_properties_phoneTypeInput").forEach(function (element){element.value = recordObject.phone.properties.phone1.properties.phoneType});
-  document.querySelectorAll(".phone_properties_phone1_properties_phoneInput").forEach(function (element){element.value = recordObject.phone.properties.phone1.properties.phone});
-  document.querySelectorAll(".address_properties_address1_properties_addressTypeInput").forEach(function (element){element.value = recordObject.address.properties.address1.properties.addressType});
-  document.querySelectorAll(".address_properties_address1_properties_street1Input").forEach(function (element){element.value = recordObject.address.properties.address1.properties.street1});
-  document.querySelectorAll(".address_properties_address1_properties_street2Input").forEach(function (element){element.value = recordObject.address.properties.address1.properties.street2});
-  document.querySelectorAll(".address_properties_address1_properties_cityInput").forEach(function (element){element.value = recordObject.address.properties.address1.properties.city});
-  document.querySelectorAll(".address_properties_address1_properties_stateInput").forEach(function (element){element.value = recordObject.address.properties.address1.properties.state});
-  document.querySelectorAll(".address_properties_address1_properties_zipInput").forEach(function (element){element.value = recordObject.address.properties.address1.properties.zip});
+  document.querySelectorAll(".phone_properties_phone0_properties_phoneTypeInput").forEach(function (element){element.value = recordObject.phone.properties.phone0.properties.phoneType});
+  document.querySelectorAll(".phone_properties_phone0_properties_phoneInput").forEach(function (element){element.value = recordObject.phone.properties.phone0.properties.phone});
+  document.querySelectorAll(".address_properties_address0_properties_addressTypeInput").forEach(function (element){element.value = recordObject.address.properties.address0.properties.addressType});
+  document.querySelectorAll(".address_properties_address0_properties_street1Input").forEach(function (element){element.value = recordObject.address.properties.address0.properties.street1});
+  document.querySelectorAll(".address_properties_address0_properties_street2Input").forEach(function (element){element.value = recordObject.address.properties.address0.properties.street2});
+  document.querySelectorAll(".address_properties_address0_properties_cityInput").forEach(function (element){element.value = recordObject.address.properties.address0.properties.city});
+  document.querySelectorAll(".address_properties_address0_properties_stateInput").forEach(function (element){element.value = recordObject.address.properties.address0.properties.state});
+  document.querySelectorAll(".address_properties_address0_properties_zipInput").forEach(function (element){element.value = recordObject.address.properties.address0.properties.zip});
   document.querySelectorAll(".timeStampInput").forEach(function(element){element.value = recordObject.timeStamp});  
 
   // Define a function to get the published fields and the timeStamp from the oContactID

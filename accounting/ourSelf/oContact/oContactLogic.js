@@ -56,7 +56,7 @@ oContact.serveListPage = function(data, callback)
             helpers.log
             (            
               5,
-              'ef7sa51exzz86svlpew2' + '\n' +
+              'xqyapdalbisoy0clyfnb' + '\n' +
               'There was an error or the concatenated templates were not returned.' + '\n' +
               'This was the error:' + '\n' +
               JSON.stringify(errorAddUnivTemplates) + '\n'
@@ -72,7 +72,7 @@ oContact.serveListPage = function(data, callback)
         helpers.log
         (
           5,
-          'rq6dr7itv1fwnz5eava4' + '\n' +
+          'e5ykiil2h0blcq2mn5v9' + '\n' +
           'There was an error or no template was returned.' + '\n' +
           'This was the error:' + '\n' +
           JSON.stringify(errorGetTemplate) + '\n'
@@ -89,7 +89,7 @@ oContact.serveListPage = function(data, callback)
     helpers.log
     (
       5,
-      'x3273gkowfaxpjaum0x4' + '\n' +
+      'ntaq6nga9kjnz1qjbt4h' + '\n' +
       'Method not get. Only gets allowed.' + '\n'
     );
 
@@ -136,7 +136,7 @@ oContact.serveAddPage = function(data, callback)
             helpers.log
             (            
               5,
-              'cpge3p59qlzcpo8vw12q' + '\n' +
+              '1emjb75gjt7n730xt17x' + '\n' +
               'There was an error or the concatenated templates were not returned.' + '\n' +
               'This was the error:' + '\n' +
               JSON.stringify(errorAddUnivTemplates) + '\n'
@@ -152,7 +152,7 @@ oContact.serveAddPage = function(data, callback)
         helpers.log
         (
           5,
-          'v1rfrosidz259pcf5nss' + '\n' +
+          'ohd9cbmsftlkfg3t4v8b' + '\n' +
           'There was an error or no template was returned.' + '\n' +
           'This was the error:' + '\n' +
           JSON.stringify(errorGetTemplate) + '\n'
@@ -169,7 +169,7 @@ oContact.serveAddPage = function(data, callback)
     helpers.log
     (
       5,
-      '3nfv785h05bvu5bpyz7y' + '\n' +
+      'sqtabq72abni6l4y7i8g' + '\n' +
       'Method not get. Only gets allowed.' + '\n'
     );
 
@@ -216,7 +216,7 @@ oContact.serveEditPage = function(data, callback)
             helpers.log
             (            
               5,
-              'uncunihrbyj5dk323dod' + '\n' +
+              'no25yq6bd8gntpp1dbjt' + '\n' +
               'There was an error or the concatenated templates were not returned.' + '\n' +
               'This was the error:' + '\n' +
               JSON.stringify(errorAddUnivTemplates) + '\n'
@@ -232,7 +232,7 @@ oContact.serveEditPage = function(data, callback)
         helpers.log
         (
           5,
-          '9gifvj1mtwrljlfcen39' + '\n' +
+          'e8rxuo4u4c4k4prxo9ya' + '\n' +
           'There was an error or no template was returned.' + '\n' +
           'This was the error:' + '\n' +
           JSON.stringify(errorGetTemplate) + '\n'
@@ -249,7 +249,7 @@ oContact.serveEditPage = function(data, callback)
     helpers.log
     (
       5,
-      '5a02cgh9u1f9nvt8jl8j' + '\n' +
+      'qt2cfbp4823iweyit2b8' + '\n' +
       'Method not get. Only gets allowed.' + '\n'
     );
 
@@ -283,7 +283,7 @@ oContact.oContact = function(data, callback)
     helpers.log
     (
       5,
-      'iz7ebweizwddy9t063t1' + '\n' +
+      'g9af0nwul1f5exo7ackq' + '\n' +
       'The method was not one of the acceptable methods' + '\n'
     ); 
 
@@ -336,79 +336,79 @@ oContact._oContact.post = function(data, callback)
   // Behavior from data dictionary at het5z3uuzgy5hmyjmsxk 
   if(email.indexOf("@") === -1){return callback(400, {'Error' : 'Not a valid email'});}
 
-  // Get phone_properties_phone1_properties_phoneType from payload
-  let phone_properties_phone1_properties_phoneType = data.payload["phone_properties_phone1_properties_phoneType"];
+  // Get phone_properties_phone0_properties_phoneType from payload
+  let phone_properties_phone0_properties_phoneType = data.payload["phone_properties_phone0_properties_phoneType"];
 
   // passMenuItemsOnly
   // Behavior from data dictionary at hs069ubggwt7ti8ar5cy
-  if(typeof(phone_properties_phone1_properties_phoneType) != 'string')
+  if(typeof(phone_properties_phone0_properties_phoneType) != 'string')
   {
-    return callback(400, {'Error' : 'phone_properties_phone1_properties_phoneType must be of datatype string'});
+    return callback(400, {'Error' : 'phone_properties_phone0_properties_phoneType must be of datatype string'});
   }
 
   if
   (
-    phone_properties_phone1_properties_phoneType != "Mobile" 
-    && phone_properties_phone1_properties_phoneType != "Home" 
-    && phone_properties_phone1_properties_phoneType != "Office" 
-    && phone_properties_phone1_properties_phoneType != "Answering Service"
+    phone_properties_phone0_properties_phoneType != "Mobile" 
+    && phone_properties_phone0_properties_phoneType != "Home" 
+    && phone_properties_phone0_properties_phoneType != "Office" 
+    && phone_properties_phone0_properties_phoneType != "Answering Service"
   )
   {
     return callback(400, {'Error' : 'No phoneType was selected from menu'});
   }
   else
   {
-    phone_properties_phone1_properties_phoneType = phone_properties_phone1_properties_phoneType.trim()
+    phone_properties_phone0_properties_phoneType = phone_properties_phone0_properties_phoneType.trim()
   }
 
 
-  // Get phone_properties_phone1_properties_phone from payload
-  let phone_properties_phone1_properties_phone = data.payload["phone_properties_phone1_properties_phone"];
+  // Get phone_properties_phone0_properties_phone from payload
+  let phone_properties_phone0_properties_phone = data.payload["phone_properties_phone0_properties_phone"];
 
   // passIfString&NotEmptyThenTrim Default behavior from meta.js at ulg5xxvzgr7efln9xur9
-  if(typeof(phone_properties_phone1_properties_phone) != 'string'){return callback(400, {'Error' : 'phone_properties_phone1_properties_phone must be of datatype string'});}
-  if(!phone_properties_phone1_properties_phone || phone_properties_phone1_properties_phone.trim().length === 0){return callback(400, {'Error' : 'No phone_properties_phone1_properties_phone was entered'});}else{phone_properties_phone1_properties_phone = phone_properties_phone1_properties_phone.trim()}
+  if(typeof(phone_properties_phone0_properties_phone) != 'string'){return callback(400, {'Error' : 'phone_properties_phone0_properties_phone must be of datatype string'});}
+  if(!phone_properties_phone0_properties_phone || phone_properties_phone0_properties_phone.trim().length === 0){return callback(400, {'Error' : 'No phone_properties_phone0_properties_phone was entered'});}else{phone_properties_phone0_properties_phone = phone_properties_phone0_properties_phone.trim()}
 
-  // Get address_properties_address1_properties_addressType from payload
-  let address_properties_address1_properties_addressType = data.payload["address_properties_address1_properties_addressType"];
-
-  // passIfString&NotEmptyThenTrim Default behavior from meta.js at ulg5xxvzgr7efln9xur9
-  if(typeof(address_properties_address1_properties_addressType) != 'string'){return callback(400, {'Error' : 'address_properties_address1_properties_addressType must be of datatype string'});}
-  if(!address_properties_address1_properties_addressType || address_properties_address1_properties_addressType.trim().length === 0){return callback(400, {'Error' : 'No address_properties_address1_properties_addressType was entered'});}else{address_properties_address1_properties_addressType = address_properties_address1_properties_addressType.trim()}
-
-  // Get address_properties_address1_properties_street1 from payload
-  let address_properties_address1_properties_street1 = data.payload["address_properties_address1_properties_street1"];
+  // Get address_properties_address0_properties_addressType from payload
+  let address_properties_address0_properties_addressType = data.payload["address_properties_address0_properties_addressType"];
 
   // passIfString&NotEmptyThenTrim Default behavior from meta.js at ulg5xxvzgr7efln9xur9
-  if(typeof(address_properties_address1_properties_street1) != 'string'){return callback(400, {'Error' : 'address_properties_address1_properties_street1 must be of datatype string'});}
-  if(!address_properties_address1_properties_street1 || address_properties_address1_properties_street1.trim().length === 0){return callback(400, {'Error' : 'No address_properties_address1_properties_street1 was entered'});}else{address_properties_address1_properties_street1 = address_properties_address1_properties_street1.trim()}
+  if(typeof(address_properties_address0_properties_addressType) != 'string'){return callback(400, {'Error' : 'address_properties_address0_properties_addressType must be of datatype string'});}
+  if(!address_properties_address0_properties_addressType || address_properties_address0_properties_addressType.trim().length === 0){return callback(400, {'Error' : 'No address_properties_address0_properties_addressType was entered'});}else{address_properties_address0_properties_addressType = address_properties_address0_properties_addressType.trim()}
 
-  // Get address_properties_address1_properties_street2 from payload
-  let address_properties_address1_properties_street2 = data.payload["address_properties_address1_properties_street2"];
+  // Get address_properties_address0_properties_street1 from payload
+  let address_properties_address0_properties_street1 = data.payload["address_properties_address0_properties_street1"];
+
+  // passIfString&NotEmptyThenTrim Default behavior from meta.js at ulg5xxvzgr7efln9xur9
+  if(typeof(address_properties_address0_properties_street1) != 'string'){return callback(400, {'Error' : 'address_properties_address0_properties_street1 must be of datatype string'});}
+  if(!address_properties_address0_properties_street1 || address_properties_address0_properties_street1.trim().length === 0){return callback(400, {'Error' : 'No address_properties_address0_properties_street1 was entered'});}else{address_properties_address0_properties_street1 = address_properties_address0_properties_street1.trim()}
+
+  // Get address_properties_address0_properties_street2 from payload
+  let address_properties_address0_properties_street2 = data.payload["address_properties_address0_properties_street2"];
 
   // passIfString Default behavior from meta.js at qif5xwvzgr7efln9xtr8
-  if(typeof(address_properties_address1_properties_street2) != 'string'){return callback(400, {'Error' : 'address_properties_address1_properties_street2 must be of datatype string'});}
+  if(typeof(address_properties_address0_properties_street2) != 'string'){return callback(400, {'Error' : 'address_properties_address0_properties_street2 must be of datatype string'});}
 
-  // Get address_properties_address1_properties_city from payload
-  let address_properties_address1_properties_city = data.payload["address_properties_address1_properties_city"];
-
-  // passIfString&NotEmptyThenTrim Default behavior from meta.js at ulg5xxvzgr7efln9xur9
-  if(typeof(address_properties_address1_properties_city) != 'string'){return callback(400, {'Error' : 'address_properties_address1_properties_city must be of datatype string'});}
-  if(!address_properties_address1_properties_city || address_properties_address1_properties_city.trim().length === 0){return callback(400, {'Error' : 'No address_properties_address1_properties_city was entered'});}else{address_properties_address1_properties_city = address_properties_address1_properties_city.trim()}
-
-  // Get address_properties_address1_properties_state from payload
-  let address_properties_address1_properties_state = data.payload["address_properties_address1_properties_state"];
+  // Get address_properties_address0_properties_city from payload
+  let address_properties_address0_properties_city = data.payload["address_properties_address0_properties_city"];
 
   // passIfString&NotEmptyThenTrim Default behavior from meta.js at ulg5xxvzgr7efln9xur9
-  if(typeof(address_properties_address1_properties_state) != 'string'){return callback(400, {'Error' : 'address_properties_address1_properties_state must be of datatype string'});}
-  if(!address_properties_address1_properties_state || address_properties_address1_properties_state.trim().length === 0){return callback(400, {'Error' : 'No address_properties_address1_properties_state was entered'});}else{address_properties_address1_properties_state = address_properties_address1_properties_state.trim()}
+  if(typeof(address_properties_address0_properties_city) != 'string'){return callback(400, {'Error' : 'address_properties_address0_properties_city must be of datatype string'});}
+  if(!address_properties_address0_properties_city || address_properties_address0_properties_city.trim().length === 0){return callback(400, {'Error' : 'No address_properties_address0_properties_city was entered'});}else{address_properties_address0_properties_city = address_properties_address0_properties_city.trim()}
 
-  // Get address_properties_address1_properties_zip from payload
-  let address_properties_address1_properties_zip = data.payload["address_properties_address1_properties_zip"];
+  // Get address_properties_address0_properties_state from payload
+  let address_properties_address0_properties_state = data.payload["address_properties_address0_properties_state"];
 
   // passIfString&NotEmptyThenTrim Default behavior from meta.js at ulg5xxvzgr7efln9xur9
-  if(typeof(address_properties_address1_properties_zip) != 'string'){return callback(400, {'Error' : 'address_properties_address1_properties_zip must be of datatype string'});}
-  if(!address_properties_address1_properties_zip || address_properties_address1_properties_zip.trim().length === 0){return callback(400, {'Error' : 'No address_properties_address1_properties_zip was entered'});}else{address_properties_address1_properties_zip = address_properties_address1_properties_zip.trim()}
+  if(typeof(address_properties_address0_properties_state) != 'string'){return callback(400, {'Error' : 'address_properties_address0_properties_state must be of datatype string'});}
+  if(!address_properties_address0_properties_state || address_properties_address0_properties_state.trim().length === 0){return callback(400, {'Error' : 'No address_properties_address0_properties_state was entered'});}else{address_properties_address0_properties_state = address_properties_address0_properties_state.trim()}
+
+  // Get address_properties_address0_properties_zip from payload
+  let address_properties_address0_properties_zip = data.payload["address_properties_address0_properties_zip"];
+
+  // passIfString&NotEmptyThenTrim Default behavior from meta.js at ulg5xxvzgr7efln9xur9
+  if(typeof(address_properties_address0_properties_zip) != 'string'){return callback(400, {'Error' : 'address_properties_address0_properties_zip must be of datatype string'});}
+  if(!address_properties_address0_properties_zip || address_properties_address0_properties_zip.trim().length === 0){return callback(400, {'Error' : 'No address_properties_address0_properties_zip was entered'});}else{address_properties_address0_properties_zip = address_properties_address0_properties_zip.trim()}
 
 
   // Enforcing uniqueness of the email field.
@@ -542,7 +542,7 @@ oContact._oContact.post = function(data, callback)
       helpers.log
       (
         5,
-        'pqrfq4cl1dnd4rjkgej9' + '\n' +
+        'uzhlxozvjnq2im1tdl4k' + '\n' +
         'The email : ' + email + ' already exists' + '\n'                                  
       ); // End of: helpers.log(...)
 
@@ -570,7 +570,7 @@ oContact._oContact.post = function(data, callback)
         helpers.log
         (
           5,
-          '7bjnupru68119ycnjtjz' + '\n' +
+          '3av2msgnqz6ugbbg8yg6' + '\n' +
           'Unable to get the next gsuid.' + '\n' +
           'The following was the error' + '\n' +
           JSON.stringify(error) + '\n'                                   
@@ -598,22 +598,22 @@ oContact._oContact.post = function(data, callback)
       oContactObject.phone = {};
       oContactObject.phone.properties = {};
 
-      oContactObject.phone.properties.phone1 = {};
-      oContactObject.phone.properties.phone1.properties = {};
-      oContactObject.phone.properties.phone1.properties.phoneType = phone_properties_phone1_properties_phoneType;
-      oContactObject.phone.properties.phone1.properties.phone = phone_properties_phone1_properties_phone;
+      oContactObject.phone.properties.phone0 = {};
+      oContactObject.phone.properties.phone0.properties = {};
+      oContactObject.phone.properties.phone0.properties.phoneType = phone_properties_phone0_properties_phoneType;
+      oContactObject.phone.properties.phone0.properties.phone = phone_properties_phone0_properties_phone;
 
       oContactObject.address = {};
       oContactObject.address.properties = {};
 
-      oContactObject.address.properties.address1 = {};
-      oContactObject.address.properties.address1.properties = {};
-      oContactObject.address.properties.address1.properties.addressType = address_properties_address1_properties_addressType;
-      oContactObject.address.properties.address1.properties.street1 = address_properties_address1_properties_street1;
-      oContactObject.address.properties.address1.properties.street2 = address_properties_address1_properties_street2;
-      oContactObject.address.properties.address1.properties.city = address_properties_address1_properties_city;
-      oContactObject.address.properties.address1.properties.state = address_properties_address1_properties_state;
-      oContactObject.address.properties.address1.properties.zip = address_properties_address1_properties_zip;
+      oContactObject.address.properties.address0 = {};
+      oContactObject.address.properties.address0.properties = {};
+      oContactObject.address.properties.address0.properties.addressType = address_properties_address0_properties_addressType;
+      oContactObject.address.properties.address0.properties.street1 = address_properties_address0_properties_street1;
+      oContactObject.address.properties.address0.properties.street2 = address_properties_address0_properties_street2;
+      oContactObject.address.properties.address0.properties.city = address_properties_address0_properties_city;
+      oContactObject.address.properties.address0.properties.state = address_properties_address0_properties_state;
+      oContactObject.address.properties.address0.properties.zip = address_properties_address0_properties_zip;
       
       oContactObject.timeStamp = Date.now();
       oContactObject.deleted = false;
@@ -655,7 +655,7 @@ oContact._oContact.post = function(data, callback)
             helpers.log
             (
               7,
-              'wcrupcszm8luzph5k8bo' + '\n' +
+              'kk35hzy6zjqik6d0951y' + '\n' +
               'There was an error appending to the history file' + '\n' +
               'An error here does not necessarily mean the append to history did not happen.' + '\n' +  
               'But an error at this point in the code surely means there was no append to oContact' + '\n' +                                          
@@ -699,7 +699,7 @@ oContact._oContact.post = function(data, callback)
                   helpers.log // Log the error.
                   (
                     7,
-                    'jum2e3bv4atyuuqp5v62' + '\n' +
+                    'mxub92ool1xuwdctjzbv' + '\n' +
                     'Successful write to oContact but unable to remove lock on database' + '\n' +
                     'The following record was appended to the oContact file:' + '\n' +                            
                     JSON.stringify(logObject) + '\n' +   
@@ -721,7 +721,7 @@ oContact._oContact.post = function(data, callback)
               helpers.log // Log the error.
               (
                 5,
-                'p2h1he9wlw34v5g3kuv5' + '\n' +
+                '2u545svaq4hggkpdr8wj' + '\n' +
                 'There was an error when appending to the oContact file.' + '\n' +
                 'The following record may or may not have been appended to the oContact file:' + '\n' +                            
                 JSON.stringify(logObject) + '\n' +
@@ -769,7 +769,7 @@ oContact._oContact.post = function(data, callback)
                           helpers.log
                           (
                             5,
-                            'm5gufss3ezs4bbz7gu34' + '\n' +
+                            'jhrkyhqiycb4srazspuz' + '\n' +
                             'Rollback entry in the oContact file was appended successfully' + '\n' +
                             'The following was the record we rolled back:' + '\n' +
                             JSON.stringify(logObject) + '\n'                                   
@@ -780,7 +780,7 @@ oContact._oContact.post = function(data, callback)
                           helpers.log
                           (
                             7,
-                            'bszefs90eprivecupktg' + '\n' +
+                            'kk2el0oqhkhgongqjwa2' + '\n' +
                             'There was an error appending a rollback entry in the oContact file' + '\n' +
                             'The following record may or may not have been rolled back:' + '\n' +
                             JSON.stringify(logObject) + '\n' +   
@@ -800,7 +800,7 @@ oContact._oContact.post = function(data, callback)
                     helpers.log
                     (
                       7,
-                      'ninew29kn796qfdehg3q' + '\n' +
+                      'f90zja8yhnpoh6hllrke' + '\n' +
                       'There was an error appending a rollback entry in the history file' + '\n' +
                       'A rollback entry may or may not have been written in the oContact file' + '\n' +  
                       'CHECK TO SEE IF history and oContact ARE STILL IN SYNC' + '\n' +                                      
@@ -937,202 +937,202 @@ oContact._oContact.put = function(data, callback)
     } 
   }
 
-  // Get phone_properties_phone1_properties_phoneType from payload
-  let phone_properties_phone1_properties_phoneType = data.payload.phone_properties_phone1_properties_phoneType;
+  // Get phone_properties_phone0_properties_phoneType from payload
+  let phone_properties_phone0_properties_phoneType = data.payload.phone_properties_phone0_properties_phoneType;
 
-  // Get phone_properties_phone1_properties_phone from payload
-  let phone_properties_phone1_properties_phone = data.payload.phone_properties_phone1_properties_phone;
+  // Get phone_properties_phone0_properties_phone from payload
+  let phone_properties_phone0_properties_phone = data.payload.phone_properties_phone0_properties_phone;
 
   // passIfString&NotEmptyThenTrim
   // Default behavior from meta.js at yif5xwczgr4ebln99trd 
-  // If phone_properties_phone1_properties_phone is of string type and is not empty 
-  if (typeof(phone_properties_phone1_properties_phone) === 'string' && phone_properties_phone1_properties_phone.trim().length > 0) 
+  // If phone_properties_phone0_properties_phone is of string type and is not empty 
+  if (typeof(phone_properties_phone0_properties_phone) === 'string' && phone_properties_phone0_properties_phone.trim().length > 0) 
   { 
     // The user entered something in the edit form
-    phone_properties_phone1_properties_phone = phone_properties_phone1_properties_phone.trim()
+    phone_properties_phone0_properties_phone = phone_properties_phone0_properties_phone.trim()
   } 
   // Else, the user may have entered some other datatype like a number or 
   // perhaps nothing at all if using the Delete form or if just using the API. 
   else 
   { 
     // If the user entered nothing: 
-    if(phone_properties_phone1_properties_phone === undefined) 
+    if(phone_properties_phone0_properties_phone === undefined) 
     { 
       // Then user is likely trying to delete a record.
       // So change the value to false and continue processing.
-      phone_properties_phone1_properties_phone = false 
+      phone_properties_phone0_properties_phone = false 
     } 
     else // The user entered something invalid so reject the edit. 
     { 
-      return callback(400, {'Error' : 'Not a valid phone_properties_phone1_properties_phone'}); 
+      return callback(400, {'Error' : 'Not a valid phone_properties_phone0_properties_phone'}); 
     } 
   }
   
-  // Get address_properties_address1_properties_addressType from payload
-  let address_properties_address1_properties_addressType = data.payload.address_properties_address1_properties_addressType;
+  // Get address_properties_address0_properties_addressType from payload
+  let address_properties_address0_properties_addressType = data.payload.address_properties_address0_properties_addressType;
 
   // passIfString&NotEmptyThenTrim
   // Default behavior from meta.js at yif5xwczgr4ebln99trd 
-  // If address_properties_address1_properties_addressType is of string type and is not empty 
-  if (typeof(address_properties_address1_properties_addressType) === 'string' && address_properties_address1_properties_addressType.trim().length > 0) 
+  // If address_properties_address0_properties_addressType is of string type and is not empty 
+  if (typeof(address_properties_address0_properties_addressType) === 'string' && address_properties_address0_properties_addressType.trim().length > 0) 
   { 
     // The user entered something in the edit form
-    address_properties_address1_properties_addressType = address_properties_address1_properties_addressType.trim()
+    address_properties_address0_properties_addressType = address_properties_address0_properties_addressType.trim()
   } 
   // Else, the user may have entered some other datatype like a number or 
   // perhaps nothing at all if using the Delete form or if just using the API. 
   else 
   { 
     // If the user entered nothing: 
-    if(address_properties_address1_properties_addressType === undefined) 
+    if(address_properties_address0_properties_addressType === undefined) 
     { 
       // Then user is likely trying to delete a record.
       // So change the value to false and continue processing.
-      address_properties_address1_properties_addressType = false 
+      address_properties_address0_properties_addressType = false 
     } 
     else // The user entered something invalid so reject the edit. 
     { 
-      return callback(400, {'Error' : 'Not a valid address_properties_address1_properties_addressType'}); 
+      return callback(400, {'Error' : 'Not a valid address_properties_address0_properties_addressType'}); 
     } 
   }
   
-  // Get address_properties_address1_properties_street1 from payload
-  let address_properties_address1_properties_street1 = data.payload.address_properties_address1_properties_street1;
+  // Get address_properties_address0_properties_street1 from payload
+  let address_properties_address0_properties_street1 = data.payload.address_properties_address0_properties_street1;
 
   // passIfString&NotEmptyThenTrim
   // Default behavior from meta.js at yif5xwczgr4ebln99trd 
-  // If address_properties_address1_properties_street1 is of string type and is not empty 
-  if (typeof(address_properties_address1_properties_street1) === 'string' && address_properties_address1_properties_street1.trim().length > 0) 
+  // If address_properties_address0_properties_street1 is of string type and is not empty 
+  if (typeof(address_properties_address0_properties_street1) === 'string' && address_properties_address0_properties_street1.trim().length > 0) 
   { 
     // The user entered something in the edit form
-    address_properties_address1_properties_street1 = address_properties_address1_properties_street1.trim()
+    address_properties_address0_properties_street1 = address_properties_address0_properties_street1.trim()
   } 
   // Else, the user may have entered some other datatype like a number or 
   // perhaps nothing at all if using the Delete form or if just using the API. 
   else 
   { 
     // If the user entered nothing: 
-    if(address_properties_address1_properties_street1 === undefined) 
+    if(address_properties_address0_properties_street1 === undefined) 
     { 
       // Then user is likely trying to delete a record.
       // So change the value to false and continue processing.
-      address_properties_address1_properties_street1 = false 
+      address_properties_address0_properties_street1 = false 
     } 
     else // The user entered something invalid so reject the edit. 
     { 
-      return callback(400, {'Error' : 'Not a valid address_properties_address1_properties_street1'}); 
+      return callback(400, {'Error' : 'Not a valid address_properties_address0_properties_street1'}); 
     } 
   }
   
-  // Get address_properties_address1_properties_street2 from payload
-  let address_properties_address1_properties_street2 = data.payload.address_properties_address1_properties_street2;
+  // Get address_properties_address0_properties_street2 from payload
+  let address_properties_address0_properties_street2 = data.payload.address_properties_address0_properties_street2;
 
   // passIfString
   // Default behavior from meta.js at bif5xwvzgr4efln9ftr3 
-  // If address_properties_address1_properties_street2 is of string type 
-  if (typeof(address_properties_address1_properties_street2) === 'string')
+  // If address_properties_address0_properties_street2 is of string type 
+  if (typeof(address_properties_address0_properties_street2) === 'string')
   { 
     // The user entered something or left the field blank in the edit form
-    // No need to do anything with address_properties_address1_properties_street2. We are using it as specified by the user.
+    // No need to do anything with address_properties_address0_properties_street2. We are using it as specified by the user.
   } 
   // Else, the user may have entered some other datatype like a number or 
   // perhaps the value is undefined if using the Delete form or if just using the API. 
   else 
   { 
     // If the value is undefined: 
-    if(address_properties_address1_properties_street2 === undefined) 
+    if(address_properties_address0_properties_street2 === undefined) 
     { 
       // Then user is likely trying to delete a record.
       // So change the value to false and continue processing.
-      address_properties_address1_properties_street2 = false 
+      address_properties_address0_properties_street2 = false 
     } 
     else // The user entered something invalid so reject the edit. 
     { 
-      return callback(400, {'Error' : 'Not a valid address_properties_address1_properties_street2'}); 
+      return callback(400, {'Error' : 'Not a valid address_properties_address0_properties_street2'}); 
     } 
   }
   
-  // Get address_properties_address1_properties_city from payload
-  let address_properties_address1_properties_city = data.payload.address_properties_address1_properties_city;
+  // Get address_properties_address0_properties_city from payload
+  let address_properties_address0_properties_city = data.payload.address_properties_address0_properties_city;
 
   // passIfString&NotEmptyThenTrim
   // Default behavior from meta.js at yif5xwczgr4ebln99trd 
-  // If address_properties_address1_properties_city is of string type and is not empty 
-  if (typeof(address_properties_address1_properties_city) === 'string' && address_properties_address1_properties_city.trim().length > 0) 
+  // If address_properties_address0_properties_city is of string type and is not empty 
+  if (typeof(address_properties_address0_properties_city) === 'string' && address_properties_address0_properties_city.trim().length > 0) 
   { 
     // The user entered something in the edit form
-    address_properties_address1_properties_city = address_properties_address1_properties_city.trim()
+    address_properties_address0_properties_city = address_properties_address0_properties_city.trim()
   } 
   // Else, the user may have entered some other datatype like a number or 
   // perhaps nothing at all if using the Delete form or if just using the API. 
   else 
   { 
     // If the user entered nothing: 
-    if(address_properties_address1_properties_city === undefined) 
+    if(address_properties_address0_properties_city === undefined) 
     { 
       // Then user is likely trying to delete a record.
       // So change the value to false and continue processing.
-      address_properties_address1_properties_city = false 
+      address_properties_address0_properties_city = false 
     } 
     else // The user entered something invalid so reject the edit. 
     { 
-      return callback(400, {'Error' : 'Not a valid address_properties_address1_properties_city'}); 
+      return callback(400, {'Error' : 'Not a valid address_properties_address0_properties_city'}); 
     } 
   }
   
-  // Get address_properties_address1_properties_state from payload
-  let address_properties_address1_properties_state = data.payload.address_properties_address1_properties_state;
+  // Get address_properties_address0_properties_state from payload
+  let address_properties_address0_properties_state = data.payload.address_properties_address0_properties_state;
 
   // passIfString&NotEmptyThenTrim
   // Default behavior from meta.js at yif5xwczgr4ebln99trd 
-  // If address_properties_address1_properties_state is of string type and is not empty 
-  if (typeof(address_properties_address1_properties_state) === 'string' && address_properties_address1_properties_state.trim().length > 0) 
+  // If address_properties_address0_properties_state is of string type and is not empty 
+  if (typeof(address_properties_address0_properties_state) === 'string' && address_properties_address0_properties_state.trim().length > 0) 
   { 
     // The user entered something in the edit form
-    address_properties_address1_properties_state = address_properties_address1_properties_state.trim()
+    address_properties_address0_properties_state = address_properties_address0_properties_state.trim()
   } 
   // Else, the user may have entered some other datatype like a number or 
   // perhaps nothing at all if using the Delete form or if just using the API. 
   else 
   { 
     // If the user entered nothing: 
-    if(address_properties_address1_properties_state === undefined) 
+    if(address_properties_address0_properties_state === undefined) 
     { 
       // Then user is likely trying to delete a record.
       // So change the value to false and continue processing.
-      address_properties_address1_properties_state = false 
+      address_properties_address0_properties_state = false 
     } 
     else // The user entered something invalid so reject the edit. 
     { 
-      return callback(400, {'Error' : 'Not a valid address_properties_address1_properties_state'}); 
+      return callback(400, {'Error' : 'Not a valid address_properties_address0_properties_state'}); 
     } 
   }
   
-  // Get address_properties_address1_properties_zip from payload
-  let address_properties_address1_properties_zip = data.payload.address_properties_address1_properties_zip;
+  // Get address_properties_address0_properties_zip from payload
+  let address_properties_address0_properties_zip = data.payload.address_properties_address0_properties_zip;
 
   // passIfString&NotEmptyThenTrim
   // Default behavior from meta.js at yif5xwczgr4ebln99trd 
-  // If address_properties_address1_properties_zip is of string type and is not empty 
-  if (typeof(address_properties_address1_properties_zip) === 'string' && address_properties_address1_properties_zip.trim().length > 0) 
+  // If address_properties_address0_properties_zip is of string type and is not empty 
+  if (typeof(address_properties_address0_properties_zip) === 'string' && address_properties_address0_properties_zip.trim().length > 0) 
   { 
     // The user entered something in the edit form
-    address_properties_address1_properties_zip = address_properties_address1_properties_zip.trim()
+    address_properties_address0_properties_zip = address_properties_address0_properties_zip.trim()
   } 
   // Else, the user may have entered some other datatype like a number or 
   // perhaps nothing at all if using the Delete form or if just using the API. 
   else 
   { 
     // If the user entered nothing: 
-    if(address_properties_address1_properties_zip === undefined) 
+    if(address_properties_address0_properties_zip === undefined) 
     { 
       // Then user is likely trying to delete a record.
       // So change the value to false and continue processing.
-      address_properties_address1_properties_zip = false 
+      address_properties_address0_properties_zip = false 
     } 
     else // The user entered something invalid so reject the edit. 
     { 
-      return callback(400, {'Error' : 'Not a valid address_properties_address1_properties_zip'}); 
+      return callback(400, {'Error' : 'Not a valid address_properties_address0_properties_zip'}); 
     } 
   }
   
@@ -1144,12 +1144,12 @@ oContact._oContact.put = function(data, callback)
 
   
   //if all fields fail validation then exit this process without writing changes to the table.
-  if(!firstName && !lastName && !email && !phone_properties_phone1_properties_phoneType && !phone_properties_phone1_properties_phone && !address_properties_address1_properties_addressType && !address_properties_address1_properties_street1 && !address_properties_address1_properties_street2 && !address_properties_address1_properties_city && !address_properties_address1_properties_state && !address_properties_address1_properties_zip && !deleted)
+  if(!firstName && !lastName && !email && !phone_properties_phone0_properties_phoneType && !phone_properties_phone0_properties_phone && !address_properties_address0_properties_addressType && !address_properties_address0_properties_street1 && !address_properties_address0_properties_street2 && !address_properties_address0_properties_city && !address_properties_address0_properties_state && !address_properties_address0_properties_zip && !deleted)
   {
     helpers.log
     (
       5,
-      's8sstb6gzk0hcp3vykgc' + '\n' +
+      '105xeigv66fvxe9f1ecc' + '\n' +
       'No fields pass the validation process' + '\n'                                  
     ); // End of: helpers.log(...)
 
@@ -1172,7 +1172,7 @@ oContact._oContact.put = function(data, callback)
       helpers.log
       (
         5,
-        'z0ucc8m5yejwudclbywk' + '\n' +
+        'qrw14vyvd0up1ix9qjvd' + '\n' +
         'Unable to get the next gsuid.' + '\n' +
         'The following was the error' + '\n' +
         JSON.stringify(error) + '\n'                                   
@@ -1202,22 +1202,22 @@ oContact._oContact.put = function(data, callback)
     oContactObject.phone = {};
     oContactObject.phone.properties = {};
 
-    oContactObject.phone.properties.phone1 = {};
-    oContactObject.phone.properties.phone1.properties = {};
-    oContactObject.phone.properties.phone1.properties.phoneType = phone_properties_phone1_properties_phoneType;
-    oContactObject.phone.properties.phone1.properties.phone = phone_properties_phone1_properties_phone;
+    oContactObject.phone.properties.phone0 = {};
+    oContactObject.phone.properties.phone0.properties = {};
+    oContactObject.phone.properties.phone0.properties.phoneType = phone_properties_phone0_properties_phoneType;
+    oContactObject.phone.properties.phone0.properties.phone = phone_properties_phone0_properties_phone;
 
     oContactObject.address = {};
     oContactObject.address.properties = {};
 
-    oContactObject.address.properties.address1 = {};
-    oContactObject.address.properties.address1.properties = {};
-    oContactObject.address.properties.address1.properties.addressType = address_properties_address1_properties_addressType;
-    oContactObject.address.properties.address1.properties.street1 = address_properties_address1_properties_street1;
-    oContactObject.address.properties.address1.properties.street2 = address_properties_address1_properties_street2;
-    oContactObject.address.properties.address1.properties.city = address_properties_address1_properties_city;
-    oContactObject.address.properties.address1.properties.state = address_properties_address1_properties_state;
-    oContactObject.address.properties.address1.properties.zip = address_properties_address1_properties_zip;
+    oContactObject.address.properties.address0 = {};
+    oContactObject.address.properties.address0.properties = {};
+    oContactObject.address.properties.address0.properties.addressType = address_properties_address0_properties_addressType;
+    oContactObject.address.properties.address0.properties.street1 = address_properties_address0_properties_street1;
+    oContactObject.address.properties.address0.properties.street2 = address_properties_address0_properties_street2;
+    oContactObject.address.properties.address0.properties.city = address_properties_address0_properties_city;
+    oContactObject.address.properties.address0.properties.state = address_properties_address0_properties_state;
+    oContactObject.address.properties.address0.properties.zip = address_properties_address0_properties_zip;
      
     oContactObject.timeStamp = Date.now();
     oContactObject.deleted = false;
@@ -1248,7 +1248,7 @@ oContact._oContact.put = function(data, callback)
               helpers.log // Log the error.
               (
                 7,
-                '3vc2a78a5utvtpke4euh' + '\n' + 
+                'r7uu0054ir503j7p0hl9' + '\n' + 
                 'The following was the error message from getMostRecent:' + '\n' +                                             
                 errorFromGetMostRecent + '\n'                                                 
               ); // End of: helpers.log // Log the error.
@@ -1263,7 +1263,7 @@ oContact._oContact.put = function(data, callback)
               helpers.log // Log the error.
               (
                 7,
-                'gfs9syrtrg8ov6kaf0yq' + '\n' +
+                'x6llvmou6rnbrewdgp6b' + '\n' +
                 'The following was the error message from getMostRecent:' + '\n' +                                             
                 errorFromGetMostRecent + '\n'  +
                 'Also unable to remove lock on database.' + '\n' + 
@@ -1337,92 +1337,92 @@ oContact._oContact.put = function(data, callback)
           oContactObject.email = recordObject.email;
         }
 
-        // Preprocessing for phone.properties.phone1.properties.phoneType
-        if(phone_properties_phone1_properties_phoneType) // If the user supplied data for phone.properties.phone1.properties.phoneType
+        // Preprocessing for phone.properties.phone0.properties.phoneType
+        if(phone_properties_phone0_properties_phoneType) // If the user supplied data for phone.properties.phone0.properties.phoneType
         {
-          // No preprocessing was specifed for phone.properties.phone1.properties.phoneType. Use it as was supplied by the user.
+          // No preprocessing was specifed for phone.properties.phone0.properties.phoneType. Use it as was supplied by the user.
         }
-        else // If the user did not supply data for phone.properties.phone1.properties.phoneType
+        else // If the user did not supply data for phone.properties.phone0.properties.phoneType
         {
-          // Save phone.properties.phone1.properties.phoneType from the most recent record.
-          oContactObject.phone.properties.phone1.properties.phoneType = recordObject.phone.properties.phone1.properties.phoneType;
-        }
-
-        // Preprocessing for phone.properties.phone1.properties.phone
-        if(phone_properties_phone1_properties_phone) // If the user supplied data for phone.properties.phone1.properties.phone
-        {
-          // No preprocessing was specifed for phone.properties.phone1.properties.phone. Use it as was supplied by the user.
-        }
-        else // If the user did not supply data for phone.properties.phone1.properties.phone
-        {
-          // Save phone.properties.phone1.properties.phone from the most recent record.
-          oContactObject.phone.properties.phone1.properties.phone = recordObject.phone.properties.phone1.properties.phone;
+          // Save phone.properties.phone0.properties.phoneType from the most recent record.
+          oContactObject.phone.properties.phone0.properties.phoneType = recordObject.phone.properties.phone0.properties.phoneType;
         }
 
-        // Preprocessing for address.properties.address1.properties.addressType
-        if(address_properties_address1_properties_addressType) // If the user supplied data for address.properties.address1.properties.addressType
+        // Preprocessing for phone.properties.phone0.properties.phone
+        if(phone_properties_phone0_properties_phone) // If the user supplied data for phone.properties.phone0.properties.phone
         {
-          // No preprocessing was specifed for address.properties.address1.properties.addressType. Use it as was supplied by the user.
+          // No preprocessing was specifed for phone.properties.phone0.properties.phone. Use it as was supplied by the user.
         }
-        else // If the user did not supply data for address.properties.address1.properties.addressType
+        else // If the user did not supply data for phone.properties.phone0.properties.phone
         {
-          // Save address.properties.address1.properties.addressType from the most recent record.
-          oContactObject.address.properties.address1.properties.addressType = recordObject.address.properties.address1.properties.addressType;
-        }
-
-        // Preprocessing for address.properties.address1.properties.street1
-        if(address_properties_address1_properties_street1) // If the user supplied data for address.properties.address1.properties.street1
-        {
-          // No preprocessing was specifed for address.properties.address1.properties.street1. Use it as was supplied by the user.
-        }
-        else // If the user did not supply data for address.properties.address1.properties.street1
-        {
-          // Save address.properties.address1.properties.street1 from the most recent record.
-          oContactObject.address.properties.address1.properties.street1 = recordObject.address.properties.address1.properties.street1;
+          // Save phone.properties.phone0.properties.phone from the most recent record.
+          oContactObject.phone.properties.phone0.properties.phone = recordObject.phone.properties.phone0.properties.phone;
         }
 
-        // Preprocessing for address.properties.address1.properties.street2
-        if(address_properties_address1_properties_street2) // If the user supplied data for address.properties.address1.properties.street2
+        // Preprocessing for address.properties.address0.properties.addressType
+        if(address_properties_address0_properties_addressType) // If the user supplied data for address.properties.address0.properties.addressType
         {
-          // No preprocessing was specifed for address.properties.address1.properties.street2. Use it as was supplied by the user.
+          // No preprocessing was specifed for address.properties.address0.properties.addressType. Use it as was supplied by the user.
         }
-        else // If the user did not supply data for address.properties.address1.properties.street2
+        else // If the user did not supply data for address.properties.address0.properties.addressType
         {
-          // Save address.properties.address1.properties.street2 from the most recent record.
-          oContactObject.address.properties.address1.properties.street2 = recordObject.address.properties.address1.properties.street2;
-        }
-
-        // Preprocessing for address.properties.address1.properties.city
-        if(address_properties_address1_properties_city) // If the user supplied data for address.properties.address1.properties.city
-        {
-          // No preprocessing was specifed for address.properties.address1.properties.city. Use it as was supplied by the user.
-        }
-        else // If the user did not supply data for address.properties.address1.properties.city
-        {
-          // Save address.properties.address1.properties.city from the most recent record.
-          oContactObject.address.properties.address1.properties.city = recordObject.address.properties.address1.properties.city;
+          // Save address.properties.address0.properties.addressType from the most recent record.
+          oContactObject.address.properties.address0.properties.addressType = recordObject.address.properties.address0.properties.addressType;
         }
 
-        // Preprocessing for address.properties.address1.properties.state
-        if(address_properties_address1_properties_state) // If the user supplied data for address.properties.address1.properties.state
+        // Preprocessing for address.properties.address0.properties.street1
+        if(address_properties_address0_properties_street1) // If the user supplied data for address.properties.address0.properties.street1
         {
-          // No preprocessing was specifed for address.properties.address1.properties.state. Use it as was supplied by the user.
+          // No preprocessing was specifed for address.properties.address0.properties.street1. Use it as was supplied by the user.
         }
-        else // If the user did not supply data for address.properties.address1.properties.state
+        else // If the user did not supply data for address.properties.address0.properties.street1
         {
-          // Save address.properties.address1.properties.state from the most recent record.
-          oContactObject.address.properties.address1.properties.state = recordObject.address.properties.address1.properties.state;
+          // Save address.properties.address0.properties.street1 from the most recent record.
+          oContactObject.address.properties.address0.properties.street1 = recordObject.address.properties.address0.properties.street1;
         }
 
-        // Preprocessing for address.properties.address1.properties.zip
-        if(address_properties_address1_properties_zip) // If the user supplied data for address.properties.address1.properties.zip
+        // Preprocessing for address.properties.address0.properties.street2
+        if(address_properties_address0_properties_street2) // If the user supplied data for address.properties.address0.properties.street2
         {
-          // No preprocessing was specifed for address.properties.address1.properties.zip. Use it as was supplied by the user.
+          // No preprocessing was specifed for address.properties.address0.properties.street2. Use it as was supplied by the user.
         }
-        else // If the user did not supply data for address.properties.address1.properties.zip
+        else // If the user did not supply data for address.properties.address0.properties.street2
         {
-          // Save address.properties.address1.properties.zip from the most recent record.
-          oContactObject.address.properties.address1.properties.zip = recordObject.address.properties.address1.properties.zip;
+          // Save address.properties.address0.properties.street2 from the most recent record.
+          oContactObject.address.properties.address0.properties.street2 = recordObject.address.properties.address0.properties.street2;
+        }
+
+        // Preprocessing for address.properties.address0.properties.city
+        if(address_properties_address0_properties_city) // If the user supplied data for address.properties.address0.properties.city
+        {
+          // No preprocessing was specifed for address.properties.address0.properties.city. Use it as was supplied by the user.
+        }
+        else // If the user did not supply data for address.properties.address0.properties.city
+        {
+          // Save address.properties.address0.properties.city from the most recent record.
+          oContactObject.address.properties.address0.properties.city = recordObject.address.properties.address0.properties.city;
+        }
+
+        // Preprocessing for address.properties.address0.properties.state
+        if(address_properties_address0_properties_state) // If the user supplied data for address.properties.address0.properties.state
+        {
+          // No preprocessing was specifed for address.properties.address0.properties.state. Use it as was supplied by the user.
+        }
+        else // If the user did not supply data for address.properties.address0.properties.state
+        {
+          // Save address.properties.address0.properties.state from the most recent record.
+          oContactObject.address.properties.address0.properties.state = recordObject.address.properties.address0.properties.state;
+        }
+
+        // Preprocessing for address.properties.address0.properties.zip
+        if(address_properties_address0_properties_zip) // If the user supplied data for address.properties.address0.properties.zip
+        {
+          // No preprocessing was specifed for address.properties.address0.properties.zip. Use it as was supplied by the user.
+        }
+        else // If the user did not supply data for address.properties.address0.properties.zip
+        {
+          // Save address.properties.address0.properties.zip from the most recent record.
+          oContactObject.address.properties.address0.properties.zip = recordObject.address.properties.address0.properties.zip;
         }
 
         // If we are appending a delete make sure that everything else is coming from the most recent saved record.
@@ -1491,7 +1491,7 @@ oContact._oContact.put = function(data, callback)
                         helpers.log // Log the error.
                         (
                           7,
-                          'zf8ck7zycn4wbgdp4gm5' + '\n' +
+                          '2jebrmq4s41jmgu40nc5' + '\n' +
                           'Successful write to oContact but unable to remove lock on database' + '\n' +
                           'The following record was appended to oContact:' + '\n' +                            
                           JSON.stringify(logObject) + '\n' +   
@@ -1513,7 +1513,7 @@ oContact._oContact.put = function(data, callback)
                     helpers.log // Log the error.
                     (
                       5,
-                      'nmdq7pkgn75hiqt5758c' + '\n' +
+                      '694dc6if8t9oe87umcru' + '\n' +
                       'There was an error when appending to the oContact file.' + '\n' +
                       'The following record may or may not have been appended to oContact:' + '\n' +                            
                       JSON.stringify(logObject) + '\n' +
@@ -1572,7 +1572,7 @@ oContact._oContact.put = function(data, callback)
                                 helpers.log
                                 (
                                   5,
-                                  '2q9dtb57epujiuf50j0n' + '\n' +
+                                  'xqtrrgh3ryskmj6qznk2' + '\n' +
                                   'Rollback entry in the oContact file was appended successfully' + '\n' +
                                   'The following was the record we rolled back:' + '\n' +
                                   JSON.stringify(logObject) + '\n'                                   
@@ -1583,7 +1583,7 @@ oContact._oContact.put = function(data, callback)
                                 helpers.log
                                 (
                                   7,
-                                  'u9lkpsr585p38fbazmfx' + '\n' +
+                                  '2ru9c9f9xrfcrf3qjb1j' + '\n' +
                                   'There was an error appending a rollback entry in the oContact file' + '\n' +
                                   'The following record may or may not have been rolled back:' + '\n' +
                                   JSON.stringify(logObject) + '\n' +   
@@ -1603,7 +1603,7 @@ oContact._oContact.put = function(data, callback)
                           helpers.log
                           (
                             7,
-                            '6aqqmm8fu0yq6jp7ukg5' + '\n' +
+                            'l57l7yjtuugfcpxd7jdz' + '\n' +
                             'There was an error appending a rollback entry in the history file' + '\n' +
                             'A rollback entry may or may not have been written in the oContact file' + '\n' +  
                             'CHECK TO SEE IF history and oContact ARE STILL IN SYNC' + '\n' +                                      
@@ -1628,7 +1628,7 @@ oContact._oContact.put = function(data, callback)
               helpers.log
               (
                 7,
-                '8d34zzr82yng2i0hj9gu' + '\n' +
+                'vybsoqx7cy58vugyxd13' + '\n' +
                 'There was an error appending to the history file' + '\n' +
                 'An error here does not necessarily mean the append to history did not happen.' + '\n' +  
                 'But an error at this point in the code surely means there was no append to oContact' + '\n' +                                          
@@ -1660,7 +1660,7 @@ oContact._oContact.put = function(data, callback)
             helpers.log // Log the error.
             (
               7,
-              'ksne3gmm7izmytbk4tk6' + '\n' + 
+              'tdhv627feop2eczhq61a' + '\n' + 
               'Pipeline error. The message was as follows' + '\n' +                                             
               pipelineError + '\n'                                                 
             ); // End of: helpers.log // Log the error.
