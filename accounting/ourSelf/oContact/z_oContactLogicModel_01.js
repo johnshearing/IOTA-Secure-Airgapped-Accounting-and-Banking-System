@@ -368,6 +368,9 @@ oContact._oContact.post = function(data, callback)
   // End of: Load the phoneTypeArray with variables created dynamically once the payload is known.
 
 
+
+  
+
   // Start of: Validate elements in the phoneTypeArray
   // passMenuItemsOnly
   // Behavior from ????
