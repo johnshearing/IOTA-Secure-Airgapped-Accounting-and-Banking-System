@@ -63,11 +63,11 @@
         </div>
         <div class="inputWrapper">
           <div class="inputLabel">Street 1</div>
-          <input class="address_properties_address0_properties_street1Input" name="address_properties_address0_properties_street1" type="text" placeholder="Enter a Street Address"/>
+          <input class="address_properties_address0_properties_streetOneInput" name="address_properties_address0_properties_streetOne" type="text" placeholder="Enter a Street Address"/>
         </div>
         <div class="inputWrapper">
           <div class="inputLabel">Street 2</div>
-          <input class="address_properties_address0_properties_street2Input" name="address_properties_address0_properties_street2" type="text" placeholder="Optional Field"/>
+          <input class="address_properties_address0_properties_streetTwoInput" name="address_properties_address0_properties_streetTwo" type="text" placeholder="Optional Field"/>
         </div>
         <div class="inputWrapper">
           <div class="inputLabel">City</div>
@@ -398,8 +398,8 @@ app.loadoContactEditPage = async function()
   document.querySelectorAll(".phone_properties_phone0_properties_phoneTypeInput").forEach(function (element){element.value = recordObject.phone.properties.phone0.properties.phoneType});
   document.querySelectorAll(".phone_properties_phone0_properties_phoneInput").forEach(function (element){element.value = recordObject.phone.properties.phone0.properties.phone});
   document.querySelectorAll(".address_properties_address0_properties_addressTypeInput").forEach(function (element){element.value = recordObject.address.properties.address0.properties.addressType});
-  document.querySelectorAll(".address_properties_address0_properties_street1Input").forEach(function (element){element.value = recordObject.address.properties.address0.properties.street1});
-  document.querySelectorAll(".address_properties_address0_properties_street2Input").forEach(function (element){element.value = recordObject.address.properties.address0.properties.street2});
+  document.querySelectorAll(".address_properties_address0_properties_streetOneInput").forEach(function (element){element.value = recordObject.address.properties.address0.properties.streetOne});
+  document.querySelectorAll(".address_properties_address0_properties_streetTwoInput").forEach(function (element){element.value = recordObject.address.properties.address0.properties.streetTwo});
   document.querySelectorAll(".address_properties_address0_properties_cityInput").forEach(function (element){element.value = recordObject.address.properties.address0.properties.city});
   document.querySelectorAll(".address_properties_address0_properties_stateInput").forEach(function (element){element.value = recordObject.address.properties.address0.properties.state});
   document.querySelectorAll(".address_properties_address0_properties_zipInput").forEach(function (element){element.value = recordObject.address.properties.address0.properties.zip});

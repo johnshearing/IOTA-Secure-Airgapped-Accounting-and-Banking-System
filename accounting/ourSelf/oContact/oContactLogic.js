@@ -58,7 +58,7 @@ oContact.serveListPage = function(data, callback)
             helpers.log
             (            
               5,
-              '75hkbia0zk6k942gwgza' + '\n' +
+              'aw23ft2jk85fv8cwecrk' + '\n' +
               'There was an error or the concatenated templates were not returned.' + '\n' +
               'This was the error:' + '\n' +
               JSON.stringify(errorAddUnivTemplates) + '\n'
@@ -74,7 +74,7 @@ oContact.serveListPage = function(data, callback)
         helpers.log
         (
           5,
-          'z1mwx4uisnbk8a4d0r6g' + '\n' +
+          'mw326s4mg2j4waddt9gr' + '\n' +
           'There was an error or no template was returned.' + '\n' +
           'This was the error:' + '\n' +
           JSON.stringify(errorGetTemplate) + '\n'
@@ -91,7 +91,7 @@ oContact.serveListPage = function(data, callback)
     helpers.log
     (
       5,
-      'rnfykgz0pdhseypeki1y' + '\n' +
+      '34u56hjuflqss13g7rji' + '\n' +
       'Method not get. Only gets allowed.' + '\n'
     );
 
@@ -138,7 +138,7 @@ oContact.serveAddPage = function(data, callback)
             helpers.log
             (            
               5,
-              'novhkir7mtsiwd5psfq0' + '\n' +
+              'wwkgrjqqmijl31o6rtid' + '\n' +
               'There was an error or the concatenated templates were not returned.' + '\n' +
               'This was the error:' + '\n' +
               JSON.stringify(errorAddUnivTemplates) + '\n'
@@ -154,7 +154,7 @@ oContact.serveAddPage = function(data, callback)
         helpers.log
         (
           5,
-          'pq7g45va5m16ycryxg02' + '\n' +
+          'slnh6rqh2ga9d0fv4sh7' + '\n' +
           'There was an error or no template was returned.' + '\n' +
           'This was the error:' + '\n' +
           JSON.stringify(errorGetTemplate) + '\n'
@@ -171,7 +171,7 @@ oContact.serveAddPage = function(data, callback)
     helpers.log
     (
       5,
-      'ygqrc7e9l4o5k6x1v5sp' + '\n' +
+      'd3h444h1z8jjjwygi4dk' + '\n' +
       'Method not get. Only gets allowed.' + '\n'
     );
 
@@ -218,7 +218,7 @@ oContact.serveEditPage = function(data, callback)
             helpers.log
             (            
               5,
-              '34s2o1bd1jje26tqm0ak' + '\n' +
+              'qa0up7aivnss6dvek3fw' + '\n' +
               'There was an error or the concatenated templates were not returned.' + '\n' +
               'This was the error:' + '\n' +
               JSON.stringify(errorAddUnivTemplates) + '\n'
@@ -234,7 +234,7 @@ oContact.serveEditPage = function(data, callback)
         helpers.log
         (
           5,
-          'mgglkieonx4hvgudrwgk' + '\n' +
+          'y70drvvb9qcmid7ykmi5' + '\n' +
           'There was an error or no template was returned.' + '\n' +
           'This was the error:' + '\n' +
           JSON.stringify(errorGetTemplate) + '\n'
@@ -251,7 +251,7 @@ oContact.serveEditPage = function(data, callback)
     helpers.log
     (
       5,
-      'mwu9o149p3b42sx0h1mo' + '\n' +
+      '0at8r7dpc2u33mcb9hv8' + '\n' +
       'Method not get. Only gets allowed.' + '\n'
     );
 
@@ -285,7 +285,7 @@ oContact.oContact = function(data, callback)
     helpers.log
     (
       5,
-      'e0643yzl3csa31c2v35u' + '\n' +
+      'af7dy1yrd8osbopxa1uy' + '\n' +
       'The method was not one of the acceptable methods' + '\n'
     ); 
 
@@ -339,7 +339,7 @@ oContact._oContact.post = function(data, callback)
   if(email.indexOf("@") === -1){return callback(400, {'Error' : 'Not a valid email'});}
 
 
-  // Start of: Load the phoneTypeArray with variables created dynamically once the payload is known.
+  // Start of: Load the phoneTypeArray dynamically once the payload is known.
   // Behavior from meta.js at lefq4oks90h34rvcw8sg
   let phoneTypeArray = [];
   let runPhoneTypeLoop = true;
@@ -359,7 +359,7 @@ oContact._oContact.post = function(data, callback)
       runPhoneTypeLoop = false;      
     }    
   } // End of: while (runPhoneTypeLoop === true){...}
-  // End of: Load the phoneTypeArray with variables created dynamically once the payload is known.  
+  // End of: Load the phoneTypeArray dynamically once the payload is known.  
 
   // Start of: Validate elements in the phoneTypeArray
   // passMenuItemsOnly
@@ -385,7 +385,7 @@ oContact._oContact.post = function(data, callback)
   // End of: Validate elements in the phoneTypeArray
 
 
-  // Start of: Load the phoneArray with variables created dynamically once the payload is known.
+  // Start of: Load the phoneArray dynamically once the payload is known.
   // Behavior from meta.js at lefq4oks90h34rvcw8sg
   let phoneArray = [];
   let runPhoneLoop = true;
@@ -405,14 +405,20 @@ oContact._oContact.post = function(data, callback)
       runPhoneLoop = false;      
     }    
   } // End of: while (runPhoneLoop === true){...}
-  // End of: Load the phoneArray with variables created dynamically once the payload is known.  
+  // End of: Load the phoneArray dynamically once the payload is known.  
 
-  // passIfString&NotEmptyThenTrim Default behavior from meta.js at ulg5xxvzgr7efln9xur9
-  if(typeof(phone_properties_phone0_properties_phone) != 'string'){return callback(400, {'Error' : 'phone_properties_phone0_properties_phone must be of datatype string'});}
-  if(!phone_properties_phone0_properties_phone || phone_properties_phone0_properties_phone.trim().length === 0){return callback(400, {'Error' : 'No phone_properties_phone0_properties_phone was entered'});}else{phone_properties_phone0_properties_phone = phone_properties_phone0_properties_phone.trim()}
+                  
+  // Start of: Validate elements in the phoneArray
+  // passIfString&NotEmptyThenTrim
+  // Behavior from meta.js at fkb3ulfqr09ryyc0rb0d
+  phoneArray.forEach(function(arrayElement)
+  {
+    if(typeof(arrayElement) != 'string'){return callback(400, {'Error' : 'phone must be of datatype string'});}
+    if(!arrayElement || arrayElement.trim().length === 0){return callback(400, {'Error' : 'No phone was entered'});}else{arrayElement = arrayElement.trim()}
+  });
+  // End of: Validate elements in the phoneArray  
 
-
-  // Start of: Load the addressTypeArray with variables created dynamically once the payload is known.
+  // Start of: Load the addressTypeArray dynamically once the payload is known.
   // Behavior from meta.js at lefq4oks90h34rvcw8sg
   let addressTypeArray = [];
   let runAddressTypeLoop = true;
@@ -432,7 +438,7 @@ oContact._oContact.post = function(data, callback)
       runAddressTypeLoop = false;      
     }    
   } // End of: while (runAddressTypeLoop === true){...}
-  // End of: Load the addressTypeArray with variables created dynamically once the payload is known.  
+  // End of: Load the addressTypeArray dynamically once the payload is known.  
 
   // Start of: Validate elements in the addressTypeArray
   // passMenuItemsOnly
@@ -458,7 +464,7 @@ oContact._oContact.post = function(data, callback)
   // End of: Validate elements in the addressTypeArray
 
 
-  // Start of: Load the streetOneArray with variables created dynamically once the payload is known.
+  // Start of: Load the streetOneArray dynamically once the payload is known.
   // Behavior from meta.js at lefq4oks90h34rvcw8sg
   let streetOneArray = [];
   let runStreetOneLoop = true;
@@ -478,14 +484,20 @@ oContact._oContact.post = function(data, callback)
       runStreetOneLoop = false;      
     }    
   } // End of: while (runStreetOneLoop === true){...}
-  // End of: Load the streetOneArray with variables created dynamically once the payload is known.  
+  // End of: Load the streetOneArray dynamically once the payload is known.  
 
-  // passIfString&NotEmptyThenTrim Default behavior from meta.js at ulg5xxvzgr7efln9xur9
-  if(typeof(address_properties_address0_properties_streetOne) != 'string'){return callback(400, {'Error' : 'address_properties_address0_properties_streetOne must be of datatype string'});}
-  if(!address_properties_address0_properties_streetOne || address_properties_address0_properties_streetOne.trim().length === 0){return callback(400, {'Error' : 'No address_properties_address0_properties_streetOne was entered'});}else{address_properties_address0_properties_streetOne = address_properties_address0_properties_streetOne.trim()}
+                  
+  // Start of: Validate elements in the streetOneArray
+  // passIfString&NotEmptyThenTrim
+  // Behavior from meta.js at fkb3ulfqr09ryyc0rb0d
+  streetOneArray.forEach(function(arrayElement)
+  {
+    if(typeof(arrayElement) != 'string'){return callback(400, {'Error' : 'streetOne must be of datatype string'});}
+    if(!arrayElement || arrayElement.trim().length === 0){return callback(400, {'Error' : 'No streetOne was entered'});}else{arrayElement = arrayElement.trim()}
+  });
+  // End of: Validate elements in the streetOneArray  
 
-
-  // Start of: Load the streetTwoArray with variables created dynamically once the payload is known.
+  // Start of: Load the streetTwoArray dynamically once the payload is known.
   // Behavior from meta.js at lefq4oks90h34rvcw8sg
   let streetTwoArray = [];
   let runStreetTwoLoop = true;
@@ -505,13 +517,19 @@ oContact._oContact.post = function(data, callback)
       runStreetTwoLoop = false;      
     }    
   } // End of: while (runStreetTwoLoop === true){...}
-  // End of: Load the streetTwoArray with variables created dynamically once the payload is known.  
+  // End of: Load the streetTwoArray dynamically once the payload is known.  
 
-  // passIfString Default behavior from meta.js at qif5xwvzgr7efln9xtr8
-  if(typeof(address_properties_address0_properties_streetTwo) != 'string'){return callback(400, {'Error' : 'address_properties_address0_properties_streetTwo must be of datatype string'});}
+                  
+  // Start of: Validate elements in the streetTwoArray
+  // passIfString
+  // Behavior from meta.js at 7n1wj6bz5asgucz6nmkp
+  streetTwoArray.forEach(function(arrayElement)
+  {
+    if(typeof(arrayElement) != 'string'){return callback(400, {'Error' : 'streetTwo must be of datatype string'});}
+  });
+  // End of: Validate elements in the streetTwoArray  
 
-
-  // Start of: Load the cityArray with variables created dynamically once the payload is known.
+  // Start of: Load the cityArray dynamically once the payload is known.
   // Behavior from meta.js at lefq4oks90h34rvcw8sg
   let cityArray = [];
   let runCityLoop = true;
@@ -531,14 +549,20 @@ oContact._oContact.post = function(data, callback)
       runCityLoop = false;      
     }    
   } // End of: while (runCityLoop === true){...}
-  // End of: Load the cityArray with variables created dynamically once the payload is known.  
+  // End of: Load the cityArray dynamically once the payload is known.  
 
-  // passIfString&NotEmptyThenTrim Default behavior from meta.js at ulg5xxvzgr7efln9xur9
-  if(typeof(address_properties_address0_properties_city) != 'string'){return callback(400, {'Error' : 'address_properties_address0_properties_city must be of datatype string'});}
-  if(!address_properties_address0_properties_city || address_properties_address0_properties_city.trim().length === 0){return callback(400, {'Error' : 'No address_properties_address0_properties_city was entered'});}else{address_properties_address0_properties_city = address_properties_address0_properties_city.trim()}
+                  
+  // Start of: Validate elements in the cityArray
+  // passIfString&NotEmptyThenTrim
+  // Behavior from meta.js at fkb3ulfqr09ryyc0rb0d
+  cityArray.forEach(function(arrayElement)
+  {
+    if(typeof(arrayElement) != 'string'){return callback(400, {'Error' : 'city must be of datatype string'});}
+    if(!arrayElement || arrayElement.trim().length === 0){return callback(400, {'Error' : 'No city was entered'});}else{arrayElement = arrayElement.trim()}
+  });
+  // End of: Validate elements in the cityArray  
 
-
-  // Start of: Load the stateArray with variables created dynamically once the payload is known.
+  // Start of: Load the stateArray dynamically once the payload is known.
   // Behavior from meta.js at lefq4oks90h34rvcw8sg
   let stateArray = [];
   let runStateLoop = true;
@@ -558,14 +582,20 @@ oContact._oContact.post = function(data, callback)
       runStateLoop = false;      
     }    
   } // End of: while (runStateLoop === true){...}
-  // End of: Load the stateArray with variables created dynamically once the payload is known.  
+  // End of: Load the stateArray dynamically once the payload is known.  
 
-  // passIfString&NotEmptyThenTrim Default behavior from meta.js at ulg5xxvzgr7efln9xur9
-  if(typeof(address_properties_address0_properties_state) != 'string'){return callback(400, {'Error' : 'address_properties_address0_properties_state must be of datatype string'});}
-  if(!address_properties_address0_properties_state || address_properties_address0_properties_state.trim().length === 0){return callback(400, {'Error' : 'No address_properties_address0_properties_state was entered'});}else{address_properties_address0_properties_state = address_properties_address0_properties_state.trim()}
+                  
+  // Start of: Validate elements in the stateArray
+  // passIfString&NotEmptyThenTrim
+  // Behavior from meta.js at fkb3ulfqr09ryyc0rb0d
+  stateArray.forEach(function(arrayElement)
+  {
+    if(typeof(arrayElement) != 'string'){return callback(400, {'Error' : 'state must be of datatype string'});}
+    if(!arrayElement || arrayElement.trim().length === 0){return callback(400, {'Error' : 'No state was entered'});}else{arrayElement = arrayElement.trim()}
+  });
+  // End of: Validate elements in the stateArray  
 
-
-  // Start of: Load the zipArray with variables created dynamically once the payload is known.
+  // Start of: Load the zipArray dynamically once the payload is known.
   // Behavior from meta.js at lefq4oks90h34rvcw8sg
   let zipArray = [];
   let runZipLoop = true;
@@ -585,12 +615,18 @@ oContact._oContact.post = function(data, callback)
       runZipLoop = false;      
     }    
   } // End of: while (runZipLoop === true){...}
-  // End of: Load the zipArray with variables created dynamically once the payload is known.  
+  // End of: Load the zipArray dynamically once the payload is known.  
 
-  // passIfString&NotEmptyThenTrim Default behavior from meta.js at ulg5xxvzgr7efln9xur9
-  if(typeof(address_properties_address0_properties_zip) != 'string'){return callback(400, {'Error' : 'address_properties_address0_properties_zip must be of datatype string'});}
-  if(!address_properties_address0_properties_zip || address_properties_address0_properties_zip.trim().length === 0){return callback(400, {'Error' : 'No address_properties_address0_properties_zip was entered'});}else{address_properties_address0_properties_zip = address_properties_address0_properties_zip.trim()}
-
+                  
+  // Start of: Validate elements in the zipArray
+  // passIfString&NotEmptyThenTrim
+  // Behavior from meta.js at fkb3ulfqr09ryyc0rb0d
+  zipArray.forEach(function(arrayElement)
+  {
+    if(typeof(arrayElement) != 'string'){return callback(400, {'Error' : 'zip must be of datatype string'});}
+    if(!arrayElement || arrayElement.trim().length === 0){return callback(400, {'Error' : 'No zip was entered'});}else{arrayElement = arrayElement.trim()}
+  });
+  // End of: Validate elements in the zipArray  
 
   // Enforcing uniqueness of the email field.
   // Will toggle this to false if we find the email already exists in oContact.
@@ -723,7 +759,7 @@ oContact._oContact.post = function(data, callback)
       helpers.log
       (
         5,
-        'yoqbcpmgyzeao9h3anen' + '\n' +
+        'y35144mtv6jh797qcpsd' + '\n' +
         'The email : ' + email + ' already exists' + '\n'                                  
       ); // End of: helpers.log(...)
 
@@ -751,7 +787,7 @@ oContact._oContact.post = function(data, callback)
         helpers.log
         (
           5,
-          'x6y2gnew2fs8ous3rmtn' + '\n' +
+          'gpihtvethgjxl7vm229i' + '\n' +
           'Unable to get the next gsuid.' + '\n' +
           'The following was the error' + '\n' +
           JSON.stringify(error) + '\n'                                   
@@ -778,23 +814,27 @@ oContact._oContact.post = function(data, callback)
 
       oContactObject.phone = {};
       oContactObject.phone.properties = {};
-
-      oContactObject.phone.properties.phone0 = {};
-      oContactObject.phone.properties.phone0.properties = {};
-      oContactObject.phone.properties.phone0.properties.phoneType = phone_properties_phone0_properties_phoneType;
-      oContactObject.phone.properties.phone0.properties.phone = phone_properties_phone0_properties_phone;
+      for (let arrayIndex = 0; arrayIndex < phoneTypeArray.length; arrayIndex++) 
+      {
+        oContactObject.phone.properties["phone" + arrayIndex.toString()] = {};
+        oContactObject.phone.properties["phone" + arrayIndex.toString()].properties = {};
+        oContactObject.phone.properties["phone" + arrayIndex.toString()].properties["phoneType"] = phoneTypeArray[arrayIndex];
+        oContactObject.phone.properties["phone" + arrayIndex.toString()].properties["phone"] = phoneArray[arrayIndex];
+      }
 
       oContactObject.address = {};
       oContactObject.address.properties = {};
-
-      oContactObject.address.properties.address0 = {};
-      oContactObject.address.properties.address0.properties = {};
-      oContactObject.address.properties.address0.properties.addressType = address_properties_address0_properties_addressType;
-      oContactObject.address.properties.address0.properties.streetOne = address_properties_address0_properties_streetOne;
-      oContactObject.address.properties.address0.properties.streetTwo = address_properties_address0_properties_streetTwo;
-      oContactObject.address.properties.address0.properties.city = address_properties_address0_properties_city;
-      oContactObject.address.properties.address0.properties.state = address_properties_address0_properties_state;
-      oContactObject.address.properties.address0.properties.zip = address_properties_address0_properties_zip;
+      for (let arrayIndex = 0; arrayIndex < addressTypeArray.length; arrayIndex++) 
+      {
+        oContactObject.address.properties["address" + arrayIndex.toString()] = {};
+        oContactObject.address.properties["address" + arrayIndex.toString()].properties = {};
+        oContactObject.address.properties["address" + arrayIndex.toString()].properties["addressType"] = addressTypeArray[arrayIndex];
+        oContactObject.address.properties["address" + arrayIndex.toString()].properties["streetOne"] = streetOneArray[arrayIndex];
+        oContactObject.address.properties["address" + arrayIndex.toString()].properties["streetTwo"] = streetTwoArray[arrayIndex];
+        oContactObject.address.properties["address" + arrayIndex.toString()].properties["city"] = cityArray[arrayIndex];
+        oContactObject.address.properties["address" + arrayIndex.toString()].properties["state"] = stateArray[arrayIndex];
+        oContactObject.address.properties["address" + arrayIndex.toString()].properties["zip"] = zipArray[arrayIndex];
+      }
       
       oContactObject.timeStamp = Date.now();
       oContactObject.deleted = false;
@@ -836,7 +876,7 @@ oContact._oContact.post = function(data, callback)
             helpers.log
             (
               7,
-              'cc11p1vkgk1xo0mkx947' + '\n' +
+              'trts4jqrp0d4btpmb3bt' + '\n' +
               'There was an error appending to the history file' + '\n' +
               'An error here does not necessarily mean the append to history did not happen.' + '\n' +  
               'But an error at this point in the code surely means there was no append to oContact' + '\n' +                                          
@@ -880,7 +920,7 @@ oContact._oContact.post = function(data, callback)
                   helpers.log // Log the error.
                   (
                     7,
-                    '8uvjcpd88snvfd0qrb1q' + '\n' +
+                    '46jr8z8usdlr58xdkzl1' + '\n' +
                     'Successful write to oContact but unable to remove lock on database' + '\n' +
                     'The following record was appended to the oContact file:' + '\n' +                            
                     JSON.stringify(logObject) + '\n' +   
@@ -902,7 +942,7 @@ oContact._oContact.post = function(data, callback)
               helpers.log // Log the error.
               (
                 5,
-                'hih43tuhiwkqwcwt8nfg' + '\n' +
+                'a9wficgiw0e7zq74tjrm' + '\n' +
                 'There was an error when appending to the oContact file.' + '\n' +
                 'The following record may or may not have been appended to the oContact file:' + '\n' +                            
                 JSON.stringify(logObject) + '\n' +
@@ -950,7 +990,7 @@ oContact._oContact.post = function(data, callback)
                           helpers.log
                           (
                             5,
-                            'jyyey020a79qsfoxtq4z' + '\n' +
+                            'tqlvhpgthdsiakt7xri2' + '\n' +
                             'Rollback entry in the oContact file was appended successfully' + '\n' +
                             'The following was the record we rolled back:' + '\n' +
                             JSON.stringify(logObject) + '\n'                                   
@@ -961,7 +1001,7 @@ oContact._oContact.post = function(data, callback)
                           helpers.log
                           (
                             7,
-                            'rdlxk9a5wbeyx52dkn36' + '\n' +
+                            'mydjzeensioxub4tfj5x' + '\n' +
                             'There was an error appending a rollback entry in the oContact file' + '\n' +
                             'The following record may or may not have been rolled back:' + '\n' +
                             JSON.stringify(logObject) + '\n' +   
@@ -981,7 +1021,7 @@ oContact._oContact.post = function(data, callback)
                     helpers.log
                     (
                       7,
-                      'i3d70zjhe9jeffmhkoja' + '\n' +
+                      'dl0cx06j9o0boenh9ppj' + '\n' +
                       'There was an error appending a rollback entry in the history file' + '\n' +
                       'A rollback entry may or may not have been written in the oContact file' + '\n' +  
                       'CHECK TO SEE IF history and oContact ARE STILL IN SYNC' + '\n' +                                      
@@ -1305,7 +1345,7 @@ oContact._oContact.put = function(data, callback)
     helpers.log
     (
       5,
-      'ao2su4grpwt6lq2kgvl9' + '\n' +
+      'q92c0eufzmhfr4h0zyl8' + '\n' +
       'No fields pass the validation process' + '\n'                                  
     ); // End of: helpers.log(...)
 
@@ -1328,7 +1368,7 @@ oContact._oContact.put = function(data, callback)
       helpers.log
       (
         5,
-        '1uv9culfr0koezovd6k6' + '\n' +
+        'szbgqxj8f57z8qu96z4p' + '\n' +
         'Unable to get the next gsuid.' + '\n' +
         'The following was the error' + '\n' +
         JSON.stringify(error) + '\n'                                   
@@ -1404,7 +1444,7 @@ oContact._oContact.put = function(data, callback)
               helpers.log // Log the error.
               (
                 7,
-                's4w6sbx0vizu2wjessyc' + '\n' + 
+                '5w0ct9dx8dcgeo3inekz' + '\n' + 
                 'The following was the error message from getMostRecent:' + '\n' +                                             
                 errorFromGetMostRecent + '\n'                                                 
               ); // End of: helpers.log // Log the error.
@@ -1419,7 +1459,7 @@ oContact._oContact.put = function(data, callback)
               helpers.log // Log the error.
               (
                 7,
-                'o3wepsqiz9v8zgo7g59h' + '\n' +
+                'fwp80hmp6k65idqhohf6' + '\n' +
                 'The following was the error message from getMostRecent:' + '\n' +                                             
                 errorFromGetMostRecent + '\n'  +
                 'Also unable to remove lock on database.' + '\n' + 
@@ -1647,7 +1687,7 @@ oContact._oContact.put = function(data, callback)
                         helpers.log // Log the error.
                         (
                           7,
-                          '1268j732ooylhyldev19' + '\n' +
+                          'pls3x3ruj57pi4dq2ni4' + '\n' +
                           'Successful write to oContact but unable to remove lock on database' + '\n' +
                           'The following record was appended to oContact:' + '\n' +                            
                           JSON.stringify(logObject) + '\n' +   
@@ -1669,7 +1709,7 @@ oContact._oContact.put = function(data, callback)
                     helpers.log // Log the error.
                     (
                       5,
-                      '2a52qkqix4uaukt06ucm' + '\n' +
+                      '7optgoupax61xk5ngm13' + '\n' +
                       'There was an error when appending to the oContact file.' + '\n' +
                       'The following record may or may not have been appended to oContact:' + '\n' +                            
                       JSON.stringify(logObject) + '\n' +
@@ -1728,7 +1768,7 @@ oContact._oContact.put = function(data, callback)
                                 helpers.log
                                 (
                                   5,
-                                  'amlhd3x88ns1iuvhvc0w' + '\n' +
+                                  'u5a0oosd0mw0kd4kmfep' + '\n' +
                                   'Rollback entry in the oContact file was appended successfully' + '\n' +
                                   'The following was the record we rolled back:' + '\n' +
                                   JSON.stringify(logObject) + '\n'                                   
@@ -1739,7 +1779,7 @@ oContact._oContact.put = function(data, callback)
                                 helpers.log
                                 (
                                   7,
-                                  'ak5ymeb1t8o9u966r7io' + '\n' +
+                                  'h3b2kdkgln4fx9kr3o5t' + '\n' +
                                   'There was an error appending a rollback entry in the oContact file' + '\n' +
                                   'The following record may or may not have been rolled back:' + '\n' +
                                   JSON.stringify(logObject) + '\n' +   
@@ -1759,7 +1799,7 @@ oContact._oContact.put = function(data, callback)
                           helpers.log
                           (
                             7,
-                            'e67w6lvp4mkff56cwtm1' + '\n' +
+                            '6uou0mhz758oi1hmslg5' + '\n' +
                             'There was an error appending a rollback entry in the history file' + '\n' +
                             'A rollback entry may or may not have been written in the oContact file' + '\n' +  
                             'CHECK TO SEE IF history and oContact ARE STILL IN SYNC' + '\n' +                                      
@@ -1784,7 +1824,7 @@ oContact._oContact.put = function(data, callback)
               helpers.log
               (
                 7,
-                'jm24iclebckclienzkkl' + '\n' +
+                'lyyjca34deny9xlzfrne' + '\n' +
                 'There was an error appending to the history file' + '\n' +
                 'An error here does not necessarily mean the append to history did not happen.' + '\n' +  
                 'But an error at this point in the code surely means there was no append to oContact' + '\n' +                                          
@@ -1816,7 +1856,7 @@ oContact._oContact.put = function(data, callback)
             helpers.log // Log the error.
             (
               7,
-              'ffninhwk4vbb13lc0tsj' + '\n' + 
+              'e2be4rkjhdcjpihqhuwo' + '\n' + 
               'Pipeline error. The message was as follows' + '\n' +                                             
               pipelineError + '\n'                                                 
             ); // End of: helpers.log // Log the error.

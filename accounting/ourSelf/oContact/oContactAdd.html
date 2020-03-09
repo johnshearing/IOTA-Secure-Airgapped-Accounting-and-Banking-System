@@ -57,11 +57,11 @@
         </div>
         <div class="inputWrapper">
           <div class="inputLabel">Street 1</div>
-          <input class="resetElement" name="address_properties_address0_properties_street1" type="text" placeholder="Enter a Street Address"/>
+          <input class="resetElement" name="address_properties_address0_properties_streetOne" type="text" placeholder="Enter a Street Address"/>
         </div>
         <div class="inputWrapper">
           <div class="inputLabel">Street 2</div>
-          <input class="resetElement" name="address_properties_address0_properties_street2" type="text" placeholder="optional"/>
+          <input class="resetElement" name="address_properties_address0_properties_streetTwo" type="text" placeholder="optional"/>
         </div>
         <div class="inputWrapper">
           <div class="inputLabel">City</div>
@@ -625,7 +625,7 @@ function renumberNamedElementsInGroupWrapper(groupWrapper)
     // Loop through the form elements inside each elementWrapper.
     elementWrapper.querySelectorAll('.resetElement').forEach(function(fieldElement)
     {
-      // Get the form element's name.
+      // Get the form lement's name.
       let previousNameAttribute = fieldElement.getAttribute("name");
       
       // Define a function to change the numeral in the name to match it's position in the groupWrapper.
