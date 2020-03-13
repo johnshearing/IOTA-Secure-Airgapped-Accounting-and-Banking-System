@@ -393,6 +393,8 @@ app.loadoContactEditPage = async function()
   // Get the record object from the array returned by the query.
   let recordObject = recordArray[0];
 
+  // This keeps class and element names of container objects the same.
+  // The querySelector used while data is loading requires this.
   let allowRenumbering = false;
 
   // Define the function that fires when the moveObjectUpButton is selected.
@@ -669,7 +671,6 @@ app.loadoContactEditPage = async function()
     addButton.click();
   };
 
-
   // Get the address count.
   const addressAmount = Object.keys(recordObject.address.properties).length;
 
@@ -680,7 +681,7 @@ app.loadoContactEditPage = async function()
     addButton.click();
   };
 
-  // Put the data into the forms as values where needed ?????
+  // Put the data into the forms as values where needed
   // Behaviour from meta.js at 4eyhkvwtznzs8f9pmy08
 
   document.querySelectorAll(".firstNameInput").forEach(function (element){element.value = recordObject.firstName});
@@ -695,15 +696,13 @@ app.loadoContactEditPage = async function()
     }
   );
 
-
   document.querySelectorAll(".phone_properties_phone0_properties_phoneInput").forEach
   (
     function (element, elementIndex)
     {
       element.value = recordObject.phone.properties["phone" + elementIndex.toString()].properties.phone;
     }
-  );  
-
+  );
 
   document.querySelectorAll(".address_properties_address0_properties_addressTypeInput").forEach
   (
@@ -711,8 +710,7 @@ app.loadoContactEditPage = async function()
     {
       element.value = recordObject.address.properties["address" + elementIndex.toString()].properties.addressType;
     }
-  );  
-
+  );
 
   document.querySelectorAll(".address_properties_address0_properties_streetOneInput").forEach
   (
@@ -720,8 +718,7 @@ app.loadoContactEditPage = async function()
     {
       element.value = recordObject.address.properties["address" + elementIndex.toString()].properties.streetOne;
     }
-  );  
-
+  );
 
   document.querySelectorAll(".address_properties_address0_properties_streetTwoInput").forEach
   (
@@ -729,7 +726,7 @@ app.loadoContactEditPage = async function()
     {
       element.value = recordObject.address.properties["address" + elementIndex.toString()].properties.streetTwo;
     }
-  );  
+  );
 
   document.querySelectorAll(".address_properties_address0_properties_cityInput").forEach
   (
@@ -737,7 +734,7 @@ app.loadoContactEditPage = async function()
     {
       element.value = recordObject.address.properties["address" + elementIndex.toString()].properties.city;
     }
-  );  
+  );
 
   document.querySelectorAll(".address_properties_address0_properties_stateInput").forEach
   (
@@ -745,7 +742,7 @@ app.loadoContactEditPage = async function()
     {
       element.value = recordObject.address.properties["address" + elementIndex.toString()].properties.state;
     }
-  );  
+  );
 
   document.querySelectorAll(".address_properties_address0_properties_zipInput").forEach
   (
@@ -753,9 +750,9 @@ app.loadoContactEditPage = async function()
     {
       element.value = recordObject.address.properties["address" + elementIndex.toString()].properties.zip;
     }
-  );  
-
-
+  );
+  
+  
   document.querySelectorAll(".timeStampInput").forEach(function(element){element.value = recordObject.timeStamp});  
 
 
@@ -830,7 +827,7 @@ function renumberNamedElementsInGroupWrapper(groupWrapper)
       // Set the name of the formElement as calculated above.
       fieldElement.setAttribute("name", nextNameAttribute)
 
-      // Get the form element's input class. ?????
+      // Get the form element's input class.
       let previousInputClass = fieldElement.classList.item(1);
       
       // Call the function above to increment the numeral embedded in the class identifier.
