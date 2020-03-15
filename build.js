@@ -11,4 +11,4 @@ const meta = require('./lib/meta');
 // meta.build.addWebPage(1065);
 // meta.build.editWebPage(1065);
 // meta.build.listWebPage(1065);  
-// meta.build.serverSideLogic(1065); 
+meta.build.serverSideLogic(1065); 

@@ -216,9 +216,6 @@ app.client = {}
 
 
 // Define interface function for making API calls.
-// This XMLHttpRequest is one of 3 ways that we call for data from the server.
-// Here we use XMLHttpRequest to retrive JSON data from a table that contains only one line. 
-// Mostly we are using this type of call right now for managing tokens.
 app.client.request = function(headers,path,method,queryStringObject,payload,callback)
 {
   // Set defaults
