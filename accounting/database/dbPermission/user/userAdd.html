@@ -461,12 +461,12 @@ app.loadoContactAddPage = function()
   // End of: Define the function that fires when the removeObjectButton is selected.
 
 
-  // Bind the function above to the onClick event of the addNewObjectButtons.
+  // Bind the function above to the onClick event of the removeObjectButtons.
   document.querySelectorAll('.removeObjectButton').forEach(function(currentButton)
   {
     currentButton.addEventListener("click", onClickBehaviorForRemoveObjectButton);
   });
-  // End of: Bind the function above to the onClick event of the addNewObjectButtons.
+  // End of: Bind the function above to the onClick event of the removeObjectButtons.
 
 
   // Define the function that fires when the addNewObjectButton is selected.
@@ -542,7 +542,7 @@ app.loadoContactAddPage = function()
   });  
   // End of: Bind the function above to the onClick event of the addNewObjectButtons.
 
-}; // End of: app.loadoContactEditPage = function(){...}
+}; // End of: app.loadoContactAddPage = function(){...}
 
 
 
@@ -556,7 +556,7 @@ function renumberNamedElementsInGroupWrapper(groupWrapper)
     // Loop through the form elements inside each elementWrapper.
     elementWrapper.querySelectorAll('.resetElement').forEach(function(fieldElement)
     {
-      // Get the form lement's name.
+      // Get the form element's name.
       let previousNameAttribute = fieldElement.getAttribute("name");
       
       // Define a function to change the numeral in the name to match it's position in the groupWrapper.

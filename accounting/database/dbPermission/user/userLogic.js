@@ -2,6 +2,8 @@
 /*
 / Handlers for the "user" table.
 / This program was built by meta.js starting at yx52pvsi0kn9p5o46hrq
+/ Any changes made to this program will be overwritten next time the application is generated.
+/ Make your changes in the generator meta.js or in the data dictionary metadata.json
 */
 
 "use strict";
@@ -56,7 +58,7 @@ user.serveListPage = function(data, callback)
             helpers.log
             (            
               5,
-              'eeh5tjagcvbychqhxxj0' + '\n' +
+              'p588vjur2fvpxk4ndg5s' + '\n' +
               'There was an error or the concatenated templates were not returned.' + '\n' +
               'This was the error:' + '\n' +
               JSON.stringify(errorAddUnivTemplates) + '\n'
@@ -72,7 +74,7 @@ user.serveListPage = function(data, callback)
         helpers.log
         (
           5,
-          '0ubskdb7lwvw6b6wvu6a' + '\n' +
+          'kihi990rohno31vcb1z7' + '\n' +
           'There was an error or no template was returned.' + '\n' +
           'This was the error:' + '\n' +
           JSON.stringify(errorGetTemplate) + '\n'
@@ -89,7 +91,7 @@ user.serveListPage = function(data, callback)
     helpers.log
     (
       5,
-      'ho9bdjxi5naojexio6ag' + '\n' +
+      'osg3c63pohpxc6ln2qq8' + '\n' +
       'Method not get. Only gets allowed.' + '\n'
     );
 
@@ -136,7 +138,7 @@ user.serveAddPage = function(data, callback)
             helpers.log
             (            
               5,
-              'alyht9uf6i32imamc33x' + '\n' +
+              'n33nwlx9plhl0uk1c7z1' + '\n' +
               'There was an error or the concatenated templates were not returned.' + '\n' +
               'This was the error:' + '\n' +
               JSON.stringify(errorAddUnivTemplates) + '\n'
@@ -152,7 +154,7 @@ user.serveAddPage = function(data, callback)
         helpers.log
         (
           5,
-          'lny3yez4bw7qx95gl7yz' + '\n' +
+          '54hvicw1acra6bv4033h' + '\n' +
           'There was an error or no template was returned.' + '\n' +
           'This was the error:' + '\n' +
           JSON.stringify(errorGetTemplate) + '\n'
@@ -169,7 +171,7 @@ user.serveAddPage = function(data, callback)
     helpers.log
     (
       5,
-      '6pp21b7pq6fmacsdl8tz' + '\n' +
+      'ryzht1fpsx5713tak062' + '\n' +
       'Method not get. Only gets allowed.' + '\n'
     );
 
@@ -216,7 +218,7 @@ user.serveEditPage = function(data, callback)
             helpers.log
             (            
               5,
-              'vo6661zllztq9688idw8' + '\n' +
+              'be3pldu8p19twtmbgqwb' + '\n' +
               'There was an error or the concatenated templates were not returned.' + '\n' +
               'This was the error:' + '\n' +
               JSON.stringify(errorAddUnivTemplates) + '\n'
@@ -232,7 +234,7 @@ user.serveEditPage = function(data, callback)
         helpers.log
         (
           5,
-          'nwvagqtwioh85968368i' + '\n' +
+          '5mtwzd1hy915ntr9fv9w' + '\n' +
           'There was an error or no template was returned.' + '\n' +
           'This was the error:' + '\n' +
           JSON.stringify(errorGetTemplate) + '\n'
@@ -249,7 +251,7 @@ user.serveEditPage = function(data, callback)
     helpers.log
     (
       5,
-      'fnen91v6ghibjh6b0o7i' + '\n' +
+      'j5n14weqce5zssuq9iit' + '\n' +
       'Method not get. Only gets allowed.' + '\n'
     );
 
@@ -283,7 +285,7 @@ user.user = function(data, callback)
     helpers.log
     (
       5,
-      'erh8odjxbyuqhzmz9mud' + '\n' +
+      '9pb6r8sby2r5eue8tgpb' + '\n' +
       'The method was not one of the acceptable methods' + '\n'
     ); 
 
@@ -484,7 +486,7 @@ user._user.post = function(data, callback)
       helpers.log
       (
         5,
-        '54vmpcgwkhaqabb3tv4x' + '\n' +
+        '2kzorlyj547du0zd98km' + '\n' +
         'The email : ' + email + ' already exists' + '\n'                                  
       ); // End of: helpers.log(...)
 
@@ -512,7 +514,7 @@ user._user.post = function(data, callback)
         helpers.log
         (
           5,
-          'sy49j6btiyblimst08u0' + '\n' +
+          'cblxyisv7z75juyl18wi' + '\n' +
           'Unable to get the next gsuid.' + '\n' +
           'The following was the error' + '\n' +
           JSON.stringify(error) + '\n'                                   
@@ -592,7 +594,7 @@ user._user.post = function(data, callback)
             helpers.log
             (
               7,
-              'z4299qpmzp7yxx25s59v' + '\n' +
+              '7jbm774d54juxvb4eam1' + '\n' +
               'There was an error appending to the history file' + '\n' +
               'An error here does not necessarily mean the append to history did not happen.' + '\n' +  
               'But an error at this point in the code surely means there was no append to user' + '\n' +                                          
@@ -636,7 +638,7 @@ user._user.post = function(data, callback)
                   helpers.log // Log the error.
                   (
                     7,
-                    'ugcj2z9p27rqak8556ep' + '\n' +
+                    'yaa9x3mo6n97hcq6nwh4' + '\n' +
                     'Successful write to user but unable to remove lock on database' + '\n' +
                     'The following record was appended to the user file:' + '\n' +                            
                     JSON.stringify(logObject) + '\n' +   
@@ -658,7 +660,7 @@ user._user.post = function(data, callback)
               helpers.log // Log the error.
               (
                 5,
-                'odx26sc8zvpd26grb6d9' + '\n' +
+                'o461wywzp8ojn40smcxo' + '\n' +
                 'There was an error when appending to the user file.' + '\n' +
                 'The following record may or may not have been appended to the user file:' + '\n' +                            
                 JSON.stringify(logObject) + '\n' +
@@ -706,7 +708,7 @@ user._user.post = function(data, callback)
                           helpers.log
                           (
                             5,
-                            'k1za3zmuopo3xohm6eik' + '\n' +
+                            'bo3i9vwku9kl6h2qr6vs' + '\n' +
                             'Rollback entry in the user file was appended successfully' + '\n' +
                             'The following was the record we rolled back:' + '\n' +
                             JSON.stringify(logObject) + '\n'                                   
@@ -717,7 +719,7 @@ user._user.post = function(data, callback)
                           helpers.log
                           (
                             7,
-                            '5cq68qnjt8vpxumt7ds4' + '\n' +
+                            '4oc6i2ngri5ve2pwmn39' + '\n' +
                             'There was an error appending a rollback entry in the user file' + '\n' +
                             'The following record may or may not have been rolled back:' + '\n' +
                             JSON.stringify(logObject) + '\n' +   
@@ -737,7 +739,7 @@ user._user.post = function(data, callback)
                     helpers.log
                     (
                       7,
-                      'c1w910l61eraij2ovuqx' + '\n' +
+                      'y03ziam8vm1qum6nvmwy' + '\n' +
                       'There was an error appending a rollback entry in the history file' + '\n' +
                       'A rollback entry may or may not have been written in the user file' + '\n' +  
                       'CHECK TO SEE IF history and user ARE STILL IN SYNC' + '\n' +                                      
@@ -784,7 +786,7 @@ user._user.put = function(data, callback)
   if (typeof(userId) === 'string'){userId = parseInt(userId, 10);}else{return callback(400, {'Error' : 'userId must be a of string type'});}
 
   // Get email from payload
-  let email = data.payload.email;
+  let email = data.payload["email"];
 
   // stringTypeTrimAmpersand
   // Behavior from data dictionary at og5gtmcsk6od74wkr9vj 
@@ -819,7 +821,7 @@ user._user.put = function(data, callback)
   }
 
   // Get password from payload
-  let password = data.payload.password;
+  let password = data.payload["password"];
 
   // passwordValidation
   // Behavior from data dictionary at e09hmheqvsxzbi50n4ny 
@@ -875,6 +877,8 @@ user._user.put = function(data, callback)
     } 
   }
 
+  
+  
   // Check if the deleted flag is of type string and that the value is exactly equal to "true".
   // That would mean the user wants to delete the record. Otherwise the users does not want to delete the record.
   // Set deleted to boolean true if validation is passed otherwise set it to false.
@@ -883,12 +887,17 @@ user._user.put = function(data, callback)
 
   
   //if all fields fail validation then exit this process without writing changes to the table.
-  if(!email && !password && !deleted)
+  if
+  (
+    !email
+    &&  !password
+    &&  !deleted
+  )
   {
     helpers.log
     (
       5,
-      '5obh9nxctwn8epltobxc' + '\n' +
+      'l7dai2bouy5t06pc7yg4' + '\n' +
       'No fields pass the validation process' + '\n'                                  
     ); // End of: helpers.log(...)
 
@@ -911,7 +920,7 @@ user._user.put = function(data, callback)
       helpers.log
       (
         5,
-        '59o75p97wsece1ykt7xf' + '\n' +
+        '2i9bayu8j95c23ixemjn' + '\n' +
         'Unable to get the next gsuid.' + '\n' +
         'The following was the error' + '\n' +
         JSON.stringify(error) + '\n'                                   
@@ -965,7 +974,7 @@ user._user.put = function(data, callback)
               helpers.log // Log the error.
               (
                 7,
-                'uq96qahuwe9ffdy3br6x' + '\n' + 
+                '7m731jajwyfn8x38tgae' + '\n' + 
                 'The following was the error message from getMostRecent:' + '\n' +                                             
                 errorFromGetMostRecent + '\n'                                                 
               ); // End of: helpers.log // Log the error.
@@ -980,7 +989,7 @@ user._user.put = function(data, callback)
               helpers.log // Log the error.
               (
                 7,
-                '04mium55x2vlqlgqnhja' + '\n' +
+                'z3ocjsu1oaubvp6q1riz' + '\n' +
                 'The following was the error message from getMostRecent:' + '\n' +                                             
                 errorFromGetMostRecent + '\n'  +
                 'Also unable to remove lock on database.' + '\n' + 
@@ -1121,7 +1130,7 @@ user._user.put = function(data, callback)
                         helpers.log // Log the error.
                         (
                           7,
-                          'rta4l1d43u8w1tskbl5e' + '\n' +
+                          'lntjgmvdpbmsznd1tb69' + '\n' +
                           'Successful write to user but unable to remove lock on database' + '\n' +
                           'The following record was appended to user:' + '\n' +                            
                           JSON.stringify(logObject) + '\n' +   
@@ -1143,7 +1152,7 @@ user._user.put = function(data, callback)
                     helpers.log // Log the error.
                     (
                       5,
-                      '5aqih3ia1i8xtl3f0oei' + '\n' +
+                      'gsos258pm0y2yaptxnfw' + '\n' +
                       'There was an error when appending to the user file.' + '\n' +
                       'The following record may or may not have been appended to user:' + '\n' +                            
                       JSON.stringify(logObject) + '\n' +
@@ -1198,7 +1207,7 @@ user._user.put = function(data, callback)
                                 helpers.log
                                 (
                                   5,
-                                  'kkdsqdzvjj9xrxcuorie' + '\n' +
+                                  'w1wpxsasy7s0oubmj48e' + '\n' +
                                   'Rollback entry in the user file was appended successfully' + '\n' +
                                   'The following was the record we rolled back:' + '\n' +
                                   JSON.stringify(logObject) + '\n'                                   
@@ -1209,7 +1218,7 @@ user._user.put = function(data, callback)
                                 helpers.log
                                 (
                                   7,
-                                  'n45wajo0rf7k2jsnfo99' + '\n' +
+                                  'mulh1btj5s04jef2v3mw' + '\n' +
                                   'There was an error appending a rollback entry in the user file' + '\n' +
                                   'The following record may or may not have been rolled back:' + '\n' +
                                   JSON.stringify(logObject) + '\n' +   
@@ -1229,7 +1238,7 @@ user._user.put = function(data, callback)
                           helpers.log
                           (
                             7,
-                            'gyopfwpmcxma2gjqipol' + '\n' +
+                            '2lfm5bounqselukxtqo4' + '\n' +
                             'There was an error appending a rollback entry in the history file' + '\n' +
                             'A rollback entry may or may not have been written in the user file' + '\n' +  
                             'CHECK TO SEE IF history and user ARE STILL IN SYNC' + '\n' +                                      
@@ -1254,7 +1263,7 @@ user._user.put = function(data, callback)
               helpers.log
               (
                 7,
-                'uwj2q1pk6skvyrg3ocnv' + '\n' +
+                '3jn51t5zc3dnieh3cd3z' + '\n' +
                 'There was an error appending to the history file' + '\n' +
                 'An error here does not necessarily mean the append to history did not happen.' + '\n' +  
                 'But an error at this point in the code surely means there was no append to user' + '\n' +                                          
@@ -1286,7 +1295,7 @@ user._user.put = function(data, callback)
             helpers.log // Log the error.
             (
               7,
-              '20sgcku4jjs3mnajedbs' + '\n' + 
+              'tkmfjixdu1dlhwa7vbon' + '\n' + 
               'Pipeline error. The message was as follows' + '\n' +                                             
               pipelineError + '\n'                                                 
             ); // End of: helpers.log // Log the error.

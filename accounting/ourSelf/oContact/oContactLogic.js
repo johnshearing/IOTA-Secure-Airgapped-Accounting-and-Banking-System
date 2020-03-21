@@ -58,7 +58,7 @@ oContact.serveListPage = function(data, callback)
             helpers.log
             (            
               5,
-              'iopxlr1by2sa4y6lgxg5' + '\n' +
+              '917dha3ggu7q7ia311zv' + '\n' +
               'There was an error or the concatenated templates were not returned.' + '\n' +
               'This was the error:' + '\n' +
               JSON.stringify(errorAddUnivTemplates) + '\n'
@@ -74,7 +74,7 @@ oContact.serveListPage = function(data, callback)
         helpers.log
         (
           5,
-          'dqf1386xq4zgs141jiew' + '\n' +
+          '0qeeliub2o4bn16n0wps' + '\n' +
           'There was an error or no template was returned.' + '\n' +
           'This was the error:' + '\n' +
           JSON.stringify(errorGetTemplate) + '\n'
@@ -91,7 +91,7 @@ oContact.serveListPage = function(data, callback)
     helpers.log
     (
       5,
-      '9kop87tl7gkpyv9wgn5g' + '\n' +
+      'eb3tl78q8o0dhaj8obca' + '\n' +
       'Method not get. Only gets allowed.' + '\n'
     );
 
@@ -138,7 +138,7 @@ oContact.serveAddPage = function(data, callback)
             helpers.log
             (            
               5,
-              'zhq7zivtlb0wt39z93eo' + '\n' +
+              'i0sv3ztk7hwh0ongok1f' + '\n' +
               'There was an error or the concatenated templates were not returned.' + '\n' +
               'This was the error:' + '\n' +
               JSON.stringify(errorAddUnivTemplates) + '\n'
@@ -154,7 +154,7 @@ oContact.serveAddPage = function(data, callback)
         helpers.log
         (
           5,
-          'le3479qan4aegzyt17qh' + '\n' +
+          'fr76eh5xxhqeqinumj6j' + '\n' +
           'There was an error or no template was returned.' + '\n' +
           'This was the error:' + '\n' +
           JSON.stringify(errorGetTemplate) + '\n'
@@ -171,7 +171,7 @@ oContact.serveAddPage = function(data, callback)
     helpers.log
     (
       5,
-      '6tnyazrjj48aejkgzkzy' + '\n' +
+      'vxbv4hd5odz290ghto2l' + '\n' +
       'Method not get. Only gets allowed.' + '\n'
     );
 
@@ -218,7 +218,7 @@ oContact.serveEditPage = function(data, callback)
             helpers.log
             (            
               5,
-              'xpvh93bp0h6jmg4slkec' + '\n' +
+              'udr0ae26r3ikmuyype4u' + '\n' +
               'There was an error or the concatenated templates were not returned.' + '\n' +
               'This was the error:' + '\n' +
               JSON.stringify(errorAddUnivTemplates) + '\n'
@@ -234,7 +234,7 @@ oContact.serveEditPage = function(data, callback)
         helpers.log
         (
           5,
-          '7v08ai1lcl9x2lmpr04p' + '\n' +
+          'vfjn0rxmb8vhme37o0n0' + '\n' +
           'There was an error or no template was returned.' + '\n' +
           'This was the error:' + '\n' +
           JSON.stringify(errorGetTemplate) + '\n'
@@ -251,7 +251,7 @@ oContact.serveEditPage = function(data, callback)
     helpers.log
     (
       5,
-      'u7b5331wpu778wqnb5p3' + '\n' +
+      'jpjarb90r2yl876dcrxf' + '\n' +
       'Method not get. Only gets allowed.' + '\n'
     );
 
@@ -285,7 +285,7 @@ oContact.oContact = function(data, callback)
     helpers.log
     (
       5,
-      '1rlfjzas1c39egngwnt3' + '\n' +
+      'he30b93t89f95cfxxl7p' + '\n' +
       'The method was not one of the acceptable methods' + '\n'
     ); 
 
@@ -348,9 +348,9 @@ oContact._oContact.post = function(data, callback)
   while (runPhoneTypeLoop === true)
   {
     // Check if the data exists in the payload
-    if(data.payload["phone_properties_phone" + phoneTypeLoopCount.toString() + "_properties_phoneType"])
+    if(data.payload["phone_subObject_phone" + phoneTypeLoopCount.toString() + "_subObject_phoneType"])
     {
-      phoneTypeArray.push(data.payload["phone_properties_phone" + phoneTypeLoopCount.toString() + "_properties_phoneType"]);
+      phoneTypeArray.push(data.payload["phone_subObject_phone" + phoneTypeLoopCount.toString() + "_subObject_phoneType"]);
       
       phoneTypeLoopCount = phoneTypeLoopCount + 1;
     }
@@ -394,9 +394,9 @@ oContact._oContact.post = function(data, callback)
   while (runPhoneLoop === true)
   {
     // Check if the data exists in the payload
-    if(data.payload["phone_properties_phone" + phoneLoopCount.toString() + "_properties_phone"])
+    if(data.payload["phone_subObject_phone" + phoneLoopCount.toString() + "_subObject_phone"])
     {
-      phoneArray.push(data.payload["phone_properties_phone" + phoneLoopCount.toString() + "_properties_phone"]);
+      phoneArray.push(data.payload["phone_subObject_phone" + phoneLoopCount.toString() + "_subObject_phone"]);
       
       phoneLoopCount = phoneLoopCount + 1;
     }
@@ -427,9 +427,9 @@ oContact._oContact.post = function(data, callback)
   while (runAddressTypeLoop === true)
   {
     // Check if the data exists in the payload
-    if(data.payload["address_properties_address" + addressTypeLoopCount.toString() + "_properties_addressType"])
+    if(data.payload["address_subObject_address" + addressTypeLoopCount.toString() + "_subObject_addressType"])
     {
-      addressTypeArray.push(data.payload["address_properties_address" + addressTypeLoopCount.toString() + "_properties_addressType"]);
+      addressTypeArray.push(data.payload["address_subObject_address" + addressTypeLoopCount.toString() + "_subObject_addressType"]);
       
       addressTypeLoopCount = addressTypeLoopCount + 1;
     }
@@ -473,9 +473,9 @@ oContact._oContact.post = function(data, callback)
   while (runStreetOneLoop === true)
   {
     // Check if the data exists in the payload
-    if(data.payload["address_properties_address" + streetOneLoopCount.toString() + "_properties_streetOne"])
+    if(data.payload["address_subObject_address" + streetOneLoopCount.toString() + "_subObject_streetOne"])
     {
-      streetOneArray.push(data.payload["address_properties_address" + streetOneLoopCount.toString() + "_properties_streetOne"]);
+      streetOneArray.push(data.payload["address_subObject_address" + streetOneLoopCount.toString() + "_subObject_streetOne"]);
       
       streetOneLoopCount = streetOneLoopCount + 1;
     }
@@ -506,9 +506,9 @@ oContact._oContact.post = function(data, callback)
   while (runStreetTwoLoop === true)
   {
     // Check if the data exists in the payload
-    if(data.payload["address_properties_address" + streetTwoLoopCount.toString() + "_properties_streetTwo"])
+    if(data.payload["address_subObject_address" + streetTwoLoopCount.toString() + "_subObject_streetTwo"])
     {
-      streetTwoArray.push(data.payload["address_properties_address" + streetTwoLoopCount.toString() + "_properties_streetTwo"]);
+      streetTwoArray.push(data.payload["address_subObject_address" + streetTwoLoopCount.toString() + "_subObject_streetTwo"]);
       
       streetTwoLoopCount = streetTwoLoopCount + 1;
     }
@@ -538,9 +538,9 @@ oContact._oContact.post = function(data, callback)
   while (runCityLoop === true)
   {
     // Check if the data exists in the payload
-    if(data.payload["address_properties_address" + cityLoopCount.toString() + "_properties_city"])
+    if(data.payload["address_subObject_address" + cityLoopCount.toString() + "_subObject_city"])
     {
-      cityArray.push(data.payload["address_properties_address" + cityLoopCount.toString() + "_properties_city"]);
+      cityArray.push(data.payload["address_subObject_address" + cityLoopCount.toString() + "_subObject_city"]);
       
       cityLoopCount = cityLoopCount + 1;
     }
@@ -571,9 +571,9 @@ oContact._oContact.post = function(data, callback)
   while (runStateLoop === true)
   {
     // Check if the data exists in the payload
-    if(data.payload["address_properties_address" + stateLoopCount.toString() + "_properties_state"])
+    if(data.payload["address_subObject_address" + stateLoopCount.toString() + "_subObject_state"])
     {
-      stateArray.push(data.payload["address_properties_address" + stateLoopCount.toString() + "_properties_state"]);
+      stateArray.push(data.payload["address_subObject_address" + stateLoopCount.toString() + "_subObject_state"]);
       
       stateLoopCount = stateLoopCount + 1;
     }
@@ -604,9 +604,9 @@ oContact._oContact.post = function(data, callback)
   while (runZipLoop === true)
   {
     // Check if the data exists in the payload
-    if(data.payload["address_properties_address" + zipLoopCount.toString() + "_properties_zip"])
+    if(data.payload["address_subObject_address" + zipLoopCount.toString() + "_subObject_zip"])
     {
-      zipArray.push(data.payload["address_properties_address" + zipLoopCount.toString() + "_properties_zip"]);
+      zipArray.push(data.payload["address_subObject_address" + zipLoopCount.toString() + "_subObject_zip"]);
       
       zipLoopCount = zipLoopCount + 1;
     }
@@ -759,7 +759,7 @@ oContact._oContact.post = function(data, callback)
       helpers.log
       (
         5,
-        '6omm0ccpcaxosgfa4fma' + '\n' +
+        'ctrog9p5ubfrfbvu59tc' + '\n' +
         'The email : ' + email + ' already exists' + '\n'                                  
       ); // End of: helpers.log(...)
 
@@ -787,7 +787,7 @@ oContact._oContact.post = function(data, callback)
         helpers.log
         (
           5,
-          'hmqiatdc1zmrdbrg26ez' + '\n' +
+          'b31ivivj064yc2dzpmym' + '\n' +
           'Unable to get the next gsuid.' + '\n' +
           'The following was the error' + '\n' +
           JSON.stringify(error) + '\n'                                   
@@ -813,27 +813,27 @@ oContact._oContact.post = function(data, callback)
       oContactObject.email = email;
 
       oContactObject.phone = {};
-      oContactObject.phone.properties = {};
+      oContactObject.phone.subObject = {};
       for (let arrayIndex = 0; arrayIndex < phoneTypeArray.length; arrayIndex++) 
       {
-        oContactObject.phone.properties["phone" + arrayIndex.toString()] = {};
-        oContactObject.phone.properties["phone" + arrayIndex.toString()].properties = {};
-        oContactObject.phone.properties["phone" + arrayIndex.toString()].properties["phoneType"] = phoneTypeArray[arrayIndex];
-        oContactObject.phone.properties["phone" + arrayIndex.toString()].properties["phone"] = phoneArray[arrayIndex];
+        oContactObject.phone.subObject["phone" + arrayIndex.toString()] = {};
+        oContactObject.phone.subObject["phone" + arrayIndex.toString()].subObject = {};
+        oContactObject.phone.subObject["phone" + arrayIndex.toString()].subObject["phoneType"] = phoneTypeArray[arrayIndex];
+        oContactObject.phone.subObject["phone" + arrayIndex.toString()].subObject["phone"] = phoneArray[arrayIndex];
       }
 
       oContactObject.address = {};
-      oContactObject.address.properties = {};
+      oContactObject.address.subObject = {};
       for (let arrayIndex = 0; arrayIndex < addressTypeArray.length; arrayIndex++) 
       {
-        oContactObject.address.properties["address" + arrayIndex.toString()] = {};
-        oContactObject.address.properties["address" + arrayIndex.toString()].properties = {};
-        oContactObject.address.properties["address" + arrayIndex.toString()].properties["addressType"] = addressTypeArray[arrayIndex];
-        oContactObject.address.properties["address" + arrayIndex.toString()].properties["streetOne"] = streetOneArray[arrayIndex];
-        oContactObject.address.properties["address" + arrayIndex.toString()].properties["streetTwo"] = streetTwoArray[arrayIndex];
-        oContactObject.address.properties["address" + arrayIndex.toString()].properties["city"] = cityArray[arrayIndex];
-        oContactObject.address.properties["address" + arrayIndex.toString()].properties["state"] = stateArray[arrayIndex];
-        oContactObject.address.properties["address" + arrayIndex.toString()].properties["zip"] = zipArray[arrayIndex];
+        oContactObject.address.subObject["address" + arrayIndex.toString()] = {};
+        oContactObject.address.subObject["address" + arrayIndex.toString()].subObject = {};
+        oContactObject.address.subObject["address" + arrayIndex.toString()].subObject["addressType"] = addressTypeArray[arrayIndex];
+        oContactObject.address.subObject["address" + arrayIndex.toString()].subObject["streetOne"] = streetOneArray[arrayIndex];
+        oContactObject.address.subObject["address" + arrayIndex.toString()].subObject["streetTwo"] = streetTwoArray[arrayIndex];
+        oContactObject.address.subObject["address" + arrayIndex.toString()].subObject["city"] = cityArray[arrayIndex];
+        oContactObject.address.subObject["address" + arrayIndex.toString()].subObject["state"] = stateArray[arrayIndex];
+        oContactObject.address.subObject["address" + arrayIndex.toString()].subObject["zip"] = zipArray[arrayIndex];
       }
       
       oContactObject.timeStamp = Date.now();
@@ -876,7 +876,7 @@ oContact._oContact.post = function(data, callback)
             helpers.log
             (
               7,
-              'rf0jfdt4jqnfhky41bdz' + '\n' +
+              'cuuhauiwnikx632nezey' + '\n' +
               'There was an error appending to the history file' + '\n' +
               'An error here does not necessarily mean the append to history did not happen.' + '\n' +  
               'But an error at this point in the code surely means there was no append to oContact' + '\n' +                                          
@@ -920,7 +920,7 @@ oContact._oContact.post = function(data, callback)
                   helpers.log // Log the error.
                   (
                     7,
-                    '3yu4h64futpwlv4r0829' + '\n' +
+                    '29hgp82vvieqm017vs2g' + '\n' +
                     'Successful write to oContact but unable to remove lock on database' + '\n' +
                     'The following record was appended to the oContact file:' + '\n' +                            
                     JSON.stringify(logObject) + '\n' +   
@@ -942,7 +942,7 @@ oContact._oContact.post = function(data, callback)
               helpers.log // Log the error.
               (
                 5,
-                'qvy7sdzct52wcdpfsjoa' + '\n' +
+                'pswuqoa8s0macj8m3xs0' + '\n' +
                 'There was an error when appending to the oContact file.' + '\n' +
                 'The following record may or may not have been appended to the oContact file:' + '\n' +                            
                 JSON.stringify(logObject) + '\n' +
@@ -990,7 +990,7 @@ oContact._oContact.post = function(data, callback)
                           helpers.log
                           (
                             5,
-                            '451i7vg3zppdsjwhqg3k' + '\n' +
+                            '3s8kxb5rp0sqcapjai35' + '\n' +
                             'Rollback entry in the oContact file was appended successfully' + '\n' +
                             'The following was the record we rolled back:' + '\n' +
                             JSON.stringify(logObject) + '\n'                                   
@@ -1001,7 +1001,7 @@ oContact._oContact.post = function(data, callback)
                           helpers.log
                           (
                             7,
-                            'aiy9ikjt4h6zzrgf8au2' + '\n' +
+                            '5wpo8ge9jbf7oavbpwky' + '\n' +
                             'There was an error appending a rollback entry in the oContact file' + '\n' +
                             'The following record may or may not have been rolled back:' + '\n' +
                             JSON.stringify(logObject) + '\n' +   
@@ -1021,7 +1021,7 @@ oContact._oContact.post = function(data, callback)
                     helpers.log
                     (
                       7,
-                      '49w89mtmagj2ab89mg5k' + '\n' +
+                      'hj38593c7jzdbitg1whh' + '\n' +
                       'There was an error appending a rollback entry in the history file' + '\n' +
                       'A rollback entry may or may not have been written in the oContact file' + '\n' +  
                       'CHECK TO SEE IF history and oContact ARE STILL IN SYNC' + '\n' +                                      
@@ -1168,9 +1168,9 @@ oContact._oContact.put = function(data, callback)
   while (runPhoneTypeLoop === true)
   {
     // Check if the data exists in the payload
-    if(data.payload["phone_properties_phone" + phoneTypeLoopCount.toString() + "_properties_phoneType"])
+    if(data.payload["phone_subObject_phone" + phoneTypeLoopCount.toString() + "_subObject_phoneType"])
     {
-      phoneTypeArray.push(data.payload["phone_properties_phone" + phoneTypeLoopCount.toString() + "_properties_phoneType"]);
+      phoneTypeArray.push(data.payload["phone_subObject_phone" + phoneTypeLoopCount.toString() + "_subObject_phoneType"]);
 
       phoneTypeLoopCount = phoneTypeLoopCount + 1;
     }
@@ -1214,9 +1214,9 @@ oContact._oContact.put = function(data, callback)
   while (runPhoneLoop === true)
   {
     // Check if the data exists in the payload
-    if(data.payload["phone_properties_phone" + phoneLoopCount.toString() + "_properties_phone"])
+    if(data.payload["phone_subObject_phone" + phoneLoopCount.toString() + "_subObject_phone"])
     {
-      phoneArray.push(data.payload["phone_properties_phone" + phoneLoopCount.toString() + "_properties_phone"]);
+      phoneArray.push(data.payload["phone_subObject_phone" + phoneLoopCount.toString() + "_subObject_phone"]);
 
       phoneLoopCount = phoneLoopCount + 1;
     }
@@ -1266,9 +1266,9 @@ oContact._oContact.put = function(data, callback)
   while (runAddressTypeLoop === true)
   {
     // Check if the data exists in the payload
-    if(data.payload["address_properties_address" + addressTypeLoopCount.toString() + "_properties_addressType"])
+    if(data.payload["address_subObject_address" + addressTypeLoopCount.toString() + "_subObject_addressType"])
     {
-      addressTypeArray.push(data.payload["address_properties_address" + addressTypeLoopCount.toString() + "_properties_addressType"]);
+      addressTypeArray.push(data.payload["address_subObject_address" + addressTypeLoopCount.toString() + "_subObject_addressType"]);
 
       addressTypeLoopCount = addressTypeLoopCount + 1;
     }
@@ -1312,9 +1312,9 @@ oContact._oContact.put = function(data, callback)
   while (runStreetOneLoop === true)
   {
     // Check if the data exists in the payload
-    if(data.payload["address_properties_address" + streetOneLoopCount.toString() + "_properties_streetOne"])
+    if(data.payload["address_subObject_address" + streetOneLoopCount.toString() + "_subObject_streetOne"])
     {
-      streetOneArray.push(data.payload["address_properties_address" + streetOneLoopCount.toString() + "_properties_streetOne"]);
+      streetOneArray.push(data.payload["address_subObject_address" + streetOneLoopCount.toString() + "_subObject_streetOne"]);
 
       streetOneLoopCount = streetOneLoopCount + 1;
     }
@@ -1364,9 +1364,9 @@ oContact._oContact.put = function(data, callback)
   while (runStreetTwoLoop === true)
   {
     // Check if the data exists in the payload
-    if(data.payload["address_properties_address" + streetTwoLoopCount.toString() + "_properties_streetTwo"])
+    if(data.payload["address_subObject_address" + streetTwoLoopCount.toString() + "_subObject_streetTwo"])
     {
-      streetTwoArray.push(data.payload["address_properties_address" + streetTwoLoopCount.toString() + "_properties_streetTwo"]);
+      streetTwoArray.push(data.payload["address_subObject_address" + streetTwoLoopCount.toString() + "_subObject_streetTwo"]);
 
       streetTwoLoopCount = streetTwoLoopCount + 1;
     }
@@ -1416,9 +1416,9 @@ oContact._oContact.put = function(data, callback)
   while (runCityLoop === true)
   {
     // Check if the data exists in the payload
-    if(data.payload["address_properties_address" + cityLoopCount.toString() + "_properties_city"])
+    if(data.payload["address_subObject_address" + cityLoopCount.toString() + "_subObject_city"])
     {
-      cityArray.push(data.payload["address_properties_address" + cityLoopCount.toString() + "_properties_city"]);
+      cityArray.push(data.payload["address_subObject_address" + cityLoopCount.toString() + "_subObject_city"]);
 
       cityLoopCount = cityLoopCount + 1;
     }
@@ -1468,9 +1468,9 @@ oContact._oContact.put = function(data, callback)
   while (runStateLoop === true)
   {
     // Check if the data exists in the payload
-    if(data.payload["address_properties_address" + stateLoopCount.toString() + "_properties_state"])
+    if(data.payload["address_subObject_address" + stateLoopCount.toString() + "_subObject_state"])
     {
-      stateArray.push(data.payload["address_properties_address" + stateLoopCount.toString() + "_properties_state"]);
+      stateArray.push(data.payload["address_subObject_address" + stateLoopCount.toString() + "_subObject_state"]);
 
       stateLoopCount = stateLoopCount + 1;
     }
@@ -1520,9 +1520,9 @@ oContact._oContact.put = function(data, callback)
   while (runZipLoop === true)
   {
     // Check if the data exists in the payload
-    if(data.payload["address_properties_address" + zipLoopCount.toString() + "_properties_zip"])
+    if(data.payload["address_subObject_address" + zipLoopCount.toString() + "_subObject_zip"])
     {
-      zipArray.push(data.payload["address_properties_address" + zipLoopCount.toString() + "_properties_zip"]);
+      zipArray.push(data.payload["address_subObject_address" + zipLoopCount.toString() + "_subObject_zip"]);
 
       zipLoopCount = zipLoopCount + 1;
     }
@@ -1591,7 +1591,7 @@ oContact._oContact.put = function(data, callback)
     helpers.log
     (
       5,
-      'oz829cwvx2aninrodwpb' + '\n' +
+      'xgw0ytbdqbu4edd0sfvg' + '\n' +
       'No fields pass the validation process' + '\n'                                  
     ); // End of: helpers.log(...)
 
@@ -1614,7 +1614,7 @@ oContact._oContact.put = function(data, callback)
       helpers.log
       (
         5,
-        'aqb6omvbudt7xucbew3a' + '\n' +
+        'vgag781x88chzciu068y' + '\n' +
         'Unable to get the next gsuid.' + '\n' +
         'The following was the error' + '\n' +
         JSON.stringify(error) + '\n'                                   
@@ -1641,30 +1641,30 @@ oContact._oContact.put = function(data, callback)
     oContactObject.fullName = undefined;
     oContactObject.email = email;
 
-    oContactObject.phone = {};
-    oContactObject.phone.properties = {};
-    for (let arrayIndex = 0; arrayIndex < phoneTypeArray.length; arrayIndex++) 
-    {
-      oContactObject.phone.properties["phone" + arrayIndex.toString()] = {};
-      oContactObject.phone.properties["phone" + arrayIndex.toString()].properties = {};
-      oContactObject.phone.properties["phone" + arrayIndex.toString()].properties["phoneType"] = phoneTypeArray[arrayIndex];
-      oContactObject.phone.properties["phone" + arrayIndex.toString()].properties["phone"] = phoneArray[arrayIndex];
-    }
-
-    oContactObject.address = {};
-    oContactObject.address.properties = {};
-    for (let arrayIndex = 0; arrayIndex < addressTypeArray.length; arrayIndex++) 
-    {
-      oContactObject.address.properties["address" + arrayIndex.toString()] = {};
-      oContactObject.address.properties["address" + arrayIndex.toString()].properties = {};
-      oContactObject.address.properties["address" + arrayIndex.toString()].properties["addressType"] = addressTypeArray[arrayIndex];
-      oContactObject.address.properties["address" + arrayIndex.toString()].properties["streetOne"] = streetOneArray[arrayIndex];
-      oContactObject.address.properties["address" + arrayIndex.toString()].properties["streetTwo"] = streetTwoArray[arrayIndex];
-      oContactObject.address.properties["address" + arrayIndex.toString()].properties["city"] = cityArray[arrayIndex];
-      oContactObject.address.properties["address" + arrayIndex.toString()].properties["state"] = stateArray[arrayIndex];
-      oContactObject.address.properties["address" + arrayIndex.toString()].properties["zip"] = zipArray[arrayIndex];
-    }
-     
+            oContactObject.phone = {};
+            oContactObject.phone.subObject = {};
+            for (let arrayIndex = 0; arrayIndex < phoneTypeArray.length; arrayIndex++) 
+            {
+              oContactObject.phone.subObject["phone" + arrayIndex.toString()] = {};
+              oContactObject.phone.subObject["phone" + arrayIndex.toString()].subObject = {};
+              oContactObject.phone.subObject["phone" + arrayIndex.toString()].subObject["phoneType"] = phoneTypeArray[arrayIndex];
+              oContactObject.phone.subObject["phone" + arrayIndex.toString()].subObject["phone"] = phoneArray[arrayIndex];
+            }
+        
+            oContactObject.address = {};
+            oContactObject.address.subObject = {};
+            for (let arrayIndex = 0; arrayIndex < addressTypeArray.length; arrayIndex++) 
+            {
+              oContactObject.address.subObject["address" + arrayIndex.toString()] = {};
+              oContactObject.address.subObject["address" + arrayIndex.toString()].subObject = {};
+              oContactObject.address.subObject["address" + arrayIndex.toString()].subObject["addressType"] = addressTypeArray[arrayIndex];
+              oContactObject.address.subObject["address" + arrayIndex.toString()].subObject["streetOne"] = streetOneArray[arrayIndex];
+              oContactObject.address.subObject["address" + arrayIndex.toString()].subObject["streetTwo"] = streetTwoArray[arrayIndex];
+              oContactObject.address.subObject["address" + arrayIndex.toString()].subObject["city"] = cityArray[arrayIndex];
+              oContactObject.address.subObject["address" + arrayIndex.toString()].subObject["state"] = stateArray[arrayIndex];
+              oContactObject.address.subObject["address" + arrayIndex.toString()].subObject["zip"] = zipArray[arrayIndex];
+            }
+             
     oContactObject.timeStamp = Date.now();
     oContactObject.deleted = false;
 
@@ -1694,7 +1694,7 @@ oContact._oContact.put = function(data, callback)
               helpers.log // Log the error.
               (
                 7,
-                'qn5plqvt078ua22ub0g5' + '\n' + 
+                'uxp1phut2p2ytq1oow53' + '\n' + 
                 'The following was the error message from getMostRecent:' + '\n' +                                             
                 errorFromGetMostRecent + '\n'                                                 
               ); // End of: helpers.log // Log the error.
@@ -1709,7 +1709,7 @@ oContact._oContact.put = function(data, callback)
               helpers.log // Log the error.
               (
                 7,
-                'h2zlil34hy3vxa7y2zka' + '\n' +
+                'wvfn7rqxv88q5ot5urim' + '\n' +
                 'The following was the error message from getMostRecent:' + '\n' +                                             
                 errorFromGetMostRecent + '\n'  +
                 'Also unable to remove lock on database.' + '\n' + 
@@ -1785,113 +1785,113 @@ oContact._oContact.put = function(data, callback)
 
         for (let arrayIndex = 0; arrayIndex < phoneTypeArray.length; arrayIndex++) 
         {
-          // Preprocessing for phone.properties.phoneX.properties.phoneType
-          if(phoneTypeArray[arrayIndex]) // If the user supplied data for phone.properties.phone0.properties.phoneType
+          // Preprocessing for phone.subObject.phoneX.subObject.phoneType
+          if(phoneTypeArray[arrayIndex]) // If the user supplied data for phone.subObject.phoneX.subObject.phoneType
           {
-            // No preprocessing was specifed for phone.properties.phoneX.properties.phoneType. Use it as was supplied by the user.
+            // No preprocessing was specifed for phone.subObject.phoneX.subObject.phoneType. Use it as was supplied by the user.
           }
-          else // If the user did not supply data for phone.properties.phoneX.properties.phoneType
+          else // If the user did not supply data for phone.subObject.phoneX.subObject.phoneType
           {
-            // Save phone.properties.phoneX.properties.phoneType from the most recent record.
-            oContactObject.phone.properties["phone" + arrayIndex.toString()].properties["phoneType"] = phoneTypeArray[arrayIndex];
+            // Save phone.subObject.phoneX.subObject.phoneType from the most recent record.
+            oContactObject.phone.subObject["phone" + arrayIndex.toString()].subObject["phoneType"] = phoneTypeArray[arrayIndex];
           }
         } 
 
         for (let arrayIndex = 0; arrayIndex < phoneArray.length; arrayIndex++) 
         {
-          // Preprocessing for phone.properties.phoneX.properties.phone
-          if(phoneArray[arrayIndex]) // If the user supplied data for phone.properties.phone0.properties.phoneType
+          // Preprocessing for phone.subObject.phoneX.subObject.phone
+          if(phoneArray[arrayIndex]) // If the user supplied data for phone.subObject.phoneX.subObject.phone
           {
-            // No preprocessing was specifed for phone.properties.phoneX.properties.phone. Use it as was supplied by the user.
+            // No preprocessing was specifed for phone.subObject.phoneX.subObject.phone. Use it as was supplied by the user.
           }
-          else // If the user did not supply data for phone.properties.phoneX.properties.phone
+          else // If the user did not supply data for phone.subObject.phoneX.subObject.phone
           {
-            // Save phone.properties.phoneX.properties.phone from the most recent record.
-            oContactObject.phone.properties["phone" + arrayIndex.toString()].properties["phone"] = phoneArray[arrayIndex];
+            // Save phone.subObject.phoneX.subObject.phone from the most recent record.
+            oContactObject.phone.subObject["phone" + arrayIndex.toString()].subObject["phone"] = phoneArray[arrayIndex];
           }
         } 
 
         for (let arrayIndex = 0; arrayIndex < addressTypeArray.length; arrayIndex++) 
         {
-          // Preprocessing for address.properties.addressX.properties.addressType
-          if(addressTypeArray[arrayIndex]) // If the user supplied data for phone.properties.phone0.properties.phoneType
+          // Preprocessing for address.subObject.addressX.subObject.addressType
+          if(addressTypeArray[arrayIndex]) // If the user supplied data for address.subObject.addressX.subObject.addressType
           {
-            // No preprocessing was specifed for address.properties.addressX.properties.addressType. Use it as was supplied by the user.
+            // No preprocessing was specifed for address.subObject.addressX.subObject.addressType. Use it as was supplied by the user.
           }
-          else // If the user did not supply data for address.properties.addressX.properties.addressType
+          else // If the user did not supply data for address.subObject.addressX.subObject.addressType
           {
-            // Save address.properties.addressX.properties.addressType from the most recent record.
-            oContactObject.phone.properties["phone" + arrayIndex.toString()].properties["addressType"] = addressTypeArray[arrayIndex];
+            // Save address.subObject.addressX.subObject.addressType from the most recent record.
+            oContactObject.address.subObject["address" + arrayIndex.toString()].subObject["addressType"] = addressTypeArray[arrayIndex];
           }
         } 
 
         for (let arrayIndex = 0; arrayIndex < streetOneArray.length; arrayIndex++) 
         {
-          // Preprocessing for address.properties.addressX.properties.streetOne
-          if(streetOneArray[arrayIndex]) // If the user supplied data for phone.properties.phone0.properties.phoneType
+          // Preprocessing for address.subObject.addressX.subObject.streetOne
+          if(streetOneArray[arrayIndex]) // If the user supplied data for address.subObject.addressX.subObject.streetOne
           {
-            // No preprocessing was specifed for address.properties.addressX.properties.streetOne. Use it as was supplied by the user.
+            // No preprocessing was specifed for address.subObject.addressX.subObject.streetOne. Use it as was supplied by the user.
           }
-          else // If the user did not supply data for address.properties.addressX.properties.streetOne
+          else // If the user did not supply data for address.subObject.addressX.subObject.streetOne
           {
-            // Save address.properties.addressX.properties.streetOne from the most recent record.
-            oContactObject.phone.properties["phone" + arrayIndex.toString()].properties["streetOne"] = streetOneArray[arrayIndex];
+            // Save address.subObject.addressX.subObject.streetOne from the most recent record.
+            oContactObject.address.subObject["address" + arrayIndex.toString()].subObject["streetOne"] = streetOneArray[arrayIndex];
           }
         } 
 
         for (let arrayIndex = 0; arrayIndex < streetTwoArray.length; arrayIndex++) 
         {
-          // Preprocessing for address.properties.addressX.properties.streetTwo
-          if(streetTwoArray[arrayIndex]) // If the user supplied data for phone.properties.phone0.properties.phoneType
+          // Preprocessing for address.subObject.addressX.subObject.streetTwo
+          if(streetTwoArray[arrayIndex]) // If the user supplied data for address.subObject.addressX.subObject.streetTwo
           {
-            // No preprocessing was specifed for address.properties.addressX.properties.streetTwo. Use it as was supplied by the user.
+            // No preprocessing was specifed for address.subObject.addressX.subObject.streetTwo. Use it as was supplied by the user.
           }
-          else // If the user did not supply data for address.properties.addressX.properties.streetTwo
+          else // If the user did not supply data for address.subObject.addressX.subObject.streetTwo
           {
-            // Save address.properties.addressX.properties.streetTwo from the most recent record.
-            oContactObject.phone.properties["phone" + arrayIndex.toString()].properties["streetTwo"] = streetTwoArray[arrayIndex];
+            // Save address.subObject.addressX.subObject.streetTwo from the most recent record.
+            oContactObject.address.subObject["address" + arrayIndex.toString()].subObject["streetTwo"] = streetTwoArray[arrayIndex];
           }
         } 
 
         for (let arrayIndex = 0; arrayIndex < cityArray.length; arrayIndex++) 
         {
-          // Preprocessing for address.properties.addressX.properties.city
-          if(cityArray[arrayIndex]) // If the user supplied data for phone.properties.phone0.properties.phoneType
+          // Preprocessing for address.subObject.addressX.subObject.city
+          if(cityArray[arrayIndex]) // If the user supplied data for address.subObject.addressX.subObject.city
           {
-            // No preprocessing was specifed for address.properties.addressX.properties.city. Use it as was supplied by the user.
+            // No preprocessing was specifed for address.subObject.addressX.subObject.city. Use it as was supplied by the user.
           }
-          else // If the user did not supply data for address.properties.addressX.properties.city
+          else // If the user did not supply data for address.subObject.addressX.subObject.city
           {
-            // Save address.properties.addressX.properties.city from the most recent record.
-            oContactObject.phone.properties["phone" + arrayIndex.toString()].properties["city"] = cityArray[arrayIndex];
+            // Save address.subObject.addressX.subObject.city from the most recent record.
+            oContactObject.address.subObject["address" + arrayIndex.toString()].subObject["city"] = cityArray[arrayIndex];
           }
         } 
 
         for (let arrayIndex = 0; arrayIndex < stateArray.length; arrayIndex++) 
         {
-          // Preprocessing for address.properties.addressX.properties.state
-          if(stateArray[arrayIndex]) // If the user supplied data for phone.properties.phone0.properties.phoneType
+          // Preprocessing for address.subObject.addressX.subObject.state
+          if(stateArray[arrayIndex]) // If the user supplied data for address.subObject.addressX.subObject.state
           {
-            // No preprocessing was specifed for address.properties.addressX.properties.state. Use it as was supplied by the user.
+            // No preprocessing was specifed for address.subObject.addressX.subObject.state. Use it as was supplied by the user.
           }
-          else // If the user did not supply data for address.properties.addressX.properties.state
+          else // If the user did not supply data for address.subObject.addressX.subObject.state
           {
-            // Save address.properties.addressX.properties.state from the most recent record.
-            oContactObject.phone.properties["phone" + arrayIndex.toString()].properties["state"] = stateArray[arrayIndex];
+            // Save address.subObject.addressX.subObject.state from the most recent record.
+            oContactObject.address.subObject["address" + arrayIndex.toString()].subObject["state"] = stateArray[arrayIndex];
           }
         } 
 
         for (let arrayIndex = 0; arrayIndex < zipArray.length; arrayIndex++) 
         {
-          // Preprocessing for address.properties.addressX.properties.zip
-          if(zipArray[arrayIndex]) // If the user supplied data for phone.properties.phone0.properties.phoneType
+          // Preprocessing for address.subObject.addressX.subObject.zip
+          if(zipArray[arrayIndex]) // If the user supplied data for address.subObject.addressX.subObject.zip
           {
-            // No preprocessing was specifed for address.properties.addressX.properties.zip. Use it as was supplied by the user.
+            // No preprocessing was specifed for address.subObject.addressX.subObject.zip. Use it as was supplied by the user.
           }
-          else // If the user did not supply data for address.properties.addressX.properties.zip
+          else // If the user did not supply data for address.subObject.addressX.subObject.zip
           {
-            // Save address.properties.addressX.properties.zip from the most recent record.
-            oContactObject.phone.properties["phone" + arrayIndex.toString()].properties["zip"] = zipArray[arrayIndex];
+            // Save address.subObject.addressX.subObject.zip from the most recent record.
+            oContactObject.address.subObject["address" + arrayIndex.toString()].subObject["zip"] = zipArray[arrayIndex];
           }
         } 
 
@@ -1961,7 +1961,7 @@ oContact._oContact.put = function(data, callback)
                         helpers.log // Log the error.
                         (
                           7,
-                          'nzyu35r1vwguyamuh5vc' + '\n' +
+                          '98umjruiyb2u2f01u695' + '\n' +
                           'Successful write to oContact but unable to remove lock on database' + '\n' +
                           'The following record was appended to oContact:' + '\n' +                            
                           JSON.stringify(logObject) + '\n' +   
@@ -1983,7 +1983,7 @@ oContact._oContact.put = function(data, callback)
                     helpers.log // Log the error.
                     (
                       5,
-                      'p4ptf2423evona3k4c66' + '\n' +
+                      '2i60t1crjaighfbpmqfy' + '\n' +
                       'There was an error when appending to the oContact file.' + '\n' +
                       'The following record may or may not have been appended to oContact:' + '\n' +                            
                       JSON.stringify(logObject) + '\n' +
@@ -2042,7 +2042,7 @@ oContact._oContact.put = function(data, callback)
                                 helpers.log
                                 (
                                   5,
-                                  'eq2flut83fsbesd5bivo' + '\n' +
+                                  'vnbp2th75kkygiklgnks' + '\n' +
                                   'Rollback entry in the oContact file was appended successfully' + '\n' +
                                   'The following was the record we rolled back:' + '\n' +
                                   JSON.stringify(logObject) + '\n'                                   
@@ -2053,7 +2053,7 @@ oContact._oContact.put = function(data, callback)
                                 helpers.log
                                 (
                                   7,
-                                  'ci6biy8a78igx4nuwbf3' + '\n' +
+                                  'ctayjcpa8jp7pmf37iyp' + '\n' +
                                   'There was an error appending a rollback entry in the oContact file' + '\n' +
                                   'The following record may or may not have been rolled back:' + '\n' +
                                   JSON.stringify(logObject) + '\n' +   
@@ -2073,7 +2073,7 @@ oContact._oContact.put = function(data, callback)
                           helpers.log
                           (
                             7,
-                            '3gkepdzitjfxh5ww45rq' + '\n' +
+                            '90nzejwvcv93ire5z70f' + '\n' +
                             'There was an error appending a rollback entry in the history file' + '\n' +
                             'A rollback entry may or may not have been written in the oContact file' + '\n' +  
                             'CHECK TO SEE IF history and oContact ARE STILL IN SYNC' + '\n' +                                      
@@ -2098,7 +2098,7 @@ oContact._oContact.put = function(data, callback)
               helpers.log
               (
                 7,
-                'hw87qhe4i12sid26a3ja' + '\n' +
+                'g4evzs521blf1qym9rdx' + '\n' +
                 'There was an error appending to the history file' + '\n' +
                 'An error here does not necessarily mean the append to history did not happen.' + '\n' +  
                 'But an error at this point in the code surely means there was no append to oContact' + '\n' +                                          
@@ -2130,7 +2130,7 @@ oContact._oContact.put = function(data, callback)
             helpers.log // Log the error.
             (
               7,
-              'woitwtaaudkk0ml5e0cn' + '\n' + 
+              '2savq2k7mp16nnicpzpd' + '\n' + 
               'Pipeline error. The message was as follows' + '\n' +                                             
               pipelineError + '\n'                                                 
             ); // End of: helpers.log // Log the error.

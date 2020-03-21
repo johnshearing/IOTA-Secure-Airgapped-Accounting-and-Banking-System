@@ -24,7 +24,7 @@
       <div class="objectWrapper elementWrapper">
         <div class="inputWrapper">
           <div class="inputLabel">Phone Type</div>
-          <select class="resetElement" name="phone_properties_phone0_properties_phoneType">
+          <select class="resetElement" name="phone_subObject_phone0_subObject_phoneType">
             <option value="" style="display: list-item;">Select the Phone Type</option>
             <option value="Mobile" style="display: list-item;">Mobile Phone</option>
             <option value="Home" style="display: list-item;">Home Phone</option>
@@ -34,7 +34,7 @@
         </div>
         <div class="inputWrapper">
           <div class="inputLabel">Phone</div>
-          <input class="resetElement" name="phone_properties_phone0_properties_phone" type="text" placeholder="Enter a Phone Number"/>
+          <input class="resetElement" name="phone_subObject_phone0_subObject_phone" type="text" placeholder="Enter a Phone Number"/>
         </div>
         <button type="button" class="disabled controlObjectButton moveObjectUpButton blue" disabled>Move Up</button>
         <button type="button" class="disabled controlObjectButton moveObjectDownButton blue" disabled>Move Down</button>
@@ -47,7 +47,7 @@
       <div class="objectWrapper elementWrapper">
         <div class="inputWrapper">
           <div class="inputLabel">Address Type</div>
-          <select class="resetElement" name="address_properties_address0_properties_addressType" placeholder="Enter an Home Address Type">
+          <select class="resetElement" name="address_subObject_address0_subObject_addressType" placeholder="Enter an Home Address Type">
             <option value="" style="display: list-item;">Select the Address Type</option>
             <option value="Home Address" style="display: list-item;">Home Address</option>
             <option value="Work Address" style="display: list-item;">Work Address</option>
@@ -57,23 +57,23 @@
         </div>
         <div class="inputWrapper">
           <div class="inputLabel">Street 1</div>
-          <input class="resetElement" name="address_properties_address0_properties_streetOne" type="text" placeholder="Enter a Street Address"/>
+          <input class="resetElement" name="address_subObject_address0_subObject_streetOne" type="text" placeholder="Enter a Street Address"/>
         </div>
         <div class="inputWrapper">
           <div class="inputLabel">Street 2</div>
-          <input class="resetElement" name="address_properties_address0_properties_streetTwo" type="text" placeholder="optional"/>
+          <input class="resetElement" name="address_subObject_address0_subObject_streetTwo" type="text" placeholder="optional"/>
         </div>
         <div class="inputWrapper">
           <div class="inputLabel">City</div>
-          <input class="resetElement" name="address_properties_address0_properties_city" type="text" placeholder="Enter a City"/>
+          <input class="resetElement" name="address_subObject_address0_subObject_city" type="text" placeholder="Enter a City"/>
         </div>
         <div class="inputWrapper">
           <div class="inputLabel">State</div>
-          <input class="resetElement" name="address_properties_address0_properties_state" type="text" placeholder="Enter a State"/>
+          <input class="resetElement" name="address_subObject_address0_subObject_state" type="text" placeholder="Enter a State"/>
         </div>
         <div class="inputWrapper">
           <div class="inputLabel">Zip Code</div>
-          <input class="resetElement" name="address_properties_address0_properties_zip" type="text" placeholder="Enter a Zip Code"/>
+          <input class="resetElement" name="address_subObject_address0_subObject_zip" type="text" placeholder="Enter a Zip Code"/>
         </div>
         <button type="button" class="disabled controlObjectButton moveObjectUpButton blue" disabled>Move Up</button>
         <button type="button" class="disabled controlObjectButton moveObjectDownButton blue" disabled>Move Down</button>
@@ -107,9 +107,6 @@ app.client = {}
 
 
 // Define interface function for making API calls.
-// This XMLHttpRequest is one of 3 ways that we call for data from the server.
-// Here we use XMLHttpRequest to retrive JSON data from a table that contains only one line. 
-// Mostly we are using this type of call right now for managing tokens.
 app.client.request = function(headers,path,method,queryStringObject,payload,callback)
 {
   // Set defaults
@@ -530,12 +527,12 @@ app.loadoContactAddPage = function()
   // End of: Define the function that fires when the removeObjectButton is selected.
 
 
-  // Bind the function above to the onClick event of the addNewObjectButtons.
+  // Bind the function above to the onClick event of the removeObjectButtons.
   document.querySelectorAll('.removeObjectButton').forEach(function(currentButton)
   {
     currentButton.addEventListener("click", onClickBehaviorForRemoveObjectButton);
   });
-  // End of: Bind the function above to the onClick event of the addNewObjectButtons.
+  // End of: Bind the function above to the onClick event of the removeObjectButtons.
 
 
   // Define the function that fires when the addNewObjectButton is selected.
@@ -611,7 +608,7 @@ app.loadoContactAddPage = function()
   });  
   // End of: Bind the function above to the onClick event of the addNewObjectButtons.
 
-}; // End of: app.loadoContactEditPage = function(){...}
+}; // End of: app.loadoContactAddPage = function(){...}
 
 
 
@@ -625,7 +622,7 @@ function renumberNamedElementsInGroupWrapper(groupWrapper)
     // Loop through the form elements inside each elementWrapper.
     elementWrapper.querySelectorAll('.resetElement').forEach(function(fieldElement)
     {
-      // Get the form lement's name.
+      // Get the form element's name.
       let previousNameAttribute = fieldElement.getAttribute("name");
       
       // Define a function to change the numeral in the name to match it's position in the groupWrapper.

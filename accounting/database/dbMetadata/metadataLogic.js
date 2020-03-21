@@ -2,6 +2,8 @@
 /*
 / Handlers for the "metadata" table.
 / This program was built by meta.js starting at yx52pvsi0kn9p5o46hrq
+/ Any changes made to this program will be overwritten next time the application is generated.
+/ Make your changes in the generator meta.js or in the data dictionary metadata.json
 */
 
 "use strict";
@@ -56,7 +58,7 @@ metadata.serveListPage = function(data, callback)
             helpers.log
             (            
               5,
-              'z6176yk6t6zw4ys1sqlv' + '\n' +
+              'rcboql9svepyqbkdeb4r' + '\n' +
               'There was an error or the concatenated templates were not returned.' + '\n' +
               'This was the error:' + '\n' +
               JSON.stringify(errorAddUnivTemplates) + '\n'
@@ -72,7 +74,7 @@ metadata.serveListPage = function(data, callback)
         helpers.log
         (
           5,
-          'oh2tqolzn1bzeoize7nz' + '\n' +
+          'esgm85kpp0tpjvvtt398' + '\n' +
           'There was an error or no template was returned.' + '\n' +
           'This was the error:' + '\n' +
           JSON.stringify(errorGetTemplate) + '\n'
@@ -89,7 +91,7 @@ metadata.serveListPage = function(data, callback)
     helpers.log
     (
       5,
-      'wa32tpk25f421uu9ywzf' + '\n' +
+      '99vrpezjwqtwwt28dgzg' + '\n' +
       'Method not get. Only gets allowed.' + '\n'
     );
 
@@ -136,7 +138,7 @@ metadata.serveAddPage = function(data, callback)
             helpers.log
             (            
               5,
-              'va3qd80b1p5md3x06bxc' + '\n' +
+              'mxz7xw9qwvxlzeknmt4w' + '\n' +
               'There was an error or the concatenated templates were not returned.' + '\n' +
               'This was the error:' + '\n' +
               JSON.stringify(errorAddUnivTemplates) + '\n'
@@ -152,7 +154,7 @@ metadata.serveAddPage = function(data, callback)
         helpers.log
         (
           5,
-          'rmxlppdnrdknd2fx2jiv' + '\n' +
+          'euv799yq2v1bvlruevy0' + '\n' +
           'There was an error or no template was returned.' + '\n' +
           'This was the error:' + '\n' +
           JSON.stringify(errorGetTemplate) + '\n'
@@ -169,7 +171,7 @@ metadata.serveAddPage = function(data, callback)
     helpers.log
     (
       5,
-      'z37rzcpz3dlgg0tvbdh2' + '\n' +
+      'aq625m2l8s6mguf8o9tp' + '\n' +
       'Method not get. Only gets allowed.' + '\n'
     );
 
@@ -216,7 +218,7 @@ metadata.serveEditPage = function(data, callback)
             helpers.log
             (            
               5,
-              'uw1npysczr9dt5a1h0mw' + '\n' +
+              'w9lc78vfzrurvpmg0wjp' + '\n' +
               'There was an error or the concatenated templates were not returned.' + '\n' +
               'This was the error:' + '\n' +
               JSON.stringify(errorAddUnivTemplates) + '\n'
@@ -232,7 +234,7 @@ metadata.serveEditPage = function(data, callback)
         helpers.log
         (
           5,
-          'o1ofipmu4ivj78wcfoc8' + '\n' +
+          'aemczewl0jxovgaa2odr' + '\n' +
           'There was an error or no template was returned.' + '\n' +
           'This was the error:' + '\n' +
           JSON.stringify(errorGetTemplate) + '\n'
@@ -249,7 +251,7 @@ metadata.serveEditPage = function(data, callback)
     helpers.log
     (
       5,
-      'iapox2bgikw6kbllg7l8' + '\n' +
+      '51tcvuxx4o7q7zfbc3an' + '\n' +
       'Method not get. Only gets allowed.' + '\n'
     );
 
@@ -283,7 +285,7 @@ metadata.metadata = function(data, callback)
     helpers.log
     (
       5,
-      'x6la3sm5q6z2inpuhi5i' + '\n' +
+      'x25o2kvwq2k21aq6pjk2' + '\n' +
       'The method was not one of the acceptable methods' + '\n'
     ); 
 
@@ -309,76 +311,247 @@ metadata._metadata = {};
 metadata._metadata.post = function(data, callback)
 {
   // Field validation starts here.
-  // Get table_properties_tableName from payload
-  let table_properties_tableName = data.payload["table_properties_tableName"];
+  // Get tableName from payload
+  let tableName = data.payload["tableName"];
 
   // passIfString&NotEmptyThenTrim Default behavior from meta.js at ulg5xxvzgr7efln9xur9
-  if(typeof(table_properties_tableName) != 'string'){return callback(400, {'Error' : 'table_properties_tableName must be of datatype string'});}
-  if(!table_properties_tableName || table_properties_tableName.trim().length === 0){return callback(400, {'Error' : 'No table_properties_tableName was entered'});}else{table_properties_tableName = table_properties_tableName.trim()}
+  if(typeof(tableName) != 'string'){return callback(400, {'Error' : 'tableName must be of datatype string'});}
+  if(!tableName || tableName.trim().length === 0){return callback(400, {'Error' : 'No tableName was entered'});}else{tableName = tableName.trim()}
 
-  // Get table_properties_favoriteFlavors_properties_icecream from payload
-  let table_properties_favoriteFlavors_properties_icecream = data.payload["table_properties_favoriteFlavors_properties_icecream"];
-
-  // passIfString&NotEmptyThenTrim Default behavior from meta.js at ulg5xxvzgr7efln9xur9
-  if(typeof(table_properties_favoriteFlavors_properties_icecream) != 'string'){return callback(400, {'Error' : 'table_properties_favoriteFlavors_properties_icecream must be of datatype string'});}
-  if(!table_properties_favoriteFlavors_properties_icecream || table_properties_favoriteFlavors_properties_icecream.trim().length === 0){return callback(400, {'Error' : 'No table_properties_favoriteFlavors_properties_icecream was entered'});}else{table_properties_favoriteFlavors_properties_icecream = table_properties_favoriteFlavors_properties_icecream.trim()}
-
-  // Get table_properties_favoriteFlavors_properties_pie from payload
-  let table_properties_favoriteFlavors_properties_pie = data.payload["table_properties_favoriteFlavors_properties_pie"];
+  // Get directory from payload
+  let directory = data.payload["directory"];
 
   // passIfString&NotEmptyThenTrim Default behavior from meta.js at ulg5xxvzgr7efln9xur9
-  if(typeof(table_properties_favoriteFlavors_properties_pie) != 'string'){return callback(400, {'Error' : 'table_properties_favoriteFlavors_properties_pie must be of datatype string'});}
-  if(!table_properties_favoriteFlavors_properties_pie || table_properties_favoriteFlavors_properties_pie.trim().length === 0){return callback(400, {'Error' : 'No table_properties_favoriteFlavors_properties_pie was entered'});}else{table_properties_favoriteFlavors_properties_pie = table_properties_favoriteFlavors_properties_pie.trim()}
+  if(typeof(directory) != 'string'){return callback(400, {'Error' : 'directory must be of datatype string'});}
+  if(!directory || directory.trim().length === 0){return callback(400, {'Error' : 'No directory was entered'});}else{directory = directory.trim()}
 
-  // Get table_properties_favoriteFlavors_properties_soup from payload
-  let table_properties_favoriteFlavors_properties_soup = data.payload["table_properties_favoriteFlavors_properties_soup"];
-
-  // passIfString&NotEmptyThenTrim Default behavior from meta.js at ulg5xxvzgr7efln9xur9
-  if(typeof(table_properties_favoriteFlavors_properties_soup) != 'string'){return callback(400, {'Error' : 'table_properties_favoriteFlavors_properties_soup must be of datatype string'});}
-  if(!table_properties_favoriteFlavors_properties_soup || table_properties_favoriteFlavors_properties_soup.trim().length === 0){return callback(400, {'Error' : 'No table_properties_favoriteFlavors_properties_soup was entered'});}else{table_properties_favoriteFlavors_properties_soup = table_properties_favoriteFlavors_properties_soup.trim()}
-
-  // Get table_properties_favoriteFlavors_properties_fish from payload
-  let table_properties_favoriteFlavors_properties_fish = data.payload["table_properties_favoriteFlavors_properties_fish"];
+  // Get addRoutes from payload
+  let addRoutes = data.payload["addRoutes"];
 
   // passIfString&NotEmptyThenTrim Default behavior from meta.js at ulg5xxvzgr7efln9xur9
-  if(typeof(table_properties_favoriteFlavors_properties_fish) != 'string'){return callback(400, {'Error' : 'table_properties_favoriteFlavors_properties_fish must be of datatype string'});}
-  if(!table_properties_favoriteFlavors_properties_fish || table_properties_favoriteFlavors_properties_fish.trim().length === 0){return callback(400, {'Error' : 'No table_properties_favoriteFlavors_properties_fish was entered'});}else{table_properties_favoriteFlavors_properties_fish = table_properties_favoriteFlavors_properties_fish.trim()}
+  if(typeof(addRoutes) != 'string'){return callback(400, {'Error' : 'addRoutes must be of datatype string'});}
+  if(!addRoutes || addRoutes.trim().length === 0){return callback(400, {'Error' : 'No addRoutes was entered'});}else{addRoutes = addRoutes.trim()}
 
-  // Get table_properties_directory from payload
-  let table_properties_directory = data.payload["table_properties_directory"];
-
-  // passIfString&NotEmptyThenTrim Default behavior from meta.js at ulg5xxvzgr7efln9xur9
-  if(typeof(table_properties_directory) != 'string'){return callback(400, {'Error' : 'table_properties_directory must be of datatype string'});}
-  if(!table_properties_directory || table_properties_directory.trim().length === 0){return callback(400, {'Error' : 'No table_properties_directory was entered'});}else{table_properties_directory = table_properties_directory.trim()}
-
-  // Get table_properties_addRoutes from payload
-  let table_properties_addRoutes = data.payload["table_properties_addRoutes"];
+  // Get allowCodeGeneration from payload
+  let allowCodeGeneration = data.payload["allowCodeGeneration"];
 
   // passIfString&NotEmptyThenTrim Default behavior from meta.js at ulg5xxvzgr7efln9xur9
-  if(typeof(table_properties_addRoutes) != 'string'){return callback(400, {'Error' : 'table_properties_addRoutes must be of datatype string'});}
-  if(!table_properties_addRoutes || table_properties_addRoutes.trim().length === 0){return callback(400, {'Error' : 'No table_properties_addRoutes was entered'});}else{table_properties_addRoutes = table_properties_addRoutes.trim()}
-
-  // Get table_properties_allowCodeGeneration from payload
-  let table_properties_allowCodeGeneration = data.payload["table_properties_allowCodeGeneration"];
-
-  // passIfString&NotEmptyThenTrim Default behavior from meta.js at ulg5xxvzgr7efln9xur9
-  if(typeof(table_properties_allowCodeGeneration) != 'string'){return callback(400, {'Error' : 'table_properties_allowCodeGeneration must be of datatype string'});}
-  if(!table_properties_allowCodeGeneration || table_properties_allowCodeGeneration.trim().length === 0){return callback(400, {'Error' : 'No table_properties_allowCodeGeneration was entered'});}else{table_properties_allowCodeGeneration = table_properties_allowCodeGeneration.trim()}
+  if(typeof(allowCodeGeneration) != 'string'){return callback(400, {'Error' : 'allowCodeGeneration must be of datatype string'});}
+  if(!allowCodeGeneration || allowCodeGeneration.trim().length === 0){return callback(400, {'Error' : 'No allowCodeGeneration was entered'});}else{allowCodeGeneration = allowCodeGeneration.trim()}
 
 
-  // Enforcing uniqueness of the table.properties.tableName field.
-  // Will toggle this to false if we find the table.properties.tableName already exists in metadata.
+  // Start of: Load the fieldNameArray dynamically once the payload is known.
+  // Behavior from meta.js at lefq4oks90h34rvcw8sg
+  let fieldNameArray = [];
+  let runFieldNameLoop = true;
+  let fieldNameLoopCount = 0;
+
+  while (runFieldNameLoop === true)
+  {
+    // Check if the data exists in the payload
+    if(data.payload["field_subObject_field" + fieldNameLoopCount.toString() + "_subObject_fieldName"])
+    {
+      fieldNameArray.push(data.payload["field_subObject_field" + fieldNameLoopCount.toString() + "_subObject_fieldName"]);
+      
+      fieldNameLoopCount = fieldNameLoopCount + 1;
+    }
+    else // No more fieldName variables were sent by the client.  
+    {
+      runFieldNameLoop = false;      
+    }    
+  } // End of: while (runFieldNameLoop === true){...}
+  // End of: Load the fieldNameArray dynamically once the payload is known.  
+
+                  
+  // Start of: Validate elements in the fieldNameArray
+  // passIfString&NotEmptyThenTrim
+  // Behavior from meta.js at fkb3ulfqr09ryyc0rb0d
+  fieldNameArray.forEach(function(arrayElement)
+  {
+    if(typeof(arrayElement) != 'string'){return callback(400, {'Error' : 'fieldName must be of datatype string'});}
+    if(!arrayElement || arrayElement.trim().length === 0){return callback(400, {'Error' : 'No fieldName was entered'});}else{arrayElement = arrayElement.trim()}
+  });
+  // End of: Validate elements in the fieldNameArray  
+
+  // Start of: Load the dataTypeArray dynamically once the payload is known.
+  // Behavior from meta.js at lefq4oks90h34rvcw8sg
+  let dataTypeArray = [];
+  let runDataTypeLoop = true;
+  let dataTypeLoopCount = 0;
+
+  while (runDataTypeLoop === true)
+  {
+    // Check if the data exists in the payload
+    if(data.payload["field_subObject_field" + dataTypeLoopCount.toString() + "_subObject_dataType"])
+    {
+      dataTypeArray.push(data.payload["field_subObject_field" + dataTypeLoopCount.toString() + "_subObject_dataType"]);
+      
+      dataTypeLoopCount = dataTypeLoopCount + 1;
+    }
+    else // No more dataType variables were sent by the client.  
+    {
+      runDataTypeLoop = false;      
+    }    
+  } // End of: while (runDataTypeLoop === true){...}
+  // End of: Load the dataTypeArray dynamically once the payload is known.  
+
+  // Start of: Validate elements in the dataTypeArray
+  // passMenuItemsOnly
+  // Behavior from meta.js at 69nq4ck9lcdakwpb58o6
+  dataTypeArray.forEach(function(arrayElement)
+  {
+    if(typeof(arrayElement) != 'string')
+    {
+      return callback(400, {'Error' : 'dataType must be of datatype string'});
+    }
+  
+    if
+    (
+      arrayElement !== "string"
+      && arrayElement !== "boolean"
+      && arrayElement !== "object"
+    )
+    {
+      return callback(400, {'Error' : 'dataType does not match menu options'});
+    }
+  });
+  // End of: Validate elements in the dataTypeArray
+
+
+  // Start of: Load the uniqueArray dynamically once the payload is known.
+  // Behavior from meta.js at lefq4oks90h34rvcw8sg
+  let uniqueArray = [];
+  let runUniqueLoop = true;
+  let uniqueLoopCount = 0;
+
+  while (runUniqueLoop === true)
+  {
+    // Check if the data exists in the payload
+    if(data.payload["field_subObject_field" + uniqueLoopCount.toString() + "_subObject_unique"])
+    {
+      uniqueArray.push(data.payload["field_subObject_field" + uniqueLoopCount.toString() + "_subObject_unique"]);
+      
+      uniqueLoopCount = uniqueLoopCount + 1;
+    }
+    else // No more unique variables were sent by the client.  
+    {
+      runUniqueLoop = false;      
+    }    
+  } // End of: while (runUniqueLoop === true){...}
+  // End of: Load the uniqueArray dynamically once the payload is known.  
+
+  // Start of: Validate elements in the uniqueArray
+  // passMenuItemsOnly
+  // Behavior from meta.js at 69nq4ck9lcdakwpb58o6
+  uniqueArray.forEach(function(arrayElement)
+  {
+    if(typeof(arrayElement) != 'string')
+    {
+      return callback(400, {'Error' : 'unique must be of datatype string'});
+    }
+  
+    if
+    (
+      arrayElement !== "true"
+      && arrayElement !== "false"
+    )
+    {
+      return callback(400, {'Error' : 'unique does not match menu options'});
+    }
+  });
+  // End of: Validate elements in the uniqueArray
+
+
+  // Start of: Load the publishedArray dynamically once the payload is known.
+  // Behavior from meta.js at lefq4oks90h34rvcw8sg
+  let publishedArray = [];
+  let runPublishedLoop = true;
+  let publishedLoopCount = 0;
+
+  while (runPublishedLoop === true)
+  {
+    // Check if the data exists in the payload
+    if(data.payload["field_subObject_field" + publishedLoopCount.toString() + "_subObject_published"])
+    {
+      publishedArray.push(data.payload["field_subObject_field" + publishedLoopCount.toString() + "_subObject_published"]);
+      
+      publishedLoopCount = publishedLoopCount + 1;
+    }
+    else // No more published variables were sent by the client.  
+    {
+      runPublishedLoop = false;      
+    }    
+  } // End of: while (runPublishedLoop === true){...}
+  // End of: Load the publishedArray dynamically once the payload is known.  
+
+  // Start of: Validate elements in the publishedArray
+  // passMenuItemsOnly
+  // Behavior from meta.js at 69nq4ck9lcdakwpb58o6
+  publishedArray.forEach(function(arrayElement)
+  {
+    if(typeof(arrayElement) != 'string')
+    {
+      return callback(400, {'Error' : 'published must be of datatype string'});
+    }
+  
+    if
+    (
+      arrayElement !== "true"
+      && arrayElement !== "false"
+    )
+    {
+      return callback(400, {'Error' : 'published does not match menu options'});
+    }
+  });
+  // End of: Validate elements in the publishedArray
+
+
+  // Start of: Load the elementNameArray dynamically once the payload is known.
+  // Behavior from meta.js at lefq4oks90h34rvcw8sg
+  let elementNameArray = [];
+  let runElementNameLoop = true;
+  let elementNameLoopCount = 0;
+
+  while (runElementNameLoop === true)
+  {
+    // Check if the data exists in the payload
+    if(data.payload["field_subObject_field" + elementNameLoopCount.toString() + "_subObject_defaultElement_subObject_defaultElement"])
+    {
+      elementNameArray.push(data.payload["field_subObject_field" + elementNameLoopCount.toString() + "_subObject_defaultElement_subObject_defaultElement"]);
+      
+      elementNameLoopCount = elementNameLoopCount + 1;
+    }
+    else // No more elementName variables were sent by the client.  
+    {
+      runElementNameLoop = false;      
+    }    
+  } // End of: while (runElementNameLoop === true){...}
+  // End of: Load the elementNameArray dynamically once the payload is known.  
+
+                  
+  // Start of: Validate elements in the elementNameArray
+  // passIfString&NotEmptyThenTrim
+  // Behavior from meta.js at fkb3ulfqr09ryyc0rb0d
+  elementNameArray.forEach(function(arrayElement)
+  {
+    if(typeof(arrayElement) != 'string'){return callback(400, {'Error' : 'elementName must be of datatype string'});}
+    if(!arrayElement || arrayElement.trim().length === 0){return callback(400, {'Error' : 'No elementName was entered'});}else{arrayElement = arrayElement.trim()}
+  });
+  // End of: Validate elements in the elementNameArray  
+
+  // Enforcing uniqueness of the tableName field.
+  // Will toggle this to false if we find the tableName already exists in metadata.
   // Behavior from meta.js at rmkfkaef7xo3gyvnvgm4
-  let table_properties_tableName_IsUnused = true;  
+  let tableName_IsUnused = true;  
 
-  // Using this to track the primary key of a record that we might encounter with the candidate table.properties.tableName.
-  // If we encounter this primary key again we will check to see if the table.properties.tableName has been changed.
-  // If it has then the candidate table.properties.tableName will be marked as available again.
-  let uniqueIdOfRecordHoldingCandidate_Table_properties_tableName = false; 
+  // Using this to track the primary key of a record that we might encounter with the candidate tableName.
+  // If we encounter this primary key again we will check to see if the tableName has been changed.
+  // If it has then the candidate tableName will be marked as available again.
+  let uniqueIdOfRecordHoldingCandidate_TableName = false; 
                         
 
-  // To ensure the table.properties.tableName is unique we will read every record in 
-  // metadata and compare with the table.properties.tableName provided.
+  // To ensure the tableName is unique we will read every record in 
+  // metadata and compare with the tableName provided.
 
   // This function sets up a stream where each chunk of data is a complete line in the metadata file.
   let readInterface = readline.createInterface
@@ -388,13 +561,13 @@ metadata._metadata.post = function(data, callback)
     }
   );
   
-  // Look at each record in the file and set a flag if the table.properties.tableName matches the table.properties.tableName provided by the user.
+  // Look at each record in the file and set a flag if the tableName matches the tableName provided by the user.
   readInterface.on('line', function(line) 
   {
     // Convert the JSON string from metadata into an object.
     let lineObject = JSON.parse(line);
 
-    // Several different record sets with the supplied table.properties.tableName and the same metadataId 
+    // Several different record sets with the supplied tableName and the same metadataId 
     // may exist already if the record has been changed or deleted prior to this operation.
 
     // A modified record is simply a new record with the same metadataId as an existing record.
@@ -408,74 +581,74 @@ metadata._metadata.post = function(data, callback)
 
     // A deleted record in this system is simply an identical record appended with 
     // the deleted field set to true. 
-    // So depending on how many times the table.properties.tableName has been added and deleted there may 
+    // So depending on how many times the tableName has been added and deleted there may 
     // be several sets of records in the metadata table currently 
-    // that have the same table.properties.tableName and the same metadataId.
+    // that have the same tableName and the same metadataId.
     // The table can be packed occasionally to get rid of these deleted record sets. 
     // Deletes are handled as appends with the deleted field set to true because real 
     // deletes tie up the table for a long time.
 
-    // In this table, the table.properties.tableName is a unique key as well as the metadataId.
+    // In this table, the tableName is a unique key as well as the metadataId.
     // The metadataId also serves as the primary key.
-    // The difference is that the metadataId may never change whereas the table.properties.tableName
-    // may be changed to something different if a valid record for that table.properties.tableName
+    // The difference is that the metadataId may never change whereas the tableName
+    // may be changed to something different if a valid record for that tableName
     // does not already exist.    
 
     // When adding a record we first make sure that the record does NOT already exist.
-    // There should be no record with the current table.properties.tableName or if there is then 
-    // the last record with this table.properties.tableName must have the deleted field set to true.
+    // There should be no record with the current tableName or if there is then 
+    // the last record with this tableName must have the deleted field set to true.
 
     // When changing a record we:
-    // 1. Make sure that the record with this table.properties.tableName does indeed exist and...
-    // 2. that the last instance of a record with this table.properties.tableName is not deleted.
+    // 1. Make sure that the record with this tableName does indeed exist and...
+    // 2. that the last instance of a record with this tableName is not deleted.
   
-    // It is ok to add a new record with this same table.properties.tableName again when the last instance 
+    // It is ok to add a new record with this same tableName again when the last instance 
     // of this record encountered in the stream has the deleted flag set to true. 
-    // In that case, the metadataId will be different but the table.properties.tableName will be the same.         
+    // In that case, the metadataId will be different but the tableName will be the same.         
 
-    // As explained above, only the last matching record for a particular table.properties.tableName matters.
+    // As explained above, only the last matching record for a particular tableName matters.
     // It's like that old game "She loves me, She loves me not".
 
-    if (table_properties_tableName == lineObject.table.properties.tableName) // we found a matching entry
+    if (tableName == lineObject.tableName) // we found a matching entry
     {
       if (lineObject.deleted == false) // The record has not been deleted so it's a duplicate. Not unique.
       {
-        table_properties_tableName_IsUnused = false; // This flag used in the on close event listener below. 
+        tableName_IsUnused = false; // This flag used in the on close event listener below. 
 
         // If this record (record with this primary key) is encountered further down where it has been deleted 
-        // or where the table.properties.tableName has been changed with a put operation:
-        // Then the candidate table.properties.tableName will be available again as we continue searching through the records.
-        // We are already checking if this table.properties.tableName becomes available again by deletion.
-        // Now we need to check if the table.properties.tableName becomes available because the record with this primary 
-        // key gets changed with a new table.properties.tableName.
-        // That will make the candidate table.properties.tableName unique and available again.
+        // or where the tableName has been changed with a put operation:
+        // Then the candidate tableName will be available again as we continue searching through the records.
+        // We are already checking if this tableName becomes available again by deletion.
+        // Now we need to check if the tableName becomes available because the record with this primary 
+        // key gets changed with a new tableName.
+        // That will make the candidate tableName unique and available again.
         // So record this global sequential unique id (the metadataId in this case).
-        // If we find the gsuid again, then check if the table.properties.tableName has changed.
+        // If we find the gsuid again, then check if the tableName has changed.
         // If it has been changed then:
-        // 1. Set the table_properties_tableName_IsUnused flag to true again
+        // 1. Set the tableName_IsUnused flag to true again
         // 2. clear out the variable tracking the uniqueId of the record.
-        uniqueIdOfRecordHoldingCandidate_Table_properties_tableName = lineObject.metadataId;
+        uniqueIdOfRecordHoldingCandidate_TableName = lineObject.metadataId;
       }
       // The matching record we found has been deleted so it may as well not exist. The new record is still unique.
       else 
       {
-        table_properties_tableName_IsUnused = true;
+        tableName_IsUnused = true;
       } 
     } // End of: if we found a matching entry
 
-    // If we have seen this primary key before and flagged the table.properties.tableName already taken 
-    // because it was identical to the table.properties.tableName we are trying to add and it had not been deleted:
+    // If we have seen this primary key before and flagged the tableName already taken 
+    // because it was identical to the tableName we are trying to add and it had not been deleted:
 
-    // Ok, the current record is not holding the candidate table.properties.tableName but 
+    // Ok, the current record is not holding the candidate tableName but 
     // maybe it was in the past and someone changed it.
-    // if the candidate table.properties.tableName is flagged unavailable and we are looking at the record that was flagged:
-    else if(table_properties_tableName_IsUnused === false && uniqueIdOfRecordHoldingCandidate_Table_properties_tableName === lineObject.metadataId)
+    // if the candidate tableName is flagged unavailable and we are looking at the record that was flagged:
+    else if(tableName_IsUnused === false && uniqueIdOfRecordHoldingCandidate_TableName === lineObject.metadataId)
     {
-      // Check if the table.properties.tableName is no longer holding the candidate table.properties.tableName.
-      // If it is not holding the candidate table.properties.tableName then flag the table.properties.tableName 
+      // Check if the tableName is no longer holding the candidate tableName.
+      // If it is not holding the candidate tableName then flag the tableName 
       // available again and clear out the variable tracking this primary key.
-      table_properties_tableName_IsUnused = true;
-      uniqueIdOfRecordHoldingCandidate_Table.properties.tableName = false;
+      tableName_IsUnused = true;
+      uniqueIdOfRecordHoldingCandidate_TableName = false;
     }
 
   }); // End of: readInterface.on('line', function(line){...}
@@ -484,27 +657,27 @@ metadata._metadata.post = function(data, callback)
 
 
 
-  // This listener fires after we have discovered if the table.properties.tableName is 
+  // This listener fires after we have discovered if the tableName is 
   // unique or not, and have then closed the readable stream from metadata.
-  // The callback function defined here will append the record if the table.properties.tableName 
+  // The callback function defined here will append the record if the tableName 
   // was found to be unique.
   // Behavior from meta.js at aiwaoocd1uegzjbqeydk
   readInterface.on('close', function() 
   {
-    // If the table.properties.tableName already exists then exit this process without appending the record.
-    if (!table_properties_tableName_IsUnused) 
+    // If the tableName already exists then exit this process without appending the record.
+    if (!tableName_IsUnused) 
     {      
       helpers.log
       (
         5,
-        '0f5hbesbazu87lasxp29' + '\n' +
-        'The table.properties.tableName : ' + table_properties_tableName + ' already exists' + '\n'                                  
+        'rgif1jm9v5s3tgd24b0h' + '\n' +
+        'The tableName : ' + tableName + ' already exists' + '\n'                                  
       ); // End of: helpers.log(...)
 
-      return callback(400, {'Error' : 'The table.properties.tableName already exists'});
+      return callback(400, {'Error' : 'The tableName already exists'});
     }
 
-    // If we made it to this point then the candidate table.properties.tableName is unique so continue on with the append opperation.
+    // If we made it to this point then the candidate tableName is unique so continue on with the append opperation.
     // Behavior from meta.js at gwwelr17hmxvq4spdrcl
     
 
@@ -525,7 +698,7 @@ metadata._metadata.post = function(data, callback)
         helpers.log
         (
           5,
-          'k5kxdv93m899he7b1gck' + '\n' +
+          'llnu2i8ce94xlnckw6pb' + '\n' +
           'Unable to get the next gsuid.' + '\n' +
           'The following was the error' + '\n' +
           JSON.stringify(error) + '\n'                                   
@@ -545,20 +718,29 @@ metadata._metadata.post = function(data, callback)
       let metadataObject = {};
       metadataObject.metadataId = nextIdObject.nextId;
 
+      metadataObject.tableName = tableName;
+      metadataObject.directory = directory;
+      metadataObject.addRoutes = addRoutes;
+      metadataObject.allowCodeGeneration = allowCodeGeneration;
 
-      metadataObject.table = {};
-      metadataObject.table.properties = {};
-      metadataObject.table.properties.tableName = table_properties_tableName;
+      metadataObject.field = {};
+      metadataObject.field.subObject = {};
+      for (let arrayIndex = 0; arrayIndex < fieldNameArray.length; arrayIndex++) 
+      {
+        metadataObject.field.subObject["field" + arrayIndex.toString()] = {};
+        metadataObject.field.subObject["field" + arrayIndex.toString()].subObject = {};
+        metadataObject.field.subObject["field" + arrayIndex.toString()].subObject["fieldName"] = fieldNameArray[arrayIndex];
+        metadataObject.field.subObject["field" + arrayIndex.toString()].subObject["dataType"] = dataTypeArray[arrayIndex];
+        metadataObject.field.subObject["field" + arrayIndex.toString()].subObject["unique"] = uniqueArray[arrayIndex];
+        metadataObject.field.subObject["field" + arrayIndex.toString()].subObject["published"] = publishedArray[arrayIndex];
+      }
 
-      metadataObject.table.properties.favoriteFlavors = {};
-      metadataObject.table.properties.favoriteFlavors.properties = {};
-      metadataObject.table.properties.favoriteFlavors.properties.icecream = table_properties_favoriteFlavors_properties_icecream;
-      metadataObject.table.properties.favoriteFlavors.properties.pie = table_properties_favoriteFlavors_properties_pie;
-      metadataObject.table.properties.favoriteFlavors.properties.soup = table_properties_favoriteFlavors_properties_soup;
-      metadataObject.table.properties.favoriteFlavors.properties.fish = table_properties_favoriteFlavors_properties_fish;
-      metadataObject.table.properties.directory = table_properties_directory;
-      metadataObject.table.properties.addRoutes = table_properties_addRoutes;
-      metadataObject.table.properties.allowCodeGeneration = table_properties_allowCodeGeneration;
+      for (let arrayIndex = 0; arrayIndex < elementNameArray.length; arrayIndex++) 
+      {
+        metadataObject.field.subObject["field" + arrayIndex.toString()] = {};
+        metadataObject.field.subObject["field" + arrayIndex.toString()].subObject = {};
+        metadataObject.field.subObject["field" + arrayIndex.toString()].subObject["defaultElement"] = defaultElementArray[arrayIndex];
+      }
       
       metadataObject.timeStamp = Date.now();
       metadataObject.deleted = false;
@@ -596,7 +778,7 @@ metadata._metadata.post = function(data, callback)
             helpers.log
             (
               7,
-              'keguszocp0x8dwbkjuqp' + '\n' +
+              's18oms9qev7oguerfnt7' + '\n' +
               'There was an error appending to the history file' + '\n' +
               'An error here does not necessarily mean the append to history did not happen.' + '\n' +  
               'But an error at this point in the code surely means there was no append to metadata' + '\n' +                                          
@@ -640,7 +822,7 @@ metadata._metadata.post = function(data, callback)
                   helpers.log // Log the error.
                   (
                     7,
-                    'au1ptp0j0bwi71xol2xk' + '\n' +
+                    'lryge0urldrkyjrkshk9' + '\n' +
                     'Successful write to metadata but unable to remove lock on database' + '\n' +
                     'The following record was appended to the metadata file:' + '\n' +                            
                     JSON.stringify(logObject) + '\n' +   
@@ -662,7 +844,7 @@ metadata._metadata.post = function(data, callback)
               helpers.log // Log the error.
               (
                 5,
-                'bzof01zdhtgh6ee2rnt7' + '\n' +
+                'pb0gg4pm5l3qlgskh4ll' + '\n' +
                 'There was an error when appending to the metadata file.' + '\n' +
                 'The following record may or may not have been appended to the metadata file:' + '\n' +                            
                 JSON.stringify(logObject) + '\n' +
@@ -710,7 +892,7 @@ metadata._metadata.post = function(data, callback)
                           helpers.log
                           (
                             5,
-                            'vfubeh2m10tejvs6bsv4' + '\n' +
+                            'r6m7qi8yyr7pn2k6awcx' + '\n' +
                             'Rollback entry in the metadata file was appended successfully' + '\n' +
                             'The following was the record we rolled back:' + '\n' +
                             JSON.stringify(logObject) + '\n'                                   
@@ -721,7 +903,7 @@ metadata._metadata.post = function(data, callback)
                           helpers.log
                           (
                             7,
-                            'gy9th5sgbuc0g188wfi4' + '\n' +
+                            'rdfjl1dsmjwljg4yc8rn' + '\n' +
                             'There was an error appending a rollback entry in the metadata file' + '\n' +
                             'The following record may or may not have been rolled back:' + '\n' +
                             JSON.stringify(logObject) + '\n' +   
@@ -741,7 +923,7 @@ metadata._metadata.post = function(data, callback)
                     helpers.log
                     (
                       7,
-                      '2rntk4utn131njowe86t' + '\n' +
+                      'jy6igqp00kenbz76pwxw' + '\n' +
                       'There was an error appending a rollback entry in the history file' + '\n' +
                       'A rollback entry may or may not have been written in the metadata file' + '\n' +  
                       'CHECK TO SEE IF history and metadata ARE STILL IN SYNC' + '\n' +                                      
@@ -787,229 +969,356 @@ metadata._metadata.put = function(data, callback)
   // If metadataId is a valid string then convert it to a number.  
   if (typeof(metadataId) === 'string'){metadataId = parseInt(metadataId, 10);}else{return callback(400, {'Error' : 'metadataId must be a of string type'});}
 
-  // Get table_properties_tableName from payload
-  let table_properties_tableName = data.payload.table_properties_tableName;
+  // Get tableName from payload
+  let tableName = data.payload["tableName"];
 
   // passIfString&NotEmptyThenTrim
   // Default behavior from meta.js at yif5xwczgr4ebln99trd 
-  // If table_properties_tableName is of string type and is not empty 
-  if (typeof(table_properties_tableName) === 'string' && table_properties_tableName.trim().length > 0) 
+  // If tableName is of string type and is not empty 
+  if (typeof(tableName) === 'string' && tableName.trim().length > 0) 
   { 
     // The user entered something in the edit form
-    table_properties_tableName = table_properties_tableName.trim()
+    tableName = tableName.trim()
   } 
   // Else, the user may have entered some other datatype like a number or 
   // perhaps nothing at all if using the Delete form or if just using the API. 
   else 
   { 
     // If the user entered nothing: 
-    if(table_properties_tableName === undefined) 
+    if(tableName === undefined) 
     { 
       // Then user is likely trying to delete a record.
       // So change the value to false and continue processing.
-      table_properties_tableName = false 
+      tableName = false 
     } 
     else // The user entered something invalid so reject the edit. 
     { 
-      return callback(400, {'Error' : 'Not a valid table_properties_tableName'}); 
+      return callback(400, {'Error' : 'Not a valid tableName'}); 
     } 
   }
   
-  // Get table_properties_favoriteFlavors_properties_icecream from payload
-  let table_properties_favoriteFlavors_properties_icecream = data.payload.table_properties_favoriteFlavors_properties_icecream;
+  // Get directory from payload
+  let directory = data.payload["directory"];
 
   // passIfString&NotEmptyThenTrim
   // Default behavior from meta.js at yif5xwczgr4ebln99trd 
-  // If table_properties_favoriteFlavors_properties_icecream is of string type and is not empty 
-  if (typeof(table_properties_favoriteFlavors_properties_icecream) === 'string' && table_properties_favoriteFlavors_properties_icecream.trim().length > 0) 
+  // If directory is of string type and is not empty 
+  if (typeof(directory) === 'string' && directory.trim().length > 0) 
   { 
     // The user entered something in the edit form
-    table_properties_favoriteFlavors_properties_icecream = table_properties_favoriteFlavors_properties_icecream.trim()
+    directory = directory.trim()
   } 
   // Else, the user may have entered some other datatype like a number or 
   // perhaps nothing at all if using the Delete form or if just using the API. 
   else 
   { 
     // If the user entered nothing: 
-    if(table_properties_favoriteFlavors_properties_icecream === undefined) 
+    if(directory === undefined) 
     { 
       // Then user is likely trying to delete a record.
       // So change the value to false and continue processing.
-      table_properties_favoriteFlavors_properties_icecream = false 
+      directory = false 
     } 
     else // The user entered something invalid so reject the edit. 
     { 
-      return callback(400, {'Error' : 'Not a valid table_properties_favoriteFlavors_properties_icecream'}); 
+      return callback(400, {'Error' : 'Not a valid directory'}); 
     } 
   }
   
-  // Get table_properties_favoriteFlavors_properties_pie from payload
-  let table_properties_favoriteFlavors_properties_pie = data.payload.table_properties_favoriteFlavors_properties_pie;
+  // Get addRoutes from payload
+  let addRoutes = data.payload["addRoutes"];
 
   // passIfString&NotEmptyThenTrim
   // Default behavior from meta.js at yif5xwczgr4ebln99trd 
-  // If table_properties_favoriteFlavors_properties_pie is of string type and is not empty 
-  if (typeof(table_properties_favoriteFlavors_properties_pie) === 'string' && table_properties_favoriteFlavors_properties_pie.trim().length > 0) 
+  // If addRoutes is of string type and is not empty 
+  if (typeof(addRoutes) === 'string' && addRoutes.trim().length > 0) 
   { 
     // The user entered something in the edit form
-    table_properties_favoriteFlavors_properties_pie = table_properties_favoriteFlavors_properties_pie.trim()
+    addRoutes = addRoutes.trim()
   } 
   // Else, the user may have entered some other datatype like a number or 
   // perhaps nothing at all if using the Delete form or if just using the API. 
   else 
   { 
     // If the user entered nothing: 
-    if(table_properties_favoriteFlavors_properties_pie === undefined) 
+    if(addRoutes === undefined) 
     { 
       // Then user is likely trying to delete a record.
       // So change the value to false and continue processing.
-      table_properties_favoriteFlavors_properties_pie = false 
+      addRoutes = false 
     } 
     else // The user entered something invalid so reject the edit. 
     { 
-      return callback(400, {'Error' : 'Not a valid table_properties_favoriteFlavors_properties_pie'}); 
+      return callback(400, {'Error' : 'Not a valid addRoutes'}); 
     } 
   }
   
-  // Get table_properties_favoriteFlavors_properties_soup from payload
-  let table_properties_favoriteFlavors_properties_soup = data.payload.table_properties_favoriteFlavors_properties_soup;
+  // Get allowCodeGeneration from payload
+  let allowCodeGeneration = data.payload["allowCodeGeneration"];
 
   // passIfString&NotEmptyThenTrim
   // Default behavior from meta.js at yif5xwczgr4ebln99trd 
-  // If table_properties_favoriteFlavors_properties_soup is of string type and is not empty 
-  if (typeof(table_properties_favoriteFlavors_properties_soup) === 'string' && table_properties_favoriteFlavors_properties_soup.trim().length > 0) 
+  // If allowCodeGeneration is of string type and is not empty 
+  if (typeof(allowCodeGeneration) === 'string' && allowCodeGeneration.trim().length > 0) 
   { 
     // The user entered something in the edit form
-    table_properties_favoriteFlavors_properties_soup = table_properties_favoriteFlavors_properties_soup.trim()
+    allowCodeGeneration = allowCodeGeneration.trim()
   } 
   // Else, the user may have entered some other datatype like a number or 
   // perhaps nothing at all if using the Delete form or if just using the API. 
   else 
   { 
     // If the user entered nothing: 
-    if(table_properties_favoriteFlavors_properties_soup === undefined) 
+    if(allowCodeGeneration === undefined) 
     { 
       // Then user is likely trying to delete a record.
       // So change the value to false and continue processing.
-      table_properties_favoriteFlavors_properties_soup = false 
+      allowCodeGeneration = false 
     } 
     else // The user entered something invalid so reject the edit. 
     { 
-      return callback(400, {'Error' : 'Not a valid table_properties_favoriteFlavors_properties_soup'}); 
+      return callback(400, {'Error' : 'Not a valid allowCodeGeneration'}); 
     } 
   }
   
-  // Get table_properties_favoriteFlavors_properties_fish from payload
-  let table_properties_favoriteFlavors_properties_fish = data.payload.table_properties_favoriteFlavors_properties_fish;
 
+  // Start of: Load the fieldNameArray dynamically once the payload is known.
+  // Behavior from meta.js at lefq4oks90h34rvcw8sg
+  let fieldNameArray = [];
+  let runFieldNameLoop = true;
+  let fieldNameLoopCount = 0;
+
+  while (runFieldNameLoop === true)
+  {
+    // Check if the data exists in the payload
+    if(data.payload["field_subObject_field" + fieldNameLoopCount.toString() + "_subObject_fieldName"])
+    {
+      fieldNameArray.push(data.payload["field_subObject_field" + fieldNameLoopCount.toString() + "_subObject_fieldName"]);
+
+      fieldNameLoopCount = fieldNameLoopCount + 1;
+    }
+    else // No more fieldName variables were sent by the client.  
+    {
+      runFieldNameLoop = false;      
+    }    
+  } // End of: while (runFieldNameLoop === true){...}
+  // End of: Load the fieldNameArray dynamically once the payload is known.  
+                  
+  // Start of: Validate elements in the fieldNameArray
   // passIfString&NotEmptyThenTrim
-  // Default behavior from meta.js at yif5xwczgr4ebln99trd 
-  // If table_properties_favoriteFlavors_properties_fish is of string type and is not empty 
-  if (typeof(table_properties_favoriteFlavors_properties_fish) === 'string' && table_properties_favoriteFlavors_properties_fish.trim().length > 0) 
-  { 
-    // The user entered something in the edit form
-    table_properties_favoriteFlavors_properties_fish = table_properties_favoriteFlavors_properties_fish.trim()
-  } 
-  // Else, the user may have entered some other datatype like a number or 
-  // perhaps nothing at all if using the Delete form or if just using the API. 
-  else 
-  { 
-    // If the user entered nothing: 
-    if(table_properties_favoriteFlavors_properties_fish === undefined) 
+  // Behavior from meta.js at ohw0ivijs2au0nt2rwf1
+  fieldNameArray.forEach(function(arrayElement)
+  {
+    // If fieldName is of string type and is not empty 
+    if (typeof(arrayElement) === 'string' && arrayElement.trim().length > 0) 
     { 
-      // Then user is likely trying to delete a record.
-      // So change the value to false and continue processing.
-      table_properties_favoriteFlavors_properties_fish = false 
+      // The user entered something in the edit form
+      arrayElement = arrayElement.trim()
     } 
-    else // The user entered something invalid so reject the edit. 
+    // Else, the user may have entered some other datatype like a number or 
+    // perhaps nothing at all if using the Delete form or if just using the API. 
+    else 
     { 
-      return callback(400, {'Error' : 'Not a valid table_properties_favoriteFlavors_properties_fish'}); 
-    } 
-  }
+      // If the user entered nothing: 
+      if(arrayElement === undefined) 
+      { 
+        // Then user is likely trying to delete a record.
+        // So change the value to false and continue processing.
+        arrayElement = false 
+      } 
+      else // The user entered something invalid so reject the edit. 
+      { 
+        return callback(400, {'Error' : 'Not a valid ' + arrayElement}); 
+      } 
+    }
+  }); // End of: fieldNameArray.forEach(function(arrayElement)
+  // End of: Validate elements in the fieldNameArray  
+
+  // Start of: Load the dataTypeArray dynamically once the payload is known.
+  // Behavior from meta.js at lefq4oks90h34rvcw8sg
+  let dataTypeArray = [];
+  let runDataTypeLoop = true;
+  let dataTypeLoopCount = 0;
+
+  while (runDataTypeLoop === true)
+  {
+    // Check if the data exists in the payload
+    if(data.payload["field_subObject_field" + dataTypeLoopCount.toString() + "_subObject_dataType"])
+    {
+      dataTypeArray.push(data.payload["field_subObject_field" + dataTypeLoopCount.toString() + "_subObject_dataType"]);
+
+      dataTypeLoopCount = dataTypeLoopCount + 1;
+    }
+    else // No more dataType variables were sent by the client.  
+    {
+      runDataTypeLoop = false;      
+    }    
+  } // End of: while (runDataTypeLoop === true){...}
+  // End of: Load the dataTypeArray dynamically once the payload is known.  
   
-  // Get table_properties_directory from payload
-  let table_properties_directory = data.payload.table_properties_directory;
+// Start of: Validate elements in the dataTypeArray
+  // passMenuItemsOnly
+  // Behavior from meta.js at f6prkp8jnrdvnadz9d6s
+  dataTypeArray.forEach(function(arrayElement)
+  {
+    if(typeof(arrayElement) != 'string')
+    {
+      return callback(400, {'Error' : 'dataType must be of datatype string'});
+    }
 
-  // passIfString&NotEmptyThenTrim
-  // Default behavior from meta.js at yif5xwczgr4ebln99trd 
-  // If table_properties_directory is of string type and is not empty 
-  if (typeof(table_properties_directory) === 'string' && table_properties_directory.trim().length > 0) 
-  { 
-    // The user entered something in the edit form
-    table_properties_directory = table_properties_directory.trim()
-  } 
-  // Else, the user may have entered some other datatype like a number or 
-  // perhaps nothing at all if using the Delete form or if just using the API. 
-  else 
-  { 
-    // If the user entered nothing: 
-    if(table_properties_directory === undefined) 
-    { 
-      // Then user is likely trying to delete a record.
-      // So change the value to false and continue processing.
-      table_properties_directory = false 
-    } 
-    else // The user entered something invalid so reject the edit. 
-    { 
-      return callback(400, {'Error' : 'Not a valid table_properties_directory'}); 
-    } 
-  }
+    if
+    (
+      arrayElement !== "string"
+      && arrayElement !== "boolean"
+      && arrayElement !== "object"
+    )
+    {
+      return callback(400, {'Error' : 'dataType does not match menu options'});
+    }
+  });
+  // End of: Validate elements in the dataTypeArray
+
+
+  // Start of: Load the uniqueArray dynamically once the payload is known.
+  // Behavior from meta.js at lefq4oks90h34rvcw8sg
+  let uniqueArray = [];
+  let runUniqueLoop = true;
+  let uniqueLoopCount = 0;
+
+  while (runUniqueLoop === true)
+  {
+    // Check if the data exists in the payload
+    if(data.payload["field_subObject_field" + uniqueLoopCount.toString() + "_subObject_unique"])
+    {
+      uniqueArray.push(data.payload["field_subObject_field" + uniqueLoopCount.toString() + "_subObject_unique"]);
+
+      uniqueLoopCount = uniqueLoopCount + 1;
+    }
+    else // No more unique variables were sent by the client.  
+    {
+      runUniqueLoop = false;      
+    }    
+  } // End of: while (runUniqueLoop === true){...}
+  // End of: Load the uniqueArray dynamically once the payload is known.  
   
-  // Get table_properties_addRoutes from payload
-  let table_properties_addRoutes = data.payload.table_properties_addRoutes;
+// Start of: Validate elements in the uniqueArray
+  // passMenuItemsOnly
+  // Behavior from meta.js at f6prkp8jnrdvnadz9d6s
+  uniqueArray.forEach(function(arrayElement)
+  {
+    if(typeof(arrayElement) != 'string')
+    {
+      return callback(400, {'Error' : 'unique must be of datatype string'});
+    }
 
-  // passIfString&NotEmptyThenTrim
-  // Default behavior from meta.js at yif5xwczgr4ebln99trd 
-  // If table_properties_addRoutes is of string type and is not empty 
-  if (typeof(table_properties_addRoutes) === 'string' && table_properties_addRoutes.trim().length > 0) 
-  { 
-    // The user entered something in the edit form
-    table_properties_addRoutes = table_properties_addRoutes.trim()
-  } 
-  // Else, the user may have entered some other datatype like a number or 
-  // perhaps nothing at all if using the Delete form or if just using the API. 
-  else 
-  { 
-    // If the user entered nothing: 
-    if(table_properties_addRoutes === undefined) 
-    { 
-      // Then user is likely trying to delete a record.
-      // So change the value to false and continue processing.
-      table_properties_addRoutes = false 
-    } 
-    else // The user entered something invalid so reject the edit. 
-    { 
-      return callback(400, {'Error' : 'Not a valid table_properties_addRoutes'}); 
-    } 
-  }
+    if
+    (
+      arrayElement !== "true"
+      && arrayElement !== "false"
+    )
+    {
+      return callback(400, {'Error' : 'unique does not match menu options'});
+    }
+  });
+  // End of: Validate elements in the uniqueArray
+
+
+  // Start of: Load the publishedArray dynamically once the payload is known.
+  // Behavior from meta.js at lefq4oks90h34rvcw8sg
+  let publishedArray = [];
+  let runPublishedLoop = true;
+  let publishedLoopCount = 0;
+
+  while (runPublishedLoop === true)
+  {
+    // Check if the data exists in the payload
+    if(data.payload["field_subObject_field" + publishedLoopCount.toString() + "_subObject_published"])
+    {
+      publishedArray.push(data.payload["field_subObject_field" + publishedLoopCount.toString() + "_subObject_published"]);
+
+      publishedLoopCount = publishedLoopCount + 1;
+    }
+    else // No more published variables were sent by the client.  
+    {
+      runPublishedLoop = false;      
+    }    
+  } // End of: while (runPublishedLoop === true){...}
+  // End of: Load the publishedArray dynamically once the payload is known.  
   
-  // Get table_properties_allowCodeGeneration from payload
-  let table_properties_allowCodeGeneration = data.payload.table_properties_allowCodeGeneration;
+// Start of: Validate elements in the publishedArray
+  // passMenuItemsOnly
+  // Behavior from meta.js at f6prkp8jnrdvnadz9d6s
+  publishedArray.forEach(function(arrayElement)
+  {
+    if(typeof(arrayElement) != 'string')
+    {
+      return callback(400, {'Error' : 'published must be of datatype string'});
+    }
 
+    if
+    (
+      arrayElement !== "true"
+      && arrayElement !== "false"
+    )
+    {
+      return callback(400, {'Error' : 'published does not match menu options'});
+    }
+  });
+  // End of: Validate elements in the publishedArray
+
+
+  // Start of: Load the elementNameArray dynamically once the payload is known.
+  // Behavior from meta.js at lefq4oks90h34rvcw8sg
+  let elementNameArray = [];
+  let runElementNameLoop = true;
+  let elementNameLoopCount = 0;
+
+  while (runElementNameLoop === true)
+  {
+    // Check if the data exists in the payload
+    if(data.payload["field_subObject_field" + elementNameLoopCount.toString() + "_subObject_defaultElement_subObject_defaultElement"])
+    {
+      elementNameArray.push(data.payload["field_subObject_field" + elementNameLoopCount.toString() + "_subObject_defaultElement_subObject_defaultElement"]);
+
+      elementNameLoopCount = elementNameLoopCount + 1;
+    }
+    else // No more elementName variables were sent by the client.  
+    {
+      runElementNameLoop = false;      
+    }    
+  } // End of: while (runElementNameLoop === true){...}
+  // End of: Load the elementNameArray dynamically once the payload is known.  
+                  
+  // Start of: Validate elements in the elementNameArray
   // passIfString&NotEmptyThenTrim
-  // Default behavior from meta.js at yif5xwczgr4ebln99trd 
-  // If table_properties_allowCodeGeneration is of string type and is not empty 
-  if (typeof(table_properties_allowCodeGeneration) === 'string' && table_properties_allowCodeGeneration.trim().length > 0) 
-  { 
-    // The user entered something in the edit form
-    table_properties_allowCodeGeneration = table_properties_allowCodeGeneration.trim()
-  } 
-  // Else, the user may have entered some other datatype like a number or 
-  // perhaps nothing at all if using the Delete form or if just using the API. 
-  else 
-  { 
-    // If the user entered nothing: 
-    if(table_properties_allowCodeGeneration === undefined) 
+  // Behavior from meta.js at ohw0ivijs2au0nt2rwf1
+  elementNameArray.forEach(function(arrayElement)
+  {
+    // If elementName is of string type and is not empty 
+    if (typeof(arrayElement) === 'string' && arrayElement.trim().length > 0) 
     { 
-      // Then user is likely trying to delete a record.
-      // So change the value to false and continue processing.
-      table_properties_allowCodeGeneration = false 
+      // The user entered something in the edit form
+      arrayElement = arrayElement.trim()
     } 
-    else // The user entered something invalid so reject the edit. 
+    // Else, the user may have entered some other datatype like a number or 
+    // perhaps nothing at all if using the Delete form or if just using the API. 
+    else 
     { 
-      return callback(400, {'Error' : 'Not a valid table_properties_allowCodeGeneration'}); 
-    } 
-  }
+      // If the user entered nothing: 
+      if(arrayElement === undefined) 
+      { 
+        // Then user is likely trying to delete a record.
+        // So change the value to false and continue processing.
+        arrayElement = false 
+      } 
+      else // The user entered something invalid so reject the edit. 
+      { 
+        return callback(400, {'Error' : 'Not a valid ' + arrayElement}); 
+      } 
+    }
+  }); // End of: elementNameArray.forEach(function(arrayElement)
+  // End of: Validate elements in the elementNameArray  
+  
   
   // Check if the deleted flag is of type string and that the value is exactly equal to "true".
   // That would mean the user wants to delete the record. Otherwise the users does not want to delete the record.
@@ -1019,12 +1328,24 @@ metadata._metadata.put = function(data, callback)
 
   
   //if all fields fail validation then exit this process without writing changes to the table.
-  if(!table_properties_tableName && !table_properties_favoriteFlavors_properties_icecream && !table_properties_favoriteFlavors_properties_pie && !table_properties_favoriteFlavors_properties_soup && !table_properties_favoriteFlavors_properties_fish && !table_properties_directory && !table_properties_addRoutes && !table_properties_allowCodeGeneration && !deleted)
+  if
+  (
+    !tableName
+    &&  !directory
+    &&  !addRoutes
+    &&  !allowCodeGeneration
+    &&  !fieldNameArray.some(function(element){if(element){return true;}})
+    &&  !dataTypeArray.some(function(element){if(element){return true;}})
+    &&  !uniqueArray.some(function(element){if(element){return true;}})
+    &&  !publishedArray.some(function(element){if(element){return true;}})
+    &&  !elementNameArray.some(function(element){if(element){return true;}})
+    &&  !deleted
+  )
   {
     helpers.log
     (
       5,
-      '8w0p4mzm1tz5xe847yjl' + '\n' +
+      'kuqb9a7hcung46wm39bb' + '\n' +
       'No fields pass the validation process' + '\n'                                  
     ); // End of: helpers.log(...)
 
@@ -1047,7 +1368,7 @@ metadata._metadata.put = function(data, callback)
       helpers.log
       (
         5,
-        'xjufqnx9yh99uve6g4cb' + '\n' +
+        'mtxt81n65ju81qiy5eb4' + '\n' +
         'Unable to get the next gsuid.' + '\n' +
         'The following was the error' + '\n' +
         JSON.stringify(error) + '\n'                                   
@@ -1069,29 +1390,38 @@ metadata._metadata.put = function(data, callback)
     let metadataObject = {};
     metadataObject.metadataId = metadataId;
 
+    metadataObject.tableName = tableName;
+    metadataObject.directory = directory;
+    metadataObject.addRoutes = addRoutes;
+    metadataObject.allowCodeGeneration = allowCodeGeneration;
 
-    metadataObject.table = {};
-    metadataObject.table.properties = {};
-    metadataObject.table.properties.tableName = table_properties_tableName;
-
-    metadataObject.table.properties.favoriteFlavors = {};
-    metadataObject.table.properties.favoriteFlavors.properties = {};
-    metadataObject.table.properties.favoriteFlavors.properties.icecream = table_properties_favoriteFlavors_properties_icecream;
-    metadataObject.table.properties.favoriteFlavors.properties.pie = table_properties_favoriteFlavors_properties_pie;
-    metadataObject.table.properties.favoriteFlavors.properties.soup = table_properties_favoriteFlavors_properties_soup;
-    metadataObject.table.properties.favoriteFlavors.properties.fish = table_properties_favoriteFlavors_properties_fish;
-    metadataObject.table.properties.directory = table_properties_directory;
-    metadataObject.table.properties.addRoutes = table_properties_addRoutes;
-    metadataObject.table.properties.allowCodeGeneration = table_properties_allowCodeGeneration;
-     
+            metadataObject.field = {};
+            metadataObject.field.subObject = {};
+            for (let arrayIndex = 0; arrayIndex < fieldNameArray.length; arrayIndex++) 
+            {
+              metadataObject.field.subObject["field" + arrayIndex.toString()] = {};
+              metadataObject.field.subObject["field" + arrayIndex.toString()].subObject = {};
+              metadataObject.field.subObject["field" + arrayIndex.toString()].subObject["fieldName"] = fieldNameArray[arrayIndex];
+              metadataObject.field.subObject["field" + arrayIndex.toString()].subObject["dataType"] = dataTypeArray[arrayIndex];
+              metadataObject.field.subObject["field" + arrayIndex.toString()].subObject["unique"] = uniqueArray[arrayIndex];
+              metadataObject.field.subObject["field" + arrayIndex.toString()].subObject["published"] = publishedArray[arrayIndex];
+            }
+        
+            for (let arrayIndex = 0; arrayIndex < elementNameArray.length; arrayIndex++) 
+            {
+              metadataObject.field.subObject["field" + arrayIndex.toString()] = {};
+              metadataObject.field.subObject["field" + arrayIndex.toString()].subObject = {};
+              metadataObject.field.subObject["field" + arrayIndex.toString()].subObject["defaultElement"] = defaultElementArray[arrayIndex];
+            }
+             
     metadataObject.timeStamp = Date.now();
     metadataObject.deleted = false;
 
     let dataObject = {};
-    dataObject.uniqueField01Name = "table.properties.tableName";
-    dataObject.uniqueField01Value = metadataObject.table.properties.tableName;
-    dataObject.uniqueField02Name = "table.properties.directory";
-    dataObject.uniqueField02Value = metadataObject.table.properties.directory;
+    dataObject.uniqueField01Name = "tableName";
+    dataObject.uniqueField01Value = metadataObject.tableName;
+    dataObject.uniqueField02Name = "directory";
+    dataObject.uniqueField02Value = metadataObject.directory;
     dataObject.path = '/database/dbMetadata/metadata.json';
     dataObject.queryString = 'WHERE:;metadataId:;MatchesExactly:;' + metadataId + ':;';
 
@@ -1115,7 +1445,7 @@ metadata._metadata.put = function(data, callback)
               helpers.log // Log the error.
               (
                 7,
-                'hr7x8xvdg8bjs0as5dew' + '\n' + 
+                '3gbunapbpmbt5pq4myij' + '\n' + 
                 'The following was the error message from getMostRecent:' + '\n' +                                             
                 errorFromGetMostRecent + '\n'                                                 
               ); // End of: helpers.log // Log the error.
@@ -1130,7 +1460,7 @@ metadata._metadata.put = function(data, callback)
               helpers.log // Log the error.
               (
                 7,
-                '192jgfiy682ybqm0oq5m' + '\n' +
+                'mv2gvk3xuonp83guxb24' + '\n' +
                 'The following was the error message from getMostRecent:' + '\n' +                                             
                 errorFromGetMostRecent + '\n'  +
                 'Also unable to remove lock on database.' + '\n' + 
@@ -1167,98 +1497,128 @@ metadata._metadata.put = function(data, callback)
         let recordObject = JSON.parse(stringContainer);
 
 
-        // Preprocessing for table.properties.tableName
-        if(table_properties_tableName) // If the user supplied data for table.properties.tableName
+        // Preprocessing for tableName
+        if(tableName) // If the user supplied data for tableName
         {
-          // No preprocessing was specifed for table.properties.tableName. Use it as was supplied by the user.
+          // No preprocessing was specifed for tableName. Use it as was supplied by the user.
         }
-        else // If the user did not supply data for table.properties.tableName
+        else // If the user did not supply data for tableName
         {
-          // Save table.properties.tableName from the most recent record.
-          metadataObject.table.properties.tableName = recordObject.table.properties.tableName;
-        }
-
-        // Preprocessing for table.properties.favoriteFlavors.properties.icecream
-        if(table_properties_favoriteFlavors_properties_icecream) // If the user supplied data for table.properties.favoriteFlavors.properties.icecream
-        {
-          // No preprocessing was specifed for table.properties.favoriteFlavors.properties.icecream. Use it as was supplied by the user.
-        }
-        else // If the user did not supply data for table.properties.favoriteFlavors.properties.icecream
-        {
-          // Save table.properties.favoriteFlavors.properties.icecream from the most recent record.
-          metadataObject.table.properties.favoriteFlavors.properties.icecream = recordObject.table.properties.favoriteFlavors.properties.icecream;
+          // Save tableName from the most recent record.
+          metadataObject.tableName = recordObject.tableName;
         }
 
-        // Preprocessing for table.properties.favoriteFlavors.properties.pie
-        if(table_properties_favoriteFlavors_properties_pie) // If the user supplied data for table.properties.favoriteFlavors.properties.pie
+        // Preprocessing for directory
+        if(directory) // If the user supplied data for directory
         {
-          // No preprocessing was specifed for table.properties.favoriteFlavors.properties.pie. Use it as was supplied by the user.
+          // No preprocessing was specifed for directory. Use it as was supplied by the user.
         }
-        else // If the user did not supply data for table.properties.favoriteFlavors.properties.pie
+        else // If the user did not supply data for directory
         {
-          // Save table.properties.favoriteFlavors.properties.pie from the most recent record.
-          metadataObject.table.properties.favoriteFlavors.properties.pie = recordObject.table.properties.favoriteFlavors.properties.pie;
-        }
-
-        // Preprocessing for table.properties.favoriteFlavors.properties.soup
-        if(table_properties_favoriteFlavors_properties_soup) // If the user supplied data for table.properties.favoriteFlavors.properties.soup
-        {
-          // No preprocessing was specifed for table.properties.favoriteFlavors.properties.soup. Use it as was supplied by the user.
-        }
-        else // If the user did not supply data for table.properties.favoriteFlavors.properties.soup
-        {
-          // Save table.properties.favoriteFlavors.properties.soup from the most recent record.
-          metadataObject.table.properties.favoriteFlavors.properties.soup = recordObject.table.properties.favoriteFlavors.properties.soup;
+          // Save directory from the most recent record.
+          metadataObject.directory = recordObject.directory;
         }
 
-        // Preprocessing for table.properties.favoriteFlavors.properties.fish
-        if(table_properties_favoriteFlavors_properties_fish) // If the user supplied data for table.properties.favoriteFlavors.properties.fish
+        // Preprocessing for addRoutes
+        if(addRoutes) // If the user supplied data for addRoutes
         {
-          // No preprocessing was specifed for table.properties.favoriteFlavors.properties.fish. Use it as was supplied by the user.
+          // No preprocessing was specifed for addRoutes. Use it as was supplied by the user.
         }
-        else // If the user did not supply data for table.properties.favoriteFlavors.properties.fish
+        else // If the user did not supply data for addRoutes
         {
-          // Save table.properties.favoriteFlavors.properties.fish from the most recent record.
-          metadataObject.table.properties.favoriteFlavors.properties.fish = recordObject.table.properties.favoriteFlavors.properties.fish;
-        }
-
-        // Preprocessing for table.properties.directory
-        if(table_properties_directory) // If the user supplied data for table.properties.directory
-        {
-          // No preprocessing was specifed for table.properties.directory. Use it as was supplied by the user.
-        }
-        else // If the user did not supply data for table.properties.directory
-        {
-          // Save table.properties.directory from the most recent record.
-          metadataObject.table.properties.directory = recordObject.table.properties.directory;
+          // Save addRoutes from the most recent record.
+          metadataObject.addRoutes = recordObject.addRoutes;
         }
 
-        // Preprocessing for table.properties.addRoutes
-        if(table_properties_addRoutes) // If the user supplied data for table.properties.addRoutes
+        // Preprocessing for allowCodeGeneration
+        if(allowCodeGeneration) // If the user supplied data for allowCodeGeneration
         {
-          // No preprocessing was specifed for table.properties.addRoutes. Use it as was supplied by the user.
+          // No preprocessing was specifed for allowCodeGeneration. Use it as was supplied by the user.
         }
-        else // If the user did not supply data for table.properties.addRoutes
+        else // If the user did not supply data for allowCodeGeneration
         {
-          // Save table.properties.addRoutes from the most recent record.
-          metadataObject.table.properties.addRoutes = recordObject.table.properties.addRoutes;
+          // Save allowCodeGeneration from the most recent record.
+          metadataObject.allowCodeGeneration = recordObject.allowCodeGeneration;
         }
 
-        // Preprocessing for table.properties.allowCodeGeneration
-        if(table_properties_allowCodeGeneration) // If the user supplied data for table.properties.allowCodeGeneration
+        for (let arrayIndex = 0; arrayIndex < fieldNameArray.length; arrayIndex++) 
         {
-          // No preprocessing was specifed for table.properties.allowCodeGeneration. Use it as was supplied by the user.
-        }
-        else // If the user did not supply data for table.properties.allowCodeGeneration
+          // Preprocessing for field.subObject.fieldX.subObject.fieldName
+          if(fieldNameArray[arrayIndex]) // If the user supplied data for field.subObject.fieldX.subObject.fieldName
+          {
+            // No preprocessing was specifed for field.subObject.fieldX.subObject.fieldName. Use it as was supplied by the user.
+          }
+          else // If the user did not supply data for field.subObject.fieldX.subObject.fieldName
+          {
+            // Save field.subObject.fieldX.subObject.fieldName from the most recent record.
+            metadataObject.field.subObject["field" + arrayIndex.toString()].subObject["fieldName"] = fieldNameArray[arrayIndex];
+          }
+        } 
+
+        for (let arrayIndex = 0; arrayIndex < dataTypeArray.length; arrayIndex++) 
         {
-          // Save table.properties.allowCodeGeneration from the most recent record.
-          metadataObject.table.properties.allowCodeGeneration = recordObject.table.properties.allowCodeGeneration;
-        }
+          // Preprocessing for field.subObject.fieldX.subObject.dataType
+          if(dataTypeArray[arrayIndex]) // If the user supplied data for field.subObject.fieldX.subObject.dataType
+          {
+            // No preprocessing was specifed for field.subObject.fieldX.subObject.dataType. Use it as was supplied by the user.
+          }
+          else // If the user did not supply data for field.subObject.fieldX.subObject.dataType
+          {
+            // Save field.subObject.fieldX.subObject.dataType from the most recent record.
+            metadataObject.field.subObject["field" + arrayIndex.toString()].subObject["dataType"] = dataTypeArray[arrayIndex];
+          }
+        } 
+
+        for (let arrayIndex = 0; arrayIndex < uniqueArray.length; arrayIndex++) 
+        {
+          // Preprocessing for field.subObject.fieldX.subObject.unique
+          if(uniqueArray[arrayIndex]) // If the user supplied data for field.subObject.fieldX.subObject.unique
+          {
+            // No preprocessing was specifed for field.subObject.fieldX.subObject.unique. Use it as was supplied by the user.
+          }
+          else // If the user did not supply data for field.subObject.fieldX.subObject.unique
+          {
+            // Save field.subObject.fieldX.subObject.unique from the most recent record.
+            metadataObject.field.subObject["field" + arrayIndex.toString()].subObject["unique"] = uniqueArray[arrayIndex];
+          }
+        } 
+
+        for (let arrayIndex = 0; arrayIndex < publishedArray.length; arrayIndex++) 
+        {
+          // Preprocessing for field.subObject.fieldX.subObject.published
+          if(publishedArray[arrayIndex]) // If the user supplied data for field.subObject.fieldX.subObject.published
+          {
+            // No preprocessing was specifed for field.subObject.fieldX.subObject.published. Use it as was supplied by the user.
+          }
+          else // If the user did not supply data for field.subObject.fieldX.subObject.published
+          {
+            // Save field.subObject.fieldX.subObject.published from the most recent record.
+            metadataObject.field.subObject["field" + arrayIndex.toString()].subObject["published"] = publishedArray[arrayIndex];
+          }
+        } 
+
+        for (let arrayIndex = 0; arrayIndex < elementNameArray.length; arrayIndex++) 
+        {
+          // Preprocessing for defaultElement.subObject.defaultElementX.subObject.elementName
+          if(elementNameArray[arrayIndex]) // If the user supplied data for defaultElement.subObject.defaultElementX.subObject.elementName
+          {
+            // No preprocessing was specifed for defaultElement.subObject.defaultElementX.subObject.elementName. Use it as was supplied by the user.
+          }
+          else // If the user did not supply data for defaultElement.subObject.defaultElementX.subObject.elementName
+          {
+            // Save defaultElement.subObject.defaultElementX.subObject.elementName from the most recent record.
+            metadataObject.defaultElement.subObject["defaultElement" + arrayIndex.toString()].subObject["elementName"] = elementNameArray[arrayIndex];
+          }
+        } 
 
         // If we are appending a delete make sure that everything else is coming from the most recent saved record.
         if(deleted)
         {
-          metadataObject.table = recordObject.table;
+          metadataObject.tableName = recordObject.tableName;
+          metadataObject.directory = recordObject.directory;
+          metadataObject.addRoutes = recordObject.addRoutes;
+          metadataObject.allowCodeGeneration = recordObject.allowCodeGeneration;
+          metadataObject.field = recordObject.field;
           metadataObject.deleted = true;
         }
         else
@@ -1316,7 +1676,7 @@ metadata._metadata.put = function(data, callback)
                         helpers.log // Log the error.
                         (
                           7,
-                          '3looqonl26qea11ompac' + '\n' +
+                          '1l5hs3o2spwziiy9pcdj' + '\n' +
                           'Successful write to metadata but unable to remove lock on database' + '\n' +
                           'The following record was appended to metadata:' + '\n' +                            
                           JSON.stringify(logObject) + '\n' +   
@@ -1338,7 +1698,7 @@ metadata._metadata.put = function(data, callback)
                     helpers.log // Log the error.
                     (
                       5,
-                      '7rgwy4zwzpgw9gsxl453' + '\n' +
+                      'o6kmfc4spxvxif0nml23' + '\n' +
                       'There was an error when appending to the metadata file.' + '\n' +
                       'The following record may or may not have been appended to metadata:' + '\n' +                            
                       JSON.stringify(logObject) + '\n' +
@@ -1352,7 +1712,11 @@ metadata._metadata.put = function(data, callback)
                     metadataObject = 
                     {
                         "metadataId" : recordObject.nextId,
-                        "table" : recordObject.table,
+                        "tableName" : recordObject.tableName,
+                        "directory" : recordObject.directory,
+                        "addRoutes" : recordObject.addRoutes,
+                        "allowCodeGeneration" : recordObject.allowCodeGeneration,
+                        "field" : recordObject.field,
                         "timeStamp" : recordObject.timeStamp,
                         "deleted" : recordObject.deleted
                     };                        
@@ -1392,7 +1756,7 @@ metadata._metadata.put = function(data, callback)
                                 helpers.log
                                 (
                                   5,
-                                  'axm3bjk32567waibecds' + '\n' +
+                                  'hhiqz8i7fwupg0w753vc' + '\n' +
                                   'Rollback entry in the metadata file was appended successfully' + '\n' +
                                   'The following was the record we rolled back:' + '\n' +
                                   JSON.stringify(logObject) + '\n'                                   
@@ -1403,7 +1767,7 @@ metadata._metadata.put = function(data, callback)
                                 helpers.log
                                 (
                                   7,
-                                  'sioe7bx0y1utrhwks1in' + '\n' +
+                                  'gvdsz1dxgyaanrkv0ili' + '\n' +
                                   'There was an error appending a rollback entry in the metadata file' + '\n' +
                                   'The following record may or may not have been rolled back:' + '\n' +
                                   JSON.stringify(logObject) + '\n' +   
@@ -1423,7 +1787,7 @@ metadata._metadata.put = function(data, callback)
                           helpers.log
                           (
                             7,
-                            'npttsncxhusjkaewa9h5' + '\n' +
+                            'bz64scvslu5ogmwmrmny' + '\n' +
                             'There was an error appending a rollback entry in the history file' + '\n' +
                             'A rollback entry may or may not have been written in the metadata file' + '\n' +  
                             'CHECK TO SEE IF history and metadata ARE STILL IN SYNC' + '\n' +                                      
@@ -1448,7 +1812,7 @@ metadata._metadata.put = function(data, callback)
               helpers.log
               (
                 7,
-                '9jnw3slv83q7f3isd17x' + '\n' +
+                'a6fngsj097b47jy57pw3' + '\n' +
                 'There was an error appending to the history file' + '\n' +
                 'An error here does not necessarily mean the append to history did not happen.' + '\n' +  
                 'But an error at this point in the code surely means there was no append to metadata' + '\n' +                                          
@@ -1480,7 +1844,7 @@ metadata._metadata.put = function(data, callback)
             helpers.log // Log the error.
             (
               7,
-              '1q3gagcf91i4saga1vkt' + '\n' + 
+              'ggs5g3q0jo8fyap7sw5v' + '\n' + 
               'Pipeline error. The message was as follows' + '\n' +                                             
               pipelineError + '\n'                                                 
             ); // End of: helpers.log // Log the error.
@@ -2013,10 +2377,7 @@ metadata._metadata.get = function(data, callback)
     //If the record was not marked for deletion and passed through the filters above:
     if(recordWasDeleted === false)
     {
-      // Remove the table.properties.favoriteFlavors.properties.pie key/value pair from the lineValueObject before returning it to the requester.
-      delete lineValueObject.table.properties.favoriteFlavors.properties.pie;
-
-      // Remove the deleted key/value pair from the lineValueObject before returning it to the requester.
+            // Remove the deleted key/value pair from the lineValueObject before returning it to the requester.
       delete lineValueObject.deleted;            
 
       // Update this record in the map.

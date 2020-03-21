@@ -6,9 +6,6 @@
 * If you wanted to use this module instead of repl.js then remove the 
 * repl.js dependency in index.js and add a dependency for this module.
 *
-* This module was created simply to teach event emitters and event listeners. 
-* The teacher mentioned that repl does the same work with less code so
-* it made sense to let repl do this work.
 *
 */
 

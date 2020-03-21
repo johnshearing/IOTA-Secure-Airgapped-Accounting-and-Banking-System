@@ -32,7 +32,7 @@
       <div class="objectWrapper elementWrapper">
         <div class="inputWrapper">
           <div class="inputLabel">Phone Type</div>
-          <select class="resetElement phone_properties_phone0_properties_phoneTypeInput" name="phone_properties_phone0_properties_phoneType">
+          <select class="resetElement phone_subObject_phone0_subObject_phoneTypeInput" name="phone_subObject_phone0_subObject_phoneType">
             <option value="" style="display: list-item;">Select the Phone Type</option>
             <option value="Mobile" style="display: list-item;">Mobile Phone</option>
             <option value="Home" style="display: list-item;">Home Phone</option>
@@ -42,7 +42,7 @@
         </div>
         <div class="inputWrapper">
           <div class="inputLabel">Phone</div>
-          <input class="resetElement phone_properties_phone0_properties_phoneInput" name="phone_properties_phone0_properties_phone" type="text" placeholder="Enter a Phone Number"/>
+          <input class="resetElement phone_subObject_phone0_subObject_phoneInput" name="phone_subObject_phone0_subObject_phone" type="text" placeholder="Enter a Phone Number"/>
         </div>
         <button type="button" class="disabled controlObjectButton moveObjectUpButton blue" disabled>Move Up</button>
         <button type="button" class="disabled controlObjectButton moveObjectDownButton blue" disabled>Move Down</button>
@@ -55,7 +55,7 @@
       <div class="objectWrapper elementWrapper">
         <div class="inputWrapper">
           <div class="inputLabel">Address Type</div>
-          <select class="resetElement address_properties_address0_properties_addressTypeInput" name="address_properties_address0_properties_addressType" placeholder="Enter an Address Type">
+          <select class="resetElement address_subObject_address0_subObject_addressTypeInput" name="address_subObject_address0_subObject_addressType" placeholder="Enter an Address Type">
             <option value="" style="display: list-item;">Select the Address Type</option>
             <option value="Home Address" style="display: list-item;">Home Address</option>
             <option value="Work Address" style="display: list-item;">Work Address</option>
@@ -65,23 +65,23 @@
         </div>
         <div class="inputWrapper">
           <div class="inputLabel">Street 1</div>
-          <input class="resetElement address_properties_address0_properties_streetOneInput" name="address_properties_address0_properties_streetOne" type="text" placeholder="Enter a Street Address"/>
+          <input class="resetElement address_subObject_address0_subObject_streetOneInput" name="address_subObject_address0_subObject_streetOne" type="text" placeholder="Enter a Street Address"/>
         </div>
         <div class="inputWrapper">
           <div class="inputLabel">Street 2</div>
-          <input class="resetElement address_properties_address0_properties_streetTwoInput" name="address_properties_address0_properties_streetTwo" type="text" placeholder="Optional Field"/>
+          <input class="resetElement address_subObject_address0_subObject_streetTwoInput" name="address_subObject_address0_subObject_streetTwo" type="text" placeholder="Optional Field"/>
         </div>
         <div class="inputWrapper">
           <div class="inputLabel">City</div>
-          <input class="resetElement address_properties_address0_properties_cityInput" name="address_properties_address0_properties_city" type="text" placeholder="Enter a City"/>
+          <input class="resetElement address_subObject_address0_subObject_cityInput" name="address_subObject_address0_subObject_city" type="text" placeholder="Enter a City"/>
         </div>
         <div class="inputWrapper">
           <div class="inputLabel">State</div>
-          <input class="resetElement address_properties_address0_properties_stateInput" name="address_properties_address0_properties_state" type="text" placeholder="Enter a State"/>
+          <input class="resetElement address_subObject_address0_subObject_stateInput" name="address_subObject_address0_subObject_state" type="text" placeholder="Enter a State"/>
         </div>
         <div class="inputWrapper">
           <div class="inputLabel">Zip Code</div>
-          <input class="resetElement address_properties_address0_properties_zipInput" name="address_properties_address0_properties_zip" type="text" placeholder="Enter a Zip Code"/>
+          <input class="resetElement address_subObject_address0_subObject_zipInput" name="address_subObject_address0_subObject_zip" type="text" placeholder="Enter a Zip Code"/>
         </div>
         <button type="button" class="disabled controlObjectButton moveObjectUpButton blue" disabled>Move Up</button>
         <button type="button" class="disabled controlObjectButton moveObjectDownButton blue" disabled>Move Down</button>
@@ -662,7 +662,7 @@ app.loadoContactEditPage = async function()
 
 
   // Get the phone count.
-  const phoneAmount = Object.keys(recordObject.phone.properties).length;
+  const phoneAmount = Object.keys(recordObject.phone.subObject).length;
 
   // Clone enough elementWrappers to accommodate every phone.
   for (let loopCount = 0; loopCount < phoneAmount - 1; loopCount++) 
@@ -672,7 +672,7 @@ app.loadoContactEditPage = async function()
   };
 
   // Get the address count.
-  const addressAmount = Object.keys(recordObject.address.properties).length;
+  const addressAmount = Object.keys(recordObject.address.subObject).length;
 
   // Clone enough elementWrappers to accommodate every address.
   for (let loopCount = 0; loopCount < addressAmount - 1; loopCount++) 
@@ -688,67 +688,67 @@ app.loadoContactEditPage = async function()
   document.querySelectorAll(".lastNameInput").forEach(function (element){element.value = recordObject.lastName});
   document.querySelectorAll(".emailInput").forEach(function (element){element.value = recordObject.email});
 
-  document.querySelectorAll(".phone_properties_phone0_properties_phoneTypeInput").forEach
+  document.querySelectorAll(".phone_subObject_phone0_subObject_phoneTypeInput").forEach
   (
     function (element, elementIndex)
     {
-      element.value = recordObject.phone.properties["phone" + elementIndex.toString()].properties.phoneType;
+      element.value = recordObject.phone.subObject["phone" + elementIndex.toString()].subObject.phoneType;
     }
   );
 
-  document.querySelectorAll(".phone_properties_phone0_properties_phoneInput").forEach
+  document.querySelectorAll(".phone_subObject_phone0_subObject_phoneInput").forEach
   (
     function (element, elementIndex)
     {
-      element.value = recordObject.phone.properties["phone" + elementIndex.toString()].properties.phone;
+      element.value = recordObject.phone.subObject["phone" + elementIndex.toString()].subObject.phone;
     }
   );
 
-  document.querySelectorAll(".address_properties_address0_properties_addressTypeInput").forEach
+  document.querySelectorAll(".address_subObject_address0_subObject_addressTypeInput").forEach
   (
     function (element, elementIndex)
     {
-      element.value = recordObject.address.properties["address" + elementIndex.toString()].properties.addressType;
+      element.value = recordObject.address.subObject["address" + elementIndex.toString()].subObject.addressType;
     }
   );
 
-  document.querySelectorAll(".address_properties_address0_properties_streetOneInput").forEach
+  document.querySelectorAll(".address_subObject_address0_subObject_streetOneInput").forEach
   (
     function (element, elementIndex)
     {
-      element.value = recordObject.address.properties["address" + elementIndex.toString()].properties.streetOne;
+      element.value = recordObject.address.subObject["address" + elementIndex.toString()].subObject.streetOne;
     }
   );
 
-  document.querySelectorAll(".address_properties_address0_properties_streetTwoInput").forEach
+  document.querySelectorAll(".address_subObject_address0_subObject_streetTwoInput").forEach
   (
     function (element, elementIndex)
     {
-      element.value = recordObject.address.properties["address" + elementIndex.toString()].properties.streetTwo;
+      element.value = recordObject.address.subObject["address" + elementIndex.toString()].subObject.streetTwo;
     }
   );
 
-  document.querySelectorAll(".address_properties_address0_properties_cityInput").forEach
+  document.querySelectorAll(".address_subObject_address0_subObject_cityInput").forEach
   (
     function (element, elementIndex)
     {
-      element.value = recordObject.address.properties["address" + elementIndex.toString()].properties.city;
+      element.value = recordObject.address.subObject["address" + elementIndex.toString()].subObject.city;
     }
   );
 
-  document.querySelectorAll(".address_properties_address0_properties_stateInput").forEach
+  document.querySelectorAll(".address_subObject_address0_subObject_stateInput").forEach
   (
     function (element, elementIndex)
     {
-      element.value = recordObject.address.properties["address" + elementIndex.toString()].properties.state;
+      element.value = recordObject.address.subObject["address" + elementIndex.toString()].subObject.state;
     }
   );
 
-  document.querySelectorAll(".address_properties_address0_properties_zipInput").forEach
+  document.querySelectorAll(".address_subObject_address0_subObject_zipInput").forEach
   (
     function (element, elementIndex)
     {
-      element.value = recordObject.address.properties["address" + elementIndex.toString()].properties.zip;
+      element.value = recordObject.address.subObject["address" + elementIndex.toString()].subObject.zip;
     }
   );
   
