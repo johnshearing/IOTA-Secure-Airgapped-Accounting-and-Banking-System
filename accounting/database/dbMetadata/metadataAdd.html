@@ -347,34 +347,33 @@ app.loadoContactAddPage = function()
   // Define the function that fires when the moveObjectUpButton is selected.
   function onClickBehaviorForMoveObjectUpButton (event)  
   {
-
     // Stop it from redirecting anywhere
     event.preventDefault();
 
     // Enable the moveObjectUpButton on the object coming down.
-    let moveObjectUpButtonOnTheObjectComingDown = event.target.parentNode.previousElementSibling.querySelector(".moveObjectUpButton");
+    let moveObjectUpButtonOnTheObjectComingDown = event.target.parentNode.previousElementSibling.querySelectorAll(".moveObjectUpButton")[event.target.parentNode.previousElementSibling.querySelectorAll(".moveObjectUpButton").length - 1];
     moveObjectUpButtonOnTheObjectComingDown.classList.remove('disabled');
     moveObjectUpButtonOnTheObjectComingDown.removeAttribute("disabled");
 
-    // Find out if we are on the bottom
-    if(event.target.parentNode === event.target.parentNode.parentNode.querySelector(".elementWrapper:nth-last-child(2)"))
+    // Find out if we are at the bottom
+    if(!event.target.parentNode.nextElementSibling.classList.contains("elementWrapper"))
     {
       // The object coming down will not be able to go down anymore.
-      // So no need for the moveObjectDownButton. Disable it. 
-      let moveObjectDownButtonOnTheObjectComingDown = event.target.parentNode.previousElementSibling.querySelector(".moveObjectDownButton");      
+      // So no need for the moveObjectDownButton. Disable it.
+      let moveObjectDownButtonOnTheObjectComingDown = event.target.parentNode.previousElementSibling.querySelectorAll(".moveObjectDownButton")[event.target.parentNode.previousElementSibling.querySelectorAll(".moveObjectDownButton").length - 1];
       moveObjectDownButtonOnTheObjectComingDown.classList.add("disabled");
       moveObjectDownButtonOnTheObjectComingDown.setAttribute("disabled", "");
-    }       
+    }  
 
+    // Enable the moveObjectDownButton next to the target button.
     // Since we are moving this elementWrapper up we need to be sure the moveObjectDownButton is enabled.
     // Need this in case it was sitting on the bottom where the down button is disabled.
-    // Enable the moveObjectDownButton next to the target button
-    let moveObjectDownButtonNextToTargetButton = event.target.parentNode.querySelector(".moveObjectDownButton")
+    let moveObjectDownButtonNextToTargetButton = event.target.nextElementSibling
     moveObjectDownButtonNextToTargetButton.classList.remove('disabled');
     moveObjectDownButtonNextToTargetButton.removeAttribute("disabled");
     
     // Move the object up
-    if(event.target.parentNode.previousSibling)
+    if(event.target.parentNode.previousElementSibling)
     {
       event.target.parentNode.parentNode.insertBefore(event.target.parentNode, event.target.parentNode.previousElementSibling);
     }
@@ -408,24 +407,24 @@ app.loadoContactAddPage = function()
     event.preventDefault();
 
     // Enable the moveObjectDownButton on the object coming up.
-    let moveObjectDownButtonOnTheObjectComingUp = event.target.parentNode.nextElementSibling.querySelector(".moveObjectDownButton");
+    let moveObjectDownButtonOnTheObjectComingUp = event.target.parentNode.nextElementSibling.querySelectorAll(".moveObjectDownButton")[event.target.parentNode.nextElementSibling.querySelectorAll(".moveObjectDownButton").length - 1];    
     moveObjectDownButtonOnTheObjectComingUp.classList.remove('disabled');
     moveObjectDownButtonOnTheObjectComingUp.removeAttribute("disabled");
 
     // Find out if we are on the top
-    if(event.target.parentNode === event.target.parentNode.parentNode.querySelector(".elementWrapper:first-child"))
+    if(!event.target.parentNode.previousElementSibling)
     {
       // The object coming up will not be able to go up anymore.
       // So no need for the moveObjectUpButton. Disable it. 
-      let moveObjectUpButtonOnTheObjectComingUp = event.target.parentNode.nextElementSibling.querySelector(".moveObjectUpButton");      
+      let moveObjectUpButtonOnTheObjectComingUp = event.target.parentNode.nextElementSibling.querySelectorAll(".moveObjectUpButton")[event.target.parentNode.nextElementSibling.querySelectorAll(".moveObjectUpButton").length - 1];
       moveObjectUpButtonOnTheObjectComingUp.classList.add("disabled");
       moveObjectUpButtonOnTheObjectComingUp.setAttribute("disabled", "");
     } 
 
-    // Since we are moving this elementWrapper down we need to be sure the moveObjectUpButton is enabled.
+    // Since we are moving this elementWrapper down we need to be sure the moveObjectUpButton is enabled. 
     // Need this in case it was sitting at the top where the up button is disabled.
     // Enable the moveObjectUpButton next to the target down button
-    let moveObjectUpButtonNextToTargetButton = event.target.parentNode.querySelector(".moveObjectUpButton")
+    let moveObjectUpButtonNextToTargetButton = event.target.previousElementSibling    
     moveObjectUpButtonNextToTargetButton.classList.remove('disabled');
     moveObjectUpButtonNextToTargetButton.removeAttribute("disabled");
 
@@ -436,7 +435,7 @@ app.loadoContactAddPage = function()
     }
   
     // Find out if we are at the bottom
-        if(event.target.parentNode === event.target.parentNode.parentNode.querySelector(".elementWrapper:nth-last-child(2)"))    
+    if(!event.target.parentNode.nextElementSibling.classList.contains("elementWrapper"))     
     {
       // Can't move down anymore than this.
       // Disable the target moveObjectDownButton.
@@ -465,48 +464,45 @@ app.loadoContactAddPage = function()
     event.preventDefault();
 
     // If we are on the top
-    if(event.target.parentNode === event.target.parentNode.parentNode.querySelector(".elementWrapper:first-child"))
+    // if(event.target.parentNode === event.target.parentNode.parentNode.querySelector(".elementWrapper:first-child"))
+    if(!event.target.parentNode.previousElementSibling)    
     {
       // The object coming up will not be able to go up anymore.
       // So no need for the moveObjectUpButton. Disable it. 
-      let moveObjectUpButtonOnTheObjectComingUp = event.target.parentNode.nextElementSibling.querySelector(".moveObjectUpButton");      
+      let moveObjectUpButtonOnTheObjectComingUp = event.target.parentNode.nextElementSibling.querySelectorAll(".moveObjectUpButton")[event.target.parentNode.nextElementSibling.querySelectorAll(".moveObjectUpButton").length - 1];      
       moveObjectUpButtonOnTheObjectComingUp.classList.add("disabled");
       moveObjectUpButtonOnTheObjectComingUp.setAttribute("disabled", "");
 
       // If there are only two left
-      if(event.target.parentNode.parentNode.querySelectorAll(".elementWrapper").length === 2)
+      if(event.target.parentNode.parentNode.childElementCount === 3)      
       {
         // We must never delete the last one
         // So disable the removeObjectButton on the last survivor    
-        
-        let removeObjectButtonOnTheObjectComingUp = event.target.parentNode.nextElementSibling.querySelector(".removeObjectButton");      
+        let removeObjectButtonOnTheObjectComingUp = event.target.parentNode.nextElementSibling.querySelectorAll(".removeObjectButton")[event.target.parentNode.nextElementSibling.querySelectorAll(".removeObjectButton").length - 1];           
         removeObjectButtonOnTheObjectComingUp.classList.add("disabled");
         removeObjectButtonOnTheObjectComingUp.setAttribute("disabled", "");
-
       }
     } // End of: If there are only two left
     // End of: If we are on the top
 
     // If we are on the bottom
-    if(event.target.parentNode === event.target.parentNode.parentNode.querySelector(".elementWrapper:nth-last-child(2)"))
+    if(!event.target.parentNode.nextElementSibling.classList.contains("elementWrapper"))    
     {
       // The object coming down will not be able to go down anymore.
       // So no need for the moveObjectDownButton. Disable it. 
-      let moveObjectDownButtonOnTheObjectComingDown = event.target.parentNode.previousElementSibling.querySelector(".moveObjectDownButton");      
+      let moveObjectDownButtonOnTheObjectComingDown = event.target.parentNode.previousElementSibling.querySelectorAll(".moveObjectDownButton")[event.target.parentNode.previousElementSibling.querySelectorAll(".moveObjectDownButton").length - 1];     
       moveObjectDownButtonOnTheObjectComingDown.classList.add("disabled");
       moveObjectDownButtonOnTheObjectComingDown.setAttribute("disabled", "");
 
       // If there are only two left
-      if(event.target.parentNode.parentNode.querySelectorAll(".elementWrapper").length === 2)
+      if(event.target.parentNode.parentNode.childElementCount === 3)
       {
         // We must never delete the last one
-        // So disable the removeObjectButton on the last survivor    
-        
-        let removeObjectButtonOnTheObjectComingDown = event.target.parentNode.previousElementSibling.querySelector(".removeObjectButton");      
+        // So disable the removeObjectButton on the last survivor
+        let removeObjectButtonOnTheObjectComingDown = event.target.parentNode.previousElementSibling.querySelectorAll(".removeObjectButton")[event.target.parentNode.previousElementSibling.querySelectorAll(".removeObjectButton").length - 1];        
         removeObjectButtonOnTheObjectComingDown.classList.add("disabled");
         removeObjectButtonOnTheObjectComingDown.setAttribute("disabled", "");
-
-      } // End of: If there are only two left
+      } // End of: If there are only two left 
     } // End of: If we are on the bottom
 
     let groupWrapper = event.target.parentNode.parentNode;
@@ -677,7 +673,6 @@ app.loadoContactAddPage = function()
 // Define a function which renumbers field names in children objects as we create, move, or delete their element wrappers
 function renumberNamedElementsInGroupWrapper(groupWrapper)
 {
-  debugger;
   // Used to determine if we are changing levels of hierarchy in the DOM
   // We haven't looked at an elementWrapper yet so it's undefined.
   let previousElementWrapper = undefined;
@@ -687,7 +682,7 @@ function renumberNamedElementsInGroupWrapper(groupWrapper)
   // For example: the zero in field0 gets replaced or the zero in defaultElement0 gets replaced.
   // If ancestorWrappers.length = 1 we put the numeric value in the array in the place of the zero in field0
   // A length of two in ancestorWrappers indicates we put the numeric value in the array in the place of the zero in defaultElement0
-  let ancestorWrappers = [["previousElementWrappers_PushedHere", 0]]; // ????
+  let ancestorWrappers = [["previousElementWrappers_PushedHere", 0]];
 
   // Start at the heighest groupWrapper in the hierarchy defined by the groupWrapper that was passed into the function.
   groupWrapper = groupWrapper.closest("form > .groupWrapper");
@@ -763,7 +758,7 @@ function renumberNamedElementsInGroupWrapper(groupWrapper)
       let encountersWithNumbers = 0;
 
       // The following regular expression will find numbers in a string
-      let searchExpression = /\d+/g
+      let searchExpression = /d+/g
 
       // Spliting the name string of the current element on the underscore.
       // This makes it easy to find and replace numbers in the string.
@@ -786,7 +781,7 @@ function renumberNamedElementsInGroupWrapper(groupWrapper)
             {
               // Insert numbers in the form element's name string to show it's position within the DOM
               // This information is needed in order to write a well formed object to the JSON database.
-              accumulator = accumulator +  currentSplitElement.replace(/\d+/g, ancestorWrappers[ancestorWrappers.length - 1][1]);
+              accumulator = accumulator +  currentSplitElement.replace(/d+/g, ancestorWrappers[ancestorWrappers.length - 1][1]);
 
               // Put a dash at the end of the element if it is not the last one.
               if(currentSplitElementIndex < nameAttributeArray.length -1){accumulator = accumulator + "_"};
