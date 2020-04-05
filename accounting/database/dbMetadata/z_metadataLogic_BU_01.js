@@ -506,21 +506,122 @@ metadata._metadata.post = function(data, callback)
   // End of: Validate elements in the publishedArray
 
 
-  // Declare an array containing information needed to build the key ????
-  // which we will use to access the "elementName" values in data.payload
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  // Will hold all the values from data.payload that have the key "elementName" ????
+  let elementNameArray = [];
+
+  // Declare the array containing information needed to build the 
+  // object key used to access the elementName values in data.payload
   let elementNameKeyArray = ["field", "defaultElement", "elementName"]
 
   // Call the function that traverses data.payload and loads elementNameArray with
   // values encountered which have the key "elementName". 
   // This function will call itself recursively if drilling into data.payload is required.
-  // Notice the end of the function call. We are using only the first element of the array returned by this function.
-  // The parameters:             what to fill, what to look for, where to look, nestLevel, loopCount, previousPart,  continueLooping
-  let elementNameArray = loadPayloadArray([], elementNameKeyArray, data.payload,    0,        0,        "",           true)[0];
+  loadPayloadArray(elementNameKeyArray, 0, 0, "", true)
+
+  // Declare a function that we will use to load the elementNameArray dynamically once the payload is known.
+  // Behavior from meta.js at lefq4oks90h34rvcw8sg  
+  // The nestLevel determines which element in elementNameKeyArray we are addressing. It's the index
+  // The loopCount determines the value of the number we are appending to the element when building the 
+  // property key used to access the property value from data.payload that we wish to load into elementNameArray
+  // Looks like we can make this a generic function at the bottom of this file.
+  function loadPayloadArray(elementNameKeyArray, nestLevel, loopCount, previouspart, continueLooping)
+  {      
+    let keyUnderConstruction = "";    
+
+    // for (let loopCount = 0; loopCount < elementNameKeyArray.length - 1; loopCount = loopCount + 1)
+    while(continueLooping)
+    {
+      // Start with a blank key.
+      keyUnderConstruction = "";
+
+      // If we are at the top. 
+      if(nestLevel === 0)
+      {
+        keyUnderConstruction = previouspart +
+        elementNameKeyArray[nestLevel] + "_subObject_" + elementNameKeyArray[nestLevel]  + loopCount.toString();
+      } // End of: If we are at the top.
+      else // Not at the top
+      {
+        keyUnderConstruction = previouspart +
+        "_subObject_" + elementNameKeyArray[nestLevel] + "_subObject_" + elementNameKeyArray[nestLevel]  + loopCount.toString();      
+      } // End of: Else: we are not at the top.
+  
+      // If we are at the bottom
+      // Finish constructing the key.
+      // Then run the key expression in a while loop to load the elementNameArray
+      if(nestLevel === elementNameKeyArray.length - 2)
+      {
+        // Finish building the keyUnderConstruction.
+        keyUnderConstruction = keyUnderConstruction +
+        "_subObject_" + elementNameKeyArray[nestLevel + 1];
+
+        // Now we will use the key that we built.
+        // Check if the data exists in the payload
+        if(data.payload[keyUnderConstruction])
+        {
+          // If the data is there then push it onto the array we use to write to the database.
+          elementNameArray.push(data.payload[keyUnderConstruction]);
+
+          loopCount = loopCount + 1;
+        }
+        else // No more elementNames were found at this level.  
+        {
+          // If nothing was found when the loopCount is at zero then we are completely done.
+          if(loopCount === 0)
+          {
+            continueLooping = false;
+            return continueLooping;
+          }
+          else // data was found previously at this level so we are not done.
+          {
+            loopCount = loopCount + 1; 
+
+            continueLooping = true;
+            return continueLooping;
+          } // End of: Else: data was found previously at this level so we are not done.
+        } // End of: Else: No more elementNames were found at this level. 
+      } // End of: If we are at the bottom
+      else // We are not at the bottom. We need to go deeper into the elementNameKeyArray.
+      {
+        // This function calls itself so as to add more text to the keyUnderConstruction
+        continueLooping = loadPayloadArray(elementNameKeyArray, nestLevel + 1, 0, keyUnderConstruction, true);
+ 
+        loopCount = loopCount + 1;        
+      } // End of: Else we are not at the bottom. Go deeper into the recursion and pop out again.
+    } // End of: while(true)
+  }; // End of: function loadPayloadArray(address, objKey, objectNestLevel, previousPath){...}
+  // End of: Declare a function that we will use to load the elementNameArray dynamically once the payload is known.  
+  
 
   // Start of: Validate elements in the elementNameArray
   // passIfString&NotEmptyThenTrim
   // Behavior from meta.js at fkb3ulfqr09ryyc0rb0d
-  elementNameArray[1].forEach(function(arrayElement)
+  elementNameArray.forEach(function(arrayElement)
   {
     if(typeof(arrayElement) != 'string'){return callback(400, {'Error' : 'elementName must be of datatype string'});}
     if(!arrayElement || arrayElement.trim().length === 0){return callback(400, {'Error' : 'No elementName was entered'});}else{arrayElement = arrayElement.trim()}
@@ -2401,91 +2502,6 @@ metadata._metadata.get = function(data, callback)
 
 }; // End of: handlers._metadata.get = function(data, callback){do stuff}
 // End of: Define the metadata get subhandler function.  
-
-
-// A payloadArray is used to validate and save nested data to the database.
-// Declaring a function that we will use to load a payloadArray dynamically once the payload is known.  
-// The nestLevel determines which element in payloadKeyArray we are addressing. It's the index
-// The loopCount determines the value of the number we are appending to the element when building the 
-// property key used to access the property value from payloadObject that we wish to load into payloadArray
-// Behavior from meta.js at defq4ols90h44rvcw8st
-function loadPayloadArray(payloadArray, payloadKeyArray, payloadObject, nestLevel, loopCount, previousPart, continueLooping)
-{      
-  let keyUnderConstruction, recursionResult;    
-
-  // for (let loopCount = 0; loopCount < payloadKeyArray.length - 1; loopCount = loopCount + 1)
-  while(continueLooping)
-  {
-    // Start with a blank key.
-    keyUnderConstruction = "";
-
-    // If we are at the top. 
-    if(nestLevel === 0)
-    {
-      keyUnderConstruction = previousPart +
-      payloadKeyArray[nestLevel] + "_subObject_" + payloadKeyArray[nestLevel]  + loopCount.toString();
-    } // End of: If we are at the top.
-    else // Not at the top
-    {
-      keyUnderConstruction = previousPart +
-      "_subObject_" + payloadKeyArray[nestLevel] + "_subObject_" + payloadKeyArray[nestLevel]  + loopCount.toString();      
-    } // End of: Else: we are not at the top.
-
-    // If we are at the bottom
-    // Finish constructing the key.
-    // Then run the key expression in a while loop to load the payloadArray
-    if(nestLevel === payloadKeyArray.length - 2)
-    {
-      // Finish building the keyUnderConstruction.
-      keyUnderConstruction = keyUnderConstruction +
-      "_subObject_" + payloadKeyArray[nestLevel + 1];
-
-      // Now we will use the key that we built.
-      // Check if the data exists in the payload
-      if(payloadObject[keyUnderConstruction])
-      {
-        // If the data is there then push it onto the array we use to write to the database.
-        payloadArray.push([keyUnderConstruction, payloadObject[keyUnderConstruction]]);
-
-        loopCount = loopCount + 1;
-      }
-      else // No more payloads were found at this level.  
-      {
-        // If nothing was found when the loopCount is at zero then we are completely done.
-        if(loopCount === 0)
-        {
-          continueLooping = false;
-          return [payloadArray, continueLooping];
-        }
-        else // data was found previously at this level so we are not done.
-        {
-          continueLooping = true;
-          return [payloadArray, continueLooping];
-
-        } // End of: Else: data was found previously at this level so we are not done.
-      } // End of: Else: No more payloads were found at this level. 
-    } // End of: If we are at the bottom
-    else // We are not at the bottom. We need to recurse deeper into the payloadKeyArray.
-    {
-      // This function calls itself so as to add more text to the keyUnderConstruction
-      recursionResult = loadPayloadArray(payloadArray, payloadKeyArray, payloadObject, nestLevel + 1, 0, keyUnderConstruction, true);
-
-      payloadArray = recursionResult[0];
-
-      loopCount = loopCount + 1;         
-
-      continueLooping = recursionResult[1];
-      
-      if(!continueLooping)
-      {
-        return recursionResult
-      };
-
-    } // End of: Else we are not at the bottom. Go deeper into the recursion and pop out again.
-  } // End of: while(true)
-}; // End of: function loadPayloadArray(address, objKey, objectNestLevel, previousPath){...}
-// End of: Declare a function that we will use to load the payloadArray dynamically once the payload is known.  
-
 
 
 

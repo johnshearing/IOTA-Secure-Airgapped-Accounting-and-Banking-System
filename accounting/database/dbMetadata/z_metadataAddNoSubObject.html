@@ -28,11 +28,11 @@
       <div class="objectWrapper elementWrapper">
         <div class="inputWrapper">
           <div class="inputLabel">Field Name</div>
-          <input class="resetElement" name="field_subObject_field0_subObject_fieldName" type="text" placeHolder="Enter a Field Name"/>
+          <input class="resetElement" name="field_field0_fieldName" type="text" placeHolder="Enter a Field Name"/>
         </div>
         <div class="inputWrapper">
           <div class="inputLabel">Data Type</div>
-          <select class="resetElement" name="field_subObject_field0_subObject_dataType">
+          <select class="resetElement" name="field_field0_dataType">
             <option value="" style="display: list-item;">Select the Data Type</option>
             <option value="string" style="display: list-item;">String</option>
             <option value="boolean" style="display: list-item;">Boolean</option>
@@ -41,7 +41,7 @@
         </div>
         <div class="inputWrapper">
           <div class="inputLabel">Unique</div>
-          <select class="resetElement" name="field_subObject_field0_subObject_unique">
+          <select class="resetElement" name="field_field0_unique">
             <option value="" style="display: list-item;">Select if Unique</option>
             <option value="true" style="display: list-item;">true</option>
             <option value="false" style="display: list-item;">false</option>
@@ -49,7 +49,7 @@
         </div>
         <div class="inputWrapper">
           <div class="inputLabel">Published</div>
-          <select class="resetElement" name="field_subObject_field0_subObject_published">
+          <select class="resetElement" name="field_field0_published">
             <option value="" style="display: list-item;">Select if Published</option>
             <option value="true" style="display: list-item;">true</option>
             <option value="false" style="display: list-item;">false</option>
@@ -60,7 +60,7 @@
           <div class="objectWrapper elementWrapper">
             <div class="inputWrapper">
               <div class="inputLabel">ElementName</div>
-              <input class="resetElement" name="field_subObject_field0_subObject_defaultElement_subObject_defaultElement0_subObject_elementName" type="text"/>
+              <input class="resetElement" name="field_field0_defaultElement_defaultElement0_elementName" type="text"/>
             </div>
             <button type="button" class="disabled controlObjectButton moveObjectUpButton blue" disabled>Move Up</button>
             <button type="button" class="disabled controlObjectButton moveObjectDownButton blue" disabled>Move Down</button>
@@ -678,7 +678,7 @@ function renumberNamedElementsInGroupWrapper(groupWrapper)
   let previousElementWrapper = undefined;
 
   // The length of ancestorWrappers array indicates which number in the name string gets replaced with the numeric value in the array.
-  // Example fieldName: field_subObject_field0_subObject_defaultElement_subObject_defaultElement0_subObject_elementName  
+  // Example fieldName: field_field0_defaultElement_defaultElement0_elementName  
   // For example: the zero in field0 gets replaced or the zero in defaultElement0 gets replaced.
   // If ancestorWrappers.length = 1 we put the numeric value in the array in the place of the zero in field0
   // A length of two in ancestorWrappers indicates we put the numeric value in the array in the place of the zero in defaultElement0
@@ -757,9 +757,6 @@ function renumberNamedElementsInGroupWrapper(groupWrapper)
       // Counts how many times we encounter a number as we run the reduce function below.
       let encountersWithNumbers = 0;
 
-      // The following regular expression will find numbers in a string
-      let searchExpression = /d+/g
-
       // Spliting the name string of the current element on the underscore.
       // This makes it easy to find and replace numbers in the string.
       const nameAttributeArray = previousNameAttribute.split("_")
@@ -781,7 +778,8 @@ function renumberNamedElementsInGroupWrapper(groupWrapper)
             {
               // Insert numbers in the form element's name string to show it's position within the DOM
               // This information is needed in order to write a well formed object to the JSON database.
-              accumulator = accumulator +  currentSplitElement.replace(/d+/g, ancestorWrappers[ancestorWrappers.length - 1][1]);
+              //                                                       search for numbers      replace with numbers denoting postion
+              accumulator = accumulator +  currentSplitElement.replace(/[0-9]+(?!.*[0-9])/, ancestorWrappers[ancestorWrappers.length - 1][1]);
 
               // Put a dash at the end of the element if it is not the last one.
               if(currentSplitElementIndex < nameAttributeArray.length -1){accumulator = accumulator + "_"};
