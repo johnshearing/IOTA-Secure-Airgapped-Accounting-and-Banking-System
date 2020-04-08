@@ -304,7 +304,7 @@ metadata._metadata = {};
 
 
 
-// metadata - post subhandler
+// metadata - post subhandler ????
 // Define the metadata post subhandler function.
 // This function appends a record to the metadata file.
 // Behavior from meta.js at 1723qxikk1l3ru0vfrny 
@@ -339,60 +339,30 @@ metadata._metadata.post = function(data, callback)
   if(typeof(allowCodeGeneration) != 'string'){return callback(400, {'Error' : 'allowCodeGeneration must be of datatype string'});}
   if(!allowCodeGeneration || allowCodeGeneration.trim().length === 0){return callback(400, {'Error' : 'No allowCodeGeneration was entered'});}else{allowCodeGeneration = allowCodeGeneration.trim()}
 
-
+  // ????
   // Start of: Load the fieldNameArray dynamically once the payload is known.
-  // Behavior from meta.js at lefq4oks90h34rvcw8sg
-  let fieldNameArray = [];
-  let runFieldNameLoop = true;
-  let fieldNameLoopCount = 0;
+  // Behavior from meta.js at lefq4oks90h34rvcw8sg  
+  let fieldNameKeyArray = ["field", "fieldName"]
 
-  while (runFieldNameLoop === true)
-  {
-    // Check if the data exists in the payload
-    if(data.payload["field_subObject_field" + fieldNameLoopCount.toString() + "_subObject_fieldName"])
-    {
-      fieldNameArray.push(data.payload["field_subObject_field" + fieldNameLoopCount.toString() + "_subObject_fieldName"]);
-      
-      fieldNameLoopCount = fieldNameLoopCount + 1;
-    }
-    else // No more fieldName variables were sent by the client.  
-    {
-      runFieldNameLoop = false;      
-    }    
-  } // End of: while (runFieldNameLoop === true){...}
-  // End of: Load the fieldNameArray dynamically once the payload is known.  
-
-                  
+  let fieldNameArray = loadPayloadArray([], fieldNameKeyArray, data.payload, 0, 0, "", true)[0];
+  // End of: Load the dataTypeArray dynamically once the payload is known. 
+            
   // Start of: Validate elements in the fieldNameArray
   // passIfString&NotEmptyThenTrim
   // Behavior from meta.js at fkb3ulfqr09ryyc0rb0d
   fieldNameArray.forEach(function(arrayElement)
   {
-    if(typeof(arrayElement) != 'string'){return callback(400, {'Error' : 'fieldName must be of datatype string'});}
-    if(!arrayElement || arrayElement.trim().length === 0){return callback(400, {'Error' : 'No fieldName was entered'});}else{arrayElement = arrayElement.trim()}
+    if(typeof(arrayElement[1]) != 'string'){return callback(400, {'Error' : 'fieldName must be of datatype string'});}
+    if(!arrayElement[1] || arrayElement[1].trim().length === 0){return callback(400, {'Error' : 'No fieldName was entered'});}else{arrayElement[1] = arrayElement[1].trim()}
   });
   // End of: Validate elements in the fieldNameArray  
 
-  // Start of: Load the dataTypeArray dynamically once the payload is known.
-  // Behavior from meta.js at lefq4oks90h34rvcw8sg
-  let dataTypeArray = [];
-  let runDataTypeLoop = true;
-  let dataTypeLoopCount = 0;
 
-  while (runDataTypeLoop === true)
-  {
-    // Check if the data exists in the payload
-    if(data.payload["field_subObject_field" + dataTypeLoopCount.toString() + "_subObject_dataType"])
-    {
-      dataTypeArray.push(data.payload["field_subObject_field" + dataTypeLoopCount.toString() + "_subObject_dataType"]);
-      
-      dataTypeLoopCount = dataTypeLoopCount + 1;
-    }
-    else // No more dataType variables were sent by the client.  
-    {
-      runDataTypeLoop = false;      
-    }    
-  } // End of: while (runDataTypeLoop === true){...}
+  // Start of: Load the dataTypeArray dynamically once the payload is known.
+  // Behavior from meta.js at lefq4oks90h34rvcw8sg  
+  let dataTypeKeyArray = ["field", "dataType"]
+
+  let dataTypeArray = loadPayloadArray([], dataTypeKeyArray, data.payload, 0, 0, "", true)[0];
   // End of: Load the dataTypeArray dynamically once the payload is known.  
 
   // Start of: Validate elements in the dataTypeArray
@@ -400,16 +370,16 @@ metadata._metadata.post = function(data, callback)
   // Behavior from meta.js at 69nq4ck9lcdakwpb58o6
   dataTypeArray.forEach(function(arrayElement)
   {
-    if(typeof(arrayElement) != 'string')
+    if(typeof(arrayElement[1]) != 'string')
     {
       return callback(400, {'Error' : 'dataType must be of datatype string'});
     }
   
     if
     (
-      arrayElement !== "string"
-      && arrayElement !== "boolean"
-      && arrayElement !== "object"
+      arrayElement[1] !== "string"
+      && arrayElement[1] !== "boolean"
+      && arrayElement[1] !== "object"
     )
     {
       return callback(400, {'Error' : 'dataType does not match menu options'});
@@ -419,25 +389,10 @@ metadata._metadata.post = function(data, callback)
 
 
   // Start of: Load the uniqueArray dynamically once the payload is known.
-  // Behavior from meta.js at lefq4oks90h34rvcw8sg
-  let uniqueArray = [];
-  let runUniqueLoop = true;
-  let uniqueLoopCount = 0;
+  // Behavior from meta.js at lefq4oks90h34rvcw8sg  
+  let uniqueKeyArray = ["field", "unique"]
 
-  while (runUniqueLoop === true)
-  {
-    // Check if the data exists in the payload
-    if(data.payload["field_subObject_field" + uniqueLoopCount.toString() + "_subObject_unique"])
-    {
-      uniqueArray.push(data.payload["field_subObject_field" + uniqueLoopCount.toString() + "_subObject_unique"]);
-      
-      uniqueLoopCount = uniqueLoopCount + 1;
-    }
-    else // No more unique variables were sent by the client.  
-    {
-      runUniqueLoop = false;      
-    }    
-  } // End of: while (runUniqueLoop === true){...}
+  let uniqueArray = loadPayloadArray([], uniqueKeyArray, data.payload, 0, 0, "", true)[0];
   // End of: Load the uniqueArray dynamically once the payload is known.  
 
   // Start of: Validate elements in the uniqueArray
@@ -445,15 +400,15 @@ metadata._metadata.post = function(data, callback)
   // Behavior from meta.js at 69nq4ck9lcdakwpb58o6
   uniqueArray.forEach(function(arrayElement)
   {
-    if(typeof(arrayElement) != 'string')
+    if(typeof(arrayElement[1]) != 'string')
     {
       return callback(400, {'Error' : 'unique must be of datatype string'});
     }
   
     if
     (
-      arrayElement !== "true"
-      && arrayElement !== "false"
+      arrayElement[1] !== "true"
+      && arrayElement[1] !== "false"
     )
     {
       return callback(400, {'Error' : 'unique does not match menu options'});
@@ -463,41 +418,27 @@ metadata._metadata.post = function(data, callback)
 
 
   // Start of: Load the publishedArray dynamically once the payload is known.
-  // Behavior from meta.js at lefq4oks90h34rvcw8sg
-  let publishedArray = [];
-  let runPublishedLoop = true;
-  let publishedLoopCount = 0;
+  // Behavior from meta.js at lefq4oks90h34rvcw8sg  
+  let publishedKeyArray = ["field", "published"]
 
-  while (runPublishedLoop === true)
-  {
-    // Check if the data exists in the payload
-    if(data.payload["field_subObject_field" + publishedLoopCount.toString() + "_subObject_published"])
-    {
-      publishedArray.push(data.payload["field_subObject_field" + publishedLoopCount.toString() + "_subObject_published"]);
-      
-      publishedLoopCount = publishedLoopCount + 1;
-    }
-    else // No more published variables were sent by the client.  
-    {
-      runPublishedLoop = false;      
-    }    
-  } // End of: while (runPublishedLoop === true){...}
+  let publishedArray = loadPayloadArray([], publishedKeyArray, data.payload, 0, 0, "", true)[0];
   // End of: Load the publishedArray dynamically once the payload is known.  
+
 
   // Start of: Validate elements in the publishedArray
   // passMenuItemsOnly
   // Behavior from meta.js at 69nq4ck9lcdakwpb58o6
   publishedArray.forEach(function(arrayElement)
   {
-    if(typeof(arrayElement) != 'string')
+    if(typeof(arrayElement[1]) != 'string')
     {
       return callback(400, {'Error' : 'published must be of datatype string'});
     }
   
     if
     (
-      arrayElement !== "true"
-      && arrayElement !== "false"
+      arrayElement[1] !== "true"
+      && arrayElement[1] !== "false"
     )
     {
       return callback(400, {'Error' : 'published does not match menu options'});
@@ -506,26 +447,23 @@ metadata._metadata.post = function(data, callback)
   // End of: Validate elements in the publishedArray
 
 
-  // Declare an array containing information needed to build the key ????
-  // which we will use to access the "elementName" values in data.payload
+  // Start of: Load the elementNameArray dynamically once the payload is known.
+  // Behavior from meta.js at lefq4oks90h34rvcw8sg  
   let elementNameKeyArray = ["field", "defaultElement", "elementName"]
 
-  // Call the function that traverses data.payload and loads elementNameArray with
-  // values encountered which have the key "elementName". 
-  // This function will call itself recursively if drilling into data.payload is required.
-  // Notice the end of the function call. We are using only the first element of the array returned by this function.
-  // The parameters:             what to fill, what to look for, where to look, nestLevel, loopCount, previousPart,  continueLooping
-  let elementNameArray = loadPayloadArray([], elementNameKeyArray, data.payload,    0,        0,        "",           true)[0];
+  let elementNameArray = loadPayloadArray([], elementNameKeyArray, data.payload, 0, 0, "", true)[0];
+  // End of: Load the elementNameArray dynamically once the payload is known.
 
   // Start of: Validate elements in the elementNameArray
   // passIfString&NotEmptyThenTrim
   // Behavior from meta.js at fkb3ulfqr09ryyc0rb0d
-  elementNameArray[1].forEach(function(arrayElement)
+  elementNameArray.forEach(function(arrayElement)
   {
-    if(typeof(arrayElement) != 'string'){return callback(400, {'Error' : 'elementName must be of datatype string'});}
-    if(!arrayElement || arrayElement.trim().length === 0){return callback(400, {'Error' : 'No elementName was entered'});}else{arrayElement = arrayElement.trim()}
+    if(typeof(arrayElement[1]) != 'string'){return callback(400, {'Error' : 'elementName must be of datatype string'});}
+    if(!arrayElement[1] || arrayElement[1].trim().length === 0){return callback(400, {'Error' : 'No elementName was entered'});}else{arrayElement[1] = arrayElement[1].trim()}
   });
   // End of: Validate elements in the elementNameArray  
+
 
   // Enforcing uniqueness of the tableName field.
   // Will toggle this to false if we find the tableName already exists in metadata.
@@ -700,8 +638,8 @@ metadata._metadata.post = function(data, callback)
       // unique id number for this record so continue on.
 
 
-
-      // Create the metadata object. 
+      // ????
+      // Create the metadata object.  
       // This object will be appended to metadata.json.
       let metadataObject = {};
       metadataObject.metadataId = nextIdObject.nextId;
@@ -711,24 +649,20 @@ metadata._metadata.post = function(data, callback)
       metadataObject.addRoutes = addRoutes;
       metadataObject.allowCodeGeneration = allowCodeGeneration;
 
-      metadataObject.field = {};
-      metadataObject.field.subObject = {};
-      for (let arrayIndex = 0; arrayIndex < fieldNameArray.length; arrayIndex++) 
-      {
-        metadataObject.field.subObject["field" + arrayIndex.toString()] = {};
-        metadataObject.field.subObject["field" + arrayIndex.toString()].subObject = {};
-        metadataObject.field.subObject["field" + arrayIndex.toString()].subObject["fieldName"] = fieldNameArray[arrayIndex];
-        metadataObject.field.subObject["field" + arrayIndex.toString()].subObject["dataType"] = dataTypeArray[arrayIndex];
-        metadataObject.field.subObject["field" + arrayIndex.toString()].subObject["unique"] = uniqueArray[arrayIndex];
-        metadataObject.field.subObject["field" + arrayIndex.toString()].subObject["published"] = publishedArray[arrayIndex];
-      }
+      // Add any fields named "fieldNameArray" to the object we will write to the database.
+      metadataObject = buildBranches(fieldNameArray, metadataObject);
+      
+      // Add any fields named "dataTypeArray" to the object we will write to the database.
+      metadataObject = buildBranches(dataTypeArray, metadataObject); 
+      
+      // Add any fields named "uniqueArray" to the object we will write to the database.
+      metadataObject = buildBranches(uniqueArray, metadataObject); 
+      
+      // Add any fields named "publishedArray" to the object we will write to the database.
+      metadataObject = buildBranches(publishedArray, metadataObject);       
 
-      for (let arrayIndex = 0; arrayIndex < elementNameArray.length; arrayIndex++) 
-      {
-        metadataObject.field.subObject["field" + arrayIndex.toString()] = {};
-        metadataObject.field.subObject["field" + arrayIndex.toString()].subObject = {};
-        metadataObject.field.subObject["field" + arrayIndex.toString()].subObject["defaultElement"] = defaultElementArray[arrayIndex];
-      }
+      // Add any fields named "elementName" to the object we will write to the database.
+      metadataObject = buildBranches(elementNameArray, metadataObject);    
       
       metadataObject.timeStamp = Date.now();
       metadataObject.deleted = false;
@@ -2403,11 +2337,12 @@ metadata._metadata.get = function(data, callback)
 // End of: Define the metadata get subhandler function.  
 
 
+// ????
 // A payloadArray is used to validate and save nested data to the database.
 // Declaring a function that we will use to load a payloadArray dynamically once the payload is known.  
 // The nestLevel determines which element in payloadKeyArray we are addressing. It's the index
 // The loopCount determines the value of the number we are appending to the element when building the 
-// property key used to access the property value from payloadObject that we wish to load into payloadArray
+// property key used to access the property value from payloadObject that we wish to load into payloadArray.
 // Behavior from meta.js at defq4ols90h44rvcw8st
 function loadPayloadArray(payloadArray, payloadKeyArray, payloadObject, nestLevel, loopCount, previousPart, continueLooping)
 {      
@@ -2486,6 +2421,59 @@ function loadPayloadArray(payloadArray, payloadKeyArray, payloadObject, nestLeve
 }; // End of: function loadPayloadArray(address, objKey, objectNestLevel, previousPath){...}
 // End of: Declare a function that we will use to load the payloadArray dynamically once the payload is known.  
 
+
+// ????
+// Define a function to load nested data which has been validated into the object we will write to the database.
+function buildBranches(fieldArray, persistObject)
+{
+  // Loop through the fieldArray which contains nested data from the client.
+  fieldArray.forEach
+  (
+    // Perform the following function on every element in the fieldArray.
+    function(fieldArrayElement)
+    {
+      // Get a reference to the object tree so we can build branches.
+      let objectBranch = persistObject;  
+
+      // Make an array from the path string splitting it on the underscore.
+      // The elements tell us what to name the branches.
+      fieldArrayElement[0].split("_").forEach
+      (
+        // Perform the following function for every element in fieldArrayElement.
+        function(pathArrayElement, pathArrayIndex, pathArray)
+        {
+          // If we are not on the last one - we are building branches of this object.
+          if(pathArrayIndex < pathArray.length - 1)
+          {
+            // If the branch does not exist...
+            if(!objectBranch[pathArrayElement])
+            {
+              // Create the branch
+              objectBranch[pathArrayElement] = {};
+
+              // Jump onto the new branch
+              objectBranch = objectBranch[pathArrayElement];
+            } // End of: If the branch does not exist.
+            else // The branch exists. It was made in a previous loop
+            {
+              // Jump onto the existing branch
+              objectBranch = objectBranch[pathArrayElement];                  
+            } // End of: Else - The branch exists. It was made in a previous loop
+          } // End of: If we are not on the last one...
+          else // This is the last element which holds the name of the field. We are inserting the value.
+          {
+            // Put a leaf at the end of the current branch and asign the value for the field we are saving to the database.
+            objectBranch[pathArrayElement] = fieldArrayElement[1];
+          } // End of: Else - This is the last element ...
+        } // End of: function(pathArrayElement, pathArrayIndex, pathArray){...}
+      ) // fieldArrayElement[0].split("_").forEach(...)
+    } // End of: function(fieldArrayElement){...}
+  ) // End of: fieldArray.forEach(...)
+
+  return persistObject;
+
+} // End of: function buildBranches(fieldArray, persistObject){...}
+// End of: Define a function to load nested data which has been validated into the object we will write to the database.
 
 
 
