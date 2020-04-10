@@ -2,11 +2,11 @@
 ## For Government, Enterprise, Individuals, and Machines  
 This Air-gapped, stand alone, accounting system for IOTA, Ethereum, and Cardano is a NodeJS client/server database and application generator **with no dependencies other than the javascript libraries for the currencies you may wish to use**.  
 This makes for manageable security auditing.  
-The small formula oriented code generator creates the client side user interface and the server side code which is the same for all tables in the system. So once the generated behavior for one table in the database has been audited, then the system as a whole is largely proven to be secure. That's because the generator uses a formula and a data dictionary to create the same basic code throughout the entire system. Changes to the code are made in one place a ripple down to all parts of the system automatically.  
+The small formula oriented code generator creates the client side user interface and the server side code which is the same for all tables in the system. So once the generator and the data dictionary have been audited, then the system as a whole is largely proven to be secure. That's because the generator uses a formula and a data dictionary to create the same basic code throughout the entire system. Changes to the code are made in one place a ripple down to all parts of the system automatically when the system is regenerated.
 The server side code will run on most any computer using most any operating system.  
 The generated user interface runs in the browser.  
   
-This is software generates secure accounting/banking systems for cryptocurrency that individuals, corporations, and governments can use for managing their business and for cooperating with each other. 
+This software generates secure accounting/banking systems for cryptocurrency that individuals, corporations, and governments can use for managing their business and for cooperating with each other. 
 
 Built to run on a single airgapped [PrivateKeyVault](https://github.com/johnshearing/PrivateKeyVault) for individuals or on an airgapped network for large institutions or government. All this code will run on any device that can run NodeJS.  
 This is the last piece of the puzzle in [The PrivateKeyVault family of repositories](https://github.com/johnshearing).   
