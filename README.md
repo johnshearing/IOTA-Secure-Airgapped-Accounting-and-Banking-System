@@ -131,7 +131,7 @@ I feel blessed and I have faith. The work you see here is the result.
 
 The code may not be particularly well written - maybe it is - I don't know - I am learning as I go.  
 But it does something very interesting - It generates it's own code.  
-So it's very easy to change poor code for better code as better code is discoverd.  
+So it's very easy to change poor code for better code as better code is discovered.  
 That is why I think the methods used here may be useful to other programmers.
 
 Check back often to follow the progress.  
