@@ -108,7 +108,7 @@ Since this project depends upon the IOTA JavaScript library there are unaudited 
 
 #### Credits  
 Trust the Lord with all thine heart; and lean not unto thine own understanding.  
-In all thy ways acknowledge him, and he shall dirct thy paths.  
+In all thy ways acknowledge him, and he shall direct thy paths.  
 Proverbs 3:3-6
  
 This code has somehow evolved into a system descriptive enough to build and maintain itself. Right now the generator reads JSON documents in the data dictionary which contain instructions to build all the forms and code required to make and manage JSON documents that may contain unlimited nested documents within. These generated forms and code are descriptive enough to make valid entries in the data dictionary which created the forms and code in the first place. So this application generator can now be used to build, maintain, and change itself as well as build other types of applications and data transformation utilities.   
@@ -116,20 +116,21 @@ This code has somehow evolved into a system descriptive enough to build and main
 When I started this project I had only a vague idea of what I was trying to accomplish.  
 I was only trying to make a wallet for cryptocurrency.  
 I didn't even think it would be NoSQL when I started.  
+Turns out it can do both relational and NoSQL.  
 All I do is write, test, meditate on the results, study, delete the bad stuff, and write again.  
 I'm doing the work but I'm not trying to control were it's going.  
 Perhaps some will understand when I say that the experience is spiritual and that the entire project is a demonstration of faith.  
-After working this way for some time I have come to imagine that perhaps God didn't give Noah the plans for the Ark all at once.  
-Perhaps rather He gave the instructions to Noah a little bit at a time.  
-I imagine Noah focused on the work at hand and simply trusted that it would all turn out well.  
+After working this way for some time I have come to imagine that perhaps Noah didn't get blue-prints.  
+Perhaps rather he received the instructions a little bit at a time.  
+I imagine Noah focused on the work at hand and had faith that it would all turn out well.  
 I am not comparing myself to Noah and I am not comparing this project to the Ark.  
 I am simply expressing what it feels like when working alone on a large project without trying to control it's direction.  
 
 Most people need to know what they are going to make before they start their work.  
 But I have discovered that it is possible to accomplish tasks that are way beyond the limits of my own intellect by letting go of the big plan and just doing the work set down in front of me.  
-I feel blessed and I have faith. The work you see here is the result.  
+I feel blessed and I have faith in God. The work you see here is the result.  
 
-The code may not be particularly well written - maybe it is - I don't know - I am learning as I go.  
+The code may not be particularly well written - maybe it is - I don't know - I am learning and changing it as I go.  
 But it does something very interesting - It generates it's own code.  
 So it's very easy to change poor code for better code as better code is discovered.  
 That is why I think the methods used here may be useful to other programmers.
