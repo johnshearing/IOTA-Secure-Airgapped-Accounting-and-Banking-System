@@ -31,6 +31,17 @@
       <div class="inputLabel">Allow Code Generation</div>
       <input class="allowCodeGenerationInput" name="allowCodeGeneration" type="text" placeholder="Enter true or false"/>
     </div>
+
+
+
+
+
+
+
+
+
+
+
     <div class="objectLabel">Field Information</div>
     <div class="objectWrapper groupWrapper">
       <div class="objectWrapper elementWrapper">
@@ -84,7 +95,157 @@
         <button type="button" class="disabled controlObjectButton removeObjectButton red" disabled>Remove</button>
       </div>
       <button type="button" class="addNewObjectButton">Add New</button>
+
+
+
+
+      <div class="objectWrapper elementWrapper">
+        <div class="inputWrapper">
+          <div class="inputLabel">Field Name</div>
+          <input class="resetElement field_subObject_field0_subObject_fieldNameInput" name="field_subObject_field0_subObject_fieldName" type="text" placeHolder="Enter a Field Name"/>
+        </div>
+        <div class="inputWrapper">
+          <div class="inputLabel">Data Type</div>
+          <select class="resetElement field_subObject_field0_subObject_dataTypeInput" name="field_subObject_field0_subObject_dataType">
+            <option value="" style="display: list-item;">Select the Data Type</option>
+            <option value="string" style="display: list-item;">String</option>
+            <option value="boolean" style="display: list-item;">Boolean</option>
+            <option value="object" style="display: list-item;">Object</option>
+          </select>
+        </div>
+        <div class="inputWrapper">
+          <div class="inputLabel">Unique</div>
+          <select class="resetElement field_subObject_field0_subObject_uniqueInput" name="field_subObject_field0_subObject_unique">
+            <option value="" style="display: list-item;">Select if Unique</option>
+            <option value="true" style="display: list-item;">true</option>
+            <option value="false" style="display: list-item;">false</option>
+          </select>
+        </div>
+        <div class="inputWrapper">
+          <div class="inputLabel">Published</div>
+          <select class="resetElement field_subObject_field0_subObject_publishedInput" name="field_subObject_field0_subObject_published">
+            <option value="" style="display: list-item;">Select if Published</option>
+            <option value="true" style="display: list-item;">true</option>
+            <option value="false" style="display: list-item;">false</option>
+          </select>
+        </div>
+        <!--???? Need to discover why label is not being generated-->
+        <div class="objectLabel">Default Elements</div>        
+        <div class="objectWrapper groupWrapper">
+
+
+
+          <div class="objectWrapper elementWrapper">
+            <div class="inputWrapper">
+              <div class="inputLabel">ElementName</div>
+              <input class="resetElement field_subObject_field0_subObject_defaultElement_subObject_defaultElement0_subObject_elementNameInput" name="field_subObject_field0_subObject_defaultElement_subObject_defaultElement0_subObject_elementName" type="text"/>
+            </div>
+            <button type="button" class="disabled controlObjectButton moveObjectUpButton blue" disabled>Move Up</button>
+            <button type="button" class="disabled controlObjectButton moveObjectDownButton blue" disabled>Move Down</button>
+            <button type="button" class="disabled controlObjectButton removeObjectButton red" disabled>Remove</button>
+          </div>
+
+
+
+          <div class="objectWrapper elementWrapper">
+            <div class="inputWrapper">
+              <div class="inputLabel">ElementName</div>
+              <input class="resetElement field_subObject_field0_subObject_defaultElement_subObject_defaultElement0_subObject_elementNameInput" name="field_subObject_field0_subObject_defaultElement_subObject_defaultElement0_subObject_elementName" type="text"/>
+            </div>
+            <button type="button" class="disabled controlObjectButton moveObjectUpButton blue" disabled>Move Up</button>
+            <button type="button" class="disabled controlObjectButton moveObjectDownButton blue" disabled>Move Down</button>
+            <button type="button" class="disabled controlObjectButton removeObjectButton red" disabled>Remove</button>
+          </div>
+
+
+          
+
+          <!--???? generator is adding extra buttons in this area-->
+          <button type="button" class="addNewObjectButton">Add New</button>
+        </div>
+        <button type="button" class="disabled controlObjectButton moveObjectUpButton blue" disabled>Move Up</button>
+        <button type="button" class="disabled controlObjectButton moveObjectDownButton blue" disabled>Move Down</button>
+        <button type="button" class="disabled controlObjectButton removeObjectButton red" disabled>Remove</button>
+      </div>
+      <button type="button" class="addNewObjectButton">Add New</button>
+
+
+
+
+
     </div>
+
+
+
+
+
+
+
+
+
+    <div class="objectLabel">WebPage Information</div>
+    <div class="objectWrapper groupWrapper">
+      <div class="objectWrapper elementWrapper">
+        <div class="inputWrapper">
+          <div class="inputLabel">Field Name</div>
+          <input class="resetElement field_subObject_field0_subObject_fieldNameInput" name="field_subObject_field0_subObject_fieldName" type="text" placeHolder="Enter a Field Name"/>
+        </div>
+        <div class="inputWrapper">
+          <div class="inputLabel">Data Type</div>
+          <select class="resetElement field_subObject_field0_subObject_dataTypeInput" name="field_subObject_field0_subObject_dataType">
+            <option value="" style="display: list-item;">Select the Data Type</option>
+            <option value="string" style="display: list-item;">String</option>
+            <option value="boolean" style="display: list-item;">Boolean</option>
+            <option value="object" style="display: list-item;">Object</option>
+          </select>
+        </div>
+        <div class="inputWrapper">
+          <div class="inputLabel">Unique</div>
+          <select class="resetElement field_subObject_field0_subObject_uniqueInput" name="field_subObject_field0_subObject_unique">
+            <option value="" style="display: list-item;">Select if Unique</option>
+            <option value="true" style="display: list-item;">true</option>
+            <option value="false" style="display: list-item;">false</option>
+          </select>
+        </div>
+        <div class="inputWrapper">
+          <div class="inputLabel">Published</div>
+          <select class="resetElement field_subObject_field0_subObject_publishedInput" name="field_subObject_field0_subObject_published">
+            <option value="" style="display: list-item;">Select if Published</option>
+            <option value="true" style="display: list-item;">true</option>
+            <option value="false" style="display: list-item;">false</option>
+          </select>
+        </div>
+        <!--???? Need to discover why label is not being generated-->
+        <div class="objectLabel">Default Elements</div>        
+        <div class="objectWrapper groupWrapper">
+          <div class="objectWrapper elementWrapper">
+            <div class="inputWrapper">
+              <div class="inputLabel">ElementName</div>
+              <input class="resetElement field_subObject_field0_subObject_defaultElement_subObject_defaultElement0_subObject_elementNameInput" name="field_subObject_field0_subObject_defaultElement_subObject_defaultElement0_subObject_elementName" type="text"/>
+            </div>
+            <button type="button" class="disabled controlObjectButton moveObjectUpButton blue" disabled>Move Up</button>
+            <button type="button" class="disabled controlObjectButton moveObjectDownButton blue" disabled>Move Down</button>
+            <button type="button" class="disabled controlObjectButton removeObjectButton red" disabled>Remove</button>
+          </div>
+          <!--???? generator is adding extra buttons in this area-->
+          <button type="button" class="addNewObjectButton">Add New</button>
+        </div>
+        <button type="button" class="disabled controlObjectButton moveObjectUpButton blue" disabled>Move Up</button>
+        <button type="button" class="disabled controlObjectButton moveObjectDownButton blue" disabled>Move Down</button>
+        <button type="button" class="disabled controlObjectButton removeObjectButton red" disabled>Remove</button>
+      </div>
+      <button type="button" class="addNewObjectButton">Add New</button>
+    </div>
+
+
+
+
+
+
+
+
+
+
     <div class="inputWrapper">
       <div class="inputLabel">Time Stamp</div>
       <input class="timeStampInput" type="text" name="timeStamp" disabled/>
@@ -96,7 +257,6 @@
 </div>
 
 <hr />
-
 <h2>Delete User</h2>
 <div class="formWrapper">
   <form id="metadataDeleteForm" action="/api/metadata" method="PUT">
@@ -392,7 +552,7 @@ app.loadmetadataEditPage = async function()
 
   // This keeps class and element names of container objects the same.
   // The querySelector used while data is loading requires this.
-  // let allowRenumbering = true;
+  let allowRenumbering = false;
 
   // Define the function that fires when the moveObjectUpButton is selected.
   function onClickBehaviorForMoveObjectUpButton (event)  
@@ -716,64 +876,71 @@ app.loadmetadataEditPage = async function()
   // End of: Bind the function above to the onClick event of the addNewObjectButtons.
 
 
-  // ????
-  // Create a handle for the last element we loaded with information.
-  let lastElement; 
 
-  // Traverse recordObject from the server loading property values into elements. 
-  // Clone elements where required. 
+
+  // ????
+  // Create a handle for the first and outermost groupWrapper.
+  let groupWrapper0 = document.querySelectorAll(".groupWrapper")[0];
+
+  // Create a handle for groupWrappers going all the way down.
+  let groupWrapper1 = document.querySelectorAll(".groupWrapper")[1];  
+  let groupWrapper2 = document.querySelectorAll(".groupWrapper")[2];   
+  let groupWrapper3 = document.querySelectorAll(".groupWrapper")[3]; 
+  let groupWrapper4 = document.querySelectorAll(".groupWrapper")[4]; 
+  let groupWrapper5 = document.querySelectorAll(".groupWrapper")[5];    
+  
+  // Create a handle for the groupWrapper0 addButton
+  let addButtonGW0 = groupWrapper0.lastElementChild;
+
+  
+  // Create a handle for the first and outermost elementWrapper
+  let elementWrapper0 = document.querySelectorAll(".elementWrapper")[0];
+
+  // Create a handles for elementWrappers going all the way down.
+  let elementWrapper1 = document.querySelectorAll(".elementWrapper")[1];
+  let elementWrapper2 = document.querySelectorAll(".elementWrapper")[2];
+  let elementWrapper3 = document.querySelectorAll(".elementWrapper")[3];
+  let elementWrapper4 = document.querySelectorAll(".elementWrapper")[4];
+  let elementWrapper5 = document.querySelectorAll(".elementWrapper")[5];
+  let elementWrapper6 = document.querySelectorAll(".elementWrapper")[6];
+  let elementWrapper7 = document.querySelectorAll(".elementWrapper")[7];
+  let elementWrapper8 = document.querySelectorAll(".elementWrapper")[8];
+  let elementWrapper9 = document.querySelectorAll(".elementWrapper")[9];   
+
+
+  // Traverse record object loading property values into elements. Clone elements where required. 
   for (let key in recordObject)
   {
-    // If this top level property is itself an object containing more objects inside...
+    // If this top level property is an object containing more objects inside...
     if(recordObject[key].subObject)
     {
+
       // Keep track of how deep we have drilled into the object.
-      let objectNestLevel = 0;
+      let objectNestLevel = 1;
 
       // Call the function defined below. 
+      // This function will call itself several times if drilling into nested objects is required.
       drillIntoObject(recordObject, key, objectNestLevel, "")
 
 
-      // Declare the function that we will use to drill into the recordObject from the server.
-      // This function will call itself several times if drilling into nested objects is required.      
+      // Declare a function that we will use to drill into the object.
       function drillIntoObject(address, objKey, objectNestLevel, previousPath)
-      {
-        // If the sub object we are currently examining contains another sub object...
-        // Then get setup for a recursive call so as to drill deeper into the recordObject from the server.
-        // Continue drilling in until we are at the end of each branch where we find data to load onto the form. 
+      {      
+        // console.log("The address is \n", address);
+        // console.log("The objKey is \n", objKey); 
+        // console.log("The objectNestLevel is \n", objectNestLevel);
+        // console.log("The previousPath is \n", previousPath);  
+
+        // if the sub property is also an object then this function calls itself using the sub property as parameters.
+        // This will continue drilling in until we are at the end of the branches
         if(address[objKey].subObject)
         { 
           // Check each property of the subobject to see if it too is an object.
           for (let property in address[objKey].subObject)
           {
-            // If the current property is also an object...
+            // If the property is also an object
             if(address[objKey].subObject[property].subObject)
             {
-              // If property value has a numeral at the end and the numeral is greater than zero...
-              // Then we will need to clone a new element wrapper by activating the correct 
-              // addNewObjectButton in the current hierarchy as determined by nestLevel.
-              if(hasANumber(property) && property.match(/[0-9]+(?!.*[0-9])/)[0] > 0)
-              {
-                // The nestLevel along with the levelCounter tells us how far up the hierarchy
-                // we need to go in order to reach the addNewObjectButton we are looking for.
-                let levelCounter = lastElement[1];
-                let targetGroupWrapper = lastElement[0];
-
-                do 
-                {
-                  levelCounter = levelCounter - 2;
-                  targetGroupWrapper = targetGroupWrapper.parentNode.closest(".groupWrapper");
-                } 
-                while (levelCounter > objectNestLevel);
-                
-
-                // Make a handle for the addNewObjectButton we have been looking for.
-                const addButton = targetGroupWrapper.lastElementChild;
-
-                // Clone a new elementWrapper with all required form elements for us to write to.                
-                addButton.click();                
-              }
-
               // This function calls itself so as to go deeper into the object
               drillIntoObject(address[objKey].subObject, property, objectNestLevel + 1, previousPath + objKey + "_subObject_");
             }
@@ -787,33 +954,120 @@ app.loadmetadataEditPage = async function()
 
               // Climb to the end of this branch so we can read the property value.
               let finalBranch = address[objKey].subObject;
-             
-              // Write to the form element from the recordObject sent to us by the server.
-              document.getElementsByName(objectPath).forEach(function (element){element.value = finalBranch[property]}); 
 
-              // Remember the form element we just wrote to so that we will know where we need to write next.
-              lastElement = [document.getElementsByName(objectPath)[0], objectNestLevel]
-              
+
+              let myInput = document.querySelectorAll("." + objectPath + "Input")[0];
+              console.log("This is the object", address);
+              console.log("This is the value at the end of the branch", finalBranch[property])
+              console.log("This is the objectPath", objectPath);  
+              debugger;
+
+
+
+              if(!document.querySelector("." + objectPath + "Input"))
+              {
+                const addButton = document.querySelectorAll('.addNewObjectButton')[0];
+                addButton.click();
+              }
+
+              document.querySelectorAll("." + objectPath + "Input").forEach(function (element){element.value = finalBranch[property]});              
+
+
+
             } // End of: else - This property is not an object.
           } // End of: for-let Check each property of the subobject to see if it too is an object.
         } // End of: if the subfield is also an object
       }; // End of: function drillIntoObject(address, objKey, objectNestLevel, previousPath){...}
-    } // End of: If this top level property is itself an object containing more objects inside...
+
+    }
     else // This top level property is not an object - It's just a holds a field value.
     {
       // Insert this field value into the apropriate form control.
       document.querySelectorAll("." + key + "Input").forEach(function (element){element.value = recordObject[key]});
 
     } // End of: Else - This top level property is not an object - It's just a holds a field value.
+ 
   } // End of: for (let key in recordObject){...}
   // End of: Traverse record object loading property values into form elements. Clone form elements where required.       
+
+
+
+  /*
+  // Get the field count. ????
+  const fieldAmount = Object.keys(recordObject.field.subObject).length;
+
+  // Clone enough elementWrappers to accommodate every field.
+  for (let loopCount = 0; loopCount < fieldAmount - 1; loopCount++) 
+  {
+    const addButton = document.querySelectorAll('.addNewObjectButton')[0];
+    addButton.click();
+  };
+
+  // Get the defaultElement count.
+  const defaultElementAmount = Object.keys(recordObject.field.subObject.field0.subObject.defaultElement.subObject).length;
+
+  // Clone enough elementWrappers to accommodate every defaultElement.
+  for (let loopCount = 0; loopCount < defaultElementAmount - 1; loopCount++) 
+  {
+    const addButton = document.querySelectorAll('.addNewObjectButton')[1];
+    addButton.click();
+  };
+
+  // Put the data into the forms as values where needed
+  // Behaviour from meta.js at 4eyhkvwtznzs8f9pmy08
+
+  document.querySelectorAll(".tableNameInput").forEach(function (element){element.value = recordObject.tableName});
+  document.querySelectorAll(".directoryInput").forEach(function (element){element.value = recordObject.directory});
+  document.querySelectorAll(".addRoutesInput").forEach(function (element){element.value = recordObject.addRoutes});
+  document.querySelectorAll(".allowCodeGenerationInput").forEach(function (element){element.value = recordObject.allowCodeGeneration});
+
+  document.querySelectorAll(".field_subObject_field0_subObject_fieldNameInput").forEach
+  (
+    function (element, elementIndex)
+    {
+      element.value = recordObject.field.subObject["field" + elementIndex.toString()].subObject.fieldName;
+    }
+  );
+
+  document.querySelectorAll(".field_subObject_field0_subObject_dataTypeInput").forEach
+  (
+    function (element, elementIndex)
+    {
+      element.value = recordObject.field.subObject["field" + elementIndex.toString()].subObject.dataType;
+    }
+  );
+
+  document.querySelectorAll(".field_subObject_field0_subObject_uniqueInput").forEach
+  (
+    function (element, elementIndex)
+    {
+      element.value = recordObject.field.subObject["field" + elementIndex.toString()].subObject.unique;
+    }
+  );
+
+  document.querySelectorAll(".field_subObject_field0_subObject_publishedInput").forEach
+  (
+    function (element, elementIndex)
+    {
+      element.value = recordObject.field.subObject["field" + elementIndex.toString()].subObject.published;
+    }
+  );
+
+  document.querySelectorAll(".field_subObject_field0_subObject_defaultElement_subObject_defaultElement0_subObject_elementNameInput").forEach
+  (
+    function (element, elementIndex)
+    {
+      element.value = recordObject.field.subObject.field0.subObject.defaultElement.subObject["field" + elementIndex.toString()].subObject.defaultElement.subObject.defaultElement;
+    }
+  );
+  */
 
 
   document.querySelectorAll(".timeStampInput").forEach(function(element){element.value = recordObject.timeStamp});  
 
 
   // Now that the page has loaded we can renumber any object containers.
-  // allowRenumbering = true;
+  allowRenumbering = true;
   document.querySelectorAll(".groupWrapper").forEach(function(currentWrapper){renumberNamedElementsInGroupWrapper(currentWrapper)});
 
 
