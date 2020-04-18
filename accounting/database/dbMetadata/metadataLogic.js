@@ -1006,25 +1006,10 @@ metadata._metadata.put = function(data, callback)
 
   // Start of: Load the fieldNameArray dynamically once the payload is known.
   // Behavior from meta.js at lefq4oks90h34rvcw8sg
-  let fieldNameArray = [];
-  let runFieldNameLoop = true;
-  let fieldNameLoopCount = 0;
+  let fieldNameKeyArray = ["field", "fieldName"]
 
-  while (runFieldNameLoop === true)
-  {
-    // Check if the data exists in the payload
-    if(data.payload["field_subObject_field" + fieldNameLoopCount.toString() + "_subObject_fieldName"])
-    {
-      fieldNameArray.push(data.payload["field_subObject_field" + fieldNameLoopCount.toString() + "_subObject_fieldName"]);
-
-      fieldNameLoopCount = fieldNameLoopCount + 1;
-    }
-    else // No more fieldName variables were sent by the client.  
-    {
-      runFieldNameLoop = false;      
-    }    
-  } // End of: while (runFieldNameLoop === true){...}
-  // End of: Load the fieldNameArray dynamically once the payload is known.  
+  let fieldNameArray = loadPayloadArray([], fieldNameKeyArray, data.payload, 0, 0, "", true)[0];
+  // End of: Load the dataTypeArray dynamically once the payload is known. 
                   
   // Start of: Validate elements in the fieldNameArray
   // passIfString&NotEmptyThenTrim
@@ -1032,25 +1017,25 @@ metadata._metadata.put = function(data, callback)
   fieldNameArray.forEach(function(arrayElement)
   {
     // If fieldName is of string type and is not empty 
-    if (typeof(arrayElement) === 'string' && arrayElement.trim().length > 0) 
+    if (typeof(arrayElement[1]) === 'string' && arrayElement[1].trim().length > 0) 
     { 
       // The user entered something in the edit form
-      arrayElement = arrayElement.trim()
+      arrayElement[1] = arrayElement[1].trim()
     } 
     // Else, the user may have entered some other datatype like a number or 
     // perhaps nothing at all if using the Delete form or if just using the API. 
     else 
     { 
       // If the user entered nothing: 
-      if(arrayElement === undefined) 
+      if(arrayElement[1] === undefined) 
       { 
         // Then user is likely trying to delete a record.
         // So change the value to false and continue processing.
-        arrayElement = false 
+        arrayElement[1] = false 
       } 
       else // The user entered something invalid so reject the edit. 
       { 
-        return callback(400, {'Error' : 'Not a valid ' + arrayElement}); 
+        return callback(400, {'Error' : 'Not a valid ' + arrayElement[1]}); 
       } 
     }
   }); // End of: fieldNameArray.forEach(function(arrayElement)
@@ -1058,24 +1043,9 @@ metadata._metadata.put = function(data, callback)
 
   // Start of: Load the dataTypeArray dynamically once the payload is known.
   // Behavior from meta.js at lefq4oks90h34rvcw8sg
-  let dataTypeArray = [];
-  let runDataTypeLoop = true;
-  let dataTypeLoopCount = 0;
+  let dataTypeKeyArray = ["field", "dataType"]
 
-  while (runDataTypeLoop === true)
-  {
-    // Check if the data exists in the payload
-    if(data.payload["field_subObject_field" + dataTypeLoopCount.toString() + "_subObject_dataType"])
-    {
-      dataTypeArray.push(data.payload["field_subObject_field" + dataTypeLoopCount.toString() + "_subObject_dataType"]);
-
-      dataTypeLoopCount = dataTypeLoopCount + 1;
-    }
-    else // No more dataType variables were sent by the client.  
-    {
-      runDataTypeLoop = false;      
-    }    
-  } // End of: while (runDataTypeLoop === true){...}
+  let dataTypeArray = loadPayloadArray([], dataTypeKeyArray, data.payload, 0, 0, "", true)[0];
   // End of: Load the dataTypeArray dynamically once the payload is known.  
   
 // Start of: Validate elements in the dataTypeArray
@@ -1083,16 +1053,16 @@ metadata._metadata.put = function(data, callback)
   // Behavior from meta.js at f6prkp8jnrdvnadz9d6s
   dataTypeArray.forEach(function(arrayElement)
   {
-    if(typeof(arrayElement) != 'string')
+    if(typeof(arrayElement[1]) != 'string')
     {
       return callback(400, {'Error' : 'dataType must be of datatype string'});
     }
 
     if
     (
-      arrayElement !== "string"
-      && arrayElement !== "boolean"
-      && arrayElement !== "object"
+      arrayElement[1] !== "string"
+      && arrayElement[1] !== "boolean"
+      && arrayElement[1] !== "object"
     )
     {
       return callback(400, {'Error' : 'dataType does not match menu options'});
@@ -1103,24 +1073,9 @@ metadata._metadata.put = function(data, callback)
 
   // Start of: Load the uniqueArray dynamically once the payload is known.
   // Behavior from meta.js at lefq4oks90h34rvcw8sg
-  let uniqueArray = [];
-  let runUniqueLoop = true;
-  let uniqueLoopCount = 0;
+  let uniqueKeyArray = ["field", "unique"]
 
-  while (runUniqueLoop === true)
-  {
-    // Check if the data exists in the payload
-    if(data.payload["field_subObject_field" + uniqueLoopCount.toString() + "_subObject_unique"])
-    {
-      uniqueArray.push(data.payload["field_subObject_field" + uniqueLoopCount.toString() + "_subObject_unique"]);
-
-      uniqueLoopCount = uniqueLoopCount + 1;
-    }
-    else // No more unique variables were sent by the client.  
-    {
-      runUniqueLoop = false;      
-    }    
-  } // End of: while (runUniqueLoop === true){...}
+  let uniqueArray = loadPayloadArray([], uniqueKeyArray, data.payload, 0, 0, "", true)[0];
   // End of: Load the uniqueArray dynamically once the payload is known.  
   
 // Start of: Validate elements in the uniqueArray
@@ -1128,15 +1083,15 @@ metadata._metadata.put = function(data, callback)
   // Behavior from meta.js at f6prkp8jnrdvnadz9d6s
   uniqueArray.forEach(function(arrayElement)
   {
-    if(typeof(arrayElement) != 'string')
+    if(typeof(arrayElement[1]) != 'string')
     {
       return callback(400, {'Error' : 'unique must be of datatype string'});
     }
 
     if
     (
-      arrayElement !== "true"
-      && arrayElement !== "false"
+      arrayElement[1] !== "true"
+      && arrayElement[1] !== "false"
     )
     {
       return callback(400, {'Error' : 'unique does not match menu options'});
@@ -1147,24 +1102,9 @@ metadata._metadata.put = function(data, callback)
 
   // Start of: Load the publishedArray dynamically once the payload is known.
   // Behavior from meta.js at lefq4oks90h34rvcw8sg
-  let publishedArray = [];
-  let runPublishedLoop = true;
-  let publishedLoopCount = 0;
+  let publishedKeyArray = ["field", "published"]
 
-  while (runPublishedLoop === true)
-  {
-    // Check if the data exists in the payload
-    if(data.payload["field_subObject_field" + publishedLoopCount.toString() + "_subObject_published"])
-    {
-      publishedArray.push(data.payload["field_subObject_field" + publishedLoopCount.toString() + "_subObject_published"]);
-
-      publishedLoopCount = publishedLoopCount + 1;
-    }
-    else // No more published variables were sent by the client.  
-    {
-      runPublishedLoop = false;      
-    }    
-  } // End of: while (runPublishedLoop === true){...}
+  let publishedArray = loadPayloadArray([], publishedKeyArray, data.payload, 0, 0, "", true)[0];
   // End of: Load the publishedArray dynamically once the payload is known.  
   
 // Start of: Validate elements in the publishedArray
@@ -1172,15 +1112,15 @@ metadata._metadata.put = function(data, callback)
   // Behavior from meta.js at f6prkp8jnrdvnadz9d6s
   publishedArray.forEach(function(arrayElement)
   {
-    if(typeof(arrayElement) != 'string')
+    if(typeof(arrayElement[1]) != 'string')
     {
       return callback(400, {'Error' : 'published must be of datatype string'});
     }
 
     if
     (
-      arrayElement !== "true"
-      && arrayElement !== "false"
+      arrayElement[1] !== "true"
+      && arrayElement[1] !== "false"
     )
     {
       return callback(400, {'Error' : 'published does not match menu options'});
@@ -1190,26 +1130,11 @@ metadata._metadata.put = function(data, callback)
 
 
   // Start of: Load the elementNameArray dynamically once the payload is known.
-  // Behavior from meta.js at lefq4oks90h34rvcw8sg
-  let elementNameArray = [];
-  let runElementNameLoop = true;
-  let elementNameLoopCount = 0;
+  // Behavior from meta.js at lefq4oks90h34rvcw8sg  
+  let elementNameKeyArray = ["field", "defaultElement", "elementName"] //  ?????
 
-  while (runElementNameLoop === true)
-  {
-    // Check if the data exists in the payload
-    if(data.payload["field_subObject_field" + elementNameLoopCount.toString() + "_subObject_defaultElement_subObject_defaultElement"])
-    {
-      elementNameArray.push(data.payload["field_subObject_field" + elementNameLoopCount.toString() + "_subObject_defaultElement_subObject_defaultElement"]);
-
-      elementNameLoopCount = elementNameLoopCount + 1;
-    }
-    else // No more elementName variables were sent by the client.  
-    {
-      runElementNameLoop = false;      
-    }    
-  } // End of: while (runElementNameLoop === true){...}
-  // End of: Load the elementNameArray dynamically once the payload is known.  
+  let elementNameArray = loadPayloadArray([], elementNameKeyArray, data.payload, 0, 0, "", true)[0];
+  // End of: Load the elementNameArray dynamically once the payload is known.
                   
   // Start of: Validate elements in the elementNameArray
   // passIfString&NotEmptyThenTrim
@@ -1217,25 +1142,25 @@ metadata._metadata.put = function(data, callback)
   elementNameArray.forEach(function(arrayElement)
   {
     // If elementName is of string type and is not empty 
-    if (typeof(arrayElement) === 'string' && arrayElement.trim().length > 0) 
+    if (typeof(arrayElement[1]) === 'string' && arrayElement[1].trim().length > 0) 
     { 
       // The user entered something in the edit form
-      arrayElement = arrayElement.trim()
+      arrayElement[1] = arrayElement[1].trim()
     } 
     // Else, the user may have entered some other datatype like a number or 
     // perhaps nothing at all if using the Delete form or if just using the API. 
     else 
     { 
       // If the user entered nothing: 
-      if(arrayElement === undefined) 
+      if(arrayElement[1] === undefined) 
       { 
         // Then user is likely trying to delete a record.
         // So change the value to false and continue processing.
-        arrayElement = false 
+        arrayElement[1] = false 
       } 
       else // The user entered something invalid so reject the edit. 
       { 
-        return callback(400, {'Error' : 'Not a valid ' + arrayElement}); 
+        return callback(400, {'Error' : 'Not a valid ' + arrayElement[1]}); 
       } 
     }
   }); // End of: elementNameArray.forEach(function(arrayElement)
@@ -1317,24 +1242,20 @@ metadata._metadata.put = function(data, callback)
     metadataObject.addRoutes = addRoutes;
     metadataObject.allowCodeGeneration = allowCodeGeneration;
 
-            metadataObject.field = {};
-            metadataObject.field.subObject = {};
-            for (let arrayIndex = 0; arrayIndex < fieldNameArray.length; arrayIndex++) 
-            {
-              metadataObject.field.subObject["field" + arrayIndex.toString()] = {};
-              metadataObject.field.subObject["field" + arrayIndex.toString()].subObject = {};
-              metadataObject.field.subObject["field" + arrayIndex.toString()].subObject["fieldName"] = fieldNameArray[arrayIndex];
-              metadataObject.field.subObject["field" + arrayIndex.toString()].subObject["dataType"] = dataTypeArray[arrayIndex];
-              metadataObject.field.subObject["field" + arrayIndex.toString()].subObject["unique"] = uniqueArray[arrayIndex];
-              metadataObject.field.subObject["field" + arrayIndex.toString()].subObject["published"] = publishedArray[arrayIndex];
-            }
-        
-            for (let arrayIndex = 0; arrayIndex < elementNameArray.length; arrayIndex++) 
-            {
-              metadataObject.field.subObject["field" + arrayIndex.toString()] = {};
-              metadataObject.field.subObject["field" + arrayIndex.toString()].subObject = {};
-              metadataObject.field.subObject["field" + arrayIndex.toString()].subObject["defaultElement"] = defaultElementArray[arrayIndex];
-            }
+    // Add any fields named "fieldNameArray" to the object we will write to the database.
+    metadataObject = buildBranches(fieldNameArray, metadataObject);
+    
+    // Add any fields named "dataTypeArray" to the object we will write to the database.
+    metadataObject = buildBranches(dataTypeArray, metadataObject); 
+    
+    // Add any fields named "uniqueArray" to the object we will write to the database.
+    metadataObject = buildBranches(uniqueArray, metadataObject); 
+    
+    // Add any fields named "publishedArray" to the object we will write to the database.
+    metadataObject = buildBranches(publishedArray, metadataObject);       
+
+    // Add any fields named "elementName" to the object we will write to the database.
+    metadataObject = buildBranches(elementNameArray, metadataObject);    
              
     metadataObject.timeStamp = Date.now();
     metadataObject.deleted = false;
