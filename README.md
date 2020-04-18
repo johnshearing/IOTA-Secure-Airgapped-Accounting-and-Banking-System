@@ -123,12 +123,12 @@ Perhaps some will understand when I say that the experience is spiritual and tha
 
 Most people need to know what they are going to make before they start their work.  
 But I have discovered that it is possible to accomplish tasks that are way beyond the limits of my own intellect by letting go of the big plan and just doing the work set down in front of me.  
-I feel blessed and I have faith in God. The work you see here is the result.  
+I feel blessed and I love God. The work you see here is the result.  
 
 The code may not be particularly well written - maybe it is - I don't know - I am learning and changing it as I go.  
 But it does something very interesting - It generates it's own code.  
 So it's very easy to change poor code for better code as better code is discovered.  
-That is why I think the methods used here may be useful to other programmers.
+That is why I think the methods used here may be useful to other programmers.  
 
 Check back often to follow the progress.  
 Feel free to make suggestions or help with the coding.  
