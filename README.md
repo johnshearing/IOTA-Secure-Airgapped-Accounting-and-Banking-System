@@ -114,9 +114,7 @@ Proverbs 3:3-6
 This code has somehow evolved into a system descriptive enough to build and maintain itself. Right now the generator reads JSON documents in the data dictionary which contain instructions to build all the forms and code required to make and manage JSON documents that may contain unlimited nested documents within. These generated forms and code are descriptive enough to make valid entries in the data dictionary which created the forms and code in the first place. So this application generator can now be used to build, maintain, and change itself as well as build other types of database applications and data transformation utilities.   
 
 When I started this project I had only a vague idea of what I was trying to accomplish.  
-I was only trying to make an accounting system for cryptocurrency.  
-I didn't even think it would be NoSQL when I started.  
-Turns out it can do both relational and NoSQL.  
+I wanted to make an accounting system for cryptocurrency that would be easy to audit.  
 All I do is write, test, meditate on the results, study, delete the bad stuff, and write again.  
 I'm doing the work but I'm not trying to control were it's going.  
 Perhaps some will understand when I say that the experience is spiritual and that the entire project is a demonstration of faith.    
