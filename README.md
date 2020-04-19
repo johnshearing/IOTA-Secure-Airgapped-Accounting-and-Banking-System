@@ -109,9 +109,9 @@ Since this project depends upon the IOTA JavaScript library there are unaudited 
 #### Credits  
 Trust the Lord with all thine heart; and lean not unto thine own understanding.  
 In all thy ways acknowledge him, and he shall direct thy paths.  
-Proverbs 3:3-6
- 
-This code has somehow evolved into a system descriptive enough to build and maintain itself. Right now the generator reads JSON documents in the data dictionary which contain instructions to build all the forms and code required to make and manage JSON documents that may contain unlimited nested documents within. These generated forms and code are descriptive enough to make valid entries in the data dictionary which created the forms and code in the first place. So this application generator can now be used to build, maintain, and change itself as well as build other types of database applications and data transformation utilities.   
+Proverbs 3:3-6  
+
+This code has evolved into a system descriptive enough to build and maintain itself. The generator reads JSON from the data dictionary which contain instructions to build all the forms and code required to make and manage JSON documents. These generated forms and code are descriptive enough to make valid entries in the data dictionary which created the forms and code in the first place. So this application generator can now be used to build, maintain, and change itself as well as build other types of database applications and data transformation utilities.   
 
 When I started this project I had only a vague idea of what I was trying to accomplish.  
 I wanted to make an accounting system for cryptocurrency that would be easy to audit.  
