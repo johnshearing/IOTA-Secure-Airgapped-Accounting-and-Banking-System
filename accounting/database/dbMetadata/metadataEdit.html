@@ -63,9 +63,7 @@
             <option value="false" style="display: list-item;">false</option>
           </select>
         </div>
-        <!--???? Need to discover why label is not being generated-->
-        <!--???? Think because element wrappers are being generated where group wrappers are needed-->
-        <div class="objectLabel">Default Elements</div>        
+        <div class="objectLabel">Default Elements</div>
         <div class="objectWrapper groupWrapper">
           <div class="objectWrapper elementWrapper">
             <div class="inputWrapper">
@@ -76,7 +74,6 @@
             <button type="button" class="disabled controlObjectButton moveObjectDownButton blue" disabled>Move Down</button>
             <button type="button" class="disabled controlObjectButton removeObjectButton red" disabled>Remove</button>
           </div>
-          <!--???? generator is adding extra buttons in this area-->
           <button type="button" class="addNewObjectButton">Add New</button>
         </div>
         <button type="button" class="disabled controlObjectButton moveObjectUpButton blue" disabled>Move Up</button>
@@ -389,10 +386,6 @@ app.loadmetadataEditPage = async function()
 
   // Get the record object from the array returned by the query.
   let recordObject = recordArray[0];
-
-  // This keeps class and element names of container objects the same.
-  // The querySelector used while data is loading requires this.
-  // let allowRenumbering = true;
 
   // Define the function that fires when the moveObjectUpButton is selected.
   function onClickBehaviorForMoveObjectUpButton (event)  
@@ -716,7 +709,6 @@ app.loadmetadataEditPage = async function()
   // End of: Bind the function above to the onClick event of the addNewObjectButtons.
 
 
-  // ????
   // Create a handle for the last element we loaded with information.
   let lastElement; 
 
@@ -806,14 +798,12 @@ app.loadmetadataEditPage = async function()
 
     } // End of: Else - This top level property is not an object - It's just a holds a field value.
   } // End of: for (let key in recordObject){...}
-  // End of: Traverse record object loading property values into form elements. Clone form elements where required.       
+  // End of: Traverse record object loading property values into form elements. Clone form elements where required.
 
 
   document.querySelectorAll(".timeStampInput").forEach(function(element){element.value = recordObject.timeStamp});  
 
 
-  // Now that the page has loaded we can renumber any object containers.
-  // allowRenumbering = true;
   document.querySelectorAll(".groupWrapper").forEach(function(currentWrapper){renumberNamedElementsInGroupWrapper(currentWrapper)});
 
 

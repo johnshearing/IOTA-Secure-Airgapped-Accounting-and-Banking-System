@@ -1,5 +1,3 @@
-The file - metaSchema.json is the schema for the data dictionary.  
-
 The file - metadata.json is the data dictionary.  
 
 The script - meta.js is the code generator.  
