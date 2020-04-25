@@ -36,11 +36,11 @@
       <div class="objectWrapper elementWrapper">
         <div class="inputWrapper">
           <div class="inputLabel">Field Name</div>
-          <input class="resetElement field_subObject_field0_subObject_fieldNameInput" name="field_subObject_field0_subObject_fieldName" type="text" placeHolder="Enter a Field Name"/>
+          <input class="resetElement field_field0_fieldNameInput" name="field_field0_fieldName" type="text" placeHolder="Enter a Field Name"/>
         </div>
         <div class="inputWrapper">
           <div class="inputLabel">Data Type</div>
-          <select class="resetElement field_subObject_field0_subObject_dataTypeInput" name="field_subObject_field0_subObject_dataType">
+          <select class="resetElement field_field0_dataTypeInput" name="field_field0_dataType">
             <option value="" style="display: list-item;">Select the Data Type</option>
             <option value="string" style="display: list-item;">String</option>
             <option value="boolean" style="display: list-item;">Boolean</option>
@@ -49,7 +49,7 @@
         </div>
         <div class="inputWrapper">
           <div class="inputLabel">Unique</div>
-          <select class="resetElement field_subObject_field0_subObject_uniqueInput" name="field_subObject_field0_subObject_unique">
+          <select class="resetElement field_field0_uniqueInput" name="field_field0_unique">
             <option value="" style="display: list-item;">Select if Unique</option>
             <option value="true" style="display: list-item;">true</option>
             <option value="false" style="display: list-item;">false</option>
@@ -57,7 +57,7 @@
         </div>
         <div class="inputWrapper">
           <div class="inputLabel">Published</div>
-          <select class="resetElement field_subObject_field0_subObject_publishedInput" name="field_subObject_field0_subObject_published">
+          <select class="resetElement field_field0_publishedInput" name="field_field0_published">
             <option value="" style="display: list-item;">Select if Published</option>
             <option value="true" style="display: list-item;">true</option>
             <option value="false" style="display: list-item;">false</option>
@@ -68,7 +68,7 @@
           <div class="objectWrapper elementWrapper">
             <div class="inputWrapper">
               <div class="inputLabel">ElementName</div>
-              <input class="resetElement field_subObject_field0_subObject_defaultElement_subObject_defaultElement0_subObject_elementNameInput" name="field_subObject_field0_subObject_defaultElement_subObject_defaultElement0_subObject_elementName" type="text"/>
+              <input class="resetElement field_field0_defaultElement_defaultElement0_elementNameInput" name="field_field0_defaultElement_defaultElement0_elementName" type="text"/>
             </div>
             <button type="button" class="disabled controlObjectButton moveObjectUpButton blue" disabled>Move Up</button>
             <button type="button" class="disabled controlObjectButton moveObjectDownButton blue" disabled>Move Down</button>
@@ -710,14 +710,14 @@ app.loadmetadataEditPage = async function()
 
 
   // Create a handle for the last element we loaded with information.
-  let lastElement; 
+  let lastElement;
 
   // Traverse recordObject from the server loading property values into elements. 
   // Clone elements where required. 
   for (let key in recordObject)
   {
     // If this top level property is itself an object containing more objects inside...
-    if(recordObject[key].subObject)
+    if (typeof recordObject[key] === 'object')
     {
       // Keep track of how deep we have drilled into the object.
       let objectNestLevel = 0;
@@ -725,70 +725,63 @@ app.loadmetadataEditPage = async function()
       // Call the function defined below. 
       drillIntoObject(recordObject, key, objectNestLevel, "")
 
-
       // Declare the function that we will use to drill into the recordObject from the server.
       // This function will call itself several times if drilling into nested objects is required.      
       function drillIntoObject(address, objKey, objectNestLevel, previousPath)
       {
-        // If the sub object we are currently examining contains another sub object...
-        // Then get setup for a recursive call so as to drill deeper into the recordObject from the server.
-        // Continue drilling in until we are at the end of each branch where we find data to load onto the form. 
-        if(address[objKey].subObject)
-        { 
-          // Check each property of the subobject to see if it too is an object.
-          for (let property in address[objKey].subObject)
+        // Check each property to see if it too is an object.
+        for (let property in address[objKey])
+        {
+          // If the current property is also an object...
+          if (typeof address[objKey][property] === 'object')
           {
-            // If the current property is also an object...
-            if(address[objKey].subObject[property].subObject)
+            // If property value has a numeral at the end and the numeral is greater than zero...
+            // Then we will need to clone a new element wrapper by activating the correct 
+            // addNewObjectButton in the current hierarchy as determined by nestLevel.
+            if(hasANumber(property) && property.match(/[0-9]+(?!.*[0-9])/)[0] > 0)
             {
-              // If property value has a numeral at the end and the numeral is greater than zero...
-              // Then we will need to clone a new element wrapper by activating the correct 
-              // addNewObjectButton in the current hierarchy as determined by nestLevel.
-              if(hasANumber(property) && property.match(/[0-9]+(?!.*[0-9])/)[0] > 0)
+              // The nestLevel along with the levelCounter tells us how far up the hierarchy
+              // we need to go in order to reach the addNewObjectButton we are looking for.
+              let levelCounter = lastElement[1];
+              let targetGroupWrapper = lastElement[0];
+
+              do 
               {
-                // The nestLevel along with the levelCounter tells us how far up the hierarchy
-                // we need to go in order to reach the addNewObjectButton we are looking for.
-                let levelCounter = lastElement[1];
-                let targetGroupWrapper = lastElement[0];
-
-                do 
-                {
-                  levelCounter = levelCounter - 2;
-                  targetGroupWrapper = targetGroupWrapper.parentNode.closest(".groupWrapper");
-                } 
-                while (levelCounter > objectNestLevel);
-                
-
-                // Make a handle for the addNewObjectButton we have been looking for.
-                const addButton = targetGroupWrapper.lastElementChild;
-
-                // Clone a new elementWrapper with all required form elements for us to write to.                
-                addButton.click();                
-              }
-
-              // This function calls itself so as to go deeper into the object
-              drillIntoObject(address[objKey].subObject, property, objectNestLevel + 1, previousPath + objKey + "_subObject_");
-            }
-            else // This property is not an object. We are at the end of the branch where we encounter a data field.
-            { 
-              // Assemble the path through the current object to a property at the end of a branch.
-              let objectPath = objKey + "_" + "subObject" + "_" + property;
-
-              // If the current object is nested then prepend the path to include the parent objects.
-              objectPath = previousPath.length === 0 ? objectPath : previousPath + objectPath;
-
-              // Climb to the end of this branch so we can read the property value.
-              let finalBranch = address[objKey].subObject;
-             
-              // Write to the form element from the recordObject sent to us by the server.
-              document.getElementsByName(objectPath).forEach(function (element){element.value = finalBranch[property]}); 
-
-              // Remember the form element we just wrote to so that we will know where we need to write next.
-              lastElement = [document.getElementsByName(objectPath)[0], objectNestLevel]
+                levelCounter = levelCounter - 2;
+                targetGroupWrapper = targetGroupWrapper.parentNode.closest(".groupWrapper");
+              } 
+              while (levelCounter > objectNestLevel);
               
-            } // End of: else - This property is not an object.
-          } // End of: for-let Check each property of the subobject to see if it too is an object.
-        } // End of: if the subfield is also an object
+
+              // Make a handle for the addNewObjectButton we have been looking for.
+              const addButton = targetGroupWrapper.lastElementChild;
+
+              // Clone a new elementWrapper with all required form elements for us to write to.                
+              addButton.click();                
+            }
+
+            // This function calls itself so as to go deeper into the object
+            drillIntoObject(address[objKey], property, objectNestLevel + 1, previousPath + objKey + "_");              
+          }
+          else // This property is not an object. We are at the end of the branch where we encounter a data field.
+          { 
+            // Assemble the path through the current object to a property at the end of a branch.
+            let objectPath = objKey + "_" + property;
+
+            // If the current object is nested then prepend the path to include the parent objects.
+            objectPath = previousPath.length === 0 ? objectPath : previousPath + objectPath;
+
+            // Climb to the end of this branch so we can read the property value.
+            let finalBranch = address[objKey];
+
+            // Write to the form element from the recordObject sent to us by the server.
+            document.getElementsByName(objectPath).forEach(function (element){element.value = finalBranch[property]}); 
+
+            // Remember the form element we just wrote to so that we will know where we need to write next.
+            lastElement = [document.getElementsByName(objectPath)[0], objectNestLevel]
+            
+          } // End of: else - This property is not an object.
+        } // End of: for-let Check each property to see if it too is an object.
       }; // End of: function drillIntoObject(address, objKey, objectNestLevel, previousPath){...}
     } // End of: If this top level property is itself an object containing more objects inside...
     else // This top level property is not an object - It's just a holds a field value.
@@ -856,7 +849,7 @@ function renumberNamedElementsInGroupWrapper(groupWrapper)
   let previousElementWrapper = undefined;
 
   // The length of ancestorWrappers array indicates which number in the name string gets replaced with the numeric value in the array.
-  // Example fieldName: field_subObject_field0_subObject_defaultElement_subObject_defaultElement0_subObject_elementName  
+  // Example fieldName: field_field0_defaultElement_defaultElement0_elementName  
   // For example: the zero in field0 gets replaced or the zero in defaultElement0 gets replaced.
   // If ancestorWrappers.length = 1 we put the numeric value in the array in the place of the zero in field0
   // A length of two in ancestorWrappers indicates we put the numeric value in the array in the place of the zero in defaultElement0
