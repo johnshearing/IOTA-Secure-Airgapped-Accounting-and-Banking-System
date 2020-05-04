@@ -1,4 +1,3 @@
-
 /*
 / Handlers for the "oContact" table.
 / This program was built by meta.js starting at yx52pvsi0kn9p5o46hrq
@@ -58,7 +57,7 @@ oContact.serveListPage = function(data, callback)
             helpers.log
             (            
               5,
-              '917dha3ggu7q7ia311zv' + '\n' +
+              'td6efvbmfj2vse24nybf' + '\n' +
               'There was an error or the concatenated templates were not returned.' + '\n' +
               'This was the error:' + '\n' +
               JSON.stringify(errorAddUnivTemplates) + '\n'
@@ -74,7 +73,7 @@ oContact.serveListPage = function(data, callback)
         helpers.log
         (
           5,
-          '0qeeliub2o4bn16n0wps' + '\n' +
+          'hm88v7fgja2wrbb3ohq4' + '\n' +
           'There was an error or no template was returned.' + '\n' +
           'This was the error:' + '\n' +
           JSON.stringify(errorGetTemplate) + '\n'
@@ -91,7 +90,7 @@ oContact.serveListPage = function(data, callback)
     helpers.log
     (
       5,
-      'eb3tl78q8o0dhaj8obca' + '\n' +
+      '9rq3cqx23w7xldq17x96' + '\n' +
       'Method not get. Only gets allowed.' + '\n'
     );
 
@@ -138,7 +137,7 @@ oContact.serveAddPage = function(data, callback)
             helpers.log
             (            
               5,
-              'i0sv3ztk7hwh0ongok1f' + '\n' +
+              '4g3h7b3ox07tgyretmqu' + '\n' +
               'There was an error or the concatenated templates were not returned.' + '\n' +
               'This was the error:' + '\n' +
               JSON.stringify(errorAddUnivTemplates) + '\n'
@@ -154,7 +153,7 @@ oContact.serveAddPage = function(data, callback)
         helpers.log
         (
           5,
-          'fr76eh5xxhqeqinumj6j' + '\n' +
+          '8fntufvxj8uwx1i6ivz1' + '\n' +
           'There was an error or no template was returned.' + '\n' +
           'This was the error:' + '\n' +
           JSON.stringify(errorGetTemplate) + '\n'
@@ -171,7 +170,7 @@ oContact.serveAddPage = function(data, callback)
     helpers.log
     (
       5,
-      'vxbv4hd5odz290ghto2l' + '\n' +
+      'wqrpnkweoprqrbr31ndt' + '\n' +
       'Method not get. Only gets allowed.' + '\n'
     );
 
@@ -218,7 +217,7 @@ oContact.serveEditPage = function(data, callback)
             helpers.log
             (            
               5,
-              'udr0ae26r3ikmuyype4u' + '\n' +
+              'iuhpvits3gnw74evr4lz' + '\n' +
               'There was an error or the concatenated templates were not returned.' + '\n' +
               'This was the error:' + '\n' +
               JSON.stringify(errorAddUnivTemplates) + '\n'
@@ -234,7 +233,7 @@ oContact.serveEditPage = function(data, callback)
         helpers.log
         (
           5,
-          'vfjn0rxmb8vhme37o0n0' + '\n' +
+          'ustedu0s6hlqll5fm9fq' + '\n' +
           'There was an error or no template was returned.' + '\n' +
           'This was the error:' + '\n' +
           JSON.stringify(errorGetTemplate) + '\n'
@@ -251,7 +250,7 @@ oContact.serveEditPage = function(data, callback)
     helpers.log
     (
       5,
-      'jpjarb90r2yl876dcrxf' + '\n' +
+      'yorgb1k9u0o2vjtj4qhm' + '\n' +
       'Method not get. Only gets allowed.' + '\n'
     );
 
@@ -285,7 +284,7 @@ oContact.oContact = function(data, callback)
     helpers.log
     (
       5,
-      'he30b93t89f95cfxxl7p' + '\n' +
+      'emc94staznprveytx8p5' + '\n' +
       'The method was not one of the acceptable methods' + '\n'
     ); 
 
@@ -341,42 +340,27 @@ oContact._oContact.post = function(data, callback)
 
   // Start of: Load the phoneTypeArray dynamically once the payload is known.
   // Behavior from meta.js at lefq4oks90h34rvcw8sg
-  let phoneTypeArray = [];
-  let runPhoneTypeLoop = true;
-  let phoneTypeLoopCount = 0;
+  let phoneTypeKeyArray = ["phone", "phoneType"]
 
-  while (runPhoneTypeLoop === true)
-  {
-    // Check if the data exists in the payload
-    if(data.payload["phone_subObject_phone" + phoneTypeLoopCount.toString() + "_subObject_phoneType"])
-    {
-      phoneTypeArray.push(data.payload["phone_subObject_phone" + phoneTypeLoopCount.toString() + "_subObject_phoneType"]);
-      
-      phoneTypeLoopCount = phoneTypeLoopCount + 1;
-    }
-    else // No more phoneType variables were sent by the client.  
-    {
-      runPhoneTypeLoop = false;      
-    }    
-  } // End of: while (runPhoneTypeLoop === true){...}
-  // End of: Load the phoneTypeArray dynamically once the payload is known.  
-
+  let phoneTypeArray = loadPayloadArray([], phoneTypeKeyArray, data.payload, 0, 0, "", true)[0];
+  // End of: Load the phoneTypeArray dynamically once the payload is known. 
+  
   // Start of: Validate elements in the phoneTypeArray
   // passMenuItemsOnly
   // Behavior from meta.js at 69nq4ck9lcdakwpb58o6
   phoneTypeArray.forEach(function(arrayElement)
   {
-    if(typeof(arrayElement) != 'string')
+    if(typeof(arrayElement[1]) != 'string')
     {
       return callback(400, {'Error' : 'phoneType must be of datatype string'});
     }
   
     if
     (
-      arrayElement !== "Mobile"
-      && arrayElement !== "Home"
-      && arrayElement !== "Office"
-      && arrayElement !== "Answering Service"
+      arrayElement[1] !== "Mobile"
+      && arrayElement[1] !== "Home"
+      && arrayElement[1] !== "Office"
+      && arrayElement[1] !== "Answering Service"
     )
     {
       return callback(400, {'Error' : 'phoneType does not match menu options'});
@@ -387,75 +371,45 @@ oContact._oContact.post = function(data, callback)
 
   // Start of: Load the phoneArray dynamically once the payload is known.
   // Behavior from meta.js at lefq4oks90h34rvcw8sg
-  let phoneArray = [];
-  let runPhoneLoop = true;
-  let phoneLoopCount = 0;
+  let phoneKeyArray = ["phone", "phone"]
 
-  while (runPhoneLoop === true)
-  {
-    // Check if the data exists in the payload
-    if(data.payload["phone_subObject_phone" + phoneLoopCount.toString() + "_subObject_phone"])
-    {
-      phoneArray.push(data.payload["phone_subObject_phone" + phoneLoopCount.toString() + "_subObject_phone"]);
-      
-      phoneLoopCount = phoneLoopCount + 1;
-    }
-    else // No more phone variables were sent by the client.  
-    {
-      runPhoneLoop = false;      
-    }    
-  } // End of: while (runPhoneLoop === true){...}
-  // End of: Load the phoneArray dynamically once the payload is known.  
-
+  let phoneArray = loadPayloadArray([], phoneKeyArray, data.payload, 0, 0, "", true)[0];
+  // End of: Load the phoneArray dynamically once the payload is known. 
                   
   // Start of: Validate elements in the phoneArray
   // passIfString&NotEmptyThenTrim
   // Behavior from meta.js at fkb3ulfqr09ryyc0rb0d
   phoneArray.forEach(function(arrayElement)
   {
-    if(typeof(arrayElement) != 'string'){return callback(400, {'Error' : 'phone must be of datatype string'});}
-    if(!arrayElement || arrayElement.trim().length === 0){return callback(400, {'Error' : 'No phone was entered'});}else{arrayElement = arrayElement.trim()}
+    if(typeof(arrayElement[1]) != 'string'){return callback(400, {'Error' : 'phone must be of datatype string'});}
+    if(!arrayElement[1] || arrayElement[1].trim().length === 0){return callback(400, {'Error' : 'No phone was entered'});}else{arrayElement[1] = arrayElement[1].trim()}
   });
-  // End of: Validate elements in the phoneArray  
+  // End of: Validate elements in the phoneArray
+
 
   // Start of: Load the addressTypeArray dynamically once the payload is known.
   // Behavior from meta.js at lefq4oks90h34rvcw8sg
-  let addressTypeArray = [];
-  let runAddressTypeLoop = true;
-  let addressTypeLoopCount = 0;
+  let addressTypeKeyArray = ["address", "addressType"]
 
-  while (runAddressTypeLoop === true)
-  {
-    // Check if the data exists in the payload
-    if(data.payload["address_subObject_address" + addressTypeLoopCount.toString() + "_subObject_addressType"])
-    {
-      addressTypeArray.push(data.payload["address_subObject_address" + addressTypeLoopCount.toString() + "_subObject_addressType"]);
-      
-      addressTypeLoopCount = addressTypeLoopCount + 1;
-    }
-    else // No more addressType variables were sent by the client.  
-    {
-      runAddressTypeLoop = false;      
-    }    
-  } // End of: while (runAddressTypeLoop === true){...}
-  // End of: Load the addressTypeArray dynamically once the payload is known.  
-
+  let addressTypeArray = loadPayloadArray([], addressTypeKeyArray, data.payload, 0, 0, "", true)[0];
+  // End of: Load the addressTypeArray dynamically once the payload is known. 
+  
   // Start of: Validate elements in the addressTypeArray
   // passMenuItemsOnly
   // Behavior from meta.js at 69nq4ck9lcdakwpb58o6
   addressTypeArray.forEach(function(arrayElement)
   {
-    if(typeof(arrayElement) != 'string')
+    if(typeof(arrayElement[1]) != 'string')
     {
       return callback(400, {'Error' : 'addressType must be of datatype string'});
     }
   
     if
     (
-      arrayElement !== "Home Address"
-      && arrayElement !== "Work Address"
-      && arrayElement !== "Billing Address"
-      && arrayElement !== "Shipping Address"
+      arrayElement[1] !== "Home Address"
+      && arrayElement[1] !== "Work Address"
+      && arrayElement[1] !== "Billing Address"
+      && arrayElement[1] !== "Shipping Address"
     )
     {
       return callback(400, {'Error' : 'addressType does not match menu options'});
@@ -466,167 +420,92 @@ oContact._oContact.post = function(data, callback)
 
   // Start of: Load the streetOneArray dynamically once the payload is known.
   // Behavior from meta.js at lefq4oks90h34rvcw8sg
-  let streetOneArray = [];
-  let runStreetOneLoop = true;
-  let streetOneLoopCount = 0;
+  let streetOneKeyArray = ["address", "streetOne"]
 
-  while (runStreetOneLoop === true)
-  {
-    // Check if the data exists in the payload
-    if(data.payload["address_subObject_address" + streetOneLoopCount.toString() + "_subObject_streetOne"])
-    {
-      streetOneArray.push(data.payload["address_subObject_address" + streetOneLoopCount.toString() + "_subObject_streetOne"]);
-      
-      streetOneLoopCount = streetOneLoopCount + 1;
-    }
-    else // No more streetOne variables were sent by the client.  
-    {
-      runStreetOneLoop = false;      
-    }    
-  } // End of: while (runStreetOneLoop === true){...}
-  // End of: Load the streetOneArray dynamically once the payload is known.  
-
+  let streetOneArray = loadPayloadArray([], streetOneKeyArray, data.payload, 0, 0, "", true)[0];
+  // End of: Load the streetOneArray dynamically once the payload is known. 
                   
   // Start of: Validate elements in the streetOneArray
   // passIfString&NotEmptyThenTrim
   // Behavior from meta.js at fkb3ulfqr09ryyc0rb0d
   streetOneArray.forEach(function(arrayElement)
   {
-    if(typeof(arrayElement) != 'string'){return callback(400, {'Error' : 'streetOne must be of datatype string'});}
-    if(!arrayElement || arrayElement.trim().length === 0){return callback(400, {'Error' : 'No streetOne was entered'});}else{arrayElement = arrayElement.trim()}
+    if(typeof(arrayElement[1]) != 'string'){return callback(400, {'Error' : 'streetOne must be of datatype string'});}
+    if(!arrayElement[1] || arrayElement[1].trim().length === 0){return callback(400, {'Error' : 'No streetOne was entered'});}else{arrayElement[1] = arrayElement[1].trim()}
   });
-  // End of: Validate elements in the streetOneArray  
+  // End of: Validate elements in the streetOneArray
+
 
   // Start of: Load the streetTwoArray dynamically once the payload is known.
   // Behavior from meta.js at lefq4oks90h34rvcw8sg
-  let streetTwoArray = [];
-  let runStreetTwoLoop = true;
-  let streetTwoLoopCount = 0;
+  let streetTwoKeyArray = ["address", "streetTwo"]
 
-  while (runStreetTwoLoop === true)
-  {
-    // Check if the data exists in the payload
-    if(data.payload["address_subObject_address" + streetTwoLoopCount.toString() + "_subObject_streetTwo"])
-    {
-      streetTwoArray.push(data.payload["address_subObject_address" + streetTwoLoopCount.toString() + "_subObject_streetTwo"]);
-      
-      streetTwoLoopCount = streetTwoLoopCount + 1;
-    }
-    else // No more streetTwo variables were sent by the client.  
-    {
-      runStreetTwoLoop = false;      
-    }    
-  } // End of: while (runStreetTwoLoop === true){...}
-  // End of: Load the streetTwoArray dynamically once the payload is known.  
-
+  let streetTwoArray = loadPayloadArray([], streetTwoKeyArray, data.payload, 0, 0, "", true)[0];
+  // End of: Load the streetTwoArray dynamically once the payload is known. 
                   
   // Start of: Validate elements in the streetTwoArray
   // passIfString
   // Behavior from meta.js at 7n1wj6bz5asgucz6nmkp
   streetTwoArray.forEach(function(arrayElement)
   {
-    if(typeof(arrayElement) != 'string'){return callback(400, {'Error' : 'streetTwo must be of datatype string'});}
+    if(typeof(arrayElement[1]) != 'string'){return callback(400, {'Error' : 'streetTwo must be of datatype string'});}
   });
-  // End of: Validate elements in the streetTwoArray  
+  // End of: Validate elements in the streetTwoArray
+
 
   // Start of: Load the cityArray dynamically once the payload is known.
   // Behavior from meta.js at lefq4oks90h34rvcw8sg
-  let cityArray = [];
-  let runCityLoop = true;
-  let cityLoopCount = 0;
+  let cityKeyArray = ["address", "city"]
 
-  while (runCityLoop === true)
-  {
-    // Check if the data exists in the payload
-    if(data.payload["address_subObject_address" + cityLoopCount.toString() + "_subObject_city"])
-    {
-      cityArray.push(data.payload["address_subObject_address" + cityLoopCount.toString() + "_subObject_city"]);
-      
-      cityLoopCount = cityLoopCount + 1;
-    }
-    else // No more city variables were sent by the client.  
-    {
-      runCityLoop = false;      
-    }    
-  } // End of: while (runCityLoop === true){...}
-  // End of: Load the cityArray dynamically once the payload is known.  
-
+  let cityArray = loadPayloadArray([], cityKeyArray, data.payload, 0, 0, "", true)[0];
+  // End of: Load the cityArray dynamically once the payload is known. 
                   
   // Start of: Validate elements in the cityArray
   // passIfString&NotEmptyThenTrim
   // Behavior from meta.js at fkb3ulfqr09ryyc0rb0d
   cityArray.forEach(function(arrayElement)
   {
-    if(typeof(arrayElement) != 'string'){return callback(400, {'Error' : 'city must be of datatype string'});}
-    if(!arrayElement || arrayElement.trim().length === 0){return callback(400, {'Error' : 'No city was entered'});}else{arrayElement = arrayElement.trim()}
+    if(typeof(arrayElement[1]) != 'string'){return callback(400, {'Error' : 'city must be of datatype string'});}
+    if(!arrayElement[1] || arrayElement[1].trim().length === 0){return callback(400, {'Error' : 'No city was entered'});}else{arrayElement[1] = arrayElement[1].trim()}
   });
-  // End of: Validate elements in the cityArray  
+  // End of: Validate elements in the cityArray
+
 
   // Start of: Load the stateArray dynamically once the payload is known.
   // Behavior from meta.js at lefq4oks90h34rvcw8sg
-  let stateArray = [];
-  let runStateLoop = true;
-  let stateLoopCount = 0;
+  let stateKeyArray = ["address", "state"]
 
-  while (runStateLoop === true)
-  {
-    // Check if the data exists in the payload
-    if(data.payload["address_subObject_address" + stateLoopCount.toString() + "_subObject_state"])
-    {
-      stateArray.push(data.payload["address_subObject_address" + stateLoopCount.toString() + "_subObject_state"]);
-      
-      stateLoopCount = stateLoopCount + 1;
-    }
-    else // No more state variables were sent by the client.  
-    {
-      runStateLoop = false;      
-    }    
-  } // End of: while (runStateLoop === true){...}
-  // End of: Load the stateArray dynamically once the payload is known.  
-
+  let stateArray = loadPayloadArray([], stateKeyArray, data.payload, 0, 0, "", true)[0];
+  // End of: Load the stateArray dynamically once the payload is known. 
                   
   // Start of: Validate elements in the stateArray
   // passIfString&NotEmptyThenTrim
   // Behavior from meta.js at fkb3ulfqr09ryyc0rb0d
   stateArray.forEach(function(arrayElement)
   {
-    if(typeof(arrayElement) != 'string'){return callback(400, {'Error' : 'state must be of datatype string'});}
-    if(!arrayElement || arrayElement.trim().length === 0){return callback(400, {'Error' : 'No state was entered'});}else{arrayElement = arrayElement.trim()}
+    if(typeof(arrayElement[1]) != 'string'){return callback(400, {'Error' : 'state must be of datatype string'});}
+    if(!arrayElement[1] || arrayElement[1].trim().length === 0){return callback(400, {'Error' : 'No state was entered'});}else{arrayElement[1] = arrayElement[1].trim()}
   });
-  // End of: Validate elements in the stateArray  
+  // End of: Validate elements in the stateArray
+
 
   // Start of: Load the zipArray dynamically once the payload is known.
   // Behavior from meta.js at lefq4oks90h34rvcw8sg
-  let zipArray = [];
-  let runZipLoop = true;
-  let zipLoopCount = 0;
+  let zipKeyArray = ["address", "zip"]
 
-  while (runZipLoop === true)
-  {
-    // Check if the data exists in the payload
-    if(data.payload["address_subObject_address" + zipLoopCount.toString() + "_subObject_zip"])
-    {
-      zipArray.push(data.payload["address_subObject_address" + zipLoopCount.toString() + "_subObject_zip"]);
-      
-      zipLoopCount = zipLoopCount + 1;
-    }
-    else // No more zip variables were sent by the client.  
-    {
-      runZipLoop = false;      
-    }    
-  } // End of: while (runZipLoop === true){...}
-  // End of: Load the zipArray dynamically once the payload is known.  
-
+  let zipArray = loadPayloadArray([], zipKeyArray, data.payload, 0, 0, "", true)[0];
+  // End of: Load the zipArray dynamically once the payload is known. 
                   
   // Start of: Validate elements in the zipArray
   // passIfString&NotEmptyThenTrim
   // Behavior from meta.js at fkb3ulfqr09ryyc0rb0d
   zipArray.forEach(function(arrayElement)
   {
-    if(typeof(arrayElement) != 'string'){return callback(400, {'Error' : 'zip must be of datatype string'});}
-    if(!arrayElement || arrayElement.trim().length === 0){return callback(400, {'Error' : 'No zip was entered'});}else{arrayElement = arrayElement.trim()}
+    if(typeof(arrayElement[1]) != 'string'){return callback(400, {'Error' : 'zip must be of datatype string'});}
+    if(!arrayElement[1] || arrayElement[1].trim().length === 0){return callback(400, {'Error' : 'No zip was entered'});}else{arrayElement[1] = arrayElement[1].trim()}
   });
-  // End of: Validate elements in the zipArray  
+  // End of: Validate elements in the zipArray
+
 
   // Enforcing uniqueness of the email field.
   // Will toggle this to false if we find the email already exists in oContact.
@@ -759,7 +638,7 @@ oContact._oContact.post = function(data, callback)
       helpers.log
       (
         5,
-        'ctrog9p5ubfrfbvu59tc' + '\n' +
+        '17d5oy03vrnrtko4pjf9' + '\n' +
         'The email : ' + email + ' already exists' + '\n'                                  
       ); // End of: helpers.log(...)
 
@@ -787,7 +666,7 @@ oContact._oContact.post = function(data, callback)
         helpers.log
         (
           5,
-          'b31ivivj064yc2dzpmym' + '\n' +
+          'sjvjmtvw3roon0qq1sd6' + '\n' +
           'Unable to get the next gsuid.' + '\n' +
           'The following was the error' + '\n' +
           JSON.stringify(error) + '\n'                                   
@@ -804,6 +683,7 @@ oContact._oContact.post = function(data, callback)
 
       // Create the oContact object. 
       // This object will be appended to oContact.json.
+      // Behavior from meta.js at cmqbrt7gkxkex9z8a1qb
       let oContactObject = {};
       oContactObject.oContactId = nextIdObject.nextId;
 
@@ -812,29 +692,31 @@ oContact._oContact.post = function(data, callback)
       oContactObject.fullName = undefined;
       oContactObject.email = email;
 
-      oContactObject.phone = {};
-      oContactObject.phone.subObject = {};
-      for (let arrayIndex = 0; arrayIndex < phoneTypeArray.length; arrayIndex++) 
-      {
-        oContactObject.phone.subObject["phone" + arrayIndex.toString()] = {};
-        oContactObject.phone.subObject["phone" + arrayIndex.toString()].subObject = {};
-        oContactObject.phone.subObject["phone" + arrayIndex.toString()].subObject["phoneType"] = phoneTypeArray[arrayIndex];
-        oContactObject.phone.subObject["phone" + arrayIndex.toString()].subObject["phone"] = phoneArray[arrayIndex];
-      }
+      // Add any fields named "phoneTypeArray" to the object we will write to the database.
+      oContactObject = buildBranches(phoneTypeArray, oContactObject);
 
-      oContactObject.address = {};
-      oContactObject.address.subObject = {};
-      for (let arrayIndex = 0; arrayIndex < addressTypeArray.length; arrayIndex++) 
-      {
-        oContactObject.address.subObject["address" + arrayIndex.toString()] = {};
-        oContactObject.address.subObject["address" + arrayIndex.toString()].subObject = {};
-        oContactObject.address.subObject["address" + arrayIndex.toString()].subObject["addressType"] = addressTypeArray[arrayIndex];
-        oContactObject.address.subObject["address" + arrayIndex.toString()].subObject["streetOne"] = streetOneArray[arrayIndex];
-        oContactObject.address.subObject["address" + arrayIndex.toString()].subObject["streetTwo"] = streetTwoArray[arrayIndex];
-        oContactObject.address.subObject["address" + arrayIndex.toString()].subObject["city"] = cityArray[arrayIndex];
-        oContactObject.address.subObject["address" + arrayIndex.toString()].subObject["state"] = stateArray[arrayIndex];
-        oContactObject.address.subObject["address" + arrayIndex.toString()].subObject["zip"] = zipArray[arrayIndex];
-      }
+      // Add any fields named "phoneArray" to the object we will write to the database.
+      oContactObject = buildBranches(phoneArray, oContactObject);
+
+
+      // Add any fields named "addressTypeArray" to the object we will write to the database.
+      oContactObject = buildBranches(addressTypeArray, oContactObject);
+
+      // Add any fields named "streetOneArray" to the object we will write to the database.
+      oContactObject = buildBranches(streetOneArray, oContactObject);
+
+      // Add any fields named "streetTwoArray" to the object we will write to the database.
+      oContactObject = buildBranches(streetTwoArray, oContactObject);
+
+      // Add any fields named "cityArray" to the object we will write to the database.
+      oContactObject = buildBranches(cityArray, oContactObject);
+
+      // Add any fields named "stateArray" to the object we will write to the database.
+      oContactObject = buildBranches(stateArray, oContactObject);
+
+      // Add any fields named "zipArray" to the object we will write to the database.
+      oContactObject = buildBranches(zipArray, oContactObject);
+
       
       oContactObject.timeStamp = Date.now();
       oContactObject.deleted = false;
@@ -876,7 +758,7 @@ oContact._oContact.post = function(data, callback)
             helpers.log
             (
               7,
-              'cuuhauiwnikx632nezey' + '\n' +
+              '0trrc9n1lc5po2age7ao' + '\n' +
               'There was an error appending to the history file' + '\n' +
               'An error here does not necessarily mean the append to history did not happen.' + '\n' +  
               'But an error at this point in the code surely means there was no append to oContact' + '\n' +                                          
@@ -920,7 +802,7 @@ oContact._oContact.post = function(data, callback)
                   helpers.log // Log the error.
                   (
                     7,
-                    '29hgp82vvieqm017vs2g' + '\n' +
+                    'ybvfkg2dkis32dtqur2t' + '\n' +
                     'Successful write to oContact but unable to remove lock on database' + '\n' +
                     'The following record was appended to the oContact file:' + '\n' +                            
                     JSON.stringify(logObject) + '\n' +   
@@ -942,7 +824,7 @@ oContact._oContact.post = function(data, callback)
               helpers.log // Log the error.
               (
                 5,
-                'pswuqoa8s0macj8m3xs0' + '\n' +
+                'muj3m0om6g92y43qfabu' + '\n' +
                 'There was an error when appending to the oContact file.' + '\n' +
                 'The following record may or may not have been appended to the oContact file:' + '\n' +                            
                 JSON.stringify(logObject) + '\n' +
@@ -990,7 +872,7 @@ oContact._oContact.post = function(data, callback)
                           helpers.log
                           (
                             5,
-                            '3s8kxb5rp0sqcapjai35' + '\n' +
+                            'b1zj1k4x91hkyu76jd4c' + '\n' +
                             'Rollback entry in the oContact file was appended successfully' + '\n' +
                             'The following was the record we rolled back:' + '\n' +
                             JSON.stringify(logObject) + '\n'                                   
@@ -1001,7 +883,7 @@ oContact._oContact.post = function(data, callback)
                           helpers.log
                           (
                             7,
-                            '5wpo8ge9jbf7oavbpwky' + '\n' +
+                            'e4s2j36uwki6yl7lgiuh' + '\n' +
                             'There was an error appending a rollback entry in the oContact file' + '\n' +
                             'The following record may or may not have been rolled back:' + '\n' +
                             JSON.stringify(logObject) + '\n' +   
@@ -1021,7 +903,7 @@ oContact._oContact.post = function(data, callback)
                     helpers.log
                     (
                       7,
-                      'hj38593c7jzdbitg1whh' + '\n' +
+                      'qasa6qvj5gt0ma6hdiig' + '\n' +
                       'There was an error appending a rollback entry in the history file' + '\n' +
                       'A rollback entry may or may not have been written in the oContact file' + '\n' +  
                       'CHECK TO SEE IF history and oContact ARE STILL IN SYNC' + '\n' +                                      
@@ -1071,7 +953,7 @@ oContact._oContact.put = function(data, callback)
   let firstName = data.payload["firstName"];
 
   // passIfString&NotEmptyThenTrim
-  // Default behavior from meta.js at yif5xwczgr4ebln99trd 
+  // Default behavior from meta.js at ulg5xxvzgr7efln9xur9 
   // If firstName is of string type and is not empty 
   if (typeof(firstName) === 'string' && firstName.trim().length > 0) 
   { 
@@ -1094,12 +976,12 @@ oContact._oContact.put = function(data, callback)
       return callback(400, {'Error' : 'Not a valid firstName'}); 
     } 
   }
-  
+
   // Get lastName from payload
   let lastName = data.payload["lastName"];
 
   // passIfString&NotEmptyThenTrim
-  // Default behavior from meta.js at yif5xwczgr4ebln99trd 
+  // Default behavior from meta.js at ulg5xxvzgr7efln9xur9 
   // If lastName is of string type and is not empty 
   if (typeof(lastName) === 'string' && lastName.trim().length > 0) 
   { 
@@ -1122,7 +1004,7 @@ oContact._oContact.put = function(data, callback)
       return callback(400, {'Error' : 'Not a valid lastName'}); 
     } 
   }
-  
+
   // Get email from payload
   let email = data.payload["email"];
 
@@ -1160,43 +1042,28 @@ oContact._oContact.put = function(data, callback)
 
 
   // Start of: Load the phoneTypeArray dynamically once the payload is known.
-  // Behavior from meta.js at lefq4oks90h34rvcw8sg
-  let phoneTypeArray = [];
-  let runPhoneTypeLoop = true;
-  let phoneTypeLoopCount = 0;
+  // Behavior from meta.js at 8cz4imaqb2wagvl14q9t
+  let phoneTypeKeyArray = ["phone", "phoneType"]
 
-  while (runPhoneTypeLoop === true)
-  {
-    // Check if the data exists in the payload
-    if(data.payload["phone_subObject_phone" + phoneTypeLoopCount.toString() + "_subObject_phoneType"])
-    {
-      phoneTypeArray.push(data.payload["phone_subObject_phone" + phoneTypeLoopCount.toString() + "_subObject_phoneType"]);
+  let phoneTypeArray = loadPayloadArray([], phoneTypeKeyArray, data.payload, 0, 0, "", true)[0];
+  // End of: Load the phoneTypeArray dynamically once the payload is known. 
 
-      phoneTypeLoopCount = phoneTypeLoopCount + 1;
-    }
-    else // No more phoneType variables were sent by the client.  
-    {
-      runPhoneTypeLoop = false;      
-    }    
-  } // End of: while (runPhoneTypeLoop === true){...}
-  // End of: Load the phoneTypeArray dynamically once the payload is known.  
-  
-// Start of: Validate elements in the phoneTypeArray
+  // Start of: Validate elements in the phoneTypeArray
   // passMenuItemsOnly
-  // Behavior from meta.js at f6prkp8jnrdvnadz9d6s
+  // Behavior from meta.js at 69nq4ck9lcdakwpb58o6
   phoneTypeArray.forEach(function(arrayElement)
   {
-    if(typeof(arrayElement) != 'string')
+    if(typeof(arrayElement[1]) != 'string')
     {
       return callback(400, {'Error' : 'phoneType must be of datatype string'});
     }
-
+  
     if
     (
-      arrayElement !== "Mobile"
-      && arrayElement !== "Home"
-      && arrayElement !== "Office"
-      && arrayElement !== "Answering Service"
+      arrayElement[1] !== "Mobile"
+      && arrayElement[1] !== "Home"
+      && arrayElement[1] !== "Office"
+      && arrayElement[1] !== "Answering Service"
     )
     {
       return callback(400, {'Error' : 'phoneType does not match menu options'});
@@ -1206,95 +1073,66 @@ oContact._oContact.put = function(data, callback)
 
 
   // Start of: Load the phoneArray dynamically once the payload is known.
-  // Behavior from meta.js at lefq4oks90h34rvcw8sg
-  let phoneArray = [];
-  let runPhoneLoop = true;
-  let phoneLoopCount = 0;
+  // Behavior from meta.js at 8cz4imaqb2wagvl14q9t
+  let phoneKeyArray = ["phone", "phone"]
 
-  while (runPhoneLoop === true)
-  {
-    // Check if the data exists in the payload
-    if(data.payload["phone_subObject_phone" + phoneLoopCount.toString() + "_subObject_phone"])
-    {
-      phoneArray.push(data.payload["phone_subObject_phone" + phoneLoopCount.toString() + "_subObject_phone"]);
+  let phoneArray = loadPayloadArray([], phoneKeyArray, data.payload, 0, 0, "", true)[0];
+  // End of: Load the phoneArray dynamically once the payload is known. 
 
-      phoneLoopCount = phoneLoopCount + 1;
-    }
-    else // No more phone variables were sent by the client.  
-    {
-      runPhoneLoop = false;      
-    }    
-  } // End of: while (runPhoneLoop === true){...}
-  // End of: Load the phoneArray dynamically once the payload is known.  
-                  
   // Start of: Validate elements in the phoneArray
   // passIfString&NotEmptyThenTrim
   // Behavior from meta.js at ohw0ivijs2au0nt2rwf1
   phoneArray.forEach(function(arrayElement)
   {
     // If phone is of string type and is not empty 
-    if (typeof(arrayElement) === 'string' && arrayElement.trim().length > 0) 
+    if (typeof(arrayElement[1]) === 'string' && arrayElement[1].trim().length > 0) 
     { 
       // The user entered something in the edit form
-      arrayElement = arrayElement.trim()
+      arrayElement[1] = arrayElement[1].trim()
     } 
     // Else, the user may have entered some other datatype like a number or 
     // perhaps nothing at all if using the Delete form or if just using the API. 
     else 
     { 
       // If the user entered nothing: 
-      if(arrayElement === undefined) 
+      if(arrayElement[1] === undefined) 
       { 
         // Then user is likely trying to delete a record.
         // So change the value to false and continue processing.
-        arrayElement = false 
+        arrayElement[1] = false 
       } 
       else // The user entered something invalid so reject the edit. 
       { 
-        return callback(400, {'Error' : 'Not a valid ' + arrayElement}); 
+        return callback(400, {'Error' : 'Not a valid ' + arrayElement[1]}); 
       } 
     }
   }); // End of: phoneArray.forEach(function(arrayElement)
-  // End of: Validate elements in the phoneArray  
+  // End of: Validate elements in the phoneArray 
+
 
   // Start of: Load the addressTypeArray dynamically once the payload is known.
-  // Behavior from meta.js at lefq4oks90h34rvcw8sg
-  let addressTypeArray = [];
-  let runAddressTypeLoop = true;
-  let addressTypeLoopCount = 0;
+  // Behavior from meta.js at 8cz4imaqb2wagvl14q9t
+  let addressTypeKeyArray = ["address", "addressType"]
 
-  while (runAddressTypeLoop === true)
-  {
-    // Check if the data exists in the payload
-    if(data.payload["address_subObject_address" + addressTypeLoopCount.toString() + "_subObject_addressType"])
-    {
-      addressTypeArray.push(data.payload["address_subObject_address" + addressTypeLoopCount.toString() + "_subObject_addressType"]);
+  let addressTypeArray = loadPayloadArray([], addressTypeKeyArray, data.payload, 0, 0, "", true)[0];
+  // End of: Load the addressTypeArray dynamically once the payload is known. 
 
-      addressTypeLoopCount = addressTypeLoopCount + 1;
-    }
-    else // No more addressType variables were sent by the client.  
-    {
-      runAddressTypeLoop = false;      
-    }    
-  } // End of: while (runAddressTypeLoop === true){...}
-  // End of: Load the addressTypeArray dynamically once the payload is known.  
-  
-// Start of: Validate elements in the addressTypeArray
+  // Start of: Validate elements in the addressTypeArray
   // passMenuItemsOnly
-  // Behavior from meta.js at f6prkp8jnrdvnadz9d6s
+  // Behavior from meta.js at 69nq4ck9lcdakwpb58o6
   addressTypeArray.forEach(function(arrayElement)
   {
-    if(typeof(arrayElement) != 'string')
+    if(typeof(arrayElement[1]) != 'string')
     {
       return callback(400, {'Error' : 'addressType must be of datatype string'});
     }
-
+  
     if
     (
-      arrayElement !== "Home Address"
-      && arrayElement !== "Work Address"
-      && arrayElement !== "Billing Address"
-      && arrayElement !== "Shipping Address"
+      arrayElement[1] !== "Home Address"
+      && arrayElement[1] !== "Work Address"
+      && arrayElement[1] !== "Billing Address"
+      && arrayElement[1] !== "Shipping Address"
     )
     {
       return callback(400, {'Error' : 'addressType does not match menu options'});
@@ -1304,265 +1142,174 @@ oContact._oContact.put = function(data, callback)
 
 
   // Start of: Load the streetOneArray dynamically once the payload is known.
-  // Behavior from meta.js at lefq4oks90h34rvcw8sg
-  let streetOneArray = [];
-  let runStreetOneLoop = true;
-  let streetOneLoopCount = 0;
+  // Behavior from meta.js at 8cz4imaqb2wagvl14q9t
+  let streetOneKeyArray = ["address", "streetOne"]
 
-  while (runStreetOneLoop === true)
-  {
-    // Check if the data exists in the payload
-    if(data.payload["address_subObject_address" + streetOneLoopCount.toString() + "_subObject_streetOne"])
-    {
-      streetOneArray.push(data.payload["address_subObject_address" + streetOneLoopCount.toString() + "_subObject_streetOne"]);
+  let streetOneArray = loadPayloadArray([], streetOneKeyArray, data.payload, 0, 0, "", true)[0];
+  // End of: Load the streetOneArray dynamically once the payload is known. 
 
-      streetOneLoopCount = streetOneLoopCount + 1;
-    }
-    else // No more streetOne variables were sent by the client.  
-    {
-      runStreetOneLoop = false;      
-    }    
-  } // End of: while (runStreetOneLoop === true){...}
-  // End of: Load the streetOneArray dynamically once the payload is known.  
-                  
   // Start of: Validate elements in the streetOneArray
   // passIfString&NotEmptyThenTrim
   // Behavior from meta.js at ohw0ivijs2au0nt2rwf1
   streetOneArray.forEach(function(arrayElement)
   {
     // If streetOne is of string type and is not empty 
-    if (typeof(arrayElement) === 'string' && arrayElement.trim().length > 0) 
+    if (typeof(arrayElement[1]) === 'string' && arrayElement[1].trim().length > 0) 
     { 
       // The user entered something in the edit form
-      arrayElement = arrayElement.trim()
+      arrayElement[1] = arrayElement[1].trim()
     } 
     // Else, the user may have entered some other datatype like a number or 
     // perhaps nothing at all if using the Delete form or if just using the API. 
     else 
     { 
       // If the user entered nothing: 
-      if(arrayElement === undefined) 
+      if(arrayElement[1] === undefined) 
       { 
         // Then user is likely trying to delete a record.
         // So change the value to false and continue processing.
-        arrayElement = false 
+        arrayElement[1] = false 
       } 
       else // The user entered something invalid so reject the edit. 
       { 
-        return callback(400, {'Error' : 'Not a valid ' + arrayElement}); 
+        return callback(400, {'Error' : 'Not a valid ' + arrayElement[1]}); 
       } 
     }
   }); // End of: streetOneArray.forEach(function(arrayElement)
-  // End of: Validate elements in the streetOneArray  
+  // End of: Validate elements in the streetOneArray 
+
 
   // Start of: Load the streetTwoArray dynamically once the payload is known.
-  // Behavior from meta.js at lefq4oks90h34rvcw8sg
-  let streetTwoArray = [];
-  let runStreetTwoLoop = true;
-  let streetTwoLoopCount = 0;
+  // Behavior from meta.js at 8cz4imaqb2wagvl14q9t
+  let streetTwoKeyArray = ["address", "streetTwo"]
 
-  while (runStreetTwoLoop === true)
-  {
-    // Check if the data exists in the payload
-    if(data.payload["address_subObject_address" + streetTwoLoopCount.toString() + "_subObject_streetTwo"])
-    {
-      streetTwoArray.push(data.payload["address_subObject_address" + streetTwoLoopCount.toString() + "_subObject_streetTwo"]);
+  let streetTwoArray = loadPayloadArray([], streetTwoKeyArray, data.payload, 0, 0, "", true)[0];
+  // End of: Load the streetTwoArray dynamically once the payload is known. 
 
-      streetTwoLoopCount = streetTwoLoopCount + 1;
-    }
-    else // No more streetTwo variables were sent by the client.  
-    {
-      runStreetTwoLoop = false;      
-    }    
-  } // End of: while (runStreetTwoLoop === true){...}
-  // End of: Load the streetTwoArray dynamically once the payload is known.  
                   
   // Start of: Validate elements in the streetTwoArray
   // passIfString
-  // Behavior from meta.js at 6xczd8sfmnvhmvrivajc
+  // Behavior from meta.js at 7n1wj6bz5asgucz6nmkp
   streetTwoArray.forEach(function(arrayElement)
   {
-    // If streetTwo is of string type and is not empty 
-    if (typeof(arrayElement) === 'string') 
-    { 
-      // The user entered something in the edit form
-      // Pass the string as it is.
-    } 
-    // Else, the user may have entered some other datatype like a number or 
-    // perhaps nothing at all if using the Delete form or if just using the API. 
-    else 
-    { 
-      // If the user entered nothing: 
-      if(arrayElement === undefined) 
-      { 
-        // Then user is likely trying to delete a record.
-        // So change the value to false and continue processing.
-        arrayElement = false 
-      } 
-      else // The user entered something invalid so reject the edit. 
-      { 
-        return callback(400, {'Error' : 'Not a valid ' + arrayElement}); 
-      } 
-    }
-  }); // End of: streetTwoArray.forEach(function(arrayElement)
-  // End of: Validate elements in the streetTwoArray  
+    if(typeof(arrayElement[1]) != 'string'){return callback(400, {'Error' : 'streetTwo must be of datatype string'});}
+  });
+  // End of: Validate elements in the streetTwoArray
+
 
   // Start of: Load the cityArray dynamically once the payload is known.
-  // Behavior from meta.js at lefq4oks90h34rvcw8sg
-  let cityArray = [];
-  let runCityLoop = true;
-  let cityLoopCount = 0;
+  // Behavior from meta.js at 8cz4imaqb2wagvl14q9t
+  let cityKeyArray = ["address", "city"]
 
-  while (runCityLoop === true)
-  {
-    // Check if the data exists in the payload
-    if(data.payload["address_subObject_address" + cityLoopCount.toString() + "_subObject_city"])
-    {
-      cityArray.push(data.payload["address_subObject_address" + cityLoopCount.toString() + "_subObject_city"]);
+  let cityArray = loadPayloadArray([], cityKeyArray, data.payload, 0, 0, "", true)[0];
+  // End of: Load the cityArray dynamically once the payload is known. 
 
-      cityLoopCount = cityLoopCount + 1;
-    }
-    else // No more city variables were sent by the client.  
-    {
-      runCityLoop = false;      
-    }    
-  } // End of: while (runCityLoop === true){...}
-  // End of: Load the cityArray dynamically once the payload is known.  
-                  
   // Start of: Validate elements in the cityArray
   // passIfString&NotEmptyThenTrim
   // Behavior from meta.js at ohw0ivijs2au0nt2rwf1
   cityArray.forEach(function(arrayElement)
   {
     // If city is of string type and is not empty 
-    if (typeof(arrayElement) === 'string' && arrayElement.trim().length > 0) 
+    if (typeof(arrayElement[1]) === 'string' && arrayElement[1].trim().length > 0) 
     { 
       // The user entered something in the edit form
-      arrayElement = arrayElement.trim()
+      arrayElement[1] = arrayElement[1].trim()
     } 
     // Else, the user may have entered some other datatype like a number or 
     // perhaps nothing at all if using the Delete form or if just using the API. 
     else 
     { 
       // If the user entered nothing: 
-      if(arrayElement === undefined) 
+      if(arrayElement[1] === undefined) 
       { 
         // Then user is likely trying to delete a record.
         // So change the value to false and continue processing.
-        arrayElement = false 
+        arrayElement[1] = false 
       } 
       else // The user entered something invalid so reject the edit. 
       { 
-        return callback(400, {'Error' : 'Not a valid ' + arrayElement}); 
+        return callback(400, {'Error' : 'Not a valid ' + arrayElement[1]}); 
       } 
     }
   }); // End of: cityArray.forEach(function(arrayElement)
-  // End of: Validate elements in the cityArray  
+  // End of: Validate elements in the cityArray 
+
 
   // Start of: Load the stateArray dynamically once the payload is known.
-  // Behavior from meta.js at lefq4oks90h34rvcw8sg
-  let stateArray = [];
-  let runStateLoop = true;
-  let stateLoopCount = 0;
+  // Behavior from meta.js at 8cz4imaqb2wagvl14q9t
+  let stateKeyArray = ["address", "state"]
 
-  while (runStateLoop === true)
-  {
-    // Check if the data exists in the payload
-    if(data.payload["address_subObject_address" + stateLoopCount.toString() + "_subObject_state"])
-    {
-      stateArray.push(data.payload["address_subObject_address" + stateLoopCount.toString() + "_subObject_state"]);
+  let stateArray = loadPayloadArray([], stateKeyArray, data.payload, 0, 0, "", true)[0];
+  // End of: Load the stateArray dynamically once the payload is known. 
 
-      stateLoopCount = stateLoopCount + 1;
-    }
-    else // No more state variables were sent by the client.  
-    {
-      runStateLoop = false;      
-    }    
-  } // End of: while (runStateLoop === true){...}
-  // End of: Load the stateArray dynamically once the payload is known.  
-                  
   // Start of: Validate elements in the stateArray
   // passIfString&NotEmptyThenTrim
   // Behavior from meta.js at ohw0ivijs2au0nt2rwf1
   stateArray.forEach(function(arrayElement)
   {
     // If state is of string type and is not empty 
-    if (typeof(arrayElement) === 'string' && arrayElement.trim().length > 0) 
+    if (typeof(arrayElement[1]) === 'string' && arrayElement[1].trim().length > 0) 
     { 
       // The user entered something in the edit form
-      arrayElement = arrayElement.trim()
+      arrayElement[1] = arrayElement[1].trim()
     } 
     // Else, the user may have entered some other datatype like a number or 
     // perhaps nothing at all if using the Delete form or if just using the API. 
     else 
     { 
       // If the user entered nothing: 
-      if(arrayElement === undefined) 
+      if(arrayElement[1] === undefined) 
       { 
         // Then user is likely trying to delete a record.
         // So change the value to false and continue processing.
-        arrayElement = false 
+        arrayElement[1] = false 
       } 
       else // The user entered something invalid so reject the edit. 
       { 
-        return callback(400, {'Error' : 'Not a valid ' + arrayElement}); 
+        return callback(400, {'Error' : 'Not a valid ' + arrayElement[1]}); 
       } 
     }
   }); // End of: stateArray.forEach(function(arrayElement)
-  // End of: Validate elements in the stateArray  
+  // End of: Validate elements in the stateArray 
+
 
   // Start of: Load the zipArray dynamically once the payload is known.
-  // Behavior from meta.js at lefq4oks90h34rvcw8sg
-  let zipArray = [];
-  let runZipLoop = true;
-  let zipLoopCount = 0;
+  // Behavior from meta.js at 8cz4imaqb2wagvl14q9t
+  let zipKeyArray = ["address", "zip"]
 
-  while (runZipLoop === true)
-  {
-    // Check if the data exists in the payload
-    if(data.payload["address_subObject_address" + zipLoopCount.toString() + "_subObject_zip"])
-    {
-      zipArray.push(data.payload["address_subObject_address" + zipLoopCount.toString() + "_subObject_zip"]);
+  let zipArray = loadPayloadArray([], zipKeyArray, data.payload, 0, 0, "", true)[0];
+  // End of: Load the zipArray dynamically once the payload is known. 
 
-      zipLoopCount = zipLoopCount + 1;
-    }
-    else // No more zip variables were sent by the client.  
-    {
-      runZipLoop = false;      
-    }    
-  } // End of: while (runZipLoop === true){...}
-  // End of: Load the zipArray dynamically once the payload is known.  
-                  
   // Start of: Validate elements in the zipArray
   // passIfString&NotEmptyThenTrim
   // Behavior from meta.js at ohw0ivijs2au0nt2rwf1
   zipArray.forEach(function(arrayElement)
   {
     // If zip is of string type and is not empty 
-    if (typeof(arrayElement) === 'string' && arrayElement.trim().length > 0) 
+    if (typeof(arrayElement[1]) === 'string' && arrayElement[1].trim().length > 0) 
     { 
       // The user entered something in the edit form
-      arrayElement = arrayElement.trim()
+      arrayElement[1] = arrayElement[1].trim()
     } 
     // Else, the user may have entered some other datatype like a number or 
     // perhaps nothing at all if using the Delete form or if just using the API. 
     else 
     { 
       // If the user entered nothing: 
-      if(arrayElement === undefined) 
+      if(arrayElement[1] === undefined) 
       { 
         // Then user is likely trying to delete a record.
         // So change the value to false and continue processing.
-        arrayElement = false 
+        arrayElement[1] = false 
       } 
       else // The user entered something invalid so reject the edit. 
       { 
-        return callback(400, {'Error' : 'Not a valid ' + arrayElement}); 
+        return callback(400, {'Error' : 'Not a valid ' + arrayElement[1]}); 
       } 
     }
   }); // End of: zipArray.forEach(function(arrayElement)
-  // End of: Validate elements in the zipArray  
-  
+  // End of: Validate elements in the zipArray 
+
   
   // Check if the deleted flag is of type string and that the value is exactly equal to "true".
   // That would mean the user wants to delete the record. Otherwise the users does not want to delete the record.
@@ -1591,7 +1338,7 @@ oContact._oContact.put = function(data, callback)
     helpers.log
     (
       5,
-      'xgw0ytbdqbu4edd0sfvg' + '\n' +
+      'wi5kcsqez6bt04agbtzn' + '\n' +
       'No fields pass the validation process' + '\n'                                  
     ); // End of: helpers.log(...)
 
@@ -1614,7 +1361,7 @@ oContact._oContact.put = function(data, callback)
       helpers.log
       (
         5,
-        'vgag781x88chzciu068y' + '\n' +
+        'rgm0sf1fyni1hc5vj14t' + '\n' +
         'Unable to get the next gsuid.' + '\n' +
         'The following was the error' + '\n' +
         JSON.stringify(error) + '\n'                                   
@@ -1641,30 +1388,31 @@ oContact._oContact.put = function(data, callback)
     oContactObject.fullName = undefined;
     oContactObject.email = email;
 
-            oContactObject.phone = {};
-            oContactObject.phone.subObject = {};
-            for (let arrayIndex = 0; arrayIndex < phoneTypeArray.length; arrayIndex++) 
-            {
-              oContactObject.phone.subObject["phone" + arrayIndex.toString()] = {};
-              oContactObject.phone.subObject["phone" + arrayIndex.toString()].subObject = {};
-              oContactObject.phone.subObject["phone" + arrayIndex.toString()].subObject["phoneType"] = phoneTypeArray[arrayIndex];
-              oContactObject.phone.subObject["phone" + arrayIndex.toString()].subObject["phone"] = phoneArray[arrayIndex];
-            }
-        
-            oContactObject.address = {};
-            oContactObject.address.subObject = {};
-            for (let arrayIndex = 0; arrayIndex < addressTypeArray.length; arrayIndex++) 
-            {
-              oContactObject.address.subObject["address" + arrayIndex.toString()] = {};
-              oContactObject.address.subObject["address" + arrayIndex.toString()].subObject = {};
-              oContactObject.address.subObject["address" + arrayIndex.toString()].subObject["addressType"] = addressTypeArray[arrayIndex];
-              oContactObject.address.subObject["address" + arrayIndex.toString()].subObject["streetOne"] = streetOneArray[arrayIndex];
-              oContactObject.address.subObject["address" + arrayIndex.toString()].subObject["streetTwo"] = streetTwoArray[arrayIndex];
-              oContactObject.address.subObject["address" + arrayIndex.toString()].subObject["city"] = cityArray[arrayIndex];
-              oContactObject.address.subObject["address" + arrayIndex.toString()].subObject["state"] = stateArray[arrayIndex];
-              oContactObject.address.subObject["address" + arrayIndex.toString()].subObject["zip"] = zipArray[arrayIndex];
-            }
-             
+    // Add any fields named "phoneTypeArray" to the object we will write to the database.
+    oContactObject = buildBranches(phoneTypeArray, oContactObject);
+
+    // Add any fields named "phoneArray" to the object we will write to the database.
+    oContactObject = buildBranches(phoneArray, oContactObject);
+
+
+    // Add any fields named "addressTypeArray" to the object we will write to the database.
+    oContactObject = buildBranches(addressTypeArray, oContactObject);
+
+    // Add any fields named "streetOneArray" to the object we will write to the database.
+    oContactObject = buildBranches(streetOneArray, oContactObject);
+
+    // Add any fields named "streetTwoArray" to the object we will write to the database.
+    oContactObject = buildBranches(streetTwoArray, oContactObject);
+
+    // Add any fields named "cityArray" to the object we will write to the database.
+    oContactObject = buildBranches(cityArray, oContactObject);
+
+    // Add any fields named "stateArray" to the object we will write to the database.
+    oContactObject = buildBranches(stateArray, oContactObject);
+
+    // Add any fields named "zipArray" to the object we will write to the database.
+    oContactObject = buildBranches(zipArray, oContactObject);
+
     oContactObject.timeStamp = Date.now();
     oContactObject.deleted = false;
 
@@ -1694,7 +1442,7 @@ oContact._oContact.put = function(data, callback)
               helpers.log // Log the error.
               (
                 7,
-                'uxp1phut2p2ytq1oow53' + '\n' + 
+                'mysg25m5xsrizx4gbwb4' + '\n' + 
                 'The following was the error message from getMostRecent:' + '\n' +                                             
                 errorFromGetMostRecent + '\n'                                                 
               ); // End of: helpers.log // Log the error.
@@ -1709,7 +1457,7 @@ oContact._oContact.put = function(data, callback)
               helpers.log // Log the error.
               (
                 7,
-                'wvfn7rqxv88q5ot5urim' + '\n' +
+                'mt9os9or3i60thviysex' + '\n' +
                 'The following was the error message from getMostRecent:' + '\n' +                                             
                 errorFromGetMostRecent + '\n'  +
                 'Also unable to remove lock on database.' + '\n' + 
@@ -1785,125 +1533,128 @@ oContact._oContact.put = function(data, callback)
 
         for (let arrayIndex = 0; arrayIndex < phoneTypeArray.length; arrayIndex++) 
         {
-          // Preprocessing for phone.subObject.phoneX.subObject.phoneType
-          if(phoneTypeArray[arrayIndex]) // If the user supplied data for phone.subObject.phoneX.subObject.phoneType
+          // Preprocessing for phone.phoneX.phoneType
+          if(phoneTypeArray[arrayIndex]) // If the user supplied data for phone.phoneX.phoneType
           {
-            // No preprocessing was specifed for phone.subObject.phoneX.subObject.phoneType. Use it as was supplied by the user.
+            // No preprocessing was specifed for phone.phoneX.phoneType. Use it as was supplied by the user.
           }
-          else // If the user did not supply data for phone.subObject.phoneX.subObject.phoneType
+          else // If the user did not supply data for phone.phoneX.phoneType
           {
-            // Save phone.subObject.phoneX.subObject.phoneType from the most recent record.
-            oContactObject.phone.subObject["phone" + arrayIndex.toString()].subObject["phoneType"] = phoneTypeArray[arrayIndex];
+            // Save phone.phoneX.phoneType from the most recent record.
+            oContactObject.phone["phone" + arrayIndex.toString()]["phoneType"] = phoneTypeArray[arrayIndex];
           }
         } 
 
         for (let arrayIndex = 0; arrayIndex < phoneArray.length; arrayIndex++) 
         {
-          // Preprocessing for phone.subObject.phoneX.subObject.phone
-          if(phoneArray[arrayIndex]) // If the user supplied data for phone.subObject.phoneX.subObject.phone
+          // Preprocessing for phone.phoneX.phone
+          if(phoneArray[arrayIndex]) // If the user supplied data for phone.phoneX.phone
           {
-            // No preprocessing was specifed for phone.subObject.phoneX.subObject.phone. Use it as was supplied by the user.
+            // No preprocessing was specifed for phone.phoneX.phone. Use it as was supplied by the user.
           }
-          else // If the user did not supply data for phone.subObject.phoneX.subObject.phone
+          else // If the user did not supply data for phone.phoneX.phone
           {
-            // Save phone.subObject.phoneX.subObject.phone from the most recent record.
-            oContactObject.phone.subObject["phone" + arrayIndex.toString()].subObject["phone"] = phoneArray[arrayIndex];
+            // Save phone.phoneX.phone from the most recent record.
+            oContactObject.phone["phone" + arrayIndex.toString()]["phone"] = phoneArray[arrayIndex];
           }
         } 
 
         for (let arrayIndex = 0; arrayIndex < addressTypeArray.length; arrayIndex++) 
         {
-          // Preprocessing for address.subObject.addressX.subObject.addressType
-          if(addressTypeArray[arrayIndex]) // If the user supplied data for address.subObject.addressX.subObject.addressType
+          // Preprocessing for address.addressX.addressType
+          if(addressTypeArray[arrayIndex]) // If the user supplied data for address.addressX.addressType
           {
-            // No preprocessing was specifed for address.subObject.addressX.subObject.addressType. Use it as was supplied by the user.
+            // No preprocessing was specifed for address.addressX.addressType. Use it as was supplied by the user.
           }
-          else // If the user did not supply data for address.subObject.addressX.subObject.addressType
+          else // If the user did not supply data for address.addressX.addressType
           {
-            // Save address.subObject.addressX.subObject.addressType from the most recent record.
-            oContactObject.address.subObject["address" + arrayIndex.toString()].subObject["addressType"] = addressTypeArray[arrayIndex];
+            // Save address.addressX.addressType from the most recent record.
+            oContactObject.address["address" + arrayIndex.toString()]["addressType"] = addressTypeArray[arrayIndex];
           }
         } 
 
         for (let arrayIndex = 0; arrayIndex < streetOneArray.length; arrayIndex++) 
         {
-          // Preprocessing for address.subObject.addressX.subObject.streetOne
-          if(streetOneArray[arrayIndex]) // If the user supplied data for address.subObject.addressX.subObject.streetOne
+          // Preprocessing for address.addressX.streetOne
+          if(streetOneArray[arrayIndex]) // If the user supplied data for address.addressX.streetOne
           {
-            // No preprocessing was specifed for address.subObject.addressX.subObject.streetOne. Use it as was supplied by the user.
+            // No preprocessing was specifed for address.addressX.streetOne. Use it as was supplied by the user.
           }
-          else // If the user did not supply data for address.subObject.addressX.subObject.streetOne
+          else // If the user did not supply data for address.addressX.streetOne
           {
-            // Save address.subObject.addressX.subObject.streetOne from the most recent record.
-            oContactObject.address.subObject["address" + arrayIndex.toString()].subObject["streetOne"] = streetOneArray[arrayIndex];
+            // Save address.addressX.streetOne from the most recent record.
+            oContactObject.address["address" + arrayIndex.toString()]["streetOne"] = streetOneArray[arrayIndex];
           }
         } 
 
         for (let arrayIndex = 0; arrayIndex < streetTwoArray.length; arrayIndex++) 
         {
-          // Preprocessing for address.subObject.addressX.subObject.streetTwo
-          if(streetTwoArray[arrayIndex]) // If the user supplied data for address.subObject.addressX.subObject.streetTwo
+          // Preprocessing for address.addressX.streetTwo
+          if(streetTwoArray[arrayIndex]) // If the user supplied data for address.addressX.streetTwo
           {
-            // No preprocessing was specifed for address.subObject.addressX.subObject.streetTwo. Use it as was supplied by the user.
+            // No preprocessing was specifed for address.addressX.streetTwo. Use it as was supplied by the user.
           }
-          else // If the user did not supply data for address.subObject.addressX.subObject.streetTwo
+          else // If the user did not supply data for address.addressX.streetTwo
           {
-            // Save address.subObject.addressX.subObject.streetTwo from the most recent record.
-            oContactObject.address.subObject["address" + arrayIndex.toString()].subObject["streetTwo"] = streetTwoArray[arrayIndex];
+            // Save address.addressX.streetTwo from the most recent record.
+            oContactObject.address["address" + arrayIndex.toString()]["streetTwo"] = streetTwoArray[arrayIndex];
           }
         } 
 
         for (let arrayIndex = 0; arrayIndex < cityArray.length; arrayIndex++) 
         {
-          // Preprocessing for address.subObject.addressX.subObject.city
-          if(cityArray[arrayIndex]) // If the user supplied data for address.subObject.addressX.subObject.city
+          // Preprocessing for address.addressX.city
+          if(cityArray[arrayIndex]) // If the user supplied data for address.addressX.city
           {
-            // No preprocessing was specifed for address.subObject.addressX.subObject.city. Use it as was supplied by the user.
+            // No preprocessing was specifed for address.addressX.city. Use it as was supplied by the user.
           }
-          else // If the user did not supply data for address.subObject.addressX.subObject.city
+          else // If the user did not supply data for address.addressX.city
           {
-            // Save address.subObject.addressX.subObject.city from the most recent record.
-            oContactObject.address.subObject["address" + arrayIndex.toString()].subObject["city"] = cityArray[arrayIndex];
+            // Save address.addressX.city from the most recent record.
+            oContactObject.address["address" + arrayIndex.toString()]["city"] = cityArray[arrayIndex];
           }
         } 
 
         for (let arrayIndex = 0; arrayIndex < stateArray.length; arrayIndex++) 
         {
-          // Preprocessing for address.subObject.addressX.subObject.state
-          if(stateArray[arrayIndex]) // If the user supplied data for address.subObject.addressX.subObject.state
+          // Preprocessing for address.addressX.state
+          if(stateArray[arrayIndex]) // If the user supplied data for address.addressX.state
           {
-            // No preprocessing was specifed for address.subObject.addressX.subObject.state. Use it as was supplied by the user.
+            // No preprocessing was specifed for address.addressX.state. Use it as was supplied by the user.
           }
-          else // If the user did not supply data for address.subObject.addressX.subObject.state
+          else // If the user did not supply data for address.addressX.state
           {
-            // Save address.subObject.addressX.subObject.state from the most recent record.
-            oContactObject.address.subObject["address" + arrayIndex.toString()].subObject["state"] = stateArray[arrayIndex];
+            // Save address.addressX.state from the most recent record.
+            oContactObject.address["address" + arrayIndex.toString()]["state"] = stateArray[arrayIndex];
           }
         } 
 
         for (let arrayIndex = 0; arrayIndex < zipArray.length; arrayIndex++) 
         {
-          // Preprocessing for address.subObject.addressX.subObject.zip
-          if(zipArray[arrayIndex]) // If the user supplied data for address.subObject.addressX.subObject.zip
+          // Preprocessing for address.addressX.zip
+          if(zipArray[arrayIndex]) // If the user supplied data for address.addressX.zip
           {
-            // No preprocessing was specifed for address.subObject.addressX.subObject.zip. Use it as was supplied by the user.
+            // No preprocessing was specifed for address.addressX.zip. Use it as was supplied by the user.
           }
-          else // If the user did not supply data for address.subObject.addressX.subObject.zip
+          else // If the user did not supply data for address.addressX.zip
           {
-            // Save address.subObject.addressX.subObject.zip from the most recent record.
-            oContactObject.address.subObject["address" + arrayIndex.toString()].subObject["zip"] = zipArray[arrayIndex];
+            // Save address.addressX.zip from the most recent record.
+            oContactObject.address["address" + arrayIndex.toString()]["zip"] = zipArray[arrayIndex];
           }
         } 
 
         // If we are appending a delete make sure that everything else is coming from the most recent saved record.
         if(deleted)
         {
+          oContactObject = {};
+          oContactObject.oContactId = oContactId;
           oContactObject.firstName = recordObject.firstName;
           oContactObject.lastName = recordObject.lastName;
           oContactObject.fullName = recordObject.fullName;
           oContactObject.email = recordObject.email;
           oContactObject.phone = recordObject.phone;
           oContactObject.address = recordObject.address;
+          oContactObject.timeStamp = Date.now();
           oContactObject.deleted = true;
         }
         else
@@ -1961,7 +1712,7 @@ oContact._oContact.put = function(data, callback)
                         helpers.log // Log the error.
                         (
                           7,
-                          '98umjruiyb2u2f01u695' + '\n' +
+                          'xicu5m9l05fuwpj0051k' + '\n' +
                           'Successful write to oContact but unable to remove lock on database' + '\n' +
                           'The following record was appended to oContact:' + '\n' +                            
                           JSON.stringify(logObject) + '\n' +   
@@ -1983,7 +1734,7 @@ oContact._oContact.put = function(data, callback)
                     helpers.log // Log the error.
                     (
                       5,
-                      '2i60t1crjaighfbpmqfy' + '\n' +
+                      'w3kjz6n9kftr2ob2vmkn' + '\n' +
                       'There was an error when appending to the oContact file.' + '\n' +
                       'The following record may or may not have been appended to oContact:' + '\n' +                            
                       JSON.stringify(logObject) + '\n' +
@@ -2042,7 +1793,7 @@ oContact._oContact.put = function(data, callback)
                                 helpers.log
                                 (
                                   5,
-                                  'vnbp2th75kkygiklgnks' + '\n' +
+                                  'rf6la3z5wlue3lf61zpa' + '\n' +
                                   'Rollback entry in the oContact file was appended successfully' + '\n' +
                                   'The following was the record we rolled back:' + '\n' +
                                   JSON.stringify(logObject) + '\n'                                   
@@ -2053,7 +1804,7 @@ oContact._oContact.put = function(data, callback)
                                 helpers.log
                                 (
                                   7,
-                                  'ctayjcpa8jp7pmf37iyp' + '\n' +
+                                  '2hqylh8decows60lp5fr' + '\n' +
                                   'There was an error appending a rollback entry in the oContact file' + '\n' +
                                   'The following record may or may not have been rolled back:' + '\n' +
                                   JSON.stringify(logObject) + '\n' +   
@@ -2073,7 +1824,7 @@ oContact._oContact.put = function(data, callback)
                           helpers.log
                           (
                             7,
-                            '90nzejwvcv93ire5z70f' + '\n' +
+                            'n8jgj6ia9goqvoeyrcej' + '\n' +
                             'There was an error appending a rollback entry in the history file' + '\n' +
                             'A rollback entry may or may not have been written in the oContact file' + '\n' +  
                             'CHECK TO SEE IF history and oContact ARE STILL IN SYNC' + '\n' +                                      
@@ -2098,7 +1849,7 @@ oContact._oContact.put = function(data, callback)
               helpers.log
               (
                 7,
-                'g4evzs521blf1qym9rdx' + '\n' +
+                'qzlrjswz1ov9irvk08y2' + '\n' +
                 'There was an error appending to the history file' + '\n' +
                 'An error here does not necessarily mean the append to history did not happen.' + '\n' +  
                 'But an error at this point in the code surely means there was no append to oContact' + '\n' +                                          
@@ -2130,7 +1881,7 @@ oContact._oContact.put = function(data, callback)
             helpers.log // Log the error.
             (
               7,
-              '2savq2k7mp16nnicpzpd' + '\n' + 
+              '3rnv7ojsxjcwif97b0ji' + '\n' + 
               'Pipeline error. The message was as follows' + '\n' +                                             
               pipelineError + '\n'                                                 
             ); // End of: helpers.log // Log the error.
@@ -2704,6 +2455,141 @@ oContact._oContact.get = function(data, callback)
 // End of: Define the oContact get subhandler function.  
 
 
+// A payloadArray is used to validate and save nested data to the database.
+// Declaring a function that we will use to load a payloadArray dynamically once the payload is known.  
+// The nestLevel determines which element in payloadKeyArray we are addressing. It's the index
+// The loopCount determines the value of the number we are appending to the element when building the 
+// property key used to access the property value from payloadObject that we wish to load into payloadArray.
+// Behavior from meta.js at defq4ols90h44rvcw8st
+function loadPayloadArray(payloadArray, payloadKeyArray, payloadObject, nestLevel, loopCount, previousPart, continueLooping)
+{      
+  let keyUnderConstruction, recursionResult;    
+
+  // for (let loopCount = 0; loopCount < payloadKeyArray.length - 1; loopCount = loopCount + 1)
+  while(continueLooping)
+  {
+    // Start with a blank key.
+    keyUnderConstruction = "";
+
+    // If we are at the top. 
+    if(nestLevel === 0)
+    {
+      keyUnderConstruction = previousPart +
+      payloadKeyArray[nestLevel] + "_" + payloadKeyArray[nestLevel]  + loopCount.toString();
+    } // End of: If we are at the top.
+    else // Not at the top
+    {
+      keyUnderConstruction = previousPart +
+      "_" + payloadKeyArray[nestLevel] + "_" + payloadKeyArray[nestLevel]  + loopCount.toString();      
+    } // End of: Else: we are not at the top.
+
+    // If we are at the bottom
+    // Finish constructing the key.
+    // Then run the key expression in a while loop to load the payloadArray
+    if(nestLevel === payloadKeyArray.length - 2)
+    {
+      // Finish building the keyUnderConstruction.
+      keyUnderConstruction = keyUnderConstruction +
+      "_" + payloadKeyArray[nestLevel + 1];
+
+      // Now we will use the key that we built.
+      // Check if the data exists in the payload
+      if(payloadObject[keyUnderConstruction])
+      {
+        // If the data is there then push it onto the array we use to write to the database.
+        payloadArray.push([keyUnderConstruction, payloadObject[keyUnderConstruction]]);
+
+        loopCount = loopCount + 1;
+      }
+      else // No more payloads were found at this level.  
+      {
+        // If nothing was found when the loopCount is at zero then we are completely done.
+        if(loopCount === 0)
+        {
+          continueLooping = false;
+          return [payloadArray, continueLooping];
+        }
+        else // data was found previously at this level so we are not done.
+        {
+          continueLooping = true;
+          return [payloadArray, continueLooping];
+
+        } // End of: Else: data was found previously at this level so we are not done.
+      } // End of: Else: No more payloads were found at this level. 
+    } // End of: If we are at the bottom
+    else // We are not at the bottom. We need to recurse deeper into the payloadKeyArray.
+    {
+      // This function calls itself so as to add more text to the keyUnderConstruction
+      recursionResult = loadPayloadArray(payloadArray, payloadKeyArray, payloadObject, nestLevel + 1, 0, keyUnderConstruction, true);
+
+      payloadArray = recursionResult[0];
+
+      loopCount = loopCount + 1;         
+
+      continueLooping = recursionResult[1];
+      
+      if(!continueLooping)
+      {
+        return recursionResult
+      };
+
+    } // End of: Else we are not at the bottom. Go deeper into the recursion and pop out again.
+  } // End of: while(true)
+}; // End of: function loadPayloadArray(address, objKey, objectNestLevel, previousPath){...}
+// End of: Declare a function that we will use to load the payloadArray dynamically once the payload is known.  
+
+
+// Define a function to load nested data which has been validated into the object we will write to the database.
+function buildBranches(fieldArray, persistObject)
+{
+  // Loop through the fieldArray which contains nested data from the client.
+  fieldArray.forEach
+  (
+    // Perform the following function on every element in the fieldArray.
+    function(fieldArrayElement)
+    {
+      // Get a reference to the object tree so we can build branches.
+      let objectBranch = persistObject;  
+
+      // Make an array from the path string splitting it on the underscore.
+      // The elements tell us what to name the branches.
+      fieldArrayElement[0].split("_").forEach
+      (
+        // Perform the following function for every element in fieldArrayElement.
+        function(pathArrayElement, pathArrayIndex, pathArray)
+        {
+          // If we are not on the last one - we are building branches of this object.
+          if(pathArrayIndex < pathArray.length - 1)
+          {
+            // If the branch does not exist...
+            if(!objectBranch[pathArrayElement])
+            {
+              // Create the branch
+              objectBranch[pathArrayElement] = {};
+
+              // Jump onto the new branch
+              objectBranch = objectBranch[pathArrayElement];
+            } // End of: If the branch does not exist.
+            else // The branch exists. It was made in a previous loop
+            {
+              // Jump onto the existing branch
+              objectBranch = objectBranch[pathArrayElement];                  
+            } // End of: Else - The branch exists. It was made in a previous loop
+          } // End of: If we are not on the last one...
+          else // This is the last element which holds the name of the field. We are inserting the value.
+          {
+            // Put a leaf at the end of the current branch and asign the value for the field we are saving to the database.
+            objectBranch[pathArrayElement] = fieldArrayElement[1];
+          } // End of: Else - This is the last element ...
+        } // End of: function(pathArrayElement, pathArrayIndex, pathArray){...}
+      ) // fieldArrayElement[0].split("_").forEach(...)
+    } // End of: function(fieldArrayElement){...}
+  ) // End of: fieldArray.forEach(...)
+
+  return persistObject;
+
+} // End of: function buildBranches(fieldArray, persistObject){...}
+// End of: Define a function to load nested data which has been validated into the object we will write to the database.
 
 
 // Export the module

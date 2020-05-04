@@ -690,6 +690,8 @@ function renumberNamedElementsInGroupWrapper(groupWrapper)
   // Loop through the elementWrappers.
   groupWrapper.querySelectorAll('.elementWrapper').forEach(function(elementWrapper, wrapperIndex)
   {
+    let incremented = false;
+
     // Loop through the form elements inside each elementWrapper.
     elementWrapper.querySelectorAll('.resetElement').forEach(function(fieldElement)
     {
@@ -708,16 +710,17 @@ function renumberNamedElementsInGroupWrapper(groupWrapper)
         while (true)
         {
           // If we are at the top level...
-          if(ancestorWrappers.length === 1)
+          if(ancestorWrappers.length === 1 && !previousElementWrapper)
           {
             break; // Don't do anything.
           }
           // Else If the current wrapper is inside the last ancestorWrapper
-          else if(ancestorWrappers[ancestorWrappers.length - 1][0].contains(elementWrapper))
+          else if(ancestorWrappers.length > 1 && ancestorWrappers[ancestorWrappers.length - 1][0].contains(elementWrapper))
           {
             // We are working with a new elementWrapper at the same level.
             // So increment the numeric value held in the last element of the ancestorWrappers array.
             ancestorWrappers[ancestorWrappers.length - 1][1] = ancestorWrappers[ancestorWrappers.length - 1][1] + 1;
+            incremented = true;
             break;
           }
           else // the current wrapper is not inside the last ancestorWrapper
@@ -729,7 +732,8 @@ function renumberNamedElementsInGroupWrapper(groupWrapper)
 
               // We are working with a new elementWrapper at the same level.
               // So increment the numeric value held in the last element of the ancestorWrappers array.
-              ancestorWrappers[ancestorWrappers.length - 1][1] = ancestorWrappers[ancestorWrappers.length - 1][1] + 1;    
+              ancestorWrappers[ancestorWrappers.length - 1][1] = ancestorWrappers[ancestorWrappers.length - 1][1] + 1; 
+              incremented = true;   
               
               // Now run through this while loop again to see if the last element contain the current wrapper.
             }
@@ -737,11 +741,15 @@ function renumberNamedElementsInGroupWrapper(groupWrapper)
             {
               // We are working with a new elementWrapper at the top level.
               // So increment the numeric value held in the only element of the ancestorWrappers array.
-              ancestorWrappers[ancestorWrappers.length - 1][1] = ancestorWrappers[ancestorWrappers.length - 1][1] + 1;
+              if(!incremented)
+              {
+                ancestorWrappers[ancestorWrappers.length - 1][1] = ancestorWrappers[ancestorWrappers.length - 1][1] + 1;
+                incremented = true;
+              }
               break;   
             } // End of: Else - we are at the top level
           } // End of: Else - the current wrapper is not inside the last ancestorWrapper
-        } // End of: while (ancestorWrappers.length > 1)
+        } // End of: while (true)
       } // End of: Else - the current wrapper is not inside the previous
 
       // Get the form element's name.

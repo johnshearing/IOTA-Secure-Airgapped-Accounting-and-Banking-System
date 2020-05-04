@@ -32,7 +32,7 @@
       <div class="objectWrapper elementWrapper">
         <div class="inputWrapper">
           <div class="inputLabel">Phone Type</div>
-          <select class="resetElement phone_subObject_phone0_subObject_phoneTypeInput" name="phone_subObject_phone0_subObject_phoneType">
+          <select class="resetElement phone_phone0_phoneTypeInput" name="phone_phone0_phoneType">
             <option value="" style="display: list-item;">Select the Phone Type</option>
             <option value="Mobile" style="display: list-item;">Mobile Phone</option>
             <option value="Home" style="display: list-item;">Home Phone</option>
@@ -42,7 +42,7 @@
         </div>
         <div class="inputWrapper">
           <div class="inputLabel">Phone</div>
-          <input class="resetElement phone_subObject_phone0_subObject_phoneInput" name="phone_subObject_phone0_subObject_phone" type="text" placeholder="Enter a Phone Number"/>
+          <input class="resetElement phone_phone0_phoneInput" name="phone_phone0_phone" type="text" placeholder="Enter a Phone Number"/>
         </div>
         <button type="button" class="disabled controlObjectButton moveObjectUpButton blue" disabled>Move Up</button>
         <button type="button" class="disabled controlObjectButton moveObjectDownButton blue" disabled>Move Down</button>
@@ -55,7 +55,7 @@
       <div class="objectWrapper elementWrapper">
         <div class="inputWrapper">
           <div class="inputLabel">Address Type</div>
-          <select class="resetElement address_subObject_address0_subObject_addressTypeInput" name="address_subObject_address0_subObject_addressType" placeholder="Enter an Address Type">
+          <select class="resetElement address_address0_addressTypeInput" name="address_address0_addressType" placeholder="Enter an Address Type">
             <option value="" style="display: list-item;">Select the Address Type</option>
             <option value="Home Address" style="display: list-item;">Home Address</option>
             <option value="Work Address" style="display: list-item;">Work Address</option>
@@ -64,24 +64,24 @@
           </select>
         </div>
         <div class="inputWrapper">
-          <div class="inputLabel">Street 1</div>
-          <input class="resetElement address_subObject_address0_subObject_streetOneInput" name="address_subObject_address0_subObject_streetOne" type="text" placeholder="Enter a Street Address"/>
+          <div class="inputLabel">Street One</div>
+          <input class="resetElement address_address0_streetOneInput" name="address_address0_streetOne" type="text" placeholder="Enter a Street Address"/>
         </div>
         <div class="inputWrapper">
-          <div class="inputLabel">Street 2</div>
-          <input class="resetElement address_subObject_address0_subObject_streetTwoInput" name="address_subObject_address0_subObject_streetTwo" type="text" placeholder="Optional Field"/>
+          <div class="inputLabel">Street Two</div>
+          <input class="resetElement address_address0_streetTwoInput" name="address_address0_streetTwo" type="text" placeholder="Optional Field"/>
         </div>
         <div class="inputWrapper">
           <div class="inputLabel">City</div>
-          <input class="resetElement address_subObject_address0_subObject_cityInput" name="address_subObject_address0_subObject_city" type="text" placeholder="Enter a City"/>
+          <input class="resetElement address_address0_cityInput" name="address_address0_city" type="text" placeholder="Enter a City"/>
         </div>
         <div class="inputWrapper">
           <div class="inputLabel">State</div>
-          <input class="resetElement address_subObject_address0_subObject_stateInput" name="address_subObject_address0_subObject_state" type="text" placeholder="Enter a State"/>
+          <input class="resetElement address_address0_stateInput" name="address_address0_state" type="text" placeholder="Enter a State"/>
         </div>
         <div class="inputWrapper">
           <div class="inputLabel">Zip Code</div>
-          <input class="resetElement address_subObject_address0_subObject_zipInput" name="address_subObject_address0_subObject_zip" type="text" placeholder="Enter a Zip Code"/>
+          <input class="resetElement address_address0_zipInput" name="address_address0_zip" type="text" placeholder="Enter a Zip Code"/>
         </div>
         <button type="button" class="disabled controlObjectButton moveObjectUpButton blue" disabled>Move Up</button>
         <button type="button" class="disabled controlObjectButton moveObjectDownButton blue" disabled>Move Down</button>
@@ -100,6 +100,7 @@
 </div>
 
 <hr />
+
 <h2>Delete Our Contact</h2>
 <div class="formWrapper">
   <form id="oContactDeleteForm" action="/api/oContact" method="PUT">
@@ -393,41 +394,36 @@ app.loadoContactEditPage = async function()
   // Get the record object from the array returned by the query.
   let recordObject = recordArray[0];
 
-  // This keeps class and element names of container objects the same.
-  // The querySelector used while data is loading requires this.
-  let allowRenumbering = false;
-
   // Define the function that fires when the moveObjectUpButton is selected.
   function onClickBehaviorForMoveObjectUpButton (event)  
   {
-
     // Stop it from redirecting anywhere
     event.preventDefault();
 
     // Enable the moveObjectUpButton on the object coming down.
-    let moveObjectUpButtonOnTheObjectComingDown = event.target.parentNode.previousElementSibling.querySelector(".moveObjectUpButton");
+    let moveObjectUpButtonOnTheObjectComingDown = event.target.parentNode.previousElementSibling.querySelectorAll(".moveObjectUpButton")[event.target.parentNode.previousElementSibling.querySelectorAll(".moveObjectUpButton").length - 1];
     moveObjectUpButtonOnTheObjectComingDown.classList.remove('disabled');
     moveObjectUpButtonOnTheObjectComingDown.removeAttribute("disabled");
 
-    // Find out if we are on the bottom
-    if(event.target.parentNode === event.target.parentNode.parentNode.querySelector(".elementWrapper:nth-last-child(2)"))
+    // Find out if we are at the bottom
+    if(!event.target.parentNode.nextElementSibling.classList.contains("elementWrapper"))
     {
       // The object coming down will not be able to go down anymore.
-      // So no need for the moveObjectDownButton. Disable it. 
-      let moveObjectDownButtonOnTheObjectComingDown = event.target.parentNode.previousElementSibling.querySelector(".moveObjectDownButton");      
+      // So no need for the moveObjectDownButton. Disable it.
+      let moveObjectDownButtonOnTheObjectComingDown = event.target.parentNode.previousElementSibling.querySelectorAll(".moveObjectDownButton")[event.target.parentNode.previousElementSibling.querySelectorAll(".moveObjectDownButton").length - 1];
       moveObjectDownButtonOnTheObjectComingDown.classList.add("disabled");
       moveObjectDownButtonOnTheObjectComingDown.setAttribute("disabled", "");
-    }       
+    }  
 
+    // Enable the moveObjectDownButton next to the target button.
     // Since we are moving this elementWrapper up we need to be sure the moveObjectDownButton is enabled.
     // Need this in case it was sitting on the bottom where the down button is disabled.
-    // Enable the moveObjectDownButton next to the target button
-    let moveObjectDownButtonNextToTargetButton = event.target.parentNode.querySelector(".moveObjectDownButton")
+    let moveObjectDownButtonNextToTargetButton = event.target.nextElementSibling
     moveObjectDownButtonNextToTargetButton.classList.remove('disabled');
     moveObjectDownButtonNextToTargetButton.removeAttribute("disabled");
     
     // Move the object up
-    if(event.target.parentNode.previousSibling)
+    if(event.target.parentNode.previousElementSibling)
     {
       event.target.parentNode.parentNode.insertBefore(event.target.parentNode, event.target.parentNode.previousElementSibling);
     }
@@ -461,24 +457,24 @@ app.loadoContactEditPage = async function()
     event.preventDefault();
 
     // Enable the moveObjectDownButton on the object coming up.
-    let moveObjectDownButtonOnTheObjectComingUp = event.target.parentNode.nextElementSibling.querySelector(".moveObjectDownButton");
+    let moveObjectDownButtonOnTheObjectComingUp = event.target.parentNode.nextElementSibling.querySelectorAll(".moveObjectDownButton")[event.target.parentNode.nextElementSibling.querySelectorAll(".moveObjectDownButton").length - 1];    
     moveObjectDownButtonOnTheObjectComingUp.classList.remove('disabled');
     moveObjectDownButtonOnTheObjectComingUp.removeAttribute("disabled");
 
     // Find out if we are on the top
-    if(event.target.parentNode === event.target.parentNode.parentNode.querySelector(".elementWrapper:first-child"))
+    if(!event.target.parentNode.previousElementSibling)
     {
       // The object coming up will not be able to go up anymore.
       // So no need for the moveObjectUpButton. Disable it. 
-      let moveObjectUpButtonOnTheObjectComingUp = event.target.parentNode.nextElementSibling.querySelector(".moveObjectUpButton");      
+      let moveObjectUpButtonOnTheObjectComingUp = event.target.parentNode.nextElementSibling.querySelectorAll(".moveObjectUpButton")[event.target.parentNode.nextElementSibling.querySelectorAll(".moveObjectUpButton").length - 1];
       moveObjectUpButtonOnTheObjectComingUp.classList.add("disabled");
       moveObjectUpButtonOnTheObjectComingUp.setAttribute("disabled", "");
     } 
 
-    // Since we are moving this elementWrapper down we need to be sure the moveObjectUpButton is enabled.
+    // Since we are moving this elementWrapper down we need to be sure the moveObjectUpButton is enabled. 
     // Need this in case it was sitting at the top where the up button is disabled.
     // Enable the moveObjectUpButton next to the target down button
-    let moveObjectUpButtonNextToTargetButton = event.target.parentNode.querySelector(".moveObjectUpButton")
+    let moveObjectUpButtonNextToTargetButton = event.target.previousElementSibling    
     moveObjectUpButtonNextToTargetButton.classList.remove('disabled');
     moveObjectUpButtonNextToTargetButton.removeAttribute("disabled");
 
@@ -489,7 +485,7 @@ app.loadoContactEditPage = async function()
     }
   
     // Find out if we are at the bottom
-        if(event.target.parentNode === event.target.parentNode.parentNode.querySelector(".elementWrapper:nth-last-child(2)"))    
+    if(!event.target.parentNode.nextElementSibling.classList.contains("elementWrapper"))     
     {
       // Can't move down anymore than this.
       // Disable the target moveObjectDownButton.
@@ -518,48 +514,45 @@ app.loadoContactEditPage = async function()
     event.preventDefault();
 
     // If we are on the top
-    if(event.target.parentNode === event.target.parentNode.parentNode.querySelector(".elementWrapper:first-child"))
+    // if(event.target.parentNode === event.target.parentNode.parentNode.querySelector(".elementWrapper:first-child"))
+    if(!event.target.parentNode.previousElementSibling)    
     {
       // The object coming up will not be able to go up anymore.
       // So no need for the moveObjectUpButton. Disable it. 
-      let moveObjectUpButtonOnTheObjectComingUp = event.target.parentNode.nextElementSibling.querySelector(".moveObjectUpButton");      
+      let moveObjectUpButtonOnTheObjectComingUp = event.target.parentNode.nextElementSibling.querySelectorAll(".moveObjectUpButton")[event.target.parentNode.nextElementSibling.querySelectorAll(".moveObjectUpButton").length - 1];      
       moveObjectUpButtonOnTheObjectComingUp.classList.add("disabled");
       moveObjectUpButtonOnTheObjectComingUp.setAttribute("disabled", "");
 
       // If there are only two left
-      if(event.target.parentNode.parentNode.querySelectorAll(".elementWrapper").length === 2)
+      if(event.target.parentNode.parentNode.childElementCount === 3)      
       {
         // We must never delete the last one
         // So disable the removeObjectButton on the last survivor    
-        
-        let removeObjectButtonOnTheObjectComingUp = event.target.parentNode.nextElementSibling.querySelector(".removeObjectButton");      
+        let removeObjectButtonOnTheObjectComingUp = event.target.parentNode.nextElementSibling.querySelectorAll(".removeObjectButton")[event.target.parentNode.nextElementSibling.querySelectorAll(".removeObjectButton").length - 1];           
         removeObjectButtonOnTheObjectComingUp.classList.add("disabled");
         removeObjectButtonOnTheObjectComingUp.setAttribute("disabled", "");
-
       }
     } // End of: If there are only two left
     // End of: If we are on the top
 
     // If we are on the bottom
-    if(event.target.parentNode === event.target.parentNode.parentNode.querySelector(".elementWrapper:nth-last-child(2)"))
+    if(!event.target.parentNode.nextElementSibling.classList.contains("elementWrapper"))    
     {
       // The object coming down will not be able to go down anymore.
       // So no need for the moveObjectDownButton. Disable it. 
-      let moveObjectDownButtonOnTheObjectComingDown = event.target.parentNode.previousElementSibling.querySelector(".moveObjectDownButton");      
+      let moveObjectDownButtonOnTheObjectComingDown = event.target.parentNode.previousElementSibling.querySelectorAll(".moveObjectDownButton")[event.target.parentNode.previousElementSibling.querySelectorAll(".moveObjectDownButton").length - 1];     
       moveObjectDownButtonOnTheObjectComingDown.classList.add("disabled");
       moveObjectDownButtonOnTheObjectComingDown.setAttribute("disabled", "");
 
       // If there are only two left
-      if(event.target.parentNode.parentNode.querySelectorAll(".elementWrapper").length === 2)
+      if(event.target.parentNode.parentNode.childElementCount === 3)
       {
         // We must never delete the last one
-        // So disable the removeObjectButton on the last survivor    
-        
-        let removeObjectButtonOnTheObjectComingDown = event.target.parentNode.previousElementSibling.querySelector(".removeObjectButton");      
+        // So disable the removeObjectButton on the last survivor
+        let removeObjectButtonOnTheObjectComingDown = event.target.parentNode.previousElementSibling.querySelectorAll(".removeObjectButton")[event.target.parentNode.previousElementSibling.querySelectorAll(".removeObjectButton").length - 1];        
         removeObjectButtonOnTheObjectComingDown.classList.add("disabled");
         removeObjectButtonOnTheObjectComingDown.setAttribute("disabled", "");
-
-      } // End of: If there are only two left
+      } // End of: If there are only two left 
     } // End of: If we are on the bottom
 
     let groupWrapper = event.target.parentNode.parentNode;
@@ -587,67 +580,129 @@ app.loadoContactEditPage = async function()
     // Stop it from redirecting anywhere
     event.preventDefault();
 
-    // Count the element wrappers surrounding the control elements that 
-    // exist in this groupWrapper along with this addNew button.
-    let elementWrapperCount = event.target.parentNode.querySelectorAll(".elementWrapper").length;
+    // Initialize a pointer to the elementWrapper we will clone.
+    // We are cloning the last elementWrapper the groupWrapper.
+    let lastElementWrapper;
 
-    // Deep clone a new elementWrapper from the last one inside the target's groupWrapper.
-    let elmnt = event.target.parentNode.querySelectorAll(".elementWrapper")[elementWrapperCount - 1];
-    let cln = elmnt.cloneNode(true);
+    event.target.parentNode.querySelectorAll(".elementWrapper").forEach(function(elementWrapper)
+    {
+      if(elementWrapper.parentNode === event.target.parentNode)
+      {
+        lastElementWrapper = elementWrapper;
+      }
+    });
+
+    // Here we deep clone the last elementWrapper.
+    let cln = lastElementWrapper.cloneNode(true);
+
+    // Remove all the but the first of any elementWappers from the clone groupWrapper
+    cln.querySelectorAll(".elementWrapper:not(:first-child)").forEach(function(elementWrapper)
+    {
+      elementWrapper.remove()
+    });
 
     // Set all the clone's element values to ""
     cln.querySelectorAll(".resetElement").forEach(function(element){element.value = "";});
 
-    // Create an event listener for the onclick event of the clone's removeObjectButton.
-    cln.querySelector(".removeObjectButton").addEventListener("click", onClickBehaviorForRemoveObjectButton);
-
-    // Create an event listener for the onclick event of the clone's moveObjectUpButton.
-    cln.querySelector(".moveObjectUpButton").addEventListener("click", onClickBehaviorForMoveObjectUpButton);
-
+    // Create an event listener for the onclick event of the clone's removeObjectButtons.
+    cln.querySelectorAll(".removeObjectButton").forEach(function(removeObjectButton)
+    {
+      removeObjectButton.addEventListener("click", onClickBehaviorForRemoveObjectButton);
+    });
+    
+    // Create an event listener for the onclick event of the clone's moveObjectUpButtons.
+    cln.querySelectorAll(".moveObjectUpButton").forEach(function(moveObjectUpButton)
+    {
+      moveObjectUpButton.addEventListener("click", onClickBehaviorForMoveObjectUpButton);
+    });    
+    
     // Create an event listener for the onclick event of the clone's moveObjectDownButton.
-    cln.querySelector(".moveObjectDownButton").addEventListener("click", onClickBehaviorForMoveObjectDownButton);
+    cln.querySelectorAll(".moveObjectDownButton").forEach(function(moveObjectDownButton)
+    {
+      moveObjectDownButton.addEventListener("click", onClickBehaviorForMoveObjectDownButton);
+    });
 
-    // Enable the clone's moveObjectUpButton
-    cln.querySelector(".moveObjectUpButton").classList.remove('disabled');
-    cln.querySelector(".moveObjectUpButton").removeAttribute("disabled");
+    // Create an event listener for the onclick event of the clone's addNewObjectButtons.
+    cln.querySelectorAll('.addNewObjectButton').forEach(function(addNewObjectButton)
+    {
+      addNewObjectButton.addEventListener("click", onClickBehaviorForAddNewObjectButton);
+    });
+
+    // Enable the clone's moveObjectUpButtons
+    cln.querySelectorAll(".moveObjectUpButton").forEach(function(moveObjectUpButton)
+    {
+      if(moveObjectUpButton.parentNode === cln)
+      {
+        moveObjectUpButton.classList.remove('disabled');
+        moveObjectUpButton.removeAttribute("disabled");
+      }
+    });
 
     // Disable the clone's moveObjectDownButton
-    cln.querySelector(".moveObjectDownButton").classList.add("disabled");
-    cln.querySelector(".moveObjectDownButton").setAttribute("disabled", "");
+    cln.querySelectorAll(".moveObjectDownButton").forEach(function(moveObjectDownButton)
+    {
+      // if(moveObjectDownButton.parentNode === cln)
+      // {
+        moveObjectDownButton.classList.add("disabled");
+        moveObjectDownButton.setAttribute("disabled", "");
+      // }
+    }); 
 
-    // Enable the clone's removeObjectButton. 
-    cln.querySelector(".removeObjectButton").classList.remove('disabled');
-    cln.querySelector(".removeObjectButton").removeAttribute("disabled");
+    // Disable all removeObjectButtons on the clone.
+    // This is to disable buttons on any children.
+    // In the next step after this, the removeObjectButton is enabled at the top level.
+    cln.querySelectorAll(".removeObjectButton").forEach(function(removeObjectButton)
+    {
+      removeObjectButton.classList.add("disabled");
+      removeObjectButton.setAttribute("disabled", "");
+    }); 
+
+
+    // Enable the clone's top level removeObjectButton
+    cln.querySelectorAll(".removeObjectButton").forEach(function(removeObjectButton)
+    {
+      if(removeObjectButton.parentNode === cln)
+      {
+        removeObjectButton.classList.remove('disabled');
+        removeObjectButton.removeAttribute("disabled");
+      }
+    }); 
 
     // Disable the very top moveObjectUpButton
-    event.target.parentNode.querySelectorAll(".moveObjectUpButton")[0].classList.add("disabled");
-    event.target.parentNode.querySelectorAll(".moveObjectUpButton")[0].setAttribute("disabled", "");
+    event.target.parentNode.querySelectorAll(".moveObjectUpButton").forEach(function(moveObjectUpButton)
+    {
+      if(moveObjectUpButton.parentNode === event.target.parentNode)
+      {
+        moveObjectUpButton.classList.add("disabled");
+        moveObjectUpButton.setAttribute("disabled", "");
+      }
+    }); 
 
     // Enable all but clone's moveObjectDownButton
-    event.target.parentNode.querySelectorAll(".moveObjectDownButton").forEach(function(currentButton)
+    event.target.parentNode.querySelectorAll(".moveObjectDownButton").forEach(function(moveObjectDownButton)
     {
-      currentButton.classList.remove('disabled');
-      currentButton.removeAttribute("disabled");    
+      if(moveObjectDownButton.parentNode.parentNode === event.target.parentNode)
+      {
+        moveObjectDownButton.classList.remove('disabled');
+        moveObjectDownButton.removeAttribute("disabled");
+      }  
     });
 
     // Enable all but clone's removeObjectButton
-    event.target.parentNode.querySelectorAll(".removeObjectButton").forEach(function(currentButton)
+    event.target.parentNode.querySelectorAll(".removeObjectButton").forEach(function(removeObjectButton)
     {
-      currentButton.classList.remove('disabled');
-      currentButton.removeAttribute("disabled");    
+      if(removeObjectButton.parentNode.parentNode === event.target.parentNode)
+      {
+        removeObjectButton.classList.remove('disabled');
+        removeObjectButton.removeAttribute("disabled");  
+      }   
     });
 
     // Append the clone to the object group in the DOM
     let targetGroupWrapper = event.target.parentNode;
     targetGroupWrapper.insertBefore(cln, targetGroupWrapper.childNodes[targetGroupWrapper.childNodes.length -2]);
 
-    // Renumbering during page load prevents object containers from loading correctly.
-    // This is because the forEach loops in the querySelectors at 4eyhkvwtznzs8f9pmy08 
-    // require that all classes have the same identifier.
-    if(allowRenumbering)
-    {
-      renumberNamedElementsInGroupWrapper(event.target.parentNode);      
-    }
+    renumberNamedElementsInGroupWrapper(event.target.parentNode);
 
   } // End of: function onClickBehaviorForAddNewObjectButton (event)
   // End of: Define the function that fires when the addNewObjectButton is pressed.
@@ -661,103 +716,94 @@ app.loadoContactEditPage = async function()
   // End of: Bind the function above to the onClick event of the addNewObjectButtons.
 
 
-  // Get the phone count.
-  const phoneAmount = Object.keys(recordObject.phone.subObject).length;
+  // Create a handle for the last element we loaded with information.
+  let lastElement; 
 
-  // Clone enough elementWrappers to accommodate every phone.
-  for (let loopCount = 0; loopCount < phoneAmount - 1; loopCount++) 
+  // Traverse recordObject from the server loading property values into elements. 
+  // Clone elements where required. 
+  for (let key in recordObject)
   {
-    const addButton = document.querySelectorAll('.addNewObjectButton')[0];
-    addButton.click();
-  };
-
-  // Get the address count.
-  const addressAmount = Object.keys(recordObject.address.subObject).length;
-
-  // Clone enough elementWrappers to accommodate every address.
-  for (let loopCount = 0; loopCount < addressAmount - 1; loopCount++) 
-  {
-    const addButton = document.querySelectorAll('.addNewObjectButton')[1];
-    addButton.click();
-  };
-
-  // Put the data into the forms as values where needed
-  // Behaviour from meta.js at 4eyhkvwtznzs8f9pmy08
-
-  document.querySelectorAll(".firstNameInput").forEach(function (element){element.value = recordObject.firstName});
-  document.querySelectorAll(".lastNameInput").forEach(function (element){element.value = recordObject.lastName});
-  document.querySelectorAll(".emailInput").forEach(function (element){element.value = recordObject.email});
-
-  document.querySelectorAll(".phone_subObject_phone0_subObject_phoneTypeInput").forEach
-  (
-    function (element, elementIndex)
+    // If this top level property is itself an object containing more objects inside...
+    if (typeof recordObject[key] === 'object')
     {
-      element.value = recordObject.phone.subObject["phone" + elementIndex.toString()].subObject.phoneType;
-    }
-  );
+      // Keep track of how deep we have drilled into the object.
+      let objectNestLevel = 0;
 
-  document.querySelectorAll(".phone_subObject_phone0_subObject_phoneInput").forEach
-  (
-    function (element, elementIndex)
-    {
-      element.value = recordObject.phone.subObject["phone" + elementIndex.toString()].subObject.phone;
-    }
-  );
+      // Call the function defined below. 
+      drillIntoObject(recordObject, key, objectNestLevel, "")
 
-  document.querySelectorAll(".address_subObject_address0_subObject_addressTypeInput").forEach
-  (
-    function (element, elementIndex)
-    {
-      element.value = recordObject.address.subObject["address" + elementIndex.toString()].subObject.addressType;
-    }
-  );
+      // Declare the function that we will use to drill into the recordObject from the server.
+      // This function will call itself several times if drilling into nested objects is required.      
+      function drillIntoObject(address, objKey, objectNestLevel, previousPath)
+      {
+        // Check each property to see if it too is an object.
+        for (let property in address[objKey])
+        {
+          // If the current property is also an object...
+          if (typeof address[objKey][property] === 'object')
+          {
+            // If property value has a numeral at the end and the numeral is greater than zero...
+            // Then we will need to clone a new element wrapper by activating the correct 
+            // addNewObjectButton in the current hierarchy as determined by nestLevel.
+            if(hasANumber(property) && property.match(/[0-9]+(?!.*[0-9])/)[0] > 0)
+            {
+              // The nestLevel along with the levelCounter tells us how far up the hierarchy
+              // we need to go in order to reach the addNewObjectButton we are looking for.
+              let levelCounter = lastElement[1];
+              let targetGroupWrapper = lastElement[0];
 
-  document.querySelectorAll(".address_subObject_address0_subObject_streetOneInput").forEach
-  (
-    function (element, elementIndex)
-    {
-      element.value = recordObject.address.subObject["address" + elementIndex.toString()].subObject.streetOne;
-    }
-  );
+              do 
+              {
+                levelCounter = levelCounter - 2;
+                targetGroupWrapper = targetGroupWrapper.parentNode.closest(".groupWrapper");
+              } 
+              while (levelCounter > objectNestLevel);
+              
 
-  document.querySelectorAll(".address_subObject_address0_subObject_streetTwoInput").forEach
-  (
-    function (element, elementIndex)
-    {
-      element.value = recordObject.address.subObject["address" + elementIndex.toString()].subObject.streetTwo;
-    }
-  );
+              // Make a handle for the addNewObjectButton we have been looking for.
+              const addButton = targetGroupWrapper.lastElementChild;
 
-  document.querySelectorAll(".address_subObject_address0_subObject_cityInput").forEach
-  (
-    function (element, elementIndex)
-    {
-      element.value = recordObject.address.subObject["address" + elementIndex.toString()].subObject.city;
-    }
-  );
+              // Clone a new elementWrapper with all required form elements for us to write to.                
+              addButton.click();                
+            }
 
-  document.querySelectorAll(".address_subObject_address0_subObject_stateInput").forEach
-  (
-    function (element, elementIndex)
-    {
-      element.value = recordObject.address.subObject["address" + elementIndex.toString()].subObject.state;
-    }
-  );
+            // This function calls itself so as to go deeper into the object
+            drillIntoObject(address[objKey], property, objectNestLevel + 1, previousPath + objKey + "_");              
+          }
+          else // This property is not an object. We are at the end of the branch where we encounter a data field.
+          { 
+            // Assemble the path through the current object to a property at the end of a branch.
+            let objectPath = objKey + "_" + property;
 
-  document.querySelectorAll(".address_subObject_address0_subObject_zipInput").forEach
-  (
-    function (element, elementIndex)
+            // If the current object is nested then prepend the path to include the parent objects.
+            objectPath = previousPath.length === 0 ? objectPath : previousPath + objectPath;
+
+            // Climb to the end of this branch so we can read the property value.
+            let finalBranch = address[objKey];
+
+            // Write to the form element from the recordObject sent to us by the server.
+            document.getElementsByName(objectPath).forEach(function (element){element.value = finalBranch[property]}); 
+
+            // Remember the form element we just wrote to so that we will know where we need to write next.
+            lastElement = [document.getElementsByName(objectPath)[0], objectNestLevel]
+            
+          } // End of: else - This property is not an object.
+        } // End of: for-let Check each property to see if it too is an object.
+      }; // End of: function drillIntoObject(address, objKey, objectNestLevel, previousPath){...}
+    } // End of: If this top level property is itself an object containing more objects inside...
+    else // This top level property is not an object - It's just a holds a field value.
     {
-      element.value = recordObject.address.subObject["address" + elementIndex.toString()].subObject.zip;
-    }
-  );
-  
-  
+      // Insert this field value into the apropriate form control.
+      document.querySelectorAll("." + key + "Input").forEach(function (element){element.value = recordObject[key]});
+
+    } // End of: Else - This top level property is not an object - It's just a holds a field value.
+  } // End of: for (let key in recordObject){...}
+  // End of: Traverse record object loading property values into form elements. Clone form elements where required.
+
+
   document.querySelectorAll(".timeStampInput").forEach(function(element){element.value = recordObject.timeStamp});  
 
 
-  // Now that the page has loaded we can renumber any object containers.
-  allowRenumbering = true;  
   document.querySelectorAll(".groupWrapper").forEach(function(currentWrapper){renumberNamedElementsInGroupWrapper(currentWrapper)});
 
 
@@ -805,43 +851,181 @@ app.loadoContactEditPage = async function()
 // Define a function which renumbers field names in children objects as we create, move, or delete their element wrappers
 function renumberNamedElementsInGroupWrapper(groupWrapper)
 {
+  // Used to determine if we are changing levels of hierarchy in the DOM
+  // We haven't looked at an elementWrapper yet so it's undefined.
+  let previousElementWrapper = undefined;
+
+  // The length of ancestorWrappers array indicates which number in the name string gets replaced with the numeric value in the array.
+  // Example fieldName: field_field0_defaultElement_defaultElement0_elementName  
+  // For example: the zero in field0 gets replaced or the zero in defaultElement0 gets replaced.
+  // If ancestorWrappers.length = 1 we put the numeric value in the array in the place of the zero in field0
+  // A length of two in ancestorWrappers indicates we put the numeric value in the array in the place of the zero in defaultElement0
+  let ancestorWrappers = [["previousElementWrappers_PushedHere", 0]];
+
+  // Start at the heighest groupWrapper in the hierarchy defined by the groupWrapper that was passed into the function.
+  groupWrapper = groupWrapper.closest("form > .groupWrapper");
+
   // Loop through the elementWrappers.
   groupWrapper.querySelectorAll('.elementWrapper').forEach(function(elementWrapper, wrapperIndex)
   {
+    let incremented = false;
+
     // Loop through the form elements inside each elementWrapper.
     elementWrapper.querySelectorAll('.resetElement').forEach(function(fieldElement)
     {
-
-      // Define a function to change the numeral in the name to match it's position in the groupWrapper.
-      function increment_last(str) 
+      //    prevents error           if current wrapper is inside the previous
+      if(previousElementWrapper && previousElementWrapper.contains(elementWrapper))
       {
-        return str.replace(/[0-9]+(?!.*[0-9])/, wrapperIndex);
+        // We just jumped down a level in the DOM
+        // The length of this array tells us how many wrappers suround this element - How deep
+        // Or which number in the element name is to be replaced with the numeric value in the array.
+        // The numeric value in the array tells us the replacement value.
+        ancestorWrappers.push([previousElementWrapper, 0]);
       }
+      else // current wrapper is not inside the previous
+      {
+        // find out what level we are on
+        while (true)
+        {
+          // If we are at the top level...
+          if(ancestorWrappers.length === 1 && !previousElementWrapper)
+          {
+            break; // Don't do anything.
+          }
+          // Else If the current wrapper is inside the last ancestorWrapper
+          else if(ancestorWrappers.length > 1 && ancestorWrappers[ancestorWrappers.length - 1][0].contains(elementWrapper))
+          {
+            // We are working with a new elementWrapper at the same level.
+            // So increment the numeric value held in the last element of the ancestorWrappers array.
+            ancestorWrappers[ancestorWrappers.length - 1][1] = ancestorWrappers[ancestorWrappers.length - 1][1] + 1;
+            incremented = true;
+            break;
+          }
+          else // the current wrapper is not inside the last ancestorWrapper
+          {
+            if(ancestorWrappers.length > 1)
+            {
+              // Remove the last element and check if the next wrapper up contains the current wrapper.
+              ancestorWrappers.pop();
+
+              // We are working with a new elementWrapper at the same level.
+              // So increment the numeric value held in the last element of the ancestorWrappers array.
+              ancestorWrappers[ancestorWrappers.length - 1][1] = ancestorWrappers[ancestorWrappers.length - 1][1] + 1; 
+              incremented = true;   
+              
+              // Now run through this while loop again to see if the last element contain the current wrapper.
+            }
+            else // we are back at the top level.
+            {
+              // We are working with a new elementWrapper at the top level.
+              // So increment the numeric value held in the only element of the ancestorWrappers array.
+              if(!incremented)
+              {
+                ancestorWrappers[ancestorWrappers.length - 1][1] = ancestorWrappers[ancestorWrappers.length - 1][1] + 1;
+                incremented = true;
+              }
+              break;   
+            } // End of: Else - we are at the top level
+          } // End of: Else - the current wrapper is not inside the last ancestorWrapper
+        } // End of: while (true)
+      } // End of: Else - the current wrapper is not inside the previous
 
       // Get the form element's name.
       let previousNameAttribute = fieldElement.getAttribute("name");
       
-      // Call the function above to increment the numeral embedded in the name.
-      let nextNameAttribute = increment_last(previousNameAttribute);
+      // Search for the nth occurance of a number according to ancestorWrappers.length
+      //  A length of one indicates that we search for the first number in the name string.
+      //  A length of two indicates that we search for the second number in the name string.
 
+      // Starting out with an empty string in the reduce function below.
+      let initialValue = "";
+
+      // Counts how many times we encounter a number as we run the reduce function below.
+      let encountersWithNumbers = 0;
+
+      // Spliting the name string of the current element on the underscore.
+      // This makes it easy to find and replace numbers in the string.
+      const nameAttributeArray = previousNameAttribute.split("_")
+
+      // Running the reduce function on every element in the nameAttributeArray
+      let nextNameAttribute = nameAttributeArray.reduce
+      (
+        // This is the callback function that reduce runs on every element in the nameAttributeArray
+        function (accumulator, currentSplitElement, currentSplitElementIndex) 
+        {
+          // Check for a number in the currentSplitElement.
+          if(hasANumber(currentSplitElement))
+          {
+            // Note that we countered a number in the currentSplitElement.
+            encountersWithNumbers = encountersWithNumbers + 1
+
+            // If this is the place in the form element's name that we need to insert a number showing position in the DOM...
+            if(encountersWithNumbers === ancestorWrappers.length)
+            {
+              // Insert numbers in the form element's name string to show it's position within the DOM
+              // This information is needed in order to write a well formed object to the JSON database.
+              //                                                       search for numbers      replace with numbers denoting postion
+              accumulator = accumulator +  currentSplitElement.replace(/[0-9]+(?!.*[0-9])/, ancestorWrappers[ancestorWrappers.length - 1][1]);
+
+              // Put a dash at the end of the element if it is not the last one.
+              if(currentSplitElementIndex < nameAttributeArray.length -1){accumulator = accumulator + "_"};
+
+              return accumulator
+            }
+            else // There is a number here but we don't want to change it now.
+            {
+              accumulator = accumulator +  currentSplitElement;
+
+              // Put a dash at the end of the element if it is not the last one.
+              if(currentSplitElementIndex < nameAttributeArray.length -1){accumulator = accumulator + "_"};
+
+              return accumulator 
+            }
+
+          } // End of: if(helpers.hasANumber(currentSplitElement)){...}
+          else // There is no number in the currentSplitElement
+          {
+            accumulator = accumulator +  currentSplitElement;
+
+            // Put a dash at the end of the element if it is not the last one.
+            if(currentSplitElementIndex < nameAttributeArray.length -1){accumulator = accumulator + "_"};
+
+            return accumulator            
+          }
+        } // End of: function (accumulator, currentSplitElement){...}
+        , initialValue // This was an empty string passed in to the reduce function to get things started.
+      ); // End of: let nextNameAttribute = nameAttributeArray.reduce(function(){do stuff})
+        
       // Set the name of the formElement as calculated above.
       fieldElement.setAttribute("name", nextNameAttribute)
 
-      // Get the form element's input class.
-      let previousInputClass = fieldElement.classList.item(1);
-      
-      // Call the function above to increment the numeral embedded in the class identifier.
-      let nextInputClass = increment_last(previousInputClass);
-
-      fieldElement.classList.remove(previousInputClass);
-
-      // Set the input class of the formElement as calculated above.
-      fieldElement.classList.add(nextInputClass);
-
     }); // End of: elementWrapper.querySelectorAll('.resetElement').forEach(function(fieldElement){...}
+
+    previousElementWrapper = elementWrapper;
+
   }); // End of: groupWrapper.querySelectorAll('.elementWrapper').forEach(function(elementWrapper, wrapperIndex)
 } // End of: function renumberNamedElementsInGroupWrapper(groupWrapper){...}
 // End of: Define a function which renumbers field names in children objects as we create, move, or delete their element wrappers
+
+
+
+
+// Define a function to check if a string has a number.
+function hasANumber(checkString) 
+{ 
+  let str = String(checkString); 
+  
+  // Loop through each character of the string.
+  for( let i = 0; i < str.length; i++) 
+  {
+    // If a number is found...
+    if(!isNaN(str.charAt(i))) 
+    { 
+      return true;  
+    } 
+  } 
+  return false; 
+}; // End of: Define a function to check if a string has a number.
 
 
 
