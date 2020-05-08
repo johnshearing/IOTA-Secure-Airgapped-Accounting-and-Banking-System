@@ -1,4 +1,3 @@
-
 /*
 / Handlers for the "user" table.
 / This program was built by meta.js starting at yx52pvsi0kn9p5o46hrq
@@ -58,7 +57,7 @@ user.serveListPage = function(data, callback)
             helpers.log
             (            
               5,
-              'p588vjur2fvpxk4ndg5s' + '\n' +
+              'kejr35vgwsaq90k2xuum' + '\n' +
               'There was an error or the concatenated templates were not returned.' + '\n' +
               'This was the error:' + '\n' +
               JSON.stringify(errorAddUnivTemplates) + '\n'
@@ -74,7 +73,7 @@ user.serveListPage = function(data, callback)
         helpers.log
         (
           5,
-          'kihi990rohno31vcb1z7' + '\n' +
+          'cxxndtg85yipdggxq3pe' + '\n' +
           'There was an error or no template was returned.' + '\n' +
           'This was the error:' + '\n' +
           JSON.stringify(errorGetTemplate) + '\n'
@@ -91,7 +90,7 @@ user.serveListPage = function(data, callback)
     helpers.log
     (
       5,
-      'osg3c63pohpxc6ln2qq8' + '\n' +
+      'btezij5p9x2wm14q5vyn' + '\n' +
       'Method not get. Only gets allowed.' + '\n'
     );
 
@@ -138,7 +137,7 @@ user.serveAddPage = function(data, callback)
             helpers.log
             (            
               5,
-              'n33nwlx9plhl0uk1c7z1' + '\n' +
+              'ndihjzopv6dqfhlvgb2s' + '\n' +
               'There was an error or the concatenated templates were not returned.' + '\n' +
               'This was the error:' + '\n' +
               JSON.stringify(errorAddUnivTemplates) + '\n'
@@ -154,7 +153,7 @@ user.serveAddPage = function(data, callback)
         helpers.log
         (
           5,
-          '54hvicw1acra6bv4033h' + '\n' +
+          '9l38yexsr1gkwteee1pu' + '\n' +
           'There was an error or no template was returned.' + '\n' +
           'This was the error:' + '\n' +
           JSON.stringify(errorGetTemplate) + '\n'
@@ -171,7 +170,7 @@ user.serveAddPage = function(data, callback)
     helpers.log
     (
       5,
-      'ryzht1fpsx5713tak062' + '\n' +
+      'h8oo2yk3n3v1yh3vd6vj' + '\n' +
       'Method not get. Only gets allowed.' + '\n'
     );
 
@@ -218,7 +217,7 @@ user.serveEditPage = function(data, callback)
             helpers.log
             (            
               5,
-              'be3pldu8p19twtmbgqwb' + '\n' +
+              'mjdqn6hh8tr5g6gp73zz' + '\n' +
               'There was an error or the concatenated templates were not returned.' + '\n' +
               'This was the error:' + '\n' +
               JSON.stringify(errorAddUnivTemplates) + '\n'
@@ -234,7 +233,7 @@ user.serveEditPage = function(data, callback)
         helpers.log
         (
           5,
-          '5mtwzd1hy915ntr9fv9w' + '\n' +
+          '0dmpym21uq7d9n8vnr7w' + '\n' +
           'There was an error or no template was returned.' + '\n' +
           'This was the error:' + '\n' +
           JSON.stringify(errorGetTemplate) + '\n'
@@ -251,7 +250,7 @@ user.serveEditPage = function(data, callback)
     helpers.log
     (
       5,
-      'j5n14weqce5zssuq9iit' + '\n' +
+      'jtre188jug7i2xoijza7' + '\n' +
       'Method not get. Only gets allowed.' + '\n'
     );
 
@@ -285,7 +284,7 @@ user.user = function(data, callback)
     helpers.log
     (
       5,
-      '9pb6r8sby2r5eue8tgpb' + '\n' +
+      'v6f24apl4yzhjlpkqz18' + '\n' +
       'The method was not one of the acceptable methods' + '\n'
     ); 
 
@@ -486,7 +485,7 @@ user._user.post = function(data, callback)
       helpers.log
       (
         5,
-        '2kzorlyj547du0zd98km' + '\n' +
+        'gf8q1gjoip7yzo7grw5u' + '\n' +
         'The email : ' + email + ' already exists' + '\n'                                  
       ); // End of: helpers.log(...)
 
@@ -514,7 +513,7 @@ user._user.post = function(data, callback)
         helpers.log
         (
           5,
-          'cblxyisv7z75juyl18wi' + '\n' +
+          'ea3022krhrzu40os8v1k' + '\n' +
           'Unable to get the next gsuid.' + '\n' +
           'The following was the error' + '\n' +
           JSON.stringify(error) + '\n'                                   
@@ -531,6 +530,7 @@ user._user.post = function(data, callback)
 
       // Create the user object. 
       // This object will be appended to user.json.
+      // Behavior from meta.js at cmqbrt7gkxkex9z8a1qb
       let userObject = {};
       userObject.userId = nextIdObject.nextId;
 
@@ -594,7 +594,7 @@ user._user.post = function(data, callback)
             helpers.log
             (
               7,
-              '7jbm774d54juxvb4eam1' + '\n' +
+              '62ydz8u364m2zerayjv0' + '\n' +
               'There was an error appending to the history file' + '\n' +
               'An error here does not necessarily mean the append to history did not happen.' + '\n' +  
               'But an error at this point in the code surely means there was no append to user' + '\n' +                                          
@@ -638,7 +638,7 @@ user._user.post = function(data, callback)
                   helpers.log // Log the error.
                   (
                     7,
-                    'yaa9x3mo6n97hcq6nwh4' + '\n' +
+                    'ixrlz03ryiob5o49ta71' + '\n' +
                     'Successful write to user but unable to remove lock on database' + '\n' +
                     'The following record was appended to the user file:' + '\n' +                            
                     JSON.stringify(logObject) + '\n' +   
@@ -660,7 +660,7 @@ user._user.post = function(data, callback)
               helpers.log // Log the error.
               (
                 5,
-                'o461wywzp8ojn40smcxo' + '\n' +
+                'waiuautf48mcb0ywm9zp' + '\n' +
                 'There was an error when appending to the user file.' + '\n' +
                 'The following record may or may not have been appended to the user file:' + '\n' +                            
                 JSON.stringify(logObject) + '\n' +
@@ -708,7 +708,7 @@ user._user.post = function(data, callback)
                           helpers.log
                           (
                             5,
-                            'bo3i9vwku9kl6h2qr6vs' + '\n' +
+                            '5oj58u552meupex3vsf1' + '\n' +
                             'Rollback entry in the user file was appended successfully' + '\n' +
                             'The following was the record we rolled back:' + '\n' +
                             JSON.stringify(logObject) + '\n'                                   
@@ -719,7 +719,7 @@ user._user.post = function(data, callback)
                           helpers.log
                           (
                             7,
-                            '4oc6i2ngri5ve2pwmn39' + '\n' +
+                            '1zaea9k9uy5qj5f9yluf' + '\n' +
                             'There was an error appending a rollback entry in the user file' + '\n' +
                             'The following record may or may not have been rolled back:' + '\n' +
                             JSON.stringify(logObject) + '\n' +   
@@ -739,7 +739,7 @@ user._user.post = function(data, callback)
                     helpers.log
                     (
                       7,
-                      'y03ziam8vm1qum6nvmwy' + '\n' +
+                      '9nvaz5vhnfsik1ykd1xg' + '\n' +
                       'There was an error appending a rollback entry in the history file' + '\n' +
                       'A rollback entry may or may not have been written in the user file' + '\n' +  
                       'CHECK TO SEE IF history and user ARE STILL IN SYNC' + '\n' +                                      
@@ -878,7 +878,6 @@ user._user.put = function(data, callback)
   }
 
   
-  
   // Check if the deleted flag is of type string and that the value is exactly equal to "true".
   // That would mean the user wants to delete the record. Otherwise the users does not want to delete the record.
   // Set deleted to boolean true if validation is passed otherwise set it to false.
@@ -897,7 +896,7 @@ user._user.put = function(data, callback)
     helpers.log
     (
       5,
-      'l7dai2bouy5t06pc7yg4' + '\n' +
+      'nqnksl79udrq6yb1gzy0' + '\n' +
       'No fields pass the validation process' + '\n'                                  
     ); // End of: helpers.log(...)
 
@@ -920,7 +919,7 @@ user._user.put = function(data, callback)
       helpers.log
       (
         5,
-        '2i9bayu8j95c23ixemjn' + '\n' +
+        'i6w8pqboh82n3trktiqm' + '\n' +
         'Unable to get the next gsuid.' + '\n' +
         'The following was the error' + '\n' +
         JSON.stringify(error) + '\n'                                   
@@ -944,7 +943,6 @@ user._user.put = function(data, callback)
 
     userObject.email = email;
     userObject.hashedPassword = undefined;
-     
     userObject.timeStamp = Date.now();
     userObject.deleted = false;
 
@@ -974,7 +972,7 @@ user._user.put = function(data, callback)
               helpers.log // Log the error.
               (
                 7,
-                '7m731jajwyfn8x38tgae' + '\n' + 
+                '5b32pv3ugg12aa4o7xp1' + '\n' + 
                 'The following was the error message from getMostRecent:' + '\n' +                                             
                 errorFromGetMostRecent + '\n'                                                 
               ); // End of: helpers.log // Log the error.
@@ -989,7 +987,7 @@ user._user.put = function(data, callback)
               helpers.log // Log the error.
               (
                 7,
-                'z3ocjsu1oaubvp6q1riz' + '\n' +
+                'o5zuj6resnvocm45v8g6' + '\n' +
                 'The following was the error message from getMostRecent:' + '\n' +                                             
                 errorFromGetMostRecent + '\n'  +
                 'Also unable to remove lock on database.' + '\n' + 
@@ -1071,8 +1069,11 @@ user._user.put = function(data, callback)
         // If we are appending a delete make sure that everything else is coming from the most recent saved record.
         if(deleted)
         {
+          userObject = {};
+          userObject.userId = userId;
           userObject.email = recordObject.email;
           userObject.hashedPassword = recordObject.hashedPassword;
+          userObject.timeStamp = Date.now();
           userObject.deleted = true;
         }
         else
@@ -1130,7 +1131,7 @@ user._user.put = function(data, callback)
                         helpers.log // Log the error.
                         (
                           7,
-                          'lntjgmvdpbmsznd1tb69' + '\n' +
+                          'prsa41yfd3ovuajauytn' + '\n' +
                           'Successful write to user but unable to remove lock on database' + '\n' +
                           'The following record was appended to user:' + '\n' +                            
                           JSON.stringify(logObject) + '\n' +   
@@ -1152,7 +1153,7 @@ user._user.put = function(data, callback)
                     helpers.log // Log the error.
                     (
                       5,
-                      'gsos258pm0y2yaptxnfw' + '\n' +
+                      'uoafxhewxufgwbra3d63' + '\n' +
                       'There was an error when appending to the user file.' + '\n' +
                       'The following record may or may not have been appended to user:' + '\n' +                            
                       JSON.stringify(logObject) + '\n' +
@@ -1207,7 +1208,7 @@ user._user.put = function(data, callback)
                                 helpers.log
                                 (
                                   5,
-                                  'w1wpxsasy7s0oubmj48e' + '\n' +
+                                  '60b4cz4obgxnzcxunbpg' + '\n' +
                                   'Rollback entry in the user file was appended successfully' + '\n' +
                                   'The following was the record we rolled back:' + '\n' +
                                   JSON.stringify(logObject) + '\n'                                   
@@ -1218,7 +1219,7 @@ user._user.put = function(data, callback)
                                 helpers.log
                                 (
                                   7,
-                                  'mulh1btj5s04jef2v3mw' + '\n' +
+                                  'e9ffsh3frxz7ddz51lqb' + '\n' +
                                   'There was an error appending a rollback entry in the user file' + '\n' +
                                   'The following record may or may not have been rolled back:' + '\n' +
                                   JSON.stringify(logObject) + '\n' +   
@@ -1238,7 +1239,7 @@ user._user.put = function(data, callback)
                           helpers.log
                           (
                             7,
-                            '2lfm5bounqselukxtqo4' + '\n' +
+                            'hdzqkv7plyhfr3mtb0um' + '\n' +
                             'There was an error appending a rollback entry in the history file' + '\n' +
                             'A rollback entry may or may not have been written in the user file' + '\n' +  
                             'CHECK TO SEE IF history and user ARE STILL IN SYNC' + '\n' +                                      
@@ -1263,7 +1264,7 @@ user._user.put = function(data, callback)
               helpers.log
               (
                 7,
-                '3jn51t5zc3dnieh3cd3z' + '\n' +
+                's7dh70z8cao7rn1veuqb' + '\n' +
                 'There was an error appending to the history file' + '\n' +
                 'An error here does not necessarily mean the append to history did not happen.' + '\n' +  
                 'But an error at this point in the code surely means there was no append to user' + '\n' +                                          
@@ -1295,7 +1296,7 @@ user._user.put = function(data, callback)
             helpers.log // Log the error.
             (
               7,
-              'tkmfjixdu1dlhwa7vbon' + '\n' + 
+              'wgct8ay02thsmjc5cdms' + '\n' + 
               'Pipeline error. The message was as follows' + '\n' +                                             
               pipelineError + '\n'                                                 
             ); // End of: helpers.log // Log the error.
@@ -1869,6 +1870,141 @@ user._user.get = function(data, callback)
 // End of: Define the user get subhandler function.  
 
 
+// A payloadArray is used to validate and save nested data to the database.
+// Declaring a function that we will use to load a payloadArray dynamically once the payload is known.  
+// The nestLevel determines which element in payloadKeyArray we are addressing. It's the index
+// The loopCount determines the value of the number we are appending to the element when building the 
+// property key used to access the property value from payloadObject that we wish to load into payloadArray.
+// Behavior from meta.js at defq4ols90h44rvcw8st
+function loadPayloadArray(payloadArray, payloadKeyArray, payloadObject, nestLevel, loopCount, previousPart, continueLooping)
+{      
+  let keyUnderConstruction, recursionResult;    
+
+  // for (let loopCount = 0; loopCount < payloadKeyArray.length - 1; loopCount = loopCount + 1)
+  while(continueLooping)
+  {
+    // Start with a blank key.
+    keyUnderConstruction = "";
+
+    // If we are at the top. 
+    if(nestLevel === 0)
+    {
+      keyUnderConstruction = previousPart +
+      payloadKeyArray[nestLevel] + "_" + payloadKeyArray[nestLevel]  + loopCount.toString();
+    } // End of: If we are at the top.
+    else // Not at the top
+    {
+      keyUnderConstruction = previousPart +
+      "_" + payloadKeyArray[nestLevel] + "_" + payloadKeyArray[nestLevel]  + loopCount.toString();      
+    } // End of: Else: we are not at the top.
+
+    // If we are at the bottom
+    // Finish constructing the key.
+    // Then run the key expression in a while loop to load the payloadArray
+    if(nestLevel === payloadKeyArray.length - 2)
+    {
+      // Finish building the keyUnderConstruction.
+      keyUnderConstruction = keyUnderConstruction +
+      "_" + payloadKeyArray[nestLevel + 1];
+
+      // Now we will use the key that we built.
+      // Check if the data exists in the payload
+      if(payloadObject[keyUnderConstruction])
+      {
+        // If the data is there then push it onto the array we use to write to the database.
+        payloadArray.push([keyUnderConstruction, payloadObject[keyUnderConstruction]]);
+
+        loopCount = loopCount + 1;
+      }
+      else // No more payloads were found at this level.  
+      {
+        // If nothing was found when the loopCount is at zero then we are completely done.
+        if(loopCount === 0)
+        {
+          continueLooping = false;
+          return [payloadArray, continueLooping];
+        }
+        else // data was found previously at this level so we are not done.
+        {
+          continueLooping = true;
+          return [payloadArray, continueLooping];
+
+        } // End of: Else: data was found previously at this level so we are not done.
+      } // End of: Else: No more payloads were found at this level. 
+    } // End of: If we are at the bottom
+    else // We are not at the bottom. We need to recurse deeper into the payloadKeyArray.
+    {
+      // This function calls itself so as to add more text to the keyUnderConstruction
+      recursionResult = loadPayloadArray(payloadArray, payloadKeyArray, payloadObject, nestLevel + 1, 0, keyUnderConstruction, true);
+
+      payloadArray = recursionResult[0];
+
+      loopCount = loopCount + 1;         
+
+      continueLooping = recursionResult[1];
+      
+      if(!continueLooping)
+      {
+        return recursionResult
+      };
+
+    } // End of: Else we are not at the bottom. Go deeper into the recursion and pop out again.
+  } // End of: while(true)
+}; // End of: function loadPayloadArray(address, objKey, objectNestLevel, previousPath){...}
+// End of: Declare a function that we will use to load the payloadArray dynamically once the payload is known.  
+
+
+// Define a function to load nested data which has been validated into the object we will write to the database.
+function buildBranches(fieldArray, persistObject)
+{
+  // Loop through the fieldArray which contains nested data from the client.
+  fieldArray.forEach
+  (
+    // Perform the following function on every element in the fieldArray.
+    function(fieldArrayElement)
+    {
+      // Get a reference to the object tree so we can build branches.
+      let objectBranch = persistObject;  
+
+      // Make an array from the path string splitting it on the underscore.
+      // The elements tell us what to name the branches.
+      fieldArrayElement[0].split("_").forEach
+      (
+        // Perform the following function for every element in fieldArrayElement.
+        function(pathArrayElement, pathArrayIndex, pathArray)
+        {
+          // If we are not on the last one - we are building branches of this object.
+          if(pathArrayIndex < pathArray.length - 1)
+          {
+            // If the branch does not exist...
+            if(!objectBranch[pathArrayElement])
+            {
+              // Create the branch
+              objectBranch[pathArrayElement] = {};
+
+              // Jump onto the new branch
+              objectBranch = objectBranch[pathArrayElement];
+            } // End of: If the branch does not exist.
+            else // The branch exists. It was made in a previous loop
+            {
+              // Jump onto the existing branch
+              objectBranch = objectBranch[pathArrayElement];                  
+            } // End of: Else - The branch exists. It was made in a previous loop
+          } // End of: If we are not on the last one...
+          else // This is the last element which holds the name of the field. We are inserting the value.
+          {
+            // Put a leaf at the end of the current branch and asign the value for the field we are saving to the database.
+            objectBranch[pathArrayElement] = fieldArrayElement[1];
+          } // End of: Else - This is the last element ...
+        } // End of: function(pathArrayElement, pathArrayIndex, pathArray){...}
+      ) // fieldArrayElement[0].split("_").forEach(...)
+    } // End of: function(fieldArrayElement){...}
+  ) // End of: fieldArray.forEach(...)
+
+  return persistObject;
+
+} // End of: function buildBranches(fieldArray, persistObject){...}
+// End of: Define a function to load nested data which has been validated into the object we will write to the database.
 
 
 // Export the module

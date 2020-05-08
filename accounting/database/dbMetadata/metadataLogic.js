@@ -57,7 +57,7 @@ metadata.serveListPage = function(data, callback)
             helpers.log
             (            
               5,
-              'wh0c2aerobu4f8sexv9u' + '\n' +
+              'z2redhxxv9537kv8jmss' + '\n' +
               'There was an error or the concatenated templates were not returned.' + '\n' +
               'This was the error:' + '\n' +
               JSON.stringify(errorAddUnivTemplates) + '\n'
@@ -73,7 +73,7 @@ metadata.serveListPage = function(data, callback)
         helpers.log
         (
           5,
-          'yc0tjn2zwp2jz9504bg5' + '\n' +
+          '896et4cgi20p2botidbs' + '\n' +
           'There was an error or no template was returned.' + '\n' +
           'This was the error:' + '\n' +
           JSON.stringify(errorGetTemplate) + '\n'
@@ -90,7 +90,7 @@ metadata.serveListPage = function(data, callback)
     helpers.log
     (
       5,
-      '0w8r68udnd88nkpmsbv6' + '\n' +
+      'foyqig46l0dh5q3r9z94' + '\n' +
       'Method not get. Only gets allowed.' + '\n'
     );
 
@@ -137,7 +137,7 @@ metadata.serveAddPage = function(data, callback)
             helpers.log
             (            
               5,
-              'zf1c2h5bu1xqd45xacvt' + '\n' +
+              'lyqf71tgaeb6s7dvtfl2' + '\n' +
               'There was an error or the concatenated templates were not returned.' + '\n' +
               'This was the error:' + '\n' +
               JSON.stringify(errorAddUnivTemplates) + '\n'
@@ -153,7 +153,7 @@ metadata.serveAddPage = function(data, callback)
         helpers.log
         (
           5,
-          '5loxhtodxzxjrf5mlkse' + '\n' +
+          'ozzbbybssdybgy480zra' + '\n' +
           'There was an error or no template was returned.' + '\n' +
           'This was the error:' + '\n' +
           JSON.stringify(errorGetTemplate) + '\n'
@@ -170,7 +170,7 @@ metadata.serveAddPage = function(data, callback)
     helpers.log
     (
       5,
-      '1rmd15dhdgya87w2t9xd' + '\n' +
+      '1t1sg10utfflyp5cjyqa' + '\n' +
       'Method not get. Only gets allowed.' + '\n'
     );
 
@@ -217,7 +217,7 @@ metadata.serveEditPage = function(data, callback)
             helpers.log
             (            
               5,
-              'e26hmhwpz4wn2z03hnvp' + '\n' +
+              'n4e5pkefjw597s0n3h40' + '\n' +
               'There was an error or the concatenated templates were not returned.' + '\n' +
               'This was the error:' + '\n' +
               JSON.stringify(errorAddUnivTemplates) + '\n'
@@ -233,7 +233,7 @@ metadata.serveEditPage = function(data, callback)
         helpers.log
         (
           5,
-          'zazvg7ekx64ou05boyh8' + '\n' +
+          'f8162e4hxim0vgrohvgf' + '\n' +
           'There was an error or no template was returned.' + '\n' +
           'This was the error:' + '\n' +
           JSON.stringify(errorGetTemplate) + '\n'
@@ -250,7 +250,7 @@ metadata.serveEditPage = function(data, callback)
     helpers.log
     (
       5,
-      '0e83pwvapsc1h2es4fm5' + '\n' +
+      'hyxypzbyoqcc1vq3xvlz' + '\n' +
       'Method not get. Only gets allowed.' + '\n'
     );
 
@@ -284,7 +284,7 @@ metadata.metadata = function(data, callback)
     helpers.log
     (
       5,
-      'ucjlv08fqdlkf8cseqha' + '\n' +
+      'shv1asb1551qqh4wanxf' + '\n' +
       'The method was not one of the acceptable methods' + '\n'
     ); 
 
@@ -327,16 +327,50 @@ metadata._metadata.post = function(data, callback)
   // Get addRoutes from payload
   let addRoutes = data.payload["addRoutes"];
 
-  // passIfString&NotEmptyThenTrim Default behavior from meta.js at ulg5xxvzgr7efln9xur9
-  if(typeof(addRoutes) != 'string'){return callback(400, {'Error' : 'addRoutes must be of datatype string'});}
-  if(!addRoutes || addRoutes.trim().length === 0){return callback(400, {'Error' : 'No addRoutes was entered'});}else{addRoutes = addRoutes.trim()}
+
+  // Behavior from meta.js at ettt3o23onrmd04b94jq
+  if(typeof(addRoutes) != 'string')
+  {
+    return callback(400, {'Error' : 'addRoutes must be of datatype string'});
+  }
+  
+  if
+  (
+      addRoutes !== "yes"
+      && addRoutes !== "no"
+    
+  )
+  {
+    return callback(400, {'Error' : 'No addRoutes was selected from menu'});
+  }
+  else
+  {
+    addRoutes = addRoutes.trim()
+  }
 
   // Get allowCodeGeneration from payload
   let allowCodeGeneration = data.payload["allowCodeGeneration"];
 
-  // passIfString&NotEmptyThenTrim Default behavior from meta.js at ulg5xxvzgr7efln9xur9
-  if(typeof(allowCodeGeneration) != 'string'){return callback(400, {'Error' : 'allowCodeGeneration must be of datatype string'});}
-  if(!allowCodeGeneration || allowCodeGeneration.trim().length === 0){return callback(400, {'Error' : 'No allowCodeGeneration was entered'});}else{allowCodeGeneration = allowCodeGeneration.trim()}
+
+  // Behavior from meta.js at ettt3o23onrmd04b94jq
+  if(typeof(allowCodeGeneration) != 'string')
+  {
+    return callback(400, {'Error' : 'allowCodeGeneration must be of datatype string'});
+  }
+  
+  if
+  (
+      allowCodeGeneration !== "yes"
+      && allowCodeGeneration !== "no"
+    
+  )
+  {
+    return callback(400, {'Error' : 'No allowCodeGeneration was selected from menu'});
+  }
+  else
+  {
+    allowCodeGeneration = allowCodeGeneration.trim()
+  }
 
 
   // Start of: Load the fieldNameArray dynamically once the payload is known.
@@ -377,7 +411,6 @@ metadata._metadata.post = function(data, callback)
     if
     (
       arrayElement[1] !== "string"
-      && arrayElement[1] !== "boolean"
       && arrayElement[1] !== "object"
     )
     {
@@ -406,8 +439,8 @@ metadata._metadata.post = function(data, callback)
   
     if
     (
-      arrayElement[1] !== "true"
-      && arrayElement[1] !== "false"
+      arrayElement[1] !== "yes"
+      && arrayElement[1] !== "no"
     )
     {
       return callback(400, {'Error' : 'unique does not match menu options'});
@@ -435,8 +468,8 @@ metadata._metadata.post = function(data, callback)
   
     if
     (
-      arrayElement[1] !== "true"
-      && arrayElement[1] !== "false"
+      arrayElement[1] !== "yes"
+      && arrayElement[1] !== "no"
     )
     {
       return callback(400, {'Error' : 'published does not match menu options'});
@@ -461,6 +494,35 @@ metadata._metadata.post = function(data, callback)
     if(!arrayElement[1] || arrayElement[1].trim().length === 0){return callback(400, {'Error' : 'No elementName was entered'});}else{arrayElement[1] = arrayElement[1].trim()}
   });
   // End of: Validate elements in the elementNameArray
+
+
+  // Start of: Load the elementDataTypeArray dynamically once the payload is known.
+  // Behavior from meta.js at lefq4oks90h34rvcw8sg
+  let elementDataTypeKeyArray = ["field", "defaultElement", "elementDataType"]
+
+  let elementDataTypeArray = loadPayloadArray([], elementDataTypeKeyArray, data.payload, 0, 0, "", true)[0];
+  // End of: Load the elementDataTypeArray dynamically once the payload is known. 
+  
+  // Start of: Validate elements in the elementDataTypeArray
+  // passMenuItemsOnly
+  // Behavior from meta.js at 69nq4ck9lcdakwpb58o6
+  elementDataTypeArray.forEach(function(arrayElement)
+  {
+    if(typeof(arrayElement[1]) != 'string')
+    {
+      return callback(400, {'Error' : 'elementDataType must be of datatype string'});
+    }
+  
+    if
+    (
+      arrayElement[1] !== "string"
+      && arrayElement[1] !== "object"
+    )
+    {
+      return callback(400, {'Error' : 'elementDataType does not match menu options'});
+    }
+  });
+  // End of: Validate elements in the elementDataTypeArray
 
 
   // Enforcing uniqueness of the tableName field.
@@ -594,7 +656,7 @@ metadata._metadata.post = function(data, callback)
       helpers.log
       (
         5,
-        'dggfuuaju9gxset06koa' + '\n' +
+        'gglitkqoa13qdqidmvza' + '\n' +
         'The tableName : ' + tableName + ' already exists' + '\n'                                  
       ); // End of: helpers.log(...)
 
@@ -622,7 +684,7 @@ metadata._metadata.post = function(data, callback)
         helpers.log
         (
           5,
-          'nkeqvasitmtq75kf15xp' + '\n' +
+          '3erdkxwb08sfmk96z0pq' + '\n' +
           'Unable to get the next gsuid.' + '\n' +
           'The following was the error' + '\n' +
           JSON.stringify(error) + '\n'                                   
@@ -663,6 +725,9 @@ metadata._metadata.post = function(data, callback)
       // Add any fields named "elementNameArray" to the object we will write to the database.
       metadataObject = buildBranches(elementNameArray, metadataObject);
 
+      // Add any fields named "elementDataTypeArray" to the object we will write to the database.
+      metadataObject = buildBranches(elementDataTypeArray, metadataObject);
+
       
       metadataObject.timeStamp = Date.now();
       metadataObject.deleted = false;
@@ -700,7 +765,7 @@ metadata._metadata.post = function(data, callback)
             helpers.log
             (
               7,
-              'zv7spolb415f3h02pg78' + '\n' +
+              'vvqs0wsi28hb1bi3zgiq' + '\n' +
               'There was an error appending to the history file' + '\n' +
               'An error here does not necessarily mean the append to history did not happen.' + '\n' +  
               'But an error at this point in the code surely means there was no append to metadata' + '\n' +                                          
@@ -744,7 +809,7 @@ metadata._metadata.post = function(data, callback)
                   helpers.log // Log the error.
                   (
                     7,
-                    '78jc6pn6jo0wlcck2z01' + '\n' +
+                    'fi5vrk7pnu2c851bg0l0' + '\n' +
                     'Successful write to metadata but unable to remove lock on database' + '\n' +
                     'The following record was appended to the metadata file:' + '\n' +                            
                     JSON.stringify(logObject) + '\n' +   
@@ -766,7 +831,7 @@ metadata._metadata.post = function(data, callback)
               helpers.log // Log the error.
               (
                 5,
-                'dzf99pgyupmuj4py7e4x' + '\n' +
+                'le2mbnm8h6m9i8hj0y04' + '\n' +
                 'There was an error when appending to the metadata file.' + '\n' +
                 'The following record may or may not have been appended to the metadata file:' + '\n' +                            
                 JSON.stringify(logObject) + '\n' +
@@ -814,7 +879,7 @@ metadata._metadata.post = function(data, callback)
                           helpers.log
                           (
                             5,
-                            'q65od80w1glqa6uz7fde' + '\n' +
+                            'h8y6ixczjpb03byd6ufe' + '\n' +
                             'Rollback entry in the metadata file was appended successfully' + '\n' +
                             'The following was the record we rolled back:' + '\n' +
                             JSON.stringify(logObject) + '\n'                                   
@@ -825,7 +890,7 @@ metadata._metadata.post = function(data, callback)
                           helpers.log
                           (
                             7,
-                            'sqrwiptbssngqczkdkc6' + '\n' +
+                            '19exqxscobornjspquge' + '\n' +
                             'There was an error appending a rollback entry in the metadata file' + '\n' +
                             'The following record may or may not have been rolled back:' + '\n' +
                             JSON.stringify(logObject) + '\n' +   
@@ -845,7 +910,7 @@ metadata._metadata.post = function(data, callback)
                     helpers.log
                     (
                       7,
-                      'vjzrpw4zd3bk47pracak' + '\n' +
+                      'cn418zvgp6ryr7nci96x' + '\n' +
                       'There was an error appending a rollback entry in the history file' + '\n' +
                       'A rollback entry may or may not have been written in the metadata file' + '\n' +  
                       'CHECK TO SEE IF history and metadata ARE STILL IN SYNC' + '\n' +                                      
@@ -950,57 +1015,49 @@ metadata._metadata.put = function(data, callback)
   // Get addRoutes from payload
   let addRoutes = data.payload["addRoutes"];
 
-  // passIfString&NotEmptyThenTrim
-  // Default behavior from meta.js at ulg5xxvzgr7efln9xur9 
-  // If addRoutes is of string type and is not empty 
-  if (typeof(addRoutes) === 'string' && addRoutes.trim().length > 0) 
-  { 
-    // The user entered something in the edit form
+
+  // Behavior from meta.js at p9ddngfx5873pjgmalzb
+  if(typeof(addRoutes) != 'string')
+  {
+    return callback(400, {'Error' : 'addRoutes must be of datatype string'});
+  }
+  
+  if
+  (
+      addRoutes !== "yes"
+      && addRoutes !== "no"
+    
+  )
+  {
+    return callback(400, {'Error' : 'No addRoutes was selected from menu'});
+  }
+  else
+  {
     addRoutes = addRoutes.trim()
-  } 
-  // Else, the user may have entered some other datatype like a number or 
-  // perhaps nothing at all if using the Delete form or if just using the API. 
-  else 
-  { 
-    // If the user entered nothing: 
-    if(addRoutes === undefined) 
-    { 
-      // Then user is likely trying to delete a record.
-      // So change the value to false and continue processing.
-      addRoutes = false 
-    } 
-    else // The user entered something invalid so reject the edit. 
-    { 
-      return callback(400, {'Error' : 'Not a valid addRoutes'}); 
-    } 
   }
 
   // Get allowCodeGeneration from payload
   let allowCodeGeneration = data.payload["allowCodeGeneration"];
 
-  // passIfString&NotEmptyThenTrim
-  // Default behavior from meta.js at ulg5xxvzgr7efln9xur9 
-  // If allowCodeGeneration is of string type and is not empty 
-  if (typeof(allowCodeGeneration) === 'string' && allowCodeGeneration.trim().length > 0) 
-  { 
-    // The user entered something in the edit form
+
+  // Behavior from meta.js at p9ddngfx5873pjgmalzb
+  if(typeof(allowCodeGeneration) != 'string')
+  {
+    return callback(400, {'Error' : 'allowCodeGeneration must be of datatype string'});
+  }
+  
+  if
+  (
+      allowCodeGeneration !== "yes"
+      && allowCodeGeneration !== "no"
+    
+  )
+  {
+    return callback(400, {'Error' : 'No allowCodeGeneration was selected from menu'});
+  }
+  else
+  {
     allowCodeGeneration = allowCodeGeneration.trim()
-  } 
-  // Else, the user may have entered some other datatype like a number or 
-  // perhaps nothing at all if using the Delete form or if just using the API. 
-  else 
-  { 
-    // If the user entered nothing: 
-    if(allowCodeGeneration === undefined) 
-    { 
-      // Then user is likely trying to delete a record.
-      // So change the value to false and continue processing.
-      allowCodeGeneration = false 
-    } 
-    else // The user entered something invalid so reject the edit. 
-    { 
-      return callback(400, {'Error' : 'Not a valid allowCodeGeneration'}); 
-    } 
   }
 
 
@@ -1062,7 +1119,6 @@ metadata._metadata.put = function(data, callback)
     if
     (
       arrayElement[1] !== "string"
-      && arrayElement[1] !== "boolean"
       && arrayElement[1] !== "object"
     )
     {
@@ -1091,8 +1147,8 @@ metadata._metadata.put = function(data, callback)
   
     if
     (
-      arrayElement[1] !== "true"
-      && arrayElement[1] !== "false"
+      arrayElement[1] !== "yes"
+      && arrayElement[1] !== "no"
     )
     {
       return callback(400, {'Error' : 'unique does not match menu options'});
@@ -1120,8 +1176,8 @@ metadata._metadata.put = function(data, callback)
   
     if
     (
-      arrayElement[1] !== "true"
-      && arrayElement[1] !== "false"
+      arrayElement[1] !== "yes"
+      && arrayElement[1] !== "no"
     )
     {
       return callback(400, {'Error' : 'published does not match menu options'});
@@ -1167,6 +1223,35 @@ metadata._metadata.put = function(data, callback)
   }); // End of: elementNameArray.forEach(function(arrayElement)
   // End of: Validate elements in the elementNameArray 
 
+
+  // Start of: Load the elementDataTypeArray dynamically once the payload is known.
+  // Behavior from meta.js at 8cz4imaqb2wagvl14q9t
+  let elementDataTypeKeyArray = ["field", "defaultElement", "elementDataType"]
+
+  let elementDataTypeArray = loadPayloadArray([], elementDataTypeKeyArray, data.payload, 0, 0, "", true)[0];
+  // End of: Load the elementDataTypeArray dynamically once the payload is known. 
+
+  // Start of: Validate elements in the elementDataTypeArray
+  // passMenuItemsOnly
+  // Behavior from meta.js at 69nq4ck9lcdakwpb58o6
+  elementDataTypeArray.forEach(function(arrayElement)
+  {
+    if(typeof(arrayElement[1]) != 'string')
+    {
+      return callback(400, {'Error' : 'elementDataType must be of datatype string'});
+    }
+  
+    if
+    (
+      arrayElement[1] !== "string"
+      && arrayElement[1] !== "object"
+    )
+    {
+      return callback(400, {'Error' : 'elementDataType does not match menu options'});
+    }
+  });
+  // End of: Validate elements in the elementDataTypeArray
+
   
   // Check if the deleted flag is of type string and that the value is exactly equal to "true".
   // That would mean the user wants to delete the record. Otherwise the users does not want to delete the record.
@@ -1187,13 +1272,14 @@ metadata._metadata.put = function(data, callback)
     &&  !uniqueArray.some(function(element){if(element){return true;}})
     &&  !publishedArray.some(function(element){if(element){return true;}})
     &&  !elementNameArray.some(function(element){if(element){return true;}})
+    &&  !elementDataTypeArray.some(function(element){if(element){return true;}})
     &&  !deleted
   )
   {
     helpers.log
     (
       5,
-      'zkja726oc1jq6yuswkmb' + '\n' +
+      'mdn59j4r15f0du2dewpa' + '\n' +
       'No fields pass the validation process' + '\n'                                  
     ); // End of: helpers.log(...)
 
@@ -1216,7 +1302,7 @@ metadata._metadata.put = function(data, callback)
       helpers.log
       (
         5,
-        'nfbkyv1o262ksvdob517' + '\n' +
+        'qdpzt8a20g6c4y6hvlxs' + '\n' +
         'Unable to get the next gsuid.' + '\n' +
         'The following was the error' + '\n' +
         JSON.stringify(error) + '\n'                                   
@@ -1258,6 +1344,9 @@ metadata._metadata.put = function(data, callback)
     // Add any fields named "elementNameArray" to the object we will write to the database.
     metadataObject = buildBranches(elementNameArray, metadataObject);
 
+    // Add any fields named "elementDataTypeArray" to the object we will write to the database.
+    metadataObject = buildBranches(elementDataTypeArray, metadataObject);
+
     metadataObject.timeStamp = Date.now();
     metadataObject.deleted = false;
 
@@ -1289,7 +1378,7 @@ metadata._metadata.put = function(data, callback)
               helpers.log // Log the error.
               (
                 7,
-                'vyrhu16rafhz4r5srwle' + '\n' + 
+                'y1q5fwccn2tw8yh0xikq' + '\n' + 
                 'The following was the error message from getMostRecent:' + '\n' +                                             
                 errorFromGetMostRecent + '\n'                                                 
               ); // End of: helpers.log // Log the error.
@@ -1304,7 +1393,7 @@ metadata._metadata.put = function(data, callback)
               helpers.log // Log the error.
               (
                 7,
-                'zg9qzjmoiagl24959h43' + '\n' +
+                'f0x10wvwcc8inz65scs1' + '\n' +
                 'The following was the error message from getMostRecent:' + '\n' +                                             
                 errorFromGetMostRecent + '\n'  +
                 'Also unable to remove lock on database.' + '\n' + 
@@ -1455,6 +1544,20 @@ metadata._metadata.put = function(data, callback)
           }
         } 
 
+        for (let arrayIndex = 0; arrayIndex < elementDataTypeArray.length; arrayIndex++) 
+        {
+          // Preprocessing for defaultElement.defaultElementX.elementDataType
+          if(elementDataTypeArray[arrayIndex]) // If the user supplied data for defaultElement.defaultElementX.elementDataType
+          {
+            // No preprocessing was specifed for defaultElement.defaultElementX.elementDataType. Use it as was supplied by the user.
+          }
+          else // If the user did not supply data for defaultElement.defaultElementX.elementDataType
+          {
+            // Save defaultElement.defaultElementX.elementDataType from the most recent record.
+            metadataObject.defaultElement["defaultElement" + arrayIndex.toString()]["elementDataType"] = elementDataTypeArray[arrayIndex];
+          }
+        } 
+
         // If we are appending a delete make sure that everything else is coming from the most recent saved record.
         if(deleted)
         {
@@ -1523,7 +1626,7 @@ metadata._metadata.put = function(data, callback)
                         helpers.log // Log the error.
                         (
                           7,
-                          'j91z0n69ljryzqk290lz' + '\n' +
+                          'yq9cq1lajm95iv5fkejr' + '\n' +
                           'Successful write to metadata but unable to remove lock on database' + '\n' +
                           'The following record was appended to metadata:' + '\n' +                            
                           JSON.stringify(logObject) + '\n' +   
@@ -1545,7 +1648,7 @@ metadata._metadata.put = function(data, callback)
                     helpers.log // Log the error.
                     (
                       5,
-                      'cpg0uf4kzfprjn7ohihv' + '\n' +
+                      'vlv0ol32eg5gmbf2j777' + '\n' +
                       'There was an error when appending to the metadata file.' + '\n' +
                       'The following record may or may not have been appended to metadata:' + '\n' +                            
                       JSON.stringify(logObject) + '\n' +
@@ -1603,7 +1706,7 @@ metadata._metadata.put = function(data, callback)
                                 helpers.log
                                 (
                                   5,
-                                  '96n7aope60m7ta5t3ube' + '\n' +
+                                  '1xbtka4g331f70t6axno' + '\n' +
                                   'Rollback entry in the metadata file was appended successfully' + '\n' +
                                   'The following was the record we rolled back:' + '\n' +
                                   JSON.stringify(logObject) + '\n'                                   
@@ -1614,7 +1717,7 @@ metadata._metadata.put = function(data, callback)
                                 helpers.log
                                 (
                                   7,
-                                  '7rmtzt3jetav0a0r3khz' + '\n' +
+                                  '5cyl6xp4n9c62ots26fe' + '\n' +
                                   'There was an error appending a rollback entry in the metadata file' + '\n' +
                                   'The following record may or may not have been rolled back:' + '\n' +
                                   JSON.stringify(logObject) + '\n' +   
@@ -1634,7 +1737,7 @@ metadata._metadata.put = function(data, callback)
                           helpers.log
                           (
                             7,
-                            'imi1zegt8hfb1dzqetov' + '\n' +
+                            'cnsp6ri5d96h6iw29wzm' + '\n' +
                             'There was an error appending a rollback entry in the history file' + '\n' +
                             'A rollback entry may or may not have been written in the metadata file' + '\n' +  
                             'CHECK TO SEE IF history and metadata ARE STILL IN SYNC' + '\n' +                                      
@@ -1659,7 +1762,7 @@ metadata._metadata.put = function(data, callback)
               helpers.log
               (
                 7,
-                'lhnmo6pqubb3l5b2gi34' + '\n' +
+                'h87cmnv2u6j5mz6rn056' + '\n' +
                 'There was an error appending to the history file' + '\n' +
                 'An error here does not necessarily mean the append to history did not happen.' + '\n' +  
                 'But an error at this point in the code surely means there was no append to metadata' + '\n' +                                          
@@ -1691,7 +1794,7 @@ metadata._metadata.put = function(data, callback)
             helpers.log // Log the error.
             (
               7,
-              'qw93rs2ohnwoyhwvi879' + '\n' + 
+              'sztbqbx5c2370lgn72ya' + '\n' + 
               'Pipeline error. The message was as follows' + '\n' +                                             
               pipelineError + '\n'                                                 
             ); // End of: helpers.log // Log the error.
