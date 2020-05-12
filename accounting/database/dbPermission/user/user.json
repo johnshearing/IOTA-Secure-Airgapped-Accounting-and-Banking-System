@@ -75,3 +75,4 @@
 {"userId":3260,"email":"marryjane@gmail.com","hashedPassword":"fbf28ac31d72958ab96d843bf7db6e2ca51992325107547a7f0b8a2fd1219540","timeStamp":1583927291073,"deleted":false}
 {"userId":3715,"email":"bob@gmail.io","hashedPassword":"7423a2bfedabeb1a628f53b9527826e6c8f04b982d840cce2edde780244cf018","timeStamp":1588593453922,"deleted":false}
 {"userId":3715,"email":"bob@gmail.io","hashedPassword":"cfc2b7c86c5e015ad94ed7d5340309c69f236f244dc00b3860f264649882d725","timeStamp":1588593499792,"deleted":false}
+{"userId":3715,"email":"bob@gmail.io","hashedPassword":"cfc2b7c86c5e015ad94ed7d5340309c69f236f244dc00b3860f264649882d725","timeStamp":1589040939095,"deleted":true}

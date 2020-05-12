@@ -618,6 +618,9 @@ function renumberNamedElementsInGroupWrapper(groupWrapper)
   // We haven't looked at an elementWrapper yet so it's undefined.
   let previousElementWrapper = undefined;
 
+  // Prevents pushing too many elements onto the ansestorWrappers array.
+  let alreadyChecked = false;
+
   // The length of ancestorWrappers array indicates which number in the name string gets replaced with the numeric value in the array.
   // Example fieldName: field_field0_defaultElement_defaultElement0_elementName  
   // For example: the zero in field0 gets replaced or the zero in defaultElement0 gets replaced.
@@ -625,7 +628,7 @@ function renumberNamedElementsInGroupWrapper(groupWrapper)
   // A length of two in ancestorWrappers indicates we put the numeric value in the array in the place of the zero in defaultElement0
   let ancestorWrappers = [["previousElementWrappers_PushedHere", 0]];
 
-  // Start at the heighest groupWrapper in the hierarchy defined by the groupWrapper that was passed into the function.
+  // Start at the highest groupWrapper in the hierarchy defined by the groupWrapper that was passed into the function.
   groupWrapper = groupWrapper.closest("form > .groupWrapper");
 
   // Loop through the elementWrappers.
@@ -636,14 +639,15 @@ function renumberNamedElementsInGroupWrapper(groupWrapper)
     // Loop through the form elements inside each elementWrapper.
     elementWrapper.querySelectorAll('.resetElement').forEach(function(fieldElement)
     {
-      //    prevents error           if current wrapper is inside the previous
-      if(previousElementWrapper && previousElementWrapper.contains(elementWrapper))
+      //  only push once                prevents error           if current wrapper is inside the previous
+      if(alreadyChecked === false && previousElementWrapper && previousElementWrapper.contains(elementWrapper))
       {
         // We just jumped down a level in the DOM
         // The length of this array tells us how many wrappers suround this element - How deep
         // Or which number in the element name is to be replaced with the numeric value in the array.
         // The numeric value in the array tells us the replacement value.
         ancestorWrappers.push([previousElementWrapper, 0]);
+        alreadyChecked = true;
       }
       else // current wrapper is not inside the previous
       {
@@ -660,8 +664,14 @@ function renumberNamedElementsInGroupWrapper(groupWrapper)
           {
             // We are working with a new elementWrapper at the same level.
             // So increment the numeric value held in the last element of the ancestorWrappers array.
-            ancestorWrappers[ancestorWrappers.length - 1][1] = ancestorWrappers[ancestorWrappers.length - 1][1] + 1;
-            incremented = true;
+
+            if(alreadyChecked === false)
+            {
+              ancestorWrappers[ancestorWrappers.length - 1][1] = ancestorWrappers[ancestorWrappers.length - 1][1] + 1;
+              alreadyChecked = true;
+              incremented = true;
+            }
+
             break;
           }
           else // the current wrapper is not inside the last ancestorWrapper
@@ -765,7 +775,8 @@ function renumberNamedElementsInGroupWrapper(groupWrapper)
     }); // End of: elementWrapper.querySelectorAll('.resetElement').forEach(function(fieldElement){...}
 
     previousElementWrapper = elementWrapper;
-
+    alreadyChecked = false;
+    
   }); // End of: groupWrapper.querySelectorAll('.elementWrapper').forEach(function(elementWrapper, wrapperIndex)
 } // End of: function renumberNamedElementsInGroupWrapper(groupWrapper){...}
 // End of: Define a function which renumbers field names in children objects as we create, move, or delete their element wrappers
