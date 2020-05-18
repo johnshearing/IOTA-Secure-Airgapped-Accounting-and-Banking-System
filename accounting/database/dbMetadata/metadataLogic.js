@@ -57,7 +57,7 @@ metadata.serveListPage = function(data, callback)
             helpers.log
             (            
               5,
-              'cw2mfsrc0wiip0w4tezh' + '\n' +
+              'p8xdu5f2bao7k62tfin4' + '\n' +
               'There was an error or the concatenated templates were not returned.' + '\n' +
               'This was the error:' + '\n' +
               JSON.stringify(errorAddUnivTemplates) + '\n'
@@ -73,7 +73,7 @@ metadata.serveListPage = function(data, callback)
         helpers.log
         (
           5,
-          '0kudblcbgc7wad9p4a9k' + '\n' +
+          '53v4vnad2l1r0ay4gfgm' + '\n' +
           'There was an error or no template was returned.' + '\n' +
           'This was the error:' + '\n' +
           JSON.stringify(errorGetTemplate) + '\n'
@@ -90,7 +90,7 @@ metadata.serveListPage = function(data, callback)
     helpers.log
     (
       5,
-      'selbwjacr79lfmytrfdq' + '\n' +
+      '5496ev28axqhwt1ku9fr' + '\n' +
       'Method not get. Only gets allowed.' + '\n'
     );
 
@@ -137,7 +137,7 @@ metadata.serveAddPage = function(data, callback)
             helpers.log
             (            
               5,
-              'x7gs8ml7ydxytwqs9z14' + '\n' +
+              '456yiasfajagyng13fff' + '\n' +
               'There was an error or the concatenated templates were not returned.' + '\n' +
               'This was the error:' + '\n' +
               JSON.stringify(errorAddUnivTemplates) + '\n'
@@ -153,7 +153,7 @@ metadata.serveAddPage = function(data, callback)
         helpers.log
         (
           5,
-          '3ilkrgc5240l5pynl9jl' + '\n' +
+          'yjkvoaz30hrzjsdn60o6' + '\n' +
           'There was an error or no template was returned.' + '\n' +
           'This was the error:' + '\n' +
           JSON.stringify(errorGetTemplate) + '\n'
@@ -170,7 +170,7 @@ metadata.serveAddPage = function(data, callback)
     helpers.log
     (
       5,
-      'g5as3x5xwrvh8ymny7sj' + '\n' +
+      'qvm91g6x6rzg1doeucm9' + '\n' +
       'Method not get. Only gets allowed.' + '\n'
     );
 
@@ -217,7 +217,7 @@ metadata.serveEditPage = function(data, callback)
             helpers.log
             (            
               5,
-              '99uqgjg8eipom4ljsy5u' + '\n' +
+              '5dk64eh29qf5y1hclpaz' + '\n' +
               'There was an error or the concatenated templates were not returned.' + '\n' +
               'This was the error:' + '\n' +
               JSON.stringify(errorAddUnivTemplates) + '\n'
@@ -233,7 +233,7 @@ metadata.serveEditPage = function(data, callback)
         helpers.log
         (
           5,
-          '9u10y05cz8ny2dd2pamg' + '\n' +
+          'iqofud71ckqmx5j9z193' + '\n' +
           'There was an error or no template was returned.' + '\n' +
           'This was the error:' + '\n' +
           JSON.stringify(errorGetTemplate) + '\n'
@@ -250,7 +250,7 @@ metadata.serveEditPage = function(data, callback)
     helpers.log
     (
       5,
-      'cjq03xs92bzugd4gi9cn' + '\n' +
+      'cwamcrnys6k69hbsk3p1' + '\n' +
       'Method not get. Only gets allowed.' + '\n'
     );
 
@@ -284,7 +284,7 @@ metadata.metadata = function(data, callback)
     helpers.log
     (
       5,
-      'zetxu2p35ynio2ujsobd' + '\n' +
+      '0ucs88f5pkbx6no577hd' + '\n' +
       'The method was not one of the acceptable methods' + '\n'
     ); 
 
@@ -577,6 +577,114 @@ metadata._metadata.post = function(data, callback)
   // End of: Validate elements in the attributeValueArray
 
 
+  // Start of: Load the defaultValidationNameArray dynamically once the payload is known.
+  // Behavior from meta.js at lefq4oks90h34rvcw8sg
+  let defaultValidationNameKeyArray = ["field", "defaultElement", "validation", "default", "defaultValidationName"]
+
+  let defaultValidationNameArray = loadPayloadArray(defaultValidationNameKeyArray, data.payload);
+  // End of: Load the defaultValidationNameArray dynamically once the payload is known. 
+                  
+  // Start of: Validate elements in the defaultValidationNameArray
+  // passIfString&NotEmptyThenTrim
+  // Behavior from meta.js at fkb3ulfqr09ryyc0rb0d
+  defaultValidationNameArray.forEach(function(arrayElement)
+  {
+    if(typeof(arrayElement[1]) != 'string'){return callback(400, {'Error' : 'defaultValidationName must be of datatype string'});}
+    if(!arrayElement[1] || arrayElement[1].trim().length === 0){return callback(400, {'Error' : 'No defaultValidationName was entered'});}else{arrayElement[1] = arrayElement[1].trim()}
+  });
+  // End of: Validate elements in the defaultValidationNameArray
+
+
+  // Start of: Load the defaultValidationValueArray dynamically once the payload is known.
+  // Behavior from meta.js at lefq4oks90h34rvcw8sg
+  let defaultValidationValueKeyArray = ["field", "defaultElement", "validation", "default", "defaultValidationValue"]
+
+  let defaultValidationValueArray = loadPayloadArray(defaultValidationValueKeyArray, data.payload);
+  // End of: Load the defaultValidationValueArray dynamically once the payload is known. 
+                  
+  // Start of: Validate elements in the defaultValidationValueArray
+  // passIfString&NotEmptyThenTrim
+  // Behavior from meta.js at fkb3ulfqr09ryyc0rb0d
+  defaultValidationValueArray.forEach(function(arrayElement)
+  {
+    if(typeof(arrayElement[1]) != 'string'){return callback(400, {'Error' : 'defaultValidationValue must be of datatype string'});}
+    if(!arrayElement[1] || arrayElement[1].trim().length === 0){return callback(400, {'Error' : 'No defaultValidationValue was entered'});}else{arrayElement[1] = arrayElement[1].trim()}
+  });
+  // End of: Validate elements in the defaultValidationValueArray
+
+
+  // Start of: Load the postValidationNameArray dynamically once the payload is known.
+  // Behavior from meta.js at lefq4oks90h34rvcw8sg
+  let postValidationNameKeyArray = ["field", "defaultElement", "validation", "post", "postValidationName"]
+
+  let postValidationNameArray = loadPayloadArray(postValidationNameKeyArray, data.payload);
+  // End of: Load the postValidationNameArray dynamically once the payload is known. 
+                  
+  // Start of: Validate elements in the postValidationNameArray
+  // passIfString&NotEmptyThenTrim
+  // Behavior from meta.js at fkb3ulfqr09ryyc0rb0d
+  postValidationNameArray.forEach(function(arrayElement)
+  {
+    if(typeof(arrayElement[1]) != 'string'){return callback(400, {'Error' : 'postValidationName must be of datatype string'});}
+    if(!arrayElement[1] || arrayElement[1].trim().length === 0){return callback(400, {'Error' : 'No postValidationName was entered'});}else{arrayElement[1] = arrayElement[1].trim()}
+  });
+  // End of: Validate elements in the postValidationNameArray
+
+
+  // Start of: Load the postValidationValueArray dynamically once the payload is known.
+  // Behavior from meta.js at lefq4oks90h34rvcw8sg
+  let postValidationValueKeyArray = ["field", "defaultElement", "validation", "post", "postValidationValue"]
+
+  let postValidationValueArray = loadPayloadArray(postValidationValueKeyArray, data.payload);
+  // End of: Load the postValidationValueArray dynamically once the payload is known. 
+                  
+  // Start of: Validate elements in the postValidationValueArray
+  // passIfString&NotEmptyThenTrim
+  // Behavior from meta.js at fkb3ulfqr09ryyc0rb0d
+  postValidationValueArray.forEach(function(arrayElement)
+  {
+    if(typeof(arrayElement[1]) != 'string'){return callback(400, {'Error' : 'postValidationValue must be of datatype string'});}
+    if(!arrayElement[1] || arrayElement[1].trim().length === 0){return callback(400, {'Error' : 'No postValidationValue was entered'});}else{arrayElement[1] = arrayElement[1].trim()}
+  });
+  // End of: Validate elements in the postValidationValueArray
+
+
+  // Start of: Load the putValidationNameArray dynamically once the payload is known.
+  // Behavior from meta.js at lefq4oks90h34rvcw8sg
+  let putValidationNameKeyArray = ["field", "defaultElement", "validation", "put", "putValidationName"]
+
+  let putValidationNameArray = loadPayloadArray(putValidationNameKeyArray, data.payload);
+  // End of: Load the putValidationNameArray dynamically once the payload is known. 
+                  
+  // Start of: Validate elements in the putValidationNameArray
+  // passIfString&NotEmptyThenTrim
+  // Behavior from meta.js at fkb3ulfqr09ryyc0rb0d
+  putValidationNameArray.forEach(function(arrayElement)
+  {
+    if(typeof(arrayElement[1]) != 'string'){return callback(400, {'Error' : 'putValidationName must be of datatype string'});}
+    if(!arrayElement[1] || arrayElement[1].trim().length === 0){return callback(400, {'Error' : 'No putValidationName was entered'});}else{arrayElement[1] = arrayElement[1].trim()}
+  });
+  // End of: Validate elements in the putValidationNameArray
+
+
+  // Start of: Load the putValidationValueArray dynamically once the payload is known.
+  // Behavior from meta.js at lefq4oks90h34rvcw8sg
+  let putValidationValueKeyArray = ["field", "defaultElement", "validation", "put", "putValidationValue"]
+
+  let putValidationValueArray = loadPayloadArray(putValidationValueKeyArray, data.payload);
+  // End of: Load the putValidationValueArray dynamically once the payload is known. 
+                  
+  // Start of: Validate elements in the putValidationValueArray
+  // passIfString&NotEmptyThenTrim
+  // Behavior from meta.js at fkb3ulfqr09ryyc0rb0d
+  putValidationValueArray.forEach(function(arrayElement)
+  {
+    if(typeof(arrayElement[1]) != 'string'){return callback(400, {'Error' : 'putValidationValue must be of datatype string'});}
+    if(!arrayElement[1] || arrayElement[1].trim().length === 0){return callback(400, {'Error' : 'No putValidationValue was entered'});}else{arrayElement[1] = arrayElement[1].trim()}
+  });
+  // End of: Validate elements in the putValidationValueArray
+
+
   // Enforcing uniqueness of the tableName field.
   // Will toggle this to false if we find the tableName already exists in metadata.
   // Behavior from meta.js at rmkfkaef7xo3gyvnvgm4
@@ -708,7 +816,7 @@ metadata._metadata.post = function(data, callback)
       helpers.log
       (
         5,
-        '3emiqa24u5lwgeqre01q' + '\n' +
+        '2k1zcctag7anxfif51ct' + '\n' +
         'The tableName : ' + tableName + ' already exists' + '\n'                                  
       ); // End of: helpers.log(...)
 
@@ -736,7 +844,7 @@ metadata._metadata.post = function(data, callback)
         helpers.log
         (
           5,
-          '8rrhe0ovq8y52s7sug1e' + '\n' +
+          'f0epl3bhvzqd81c9fh7t' + '\n' +
           'Unable to get the next gsuid.' + '\n' +
           'The following was the error' + '\n' +
           JSON.stringify(error) + '\n'                                   
@@ -789,6 +897,24 @@ metadata._metadata.post = function(data, callback)
       // Add any fields named "attributeValueArray" to the object we will write to the database.
       metadataObject = buildBranches(attributeValueArray, metadataObject);
 
+      // Add any fields named "defaultValidationNameArray" to the object we will write to the database.
+      metadataObject = buildBranches(defaultValidationNameArray, metadataObject);
+
+      // Add any fields named "defaultValidationValueArray" to the object we will write to the database.
+      metadataObject = buildBranches(defaultValidationValueArray, metadataObject);
+
+      // Add any fields named "postValidationNameArray" to the object we will write to the database.
+      metadataObject = buildBranches(postValidationNameArray, metadataObject);
+
+      // Add any fields named "postValidationValueArray" to the object we will write to the database.
+      metadataObject = buildBranches(postValidationValueArray, metadataObject);
+
+      // Add any fields named "putValidationNameArray" to the object we will write to the database.
+      metadataObject = buildBranches(putValidationNameArray, metadataObject);
+
+      // Add any fields named "putValidationValueArray" to the object we will write to the database.
+      metadataObject = buildBranches(putValidationValueArray, metadataObject);
+
       
       metadataObject.timeStamp = Date.now();
       metadataObject.deleted = false;
@@ -826,7 +952,7 @@ metadata._metadata.post = function(data, callback)
             helpers.log
             (
               7,
-              'sdcuiqdnkp0h1j6n4rzm' + '\n' +
+              '0wbxs2u3nsuvydnq9gaz' + '\n' +
               'There was an error appending to the history file' + '\n' +
               'An error here does not necessarily mean the append to history did not happen.' + '\n' +  
               'But an error at this point in the code surely means there was no append to metadata' + '\n' +                                          
@@ -870,7 +996,7 @@ metadata._metadata.post = function(data, callback)
                   helpers.log // Log the error.
                   (
                     7,
-                    'l2ddaa5iiao8muo40d3r' + '\n' +
+                    '3zsa9j6eie460auis0vp' + '\n' +
                     'Successful write to metadata but unable to remove lock on database' + '\n' +
                     'The following record was appended to the metadata file:' + '\n' +                            
                     JSON.stringify(logObject) + '\n' +   
@@ -892,7 +1018,7 @@ metadata._metadata.post = function(data, callback)
               helpers.log // Log the error.
               (
                 5,
-                'zi9t4jh78r14n4ato3w2' + '\n' +
+                'ygmulvywwri95kjlw056' + '\n' +
                 'There was an error when appending to the metadata file.' + '\n' +
                 'The following record may or may not have been appended to the metadata file:' + '\n' +                            
                 JSON.stringify(logObject) + '\n' +
@@ -940,7 +1066,7 @@ metadata._metadata.post = function(data, callback)
                           helpers.log
                           (
                             5,
-                            'ya1442n42i3e27vful40' + '\n' +
+                            '41l9adrzqmfn55kpz6hi' + '\n' +
                             'Rollback entry in the metadata file was appended successfully' + '\n' +
                             'The following was the record we rolled back:' + '\n' +
                             JSON.stringify(logObject) + '\n'                                   
@@ -951,7 +1077,7 @@ metadata._metadata.post = function(data, callback)
                           helpers.log
                           (
                             7,
-                            'w01w6z3h7k1nln8bvuyd' + '\n' +
+                            'qxjjvq1s05l81zu0hz2v' + '\n' +
                             'There was an error appending a rollback entry in the metadata file' + '\n' +
                             'The following record may or may not have been rolled back:' + '\n' +
                             JSON.stringify(logObject) + '\n' +   
@@ -971,7 +1097,7 @@ metadata._metadata.post = function(data, callback)
                     helpers.log
                     (
                       7,
-                      '5ebgxhv7ibgt8eo8x13v' + '\n' +
+                      's2psl4y70m48wzpfaxrt' + '\n' +
                       'There was an error appending a rollback entry in the history file' + '\n' +
                       'A rollback entry may or may not have been written in the metadata file' + '\n' +  
                       'CHECK TO SEE IF history and metadata ARE STILL IN SYNC' + '\n' +                                      
@@ -1486,6 +1612,228 @@ metadata._metadata.put = function(data, callback)
   }); // End of: attributeValueArray.forEach(function(arrayElement)
   // End of: Validate elements in the attributeValueArray 
 
+  // Start of: Load the defaultValidationNameArray dynamically once the payload is known.
+  // Behavior from meta.js at 8cz4imaqb2wagvl14q9t
+  let defaultValidationNameKeyArray = ["field", "defaultElement", "validation", "default", "defaultValidationName"]
+
+  let defaultValidationNameArray = loadPayloadArray(defaultValidationNameKeyArray, data.payload);
+  // End of: Load the defaultValidationNameArray dynamically once the payload is known. 
+
+  // Start of: Validate elements in the defaultValidationNameArray
+  // passIfString&NotEmptyThenTrim
+  // Behavior from meta.js at ohw0ivijs2au0nt2rwf1
+  defaultValidationNameArray.forEach(function(arrayElement)
+  {
+    // If defaultValidationName is of string type and is not empty 
+    if (typeof(arrayElement[1]) === 'string' && arrayElement[1].trim().length > 0) 
+    { 
+      // The user entered something in the edit form
+      arrayElement[1] = arrayElement[1].trim()
+    } 
+    // Else, the user may have entered some other datatype like a number or 
+    // perhaps nothing at all if using the Delete form or if just using the API. 
+    else 
+    { 
+      // If the user entered nothing: 
+      if(arrayElement[1] === undefined) 
+      { 
+        // Then user is likely trying to delete a record.
+        // So change the value to false and continue processing.
+        arrayElement[1] = false 
+      } 
+      else // The user entered something invalid so reject the edit. 
+      { 
+        return callback(400, {'Error' : 'Not a valid ' + arrayElement[1]}); 
+      } 
+    }
+  }); // End of: defaultValidationNameArray.forEach(function(arrayElement)
+  // End of: Validate elements in the defaultValidationNameArray 
+
+  // Start of: Load the defaultValidationValueArray dynamically once the payload is known.
+  // Behavior from meta.js at 8cz4imaqb2wagvl14q9t
+  let defaultValidationValueKeyArray = ["field", "defaultElement", "validation", "default", "defaultValidationValue"]
+
+  let defaultValidationValueArray = loadPayloadArray(defaultValidationValueKeyArray, data.payload);
+  // End of: Load the defaultValidationValueArray dynamically once the payload is known. 
+
+  // Start of: Validate elements in the defaultValidationValueArray
+  // passIfString&NotEmptyThenTrim
+  // Behavior from meta.js at ohw0ivijs2au0nt2rwf1
+  defaultValidationValueArray.forEach(function(arrayElement)
+  {
+    // If defaultValidationValue is of string type and is not empty 
+    if (typeof(arrayElement[1]) === 'string' && arrayElement[1].trim().length > 0) 
+    { 
+      // The user entered something in the edit form
+      arrayElement[1] = arrayElement[1].trim()
+    } 
+    // Else, the user may have entered some other datatype like a number or 
+    // perhaps nothing at all if using the Delete form or if just using the API. 
+    else 
+    { 
+      // If the user entered nothing: 
+      if(arrayElement[1] === undefined) 
+      { 
+        // Then user is likely trying to delete a record.
+        // So change the value to false and continue processing.
+        arrayElement[1] = false 
+      } 
+      else // The user entered something invalid so reject the edit. 
+      { 
+        return callback(400, {'Error' : 'Not a valid ' + arrayElement[1]}); 
+      } 
+    }
+  }); // End of: defaultValidationValueArray.forEach(function(arrayElement)
+  // End of: Validate elements in the defaultValidationValueArray 
+
+  // Start of: Load the postValidationNameArray dynamically once the payload is known.
+  // Behavior from meta.js at 8cz4imaqb2wagvl14q9t
+  let postValidationNameKeyArray = ["field", "defaultElement", "validation", "post", "postValidationName"]
+
+  let postValidationNameArray = loadPayloadArray(postValidationNameKeyArray, data.payload);
+  // End of: Load the postValidationNameArray dynamically once the payload is known. 
+
+  // Start of: Validate elements in the postValidationNameArray
+  // passIfString&NotEmptyThenTrim
+  // Behavior from meta.js at ohw0ivijs2au0nt2rwf1
+  postValidationNameArray.forEach(function(arrayElement)
+  {
+    // If postValidationName is of string type and is not empty 
+    if (typeof(arrayElement[1]) === 'string' && arrayElement[1].trim().length > 0) 
+    { 
+      // The user entered something in the edit form
+      arrayElement[1] = arrayElement[1].trim()
+    } 
+    // Else, the user may have entered some other datatype like a number or 
+    // perhaps nothing at all if using the Delete form or if just using the API. 
+    else 
+    { 
+      // If the user entered nothing: 
+      if(arrayElement[1] === undefined) 
+      { 
+        // Then user is likely trying to delete a record.
+        // So change the value to false and continue processing.
+        arrayElement[1] = false 
+      } 
+      else // The user entered something invalid so reject the edit. 
+      { 
+        return callback(400, {'Error' : 'Not a valid ' + arrayElement[1]}); 
+      } 
+    }
+  }); // End of: postValidationNameArray.forEach(function(arrayElement)
+  // End of: Validate elements in the postValidationNameArray 
+
+  // Start of: Load the postValidationValueArray dynamically once the payload is known.
+  // Behavior from meta.js at 8cz4imaqb2wagvl14q9t
+  let postValidationValueKeyArray = ["field", "defaultElement", "validation", "post", "postValidationValue"]
+
+  let postValidationValueArray = loadPayloadArray(postValidationValueKeyArray, data.payload);
+  // End of: Load the postValidationValueArray dynamically once the payload is known. 
+
+  // Start of: Validate elements in the postValidationValueArray
+  // passIfString&NotEmptyThenTrim
+  // Behavior from meta.js at ohw0ivijs2au0nt2rwf1
+  postValidationValueArray.forEach(function(arrayElement)
+  {
+    // If postValidationValue is of string type and is not empty 
+    if (typeof(arrayElement[1]) === 'string' && arrayElement[1].trim().length > 0) 
+    { 
+      // The user entered something in the edit form
+      arrayElement[1] = arrayElement[1].trim()
+    } 
+    // Else, the user may have entered some other datatype like a number or 
+    // perhaps nothing at all if using the Delete form or if just using the API. 
+    else 
+    { 
+      // If the user entered nothing: 
+      if(arrayElement[1] === undefined) 
+      { 
+        // Then user is likely trying to delete a record.
+        // So change the value to false and continue processing.
+        arrayElement[1] = false 
+      } 
+      else // The user entered something invalid so reject the edit. 
+      { 
+        return callback(400, {'Error' : 'Not a valid ' + arrayElement[1]}); 
+      } 
+    }
+  }); // End of: postValidationValueArray.forEach(function(arrayElement)
+  // End of: Validate elements in the postValidationValueArray 
+
+  // Start of: Load the putValidationNameArray dynamically once the payload is known.
+  // Behavior from meta.js at 8cz4imaqb2wagvl14q9t
+  let putValidationNameKeyArray = ["field", "defaultElement", "validation", "put", "putValidationName"]
+
+  let putValidationNameArray = loadPayloadArray(putValidationNameKeyArray, data.payload);
+  // End of: Load the putValidationNameArray dynamically once the payload is known. 
+
+  // Start of: Validate elements in the putValidationNameArray
+  // passIfString&NotEmptyThenTrim
+  // Behavior from meta.js at ohw0ivijs2au0nt2rwf1
+  putValidationNameArray.forEach(function(arrayElement)
+  {
+    // If putValidationName is of string type and is not empty 
+    if (typeof(arrayElement[1]) === 'string' && arrayElement[1].trim().length > 0) 
+    { 
+      // The user entered something in the edit form
+      arrayElement[1] = arrayElement[1].trim()
+    } 
+    // Else, the user may have entered some other datatype like a number or 
+    // perhaps nothing at all if using the Delete form or if just using the API. 
+    else 
+    { 
+      // If the user entered nothing: 
+      if(arrayElement[1] === undefined) 
+      { 
+        // Then user is likely trying to delete a record.
+        // So change the value to false and continue processing.
+        arrayElement[1] = false 
+      } 
+      else // The user entered something invalid so reject the edit. 
+      { 
+        return callback(400, {'Error' : 'Not a valid ' + arrayElement[1]}); 
+      } 
+    }
+  }); // End of: putValidationNameArray.forEach(function(arrayElement)
+  // End of: Validate elements in the putValidationNameArray 
+
+  // Start of: Load the putValidationValueArray dynamically once the payload is known.
+  // Behavior from meta.js at 8cz4imaqb2wagvl14q9t
+  let putValidationValueKeyArray = ["field", "defaultElement", "validation", "put", "putValidationValue"]
+
+  let putValidationValueArray = loadPayloadArray(putValidationValueKeyArray, data.payload);
+  // End of: Load the putValidationValueArray dynamically once the payload is known. 
+
+  // Start of: Validate elements in the putValidationValueArray
+  // passIfString&NotEmptyThenTrim
+  // Behavior from meta.js at ohw0ivijs2au0nt2rwf1
+  putValidationValueArray.forEach(function(arrayElement)
+  {
+    // If putValidationValue is of string type and is not empty 
+    if (typeof(arrayElement[1]) === 'string' && arrayElement[1].trim().length > 0) 
+    { 
+      // The user entered something in the edit form
+      arrayElement[1] = arrayElement[1].trim()
+    } 
+    // Else, the user may have entered some other datatype like a number or 
+    // perhaps nothing at all if using the Delete form or if just using the API. 
+    else 
+    { 
+      // If the user entered nothing: 
+      if(arrayElement[1] === undefined) 
+      { 
+        // Then user is likely trying to delete a record.
+        // So change the value to false and continue processing.
+        arrayElement[1] = false 
+      } 
+      else // The user entered something invalid so reject the edit. 
+      { 
+        return callback(400, {'Error' : 'Not a valid ' + arrayElement[1]}); 
+      } 
+    }
+  }); // End of: putValidationValueArray.forEach(function(arrayElement)
+  // End of: Validate elements in the putValidationValueArray 
+
   
   // Check if the deleted flag is of type string and that the value is exactly equal to "true".
   // That would mean the user wants to delete the record. Otherwise the users does not want to delete the record.
@@ -1510,13 +1858,19 @@ metadata._metadata.put = function(data, callback)
     &&  !elementTypeArray.some(function(element){if(element){return true;}})
     &&  !attributeNameArray.some(function(element){if(element){return true;}})
     &&  !attributeValueArray.some(function(element){if(element){return true;}})
+    &&  !defaultValidationNameArray.some(function(element){if(element){return true;}})
+    &&  !defaultValidationValueArray.some(function(element){if(element){return true;}})
+    &&  !postValidationNameArray.some(function(element){if(element){return true;}})
+    &&  !postValidationValueArray.some(function(element){if(element){return true;}})
+    &&  !putValidationNameArray.some(function(element){if(element){return true;}})
+    &&  !putValidationValueArray.some(function(element){if(element){return true;}})
     &&  !deleted
   )
   {
     helpers.log
     (
       5,
-      'zfc1dyc4iht7bfc1u86z' + '\n' +
+      'gjhzajzue7piomyc1ike' + '\n' +
       'No fields pass the validation process' + '\n'                                  
     ); // End of: helpers.log(...)
 
@@ -1539,7 +1893,7 @@ metadata._metadata.put = function(data, callback)
       helpers.log
       (
         5,
-        'e5mdcgqg7oey8s2bt17w' + '\n' +
+        'l7rhsh3r52k7acimpf8v' + '\n' +
         'Unable to get the next gsuid.' + '\n' +
         'The following was the error' + '\n' +
         JSON.stringify(error) + '\n'                                   
@@ -1593,6 +1947,24 @@ metadata._metadata.put = function(data, callback)
     // Add any fields named "attributeValueArray" to the object we will write to the database.
     metadataObject = buildBranches(attributeValueArray, metadataObject);
 
+    // Add any fields named "defaultValidationNameArray" to the object we will write to the database.
+    metadataObject = buildBranches(defaultValidationNameArray, metadataObject);
+
+    // Add any fields named "defaultValidationValueArray" to the object we will write to the database.
+    metadataObject = buildBranches(defaultValidationValueArray, metadataObject);
+
+    // Add any fields named "postValidationNameArray" to the object we will write to the database.
+    metadataObject = buildBranches(postValidationNameArray, metadataObject);
+
+    // Add any fields named "postValidationValueArray" to the object we will write to the database.
+    metadataObject = buildBranches(postValidationValueArray, metadataObject);
+
+    // Add any fields named "putValidationNameArray" to the object we will write to the database.
+    metadataObject = buildBranches(putValidationNameArray, metadataObject);
+
+    // Add any fields named "putValidationValueArray" to the object we will write to the database.
+    metadataObject = buildBranches(putValidationValueArray, metadataObject);
+
     metadataObject.timeStamp = Date.now();
     metadataObject.deleted = false;
 
@@ -1624,7 +1996,7 @@ metadata._metadata.put = function(data, callback)
               helpers.log // Log the error.
               (
                 7,
-                '2tqjsbwackojp1ofu81c' + '\n' + 
+                'pwvltroj5ri1lyeud07d' + '\n' + 
                 'The following was the error message from getMostRecent:' + '\n' +                                             
                 errorFromGetMostRecent + '\n'                                                 
               ); // End of: helpers.log // Log the error.
@@ -1639,7 +2011,7 @@ metadata._metadata.put = function(data, callback)
               helpers.log // Log the error.
               (
                 7,
-                '92gssz2r3v2rrekcgj1b' + '\n' +
+                'k6lfe3puca62se70gttf' + '\n' +
                 'The following was the error message from getMostRecent:' + '\n' +                                             
                 errorFromGetMostRecent + '\n'  +
                 'Also unable to remove lock on database.' + '\n' + 
@@ -1846,6 +2218,90 @@ metadata._metadata.put = function(data, callback)
           }
         } 
 
+        for (let arrayIndex = 0; arrayIndex < defaultValidationNameArray.length; arrayIndex++) 
+        {
+          // Preprocessing for default.defaultX.defaultValidationName
+          if(defaultValidationNameArray[arrayIndex]) // If the user supplied data for default.defaultX.defaultValidationName
+          {
+            // No preprocessing was specifed for default.defaultX.defaultValidationName. Use it as was supplied by the user.
+          }
+          else // If the user did not supply data for default.defaultX.defaultValidationName
+          {
+            // Save default.defaultX.defaultValidationName from the most recent record.
+            metadataObject.default["default" + arrayIndex.toString()]["defaultValidationName"] = defaultValidationNameArray[arrayIndex];
+          }
+        } 
+
+        for (let arrayIndex = 0; arrayIndex < defaultValidationValueArray.length; arrayIndex++) 
+        {
+          // Preprocessing for default.defaultX.defaultValidationValue
+          if(defaultValidationValueArray[arrayIndex]) // If the user supplied data for default.defaultX.defaultValidationValue
+          {
+            // No preprocessing was specifed for default.defaultX.defaultValidationValue. Use it as was supplied by the user.
+          }
+          else // If the user did not supply data for default.defaultX.defaultValidationValue
+          {
+            // Save default.defaultX.defaultValidationValue from the most recent record.
+            metadataObject.default["default" + arrayIndex.toString()]["defaultValidationValue"] = defaultValidationValueArray[arrayIndex];
+          }
+        } 
+
+        for (let arrayIndex = 0; arrayIndex < postValidationNameArray.length; arrayIndex++) 
+        {
+          // Preprocessing for post.postX.postValidationName
+          if(postValidationNameArray[arrayIndex]) // If the user supplied data for post.postX.postValidationName
+          {
+            // No preprocessing was specifed for post.postX.postValidationName. Use it as was supplied by the user.
+          }
+          else // If the user did not supply data for post.postX.postValidationName
+          {
+            // Save post.postX.postValidationName from the most recent record.
+            metadataObject.post["post" + arrayIndex.toString()]["postValidationName"] = postValidationNameArray[arrayIndex];
+          }
+        } 
+
+        for (let arrayIndex = 0; arrayIndex < postValidationValueArray.length; arrayIndex++) 
+        {
+          // Preprocessing for post.postX.postValidationValue
+          if(postValidationValueArray[arrayIndex]) // If the user supplied data for post.postX.postValidationValue
+          {
+            // No preprocessing was specifed for post.postX.postValidationValue. Use it as was supplied by the user.
+          }
+          else // If the user did not supply data for post.postX.postValidationValue
+          {
+            // Save post.postX.postValidationValue from the most recent record.
+            metadataObject.post["post" + arrayIndex.toString()]["postValidationValue"] = postValidationValueArray[arrayIndex];
+          }
+        } 
+
+        for (let arrayIndex = 0; arrayIndex < putValidationNameArray.length; arrayIndex++) 
+        {
+          // Preprocessing for put.putX.putValidationName
+          if(putValidationNameArray[arrayIndex]) // If the user supplied data for put.putX.putValidationName
+          {
+            // No preprocessing was specifed for put.putX.putValidationName. Use it as was supplied by the user.
+          }
+          else // If the user did not supply data for put.putX.putValidationName
+          {
+            // Save put.putX.putValidationName from the most recent record.
+            metadataObject.put["put" + arrayIndex.toString()]["putValidationName"] = putValidationNameArray[arrayIndex];
+          }
+        } 
+
+        for (let arrayIndex = 0; arrayIndex < putValidationValueArray.length; arrayIndex++) 
+        {
+          // Preprocessing for put.putX.putValidationValue
+          if(putValidationValueArray[arrayIndex]) // If the user supplied data for put.putX.putValidationValue
+          {
+            // No preprocessing was specifed for put.putX.putValidationValue. Use it as was supplied by the user.
+          }
+          else // If the user did not supply data for put.putX.putValidationValue
+          {
+            // Save put.putX.putValidationValue from the most recent record.
+            metadataObject.put["put" + arrayIndex.toString()]["putValidationValue"] = putValidationValueArray[arrayIndex];
+          }
+        } 
+
         // If we are appending a delete make sure that everything else is coming from the most recent saved record.
         if(deleted)
         {
@@ -1914,7 +2370,7 @@ metadata._metadata.put = function(data, callback)
                         helpers.log // Log the error.
                         (
                           7,
-                          'x96mtqt79544vpovzd7j' + '\n' +
+                          'jw6cdlp722e2smvf4x4n' + '\n' +
                           'Successful write to metadata but unable to remove lock on database' + '\n' +
                           'The following record was appended to metadata:' + '\n' +                            
                           JSON.stringify(logObject) + '\n' +   
@@ -1936,7 +2392,7 @@ metadata._metadata.put = function(data, callback)
                     helpers.log // Log the error.
                     (
                       5,
-                      'bybs4hwmixgn2fln59a1' + '\n' +
+                      'expcuxw1wnnv0myhss3m' + '\n' +
                       'There was an error when appending to the metadata file.' + '\n' +
                       'The following record may or may not have been appended to metadata:' + '\n' +                            
                       JSON.stringify(logObject) + '\n' +
@@ -1994,7 +2450,7 @@ metadata._metadata.put = function(data, callback)
                                 helpers.log
                                 (
                                   5,
-                                  'tzf05srhc9wlg5t509cw' + '\n' +
+                                  'e7zpiq9mcp045sp6e6vw' + '\n' +
                                   'Rollback entry in the metadata file was appended successfully' + '\n' +
                                   'The following was the record we rolled back:' + '\n' +
                                   JSON.stringify(logObject) + '\n'                                   
@@ -2005,7 +2461,7 @@ metadata._metadata.put = function(data, callback)
                                 helpers.log
                                 (
                                   7,
-                                  'fsi9ul93z7wxwzqusg89' + '\n' +
+                                  'da1e7vdjy9y99p56fjys' + '\n' +
                                   'There was an error appending a rollback entry in the metadata file' + '\n' +
                                   'The following record may or may not have been rolled back:' + '\n' +
                                   JSON.stringify(logObject) + '\n' +   
@@ -2025,7 +2481,7 @@ metadata._metadata.put = function(data, callback)
                           helpers.log
                           (
                             7,
-                            'q9rz8u8ldegyqbbxsf5z' + '\n' +
+                            '8x3o3luikazr09kag4vk' + '\n' +
                             'There was an error appending a rollback entry in the history file' + '\n' +
                             'A rollback entry may or may not have been written in the metadata file' + '\n' +  
                             'CHECK TO SEE IF history and metadata ARE STILL IN SYNC' + '\n' +                                      
@@ -2050,7 +2506,7 @@ metadata._metadata.put = function(data, callback)
               helpers.log
               (
                 7,
-                'l6ypi5uodk6ne9980rlu' + '\n' +
+                '8dzypjrg8oz1qaa3srzr' + '\n' +
                 'There was an error appending to the history file' + '\n' +
                 'An error here does not necessarily mean the append to history did not happen.' + '\n' +  
                 'But an error at this point in the code surely means there was no append to metadata' + '\n' +                                          
@@ -2082,7 +2538,7 @@ metadata._metadata.put = function(data, callback)
             helpers.log // Log the error.
             (
               7,
-              '4ptmjuxfxll3n0jsxccd' + '\n' + 
+              '7xrfurf09z4vhistc5ez' + '\n' + 
               'Pipeline error. The message was as follows' + '\n' +                                             
               pipelineError + '\n'                                                 
             ); // End of: helpers.log // Log the error.

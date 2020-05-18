@@ -180,7 +180,7 @@ body.index .blurb{
 /* Form Styling for Account Creation page and others */
 .formWrapper, buttonWrapper{
   margin: 0 auto;
-  max-width: 500px;
+  max-width: 95%;
   padding: 15px;
 }
 
