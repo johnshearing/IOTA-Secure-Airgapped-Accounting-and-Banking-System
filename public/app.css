@@ -33,7 +33,7 @@ body,p,h1,h2,h3,h4,h5,h6,div,span,header,footer,img,a,a:hover,a:active,a:visited
   top: 0;
   left: 0;
   width: 100%;
-  padding: 20px 0;
+  padding: 5px 0;
   min-width: 1200px;
 }
 
@@ -69,7 +69,7 @@ body.loggedIn .header ul li.loggedOut{
 
 .header .logo{
   text-align: left;
-  padding: 0 0 0 90px;
+  padding: 0 0 0 20px;
   float: left;
 }
 
@@ -88,7 +88,7 @@ body.loggedIn .header ul li.loggedOut{
   bottom: 0;
   width: 100%;
   background-color: #1a1a1a;
-  padding: 50px 0;
+  padding: 10px 0;
   text-align: center;
   border-width: 1px 0 0 0;
   border-color: #fff;
