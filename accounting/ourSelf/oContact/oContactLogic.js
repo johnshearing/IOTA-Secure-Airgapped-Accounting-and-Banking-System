@@ -57,7 +57,7 @@ oContact.serveListPage = function(data, callback)
             helpers.log
             (            
               5,
-              '35tnxjms3fv3bepoiao3' + '\n' +
+              'rjsfnszd0ypya56djcf7' + '\n' +
               'There was an error or the concatenated templates were not returned.' + '\n' +
               'This was the error:' + '\n' +
               JSON.stringify(errorAddUnivTemplates) + '\n'
@@ -73,7 +73,7 @@ oContact.serveListPage = function(data, callback)
         helpers.log
         (
           5,
-          'qhai93uu0t07hfxvhjwp' + '\n' +
+          'ushmdeujrxz0xxu2fs0e' + '\n' +
           'There was an error or no template was returned.' + '\n' +
           'This was the error:' + '\n' +
           JSON.stringify(errorGetTemplate) + '\n'
@@ -90,7 +90,7 @@ oContact.serveListPage = function(data, callback)
     helpers.log
     (
       5,
-      '7cxawpmzcdntr3iv8npa' + '\n' +
+      'qpo9mzhrballc2a0chma' + '\n' +
       'Method not get. Only gets allowed.' + '\n'
     );
 
@@ -137,7 +137,7 @@ oContact.serveAddPage = function(data, callback)
             helpers.log
             (            
               5,
-              'x7ov8s85ltd0403wjgk2' + '\n' +
+              '9u2ff65u9b0v7ae5q5de' + '\n' +
               'There was an error or the concatenated templates were not returned.' + '\n' +
               'This was the error:' + '\n' +
               JSON.stringify(errorAddUnivTemplates) + '\n'
@@ -153,7 +153,7 @@ oContact.serveAddPage = function(data, callback)
         helpers.log
         (
           5,
-          'wdwrz5zd1bl3cbiaic6j' + '\n' +
+          'j4o7a7z0y5s32x3knpiz' + '\n' +
           'There was an error or no template was returned.' + '\n' +
           'This was the error:' + '\n' +
           JSON.stringify(errorGetTemplate) + '\n'
@@ -170,7 +170,7 @@ oContact.serveAddPage = function(data, callback)
     helpers.log
     (
       5,
-      '2atoll5xjk262o9vkusz' + '\n' +
+      '9e2pz54440yskpgtym5h' + '\n' +
       'Method not get. Only gets allowed.' + '\n'
     );
 
@@ -217,7 +217,7 @@ oContact.serveEditPage = function(data, callback)
             helpers.log
             (            
               5,
-              '7d01ndevstsdo6y2dtqo' + '\n' +
+              'pnzearxkw7fajtyw6fz0' + '\n' +
               'There was an error or the concatenated templates were not returned.' + '\n' +
               'This was the error:' + '\n' +
               JSON.stringify(errorAddUnivTemplates) + '\n'
@@ -233,7 +233,7 @@ oContact.serveEditPage = function(data, callback)
         helpers.log
         (
           5,
-          '0txto5c6loxori1p568k' + '\n' +
+          'bnauk3c0n156ao4f2gma' + '\n' +
           'There was an error or no template was returned.' + '\n' +
           'This was the error:' + '\n' +
           JSON.stringify(errorGetTemplate) + '\n'
@@ -250,7 +250,7 @@ oContact.serveEditPage = function(data, callback)
     helpers.log
     (
       5,
-      'ro80ozesfmbs7woonxg1' + '\n' +
+      'dn5ik85jngkszirersfh' + '\n' +
       'Method not get. Only gets allowed.' + '\n'
     );
 
@@ -284,7 +284,7 @@ oContact.oContact = function(data, callback)
     helpers.log
     (
       5,
-      'u59txxgrz5sxwc05xlha' + '\n' +
+      'mdhn4wkzofky24rocuyz' + '\n' +
       'The method was not one of the acceptable methods' + '\n'
     ); 
 
@@ -342,7 +342,7 @@ oContact._oContact.post = function(data, callback)
   // Behavior from meta.js at lefq4oks90h34rvcw8sg
   let phoneTypeKeyArray = ["phone", "phoneType"]
 
-  let phoneTypeArray = loadPayloadArray([], phoneTypeKeyArray, data.payload, 0, 0, "", true)[0];
+  let phoneTypeArray = loadPayloadArray(phoneTypeKeyArray, data.payload);
   // End of: Load the phoneTypeArray dynamically once the payload is known. 
   
   // Start of: Validate elements in the phoneTypeArray
@@ -373,7 +373,7 @@ oContact._oContact.post = function(data, callback)
   // Behavior from meta.js at lefq4oks90h34rvcw8sg
   let phoneKeyArray = ["phone", "phone"]
 
-  let phoneArray = loadPayloadArray([], phoneKeyArray, data.payload, 0, 0, "", true)[0];
+  let phoneArray = loadPayloadArray(phoneKeyArray, data.payload);
   // End of: Load the phoneArray dynamically once the payload is known. 
                   
   // Start of: Validate elements in the phoneArray
@@ -391,7 +391,7 @@ oContact._oContact.post = function(data, callback)
   // Behavior from meta.js at lefq4oks90h34rvcw8sg
   let addressTypeKeyArray = ["address", "addressType"]
 
-  let addressTypeArray = loadPayloadArray([], addressTypeKeyArray, data.payload, 0, 0, "", true)[0];
+  let addressTypeArray = loadPayloadArray(addressTypeKeyArray, data.payload);
   // End of: Load the addressTypeArray dynamically once the payload is known. 
   
   // Start of: Validate elements in the addressTypeArray
@@ -422,7 +422,7 @@ oContact._oContact.post = function(data, callback)
   // Behavior from meta.js at lefq4oks90h34rvcw8sg
   let streetOneKeyArray = ["address", "streetOne"]
 
-  let streetOneArray = loadPayloadArray([], streetOneKeyArray, data.payload, 0, 0, "", true)[0];
+  let streetOneArray = loadPayloadArray(streetOneKeyArray, data.payload);
   // End of: Load the streetOneArray dynamically once the payload is known. 
                   
   // Start of: Validate elements in the streetOneArray
@@ -440,7 +440,7 @@ oContact._oContact.post = function(data, callback)
   // Behavior from meta.js at lefq4oks90h34rvcw8sg
   let streetTwoKeyArray = ["address", "streetTwo"]
 
-  let streetTwoArray = loadPayloadArray([], streetTwoKeyArray, data.payload, 0, 0, "", true)[0];
+  let streetTwoArray = loadPayloadArray(streetTwoKeyArray, data.payload);
   // End of: Load the streetTwoArray dynamically once the payload is known. 
                   
   // Start of: Validate elements in the streetTwoArray
@@ -457,7 +457,7 @@ oContact._oContact.post = function(data, callback)
   // Behavior from meta.js at lefq4oks90h34rvcw8sg
   let cityKeyArray = ["address", "city"]
 
-  let cityArray = loadPayloadArray([], cityKeyArray, data.payload, 0, 0, "", true)[0];
+  let cityArray = loadPayloadArray(cityKeyArray, data.payload);
   // End of: Load the cityArray dynamically once the payload is known. 
                   
   // Start of: Validate elements in the cityArray
@@ -475,7 +475,7 @@ oContact._oContact.post = function(data, callback)
   // Behavior from meta.js at lefq4oks90h34rvcw8sg
   let stateKeyArray = ["address", "state"]
 
-  let stateArray = loadPayloadArray([], stateKeyArray, data.payload, 0, 0, "", true)[0];
+  let stateArray = loadPayloadArray(stateKeyArray, data.payload);
   // End of: Load the stateArray dynamically once the payload is known. 
                   
   // Start of: Validate elements in the stateArray
@@ -493,7 +493,7 @@ oContact._oContact.post = function(data, callback)
   // Behavior from meta.js at lefq4oks90h34rvcw8sg
   let zipKeyArray = ["address", "zip"]
 
-  let zipArray = loadPayloadArray([], zipKeyArray, data.payload, 0, 0, "", true)[0];
+  let zipArray = loadPayloadArray(zipKeyArray, data.payload);
   // End of: Load the zipArray dynamically once the payload is known. 
                   
   // Start of: Validate elements in the zipArray
@@ -638,7 +638,7 @@ oContact._oContact.post = function(data, callback)
       helpers.log
       (
         5,
-        '5psw76n7ism0voq032he' + '\n' +
+        '49e0uocgn6bm6j2xca7s' + '\n' +
         'The email : ' + email + ' already exists' + '\n'                                  
       ); // End of: helpers.log(...)
 
@@ -666,7 +666,7 @@ oContact._oContact.post = function(data, callback)
         helpers.log
         (
           5,
-          'xpj03ka6x57c77q7mnzt' + '\n' +
+          'sezp5un5z2la9wwoybll' + '\n' +
           'Unable to get the next gsuid.' + '\n' +
           'The following was the error' + '\n' +
           JSON.stringify(error) + '\n'                                   
@@ -758,7 +758,7 @@ oContact._oContact.post = function(data, callback)
             helpers.log
             (
               7,
-              'wq1zd6jpnquz4ga028t0' + '\n' +
+              'v5xmpk89xu54ucd79p2y' + '\n' +
               'There was an error appending to the history file' + '\n' +
               'An error here does not necessarily mean the append to history did not happen.' + '\n' +  
               'But an error at this point in the code surely means there was no append to oContact' + '\n' +                                          
@@ -802,7 +802,7 @@ oContact._oContact.post = function(data, callback)
                   helpers.log // Log the error.
                   (
                     7,
-                    '3mi0jy8haa2b2g9gu7qm' + '\n' +
+                    'k32i2r250na4b1fwknb8' + '\n' +
                     'Successful write to oContact but unable to remove lock on database' + '\n' +
                     'The following record was appended to the oContact file:' + '\n' +                            
                     JSON.stringify(logObject) + '\n' +   
@@ -824,7 +824,7 @@ oContact._oContact.post = function(data, callback)
               helpers.log // Log the error.
               (
                 5,
-                'gq7h65cbvee8emc1bogs' + '\n' +
+                'gti3ocxvs6wc6qdrsuv4' + '\n' +
                 'There was an error when appending to the oContact file.' + '\n' +
                 'The following record may or may not have been appended to the oContact file:' + '\n' +                            
                 JSON.stringify(logObject) + '\n' +
@@ -872,7 +872,7 @@ oContact._oContact.post = function(data, callback)
                           helpers.log
                           (
                             5,
-                            'o9vqvojva6sqtfp7x8oy' + '\n' +
+                            's7wd3tof9cych7iyttp3' + '\n' +
                             'Rollback entry in the oContact file was appended successfully' + '\n' +
                             'The following was the record we rolled back:' + '\n' +
                             JSON.stringify(logObject) + '\n'                                   
@@ -883,7 +883,7 @@ oContact._oContact.post = function(data, callback)
                           helpers.log
                           (
                             7,
-                            'va11r2z6a1csw0v60wrv' + '\n' +
+                            'rdtnm31hq99v1otjx4o9' + '\n' +
                             'There was an error appending a rollback entry in the oContact file' + '\n' +
                             'The following record may or may not have been rolled back:' + '\n' +
                             JSON.stringify(logObject) + '\n' +   
@@ -903,7 +903,7 @@ oContact._oContact.post = function(data, callback)
                     helpers.log
                     (
                       7,
-                      'uqvs9ojeufgif9flasqj' + '\n' +
+                      'vwf8vys9i9j3gbvjt81x' + '\n' +
                       'There was an error appending a rollback entry in the history file' + '\n' +
                       'A rollback entry may or may not have been written in the oContact file' + '\n' +  
                       'CHECK TO SEE IF history and oContact ARE STILL IN SYNC' + '\n' +                                      
@@ -1044,7 +1044,7 @@ oContact._oContact.put = function(data, callback)
   // Behavior from meta.js at 8cz4imaqb2wagvl14q9t
   let phoneTypeKeyArray = ["phone", "phoneType"]
 
-  let phoneTypeArray = loadPayloadArray([], phoneTypeKeyArray, data.payload, 0, 0, "", true)[0];
+  let phoneTypeArray = loadPayloadArray(phoneTypeKeyArray, data.payload);
   // End of: Load the phoneTypeArray dynamically once the payload is known. 
 
   // Start of: Validate elements in the phoneTypeArray
@@ -1086,7 +1086,7 @@ oContact._oContact.put = function(data, callback)
   // Behavior from meta.js at 8cz4imaqb2wagvl14q9t
   let phoneKeyArray = ["phone", "phone"]
 
-  let phoneArray = loadPayloadArray([], phoneKeyArray, data.payload, 0, 0, "", true)[0];
+  let phoneArray = loadPayloadArray(phoneKeyArray, data.payload);
   // End of: Load the phoneArray dynamically once the payload is known. 
 
   // Start of: Validate elements in the phoneArray
@@ -1123,7 +1123,7 @@ oContact._oContact.put = function(data, callback)
   // Behavior from meta.js at 8cz4imaqb2wagvl14q9t
   let addressTypeKeyArray = ["address", "addressType"]
 
-  let addressTypeArray = loadPayloadArray([], addressTypeKeyArray, data.payload, 0, 0, "", true)[0];
+  let addressTypeArray = loadPayloadArray(addressTypeKeyArray, data.payload);
   // End of: Load the addressTypeArray dynamically once the payload is known. 
 
   // Start of: Validate elements in the addressTypeArray
@@ -1165,7 +1165,7 @@ oContact._oContact.put = function(data, callback)
   // Behavior from meta.js at 8cz4imaqb2wagvl14q9t
   let streetOneKeyArray = ["address", "streetOne"]
 
-  let streetOneArray = loadPayloadArray([], streetOneKeyArray, data.payload, 0, 0, "", true)[0];
+  let streetOneArray = loadPayloadArray(streetOneKeyArray, data.payload);
   // End of: Load the streetOneArray dynamically once the payload is known. 
 
   // Start of: Validate elements in the streetOneArray
@@ -1202,7 +1202,7 @@ oContact._oContact.put = function(data, callback)
   // Behavior from meta.js at 8cz4imaqb2wagvl14q9t
   let streetTwoKeyArray = ["address", "streetTwo"]
 
-  let streetTwoArray = loadPayloadArray([], streetTwoKeyArray, data.payload, 0, 0, "", true)[0];
+  let streetTwoArray = loadPayloadArray(streetTwoKeyArray, data.payload);
   // End of: Load the streetTwoArray dynamically once the payload is known. 
 
                   
@@ -1219,7 +1219,7 @@ oContact._oContact.put = function(data, callback)
   // Behavior from meta.js at 8cz4imaqb2wagvl14q9t
   let cityKeyArray = ["address", "city"]
 
-  let cityArray = loadPayloadArray([], cityKeyArray, data.payload, 0, 0, "", true)[0];
+  let cityArray = loadPayloadArray(cityKeyArray, data.payload);
   // End of: Load the cityArray dynamically once the payload is known. 
 
   // Start of: Validate elements in the cityArray
@@ -1256,7 +1256,7 @@ oContact._oContact.put = function(data, callback)
   // Behavior from meta.js at 8cz4imaqb2wagvl14q9t
   let stateKeyArray = ["address", "state"]
 
-  let stateArray = loadPayloadArray([], stateKeyArray, data.payload, 0, 0, "", true)[0];
+  let stateArray = loadPayloadArray(stateKeyArray, data.payload);
   // End of: Load the stateArray dynamically once the payload is known. 
 
   // Start of: Validate elements in the stateArray
@@ -1293,7 +1293,7 @@ oContact._oContact.put = function(data, callback)
   // Behavior from meta.js at 8cz4imaqb2wagvl14q9t
   let zipKeyArray = ["address", "zip"]
 
-  let zipArray = loadPayloadArray([], zipKeyArray, data.payload, 0, 0, "", true)[0];
+  let zipArray = loadPayloadArray(zipKeyArray, data.payload);
   // End of: Load the zipArray dynamically once the payload is known. 
 
   // Start of: Validate elements in the zipArray
@@ -1354,7 +1354,7 @@ oContact._oContact.put = function(data, callback)
     helpers.log
     (
       5,
-      'jk4do66l4m8u77f7c3kv' + '\n' +
+      '8cvmi3h6b5iwb60waege' + '\n' +
       'No fields pass the validation process' + '\n'                                  
     ); // End of: helpers.log(...)
 
@@ -1377,7 +1377,7 @@ oContact._oContact.put = function(data, callback)
       helpers.log
       (
         5,
-        'yakpdn1181rqlw04cmky' + '\n' +
+        'gpdjn8u3sd7d8dsgmeoh' + '\n' +
         'Unable to get the next gsuid.' + '\n' +
         'The following was the error' + '\n' +
         JSON.stringify(error) + '\n'                                   
@@ -1458,7 +1458,7 @@ oContact._oContact.put = function(data, callback)
               helpers.log // Log the error.
               (
                 7,
-                '6oxrtlom755qo5356vkl' + '\n' + 
+                'zlesfxjhahpupew7vxlp' + '\n' + 
                 'The following was the error message from getMostRecent:' + '\n' +                                             
                 errorFromGetMostRecent + '\n'                                                 
               ); // End of: helpers.log // Log the error.
@@ -1473,7 +1473,7 @@ oContact._oContact.put = function(data, callback)
               helpers.log // Log the error.
               (
                 7,
-                'e8x5ircbrxjaohxbcfnx' + '\n' +
+                '5fm3ocm5ta18s9phowix' + '\n' +
                 'The following was the error message from getMostRecent:' + '\n' +                                             
                 errorFromGetMostRecent + '\n'  +
                 'Also unable to remove lock on database.' + '\n' + 
@@ -1728,7 +1728,7 @@ oContact._oContact.put = function(data, callback)
                         helpers.log // Log the error.
                         (
                           7,
-                          '7lpyuqtvphp3gsip8cey' + '\n' +
+                          'gdx486wqiluc80b28uo5' + '\n' +
                           'Successful write to oContact but unable to remove lock on database' + '\n' +
                           'The following record was appended to oContact:' + '\n' +                            
                           JSON.stringify(logObject) + '\n' +   
@@ -1750,7 +1750,7 @@ oContact._oContact.put = function(data, callback)
                     helpers.log // Log the error.
                     (
                       5,
-                      'z93wd854s32zn8h9s402' + '\n' +
+                      'pc5gdbflnjzgc90hd9jg' + '\n' +
                       'There was an error when appending to the oContact file.' + '\n' +
                       'The following record may or may not have been appended to oContact:' + '\n' +                            
                       JSON.stringify(logObject) + '\n' +
@@ -1809,7 +1809,7 @@ oContact._oContact.put = function(data, callback)
                                 helpers.log
                                 (
                                   5,
-                                  'tnmc1t99951dd3zh25y1' + '\n' +
+                                  'e3v05kx1fuo1a1n7o8l8' + '\n' +
                                   'Rollback entry in the oContact file was appended successfully' + '\n' +
                                   'The following was the record we rolled back:' + '\n' +
                                   JSON.stringify(logObject) + '\n'                                   
@@ -1820,7 +1820,7 @@ oContact._oContact.put = function(data, callback)
                                 helpers.log
                                 (
                                   7,
-                                  'd9xm2gx5rgtqrblipl5y' + '\n' +
+                                  'yxzepj5uhyvytrlw5562' + '\n' +
                                   'There was an error appending a rollback entry in the oContact file' + '\n' +
                                   'The following record may or may not have been rolled back:' + '\n' +
                                   JSON.stringify(logObject) + '\n' +   
@@ -1840,7 +1840,7 @@ oContact._oContact.put = function(data, callback)
                           helpers.log
                           (
                             7,
-                            '8a9dw98np6t9wmyytfam' + '\n' +
+                            'zu2p7hlgnx2411jff284' + '\n' +
                             'There was an error appending a rollback entry in the history file' + '\n' +
                             'A rollback entry may or may not have been written in the oContact file' + '\n' +  
                             'CHECK TO SEE IF history and oContact ARE STILL IN SYNC' + '\n' +                                      
@@ -1865,7 +1865,7 @@ oContact._oContact.put = function(data, callback)
               helpers.log
               (
                 7,
-                'ysandrrdg1qk08qh23iv' + '\n' +
+                'z3qn8xgiopc6ak2eodzx' + '\n' +
                 'There was an error appending to the history file' + '\n' +
                 'An error here does not necessarily mean the append to history did not happen.' + '\n' +  
                 'But an error at this point in the code surely means there was no append to oContact' + '\n' +                                          
@@ -1897,7 +1897,7 @@ oContact._oContact.put = function(data, callback)
             helpers.log // Log the error.
             (
               7,
-              '1ylxh07n8txxu75vheo1' + '\n' + 
+              'dp1eqmv351d09g1k13uh' + '\n' + 
               'Pipeline error. The message was as follows' + '\n' +                                             
               pipelineError + '\n'                                                 
             ); // End of: helpers.log // Log the error.
@@ -2471,88 +2471,66 @@ oContact._oContact.get = function(data, callback)
 // End of: Define the oContact get subhandler function.  
 
 
+
+
 // A payloadArray is used to validate and save nested data to the database.
-// Declaring a function that we will use to load a payloadArray dynamically once the payload is known.  
-// The nestLevel determines which element in payloadKeyArray we are addressing. It's the index
-// The loopCount determines the value of the number we are appending to the element when building the 
-// property key used to access the property value from payloadObject that we wish to load into payloadArray.
+// Declaring function used to load a payloadArray dynamically once the payload is known.  
 // Behavior from meta.js at defq4ols90h44rvcw8st
-function loadPayloadArray(payloadArray, payloadKeyArray, payloadObject, nestLevel, loopCount, previousPart, continueLooping)
-{      
-  let keyUnderConstruction, recursionResult;    
-
-  // for (let loopCount = 0; loopCount < payloadKeyArray.length - 1; loopCount = loopCount + 1)
-  while(continueLooping)
-  {
-    // Start with a blank key.
-    keyUnderConstruction = "";
-
-    // If we are at the top. 
-    if(nestLevel === 0)
+function loadPayloadArray(payloadKeyArray, payloadObject)
+{     
+  let payloadArray = Object.entries(payloadObject).filter
+  (
+    // Checking if this object property belongs in our payloadArray.
+    function(examElement)
     {
-      keyUnderConstruction = previousPart +
-      payloadKeyArray[nestLevel] + "_" + payloadKeyArray[nestLevel]  + loopCount.toString();
-    } // End of: If we are at the top.
-    else // Not at the top
-    {
-      keyUnderConstruction = previousPart +
-      "_" + payloadKeyArray[nestLevel] + "_" + payloadKeyArray[nestLevel]  + loopCount.toString();      
-    } // End of: Else: we are not at the top.
+      let passExamElement = true;
 
-    // If we are at the bottom
-    // Finish constructing the key.
-    // Then run the key expression in a while loop to load the payloadArray
-    if(nestLevel === payloadKeyArray.length - 2)
-    {
-      // Finish building the keyUnderConstruction.
-      keyUnderConstruction = keyUnderConstruction +
-      "_" + payloadKeyArray[nestLevel + 1];
+      let splitExamElementArray = examElement[0].split("_");
 
-      // Now we will use the key that we built.
-      // Check if the data exists in the payload
-      if(payloadObject[keyUnderConstruction])
-      {
-        // If the data is there then push it onto the array we use to write to the database.
-        payloadArray.push([keyUnderConstruction, payloadObject[keyUnderConstruction]]);
-
-        loopCount = loopCount + 1;
-      }
-      else // No more payloads were found at this level.  
-      {
-        // If nothing was found when the loopCount is at zero then we are completely done.
-        if(loopCount === 0)
+      payloadKeyArray.forEach
+      (
+        function(payloadKeyArrayElement, payloadKeyArrayIndex)
         {
-          continueLooping = false;
-          return [payloadArray, continueLooping];
-        }
-        else // data was found previously at this level so we are not done.
-        {
-          continueLooping = true;
-          return [payloadArray, continueLooping];
 
-        } // End of: Else: data was found previously at this level so we are not done.
-      } // End of: Else: No more payloads were found at this level. 
-    } // End of: If we are at the bottom
-    else // We are not at the bottom. We need to recurse deeper into the payloadKeyArray.
-    {
-      // This function calls itself so as to add more text to the keyUnderConstruction
-      recursionResult = loadPayloadArray(payloadArray, payloadKeyArray, payloadObject, nestLevel + 1, 0, keyUnderConstruction, true);
+          // If this is the first element in payloadKeyArray
+          if(payloadKeyArrayIndex === 0)
+          {
+            if(splitExamElementArray[0] != payloadKeyArrayElement)
+            {
+              passExamElement = false;
+            }
+          }
+          // Else If: Not first nor the last element in payloadKeyArray
+          else if(payloadKeyArrayIndex != payloadKeyArray.length - 1) 
+          {
+            if(splitExamElementArray[payloadKeyArrayIndex * 2] != payloadKeyArrayElement)
+            {
+              passExamElement = false;
+            }
+          }
+          // Else: Must be the last element in payloadKeyArray
+          else 
+          {
+            if(splitExamElementArray[splitExamElementArray.length -1] != payloadKeyArrayElement)
+            {
+              passExamElement = false;
+            }
+          }
 
-      payloadArray = recursionResult[0];
+        } // End of: function(payloadKeyArrayElement, payloadKeyArrayIndex){...}
+      ) // End of: payloadKeyArray.forEach(...)
 
-      loopCount = loopCount + 1;         
+      return passExamElement
 
-      continueLooping = recursionResult[1];
-      
-      if(!continueLooping)
-      {
-        return recursionResult
-      };
+    } // End of: function(examElement){...}
+  ); // End of: let payloadArray = Object.entries(payloadObject).filter
 
-    } // End of: Else we are not at the bottom. Go deeper into the recursion and pop out again.
-  } // End of: while(true)
-}; // End of: function loadPayloadArray(address, objKey, objectNestLevel, previousPath){...}
-// End of: Declare a function that we will use to load the payloadArray dynamically once the payload is known.  
+  return payloadArray
+
+}; // End of: function loadPayloadArray(payloadKeyArray, payloadObject){...}
+// End of: Declare a function that we will use to load the payloadArray dynamically once the payload is known. 
+
+
 
 
 // Define a function to load nested data which has been validated into the object we will write to the database.

@@ -76,3 +76,5 @@
 {"userId":3715,"email":"bob@gmail.io","hashedPassword":"7423a2bfedabeb1a628f53b9527826e6c8f04b982d840cce2edde780244cf018","timeStamp":1588593453922,"deleted":false}
 {"userId":3715,"email":"bob@gmail.io","hashedPassword":"cfc2b7c86c5e015ad94ed7d5340309c69f236f244dc00b3860f264649882d725","timeStamp":1588593499792,"deleted":false}
 {"userId":3715,"email":"bob@gmail.io","hashedPassword":"cfc2b7c86c5e015ad94ed7d5340309c69f236f244dc00b3860f264649882d725","timeStamp":1589040939095,"deleted":true}
+{"userId":3940,"email":"falicia@gmail.com","hashedPassword":"cc806b9a810cd1b970243177ddd32911cc041cdba5249d4634b5ef90ac6ee8e6","timeStamp":1591192490375,"deleted":false}
+{"userId":3940,"email":"falicia@gmail.com","hashedPassword":"1ea81060a3f9e2e1de7eeaf05c6aac74cdad69b462a9b1ebc4fd0ca135c5c7b3","timeStamp":1591192642233,"deleted":false}

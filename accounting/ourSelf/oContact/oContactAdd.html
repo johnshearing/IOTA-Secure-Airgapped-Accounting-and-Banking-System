@@ -87,6 +87,7 @@
   </form>
 </div>
 
+
 <script>
 /*
  * Frontend Logic for application
@@ -351,6 +352,41 @@ app.formResponseProcessor = function(formId,requestPayload,responsePayload)
 // Bind controls to behaviors when the page loads.
 app.loadoContactAddPage = function()
 {
+  // Define the function that fires when a domain element is selected.
+  // The following function makes datalists context sensitive.
+  // When a change is made on the domain select or input element
+  // the range element is matched with the appropriate datalist.
+  // This requires that the domainFor and rangeFor attributes have the same value.
+  function onChangeBehaviorForDomainElement (event)  
+  {
+    // Stop it from redirecting anywhere
+    event.preventDefault();
+
+    let domainElement = event.target;
+    let rangeIdentifier = domainElement.getAttribute("domainFor");
+
+    let rangeCandidates = domainElement.parentNode.parentNode.querySelectorAll("input");
+
+    for (let currentElement of rangeCandidates)
+    {
+      if(currentElement.getAttribute("rangeFor") === rangeIdentifier)
+      {
+        currentElement.setAttribute("list", event.target.value);
+        break;
+      }
+    };
+  } // End of: function onChangeBehaviorForAttributeName (event)
+  // Define the function that fires when an attribute is selected.
+
+  // Bind the function above to the onChange event of the input element.
+  document.querySelectorAll("input").forEach(function(currentInput)
+  {
+    if(currentInput.getAttribute('domainFor'))
+    {
+      currentInput.addEventListener("change", onChangeBehaviorForDomainElement, true);
+    }
+  });
+
   // Define the function that fires when the moveObjectUpButton is selected.
   function onClickBehaviorForMoveObjectUpButton (event)  
   {
@@ -561,6 +597,16 @@ app.loadoContactAddPage = function()
     // Set all the clone's element values to ""
     cln.querySelectorAll(".resetElement").forEach(function(element){element.value = "";});
 
+    // Create an event listener for the onChange event of the clone's 
+    // input elements which have the domainFor attribute.
+    cln.querySelectorAll("input").forEach(function(currentInput)
+    {
+      if(currentInput.getAttribute('domainFor'))
+      {
+        currentInput.addEventListener("change", onChangeBehaviorForDomainElement, true);
+      }
+    });
+
     // Create an event listener for the onclick event of the clone's removeObjectButtons.
     cln.querySelectorAll(".removeObjectButton").forEach(function(removeObjectButton)
     {
@@ -680,12 +726,28 @@ app.loadoContactAddPage = function()
 // Define a function which renumbers field names in children objects as we create, move, or delete their element wrappers
 function renumberNamedElementsInGroupWrapper(groupWrapper)
 {
+  //Debug let testCounter = 0
+
   // Used to determine if we are changing levels of hierarchy in the DOM
   // We haven't looked at an elementWrapper yet so it's undefined.
   let previousElementWrapper = undefined;
 
-  // Prevents pushing too many elements onto the ansestorWrappers array.
-  let alreadyChecked = false;
+  // Marks that we have dropped into an elementWrapper and pushed a reference to the 
+  // previousElementWrapper onto the ancestorWrappers array along with an index element 
+  // showing for which child elementWrapper we are currently numbering elements. The index
+  // will always start at zero when pushed onto the ancestorWrappers array. That is because 
+  // we always start numbering elements in the first child wrapper at the current level and
+  // the index is zero based.
+  let pushed = false;
+
+  // Prevents incrementing the counter element in ancestorWrappers array more than once for each loop through the elementWrapper.
+  // Marks that we have moved to the next sibling element wrapper.
+  let incremented = false;
+
+  // Set when returning the incremented value of the latest ancestorWrapper element to zero.
+  // Marks that we are working in an entirely new groupWrapper which is the next sibling of the previous 
+  // group wrapper at the current level and another child of the of the latest ancestorWrapper 
+  let zeroed = false;
 
   // The length of ancestorWrappers array indicates which number in the name string gets replaced with the numeric value in the array.
   // Example fieldName: field_field0_defaultElement_defaultElement0_elementName  
@@ -694,26 +756,43 @@ function renumberNamedElementsInGroupWrapper(groupWrapper)
   // A length of two in ancestorWrappers indicates we put the numeric value in the array in the place of the zero in defaultElement0
   let ancestorWrappers = [["previousElementWrappers_PushedHere", 0]];
 
+  // Facilitates climbing back up the DOM hierarchy without losing history
+  let ancestorStack = [];
+
   // Start at the highest groupWrapper in the hierarchy defined by the groupWrapper that was passed into the function.
   groupWrapper = groupWrapper.closest("form > .groupWrapper");
 
-  // Loop through the elementWrappers.
+  // Loop through each elementWrapper.
   groupWrapper.querySelectorAll('.elementWrapper').forEach(function(elementWrapper, wrapperIndex)
   {
-    let incremented = false;
-
     // Loop through the form elements inside each elementWrapper.
     elementWrapper.querySelectorAll('.resetElement').forEach(function(fieldElement)
     {
-      //  only push once                prevents error           if current wrapper is inside the previous
-      if(alreadyChecked === false && previousElementWrapper && previousElementWrapper.contains(elementWrapper))
+
+      //Debug let elementColor = fieldElement.style.backgroundColor;
+      //Debug fieldElement.style.backgroundColor  = "blue";
+
+      // Start of: Set the amount of elements in ancestorWrappers to show the which number in the 
+      // element name is to be changed (the nest level) and set the index element to show which sibling 
+      // wrapper the current element is in. This will be the value of the number changed. 
+      // Also set the flags which show where we are and what we did to this element.
+
+      // If we are inside the elementWrapper for which we were just numbering elements.
+      //    prevents error           if current wrapper is inside the previous
+      if(previousElementWrapper && previousElementWrapper.contains(elementWrapper))
       {
         // We just jumped down a level in the DOM
         // The length of this array tells us how many wrappers suround this element - How deep
         // Or which number in the element name is to be replaced with the numeric value in the array.
         // The numeric value in the array tells us the replacement value.
-        ancestorWrappers.push([previousElementWrapper, 0]);
-        alreadyChecked = true;
+
+        // Only push once
+        if(pushed === false)
+        {
+          ancestorWrappers.push([previousElementWrapper, 0]);
+          pushed = true;
+        }
+
       }
       else // current wrapper is not inside the previous
       {
@@ -723,36 +802,62 @@ function renumberNamedElementsInGroupWrapper(groupWrapper)
           // If we are at the top level...
           if(ancestorWrappers.length === 1 && !previousElementWrapper)
           {
-            break; // Don't do anything.
+            break; // Don't do anything to the ancestorWrappers array.
           }
-          // Else If the current wrapper is inside the last ancestorWrapper
+          // Else If the current wrapper is inside the last ancestorWrapper. 
+          // So we are working with a new elementWrapper at the same level
+          // inside the last ancestorWrapper in the ancestorWrappers array.
           else if(ancestorWrappers.length > 1 && ancestorWrappers[ancestorWrappers.length - 1][0].contains(elementWrapper))
           {
-            // We are working with a new elementWrapper at the same level.
-            // So increment the numeric value held in the last element of the ancestorWrappers array.
-
-            if(alreadyChecked === false)
+            if // If these are siblings which track the same data - phone numbers for example, then increment counter,
+            ( 
+              elementWrapper.parentNode === previousElementWrapper.parentNode
+              || (ancestorStack[ancestorStack.length - 1] && elementWrapper.previousElementSibling === ancestorStack[ancestorStack.length - 1][0])
+            )
             {
-              ancestorWrappers[ancestorWrappers.length - 1][1] = ancestorWrappers[ancestorWrappers.length - 1][1] + 1;
-              alreadyChecked = true;
-              incremented = true;
+              if
+              (
+                incremented === false // If this is the very first element in the elementWrapper...
+                && pushed === false   // and if we are not working with the very first elementWrapper in this groupWrapper. 
+              )
+              {
+                // increment the count
+                ancestorWrappers[ancestorWrappers.length - 1][1]++;
+                incremented = true;
+              }
+            }
+            // Else: This elementWrapper is at the same nest level as previousElementWrapper but is not a sibling.
+            // So different elements are being numbered as when previous.
+            else 
+            {
+              // Need to set the index element in the ancestorWrapper array to zero to start numbering at the beginning.
+              if
+              (zeroed === false) // If this is NOT the very first element in the elementWrapper... 
+              {
+                // Zero the count
+                ancestorWrappers[ancestorWrappers.length - 1][1] = 0;
+                zeroed = true;
+              }
             }
 
             break;
           }
           else // the current wrapper is not inside the last ancestorWrapper
           {
-            if(ancestorWrappers.length > 1)
+            if(ancestorWrappers.length > 1) // if we are not at the top.
             {
+
+              // Remember where we have been.
+              ancestorStack.push(ancestorWrappers[ancestorWrappers.length - 1]);
+
+
               // Remove the last element and check if the next wrapper up contains the current wrapper.
               ancestorWrappers.pop();
 
               // We are working with a new elementWrapper at the same level.
               // So increment the numeric value held in the last element of the ancestorWrappers array.
-              ancestorWrappers[ancestorWrappers.length - 1][1] = ancestorWrappers[ancestorWrappers.length - 1][1] + 1; 
-              incremented = true;   
-              
-              // Now run through this while loop again to see if the last element contain the current wrapper.
+              // ancestorWrappers[ancestorWrappers.length - 1][1]++;
+              // incremented = true;
             }
             else // we are back at the top level.
             {
@@ -760,21 +865,25 @@ function renumberNamedElementsInGroupWrapper(groupWrapper)
               // So increment the numeric value held in the only element of the ancestorWrappers array.
               if(!incremented)
               {
-                ancestorWrappers[ancestorWrappers.length - 1][1] = ancestorWrappers[ancestorWrappers.length - 1][1] + 1;
+                ancestorWrappers[ancestorWrappers.length - 1][1]++;
                 incremented = true;
               }
+
               break;   
             } // End of: Else - we are at the top level
           } // End of: Else - the current wrapper is not inside the last ancestorWrapper
         } // End of: while (true)
       } // End of: Else - the current wrapper is not inside the previous
 
-      // Get the form element's name.
-      let previousNameAttribute = fieldElement.getAttribute("name");
+      // End of: Set the amount of elements in ancestorWrappers to show...
+
+      // Start of: Build the form element's name using info in the ancestorWrappers array.
+
+      let fieldNameAttribute = fieldElement.getAttribute("name");
       
       // Search for the nth occurance of a number according to ancestorWrappers.length
-      //  A length of one indicates that we search for the first number in the name string.
-      //  A length of two indicates that we search for the second number in the name string.
+      // A length of one indicates that we search for the first number in the name string.
+      // A length of two indicates that we search for the second number in the name string.
 
       // Starting out with an empty string in the reduce function below.
       let initialValue = "";
@@ -784,7 +893,7 @@ function renumberNamedElementsInGroupWrapper(groupWrapper)
 
       // Spliting the name string of the current element on the underscore.
       // This makes it easy to find and replace numbers in the string.
-      const nameAttributeArray = previousNameAttribute.split("_")
+      const nameAttributeArray = fieldNameAttribute.split("_")
 
       // Running the reduce function on every element in the nameAttributeArray
       let nextNameAttribute = nameAttributeArray.reduce
@@ -804,7 +913,7 @@ function renumberNamedElementsInGroupWrapper(groupWrapper)
               // Insert numbers in the form element's name string to show it's position within the DOM
               // This information is needed in order to write a well formed object to the JSON database.
               //                                                       search for numbers      replace with numbers denoting postion
-              accumulator = accumulator +  currentSplitElement.replace(/[0-9]+(?!.*[0-9])/, ancestorWrappers[ancestorWrappers.length - 1][1]);
+              accumulator = accumulator +  currentSplitElement.replace(/[0-9]+(?!.*[0-9])/, ancestorWrappers[ancestorWrappers.length - 1][1].toString());
 
               // Put a dash at the end of the element if it is not the last one.
               if(currentSplitElementIndex < nameAttributeArray.length -1){accumulator = accumulator + "_"};
@@ -834,16 +943,24 @@ function renumberNamedElementsInGroupWrapper(groupWrapper)
         } // End of: function (accumulator, currentSplitElement){...}
         , initialValue // This was an empty string passed in to the reduce function to get things started.
       ); // End of: let nextNameAttribute = nameAttributeArray.reduce(function(){do stuff})
+
+      //Debug testCounter = testCounter + 1;
         
       // Set the name of the formElement as calculated above.
       fieldElement.setAttribute("name", nextNameAttribute)
 
+      //Debug fieldElement.style.backgroundColor  = elementColor
+
     }); // End of: elementWrapper.querySelectorAll('.resetElement').forEach(function(fieldElement){...}
+    // End of: Loop through the form elements inside each elementWrapper.
 
     previousElementWrapper = elementWrapper;
-    alreadyChecked = false;
+    ancestorStack = [];
+    pushed = false;
+    incremented = false;
+    zeroed = false;
     
-  }); // End of: groupWrapper.querySelectorAll('.elementWrapper').forEach(function(elementWrapper, wrapperIndex)
+  }); // End of: groupWrapper.querySelectorAll('.elementWrapper').forEach(function(elementWrapper, wrapperIndex)  
 } // End of: function renumberNamedElementsInGroupWrapper(groupWrapper){...}
 // End of: Define a function which renumbers field names in children objects as we create, move, or delete their element wrappers
 

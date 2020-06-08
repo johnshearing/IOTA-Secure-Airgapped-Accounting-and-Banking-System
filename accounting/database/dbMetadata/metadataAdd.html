@@ -106,7 +106,7 @@
                   <div class="objectWrapper elementWrapper">
                     <div class="inputWrapper">
                       <div class="inputLabel">Default Validation Name</div>
-                      <input class="resetElement" name="field_field0_defaultElement_defaultElement0_validation_validation0_default_default0_defaultValidationName" type="text"/>
+                      <input class="resetElement" name="field_field0_defaultElement_defaultElement0_validation_validation0_default_default0_defaultValidationName" type="text" list="validation"/>
                     </div>
                     <div class="inputWrapper">
                       <div class="inputLabel">Default Validation Value</div>
@@ -123,7 +123,7 @@
                   <div class="objectWrapper elementWrapper">
                     <div class="inputWrapper">
                       <div class="inputLabel">Post Validation Name</div>
-                      <input class="resetElement" name="field_field0_defaultElement_defaultElement0_validation_validation0_post_post0_postValidationName" type="text"/>
+                      <input class="resetElement" name="field_field0_defaultElement_defaultElement0_validation_validation0_post_post0_postValidationName" type="text" list="validation"/>
                     </div>
                     <div class="inputWrapper">
                       <div class="inputLabel">Post Validation Value</div>
@@ -140,7 +140,7 @@
                   <div class="objectWrapper elementWrapper">
                     <div class="inputWrapper">
                       <div class="inputLabel">Put Validation Name</div>
-                      <input class="resetElement" name="field_field0_defaultElement_defaultElement0_validation_validation0_put_put0_putValidationName" type="text"/>
+                      <input class="resetElement" name="field_field0_defaultElement_defaultElement0_validation_validation0_put_put0_putValidationName" type="text" list="validation"/>
                     </div>
                     <div class="inputWrapper">
                       <div class="inputLabel">Put Validation Value</div>
@@ -157,6 +157,23 @@
                 <button type="button" class="disabled controlObjectButton removeObjectButton red" disabled>Remove</button>
               </div>
               <button type="button" class="addNewObjectButton">Add New</button>
+            </div>
+            <button type="button" class="disabled controlObjectButton moveObjectUpButton blue" disabled>Move Up</button>
+            <button type="button" class="disabled controlObjectButton moveObjectDownButton blue" disabled>Move Down</button>
+            <button type="button" class="disabled controlObjectButton removeObjectButton red" disabled>Remove</button>
+          </div>
+          <button type="button" class="addNewObjectButton">Add New</button>
+        </div>
+        <div class="objectLabel">Calculations</div>
+        <div class="objectWrapper groupWrapper">
+          <div class="objectWrapper elementWrapper">
+            <div class="inputWrapper">
+              <div class="inputLabel">Calculation Name</div>
+              <input class="resetElement" name="field_field0_calculation_calculation0_calculationName" type="text" list="calculation"/>
+            </div>
+            <div class="inputWrapper">
+              <div class="inputLabel">Calculation Value</div>
+              <input class="resetElement" name="field_field0_calculation_calculation0_calculationValue" type="text"/>
             </div>
             <button type="button" class="disabled controlObjectButton moveObjectUpButton blue" disabled>Move Up</button>
             <button type="button" class="disabled controlObjectButton moveObjectDownButton blue" disabled>Move Down</button>
@@ -220,6 +237,17 @@
   <option value="time"/>
   <option value="url"/>
   <option value="week"/>
+</datalist>
+<datalist id="validation">
+  <option value="passIfNotEmpty"/>
+  <option value="passIfString"/>
+  <option value="passIfString&NotEmptyThenTrim"/>
+  <option value="passIfHasAmpersand"/>
+  <option value="passMenuItemsOnly"/>
+</datalist>
+<datalist id="calculation">
+  <option value="postHandlerPreprocessing"/>
+  <option value="putHandlerPreprocessing"/>
 </datalist>
 
 
