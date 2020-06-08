@@ -106,12 +106,13 @@ Then building on top of this framework will go quickly.
  
 Since this project depends upon the IOTA JavaScript library there are unaudited dependencies. So we are trusting that the IOTA foundation as taken all the necessary steps to secure this library and all it's dependencies. In the future we can write and audit our own library to interact with the IOTA Tangle but this is not an appropriate place to start our work.  
 
+#### An Unexpected Result  
+This code has evolved into a system which is capable of describing and changing its own data dictionary - its own DNA if you will. The generator reads JSON from the data dictionary which contain instructions to build all the forms and code required to make and manage JSON documents. These generated forms and code are descriptive enough to make valid entries in the data dictionary which created the forms and code in the first place. So this application generator can now be used to build, maintain, and change itself as well as to build other types of database applications and data transformation utilities. Oddly, while the JSON produced from the generated forms may contain all the same data as the JSON in the data dictionary from which it was produced, the data structure of the new JSON is different from the original and so will require different generator code to produce a form which is capable of producing the exact original JSON from the data dictionary. It seems like it may be difficult or impossible to build a machine that can reproduce it's own exact form. However this experiment shows that it is possible for a machine to produce a different (complementary) machine which is capable of producing it's parent in exact detail. 
+
 #### Credits  
 Trust the Lord with all thine heart; and lean not unto thine own understanding.  
 In all thy ways acknowledge him, and he shall direct thy paths.  
 Proverbs 3:3-6  
-
-This code has evolved into a system descriptive enough to build and maintain itself. The generator reads JSON from the data dictionary which contain instructions to build all the forms and code required to make and manage JSON documents. These generated forms and code are descriptive enough to make valid entries in the data dictionary which created the forms and code in the first place. So this application generator can now be used to build, maintain, and change itself as well as build other types of database applications and data transformation utilities.   
 
 When I started this project I had only a vague idea of what I was trying to accomplish.  
 I wanted to make an accounting system for cryptocurrency that would be easy to audit.  
