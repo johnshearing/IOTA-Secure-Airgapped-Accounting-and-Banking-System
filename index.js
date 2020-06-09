@@ -15,7 +15,6 @@
 const server = require('./lib/server');
 const workers = require('./lib/workers');
 const cli = require('./lib/repl');
-const helpers = require('./lib/aHelpers');
 
 
 // Declare the app.
@@ -36,8 +35,6 @@ app.init = function()
   // That's so console.log messages from workers.init and server.init do no confuse users at the command prompt
   // setTimeout(function(){cli.init();}, 5000);
   
-  // Get a random number at the console.
-  // console.log(helpers.createRandomString(20));  
 };
 
 
