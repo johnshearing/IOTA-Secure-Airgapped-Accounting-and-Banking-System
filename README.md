@@ -137,7 +137,7 @@ I feel blessed and I love God. The work you see here is the result.
 
 The code may not be particularly well written - maybe it is - I don't know - I am learning and changing it as I go.  
 But it replicates, it evolves, and it builds useful machines.   
-That's why others may wish to investigate this code, its applications, and the methods used to create it.  
+That's why others may wish to investigate this code, its applications, and the spirit in which it was created.  
 
 Thanks, John  
 
