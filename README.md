@@ -107,7 +107,18 @@ Then building on top of this framework will go quickly.
 Since this project depends upon the IOTA JavaScript library there are unaudited dependencies. So we are trusting that the IOTA foundation as taken all the necessary steps to secure this library and all it's dependencies. In the future we can write and audit our own library to interact with the IOTA Tangle but this is not an appropriate place to start our work.  
 
 #### An Unexpected Result  
-This code has evolved into a system which is capable of describing and changing its own data dictionary - its own DNA if you will. The generator reads JSON from the data dictionary which contain instructions to build all the forms and code required to make and manage JSON documents. These generated forms and code are descriptive enough to make valid entries in the data dictionary which created the forms and code in the first place. So this application generator can now be used to build, maintain, and change itself as well as to build other types of database applications and data transformation utilities. Oddly, while the JSON produced from the generated forms may contain all the same data as the JSON in the data dictionary from which it was produced, the data structure of the new JSON is different from the original and so will require different generator code to produce a form which is capable of producing the exact original JSON from the data dictionary. It seems like it may be difficult or impossible to build a machine that can reproduce it's own exact form. However this experiment shows that it is possible for a machine to produce a different (complementary) machine which is capable of producing it's parent in exact detail. 
+This code has evolved into a system which is capable of describing and changing its own data dictionary - its own DNA if you will. The generator reads JSON from the data dictionary which contain instructions to build all the forms and code required to make and manage JSON documents. These generated forms and code are descriptive enough to make valid entries in the data dictionary which created the forms and code in the first place. So this application generator can now be used to build, maintain, and change itself as well as to build other types of database applications and data transformation utilities. Oddly, while the JSON produced from the generated forms may contain all the same data as the JSON in the data dictionary from which it was produced, the data structure of the new JSON is different from the original and so will require different generator code to produce a form which is capable of producing the exact original JSON from the data dictionary. It seems like it may be difficult or impossible to build a machine that can reproduce it's own exact form. However this experiment shows that it is possible for a machine to produce a different (complementary) machine which is capable of producing it's parent in exact detail.  
+
+[This video animation](https://youtu.be/gG7uCskUOrA) shows how DNA is used to manufacture proteins.  
+The generator and the HTML forms produced by the generator hold this same relationship with and the JSON in the data dictionary.  
+The proteins and generators act as machines while the DNA and JSON tell the machines exactly what to make.  
+
+[This video animation](https://youtu.be/TNKWgcFPHqw) shows how proteins are used in the replication of DNA.  
+This animation shows the complementary nature of the two strands which make the double helix.  
+This is the same complementary relationship between the two lines of JSON in the data dictionary.  
+So it appears that I bumped into the same problem that nature encountered when building a replicating machine.  
+It also appears that my solution was the same.  
+This is not surprising - as you will see in the next section, my methods are the very same as those used by nature.
 
 #### Credits  
 Trust the Lord with all thine heart; and lean not unto thine own understanding.  
@@ -125,8 +136,7 @@ But I have discovered that it is possible to accomplish tasks that are way beyon
 I feel blessed and I love God. The work you see here is the result.  
 
 The code may not be particularly well written - maybe it is - I don't know - I am learning and changing it as I go.  
-But it does something very interesting - It generates it's own code.  
-So it's very easy to change poor code for better code as better code is discovered.  
+But it replicates, it evolves, and it builds other machines.  
 That is why I think the methods used here may be useful to other programmers.  
 
 Check back often to follow the progress.  
