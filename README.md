@@ -110,11 +110,11 @@ Since this project depends upon the IOTA JavaScript library there are unaudited 
 This code has evolved into a system which is capable of describing and changing its own data dictionary - its own DNA if you will. The generator reads JSON from the data dictionary which contain instructions to build all the forms and code required to make and manage JSON documents. These generated forms and code are descriptive enough to make valid entries in the data dictionary which created the forms and code in the first place. So this application generator can now be used to build, maintain, and change itself as well as to build other types of database applications and data transformation utilities. Oddly, while the JSON produced from the generated forms may contain all the same data as the JSON in the data dictionary from which it was produced, the data structure of the new JSON is different from the original and so will require different generator code to produce a form which is capable of producing the exact original JSON from the data dictionary. It seems like it may be difficult or impossible to build a machine that can reproduce it's own exact form. However this experiment shows that it is possible for a machine to produce a different (complementary) machine which is capable of producing it's parent in exact detail.  
 
 [This video animation](https://youtu.be/gG7uCskUOrA) shows how DNA is used to manufacture proteins.  
-The generator and the HTML forms produced by the generator hold this same relationship with and the JSON in the data dictionary.  
-The proteins and generators act as machines while the DNA and JSON tell the machines exactly what to make.  
+The JSON in the data dictionary holds this same relationship with the generator and the HTML forms.  
+The JSON tells the generator how to make forms in the same way that DNA tells RNA how to make proteins.  
 
 [This video animation](https://youtu.be/TNKWgcFPHqw) shows how proteins are used in the replication of DNA.  
-This animation shows the complementary nature of the two strands which make the double helix.  
+It shows the complementary nature of the two strands which make the double helix.  
 This is the same complementary relationship between the two lines of JSON in the data dictionary.  
 So it appears that I bumped into the same problem that nature encountered when building a replicating machine.  
 It also appears that my solution was the same.  
@@ -132,14 +132,12 @@ I'm doing the work but I'm not trying to control were it's going.
 Perhaps some will understand when I say that the experience is spiritual and that the entire project is a demonstration of faith.    
 
 Most people need to know what they are going to make before they start their work.  
-But I have discovered that it is possible to accomplish tasks that are way beyond the limits of my own intellect by letting go of the big plan and just doing the work set down in front of me.  
+But I have discovered that it is possible to accomplish tasks that are way beyond the limits of my own intellect by letting go of the big plan and just doing the work set down in front of me. This is exactly what nature does.  
 I feel blessed and I love God. The work you see here is the result.  
 
 The code may not be particularly well written - maybe it is - I don't know - I am learning and changing it as I go.  
-But it replicates, it evolves, and it builds other machines.  
-That is why I think the methods used here may be useful to other programmers.  
+But it replicates, it evolves, and it builds useful machines.   
+That's why others may wish to investigate this code, its applications, and the methods used to create it.  
 
-Check back often to follow the progress.  
-Feel free to make suggestions or help with the coding.  
 Thanks, John  
 
