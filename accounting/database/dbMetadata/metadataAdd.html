@@ -187,6 +187,44 @@
       </div>
       <button type="button" class="addNewObjectButton">Add New</button>
     </div>
+    <div class="objectLabel">WebPage Information</div>
+    <div class="objectWrapper groupWrapper">
+      <div class="objectWrapper elementWrapper">
+        <div class="inputWrapper">
+          <div class="inputLabel">WebPage Heading</div>
+          <input class="resetElement" name="webPage_webPage0_webPageHeading" type="text" placeHolder="Enter a WebPage Heading"/>
+        </div>
+        <div class="inputWrapper">
+          <div class="inputLabel">WebPage Type</div>
+          <input class="resetElement" name="webPage_webPage0_webPageType" type="text" list="webPageTypes" domainFor="formTypes"/>
+        </div>
+        <div class="objectLabel">Forms</div>
+        <div class="objectWrapper groupWrapper">
+          <div class="objectWrapper elementWrapper">
+            <div class="inputWrapper">
+              <div class="inputLabel">Form Type</div>
+              <input class="resetElement" name="webPage_webPage0_form_form0_formType" type="text" rangeFor="formTypes"/>
+            </div>
+            <div class="inputWrapper">
+              <div class="inputLabel">Form Heading</div>
+              <input class="resetElement" name="webPage_webPage0_form_form0_formHeading" type="text"/>
+            </div>
+            <div class="inputWrapper">
+              <div class="inputLabel">Submit Button Text</div>
+              <input class="resetElement" name="webPage_webPage0_form_form0_submitButtonText" type="text"/>
+            </div>
+            <button type="button" class="disabled controlObjectButton moveObjectUpButton blue" disabled>Move Up</button>
+            <button type="button" class="disabled controlObjectButton moveObjectDownButton blue" disabled>Move Down</button>
+            <button type="button" class="disabled controlObjectButton removeObjectButton red" disabled>Remove</button>
+          </div>
+          <button type="button" class="addNewObjectButton">Add New</button>
+        </div>
+        <button type="button" class="disabled controlObjectButton moveObjectUpButton blue" disabled>Move Up</button>
+        <button type="button" class="disabled controlObjectButton moveObjectDownButton blue" disabled>Move Down</button>
+        <button type="button" class="disabled controlObjectButton removeObjectButton red" disabled>Remove</button>
+      </div>
+      <button type="button" class="addNewObjectButton">Add New</button>
+    </div>
     <div class="inputWrapper ctaWrapper smallTopMargin">
       <button type="submit" class="cta green">Create Table</button>
     </div>
@@ -248,6 +286,21 @@
 <datalist id="calculation">
   <option value="postHandlerPreprocessing"/>
   <option value="putHandlerPreprocessing"/>
+</datalist>
+<datalist id="webPageTypes">
+  <option value="addPage"/>
+  <option value="listPage"/>
+  <option value="editPage"/>
+</datalist>
+<datalist id="addPage">
+  <option value="addForm"/>
+</datalist>
+<datalist id="listPage">
+  <option value="listForm"/>
+</datalist>
+<datalist id="editPage">
+  <option value="editForm"/>
+  <option value="deleteForm"/>
 </datalist>
 
 
