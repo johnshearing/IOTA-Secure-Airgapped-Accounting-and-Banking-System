@@ -8,11 +8,11 @@
   <form id="metadataAdd" action="/api/metadata" method="POST">
     <div class="formError"></div>
     <div class="inputWrapper">
-      <div class="inputLabel">TableName</div>
+      <div class="inputLabel">Table Name</div>
       <input name="tableName" type="text" placeHolder="Enter a Table Name"/>
     </div>
     <div class="inputWrapper">
-      <div class="inputLabel">directory</div>
+      <div class="inputLabel">Directory</div>
       <input name="directory" type="text" placeHolder="Enter a Directory"/>
     </div>
     <div class="inputWrapper">
@@ -96,9 +96,9 @@
                 <button type="button" class="disabled controlObjectButton moveObjectDownButton blue" disabled>Move Down</button>
                 <button type="button" class="disabled controlObjectButton removeObjectButton red" disabled>Remove</button>
               </div>
-              <button type="button" class="addNewObjectButton">Add New</button>
+              <button type="button" class="addNewObjectButton">Add New Attributes</button>
             </div>
-            <div class="objectLabel">Validation</div>
+            <div class="objectLabel">Validation Instructions</div>
             <div class="objectWrapper groupWrapper">
               <div class="objectWrapper elementWrapper">
                 <div class="objectLabel">Default Validation</div>
@@ -116,7 +116,7 @@
                     <button type="button" class="disabled controlObjectButton moveObjectDownButton blue" disabled>Move Down</button>
                     <button type="button" class="disabled controlObjectButton removeObjectButton red" disabled>Remove</button>
                   </div>
-                  <button type="button" class="addNewObjectButton">Add New</button>
+                  <button type="button" class="addNewObjectButton">Add New Default Validation</button>
                 </div>
                 <div class="objectLabel">Post Validation</div>
                 <div class="objectWrapper groupWrapper">
@@ -133,7 +133,7 @@
                     <button type="button" class="disabled controlObjectButton moveObjectDownButton blue" disabled>Move Down</button>
                     <button type="button" class="disabled controlObjectButton removeObjectButton red" disabled>Remove</button>
                   </div>
-                  <button type="button" class="addNewObjectButton">Add New</button>
+                  <button type="button" class="addNewObjectButton">Add New Post Validation</button>
                 </div>
                 <div class="objectLabel">Put Validation</div>
                 <div class="objectWrapper groupWrapper">
@@ -150,19 +150,19 @@
                     <button type="button" class="disabled controlObjectButton moveObjectDownButton blue" disabled>Move Down</button>
                     <button type="button" class="disabled controlObjectButton removeObjectButton red" disabled>Remove</button>
                   </div>
-                  <button type="button" class="addNewObjectButton">Add New</button>
+                  <button type="button" class="addNewObjectButton">Add New Put Validation</button>
                 </div>
                 <button type="button" class="disabled controlObjectButton moveObjectUpButton blue" disabled>Move Up</button>
                 <button type="button" class="disabled controlObjectButton moveObjectDownButton blue" disabled>Move Down</button>
                 <button type="button" class="disabled controlObjectButton removeObjectButton red" disabled>Remove</button>
               </div>
-              <button type="button" class="addNewObjectButton">Add New</button>
+              <button type="button" class="addNewObjectButton">Add New Validation Instructions</button>
             </div>
             <button type="button" class="disabled controlObjectButton moveObjectUpButton blue" disabled>Move Up</button>
             <button type="button" class="disabled controlObjectButton moveObjectDownButton blue" disabled>Move Down</button>
             <button type="button" class="disabled controlObjectButton removeObjectButton red" disabled>Remove</button>
           </div>
-          <button type="button" class="addNewObjectButton">Add New</button>
+          <button type="button" class="addNewObjectButton">Add New Default Elements</button>
         </div>
         <div class="objectLabel">Calculations</div>
         <div class="objectWrapper groupWrapper">
@@ -179,24 +179,24 @@
             <button type="button" class="disabled controlObjectButton moveObjectDownButton blue" disabled>Move Down</button>
             <button type="button" class="disabled controlObjectButton removeObjectButton red" disabled>Remove</button>
           </div>
-          <button type="button" class="addNewObjectButton">Add New</button>
+          <button type="button" class="addNewObjectButton">Add New Calculations</button>
         </div>
         <button type="button" class="disabled controlObjectButton moveObjectUpButton blue" disabled>Move Up</button>
         <button type="button" class="disabled controlObjectButton moveObjectDownButton blue" disabled>Move Down</button>
         <button type="button" class="disabled controlObjectButton removeObjectButton red" disabled>Remove</button>
       </div>
-      <button type="button" class="addNewObjectButton">Add New</button>
+      <button type="button" class="addNewObjectButton">Add New Field Information</button>
     </div>
     <div class="objectLabel">WebPage Information</div>
     <div class="objectWrapper groupWrapper">
       <div class="objectWrapper elementWrapper">
         <div class="inputWrapper">
-          <div class="inputLabel">WebPage Heading</div>
-          <input class="resetElement" name="webPage_webPage0_webPageHeading" type="text" placeHolder="Enter a WebPage Heading"/>
-        </div>
-        <div class="inputWrapper">
           <div class="inputLabel">WebPage Type</div>
           <input class="resetElement" name="webPage_webPage0_webPageType" type="text" list="webPageTypes" domainFor="formTypes"/>
+        </div>
+        <div class="inputWrapper">
+          <div class="inputLabel">WebPage Heading</div>
+          <input class="resetElement" name="webPage_webPage0_webPageHeading" type="text" placeHolder="Enter a WebPage Heading"/>
         </div>
         <div class="objectLabel">Forms</div>
         <div class="objectWrapper groupWrapper">
@@ -229,35 +229,35 @@
                   <div class="objectWrapper elementWrapper">
                     <div class="inputWrapper">
                       <div class="inputLabel">Attribute Name</div>
-                      <input class="resetElement" name="webPage_webPage0_form_form0_formElement_formElement0_attribute_attribute0_attributeName" type="text" list="inputAttributes" domainFor="attributes"/>
+                      <input class="resetElement" name="webPage_webPage0_form_form0_formElement_formElement0_attribute_attribute0_feAttributeName" type="text" list="inputAttributes" domainFor="attributes"/>
                     </div>
                     <div class="inputWrapper">
                       <div class="inputLabel">Attribute Value</div>
-                      <input class="resetElement" name="webPage_webPage0_form_form0_formElement_formElement0_attribute_attribute0_attributeValue" type="text" rangeFor="attributes"/>
+                      <input class="resetElement" name="webPage_webPage0_form_form0_formElement_formElement0_attribute_attribute0_feAttributeValue" type="text" rangeFor="attributes"/>
                     </div>
                     <button type="button" class="disabled controlObjectButton moveObjectUpButton blue" disabled>Move Up</button>
                     <button type="button" class="disabled controlObjectButton moveObjectDownButton blue" disabled>Move Down</button>
                     <button type="button" class="disabled controlObjectButton removeObjectButton red" disabled>Remove</button>
                   </div>
-                  <button type="button" class="addNewObjectButton">Add New</button>
+                  <button type="button" class="addNewObjectButton">Add New Attributes</button>
                 </div>
                 <button type="button" class="disabled controlObjectButton moveObjectUpButton blue" disabled>Move Up</button>
                 <button type="button" class="disabled controlObjectButton moveObjectDownButton blue" disabled>Move Down</button>
                 <button type="button" class="disabled controlObjectButton removeObjectButton red" disabled>Remove</button>
               </div>
-              <button type="button" class="addNewObjectButton">Add New</button>
+              <button type="button" class="addNewObjectButton">Add New Form Elements</button>
             </div>
             <button type="button" class="disabled controlObjectButton moveObjectUpButton blue" disabled>Move Up</button>
             <button type="button" class="disabled controlObjectButton moveObjectDownButton blue" disabled>Move Down</button>
             <button type="button" class="disabled controlObjectButton removeObjectButton red" disabled>Remove</button>
           </div>
-          <button type="button" class="addNewObjectButton">Add New</button>
+          <button type="button" class="addNewObjectButton">Add New Forms</button>
         </div>
         <button type="button" class="disabled controlObjectButton moveObjectUpButton blue" disabled>Move Up</button>
         <button type="button" class="disabled controlObjectButton moveObjectDownButton blue" disabled>Move Down</button>
         <button type="button" class="disabled controlObjectButton removeObjectButton red" disabled>Remove</button>
       </div>
-      <button type="button" class="addNewObjectButton">Add New</button>
+      <button type="button" class="addNewObjectButton">Add New WebPage Information</button>
     </div>
     <div class="inputWrapper ctaWrapper smallTopMargin">
       <button type="submit" class="cta green">Create Table</button>
