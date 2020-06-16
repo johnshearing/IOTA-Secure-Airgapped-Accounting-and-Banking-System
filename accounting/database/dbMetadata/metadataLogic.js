@@ -57,7 +57,7 @@ metadata.serveListPage = function(data, callback)
             helpers.log
             (            
               5,
-              '1yxp88efsnslj87qd89z' + '\n' +
+              'kihjyiozpfccn6dr9h4f' + '\n' +
               'There was an error or the concatenated templates were not returned.' + '\n' +
               'This was the error:' + '\n' +
               JSON.stringify(errorAddUnivTemplates) + '\n'
@@ -73,7 +73,7 @@ metadata.serveListPage = function(data, callback)
         helpers.log
         (
           5,
-          'olkzh5mya8p5sopu1gwo' + '\n' +
+          '2fulb5lhst44xbp1w1dy' + '\n' +
           'There was an error or no template was returned.' + '\n' +
           'This was the error:' + '\n' +
           JSON.stringify(errorGetTemplate) + '\n'
@@ -90,7 +90,7 @@ metadata.serveListPage = function(data, callback)
     helpers.log
     (
       5,
-      'fhfigl7sjpi5we3iqke9' + '\n' +
+      'kpuwr47khp62vcos8our' + '\n' +
       'Method not get. Only gets allowed.' + '\n'
     );
 
@@ -137,7 +137,7 @@ metadata.serveAddPage = function(data, callback)
             helpers.log
             (            
               5,
-              'l9yjj6ffbz650v9tmz49' + '\n' +
+              'wke790ff2py6rxg484pw' + '\n' +
               'There was an error or the concatenated templates were not returned.' + '\n' +
               'This was the error:' + '\n' +
               JSON.stringify(errorAddUnivTemplates) + '\n'
@@ -153,7 +153,7 @@ metadata.serveAddPage = function(data, callback)
         helpers.log
         (
           5,
-          'feqfy1sl6l38swkm1o9l' + '\n' +
+          'x6hx1m9fq1tyicbuwlin' + '\n' +
           'There was an error or no template was returned.' + '\n' +
           'This was the error:' + '\n' +
           JSON.stringify(errorGetTemplate) + '\n'
@@ -170,7 +170,7 @@ metadata.serveAddPage = function(data, callback)
     helpers.log
     (
       5,
-      'yv4mny5je2jw01en6cyt' + '\n' +
+      '0645uw8nvjbu6v9113qt' + '\n' +
       'Method not get. Only gets allowed.' + '\n'
     );
 
@@ -217,7 +217,7 @@ metadata.serveEditPage = function(data, callback)
             helpers.log
             (            
               5,
-              'cxhe2i53fgysxy5wuy29' + '\n' +
+              'bf2ek1m26p3mpe63uy4l' + '\n' +
               'There was an error or the concatenated templates were not returned.' + '\n' +
               'This was the error:' + '\n' +
               JSON.stringify(errorAddUnivTemplates) + '\n'
@@ -233,7 +233,7 @@ metadata.serveEditPage = function(data, callback)
         helpers.log
         (
           5,
-          'rxndsltgvdb6f9wuc9d6' + '\n' +
+          'scmpz1k0a10aygpgrvt0' + '\n' +
           'There was an error or no template was returned.' + '\n' +
           'This was the error:' + '\n' +
           JSON.stringify(errorGetTemplate) + '\n'
@@ -250,7 +250,7 @@ metadata.serveEditPage = function(data, callback)
     helpers.log
     (
       5,
-      'ckbc8ct54nos8vthduy8' + '\n' +
+      'p4xane9n6my3lmr85as0' + '\n' +
       'Method not get. Only gets allowed.' + '\n'
     );
 
@@ -284,7 +284,7 @@ metadata.metadata = function(data, callback)
     helpers.log
     (
       5,
-      'pvfffsqz28kb8blxdncu' + '\n' +
+      '4iqufh1ovgq046ng7xss' + '\n' +
       'The method was not one of the acceptable methods' + '\n'
     ); 
 
@@ -1019,7 +1019,7 @@ metadata._metadata.post = function(data, callback)
       helpers.log
       (
         5,
-        '27y90skaitq3a4qpxh84' + '\n' +
+        '1llhvtjdakoq7q4mmduu' + '\n' +
         'The tableName : ' + tableName + ' already exists' + '\n'                                  
       ); // End of: helpers.log(...)
 
@@ -1047,7 +1047,7 @@ metadata._metadata.post = function(data, callback)
         helpers.log
         (
           5,
-          'z64pm4bk5l8syk35ovbg' + '\n' +
+          'vktxpeu2833puzbqn2w6' + '\n' +
           'Unable to get the next gsuid.' + '\n' +
           'The following was the error' + '\n' +
           JSON.stringify(error) + '\n'                                   
@@ -1192,7 +1192,7 @@ metadata._metadata.post = function(data, callback)
             helpers.log
             (
               7,
-              'lbf5437k3sji78ef8k9d' + '\n' +
+              '6p9tvnogmxjqwhbkjs15' + '\n' +
               'There was an error appending to the history file' + '\n' +
               'An error here does not necessarily mean the append to history did not happen.' + '\n' +  
               'But an error at this point in the code surely means there was no append to metadata' + '\n' +                                          
@@ -1236,7 +1236,7 @@ metadata._metadata.post = function(data, callback)
                   helpers.log // Log the error.
                   (
                     7,
-                    '38l4f3zpp5iofn9qxv3m' + '\n' +
+                    'n9z8mai7n7s70en0k6gb' + '\n' +
                     'Successful write to metadata but unable to remove lock on database' + '\n' +
                     'The following record was appended to the metadata file:' + '\n' +                            
                     JSON.stringify(logObject) + '\n' +   
@@ -1258,7 +1258,7 @@ metadata._metadata.post = function(data, callback)
               helpers.log // Log the error.
               (
                 5,
-                'vqlohndrd6a5b1mnec0z' + '\n' +
+                '2kgxr9h8382e7jb0h1s5' + '\n' +
                 'There was an error when appending to the metadata file.' + '\n' +
                 'The following record may or may not have been appended to the metadata file:' + '\n' +                            
                 JSON.stringify(logObject) + '\n' +
@@ -1306,7 +1306,7 @@ metadata._metadata.post = function(data, callback)
                           helpers.log
                           (
                             5,
-                            'p6epgj8h0lxr79q01oaz' + '\n' +
+                            'zl75r96q4y2bhok7osr2' + '\n' +
                             'Rollback entry in the metadata file was appended successfully' + '\n' +
                             'The following was the record we rolled back:' + '\n' +
                             JSON.stringify(logObject) + '\n'                                   
@@ -1317,7 +1317,7 @@ metadata._metadata.post = function(data, callback)
                           helpers.log
                           (
                             7,
-                            'e4qhrjjgoy66lwakfzjl' + '\n' +
+                            '9jwxli46in2iwyqocupu' + '\n' +
                             'There was an error appending a rollback entry in the metadata file' + '\n' +
                             'The following record may or may not have been rolled back:' + '\n' +
                             JSON.stringify(logObject) + '\n' +   
@@ -1337,7 +1337,7 @@ metadata._metadata.post = function(data, callback)
                     helpers.log
                     (
                       7,
-                      'jcdtk70di9k2tx08ia4y' + '\n' +
+                      'pt304gqkwetbz56bidin' + '\n' +
                       'There was an error appending a rollback entry in the history file' + '\n' +
                       'A rollback entry may or may not have been written in the metadata file' + '\n' +  
                       'CHECK TO SEE IF history and metadata ARE STILL IN SYNC' + '\n' +                                      
@@ -2306,7 +2306,7 @@ metadata._metadata.put = function(data, callback)
     helpers.log
     (
       5,
-      'xymu9efoue5c8ab2pa4y' + '\n' +
+      'mklp47ljy9hz5rss3ajx' + '\n' +
       'No fields pass the validation process' + '\n'                                  
     ); // End of: helpers.log(...)
 
@@ -2329,7 +2329,7 @@ metadata._metadata.put = function(data, callback)
       helpers.log
       (
         5,
-        'i5xhblrk3rw7zvmi71vo' + '\n' +
+        'pwr4d8vpdyz7yi3mhk8l' + '\n' +
         'Unable to get the next gsuid.' + '\n' +
         'The following was the error' + '\n' +
         JSON.stringify(error) + '\n'                                   
@@ -2469,7 +2469,7 @@ metadata._metadata.put = function(data, callback)
               helpers.log // Log the error.
               (
                 7,
-                'ht6tfxmkcocqfy5br3mv' + '\n' + 
+                '8yyp9c32wu71yqfaguzp' + '\n' + 
                 'The following was the error message from getMostRecent:' + '\n' +                                             
                 errorFromGetMostRecent + '\n'                                                 
               ); // End of: helpers.log // Log the error.
@@ -2484,7 +2484,7 @@ metadata._metadata.put = function(data, callback)
               helpers.log // Log the error.
               (
                 7,
-                '35a2warc6m59zw217xny' + '\n' +
+                '5mwc4r6tvdod10fvucip' + '\n' +
                 'The following was the error message from getMostRecent:' + '\n' +                                             
                 errorFromGetMostRecent + '\n'  +
                 'Also unable to remove lock on database.' + '\n' + 
@@ -3012,7 +3012,7 @@ metadata._metadata.put = function(data, callback)
                         helpers.log // Log the error.
                         (
                           7,
-                          '12r29xesnsvj1whwzmm5' + '\n' +
+                          'fsgcggvr5c6piyx4mp1n' + '\n' +
                           'Successful write to metadata but unable to remove lock on database' + '\n' +
                           'The following record was appended to metadata:' + '\n' +                            
                           JSON.stringify(logObject) + '\n' +   
@@ -3034,7 +3034,7 @@ metadata._metadata.put = function(data, callback)
                     helpers.log // Log the error.
                     (
                       5,
-                      '78koby2oe8ot6pj0hdpy' + '\n' +
+                      '3irofch7r1zcxc0dbjbc' + '\n' +
                       'There was an error when appending to the metadata file.' + '\n' +
                       'The following record may or may not have been appended to metadata:' + '\n' +                            
                       JSON.stringify(logObject) + '\n' +
@@ -3093,7 +3093,7 @@ metadata._metadata.put = function(data, callback)
                                 helpers.log
                                 (
                                   5,
-                                  'i5ethb9e5gldnoew8619' + '\n' +
+                                  '97y44yfm3n0axdtiq620' + '\n' +
                                   'Rollback entry in the metadata file was appended successfully' + '\n' +
                                   'The following was the record we rolled back:' + '\n' +
                                   JSON.stringify(logObject) + '\n'                                   
@@ -3104,7 +3104,7 @@ metadata._metadata.put = function(data, callback)
                                 helpers.log
                                 (
                                   7,
-                                  'svptenj2kso5efq4erc5' + '\n' +
+                                  'lhs69lb36fgpxnlpr1nd' + '\n' +
                                   'There was an error appending a rollback entry in the metadata file' + '\n' +
                                   'The following record may or may not have been rolled back:' + '\n' +
                                   JSON.stringify(logObject) + '\n' +   
@@ -3124,7 +3124,7 @@ metadata._metadata.put = function(data, callback)
                           helpers.log
                           (
                             7,
-                            't7tro3oyx60t25thw85z' + '\n' +
+                            '234j2180mzafr9x6e8sz' + '\n' +
                             'There was an error appending a rollback entry in the history file' + '\n' +
                             'A rollback entry may or may not have been written in the metadata file' + '\n' +  
                             'CHECK TO SEE IF history and metadata ARE STILL IN SYNC' + '\n' +                                      
@@ -3149,7 +3149,7 @@ metadata._metadata.put = function(data, callback)
               helpers.log
               (
                 7,
-                'fdjcky04iwm0xdkgczow' + '\n' +
+                'lcw3i6jqsbm10s9vbbel' + '\n' +
                 'There was an error appending to the history file' + '\n' +
                 'An error here does not necessarily mean the append to history did not happen.' + '\n' +  
                 'But an error at this point in the code surely means there was no append to metadata' + '\n' +                                          
@@ -3181,7 +3181,7 @@ metadata._metadata.put = function(data, callback)
             helpers.log // Log the error.
             (
               7,
-              '7ypuslhhdpd5yvfnck8n' + '\n' + 
+              'c9qkrhash0asnhuu7nz0' + '\n' + 
               'Pipeline error. The message was as follows' + '\n' +                                             
               pipelineError + '\n'                                                 
             ); // End of: helpers.log // Log the error.

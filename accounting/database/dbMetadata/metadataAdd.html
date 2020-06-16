@@ -31,7 +31,8 @@
         <option value="no" style="display: list-item;">No</option>
       </select>
     </div>
-    <div class="objectLabel">Field Information</div>
+    <span class="expandControl" style="color:blue;font-weight:bold">&#10515;&nbsp;&nbsp;</span><span class="collapseControl" style="color:blue;font-weight:bold">&#10514;</span>
+    <div class="objectLabel">Field Information &#8681;</div>
     <div class="objectWrapper groupWrapper" style="border: 2px solid blue;">
       <div class="objectWrapper elementWrapper" style="border: 2px solid blue;">
         <div class="inputWrapper">
@@ -62,7 +63,7 @@
             <option value="no" style="display: list-item;">No</option>
           </select>
         </div>
-        <div class="objectLabel">Default Elements</div>
+        <div class="objectLabel">Default Elements &#8681;</div>
         <div class="objectWrapper groupWrapper" style="border: 2px solid red;">
           <div class="objectWrapper elementWrapper" style="border: 2px solid red;">
             <div class="inputWrapper">
@@ -81,7 +82,7 @@
                 <option value="select" style="display: list-item;">Select</option>
               </select>
             </div>
-            <div class="objectLabel">Attributes</div>
+            <div class="objectLabel">Attributes &#8681;</div>
             <div class="objectWrapper groupWrapper" style="border: 2px solid green;">
               <div class="objectWrapper elementWrapper" style="border: 2px solid green;">
                 <div class="inputWrapper">
@@ -98,10 +99,10 @@
               </div>
               <button type="button" class="addNewObjectButton" style="background-color: green;">Add New Attribute</button>
             </div>
-            <div class="objectLabel">Validations</div>
+            <div class="objectLabel">Validations &#8681;</div>
             <div class="objectWrapper groupWrapper" style="border: 2px solid green;">
               <div class="objectWrapper elementWrapper" style="border: 2px solid green;">
-                <div class="objectLabel">Default Validation</div>
+                <div class="objectLabel">Default Validation &#8681;</div>
                 <div class="objectWrapper groupWrapper" style="border: 2px solid blue;">
                   <div class="objectWrapper elementWrapper" style="border: 2px solid blue;">
                     <div class="inputWrapper">
@@ -118,7 +119,7 @@
                   </div>
                   <button type="button" class="addNewObjectButton" style="background-color: blue;">Add New Default</button>
                 </div>
-                <div class="objectLabel">Post Validation</div>
+                <div class="objectLabel">Post Validation &#8681;</div>
                 <div class="objectWrapper groupWrapper" style="border: 2px solid blue;">
                   <div class="objectWrapper elementWrapper" style="border: 2px solid blue;">
                     <div class="inputWrapper">
@@ -135,7 +136,7 @@
                   </div>
                   <button type="button" class="addNewObjectButton" style="background-color: blue;">Add New Post</button>
                 </div>
-                <div class="objectLabel">Put Validation</div>
+                <div class="objectLabel">Put Validation &#8681;</div>
                 <div class="objectWrapper groupWrapper" style="border: 2px solid blue;">
                   <div class="objectWrapper elementWrapper" style="border: 2px solid blue;">
                     <div class="inputWrapper">
@@ -164,7 +165,7 @@
           </div>
           <button type="button" class="addNewObjectButton" style="background-color: red;">Add New DefaultElement</button>
         </div>
-        <div class="objectLabel">Calculations</div>
+        <div class="objectLabel">Calculations &#8681;</div>
         <div class="objectWrapper groupWrapper" style="border: 2px solid red;">
           <div class="objectWrapper elementWrapper" style="border: 2px solid red;">
             <div class="inputWrapper">
@@ -187,7 +188,7 @@
       </div>
       <button type="button" class="addNewObjectButton" style="background-color: blue;">Add New Field</button>
     </div>
-    <div class="objectLabel">WebPage Information</div>
+    <div class="objectLabel">WebPage Information &#8681;</div>
     <div class="objectWrapper groupWrapper" style="border: 2px solid blue;">
       <div class="objectWrapper elementWrapper" style="border: 2px solid blue;">
         <div class="inputWrapper">
@@ -198,7 +199,7 @@
           <div class="inputLabel">WebPage Heading</div>
           <input class="resetElement" name="webPage_webPage0_webPageHeading" type="text" placeHolder="Enter a WebPage Heading"/>
         </div>
-        <div class="objectLabel">Forms</div>
+        <div class="objectLabel">Forms &#8681;</div>
         <div class="objectWrapper groupWrapper" style="border: 2px solid red;">
           <div class="objectWrapper elementWrapper" style="border: 2px solid red;">
             <div class="inputWrapper">
@@ -213,7 +214,7 @@
               <div class="inputLabel">Submit Button Text</div>
               <input class="resetElement" name="webPage_webPage0_form_form0_submitButtonText" type="text"/>
             </div>
-            <div class="objectLabel">Form Elements</div>
+            <div class="objectLabel">Form Elements &#8681;</div>
             <div class="objectWrapper groupWrapper" style="border: 2px solid green;">
               <div class="objectWrapper elementWrapper" style="border: 2px solid green;">
                 <div class="inputWrapper">
@@ -224,7 +225,7 @@
                   <div class="inputLabel">Form Element Label Text</div>
                   <input class="resetElement" name="webPage_webPage0_form_form0_formElement_formElement0_formElementLabelText" type="text"/>
                 </div>
-                <div class="objectLabel">Attributes</div>
+                <div class="objectLabel">Attributes &#8681;</div>
                 <div class="objectWrapper groupWrapper" style="border: 2px solid blue;">
                   <div class="objectWrapper elementWrapper" style="border: 2px solid blue;">
                     <div class="inputWrapper">
@@ -598,10 +599,45 @@ app.formResponseProcessor = function(formId,requestPayload,responsePayload)
 
 
 
-// Behavior from meta.js at i0hrsc6x02jooocdy71o
+
 // Bind controls to behaviors when the page loads.
+// Behavior from meta.js at i0hrsc6x02jooocdy71o
 app.loadoContactAddPage = function()
 {
+
+  // Define the function that fires when we click on a label.
+  // This function shows or hides data associated with the target label.
+  function onClickBehaviorForLabelElement (event)  
+  {
+    // Stop it from redirecting anywhere
+    event.preventDefault();
+
+    let labelElement = event.target;
+    let labelText = labelElement.innerHTML;
+    let labelArrow = labelText[labelText.length - 1];
+    let controlledElement = labelElement.nextElementSibling;
+
+    if (controlledElement.style.display === "none") 
+    {
+      controlledElement.style.display = "block";
+      labelElement.innerHTML = labelElement.innerHTML.replace("⇨", "⇩")
+    } 
+    else 
+    {
+      controlledElement.style.display = "none";
+      labelElement.innerHTML = labelElement.innerHTML.replace("⇩", "⇨")
+    }
+
+  } // End of: function onChangeBehaviorForAttributeName (event)
+  // End of: Define the function that fires when we click on a label.
+
+  // Bind the function above to the onClick event of the label elements.
+  document.querySelectorAll(".objectLabel").forEach(function(currentLabel)
+  {
+    currentLabel.addEventListener("click", onClickBehaviorForLabelElement, true);
+  });
+
+
   // Define the function that fires when a domain element is selected.
   // The following function makes datalists context sensitive.
   // When a change is made on the domain select or input element
@@ -845,6 +881,12 @@ app.loadoContactAddPage = function()
 
     // Set all the clone's element values to ""
     cln.querySelectorAll(".resetElement").forEach(function(element){element.value = "";});
+
+    // Bind the function above to the onClick event of the clone's label elements.
+    cln.querySelectorAll(".objectLabel").forEach(function(currentLabel)
+    {
+      currentLabel.addEventListener("click", onClickBehaviorForLabelElement, true);
+    });
 
     // Create an event listener for the onChange event of the clone's 
     // input elements which have the domainFor attribute.
