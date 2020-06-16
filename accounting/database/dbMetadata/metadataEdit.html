@@ -39,6 +39,7 @@
         <option value="no" style="display: list-item;">No</option>
       </select>
     </div>
+    <span class="expandControl" style="color:blue;font-weight:bold">&#10515;&nbsp;&nbsp;</span><span class="collapseControl" style="color:blue;font-weight:bold">&#10514;</span>
     <div class="objectLabel">Field Information &#8681;</div>
     <div class="objectWrapper groupWrapper" style="border: 2px solid blue;">
       <div class="objectWrapper elementWrapper" style="border: 2px solid blue;">
@@ -649,30 +650,76 @@ app.loadmetadataEditPage = async function()
   // Get the record object from the array returned by the query.
   let recordObject = recordArray[0];
 
+  // Define the function that fires when we click on a the global expand control.
+  // This function expands all nested data on the webpage.
+  function onClickBehaviorForExpandControl (event)  
+  {
+    // Stop it from redirecting anywhere
+    event.preventDefault();
+
+    document.querySelectorAll(".objectLabel").forEach(function(currentLabel)
+    {
+      let controlledElement = currentLabel.nextElementSibling;
+
+      controlledElement.style.display = "block";
+      currentLabel.innerHTML = currentLabel.innerHTML.replace("⇨", "⇩");
+    });
+  } // End of: function onChangeBehaviorForAttributeName (event)
+  // End of: Define the function that fires when we click on a the global expand control.
+
+  // Bind the function above to the onClick event of the label elements.
+  document.querySelectorAll(".expandControl").forEach(function(currentControl)
+  {
+    currentControl.addEventListener("click", onClickBehaviorForExpandControl, true);
+  });
+
+
+  // Define the function that fires when we click on a the global collapse control.
+  // This function collapses all nested data on the webpage.
+  function onClickBehaviorForCollapseControl (event)  
+  {
+    // Stop it from redirecting anywhere
+    event.preventDefault();
+
+    document.querySelectorAll(".objectLabel").forEach(function(currentLabel)
+    {
+      let controlledElement = currentLabel.nextElementSibling;
+
+      controlledElement.style.display = "none";
+      currentLabel.innerHTML = currentLabel.innerHTML.replace("⇩", "⇨")
+    });
+  } // End of: function onClickBehaviorForCollapseControl (event)
+  // End of: Define the function that fires when we click on a the global collapse control.
+
+  // Bind the function above to the onClick event of the label elements.
+  document.querySelectorAll(".collapseControl").forEach(function(currentControl)
+  {
+    currentControl.addEventListener("click", onClickBehaviorForCollapseControl, true);
+  });
+
+
   // Define the function that fires when we click on a label.
   // This function shows or hides data associated with the target label.
-  function onClickBehaviorForLabelElement (event)  
+  function onClickBehaviorForLabelElement (event)
   {
     // Stop it from redirecting anywhere
     event.preventDefault();
 
     let labelElement = event.target;
-    let labelText = labelElement.innerHTML;
-    let labelArrow = labelText[labelText.length - 1];
     let controlledElement = labelElement.nextElementSibling;
 
     if (controlledElement.style.display === "none") 
     {
       controlledElement.style.display = "block";
-      labelElement.innerHTML = labelElement.innerHTML.replace("⇨", "⇩")
+      labelElement.innerHTML = labelElement.innerHTML.replace("⇨", "⇩");
     } 
     else 
     {
       controlledElement.style.display = "none";
-      labelElement.innerHTML = labelElement.innerHTML.replace("⇩", "⇨")
+      labelElement.innerHTML = labelElement.innerHTML.replace("⇩", "⇨");
     }
 
-  } // End of: function onChangeBehaviorForAttributeName (event)
+  } // End of: function onClickBehaviorForLabelElement (event)
   // End of: Define the function that fires when we click on a label.
 
   // Bind the function above to the onClick event of the label elements.
