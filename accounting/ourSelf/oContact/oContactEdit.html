@@ -27,9 +27,10 @@
       <div class="inputLabel">Email</div>
       <input class="emailInput" name="email" type="text" placeholder="Enter an Email Address with @"/>
     </div>
-    <div class="objectLabel">Phone Information</div>
-    <div class="objectWrapper groupWrapper">
-      <div class="objectWrapper elementWrapper">
+    <span class="expandControl" style="color:blue;font-weight:bold">&#10515;&nbsp;&nbsp;</span><span class="collapseControl" style="color:blue;font-weight:bold">&#10514;</span>
+    <div class="objectLabel">Phone Information &#8681;</div>
+    <div class="objectWrapper groupWrapper" style="border: 2px solid blue;">
+      <div class="objectWrapper elementWrapper" style="border: 2px solid blue;">
         <div class="inputWrapper">
           <div class="inputLabel">Phone Type</div>
           <select class="resetElement phone_phone0_phoneTypeInput" name="phone_phone0_phoneType">
@@ -48,11 +49,11 @@
         <button type="button" class="disabled controlObjectButton moveObjectDownButton blue" disabled>Move Down</button>
         <button type="button" class="disabled controlObjectButton removeObjectButton red" disabled>Remove</button>
       </div>
-      <button type="button" class="addNewObjectButton">Add New</button>
+      <button type="button" class="addNewObjectButton" style="background-color: blue;">Add New Phone</button>
     </div>
-    <div class="objectLabel">Address Information</div>
-    <div class="objectWrapper groupWrapper">
-      <div class="objectWrapper elementWrapper">
+    <div class="objectLabel">Address Information &#8681;</div>
+    <div class="objectWrapper groupWrapper" style="border: 2px solid blue;">
+      <div class="objectWrapper elementWrapper" style="border: 2px solid blue;">
         <div class="inputWrapper">
           <div class="inputLabel">Address Type</div>
           <select class="resetElement address_address0_addressTypeInput" name="address_address0_addressType" placeholder="Enter an Address Type">
@@ -87,7 +88,7 @@
         <button type="button" class="disabled controlObjectButton moveObjectDownButton blue" disabled>Move Down</button>
         <button type="button" class="disabled controlObjectButton removeObjectButton red" disabled>Remove</button>
       </div>
-      <button type="button" class="addNewObjectButton">Add New</button>
+      <button type="button" class="addNewObjectButton" style="background-color: blue;">Add New Address</button>
     </div>
     <div class="inputWrapper">
       <div class="inputLabel">Time Stamp</div>
@@ -377,6 +378,7 @@ app.formResponseProcessor = function(formId,requestPayload,responsePayload)
 
 
 // Load the oContactEdit page with data from the server.
+// Behavior from meta.js at 6z4zby99ilbammzmzy8f
 app.loadoContactEditPage = async function()
 {
   // Get the published fields and the timeStamp.
@@ -393,6 +395,85 @@ app.loadoContactEditPage = async function()
 
   // Get the record object from the array returned by the query.
   let recordObject = recordArray[0];
+
+  // Define the function that fires when we click on a the global expand control.
+  // This function expands all nested data on the webpage.
+  function onClickBehaviorForExpandControl (event)  
+  {
+    // Stop it from redirecting anywhere
+    event.preventDefault();
+
+    document.querySelectorAll(".objectLabel").forEach(function(currentLabel)
+    {
+      let controlledElement = currentLabel.nextElementSibling;
+
+      controlledElement.style.display = "block";
+      currentLabel.innerHTML = currentLabel.innerHTML.replace("⇨", "⇩");
+    });
+  } // End of: function onChangeBehaviorForAttributeName (event)
+  // End of: Define the function that fires when we click on a the global expand control.
+
+  // Bind the function above to the onClick event of the label elements.
+  document.querySelectorAll(".expandControl").forEach(function(currentControl)
+  {
+    currentControl.addEventListener("click", onClickBehaviorForExpandControl, true);
+  });
+
+
+  // Define the function that fires when we click on a the global collapse control.
+  // This function collapses all nested data on the webpage.
+  function onClickBehaviorForCollapseControl (event)  
+  {
+    // Stop it from redirecting anywhere
+    event.preventDefault();
+
+    document.querySelectorAll(".objectLabel").forEach(function(currentLabel)
+    {
+      let controlledElement = currentLabel.nextElementSibling;
+
+      controlledElement.style.display = "none";
+      currentLabel.innerHTML = currentLabel.innerHTML.replace("⇩", "⇨")
+    });
+  } // End of: function onClickBehaviorForCollapseControl (event)
+  // End of: Define the function that fires when we click on a the global collapse control.
+
+  // Bind the function above to the onClick event of the label elements.
+  document.querySelectorAll(".collapseControl").forEach(function(currentControl)
+  {
+    currentControl.addEventListener("click", onClickBehaviorForCollapseControl, true);
+  });
+
+
+  // Define the function that fires when we click on a label.
+  // This function shows or hides data associated with the target label.
+  function onClickBehaviorForLabelElement (event)
+  {
+    // Stop it from redirecting anywhere
+    event.preventDefault();
+
+    let labelElement = event.target;
+    let controlledElement = labelElement.nextElementSibling;
+
+    if (controlledElement.style.display === "none") 
+    {
+      controlledElement.style.display = "block";
+      labelElement.innerHTML = labelElement.innerHTML.replace("⇨", "⇩");
+    } 
+    else 
+    {
+      controlledElement.style.display = "none";
+      labelElement.innerHTML = labelElement.innerHTML.replace("⇩", "⇨");
+    }
+
+  } // End of: function onClickBehaviorForLabelElement (event)
+  // End of: Define the function that fires when we click on a label.
+
+  // Bind the function above to the onClick event of the label elements.
+  document.querySelectorAll(".objectLabel").forEach(function(currentLabel)
+  {
+    currentLabel.addEventListener("click", onClickBehaviorForLabelElement, true);
+  });
+
 
   // Define the function that fires when a domain element is selected.
   // The following function makes datalists context sensitive.
@@ -414,7 +495,6 @@ app.loadoContactEditPage = async function()
       if(currentElement.getAttribute("rangeFor") === rangeIdentifier)
       {
         currentElement.setAttribute("list", event.target.value);
-        break;
       }
     };
   } // End of: function onChangeBehaviorForAttributeName (event)
@@ -639,6 +719,12 @@ app.loadoContactEditPage = async function()
     // Set all the clone's element values to ""
     cln.querySelectorAll(".resetElement").forEach(function(element){element.value = "";});
 
+    // Bind the function above to the onClick event of the label elements.
+    cln.querySelectorAll(".objectLabel").forEach(function(currentLabel)
+    {
+      currentLabel.addEventListener("click", onClickBehaviorForLabelElement, true);
+    });
+
     // Create an event listener for the onChange event of the clone's 
     // input elements which have the domainFor attribute.
     cln.querySelectorAll("input").forEach(function(currentInput)
@@ -748,6 +834,24 @@ app.loadoContactEditPage = async function()
     targetGroupWrapper.insertBefore(cln, targetGroupWrapper.childNodes[targetGroupWrapper.childNodes.length -2]);
 
     renumberNamedElementsInGroupWrapper(event.target.parentNode);
+
+    // Match range lists with domain elements.
+    cln.querySelectorAll("input").forEach(function(currentInput)
+    {
+      if(currentInput.getAttribute("rangeFor"))
+      {
+        let rangeIdentifier = currentInput.getAttribute("rangeFor");
+
+        document.querySelectorAll("input, select").forEach(function(domainCandidate)
+        {
+          if(domainCandidate.getAttribute("domainFor") === rangeIdentifier)
+          {
+            currentInput.setAttribute("list", domainCandidate.value);
+          }          
+        });          
+      }
+    });
+    // End of: Match range lists with domain elements.
 
   } // End of: function onClickBehaviorForAddNewObjectButton (event)
   // End of: Define the function that fires when the addNewObjectButton is pressed.
@@ -887,6 +991,26 @@ app.loadoContactEditPage = async function()
     });
   } // End of: async function runQueryOnoContactId(queryExpression){...}
   // End of: Define a function to get the published fields and the timeStamp from the oContactID
+
+
+  // Match range lists with domain elements.
+  document.querySelectorAll("input").forEach(function(currentInput)
+  {
+    if(currentInput.getAttribute("rangeFor"))
+    {
+      let rangeIdentifier = currentInput.getAttribute("rangeFor");
+
+      document.querySelectorAll("input, select").forEach(function(domainCandidate)
+      {
+        if(domainCandidate.getAttribute("domainFor") === rangeIdentifier)
+        {
+          currentInput.setAttribute("list", domainCandidate.value);
+        }          
+      });          
+    }
+  });
+  // End of: Match range lists with domain elements.
+
 
 }; // End of: app.loadoContactEditPage = function(){...}
 

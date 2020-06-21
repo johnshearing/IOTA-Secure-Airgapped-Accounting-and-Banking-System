@@ -326,6 +326,7 @@ app.formResponseProcessor = function(formId,requestPayload,responsePayload)
 
 
 // Load the userEdit page with data from the server.
+// Behavior from meta.js at 6z4zby99ilbammzmzy8f
 app.loaduserEditPage = async function()
 {
   // Get the published fields and the timeStamp.
@@ -342,6 +343,85 @@ app.loaduserEditPage = async function()
 
   // Get the record object from the array returned by the query.
   let recordObject = recordArray[0];
+
+  // Define the function that fires when we click on a the global expand control.
+  // This function expands all nested data on the webpage.
+  function onClickBehaviorForExpandControl (event)  
+  {
+    // Stop it from redirecting anywhere
+    event.preventDefault();
+
+    document.querySelectorAll(".objectLabel").forEach(function(currentLabel)
+    {
+      let controlledElement = currentLabel.nextElementSibling;
+
+      controlledElement.style.display = "block";
+      currentLabel.innerHTML = currentLabel.innerHTML.replace("⇨", "⇩");
+    });
+  } // End of: function onChangeBehaviorForAttributeName (event)
+  // End of: Define the function that fires when we click on a the global expand control.
+
+  // Bind the function above to the onClick event of the label elements.
+  document.querySelectorAll(".expandControl").forEach(function(currentControl)
+  {
+    currentControl.addEventListener("click", onClickBehaviorForExpandControl, true);
+  });
+
+
+  // Define the function that fires when we click on a the global collapse control.
+  // This function collapses all nested data on the webpage.
+  function onClickBehaviorForCollapseControl (event)  
+  {
+    // Stop it from redirecting anywhere
+    event.preventDefault();
+
+    document.querySelectorAll(".objectLabel").forEach(function(currentLabel)
+    {
+      let controlledElement = currentLabel.nextElementSibling;
+
+      controlledElement.style.display = "none";
+      currentLabel.innerHTML = currentLabel.innerHTML.replace("⇩", "⇨")
+    });
+  } // End of: function onClickBehaviorForCollapseControl (event)
+  // End of: Define the function that fires when we click on a the global collapse control.
+
+  // Bind the function above to the onClick event of the label elements.
+  document.querySelectorAll(".collapseControl").forEach(function(currentControl)
+  {
+    currentControl.addEventListener("click", onClickBehaviorForCollapseControl, true);
+  });
+
+
+  // Define the function that fires when we click on a label.
+  // This function shows or hides data associated with the target label.
+  function onClickBehaviorForLabelElement (event)
+  {
+    // Stop it from redirecting anywhere
+    event.preventDefault();
+
+    let labelElement = event.target;
+    let controlledElement = labelElement.nextElementSibling;
+
+    if (controlledElement.style.display === "none") 
+    {
+      controlledElement.style.display = "block";
+      labelElement.innerHTML = labelElement.innerHTML.replace("⇨", "⇩");
+    } 
+    else 
+    {
+      controlledElement.style.display = "none";
+      labelElement.innerHTML = labelElement.innerHTML.replace("⇩", "⇨");
+    }
+
+  } // End of: function onClickBehaviorForLabelElement (event)
+  // End of: Define the function that fires when we click on a label.
+
+  // Bind the function above to the onClick event of the label elements.
+  document.querySelectorAll(".objectLabel").forEach(function(currentLabel)
+  {
+    currentLabel.addEventListener("click", onClickBehaviorForLabelElement, true);
+  });
+
 
   // Define the function that fires when a domain element is selected.
   // The following function makes datalists context sensitive.
@@ -363,7 +443,6 @@ app.loaduserEditPage = async function()
       if(currentElement.getAttribute("rangeFor") === rangeIdentifier)
       {
         currentElement.setAttribute("list", event.target.value);
-        break;
       }
     };
   } // End of: function onChangeBehaviorForAttributeName (event)
@@ -588,6 +667,12 @@ app.loaduserEditPage = async function()
     // Set all the clone's element values to ""
     cln.querySelectorAll(".resetElement").forEach(function(element){element.value = "";});
 
+    // Bind the function above to the onClick event of the label elements.
+    cln.querySelectorAll(".objectLabel").forEach(function(currentLabel)
+    {
+      currentLabel.addEventListener("click", onClickBehaviorForLabelElement, true);
+    });
+
     // Create an event listener for the onChange event of the clone's 
     // input elements which have the domainFor attribute.
     cln.querySelectorAll("input").forEach(function(currentInput)
@@ -697,6 +782,24 @@ app.loaduserEditPage = async function()
     targetGroupWrapper.insertBefore(cln, targetGroupWrapper.childNodes[targetGroupWrapper.childNodes.length -2]);
 
     renumberNamedElementsInGroupWrapper(event.target.parentNode);
+
+    // Match range lists with domain elements.
+    cln.querySelectorAll("input").forEach(function(currentInput)
+    {
+      if(currentInput.getAttribute("rangeFor"))
+      {
+        let rangeIdentifier = currentInput.getAttribute("rangeFor");
+
+        document.querySelectorAll("input, select").forEach(function(domainCandidate)
+        {
+          if(domainCandidate.getAttribute("domainFor") === rangeIdentifier)
+          {
+            currentInput.setAttribute("list", domainCandidate.value);
+          }          
+        });          
+      }
+    });
+    // End of: Match range lists with domain elements.
 
   } // End of: function onClickBehaviorForAddNewObjectButton (event)
   // End of: Define the function that fires when the addNewObjectButton is pressed.
@@ -836,6 +939,26 @@ app.loaduserEditPage = async function()
     });
   } // End of: async function runQueryOnuserId(queryExpression){...}
   // End of: Define a function to get the published fields and the timeStamp from the userID
+
+
+  // Match range lists with domain elements.
+  document.querySelectorAll("input").forEach(function(currentInput)
+  {
+    if(currentInput.getAttribute("rangeFor"))
+    {
+      let rangeIdentifier = currentInput.getAttribute("rangeFor");
+
+      document.querySelectorAll("input, select").forEach(function(domainCandidate)
+      {
+        if(domainCandidate.getAttribute("domainFor") === rangeIdentifier)
+        {
+          currentInput.setAttribute("list", domainCandidate.value);
+        }          
+      });          
+    }
+  });
+  // End of: Match range lists with domain elements.
+
 
 }; // End of: app.loaduserEditPage = function(){...}
 

@@ -282,10 +282,90 @@ app.formResponseProcessor = function(formId,requestPayload,responsePayload)
 
 
 
-// Behavior from meta.js at i0hrsc6x02jooocdy71o
 // Bind controls to behaviors when the page loads.
+// Behavior from meta.js at i0hrsc6x02jooocdy71o
 app.loadoContactAddPage = function()
 {
+
+  // Define the function that fires when we click on a the global expand control.
+  // This function expands all nested data on the webpage.
+  function onClickBehaviorForExpandControl (event)  
+  {
+    // Stop it from redirecting anywhere
+    event.preventDefault();
+
+    document.querySelectorAll(".objectLabel").forEach(function(currentLabel)
+    {
+      let controlledElement = currentLabel.nextElementSibling;
+
+      controlledElement.style.display = "block";
+      currentLabel.innerHTML = currentLabel.innerHTML.replace("⇨", "⇩");
+    });
+  } // End of: function onChangeBehaviorForAttributeName (event)
+  // End of: Define the function that fires when we click on a the global expand control.
+
+  // Bind the function above to the onClick event of the label elements.
+  document.querySelectorAll(".expandControl").forEach(function(currentControl)
+  {
+    currentControl.addEventListener("click", onClickBehaviorForExpandControl, true);
+  });
+
+
+  // Define the function that fires when we click on a the global collapse control.
+  // This function collapses all nested data on the webpage.
+  function onClickBehaviorForCollapseControl (event)  
+  {
+    // Stop it from redirecting anywhere
+    event.preventDefault();
+
+    document.querySelectorAll(".objectLabel").forEach(function(currentLabel)
+    {
+      let controlledElement = currentLabel.nextElementSibling;
+
+      controlledElement.style.display = "none";
+      currentLabel.innerHTML = currentLabel.innerHTML.replace("⇩", "⇨")
+    });
+  } // End of: function onClickBehaviorForCollapseControl (event)
+  // End of: Define the function that fires when we click on a the global collapse control.
+
+  // Bind the function above to the onClick event of the label elements.
+  document.querySelectorAll(".collapseControl").forEach(function(currentControl)
+  {
+    currentControl.addEventListener("click", onClickBehaviorForCollapseControl, true);
+  });
+
+
+  // Define the function that fires when we click on a label.
+  // This function shows or hides data associated with the target label.
+  function onClickBehaviorForLabelElement (event)  
+  {
+    // Stop it from redirecting anywhere
+    event.preventDefault();
+
+    let labelElement = event.target;
+    let controlledElement = labelElement.nextElementSibling;
+
+    if (controlledElement.style.display === "none") 
+    {
+      controlledElement.style.display = "block";
+      labelElement.innerHTML = labelElement.innerHTML.replace("⇨", "⇩");
+    } 
+    else 
+    {
+      controlledElement.style.display = "none";
+      labelElement.innerHTML = labelElement.innerHTML.replace("⇩", "⇨");
+    }
+
+  } // End of: function onClickBehaviorForLabelElement (event)
+  // End of: Define the function that fires when we click on a label.
+
+  // Bind the function above to the onClick event of the label elements.
+  document.querySelectorAll(".objectLabel").forEach(function(currentLabel)
+  {
+    currentLabel.addEventListener("click", onClickBehaviorForLabelElement, true);
+  });
+
+
   // Define the function that fires when a domain element is selected.
   // The following function makes datalists context sensitive.
   // When a change is made on the domain select or input element
@@ -306,7 +386,6 @@ app.loadoContactAddPage = function()
       if(currentElement.getAttribute("rangeFor") === rangeIdentifier)
       {
         currentElement.setAttribute("list", event.target.value);
-        break;
       }
     };
   } // End of: function onChangeBehaviorForAttributeName (event)
@@ -530,6 +609,12 @@ app.loadoContactAddPage = function()
 
     // Set all the clone's element values to ""
     cln.querySelectorAll(".resetElement").forEach(function(element){element.value = "";});
+
+    // Bind the function above to the onClick event of the clone's label elements.
+    cln.querySelectorAll(".objectLabel").forEach(function(currentLabel)
+    {
+      currentLabel.addEventListener("click", onClickBehaviorForLabelElement, true);
+    });
 
     // Create an event listener for the onChange event of the clone's 
     // input elements which have the domainFor attribute.
