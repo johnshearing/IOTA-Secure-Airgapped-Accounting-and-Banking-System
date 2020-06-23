@@ -1186,7 +1186,6 @@ app.loadoContactAddPage = function()
   {
     // Stop it from redirecting anywhere
     event.preventDefault();
-
     // Create a handle for the structureTemplate here so all functions below will have access to it.
     // There are two templates. 
     // One for defining fields which are strings and the other for defining fields which are objects.
@@ -1222,15 +1221,14 @@ app.loadoContactAddPage = function()
         templateTarget.removeChild(templateTarget.lastChild);
         break;
       }
-      else
+      else // Continue looping
       {
         templateTarget.removeChild(templateTarget.lastChild);
-        // Continue looping
       }
     }
 
     // To restore values overwritten when loading template.
-    let valueArray = []
+    let valueArray = [];
 
     // Save the values
     templateTarget.querySelectorAll(".resetElement").forEach(function(currentElement)
@@ -1242,13 +1240,68 @@ app.loadoContactAddPage = function()
     templateTarget.innerHTML = templateTarget.innerHTML + templateHTMl;
 
     // Create handles for the new elements so that we can load the data back in.
-    let newNodeList = templateTarget.querySelectorAll(".resetElement")
+    // Also used to modify the element names so the renumbering will work.    
+    let newNodeList = templateTarget.querySelectorAll(".resetElement");
 
     // Here is where we load the data back in.
     for ( let i = 0; i < valueArray.length; i++ ) 
     {
-      newNodeList[i].value = valueArray[i]
+      newNodeList[i].value = valueArray[i];
     }
+
+    // Start of: Find out what nestLevel we are at.
+    // Create a handle for the highest groupWrapper in the hierarchy.
+    let topGroupWrapper = templateTarget.closest("form > .groupWrapper");
+
+    // Used in the following while loop.
+    let levelCounter = 1;
+    let currentWrapper = templateTarget;
+
+    // Climb to the top, counting nestLevels and grabbing wrappers along the way.
+    while(true)
+    {
+      currentWrapper = currentWrapper.parentElement;
+
+      let currentClassList = currentWrapper.classList
+
+      if(currentWrapper === topGroupWrapper) //If we are at the top.
+      {             
+        break;
+      }
+      else if(currentWrapper.classList.contains("groupWrapper"))
+      {
+        levelCounter = levelCounter + 1;       
+      }
+    }
+
+    // End of: Find out what nestLevel we are at.
+
+    // Start of: Prepending "field_field0_" in the right amount depending on nestlevel to fieldNames of all elements which came the template.
+    // We have to do this or the renumbering function will not work.
+
+    // We are starting from the bottom and working our way up.
+    // This gives the index of the last node in the list.
+    let downCounter = newNodeList.length - 1;
+
+    // This tells us at what element to stop adding to the names.
+    // It's the "published" select control.
+    // This control and all above where not added from the template.
+    // They were already there.
+    let lastElement = templateTarget.querySelectorAll("select")[2];
+
+    while(true) //Loop through the elements changing the names as we go.
+    {
+      if(newNodeList[downCounter] === lastElement)
+      {
+        break;
+      }
+
+      newNodeList[downCounter].name = "field_field0_".repeat(levelCounter) + newNodeList[downCounter].name;
+
+      downCounter = downCounter -1;
+    }
+
+    // End of: Prepending "field_field0_" in the right amount depending on nestlevel to fieldNames of all elements which came the template.
 
     // Bind this function to the onChange event of the dataTypeSelect element just created.
     templateTarget.querySelectorAll('.dataTypeSelect').forEach(function(currentSelect)
@@ -1545,7 +1598,7 @@ app.loadoContactAddPage = function()
 // Define a function which renumbers field names in children objects as we create, move, or delete their element wrappers
 function renumberNamedElementsInGroupWrapper(groupWrapper)
 {
-  //Debug let testCounter = 0
+  let testCounter = 0 //Debug
 
   // Used to determine if we are changing levels of hierarchy in the DOM
   // We haven't looked at an elementWrapper yet so it's undefined.
@@ -1587,6 +1640,10 @@ function renumberNamedElementsInGroupWrapper(groupWrapper)
     // Loop through the form elements inside each elementWrapper.
     elementWrapper.querySelectorAll('.resetElement').forEach(function(fieldElement)
     {
+
+      let elementColor = fieldElement.style.backgroundColor; //Debug
+      fieldElement.style.backgroundColor = "blue"; //Debug
+
       // Start of: Set the amount of elements in ancestorWrappers to show the which number in the 
       // element name is to be changed (the nest level) and set the index element to show which sibling 
       // wrapper the current element is in. This will be the value of the number changed. 
@@ -1669,10 +1726,6 @@ function renumberNamedElementsInGroupWrapper(groupWrapper)
               // Remove the last element and check if the next wrapper up contains the current wrapper.
               ancestorWrappers.pop();
 
-              // We are working with a new elementWrapper at the same level.
-              // So increment the numeric value held in the last element of the ancestorWrappers array.
-              // ancestorWrappers[ancestorWrappers.length - 1][1]++;
-              // incremented = true;
             }
             else // we are back at the top level.
             {
@@ -1759,12 +1812,12 @@ function renumberNamedElementsInGroupWrapper(groupWrapper)
         , initialValue // This was an empty string passed in to the reduce function to get things started.
       ); // End of: let nextNameAttribute = nameAttributeArray.reduce(function(){do stuff})
 
-      //Debug testCounter = testCounter + 1;
+      testCounter = testCounter + 1; //Debug
         
       // Set the name of the formElement as calculated above.
       fieldElement.setAttribute("name", nextNameAttribute)
 
-      //Debug fieldElement.style.backgroundColor  = elementColor
+      fieldElement.style.backgroundColor  = elementColor //Debug
 
     }); // End of: elementWrapper.querySelectorAll('.resetElement').forEach(function(fieldElement){...}
     // End of: Loop through the form elements inside each elementWrapper.
