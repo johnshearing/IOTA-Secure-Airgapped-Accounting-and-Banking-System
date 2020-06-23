@@ -136,7 +136,9 @@ But I have discovered that it is possible to accomplish tasks that are way beyon
 I feel blessed and I love God. The work you see here is the result.  
 
 The code may not be particularly well written - maybe it is - I don't know - I am learning and changing it as I go.  
-But it replicates, it evolves, and it builds useful machines.   
+But the system itself is used to edit the data dictionary (its own genes).  
+So when poor code is replaced with better code, the changes replicate throughout the entire system when you run the generator.  
+It's seems kind of like [CRISPR gene editing](https://en.wikipedia.org/wiki/CRISPR_gene_editing) and [Gene Therapy](https://en.wikipedia.org/wiki/Gene_therapy) for computer programs.
 That's why others may wish to investigate this code, its applications, and the spirit in which it was created.  
 
 Thanks, John  
