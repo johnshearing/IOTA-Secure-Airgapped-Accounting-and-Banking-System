@@ -1257,7 +1257,7 @@ app.loadoContactAddPage = function()
     let levelCounter = 1;
     let currentWrapper = templateTarget;
 
-    // Climb to the top, counting nestLevels and grabbing wrappers along the way.
+    // Climb to the top, counting nestLevels.
     while(true)
     {
       currentWrapper = currentWrapper.parentElement;
@@ -1637,10 +1637,44 @@ function renumberNamedElementsInGroupWrapper(groupWrapper)
   // Loop through each elementWrapper.
   groupWrapper.querySelectorAll('.elementWrapper').forEach(function(elementWrapper, wrapperIndex)
   {
+    // Used in the following while loop.
+    let levelCounter = 0;
+    let currentWrapper = elementWrapper.parentElement;
+
+    // Climb to the top, counting nestLevels.
+    while(currentWrapper != groupWrapper)
+    {
+      currentWrapper = currentWrapper.parentElement;
+
+      let currentClassList = currentWrapper.classList
+
+      if(currentWrapper === groupWrapper) //If we are at the top.
+      {
+        levelCounter = levelCounter + 1; 
+        break;
+      }
+      else if(currentWrapper.classList.contains("groupWrapper"))
+      {
+        levelCounter = levelCounter + 1;       
+      }
+    }
+
+    // debugger;
+    // let currentAddButton = currentWrapper.querySelector("button:last-child");
+
+    // Border color alternates with nest level. Blue, Red, Green, Blue ...
+    // The following is just a ternary if-else statement. 
+    // Notice both the elementWrapper and corresponding groupWrapper and addButton are being colored with one command.
+    elementWrapper.style.borderColor = elementWrapper.parentElement.style.borderColor = currentAddButton.style.backgroundColor =
+    levelCounter % 3 === 0 ? "blue" :
+    levelCounter % 3 === 1 ? "red" :      
+    levelCounter % 3 === 2 ? "green" : 
+    "blue";
+
+ 
     // Loop through the form elements inside each elementWrapper.
     elementWrapper.querySelectorAll('.resetElement').forEach(function(fieldElement)
     {
-
       let elementColor = fieldElement.style.backgroundColor; //Debug
       fieldElement.style.backgroundColor = "blue"; //Debug
 
@@ -1738,7 +1772,7 @@ function renumberNamedElementsInGroupWrapper(groupWrapper)
               }
 
               break;   
-            } // End of: Else - we are at the top level
+            } // End of: Else - we are back at the top level
           } // End of: Else - the current wrapper is not inside the last ancestorWrapper
         } // End of: while (true)
       } // End of: Else - the current wrapper is not inside the previous
@@ -1818,6 +1852,9 @@ function renumberNamedElementsInGroupWrapper(groupWrapper)
       fieldElement.setAttribute("name", nextNameAttribute)
 
       fieldElement.style.backgroundColor  = elementColor //Debug
+
+      // End of: Build the form element's name using info in the ancestorWrappers array.
+
 
     }); // End of: elementWrapper.querySelectorAll('.resetElement').forEach(function(fieldElement){...}
     // End of: Loop through the form elements inside each elementWrapper.
