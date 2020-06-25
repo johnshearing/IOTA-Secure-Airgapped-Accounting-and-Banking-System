@@ -1659,8 +1659,22 @@ function renumberNamedElementsInGroupWrapper(groupWrapper)
       }
     }
 
-    // debugger;
-    // let currentAddButton = currentWrapper.querySelector("button:last-child");
+
+    let addButtonList = elementWrapper.parentElement.querySelectorAll(".addNewObjectButton");
+
+    let addButtonCounter = 0;
+    let currentAddButton;
+
+    while(true)
+    {
+      currentAddButton = addButtonList[addButtonCounter]
+      
+      if(currentAddButton.parentElement === elementWrapper.parentElement)
+      {
+        break;
+      }
+      addButtonCounter = addButtonCounter + 1;
+    }
 
     // Border color alternates with nest level. Blue, Red, Green, Blue ...
     // The following is just a ternary if-else statement. 
