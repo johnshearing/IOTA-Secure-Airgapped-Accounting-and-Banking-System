@@ -495,7 +495,10 @@
     <button type="button" class="disabled controlObjectButton removeObjectButton red" disabled>Remove</button>
   </div>
   <button type="button" class="addNewObjectButton" style="background-color: blue;">Add New Field</button>
-</div>        
+</div>
+<button type="button" class="disabled controlObjectButton moveObjectUpButton blue" disabled>Move Up</button>
+<button type="button" class="disabled controlObjectButton moveObjectDownButton blue" disabled>Move Down</button>
+<button type="button" class="disabled controlObjectButton removeObjectButton red" disabled>Remove</button>
 </script>
 
 
@@ -619,6 +622,9 @@
     </div>
     <button type="button" class="addNewObjectButton" style="background-color: red;">Add New Calculation</button>
   </div>
+  <button type="button" class="disabled controlObjectButton moveObjectUpButton blue" disabled>Move Up</button>
+  <button type="button" class="disabled controlObjectButton moveObjectDownButton blue" disabled>Move Down</button>
+  <button type="button" class="disabled controlObjectButton removeObjectButton red" disabled>Remove</button>
 </script>
 
 
@@ -1191,6 +1197,8 @@ app.loadoContactAddPage = function()
     // One for defining fields which are strings and the other for defining fields which are objects.
     // These templates are in script tags between the HTML and the JavaScript.
 
+    debugger;
+
     // Declare here so it will stay in scope throughout the function.
     let structureTemplate;
 
@@ -1257,7 +1265,7 @@ app.loadoContactAddPage = function()
     let levelCounter = 1;
     let currentWrapper = templateTarget;
 
-    // Climb to the top, counting nestLevels.
+    // Climb to the top, counting nestLevels as we go.
     while(true)
     {
       currentWrapper = currentWrapper.parentElement;
@@ -1276,7 +1284,7 @@ app.loadoContactAddPage = function()
 
     // End of: Find out what nestLevel we are at.
 
-    // Start of: Prepending "field_field0_" in the right amount depending on nestlevel to fieldNames of all elements which came the template.
+    // Start of: Prepending "field_field0_" (in the right amount depending on nestlevel) to fieldNames of all elements from the template.
     // We have to do this or the renumbering function will not work.
 
     // We are starting from the bottom and working our way up.
@@ -1348,72 +1356,6 @@ app.loadoContactAddPage = function()
     templateTarget.querySelectorAll('.addNewObjectButton').forEach(function(addNewObjectButton)
     {
       addNewObjectButton.addEventListener("click", onClickBehaviorForAddNewObjectButton);
-    });
-
-    // Enable the clone's moveObjectUpButtons
-    templateTarget.querySelectorAll(".moveObjectUpButton").forEach(function(moveObjectUpButton)
-    {
-      if(moveObjectUpButton.parentNode === templateTarget)
-      {
-        moveObjectUpButton.classList.remove('disabled');
-        moveObjectUpButton.removeAttribute("disabled");
-      }
-    });
-
-    // Disable the clone's moveObjectDownButton
-    templateTarget.querySelectorAll(".moveObjectDownButton").forEach(function(moveObjectDownButton)
-    {
-        moveObjectDownButton.classList.add("disabled");
-        moveObjectDownButton.setAttribute("disabled", "");
-    }); 
-
-    // Disable all removeObjectButtons on the clone.
-    // This is to disable buttons on any children.
-    // In the next step after this, the removeObjectButton is enabled at the top level.
-    templateTarget.querySelectorAll(".removeObjectButton").forEach(function(removeObjectButton)
-    {
-      removeObjectButton.classList.add("disabled");
-      removeObjectButton.setAttribute("disabled", "");
-    }); 
-
-    // Enable the clone's top level removeObjectButton
-    templateTarget.querySelectorAll(".removeObjectButton").forEach(function(removeObjectButton)
-    {
-      if(removeObjectButton.parentNode === templateTarget)
-      {
-        removeObjectButton.classList.remove('disabled');
-        removeObjectButton.removeAttribute("disabled");
-      }
-    }); 
-
-    // Disable the very top moveObjectUpButton
-    event.target.parentNode.querySelectorAll(".moveObjectUpButton").forEach(function(moveObjectUpButton)
-    {
-      if(moveObjectUpButton.parentNode === event.target.parentNode)
-      {
-        moveObjectUpButton.classList.add("disabled");
-        moveObjectUpButton.setAttribute("disabled", "");
-      }
-    }); 
-
-    // Enable all but clone's moveObjectDownButton
-    event.target.parentNode.querySelectorAll(".moveObjectDownButton").forEach(function(moveObjectDownButton)
-    {
-      if(moveObjectDownButton.parentNode.parentNode === event.target.parentNode)
-      {
-        moveObjectDownButton.classList.remove('disabled');
-        moveObjectDownButton.removeAttribute("disabled");
-      }  
-    });
-
-    // Enable all but clone's removeObjectButton
-    event.target.parentNode.querySelectorAll(".removeObjectButton").forEach(function(removeObjectButton)
-    {
-      if(removeObjectButton.parentNode.parentNode === event.target.parentNode)
-      {
-        removeObjectButton.classList.remove('disabled');
-        removeObjectButton.removeAttribute("disabled");
-      }   
     });
 
     renumberNamedElementsInGroupWrapper(templateTarget.parentNode);
