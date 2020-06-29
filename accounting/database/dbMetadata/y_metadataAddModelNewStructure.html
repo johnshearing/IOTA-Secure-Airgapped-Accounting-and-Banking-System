@@ -36,151 +36,12 @@
     <div class="objectWrapper groupWrapper" style="border: 2px solid blue;">
       <div class="objectWrapper elementWrapper" style="border: 2px solid blue;">
         <div class="inputWrapper">
-          <div class="inputLabel">Field Name</div>
-          <input class="resetElement" name="field_field0_fieldName" type="text" placeHolder="Enter a Field Name"/>
-        </div>
-        <div class="inputWrapper">
           <div class="inputLabel">Data Type</div>
-          <select class="resetElement" name="field_field0_dataType">
+          <select class="resetElement" name="field_field0_dataType" dataTypeSelect="yes">
             <option value="" style="display: list-item;">Select the Data Type</option>
             <option value="string" style="display: list-item;">String</option>
             <option value="object" style="display: list-item;">Object</option>
           </select>
-        </div>
-        <div class="inputWrapper">
-          <div class="inputLabel">Unique</div>
-          <select class="resetElement" name="field_field0_unique">
-            <option value="" style="display: list-item;">Select if Unique</option>
-            <option value="yes" style="display: list-item;">Yes</option>
-            <option value="no" style="display: list-item;">No</option>
-          </select>
-        </div>
-        <div class="inputWrapper">
-          <div class="inputLabel">Published</div>
-          <select class="resetElement" name="field_field0_published">
-            <option value="" style="display: list-item;">Select if Published</option>
-            <option value="yes" style="display: list-item;">Yes</option>
-            <option value="no" style="display: list-item;">No</option>
-          </select>
-        </div>
-        <div class="objectLabel">Default Elements &#8681;</div>
-        <div class="objectWrapper groupWrapper" style="border: 2px solid red;">
-          <div class="objectWrapper elementWrapper" style="border: 2px solid red;">
-            <div class="inputWrapper">
-              <div class="inputLabel">Element Name</div>
-              <input class="resetElement" name="field_field0_defaultElement_defaultElement0_elementName" type="text"/>
-            </div>
-            <div class="inputWrapper">
-              <div class="inputLabel">Label Text</div>
-              <input class="resetElement" name="field_field0_defaultElement_defaultElement0_labelText" type="text"/>
-            </div>
-            <div class="inputWrapper">
-              <div class="inputLabel">Element Type</div>
-              <select class="resetElement" name="field_field0_defaultElement_defaultElement0_elementType">
-                <option value="" style="display: list-item;">Select the Element Type</option>
-                <option value="input" style="display: list-item;">Input</option>
-                <option value="select" style="display: list-item;">Select</option>
-              </select>
-            </div>
-            <div class="objectLabel">Attributes &#8681;</div>
-            <div class="objectWrapper groupWrapper" style="border: 2px solid green;">
-              <div class="objectWrapper elementWrapper" style="border: 2px solid green;">
-                <div class="inputWrapper">
-                  <div class="inputLabel">Attribute Name</div>
-                  <input class="resetElement" name="field_field0_defaultElement_defaultElement0_attribute_attribute0_attributeName" type="text" list="inputAttributes" domainFor="attributes"/>
-                </div>
-                <div class="inputWrapper">
-                  <div class="inputLabel">Attribute Value</div>
-                  <input class="resetElement" name="field_field0_defaultElement_defaultElement0_attribute_attribute0_attributeValue" type="text" rangeFor="attributes"/>
-                </div>
-                <button type="button" class="disabled controlObjectButton moveObjectUpButton blue" disabled>Move Up</button>
-                <button type="button" class="disabled controlObjectButton moveObjectDownButton blue" disabled>Move Down</button>
-                <button type="button" class="disabled controlObjectButton removeObjectButton red" disabled>Remove</button>
-              </div>
-              <button type="button" class="addNewObjectButton" style="background-color: green;">Add New Attribute</button>
-            </div>
-            <div class="objectLabel">Validations &#8681;</div>
-            <div class="objectWrapper groupWrapper" style="border: 2px solid green;">
-              <div class="objectWrapper elementWrapper" style="border: 2px solid green;">
-                <div class="objectLabel">Default Validation &#8681;</div>
-                <div class="objectWrapper groupWrapper" style="border: 2px solid blue;">
-                  <div class="objectWrapper elementWrapper" style="border: 2px solid blue;">
-                    <div class="inputWrapper">
-                      <div class="inputLabel">Default Validation Name</div>
-                      <input class="resetElement" name="field_field0_defaultElement_defaultElement0_validation_validation0_default_default0_defaultValidationName" type="text" list="validation"/>
-                    </div>
-                    <div class="inputWrapper">
-                      <div class="inputLabel">Default Validation Value</div>
-                      <input class="resetElement" name="field_field0_defaultElement_defaultElement0_validation_validation0_default_default0_defaultValidationValue" type="text"/>
-                    </div>
-                    <button type="button" class="disabled controlObjectButton moveObjectUpButton blue" disabled>Move Up</button>
-                    <button type="button" class="disabled controlObjectButton moveObjectDownButton blue" disabled>Move Down</button>
-                    <button type="button" class="disabled controlObjectButton removeObjectButton red" disabled>Remove</button>
-                  </div>
-                  <button type="button" class="addNewObjectButton" style="background-color: blue;">Add New Default</button>
-                </div>
-                <div class="objectLabel">Post Validation &#8681;</div>
-                <div class="objectWrapper groupWrapper" style="border: 2px solid blue;">
-                  <div class="objectWrapper elementWrapper" style="border: 2px solid blue;">
-                    <div class="inputWrapper">
-                      <div class="inputLabel">Post Validation Name</div>
-                      <input class="resetElement" name="field_field0_defaultElement_defaultElement0_validation_validation0_post_post0_postValidationName" type="text" list="validation"/>
-                    </div>
-                    <div class="inputWrapper">
-                      <div class="inputLabel">Post Validation Value</div>
-                      <input class="resetElement" name="field_field0_defaultElement_defaultElement0_validation_validation0_post_post0_postValidationValue" type="text"/>
-                    </div>
-                    <button type="button" class="disabled controlObjectButton moveObjectUpButton blue" disabled>Move Up</button>
-                    <button type="button" class="disabled controlObjectButton moveObjectDownButton blue" disabled>Move Down</button>
-                    <button type="button" class="disabled controlObjectButton removeObjectButton red" disabled>Remove</button>
-                  </div>
-                  <button type="button" class="addNewObjectButton" style="background-color: blue;">Add New Post</button>
-                </div>
-                <div class="objectLabel">Put Validation &#8681;</div>
-                <div class="objectWrapper groupWrapper" style="border: 2px solid blue;">
-                  <div class="objectWrapper elementWrapper" style="border: 2px solid blue;">
-                    <div class="inputWrapper">
-                      <div class="inputLabel">Put Validation Name</div>
-                      <input class="resetElement" name="field_field0_defaultElement_defaultElement0_validation_validation0_put_put0_putValidationName" type="text" list="validation"/>
-                    </div>
-                    <div class="inputWrapper">
-                      <div class="inputLabel">Put Validation Value</div>
-                      <input class="resetElement" name="field_field0_defaultElement_defaultElement0_validation_validation0_put_put0_putValidationValue" type="text"/>
-                    </div>
-                    <button type="button" class="disabled controlObjectButton moveObjectUpButton blue" disabled>Move Up</button>
-                    <button type="button" class="disabled controlObjectButton moveObjectDownButton blue" disabled>Move Down</button>
-                    <button type="button" class="disabled controlObjectButton removeObjectButton red" disabled>Remove</button>
-                  </div>
-                  <button type="button" class="addNewObjectButton" style="background-color: blue;">Add New Put</button>
-                </div>
-                <button type="button" class="disabled controlObjectButton moveObjectUpButton blue" disabled>Move Up</button>
-                <button type="button" class="disabled controlObjectButton moveObjectDownButton blue" disabled>Move Down</button>
-                <button type="button" class="disabled controlObjectButton removeObjectButton red" disabled>Remove</button>
-              </div>
-              <button type="button" class="addNewObjectButton" style="background-color: green;">Add New Validation</button>
-            </div>
-            <button type="button" class="disabled controlObjectButton moveObjectUpButton blue" disabled>Move Up</button>
-            <button type="button" class="disabled controlObjectButton moveObjectDownButton blue" disabled>Move Down</button>
-            <button type="button" class="disabled controlObjectButton removeObjectButton red" disabled>Remove</button>
-          </div>
-          <button type="button" class="addNewObjectButton" style="background-color: red;">Add New DefaultElement</button>
-        </div>
-        <div class="objectLabel">Calculations &#8681;</div>
-        <div class="objectWrapper groupWrapper" style="border: 2px solid red;">
-          <div class="objectWrapper elementWrapper" style="border: 2px solid red;">
-            <div class="inputWrapper">
-              <div class="inputLabel">Calculation Name</div>
-              <input class="resetElement" name="field_field0_calculation_calculation0_calculationName" type="text" list="calculation"/>
-            </div>
-            <div class="inputWrapper">
-              <div class="inputLabel">Calculation Value</div>
-              <input class="resetElement" name="field_field0_calculation_calculation0_calculationValue" type="text"/>
-            </div>
-            <button type="button" class="disabled controlObjectButton moveObjectUpButton blue" disabled>Move Up</button>
-            <button type="button" class="disabled controlObjectButton moveObjectDownButton blue" disabled>Move Down</button>
-            <button type="button" class="disabled controlObjectButton removeObjectButton red" disabled>Remove</button>
-          </div>
-          <button type="button" class="addNewObjectButton" style="background-color: red;">Add New Calculation</button>
         </div>
         <button type="button" class="disabled controlObjectButton moveObjectUpButton blue" disabled>Move Up</button>
         <button type="button" class="disabled controlObjectButton moveObjectDownButton blue" disabled>Move Down</button>
@@ -337,6 +198,351 @@
   <option value="editForm"/>
   <option value="deleteForm"/>
 </datalist>
+
+
+<script type="text/objectTemplate">
+<div class="inputWrapper">
+  <div class="inputLabel">Data Type</div>
+  <select class="resetElement" name="field_field0_dataType" dataTypeSelect="yes">
+    <option value="" style="display: list-item;">Select the Data Type</option>
+    <option value="string" style="display: list-item;">String</option>
+    <option value="object" style="display: list-item;">Object</option>
+  </select>
+</div>  
+<div class="inputWrapper">
+  <div class="inputLabel">Field Name</div>
+  <input class="resetElement" name="field_field0_fieldName" type="text" placeHolder="Enter a Field Name"/>
+</div>
+<div class="inputWrapper">
+  <div class="inputLabel">Unique</div>
+  <select class="resetElement" name="field_field0_unique">
+    <option value="" style="display: list-item;">Select if Unique</option>
+    <option value="yes" style="display: list-item;">Yes</option>
+    <option value="no" style="display: list-item;">No</option>
+  </select>
+</div>
+<div class="inputWrapper">
+  <div class="inputLabel">Published</div>
+  <select class="resetElement" name="field_field0_published">
+    <option value="" style="display: list-item;">Select if Published</option>
+    <option value="yes" style="display: list-item;">Yes</option>
+    <option value="no" style="display: list-item;">No</option>
+  </select>
+</div>  
+<div class="objectLabel">Field Information &#8681;</div>
+<div class="objectWrapper groupWrapper" style="border: 2px solid blue;">
+  <div class="objectWrapper elementWrapper" style="border: 2px solid blue;">
+    <div class="inputWrapper">
+      <div class="inputLabel">Data Type</div>
+      <select class="resetElement" name="field_field0_dataType" dataTypeSelect="yes">
+        <option value="" style="display: list-item;">Select the Data Type</option>
+        <option value="string" style="display: list-item;" selected>String</option>
+        <option value="object" style="display: list-item;">Object</option>
+      </select>
+    </div>    
+    <div class="inputWrapper">
+      <div class="inputLabel">Field Name</div>
+      <input class="resetElement" name="field_field0_fieldName" type="text" placeHolder="Enter a Field Name"/>
+    </div>
+    <div class="inputWrapper">
+      <div class="inputLabel">Unique</div>
+      <select class="resetElement" name="field_field0_unique">
+        <option value="" style="display: list-item;">Select if Unique</option>
+        <option value="yes" style="display: list-item;">Yes</option>
+        <option value="no" style="display: list-item;">No</option>
+      </select>
+    </div>
+    <div class="inputWrapper">
+      <div class="inputLabel">Published</div>
+      <select class="resetElement" name="field_field0_published">
+        <option value="" style="display: list-item;">Select if Published</option>
+        <option value="yes" style="display: list-item;">Yes</option>
+        <option value="no" style="display: list-item;">No</option>
+      </select>
+    </div>
+    <div class="objectLabel">Default Elements &#8681;</div>
+    <div class="objectWrapper groupWrapper" style="border: 2px solid red;">
+      <div class="objectWrapper elementWrapper" style="border: 2px solid red;">
+        <div class="inputWrapper">
+          <div class="inputLabel">Element Name</div>
+          <input class="resetElement" name="field_field0_defaultElement_defaultElement0_elementName" type="text"/>
+        </div>
+        <div class="inputWrapper">
+          <div class="inputLabel">Label Text</div>
+          <input class="resetElement" name="field_field0_defaultElement_defaultElement0_labelText" type="text"/>
+        </div>
+        <div class="inputWrapper">
+          <div class="inputLabel">Element Type</div>
+          <select class="resetElement" name="field_field0_defaultElement_defaultElement0_elementType">
+            <option value="" style="display: list-item;">Select the Element Type</option>
+            <option value="input" style="display: list-item;">Input</option>
+            <option value="select" style="display: list-item;">Select</option>
+          </select>
+        </div>
+        <div class="objectLabel">Attributes &#8681;</div>
+        <div class="objectWrapper groupWrapper" style="border: 2px solid green;">
+          <div class="objectWrapper elementWrapper" style="border: 2px solid green;">
+            <div class="inputWrapper">
+              <div class="inputLabel">Attribute Name</div>
+              <input class="resetElement" name="field_field0_defaultElement_defaultElement0_attribute_attribute0_attributeName" type="text" list="inputAttributes" domainFor="attributes"/>
+            </div>
+            <div class="inputWrapper">
+              <div class="inputLabel">Attribute Value</div>
+              <input class="resetElement" name="field_field0_defaultElement_defaultElement0_attribute_attribute0_attributeValue" type="text" rangeFor="attributes"/>
+            </div>
+            <button type="button" class="disabled controlObjectButton moveObjectUpButton blue" disabled>Move Up</button>
+            <button type="button" class="disabled controlObjectButton moveObjectDownButton blue" disabled>Move Down</button>
+            <button type="button" class="disabled controlObjectButton removeObjectButton red" disabled>Remove</button>
+          </div>
+          <button type="button" class="addNewObjectButton" style="background-color: green;">Add New Attribute</button>
+        </div>
+        <div class="objectLabel">Validations &#8681;</div>
+        <div class="objectWrapper groupWrapper" style="border: 2px solid green;">
+          <div class="objectWrapper elementWrapper" style="border: 2px solid green;">
+            <div class="objectLabel">Default Validation &#8681;</div>
+            <div class="objectWrapper groupWrapper" style="border: 2px solid blue;">
+              <div class="objectWrapper elementWrapper" style="border: 2px solid blue;">
+                <div class="inputWrapper">
+                  <div class="inputLabel">Default Validation Name</div>
+                  <input class="resetElement" name="field_field0_defaultElement_defaultElement0_validation_validation0_default_default0_defaultValidationName" type="text" list="validation"/>
+                </div>
+                <div class="inputWrapper">
+                  <div class="inputLabel">Default Validation Value</div>
+                  <input class="resetElement" name="field_field0_defaultElement_defaultElement0_validation_validation0_default_default0_defaultValidationValue" type="text"/>
+                </div>
+                <button type="button" class="disabled controlObjectButton moveObjectUpButton blue" disabled>Move Up</button>
+                <button type="button" class="disabled controlObjectButton moveObjectDownButton blue" disabled>Move Down</button>
+                <button type="button" class="disabled controlObjectButton removeObjectButton red" disabled>Remove</button>
+              </div>
+              <button type="button" class="addNewObjectButton" style="background-color: blue;">Add New Default</button>
+            </div>
+            <div class="objectLabel">Post Validation &#8681;</div>
+            <div class="objectWrapper groupWrapper" style="border: 2px solid blue;">
+              <div class="objectWrapper elementWrapper" style="border: 2px solid blue;">
+                <div class="inputWrapper">
+                  <div class="inputLabel">Post Validation Name</div>
+                  <input class="resetElement" name="field_field0_defaultElement_defaultElement0_validation_validation0_post_post0_postValidationName" type="text" list="validation"/>
+                </div>
+                <div class="inputWrapper">
+                  <div class="inputLabel">Post Validation Value</div>
+                  <input class="resetElement" name="field_field0_defaultElement_defaultElement0_validation_validation0_post_post0_postValidationValue" type="text"/>
+                </div>
+                <button type="button" class="disabled controlObjectButton moveObjectUpButton blue" disabled>Move Up</button>
+                <button type="button" class="disabled controlObjectButton moveObjectDownButton blue" disabled>Move Down</button>
+                <button type="button" class="disabled controlObjectButton removeObjectButton red" disabled>Remove</button>
+              </div>
+              <button type="button" class="addNewObjectButton" style="background-color: blue;">Add New Post</button>
+            </div>
+            <div class="objectLabel">Put Validation &#8681;</div>
+            <div class="objectWrapper groupWrapper" style="border: 2px solid blue;">
+              <div class="objectWrapper elementWrapper" style="border: 2px solid blue;">
+                <div class="inputWrapper">
+                  <div class="inputLabel">Put Validation Name</div>
+                  <input class="resetElement" name="field_field0_defaultElement_defaultElement0_validation_validation0_put_put0_putValidationName" type="text" list="validation"/>
+                </div>
+                <div class="inputWrapper">
+                  <div class="inputLabel">Put Validation Value</div>
+                  <input class="resetElement" name="field_field0_defaultElement_defaultElement0_validation_validation0_put_put0_putValidationValue" type="text"/>
+                </div>
+                <button type="button" class="disabled controlObjectButton moveObjectUpButton blue" disabled>Move Up</button>
+                <button type="button" class="disabled controlObjectButton moveObjectDownButton blue" disabled>Move Down</button>
+                <button type="button" class="disabled controlObjectButton removeObjectButton red" disabled>Remove</button>
+              </div>
+              <button type="button" class="addNewObjectButton" style="background-color: blue;">Add New Put</button>
+            </div>
+            <button type="button" class="disabled controlObjectButton moveObjectUpButton blue" disabled>Move Up</button>
+            <button type="button" class="disabled controlObjectButton moveObjectDownButton blue" disabled>Move Down</button>
+            <button type="button" class="disabled controlObjectButton removeObjectButton red" disabled>Remove</button>
+          </div>
+          <button type="button" class="addNewObjectButton" style="background-color: green;">Add New Validation</button>
+        </div>
+        <button type="button" class="disabled controlObjectButton moveObjectUpButton blue" disabled>Move Up</button>
+        <button type="button" class="disabled controlObjectButton moveObjectDownButton blue" disabled>Move Down</button>
+        <button type="button" class="disabled controlObjectButton removeObjectButton red" disabled>Remove</button>
+      </div>
+      <button type="button" class="addNewObjectButton" style="background-color: red;">Add New DefaultElement</button>
+    </div>
+    <div class="objectLabel">Calculations &#8681;</div>
+    <div class="objectWrapper groupWrapper" style="border: 2px solid red;">
+      <div class="objectWrapper elementWrapper" style="border: 2px solid red;">
+        <div class="inputWrapper">
+          <div class="inputLabel">Calculation Name</div>
+          <input class="resetElement" name="field_field0_calculation_calculation0_calculationName" type="text" list="calculation"/>
+        </div>
+        <div class="inputWrapper">
+          <div class="inputLabel">Calculation Value</div>
+          <input class="resetElement" name="field_field0_calculation_calculation0_calculationValue" type="text"/>
+        </div>
+        <button type="button" class="disabled controlObjectButton moveObjectUpButton blue" disabled>Move Up</button>
+        <button type="button" class="disabled controlObjectButton moveObjectDownButton blue" disabled>Move Down</button>
+        <button type="button" class="disabled controlObjectButton removeObjectButton red" disabled>Remove</button>
+      </div>
+      <button type="button" class="addNewObjectButton" style="background-color: red;">Add New Calculation</button>
+    </div>
+    <button type="button" class="disabled controlObjectButton moveObjectUpButton blue" disabled>Move Up</button>
+    <button type="button" class="disabled controlObjectButton moveObjectDownButton blue" disabled>Move Down</button>
+    <button type="button" class="disabled controlObjectButton removeObjectButton red" disabled>Remove</button>
+  </div>
+  <button type="button" class="addNewObjectButton" style="background-color: blue;">Add New Field</button>
+</div>
+<button type="button" class="disabled controlObjectButton moveObjectUpButton blue" disabled>Move Up</button>
+<button type="button" class="disabled controlObjectButton moveObjectDownButton blue" disabled>Move Down</button>
+<button type="button" class="disabled controlObjectButton removeObjectButton red" disabled>Remove</button>
+</script>
+
+
+<script type="text/stringTemplate">
+  <div class="inputWrapper">
+    <div class="inputLabel">Data Type</div>
+    <select class="resetElement" name="field_field0_dataType" dataTypeSelect="yes">
+      <option value="" style="display: list-item;">Select the Data Type</option>
+      <option value="string" style="display: list-item;">String</option>
+      <option value="object" style="display: list-item;">Object</option>
+    </select>
+  </div>  
+  <div class="inputWrapper">
+    <div class="inputLabel">Field Name</div>
+    <input class="resetElement" name="field_field0_fieldName" type="text" placeHolder="Enter a Field Name"/>
+  </div>
+  <div class="inputWrapper">
+    <div class="inputLabel">Unique</div>
+    <select class="resetElement" name="field_field0_unique">
+      <option value="" style="display: list-item;">Select if Unique</option>
+      <option value="yes" style="display: list-item;">Yes</option>
+      <option value="no" style="display: list-item;">No</option>
+    </select>
+  </div>
+  <div class="inputWrapper">
+    <div class="inputLabel">Published</div>
+    <select class="resetElement" name="field_field0_published">
+      <option value="" style="display: list-item;">Select if Published</option>
+      <option value="yes" style="display: list-item;">Yes</option>
+      <option value="no" style="display: list-item;">No</option>
+    </select>
+  </div>  
+  <div class="objectLabel">Default Elements &#8681;</div>
+  <div class="objectWrapper groupWrapper" style="border: 2px solid red;">
+    <div class="objectWrapper elementWrapper" style="border: 2px solid red;">
+      <div class="inputWrapper">
+        <div class="inputLabel">Element Name</div>
+        <input class="resetElement" name="field_field0_defaultElement_defaultElement0_elementName" type="text"/>
+      </div>
+      <div class="inputWrapper">
+        <div class="inputLabel">Label Text</div>
+        <input class="resetElement" name="field_field0_defaultElement_defaultElement0_labelText" type="text"/>
+      </div>
+      <div class="inputWrapper">
+        <div class="inputLabel">Element Type</div>
+        <select class="resetElement" name="field_field0_defaultElement_defaultElement0_elementType">
+          <option value="" style="display: list-item;">Select the Element Type</option>
+          <option value="input" style="display: list-item;">Input</option>
+          <option value="select" style="display: list-item;">Select</option>
+        </select>
+      </div>
+      <div class="objectLabel">Attributes &#8681;</div>
+      <div class="objectWrapper groupWrapper" style="border: 2px solid green;">
+        <div class="objectWrapper elementWrapper" style="border: 2px solid green;">
+          <div class="inputWrapper">
+            <div class="inputLabel">Attribute Name</div>
+            <input class="resetElement" name="field_field0_defaultElement_defaultElement0_attribute_attribute0_attributeName" type="text" list="inputAttributes" domainFor="attributes"/>
+          </div>
+          <div class="inputWrapper">
+            <div class="inputLabel">Attribute Value</div>
+            <input class="resetElement" name="field_field0_defaultElement_defaultElement0_attribute_attribute0_attributeValue" type="text" rangeFor="attributes"/>
+          </div>
+          <button type="button" class="disabled controlObjectButton moveObjectUpButton blue" disabled>Move Up</button>
+          <button type="button" class="disabled controlObjectButton moveObjectDownButton blue" disabled>Move Down</button>
+          <button type="button" class="disabled controlObjectButton removeObjectButton red" disabled>Remove</button>
+        </div>
+        <button type="button" class="addNewObjectButton" style="background-color: green;">Add New Attribute</button>
+      </div>
+      <div class="objectLabel">Validations &#8681;</div>
+      <div class="objectWrapper groupWrapper" style="border: 2px solid green;">
+        <div class="objectWrapper elementWrapper" style="border: 2px solid green;">
+          <div class="objectLabel">Default Validation &#8681;</div>
+          <div class="objectWrapper groupWrapper" style="border: 2px solid blue;">
+            <div class="objectWrapper elementWrapper" style="border: 2px solid blue;">
+              <div class="inputWrapper">
+                <div class="inputLabel">Default Validation Name</div>
+                <input class="resetElement" name="field_field0_defaultElement_defaultElement0_validation_validation0_default_default0_defaultValidationName" type="text" list="validation"/>
+              </div>
+              <div class="inputWrapper">
+                <div class="inputLabel">Default Validation Value</div>
+                <input class="resetElement" name="field_field0_defaultElement_defaultElement0_validation_validation0_default_default0_defaultValidationValue" type="text"/>
+              </div>
+              <button type="button" class="disabled controlObjectButton moveObjectUpButton blue" disabled>Move Up</button>
+              <button type="button" class="disabled controlObjectButton moveObjectDownButton blue" disabled>Move Down</button>
+              <button type="button" class="disabled controlObjectButton removeObjectButton red" disabled>Remove</button>
+            </div>
+            <button type="button" class="addNewObjectButton" style="background-color: blue;">Add New Default</button>
+          </div>
+          <div class="objectLabel">Post Validation &#8681;</div>
+          <div class="objectWrapper groupWrapper" style="border: 2px solid blue;">
+            <div class="objectWrapper elementWrapper" style="border: 2px solid blue;">
+              <div class="inputWrapper">
+                <div class="inputLabel">Post Validation Name</div>
+                <input class="resetElement" name="field_field0_defaultElement_defaultElement0_validation_validation0_post_post0_postValidationName" type="text" list="validation"/>
+              </div>
+              <div class="inputWrapper">
+                <div class="inputLabel">Post Validation Value</div>
+                <input class="resetElement" name="field_field0_defaultElement_defaultElement0_validation_validation0_post_post0_postValidationValue" type="text"/>
+              </div>
+              <button type="button" class="disabled controlObjectButton moveObjectUpButton blue" disabled>Move Up</button>
+              <button type="button" class="disabled controlObjectButton moveObjectDownButton blue" disabled>Move Down</button>
+              <button type="button" class="disabled controlObjectButton removeObjectButton red" disabled>Remove</button>
+            </div>
+            <button type="button" class="addNewObjectButton" style="background-color: blue;">Add New Post</button>
+          </div>
+          <div class="objectLabel">Put Validation &#8681;</div>
+          <div class="objectWrapper groupWrapper" style="border: 2px solid blue;">
+            <div class="objectWrapper elementWrapper" style="border: 2px solid blue;">
+              <div class="inputWrapper">
+                <div class="inputLabel">Put Validation Name</div>
+                <input class="resetElement" name="field_field0_defaultElement_defaultElement0_validation_validation0_put_put0_putValidationName" type="text" list="validation"/>
+              </div>
+              <div class="inputWrapper">
+                <div class="inputLabel">Put Validation Value</div>
+                <input class="resetElement" name="field_field0_defaultElement_defaultElement0_validation_validation0_put_put0_putValidationValue" type="text"/>
+              </div>
+              <button type="button" class="disabled controlObjectButton moveObjectUpButton blue" disabled>Move Up</button>
+              <button type="button" class="disabled controlObjectButton moveObjectDownButton blue" disabled>Move Down</button>
+              <button type="button" class="disabled controlObjectButton removeObjectButton red" disabled>Remove</button>
+            </div>
+            <button type="button" class="addNewObjectButton" style="background-color: blue;">Add New Put</button>
+          </div>
+          <button type="button" class="disabled controlObjectButton moveObjectUpButton blue" disabled>Move Up</button>
+          <button type="button" class="disabled controlObjectButton moveObjectDownButton blue" disabled>Move Down</button>
+          <button type="button" class="disabled controlObjectButton removeObjectButton red" disabled>Remove</button>
+        </div>
+        <button type="button" class="addNewObjectButton" style="background-color: green;">Add New Validation</button>
+      </div>
+      <button type="button" class="disabled controlObjectButton moveObjectUpButton blue" disabled>Move Up</button>
+      <button type="button" class="disabled controlObjectButton moveObjectDownButton blue" disabled>Move Down</button>
+      <button type="button" class="disabled controlObjectButton removeObjectButton red" disabled>Remove</button>
+    </div>
+    <button type="button" class="addNewObjectButton" style="background-color: red;">Add New DefaultElement</button>
+  </div>
+  <div class="objectLabel">Calculations &#8681;</div>
+  <div class="objectWrapper groupWrapper" style="border: 2px solid red;">
+    <div class="objectWrapper elementWrapper" style="border: 2px solid red;">
+      <div class="inputWrapper">
+        <div class="inputLabel">Calculation Name</div>
+        <input class="resetElement" name="field_field0_calculation_calculation0_calculationName" type="text" list="calculation"/>
+      </div>
+      <div class="inputWrapper">
+        <div class="inputLabel">Calculation Value</div>
+        <input class="resetElement" name="field_field0_calculation_calculation0_calculationValue" type="text"/>
+      </div>
+      <button type="button" class="disabled controlObjectButton moveObjectUpButton blue" disabled>Move Up</button>
+      <button type="button" class="disabled controlObjectButton moveObjectDownButton blue" disabled>Move Down</button>
+      <button type="button" class="disabled controlObjectButton removeObjectButton red" disabled>Remove</button>
+    </div>
+    <button type="button" class="addNewObjectButton" style="background-color: red;">Add New Calculation</button>
+  </div>
+  <button type="button" class="disabled controlObjectButton moveObjectUpButton blue" disabled>Move Up</button>
+  <button type="button" class="disabled controlObjectButton moveObjectDownButton blue" disabled>Move Down</button>
+  <button type="button" class="disabled controlObjectButton removeObjectButton red" disabled>Remove</button>
+</script>
 
 
 <script>
@@ -897,6 +1103,188 @@ app.loadoContactAddPage = function()
   // End of: Bind the function above to the onClick event of the removeObjectButtons.
 
 
+  // Define the function that fires when the dataTypeSelect element is changed.
+  // This function changes the form depending on what type of data you are trying to model.
+  function onChangeBehaviorForDataTypeSelectElement (event)
+  {
+    // Stop it from redirecting anywhere
+    event.preventDefault();
+    // Create a handle for the structureTemplate here so all functions below will have access to it.
+    // There are two templates. 
+    // One for defining fields which are strings and the other for defining fields which are objects.
+    // These templates are in script tags between the HTML and the JavaScript.
+
+    debugger;
+
+    // Declare here so it will stay in scope throughout the function.
+    let structureTemplate;
+
+    // Apply the template selected by the user.
+    if(event.target.value === "string")
+    {
+      structureTemplate = document.querySelector('[type="text/stringTemplate"]');
+    }
+    else // Object was selected
+    {
+      structureTemplate = document.querySelector('[type="text/objectTemplate"]');
+    }
+
+    let templateHTMl = structureTemplate.textContent;
+
+    // Create a handle for the container which holds the items to be removed.
+    let templateTarget = event.target.parentNode.parentNode;
+
+    // Save the values
+    let dataTypeSelectValue = templateTarget.querySelector(".resetElement").value;
+
+    // Create a handle for the top item to be removed
+    let topElementToBeRemoved = templateTarget.querySelector(".inputWrapper");
+
+    // Start removing items starting from the bottom of the nodelist working upward.
+    while(true)
+    {
+      if(templateTarget.lastChild === topElementToBeRemoved)
+      {
+        templateTarget.removeChild(templateTarget.lastChild);
+        break;
+      }
+      else // Continue looping
+      {
+        templateTarget.removeChild(templateTarget.lastChild);
+      }
+    }
+
+    // load the template into the DOM
+    templateTarget.innerHTML = templateTarget.innerHTML + templateHTMl;
+
+    // Create handles for the new elements.
+    // Used to modify the element names so the renumbering will work.    
+    let newNodeList = templateTarget.querySelectorAll(".resetElement");
+
+    // Here is where we load the data back in.
+    newNodeList[0].value = dataTypeSelectValue;
+
+    // Start of: Find out what nestLevel we are at.
+    // Create a handle for the highest groupWrapper in the hierarchy.
+    let topGroupWrapper = templateTarget.closest("form > .groupWrapper");
+
+    // Used in the following while loop.
+    let levelCounter = 1;
+    let currentWrapper = templateTarget;
+
+    // Climb to the top, counting nestLevels as we go.
+    while(true)
+    {
+      currentWrapper = currentWrapper.parentElement;
+
+      let currentClassList = currentWrapper.classList
+
+      if(currentWrapper === topGroupWrapper) //If we are at the top.
+      {             
+        break;
+      }
+      else if(currentWrapper.classList.contains("groupWrapper"))
+      {
+        levelCounter = levelCounter + 1;       
+      }
+    }
+
+    // End of: Find out what nestLevel we are at.
+
+    // Start of: Prepending "field_field0_" (in the right amount depending on nestlevel) to fieldNames of all elements from the template.
+    // We have to do this or the renumbering function will not work.
+
+    // We are starting from the bottom and working our way up.
+    // This gives the index of the last node in the list.
+    let downCounter = newNodeList.length - 1;
+
+    // This tells us at what element to stop adding to the names.
+    // It's the "published" select control.
+    // This control and all above where not added from the template.
+    // They were already there.
+    let lastElement = templateTarget.querySelectorAll("select")[2];
+
+    while(true) //Loop through the elements changing the names as we go.
+    {
+      if(newNodeList[downCounter] === lastElement)
+      {
+        break;
+      }
+
+      newNodeList[downCounter].name = "field_field0_".repeat(levelCounter) + newNodeList[downCounter].name;
+
+      downCounter = downCounter -1;
+    }
+
+    // End of: Prepending "field_field0_" in the right amount depending on nestlevel to fieldNames of all elements which came the template.
+
+    // Bind this function to the onChange event of the dataTypeSelect element just created.
+    templateTarget.querySelectorAll('select').forEach(function(currentSelect)
+    {
+      if(currentSelect.getAttribute('dataTypeSelect'))
+      {
+        currentSelect.addEventListener("change", onChangeBehaviorForDataTypeSelectElement);
+      }
+    });  
+
+    // Create an event listener for the onClick event of the clone's 
+    // label elements which expand and collapse objects.    
+    templateTarget.querySelectorAll(".objectLabel").forEach(function(currentLabel)
+    {
+      currentLabel.addEventListener("click", onClickBehaviorForLabelElement, true);
+    });
+
+    // Create an event listener for the onChange event of the clone's 
+    // input elements which have the domainFor attribute.
+    templateTarget.querySelectorAll("input").forEach(function(currentInput)
+    {
+      if(currentInput.getAttribute('domainFor'))
+      {
+        currentInput.addEventListener("change", onChangeBehaviorForDomainElement, true);
+      }
+    });
+
+    // Create an event listener for the onclick event of the clone's removeObjectButtons.
+    templateTarget.querySelectorAll(".removeObjectButton").forEach(function(removeObjectButton)
+    {
+      removeObjectButton.addEventListener("click", onClickBehaviorForRemoveObjectButton);
+    });
+    
+    // Create an event listener for the onclick event of the clone's moveObjectUpButtons.
+    templateTarget.querySelectorAll(".moveObjectUpButton").forEach(function(moveObjectUpButton)
+    {
+      moveObjectUpButton.addEventListener("click", onClickBehaviorForMoveObjectUpButton);
+    });    
+    
+    // Create an event listener for the onclick event of the clone's moveObjectDownButton.
+    templateTarget.querySelectorAll(".moveObjectDownButton").forEach(function(moveObjectDownButton)
+    {
+      moveObjectDownButton.addEventListener("click", onClickBehaviorForMoveObjectDownButton);
+    });
+
+    // Create an event listener for the onclick event of the clone's addNewObjectButtons.
+    templateTarget.querySelectorAll('.addNewObjectButton').forEach(function(addNewObjectButton)
+    {
+      addNewObjectButton.addEventListener("click", onClickBehaviorForAddNewObjectButton);
+    });
+
+    renumberNamedElementsInGroupWrapper(templateTarget.parentNode);
+
+  } // End of: function onClickBehaviorForDataTypeSelectElement (event)
+  // End of: Define the function that fires when the dataTypeSelect element is selected.
+
+
+  // Bind the function above to the onChange event of the dataTypeSelect element.
+  document.querySelectorAll('select').forEach(function(currentSelect)
+  {
+    if(currentSelect.getAttribute('dataTypeSelect'))
+    {
+      currentSelect.addEventListener("change", onChangeBehaviorForDataTypeSelectElement);
+    }
+  });  
+  // End of: Bind the function above to the onChange event of the dataTypeSelect element.
+
+
   // Define the function that fires when the addNewObjectButton is selected.
   function onClickBehaviorForAddNewObjectButton (event)  
   {
@@ -961,6 +1349,15 @@ app.loadoContactAddPage = function()
       moveObjectDownButton.addEventListener("click", onClickBehaviorForMoveObjectDownButton);
     });
 
+    // Create an event listener for the onChange event of the clone's dataTypeSelect.
+    cln.querySelectorAll('select').forEach(function(currentSelect)
+    {
+      if(currentSelect.getAttribute('dataTypeSelect'))
+      {
+        currentSelect.addEventListener("change", onChangeBehaviorForDataTypeSelectElement);
+      }
+    }); 
+
     // Create an event listener for the onclick event of the clone's addNewObjectButtons.
     cln.querySelectorAll('.addNewObjectButton').forEach(function(addNewObjectButton)
     {
@@ -980,11 +1377,8 @@ app.loadoContactAddPage = function()
     // Disable the clone's moveObjectDownButton
     cln.querySelectorAll(".moveObjectDownButton").forEach(function(moveObjectDownButton)
     {
-      // if(moveObjectDownButton.parentNode === cln)
-      // {
         moveObjectDownButton.classList.add("disabled");
         moveObjectDownButton.setAttribute("disabled", "");
-      // }
     }); 
 
     // Disable all removeObjectButtons on the clone.
@@ -1062,7 +1456,7 @@ app.loadoContactAddPage = function()
 // Define a function which renumbers field names in children objects as we create, move, or delete their element wrappers
 function renumberNamedElementsInGroupWrapper(groupWrapper)
 {
-  //Debug let testCounter = 0
+  let testCounter = 0 //Debug
 
   // Used to determine if we are changing levels of hierarchy in the DOM
   // We haven't looked at an elementWrapper yet so it's undefined.
@@ -1101,12 +1495,60 @@ function renumberNamedElementsInGroupWrapper(groupWrapper)
   // Loop through each elementWrapper.
   groupWrapper.querySelectorAll('.elementWrapper').forEach(function(elementWrapper, wrapperIndex)
   {
+    // Used in the following while loop.
+    let levelCounter = 0;
+    let currentWrapper = elementWrapper.parentElement;
+
+    // Climb to the top, counting nestLevels.
+    while(currentWrapper != groupWrapper)
+    {
+      currentWrapper = currentWrapper.parentElement;
+
+      let currentClassList = currentWrapper.classList
+
+      if(currentWrapper === groupWrapper) //If we are at the top.
+      {
+        levelCounter = levelCounter + 1; 
+        break;
+      }
+      else if(currentWrapper.classList.contains("groupWrapper"))
+      {
+        levelCounter = levelCounter + 1;       
+      }
+    }
+
+
+    let addButtonList = elementWrapper.parentElement.querySelectorAll(".addNewObjectButton");
+
+    let addButtonCounter = 0;
+    let currentAddButton;
+
+    while(true)
+    {
+      currentAddButton = addButtonList[addButtonCounter]
+      
+      if(currentAddButton.parentElement === elementWrapper.parentElement)
+      {
+        break;
+      }
+      addButtonCounter = addButtonCounter + 1;
+    }
+
+    // Border color alternates with nest level. Blue, Red, Green, Blue ...
+    // The following is just a ternary if-else statement. 
+    // Notice both the elementWrapper and corresponding groupWrapper and addButton are being colored with one command.
+    elementWrapper.style.borderColor = elementWrapper.parentElement.style.borderColor = currentAddButton.style.backgroundColor =
+    levelCounter % 3 === 0 ? "blue" :
+    levelCounter % 3 === 1 ? "red" :      
+    levelCounter % 3 === 2 ? "green" : 
+    "blue";
+
+ 
     // Loop through the form elements inside each elementWrapper.
     elementWrapper.querySelectorAll('.resetElement').forEach(function(fieldElement)
     {
-
-      //Debug let elementColor = fieldElement.style.backgroundColor;
-      //Debug fieldElement.style.backgroundColor  = "blue";
+      let elementColor = fieldElement.style.backgroundColor; //Debug
+      fieldElement.style.backgroundColor = "blue"; //Debug
 
       // Start of: Set the amount of elements in ancestorWrappers to show the which number in the 
       // element name is to be changed (the nest level) and set the index element to show which sibling 
@@ -1190,10 +1632,6 @@ function renumberNamedElementsInGroupWrapper(groupWrapper)
               // Remove the last element and check if the next wrapper up contains the current wrapper.
               ancestorWrappers.pop();
 
-              // We are working with a new elementWrapper at the same level.
-              // So increment the numeric value held in the last element of the ancestorWrappers array.
-              // ancestorWrappers[ancestorWrappers.length - 1][1]++;
-              // incremented = true;
             }
             else // we are back at the top level.
             {
@@ -1206,7 +1644,7 @@ function renumberNamedElementsInGroupWrapper(groupWrapper)
               }
 
               break;   
-            } // End of: Else - we are at the top level
+            } // End of: Else - we are back at the top level
           } // End of: Else - the current wrapper is not inside the last ancestorWrapper
         } // End of: while (true)
       } // End of: Else - the current wrapper is not inside the previous
@@ -1280,12 +1718,15 @@ function renumberNamedElementsInGroupWrapper(groupWrapper)
         , initialValue // This was an empty string passed in to the reduce function to get things started.
       ); // End of: let nextNameAttribute = nameAttributeArray.reduce(function(){do stuff})
 
-      //Debug testCounter = testCounter + 1;
+      testCounter = testCounter + 1; //Debug
         
       // Set the name of the formElement as calculated above.
       fieldElement.setAttribute("name", nextNameAttribute)
 
-      //Debug fieldElement.style.backgroundColor  = elementColor
+      fieldElement.style.backgroundColor  = elementColor //Debug
+
+      // End of: Build the form element's name using info in the ancestorWrappers array.
+
 
     }); // End of: elementWrapper.querySelectorAll('.resetElement').forEach(function(fieldElement){...}
     // End of: Loop through the form elements inside each elementWrapper.
