@@ -407,17 +407,20 @@
 
 
 <script type="text/newFieldTemplate">
-<div class="inputWrapper">
-  <div class="inputLabel">Data Type</div>
-  <select class="resetElement" name="field_field0_dataType" dataTypeSelect="yes">
-    <option value="" style="display: list-item;">Select the Data Type</option>
-    <option value="string" style="display: list-item;">String</option>
-    <option value="object" style="display: list-item;">Object</option>
-  </select>
+<div class="objectWrapper elementWrapper" style="border: 2px solid blue;">
+  <div class="inputWrapper">
+    <div class="inputLabel">Data Type</div>
+    <select class="resetElement" name="field_field0_dataType" dataTypeSelect="yes">
+      <option value="" style="display: list-item;">Select the Data Type</option>
+      <option value="string" style="display: list-item;">String</option>
+      <option value="object" style="display: list-item;">Object</option>
+    </select>
+  </div>
+  <button type="button" class="disabled controlObjectButton moveObjectUpButton blue" disabled>Move Up</button>
+  <button type="button" class="disabled controlObjectButton moveObjectDownButton blue" disabled>Move Down</button>
+  <button type="button" class="disabled controlObjectButton removeObjectButton red" disabled>Remove</button>
 </div>
-<button type="button" class="controlObjectButton moveObjectUpButton blue">Move Up</button>
-<button type="button" class="disabled controlObjectButton moveObjectDownButton blue" disabled>Move Down</button>
-<button type="button" class="controlObjectButton removeObjectButton red">Remove</button>
+<button type="button" class="addNewFieldButton" style="background-color: blue;">Add New Field</button>
 </script>
 
 
@@ -1158,13 +1161,6 @@ app.loadoContactAddPage = function()
       moveObjectDownButton.addEventListener("click", onClickBehaviorForMoveObjectDownButton);
     });
 
-    // Create an event listener for the onclick event of the clone's addNewFieldButton.
-    templateTarget.querySelectorAll('.addNewFieldButton').forEach(function(addNewFieldButton)
-    {
-      addNewFieldButton.addEventListener("click", onClickBehaviorForAddNewFieldButton);
-    });  
-    // End of: Bind the function above to the onClick event of the addNewFieldButton.
-
     // Create an event listener for the onclick event of the clone's addNewObjectButtons.
     templateTarget.querySelectorAll('.addNewObjectButton').forEach(function(addNewObjectButton)
     {
@@ -1208,6 +1204,38 @@ app.loadoContactAddPage = function()
   // End of: Bind the function above to the onChange event of the dataTypeSelect element.
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   // Define the function that fires when the addNewFieldButton is selected.
   // This function uses a template to add HTML for deciding between object or string type when adding a new field.
   // This template is in script tags between the HTML and the JavaScript.
@@ -1216,36 +1244,25 @@ app.loadoContactAddPage = function()
     // Stop it from redirecting anywhere
     event.preventDefault();
 
-    // Create a handle for the groupWrapper which contains the addNewFieldButton.
-    let targetGroupWrapper = event.target.parentNode;
-
-    // Initialize a pointer to the elementWrapper we will clone.
-    // We are cloning the last elementWrapper the groupWrapper.
-    let lastElementWrapper;
-
-    targetGroupWrapper.querySelectorAll(".elementWrapper").forEach(function(elementWrapper)
-    {
-      if(elementWrapper.parentNode === event.target.parentNode)
-      {
-        lastElementWrapper = elementWrapper;
-      }
-    });
-
-    // Here we clone the last elementWrapper.
-    // The false argument means clone just the element - nothing inside it
-    let elementWrapperClone = lastElementWrapper.cloneNode(false);
+    debugger;
 
     // Get the template.
     let newFieldTemplate = document.querySelector('[type="text/newFieldTemplate"]');
 
-    // Gets rid of the <script> tags
-    let newHTML = newFieldTemplate.textContent;   
+    // Extract the text from between the script tags
+    let templateHTMl = newFieldTemplate.textContent;
 
-    // load HTML from the template into the empty clone.
-    elementWrapperClone.innerHTML = newHTML;    
+    // Create a handle for the groupWrapper which contains the addNewFieldButton.
+    let templateTarget = event.target.parentNode;
+
+    // Remove the addNewFieldButton
+    templateTarget.querySelector(".addNewFieldButton").remove();
+
+    // load the template into the DOM
+    templateTarget.innerHTML = templateTarget.innerHTML + templateHTMl;
 
     // Bind this function to the onChange event of the dataTypeSelect element just created.
-    targetGroupWrapper.querySelectorAll('select').forEach(function(currentSelect)
+    templateTarget.querySelectorAll('select').forEach(function(currentSelect)
     {
       if(currentSelect.getAttribute('dataTypeSelect'))
       {
@@ -1253,10 +1270,72 @@ app.loadoContactAddPage = function()
       }
     });  
 
-    // Disable the very top moveObjectUpButton
-    targetGroupWrapper.querySelectorAll(".moveObjectUpButton").forEach(function(moveObjectUpButton)
+    // Create an event listener for the onclick event of the clone's removeObjectButtons.
+    templateTarget.querySelectorAll(".removeObjectButton").forEach(function(removeObjectButton)
     {
-      if(moveObjectUpButton.parentNode === targetGroupWrapper)
+      removeObjectButton.addEventListener("click", onClickBehaviorForRemoveObjectButton);
+    });
+    
+    // Create an event listener for the onclick event of the clone's moveObjectUpButtons.
+    templateTarget.querySelectorAll(".moveObjectUpButton").forEach(function(moveObjectUpButton)
+    {
+      moveObjectUpButton.addEventListener("click", onClickBehaviorForMoveObjectUpButton);
+    });    
+    
+    // Create an event listener for the onclick event of the clone's moveObjectDownButton.
+    templateTarget.querySelectorAll(".moveObjectDownButton").forEach(function(moveObjectDownButton)
+    {
+      moveObjectDownButton.addEventListener("click", onClickBehaviorForMoveObjectDownButton);
+    });
+
+    // Create an event listener for the onclick event of the clone's addNewFieldButton.
+    templateTarget.querySelectorAll(".addNewFieldButton").forEach(function(addNewFieldButton)
+    {
+      addNewFieldButton.addEventListener("click", onClickBehaviorForAddNewFieldButton);
+    });
+
+    // Enable the groupWrapper's moveObjectUpButtons
+    templateTarget.querySelectorAll(".moveObjectUpButton").forEach(function(moveObjectUpButton)
+    {
+      if(moveObjectUpButton.parentElement.parentElement === templateTarget)
+      {
+        moveObjectUpButton.classList.remove('disabled');
+        moveObjectUpButton.removeAttribute("disabled");
+      }
+    });
+
+    /*
+    // Disable the clone's moveObjectDownButton
+    templateTarget.querySelectorAll(".moveObjectDownButton").forEach(function(moveObjectDownButton)
+    {
+        moveObjectDownButton.classList.add("disabled");
+        moveObjectDownButton.setAttribute("disabled", "");
+    }); 
+
+    // Disable all removeObjectButtons on the clone.
+    // This is to disable buttons on any children.
+    // In the next step after this, the removeObjectButton is enabled at the top level.
+    templateTarget.querySelectorAll(".removeObjectButton").forEach(function(removeObjectButton)
+    {
+      removeObjectButton.classList.add("disabled");
+      removeObjectButton.setAttribute("disabled", "");
+    }); 
+
+
+    // Enable the clone's top level removeObjectButton
+    templateTarget.querySelectorAll(".removeObjectButton").forEach(function(removeObjectButton)
+    {
+      if(removeObjectButton.parentNode === templateTarget)
+      {
+        removeObjectButton.classList.remove('disabled');
+        removeObjectButton.removeAttribute("disabled");
+      }
+    }); 
+
+    // Disable the very top moveObjectUpButton
+    event.target.parentNode.querySelectorAll(".moveObjectUpButton").forEach(function(moveObjectUpButton)
+    {
+      if(moveObjectUpButton.parentNode === event.target.parentNode)
       {
         moveObjectUpButton.classList.add("disabled");
         moveObjectUpButton.setAttribute("disabled", "");
@@ -1271,40 +1350,20 @@ app.loadoContactAddPage = function()
         moveObjectDownButton.classList.remove('disabled');
         moveObjectDownButton.removeAttribute("disabled");
       }  
-    });    
+    });
 
     // Enable all but clone's removeObjectButton
-    targetGroupWrapper.querySelectorAll(".removeObjectButton").forEach(function(removeObjectButton)
+    event.target.parentNode.querySelectorAll(".removeObjectButton").forEach(function(removeObjectButton)
     {
-      if(removeObjectButton.parentNode.parentNode === targetGroupWrapper)
+      if(removeObjectButton.parentNode.parentNode === event.target.parentNode)
       {
         removeObjectButton.classList.remove('disabled');
         removeObjectButton.removeAttribute("disabled");  
       }   
     });
+    */
 
-    // Append the cloned element wrapper to the groupWrapper just above the addNewFieldButton.
-    targetGroupWrapper.insertBefore(elementWrapperClone, targetGroupWrapper.lastElementChild);
-
-    // Create an event listener for the onclick event of the clone's removeObjectButtons.
-    targetGroupWrapper.querySelectorAll(".removeObjectButton").forEach(function(removeObjectButton)
-    {
-      removeObjectButton.addEventListener("click", onClickBehaviorForRemoveObjectButton);
-    });
-    
-    // Create an event listener for the onclick event of the clone's moveObjectUpButtons.
-    targetGroupWrapper.querySelectorAll(".moveObjectUpButton").forEach(function(moveObjectUpButton)
-    {
-      moveObjectUpButton.addEventListener("click", onClickBehaviorForMoveObjectUpButton);
-    });    
-    
-    // Create an event listener for the onclick event of the clone's moveObjectDownButton.
-    targetGroupWrapper.querySelectorAll(".moveObjectDownButton").forEach(function(moveObjectDownButton)
-    {
-      moveObjectDownButton.addEventListener("click", onClickBehaviorForMoveObjectDownButton);
-    });    
-
-    renumberNamedElementsInGroupWrapper(targetGroupWrapper);
+    renumberNamedElementsInGroupWrapper(templateTarget.parentNode);
 
   } // End of: function onClickBehaviorForAddNewFieldButton (event)
   // End of: // Define the function that fires when the addNewFieldButton is selected.
@@ -1316,6 +1375,24 @@ app.loadoContactAddPage = function()
     currentaddNewFieldButton.addEventListener("click", onClickBehaviorForAddNewFieldButton);
   });  
   // End of: Bind the function above to the onClick event of the addNewFieldButton.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
   // Define the function that fires when the addNewObjectButton is selected.
@@ -1550,8 +1627,8 @@ function renumberNamedElementsInGroupWrapper(groupWrapper)
       }
     }
 
-    // Start of: Grab the current groupWrapper's corresponding add button for coloring.
-    let addButtonList = elementWrapper.parentElement.querySelectorAll(".addNewObjectButton, .addNewFieldButton");
+
+    let addButtonList = elementWrapper.parentElement.querySelectorAll(".addNewObjectButton");
 
     let addButtonCounter = 0;
     let currentAddButton;
@@ -1566,7 +1643,6 @@ function renumberNamedElementsInGroupWrapper(groupWrapper)
       }
       addButtonCounter = addButtonCounter + 1;
     }
-    // End of: Grab the current groupWrapper's corresponding add button for coloring.    
 
     // Border color alternates with nest level. Blue, Red, Green, Blue ...
     // The following is just a ternary if-else statement. 
