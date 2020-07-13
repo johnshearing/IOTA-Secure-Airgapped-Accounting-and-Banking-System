@@ -994,6 +994,7 @@ app.loadoContactAddPage = function()
     // Create a handle for the structureTemplate here so all functions below will have access to it.
     // Declare variable here so it will stay in scope throughout the function.
     let structureTemplate;
+    let structureType = "string";
 
     // Apply the template selected by the user.
     if(event.target.value === "string")
@@ -1003,6 +1004,7 @@ app.loadoContactAddPage = function()
     else // Object was selected
     {
       structureTemplate = document.querySelector('[type="text/objectTemplate"]');
+      structureType = "object";
     }
 
     let templateHTMl = structureTemplate.textContent;
@@ -1015,25 +1017,38 @@ app.loadoContactAddPage = function()
     let dataTypeSelectValue = templateTarget.querySelector(".resetElement").value;
 
     // Save the state of the object control buttons.
-    // We will return the buttons to this state after we overwrite the current HTML with template HTML.    
-    let controlButtonsWereEnabled = false;
+    // We will return the buttons to this state after we overwrite the current HTML with template HTML.
+    let removeObjectButtonWasEnabled = false;
+    let moveObjectUpButtonWasEnabled = false;
+    let moveObjectDownButtonWasEnabled = false;
 
     let controlButtonNodeList = templateTarget.querySelectorAll(".controlObjectButton")
 
-    for( let i = 0; i < controlButtonNodeList.length - 1; i++) 
+    for( let i = 0; i < controlButtonNodeList.length; i++)
     {
-      // Just enable top level control buttons
+      // Just examine top level control buttons
       if(controlButtonNodeList[i].parentElement === templateTarget)
       {
-        // Just enable moveUp and remove buttons - not the move down button - we are already at the bottom.
-        if(controlButtonNodeList[i].classList.contains("moveObjectUpButton") || controlButtonNodeList[i].classList.contains("removeObjectButton"))
+        // Store the state of the remove button.
+        if(controlButtonNodeList[i].classList.contains("removeObjectButton"))
         {
-          if(!controlButtonNodeList[i].disabled){controlButtonsWereEnabled = true;}
-          break;
+          if(!controlButtonNodeList[i].disabled){removeObjectButtonWasEnabled = true;}
+        }
+
+        // Store the state of the moveObjectUpButton.
+        if(controlButtonNodeList[i].classList.contains("moveObjectUpButton"))
+        {
+          if(!controlButtonNodeList[i].disabled){moveObjectUpButtonWasEnabled = true;}
+        }
+
+        // Store the state of the moveObjectDownButton.
+        if(controlButtonNodeList[i].classList.contains("moveObjectDownButton"))
+        {
+          if(!controlButtonNodeList[i].disabled){moveObjectDownButtonWasEnabled = true;}
         }
       }
     } // End of: for( let...
-    // End of: Save the state of the object control buttons.
+    // End of: Save the state of the object control buttons.    
 
     // Create a handle for the top item to be removed
     let topElementToBeRemoved = templateTarget.querySelector(".inputWrapper");
@@ -1096,21 +1111,35 @@ app.loadoContactAddPage = function()
     // This gives the index of the last node in the list.
     let downCounter = newNodeList.length - 1;
 
-    // This tells us at what element to stop adding to the names.
-    // It's the "published" select control.
-    // This control and all above where not added from the template.
-    // They were already there.
-    let lastElement = templateTarget.querySelectorAll("select")[2];
+    debugger;
 
     while(true) //Loop through the elements changing the names as we go.
     {
-      if(newNodeList[downCounter] === lastElement)
+      if(structureType === "object")
+      {
+        if(downCounter < 0)
+        {
+          break;
+        }
+        else if(downCounter <= 3)
+        {
+          newNodeList[downCounter].name = "field_field0_".repeat(levelCounter -1) + newNodeList[downCounter].name;
+          downCounter = downCounter -1;
+        }
+        else
+        {
+          newNodeList[downCounter].name = "field_field0_".repeat(levelCounter) + newNodeList[downCounter].name;
+          downCounter = downCounter -1;
+        }
+      }
+      else
       {
         break;
       }
-      newNodeList[downCounter].name = "field_field0_".repeat(levelCounter) + newNodeList[downCounter].name;
-      downCounter = downCounter -1;
+
     } // End of: while(true)...
+
+    debugger;
 
     // End of: Prepending "field_field0_" in the right amount depending on nestlevel to fieldNames of all elements which came the template.
 
@@ -1123,14 +1152,14 @@ app.loadoContactAddPage = function()
       }
     });  
 
-    // Create an event listener for the onClick event of the clone's 
+    // Create an event listener for the onClick event of the new 
     // label elements which expand and collapse objects.    
     templateTarget.querySelectorAll(".objectLabel").forEach(function(currentLabel)
     {
       currentLabel.addEventListener("click", onClickBehaviorForLabelElement, true);
     });
 
-    // Create an event listener for the onChange event of the clone's 
+    // Create an event listener for the onChange event of the new 
     // input elements which have the domainFor attribute.
     templateTarget.querySelectorAll("input").forEach(function(currentInput)
     {
@@ -1140,58 +1169,67 @@ app.loadoContactAddPage = function()
       }
     });
 
-    // Create an event listener for the onclick event of the clone's removeObjectButtons.
+    // Create an event listener for the onclick event of the new removeObjectButtons.
     templateTarget.querySelectorAll(".removeObjectButton").forEach(function(removeObjectButton)
     {
       removeObjectButton.addEventListener("click", onClickBehaviorForRemoveObjectButton);
     });
     
-    // Create an event listener for the onclick event of the clone's moveObjectUpButtons.
+    // Create an event listener for the onclick event of the new moveObjectUpButtons.
     templateTarget.querySelectorAll(".moveObjectUpButton").forEach(function(moveObjectUpButton)
     {
       moveObjectUpButton.addEventListener("click", onClickBehaviorForMoveObjectUpButton);
     });    
     
-    // Create an event listener for the onclick event of the clone's moveObjectDownButton.
+    // Create an event listener for the onclick event of the new moveObjectDownButton.
     templateTarget.querySelectorAll(".moveObjectDownButton").forEach(function(moveObjectDownButton)
     {
       moveObjectDownButton.addEventListener("click", onClickBehaviorForMoveObjectDownButton);
     });
 
-    // Create an event listener for the onclick event of the clone's addNewFieldButton.
+    // Create an event listener for the onclick event of the new addNewFieldButton.
     templateTarget.querySelectorAll('.addNewFieldButton').forEach(function(addNewFieldButton)
     {
       addNewFieldButton.addEventListener("click", onClickBehaviorForAddNewFieldButton);
     });  
-    // End of: Bind the function above to the onClick event of the addNewFieldButton.
 
-    // Create an event listener for the onclick event of the clone's addNewObjectButtons.
+    // Create an event listener for the onclick event of the new addNewObjectButtons.
     templateTarget.querySelectorAll('.addNewObjectButton').forEach(function(addNewObjectButton)
     {
       addNewObjectButton.addEventListener("click", onClickBehaviorForAddNewObjectButton);
     });
 
-    // Restore the state of the control buttons.
-    if(controlButtonsWereEnabled)
+    // Set the state of the control buttons to match what they were at the start of this function.
+    templateTarget.querySelectorAll(".controlObjectButton").forEach(function(controlButton)
     {
-      // Enable the clone's top level removeObjectButton
-      templateTarget.querySelectorAll(".controlObjectButton").forEach(function(controlButton)
+      // Just enable top level control buttons for the current groupWrapper.
+      if(controlButton.parentElement === templateTarget)
       {
-        // Just enable top level control buttons
-        if(controlButton.parentElement === templateTarget)
+        // Enable the removeObjectButton if was enabled at the start of this function.
+        if(controlButton.classList.contains("removeObjectButton") && removeObjectButtonWasEnabled)
         {
-          // Just enable moveUp and remove buttons - not the move down button - we are already at the bottom.
-          if(controlButton.classList.contains("moveObjectUpButton") || controlButton.classList.contains("removeObjectButton"))
-          {
-            controlButton.classList.remove('disabled');
-            controlButton.removeAttribute("disabled");            
-          }
+          controlButton.classList.remove('disabled');
+          controlButton.removeAttribute("disabled");
         }
-      }); 
-    }
-    // End of: Restore the state of the control buttons.
 
-    renumberNamedElementsInGroupWrapper(templateTarget.parentNode);
+        // Enable the moveObjectUpButton if was enabled at the start of this function.
+        if(controlButton.classList.contains("moveObjectUpButton") && moveObjectUpButtonWasEnabled)
+        {
+          controlButton.classList.remove('disabled');
+          controlButton.removeAttribute("disabled");
+        }
+
+        // Enable the moveObjectDownButton if was enabled at the start of this function.
+        if(controlButton.classList.contains("moveObjectDownButton") && moveObjectDownButtonWasEnabled)
+        {
+          controlButton.classList.remove('disabled');
+          controlButton.removeAttribute("disabled");
+        }        
+      }
+    }); 
+    // End of: Set the state of the control buttons to match what they were at the start of this function.
+
+    renumberNamedElementsInGroupWrapper(templateTarget.parentElement);
 
   } // End of: function onClickBehaviorForDataTypeSelectElement (event)
   // End of: Define the function that fires when the dataTypeSelect element is selected.
@@ -1242,16 +1280,7 @@ app.loadoContactAddPage = function()
     let newHTML = newFieldTemplate.textContent;   
 
     // load HTML from the template into the empty clone.
-    elementWrapperClone.innerHTML = newHTML;    
-
-    // Bind this function to the onChange event of the dataTypeSelect element just created.
-    targetGroupWrapper.querySelectorAll('select').forEach(function(currentSelect)
-    {
-      if(currentSelect.getAttribute('dataTypeSelect'))
-      {
-        currentSelect.addEventListener("change", onChangeBehaviorForDataTypeSelectElement);
-      }
-    });  
+    elementWrapperClone.innerHTML = newHTML;     
 
     // Disable the very top moveObjectUpButton
     targetGroupWrapper.querySelectorAll(".moveObjectUpButton").forEach(function(moveObjectUpButton)
@@ -1285,6 +1314,15 @@ app.loadoContactAddPage = function()
 
     // Append the cloned element wrapper to the groupWrapper just above the addNewFieldButton.
     targetGroupWrapper.insertBefore(elementWrapperClone, targetGroupWrapper.lastElementChild);
+
+    // Bind this function to the onChange event of the dataTypeSelect element just created.
+    targetGroupWrapper.querySelectorAll('select').forEach(function(currentSelect)
+    {
+      if(currentSelect.getAttribute('dataTypeSelect'))
+      {
+        currentSelect.addEventListener("change", onChangeBehaviorForDataTypeSelectElement);
+      }
+    });     
 
     // Create an event listener for the onclick event of the clone's removeObjectButtons.
     targetGroupWrapper.querySelectorAll(".removeObjectButton").forEach(function(removeObjectButton)
