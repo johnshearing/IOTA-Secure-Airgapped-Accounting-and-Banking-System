@@ -1111,35 +1111,31 @@ app.loadoContactAddPage = function()
     // This gives the index of the last node in the list.
     let downCounter = newNodeList.length - 1;
 
-    debugger;
-
     while(true) //Loop through the elements changing the names as we go.
     {
-      if(structureType === "object")
+      if(downCounter < 0) // We are done looping through the newNodeList
       {
-        if(downCounter < 0)
-        {
-          break;
-        }
-        else if(downCounter <= 3)
-        {
-          newNodeList[downCounter].name = "field_field0_".repeat(levelCounter -1) + newNodeList[downCounter].name;
-          downCounter = downCounter -1;
-        }
-        else
+        break;
+      }
+      else if(downCounter <= 3) // Looking at header level info for this field: dataType, fieldName, unique, and published. 
+      {
+        newNodeList[downCounter].name = "field_field0_".repeat(levelCounter -1) + newNodeList[downCounter].name;
+        downCounter = downCounter -1;
+      }
+      else // Looking a detail level info for this field
+      {
+        if(structureType === "object") // Using the object template
         {
           newNodeList[downCounter].name = "field_field0_".repeat(levelCounter) + newNodeList[downCounter].name;
           downCounter = downCounter -1;
         }
-      }
-      else
-      {
-        break;
-      }
-
+        else // structureType must be "string". Using the string template.
+        {
+          newNodeList[downCounter].name = "field_field0_".repeat(levelCounter - 1) + newNodeList[downCounter].name;
+          downCounter = downCounter -1;
+        }
+      } // End of: if(downCounter...
     } // End of: while(true)...
-
-    debugger;
 
     // End of: Prepending "field_field0_" in the right amount depending on nestlevel to fieldNames of all elements which came the template.
 
