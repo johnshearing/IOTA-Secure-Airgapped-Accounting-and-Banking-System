@@ -3786,7 +3786,7 @@ function loadPayloadArray(payloadKeyArray, payloadObject)
           {
             if(
                 splitExamElementArray[payloadKeyArrayIndex * 2] != payloadKeyArrayElement 
-                && splitExamElementArray[payloadKeyArrayIndex * 2] != "field"
+                && splitExamElementArray[payloadKeyArrayIndex * 2] != "field" //???? Add this line to generator.
               )
             {
               passExamElement = false;
