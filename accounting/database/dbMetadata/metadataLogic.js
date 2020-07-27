@@ -57,7 +57,7 @@ metadata.serveListPage = function(data, callback)
             helpers.log
             (            
               5,
-              'ymacvgwu482l0zvcd0e6' + '\n' +
+              's2wtm290d729lkvvhhqw' + '\n' +
               'There was an error or the concatenated templates were not returned.' + '\n' +
               'This was the error:' + '\n' +
               JSON.stringify(errorAddUnivTemplates) + '\n'
@@ -73,7 +73,7 @@ metadata.serveListPage = function(data, callback)
         helpers.log
         (
           5,
-          '8dapzbeevlsr60jeq2d2' + '\n' +
+          'wknwlvpplhwq2ffhkawv' + '\n' +
           'There was an error or no template was returned.' + '\n' +
           'This was the error:' + '\n' +
           JSON.stringify(errorGetTemplate) + '\n'
@@ -90,7 +90,7 @@ metadata.serveListPage = function(data, callback)
     helpers.log
     (
       5,
-      'abog0ns1rxrgyw452cr9' + '\n' +
+      'rwpq16b8mgflu5dz1qox' + '\n' +
       'Method not get. Only gets allowed.' + '\n'
     );
 
@@ -137,7 +137,7 @@ metadata.serveAddPage = function(data, callback)
             helpers.log
             (            
               5,
-              'lpev7ynf2b46sdkdg058' + '\n' +
+              '841ceyf0uj61ndld4x3h' + '\n' +
               'There was an error or the concatenated templates were not returned.' + '\n' +
               'This was the error:' + '\n' +
               JSON.stringify(errorAddUnivTemplates) + '\n'
@@ -153,7 +153,7 @@ metadata.serveAddPage = function(data, callback)
         helpers.log
         (
           5,
-          'd6xh4fjglimgwvf202g0' + '\n' +
+          '1195mrvy8jrj3xradjl2' + '\n' +
           'There was an error or no template was returned.' + '\n' +
           'This was the error:' + '\n' +
           JSON.stringify(errorGetTemplate) + '\n'
@@ -170,7 +170,7 @@ metadata.serveAddPage = function(data, callback)
     helpers.log
     (
       5,
-      'grjwixs7sw0unhv7ygvh' + '\n' +
+      'izp01f2apjpmu41i580g' + '\n' +
       'Method not get. Only gets allowed.' + '\n'
     );
 
@@ -217,7 +217,7 @@ metadata.serveEditPage = function(data, callback)
             helpers.log
             (            
               5,
-              'i24411b9bdwrujmzpsn1' + '\n' +
+              'yhe4bocaattk82w464on' + '\n' +
               'There was an error or the concatenated templates were not returned.' + '\n' +
               'This was the error:' + '\n' +
               JSON.stringify(errorAddUnivTemplates) + '\n'
@@ -233,7 +233,7 @@ metadata.serveEditPage = function(data, callback)
         helpers.log
         (
           5,
-          'a4z1ycjkyhxa1nqtoctk' + '\n' +
+          '1os5blabky533iuhqujw' + '\n' +
           'There was an error or no template was returned.' + '\n' +
           'This was the error:' + '\n' +
           JSON.stringify(errorGetTemplate) + '\n'
@@ -250,7 +250,7 @@ metadata.serveEditPage = function(data, callback)
     helpers.log
     (
       5,
-      'fz99lsl61k5i538ecc5t' + '\n' +
+      '3suj3k6rttphuk25cmm7' + '\n' +
       'Method not get. Only gets allowed.' + '\n'
     );
 
@@ -284,7 +284,7 @@ metadata.metadata = function(data, callback)
     helpers.log
     (
       5,
-      'zenbk4adbfd5cdh42mkn' + '\n' +
+      'k0infhtbss35oexyuhoa' + '\n' +
       'The method was not one of the acceptable methods' + '\n'
     ); 
 
@@ -575,6 +575,42 @@ metadata._metadata.post = function(data, callback)
     if(!arrayElement[1] || arrayElement[1].trim().length === 0){return callback(400, {'Error' : 'No attributeValue was entered'});}else{arrayElement[1] = arrayElement[1].trim()}
   });
   // End of: Validate elements in the attributeValueArray
+
+
+  // Start of: Load the optionValueArray dynamically once the payload is known.
+  // Behavior from meta.js at lefq4oks90h34rvcw8sg
+  let optionValueKeyArray = ["field", "defaultElement", "option", "optionValue"]
+
+  let optionValueArray = loadPayloadArray(optionValueKeyArray, data.payload);
+  // End of: Load the optionValueArray dynamically once the payload is known. 
+                  
+  // Start of: Validate elements in the optionValueArray
+  // passIfString&NotEmptyThenTrim
+  // Behavior from meta.js at fkb3ulfqr09ryyc0rb0d
+  optionValueArray.forEach(function(arrayElement)
+  {
+    if(typeof(arrayElement[1]) != 'string'){return callback(400, {'Error' : 'optionValue must be of datatype string'});}
+    if(!arrayElement[1] || arrayElement[1].trim().length === 0){return callback(400, {'Error' : 'No optionValue was entered'});}else{arrayElement[1] = arrayElement[1].trim()}
+  });
+  // End of: Validate elements in the optionValueArray
+
+
+  // Start of: Load the optionTextArray dynamically once the payload is known.
+  // Behavior from meta.js at lefq4oks90h34rvcw8sg
+  let optionTextKeyArray = ["field", "defaultElement", "option", "optionText"]
+
+  let optionTextArray = loadPayloadArray(optionTextKeyArray, data.payload);
+  // End of: Load the optionTextArray dynamically once the payload is known. 
+                  
+  // Start of: Validate elements in the optionTextArray
+  // passIfString&NotEmptyThenTrim
+  // Behavior from meta.js at fkb3ulfqr09ryyc0rb0d
+  optionTextArray.forEach(function(arrayElement)
+  {
+    if(typeof(arrayElement[1]) != 'string'){return callback(400, {'Error' : 'optionText must be of datatype string'});}
+    if(!arrayElement[1] || arrayElement[1].trim().length === 0){return callback(400, {'Error' : 'No optionText was entered'});}else{arrayElement[1] = arrayElement[1].trim()}
+  });
+  // End of: Validate elements in the optionTextArray
 
 
   // Start of: Load the defaultValidationNameArray dynamically once the payload is known.
@@ -1019,7 +1055,7 @@ metadata._metadata.post = function(data, callback)
       helpers.log
       (
         5,
-        'nee73kpmlyv28e5fe9jf' + '\n' +
+        'kx81ctrxxt0ollvqbris' + '\n' +
         'The tableName : ' + tableName + ' already exists' + '\n'                                  
       ); // End of: helpers.log(...)
 
@@ -1047,7 +1083,7 @@ metadata._metadata.post = function(data, callback)
         helpers.log
         (
           5,
-          '91m2btbov71vow0gyr9n' + '\n' +
+          'wb709zw19tpzvzsludnv' + '\n' +
           'Unable to get the next gsuid.' + '\n' +
           'The following was the error' + '\n' +
           JSON.stringify(error) + '\n'                                   
@@ -1099,6 +1135,12 @@ metadata._metadata.post = function(data, callback)
 
       // Add any fields named "attributeValueArray" to the object we will write to the database.
       metadataObject = buildBranches(attributeValueArray, metadataObject);
+
+      // Add any fields named "optionValueArray" to the object we will write to the database.
+      metadataObject = buildBranches(optionValueArray, metadataObject);
+
+      // Add any fields named "optionTextArray" to the object we will write to the database.
+      metadataObject = buildBranches(optionTextArray, metadataObject);
 
       // Add any fields named "defaultValidationNameArray" to the object we will write to the database.
       metadataObject = buildBranches(defaultValidationNameArray, metadataObject);
@@ -1192,7 +1234,7 @@ metadata._metadata.post = function(data, callback)
             helpers.log
             (
               7,
-              'zzubetml2e2jwclozg6c' + '\n' +
+              '3ug8wzs6jjts23f10sq1' + '\n' +
               'There was an error appending to the history file' + '\n' +
               'An error here does not necessarily mean the append to history did not happen.' + '\n' +  
               'But an error at this point in the code surely means there was no append to metadata' + '\n' +                                          
@@ -1236,7 +1278,7 @@ metadata._metadata.post = function(data, callback)
                   helpers.log // Log the error.
                   (
                     7,
-                    '72w8zku7tyx4xa6xrlcb' + '\n' +
+                    'p1m7oe44q7rt2zm1zxmp' + '\n' +
                     'Successful write to metadata but unable to remove lock on database' + '\n' +
                     'The following record was appended to the metadata file:' + '\n' +                            
                     JSON.stringify(logObject) + '\n' +   
@@ -1258,7 +1300,7 @@ metadata._metadata.post = function(data, callback)
               helpers.log // Log the error.
               (
                 5,
-                'iyzo0o0qmociiswxwatg' + '\n' +
+                'e8ebcj3dx1guocztxvdu' + '\n' +
                 'There was an error when appending to the metadata file.' + '\n' +
                 'The following record may or may not have been appended to the metadata file:' + '\n' +                            
                 JSON.stringify(logObject) + '\n' +
@@ -1306,7 +1348,7 @@ metadata._metadata.post = function(data, callback)
                           helpers.log
                           (
                             5,
-                            '6nhic1uocu4olbake8gy' + '\n' +
+                            'tqfdgkp9rcsth7jwcxnj' + '\n' +
                             'Rollback entry in the metadata file was appended successfully' + '\n' +
                             'The following was the record we rolled back:' + '\n' +
                             JSON.stringify(logObject) + '\n'                                   
@@ -1317,7 +1359,7 @@ metadata._metadata.post = function(data, callback)
                           helpers.log
                           (
                             7,
-                            'hqkpt1k4g7izk4p7xxt6' + '\n' +
+                            '1cm0kjvkpp5vjc8yhey3' + '\n' +
                             'There was an error appending a rollback entry in the metadata file' + '\n' +
                             'The following record may or may not have been rolled back:' + '\n' +
                             JSON.stringify(logObject) + '\n' +   
@@ -1337,7 +1379,7 @@ metadata._metadata.post = function(data, callback)
                     helpers.log
                     (
                       7,
-                      'ar81a0yqqqeys9o8royv' + '\n' +
+                      '5lhrcos6ra3xl3cvcd54' + '\n' +
                       'There was an error appending a rollback entry in the history file' + '\n' +
                       'A rollback entry may or may not have been written in the metadata file' + '\n' +  
                       'CHECK TO SEE IF history and metadata ARE STILL IN SYNC' + '\n' +                                      
@@ -1852,6 +1894,80 @@ metadata._metadata.put = function(data, callback)
   }); // End of: attributeValueArray.forEach(function(arrayElement)
   // End of: Validate elements in the attributeValueArray 
 
+  // Start of: Load the optionValueArray dynamically once the payload is known.
+  // Behavior from meta.js at 8cz4imaqb2wagvl14q9t
+  let optionValueKeyArray = ["field", "defaultElement", "option", "optionValue"]
+
+  let optionValueArray = loadPayloadArray(optionValueKeyArray, data.payload);
+  // End of: Load the optionValueArray dynamically once the payload is known. 
+
+  // Start of: Validate elements in the optionValueArray
+  // passIfString&NotEmptyThenTrim
+  // Behavior from meta.js at ohw0ivijs2au0nt2rwf1
+  optionValueArray.forEach(function(arrayElement)
+  {
+    // If optionValue is of string type and is not empty 
+    if (typeof(arrayElement[1]) === 'string' && arrayElement[1].trim().length > 0) 
+    { 
+      // The user entered something in the edit form
+      arrayElement[1] = arrayElement[1].trim()
+    } 
+    // Else, the user may have entered some other datatype like a number or 
+    // perhaps nothing at all if using the Delete form or if just using the API. 
+    else 
+    { 
+      // If the user entered nothing: 
+      if(arrayElement[1] === undefined) 
+      { 
+        // Then user is likely trying to delete a record.
+        // So change the value to false and continue processing.
+        arrayElement[1] = false 
+      } 
+      else // The user entered something invalid so reject the edit. 
+      { 
+        return callback(400, {'Error' : 'Not a valid ' + arrayElement[1]}); 
+      } 
+    }
+  }); // End of: optionValueArray.forEach(function(arrayElement)
+  // End of: Validate elements in the optionValueArray 
+
+  // Start of: Load the optionTextArray dynamically once the payload is known.
+  // Behavior from meta.js at 8cz4imaqb2wagvl14q9t
+  let optionTextKeyArray = ["field", "defaultElement", "option", "optionText"]
+
+  let optionTextArray = loadPayloadArray(optionTextKeyArray, data.payload);
+  // End of: Load the optionTextArray dynamically once the payload is known. 
+
+  // Start of: Validate elements in the optionTextArray
+  // passIfString&NotEmptyThenTrim
+  // Behavior from meta.js at ohw0ivijs2au0nt2rwf1
+  optionTextArray.forEach(function(arrayElement)
+  {
+    // If optionText is of string type and is not empty 
+    if (typeof(arrayElement[1]) === 'string' && arrayElement[1].trim().length > 0) 
+    { 
+      // The user entered something in the edit form
+      arrayElement[1] = arrayElement[1].trim()
+    } 
+    // Else, the user may have entered some other datatype like a number or 
+    // perhaps nothing at all if using the Delete form or if just using the API. 
+    else 
+    { 
+      // If the user entered nothing: 
+      if(arrayElement[1] === undefined) 
+      { 
+        // Then user is likely trying to delete a record.
+        // So change the value to false and continue processing.
+        arrayElement[1] = false 
+      } 
+      else // The user entered something invalid so reject the edit. 
+      { 
+        return callback(400, {'Error' : 'Not a valid ' + arrayElement[1]}); 
+      } 
+    }
+  }); // End of: optionTextArray.forEach(function(arrayElement)
+  // End of: Validate elements in the optionTextArray 
+
   // Start of: Load the defaultValidationNameArray dynamically once the payload is known.
   // Behavior from meta.js at 8cz4imaqb2wagvl14q9t
   let defaultValidationNameKeyArray = ["field", "defaultElement", "validation", "default", "defaultValidationName"]
@@ -2282,6 +2398,8 @@ metadata._metadata.put = function(data, callback)
     &&  !elementTypeArray.some(function(element){if(element){return true;}})
     &&  !attributeNameArray.some(function(element){if(element){return true;}})
     &&  !attributeValueArray.some(function(element){if(element){return true;}})
+    &&  !optionValueArray.some(function(element){if(element){return true;}})
+    &&  !optionTextArray.some(function(element){if(element){return true;}})
     &&  !defaultValidationNameArray.some(function(element){if(element){return true;}})
     &&  !defaultValidationValueArray.some(function(element){if(element){return true;}})
     &&  !postValidationNameArray.some(function(element){if(element){return true;}})
@@ -2306,7 +2424,7 @@ metadata._metadata.put = function(data, callback)
     helpers.log
     (
       5,
-      'jvtcvfkbdtjymyand336' + '\n' +
+      'hmjbqpvnu0vi1f820yry' + '\n' +
       'No fields pass the validation process' + '\n'                                  
     ); // End of: helpers.log(...)
 
@@ -2329,7 +2447,7 @@ metadata._metadata.put = function(data, callback)
       helpers.log
       (
         5,
-        '89drhk0nn4heagh13web' + '\n' +
+        'holifyhj2sbzrz5dfvm5' + '\n' +
         'Unable to get the next gsuid.' + '\n' +
         'The following was the error' + '\n' +
         JSON.stringify(error) + '\n'                                   
@@ -2382,6 +2500,12 @@ metadata._metadata.put = function(data, callback)
 
     // Add any fields named "attributeValueArray" to the object we will write to the database.
     metadataObject = buildBranches(attributeValueArray, metadataObject);
+
+    // Add any fields named "optionValueArray" to the object we will write to the database.
+    metadataObject = buildBranches(optionValueArray, metadataObject);
+
+    // Add any fields named "optionTextArray" to the object we will write to the database.
+    metadataObject = buildBranches(optionTextArray, metadataObject);
 
     // Add any fields named "defaultValidationNameArray" to the object we will write to the database.
     metadataObject = buildBranches(defaultValidationNameArray, metadataObject);
@@ -2469,7 +2593,7 @@ metadata._metadata.put = function(data, callback)
               helpers.log // Log the error.
               (
                 7,
-                'csxl1wn8lqmua27rv1lz' + '\n' + 
+                '5akosgoeyx5r802fbx8i' + '\n' + 
                 'The following was the error message from getMostRecent:' + '\n' +                                             
                 errorFromGetMostRecent + '\n'                                                 
               ); // End of: helpers.log // Log the error.
@@ -2484,7 +2608,7 @@ metadata._metadata.put = function(data, callback)
               helpers.log // Log the error.
               (
                 7,
-                'o9r6hl2yyjfm1y3bnltz' + '\n' +
+                '38mw8t599snc6wkymiyc' + '\n' +
                 'The following was the error message from getMostRecent:' + '\n' +                                             
                 errorFromGetMostRecent + '\n'  +
                 'Also unable to remove lock on database.' + '\n' + 
@@ -2688,6 +2812,34 @@ metadata._metadata.put = function(data, callback)
           {
             // Save attribute.attributeX.attributeValue from the most recent record.
             metadataObject.attribute["attribute" + arrayIndex.toString()]["attributeValue"] = attributeValueArray[arrayIndex];
+          }
+        } 
+
+        for (let arrayIndex = 0; arrayIndex < optionValueArray.length; arrayIndex++) 
+        {
+          // Preprocessing for option.optionX.optionValue
+          if(optionValueArray[arrayIndex]) // If the user supplied data for option.optionX.optionValue
+          {
+            // No preprocessing was specifed for option.optionX.optionValue. Use it as was supplied by the user.
+          }
+          else // If the user did not supply data for option.optionX.optionValue
+          {
+            // Save option.optionX.optionValue from the most recent record.
+            metadataObject.option["option" + arrayIndex.toString()]["optionValue"] = optionValueArray[arrayIndex];
+          }
+        } 
+
+        for (let arrayIndex = 0; arrayIndex < optionTextArray.length; arrayIndex++) 
+        {
+          // Preprocessing for option.optionX.optionText
+          if(optionTextArray[arrayIndex]) // If the user supplied data for option.optionX.optionText
+          {
+            // No preprocessing was specifed for option.optionX.optionText. Use it as was supplied by the user.
+          }
+          else // If the user did not supply data for option.optionX.optionText
+          {
+            // Save option.optionX.optionText from the most recent record.
+            metadataObject.option["option" + arrayIndex.toString()]["optionText"] = optionTextArray[arrayIndex];
           }
         } 
 
@@ -3012,7 +3164,7 @@ metadata._metadata.put = function(data, callback)
                         helpers.log // Log the error.
                         (
                           7,
-                          'o8d504j7c7vjldeqz89a' + '\n' +
+                          'vta56isofiq4uwfq4jlh' + '\n' +
                           'Successful write to metadata but unable to remove lock on database' + '\n' +
                           'The following record was appended to metadata:' + '\n' +                            
                           JSON.stringify(logObject) + '\n' +   
@@ -3034,7 +3186,7 @@ metadata._metadata.put = function(data, callback)
                     helpers.log // Log the error.
                     (
                       5,
-                      'd4a2j5ykxl7ndu52oqyj' + '\n' +
+                      'k4077bdjrbsyl0eqma9e' + '\n' +
                       'There was an error when appending to the metadata file.' + '\n' +
                       'The following record may or may not have been appended to metadata:' + '\n' +                            
                       JSON.stringify(logObject) + '\n' +
@@ -3093,7 +3245,7 @@ metadata._metadata.put = function(data, callback)
                                 helpers.log
                                 (
                                   5,
-                                  'qhsaixeznnh21qo9mh5e' + '\n' +
+                                  '2i53wo4au63j2ahbfo58' + '\n' +
                                   'Rollback entry in the metadata file was appended successfully' + '\n' +
                                   'The following was the record we rolled back:' + '\n' +
                                   JSON.stringify(logObject) + '\n'                                   
@@ -3104,7 +3256,7 @@ metadata._metadata.put = function(data, callback)
                                 helpers.log
                                 (
                                   7,
-                                  'fs3cev9otwbsjdiw02mj' + '\n' +
+                                  'un1jhy5ei8i24tr45c60' + '\n' +
                                   'There was an error appending a rollback entry in the metadata file' + '\n' +
                                   'The following record may or may not have been rolled back:' + '\n' +
                                   JSON.stringify(logObject) + '\n' +   
@@ -3124,7 +3276,7 @@ metadata._metadata.put = function(data, callback)
                           helpers.log
                           (
                             7,
-                            '1cuzvt2l1muakjdowbpx' + '\n' +
+                            'yri5d0baob4er9m0msby' + '\n' +
                             'There was an error appending a rollback entry in the history file' + '\n' +
                             'A rollback entry may or may not have been written in the metadata file' + '\n' +  
                             'CHECK TO SEE IF history and metadata ARE STILL IN SYNC' + '\n' +                                      
@@ -3149,7 +3301,7 @@ metadata._metadata.put = function(data, callback)
               helpers.log
               (
                 7,
-                'asqhmk3xqk6wpaomhmrk' + '\n' +
+                '17iygkpjsbgefvox8szg' + '\n' +
                 'There was an error appending to the history file' + '\n' +
                 'An error here does not necessarily mean the append to history did not happen.' + '\n' +  
                 'But an error at this point in the code surely means there was no append to metadata' + '\n' +                                          
@@ -3181,7 +3333,7 @@ metadata._metadata.put = function(data, callback)
             helpers.log // Log the error.
             (
               7,
-              'gc1yjpz44dk9kd7cu7by' + '\n' + 
+              'y4itmldv1jnwvvtm2td2' + '\n' + 
               'Pipeline error. The message was as follows' + '\n' +                                             
               pipelineError + '\n'                                                 
             ); // End of: helpers.log // Log the error.
@@ -3785,7 +3937,7 @@ function loadPayloadArray(payloadKeyArray, payloadObject)
           else if(payloadKeyArrayIndex != payloadKeyArray.length - 1) 
           {
             if(
-                splitExamElementArray[payloadKeyArrayIndex * 2] != payloadKeyArrayElement 
+                splitExamElementArray[payloadKeyArrayIndex * 2] != payloadKeyArrayElement
                 && splitExamElementArray[payloadKeyArrayIndex * 2] != "field"
               )
             {

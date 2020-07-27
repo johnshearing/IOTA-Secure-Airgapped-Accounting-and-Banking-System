@@ -546,6 +546,21 @@
 </script>
 
 
+<script type="text/newFieldTemplate">
+  <div class="inputWrapper">
+    <div class="inputLabel">Data Type</div>
+    <select class="resetElement" name="field_field0_dataType" dataTypeSelect="yes">
+      <option value="" style="display: list-item;">Select the Data Type</option>
+      <option value="string" style="display: list-item;">String</option>
+      <option value="object" style="display: list-item;">Object</option>
+    </select>
+  </div>
+  <button type="button" class="controlObjectButton moveObjectUpButton blue">Move Up</button>
+  <button type="button" class="disabled controlObjectButton moveObjectDownButton blue" disabled>Move Down</button>
+  <button type="button" class="controlObjectButton removeObjectButton red">Remove</button>
+</script>
+
+
 <script>
 /*
  * Frontend Logic for application
@@ -640,8 +655,6 @@ app.client.request = function(headers,path,method,queryStringObject,payload,call
         }
       }
   }
-
-  debugger;
 
   // Send the payload as JSON
   var payloadString = JSON.stringify(payload);
@@ -1376,22 +1389,6 @@ app.loadoContactAddPage = function()
   // End of: Bind the function above to the onChange event of the dataTypeSelect element.
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   // Define the function that fires when the elementTypeSelect element is changed.
   // This function uses templates to change the HTML depending on what type of data you are trying to model.
   // There are two templates used.
@@ -1486,7 +1483,7 @@ app.loadoContactAddPage = function()
     let newNodeList = templateTarget.querySelectorAll(".resetElement");
 
     // Here is where we load the data back in.
-    for( let i = 0; i < previousElementsNodeList.length; i++)
+    for( let i = 0; i < 3; i++)
     {
       newNodeList[i].value = previousElementsNodeList[i].value;
     }
@@ -1654,23 +1651,6 @@ app.loadoContactAddPage = function()
     }
   });  
   // End of: Bind the function above to the onChange event of the elementTypeSelect element.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
   // Define the function that fires when the addNewFieldButton is selected.
