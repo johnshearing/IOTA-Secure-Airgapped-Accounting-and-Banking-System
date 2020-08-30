@@ -1017,6 +1017,7 @@ app.loadoContactAddPage = function()
     }
   });
 
+
   // Define the function that fires when the moveObjectUpButton is selected.
   function onClickBehaviorForMoveObjectUpButton (event)  
   {
@@ -1064,7 +1065,6 @@ app.loadoContactAddPage = function()
     
   } // End of: function onClickBehaviorForMoveObjectUpButton (event)
   // End of: Define the function that fires when the moveObjectUpButton is pressed.
-
 
   // Bind the function above to the onClick event of the moveObjectUpButton.
   document.querySelectorAll('.moveObjectUpButton').forEach(function(currentButton)
@@ -1120,7 +1120,6 @@ app.loadoContactAddPage = function()
 
   } // End of: function onClickBehaviorForMoveObjectDownButton (event)
   // End of: Define the function that fires when the moveObjectDownButton is pressed.
-
 
   // Bind the function above to the onClick event of the moveObjectDownButton.
   document.querySelectorAll('.moveObjectDownButton').forEach(function(currentButton)
@@ -1187,7 +1186,6 @@ app.loadoContactAddPage = function()
 
   } // End of: function onClickBehaviorForRemoveObjectButton (event){...}
   // End of: Define the function that fires when the removeObjectButton is selected.
-
 
   // Bind the function above to the onClick event of the removeObjectButtons.
   document.querySelectorAll('.removeObjectButton').forEach(function(currentButton)
@@ -1338,7 +1336,7 @@ app.loadoContactAddPage = function()
         newNodeList[downCounter].name = "field_field0_".repeat(levelCounter -1) + newNodeList[downCounter].name;
         downCounter = downCounter -1;
       }
-      else // Looking a detail level info for this field
+      else // Looking at detail level info for this field
       {
         if(structureType === "object") // Using the object template
         {
@@ -1606,23 +1604,10 @@ app.loadoContactAddPage = function()
       {
         break;
       }
-      else if(downCounter <= 3) // Looking at header level info for this field: dataType, fieldName, unique, and published. 
+      else // Still looping through the node list.
       {
-        newNodeList[downCounter].name = "field_field0_".repeat(levelCounter -1) + newNodeList[downCounter].name;
+        newNodeList[downCounter].name = "field_field0_".repeat(levelCounter - 2) + newNodeList[downCounter].name;
         downCounter = downCounter -1;
-      }
-      else // Looking a detail level info for this field
-      {
-        if(structureType === "object") // Using the object template
-        {
-          newNodeList[downCounter].name = "field_field0_".repeat(levelCounter) + newNodeList[downCounter].name;
-          downCounter = downCounter -1;
-        }
-        else // structureType must be "string". Using the string template.
-        {
-          newNodeList[downCounter].name = "field_field0_".repeat(levelCounter - 1) + newNodeList[downCounter].name;
-          downCounter = downCounter -1;
-        }
       } // End of: if(downCounter...
     } // End of: while(true)...
 
@@ -1861,8 +1846,6 @@ app.loadoContactAddPage = function()
     // This gives the index of the last node in the list.
     let downCounter = newNodeList.length - 1;
 
-    debugger;
-
     while(true) //Loop through the elements changing the names as we go.
     {
       if(downCounter < 0) // We are done looping through the newNodeList
@@ -1940,7 +1923,7 @@ app.loadoContactAddPage = function()
       } // End of: if(downCounter...
     } // End of: while(true)...
 
-    // End of: Prepending "formElement_formElement0_" in the right amount depending on nestlevel to fieldNames of all elements which came the template.
+    // End of: Insert "formElement_formElement0_" (in the right amount depending on nestLevel) between fieldNames and path for all elements in the template.
 
     // Bind this function to the onChange event of the formElementTypeSelect element just created.
     templateTarget.querySelectorAll('select').forEach(function(currentSelect)
@@ -2301,7 +2284,7 @@ app.loadoContactAddPage = function()
     // Set all the clone's element values to ""
     cln.querySelectorAll(".resetElement").forEach(function(element){element.value = "";});
 
-    // Bind the function above to the onClick event of the clone's label elements.
+    // Bind behavior to the onClick event of the clone's label elements.
     cln.querySelectorAll(".objectLabel").forEach(function(currentLabel)
     {
       currentLabel.addEventListener("click", onClickBehaviorForLabelElement, true);
@@ -2316,6 +2299,32 @@ app.loadoContactAddPage = function()
         currentInput.addEventListener("change", onChangeBehaviorForDomainElement, true);
       }
     });
+
+    // Bind this function to the onChange event of the elementTypeSelect element if one was created.
+    cln.querySelectorAll('select').forEach(function(currentSelect)
+    {
+      if(currentSelect.getAttribute('elementTypeSelect'))
+      {
+        currentSelect.addEventListener("change", onChangeBehaviorForElementTypeSelectElement);
+      }
+    });     
+
+    debugger;
+    // Bind this function to the onChange event of the formElementTypeSelect if one was created.
+    cln.querySelectorAll('select').forEach(function(currentSelect)
+    {
+      if(currentSelect.getAttribute('formElementTypeSelect'))
+      {
+        currentSelect.addEventListener("change", onChangeBehaviorForFormElementTypeSelectElement);
+      }
+    });    
+
+    // Create an event listener for the onclick event of the clone's addNewObjectButtons.
+    cln.querySelectorAll('.addNewObjectButton').forEach(function(addNewObjectButton)
+    {
+      addNewObjectButton.addEventListener("click", onClickBehaviorForAddNewObjectButton);
+    });
+
 
     // Create an event listener for the onclick event of the clone's removeObjectButtons.
     cln.querySelectorAll(".removeObjectButton").forEach(function(removeObjectButton)
@@ -2333,21 +2342,6 @@ app.loadoContactAddPage = function()
     cln.querySelectorAll(".moveObjectDownButton").forEach(function(moveObjectDownButton)
     {
       moveObjectDownButton.addEventListener("click", onClickBehaviorForMoveObjectDownButton);
-    });
-
-    // Create an event listener for the onChange event of the clone's dataTypeSelect.
-    cln.querySelectorAll('select').forEach(function(currentSelect)
-    {
-      if(currentSelect.getAttribute('dataTypeSelect'))
-      {
-        currentSelect.addEventListener("change", onChangeBehaviorForDataTypeSelectElement);
-      }
-    }); 
-
-    // Create an event listener for the onclick event of the clone's addNewObjectButtons.
-    cln.querySelectorAll('.addNewObjectButton').forEach(function(addNewObjectButton)
-    {
-      addNewObjectButton.addEventListener("click", onClickBehaviorForAddNewObjectButton);
     });
 
     // Enable the clone's moveObjectUpButtons
