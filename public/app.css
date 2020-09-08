@@ -355,7 +355,7 @@ td a, td a:hover, td a:active{
   padding: 10px;
 }
 
-.addNewObjectButton, .addNewFieldButton, .addNewFormElementButton
+.addNewObjectButton, .addNewFieldButton, .addNewFormElementButton, .addNewDefaultElementButton
 {
   background-color: #217844;  
   color: #fff;

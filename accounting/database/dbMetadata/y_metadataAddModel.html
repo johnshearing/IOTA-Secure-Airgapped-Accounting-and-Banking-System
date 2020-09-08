@@ -287,7 +287,7 @@
     <button type="button" class="disabled controlObjectButton moveObjectDownButton blue" disabled>Move Down</button>
     <button type="button" class="disabled controlObjectButton removeObjectButton red" disabled>Remove</button>
   </div>
-  <button type="button" class="addNewObjectButton" style="background-color: red;">Add New DefaultElement</button>
+  <button type="button" class="addNewDefaultElementButton" style="background-color: red;">Add New DefaultElement</button>
 </div>
 <div class="objectLabel">Calculations &#8681;</div>
 <div class="objectWrapper groupWrapper" style="border: 2px solid red;">
@@ -544,43 +544,66 @@
 </script>
 
 
+<script type="text/newDefaultElementTemplate">
+<div class="inputWrapper">
+  <div class="inputLabel">Element Name</div>
+  <input class="resetElement" name="field_field0_defaultElement_defaultElement0_elementName" type="text"/>
+</div>
+<div class="inputWrapper">
+  <div class="inputLabel">Label Text</div>
+  <input class="resetElement" name="field_field0_defaultElement_defaultElement0_labelText" type="text"/>
+</div>
+<div class="inputWrapper">
+  <div class="inputLabel">Element Type</div>
+  <select class="resetElement" name="field_field0_defaultElement_defaultElement0_elementType" elementTypeSelect="yes">
+    <option value="" style="display: list-item;">Select the Element Type</option>
+    <option value="input" style="display: list-item;">Input</option>
+    <option value="select" style="display: list-item;">Select</option>
+  </select>
+</div>
+<button type="button" class="controlObjectButton moveObjectUpButton blue">Move Up</button>
+<button type="button" class="disabled controlObjectButton moveObjectDownButton blue" disabled>Move Down</button>
+<button type="button" class="controlObjectButton removeObjectButton red">Remove</button>
+</script>
+
+
 <script type="text/formObjectTemplate">
-  <div class="inputWrapper">
-    <div class="inputLabel">Form Element Type</div>
-    <select class="resetElement" name="webPage_webPage0_form_form0_formElement_formElement0_formElementType" formElementTypeSelect="yes">
-      <option value="" style="display: list-item;" selected>Select the Form Element Type</option>
-      <option value="dataElement" style="display: list-item;">Data Element</option>
-      <option value="objectElement" style="display: list-item;">Object Element</option>
-    </select>
-  </div>  
-  <div class="inputWrapper">
-    <div class="inputLabel">Form Element Name</div>
-    <input class="resetElement" name="webPage_webPage0_form_form0_formElement_formElement0_formElementName" type="text"/>
-  </div>
-  <div class="inputWrapper">
-    <div class="inputLabel">Form Element Label Text</div>
-    <input class="resetElement" name="webPage_webPage0_form_form0_formElement_formElement0_formElementLabelText" type="text"/>
-  </div>
-  <div class="objectLabel">Form Elements &#8681;</div>
-  <div class="objectWrapper groupWrapper" style="border: 2px solid green;">
-    <div class="objectWrapper elementWrapper" style="border: 2px solid green;">
-      <div class="inputWrapper">
-        <div class="inputLabel">Form Element Type</div>
-        <select class="resetElement" name="webPage_webPage0_form_form0_formElement_formElement0_formElementType" formElementTypeSelect="yes">
-          <option value="" style="display: list-item;" selected>Select the Form Element Type</option>
-          <option value="dataElement" style="display: list-item;">Data Element</option>
-          <option value="objectElement" style="display: list-item;">Object Element</option>
-        </select>
-      </div>
-      <button type="button" class="disabled controlObjectButton moveObjectUpButton blue" disabled>Move Up</button>
-      <button type="button" class="disabled controlObjectButton moveObjectDownButton blue" disabled>Move Down</button>
-      <button type="button" class="disabled controlObjectButton removeObjectButton red" disabled>Remove</button>
+<div class="inputWrapper">
+  <div class="inputLabel">Form Element Type</div>
+  <select class="resetElement" name="webPage_webPage0_form_form0_formElement_formElement0_formElementType" formElementTypeSelect="yes">
+    <option value="" style="display: list-item;" selected>Select the Form Element Type</option>
+    <option value="dataElement" style="display: list-item;">Data Element</option>
+    <option value="objectElement" style="display: list-item;">Object Element</option>
+  </select>
+</div>  
+<div class="inputWrapper">
+  <div class="inputLabel">Form Element Name</div>
+  <input class="resetElement" name="webPage_webPage0_form_form0_formElement_formElement0_formElementName" type="text"/>
+</div>
+<div class="inputWrapper">
+  <div class="inputLabel">Form Element Label Text</div>
+  <input class="resetElement" name="webPage_webPage0_form_form0_formElement_formElement0_formElementLabelText" type="text"/>
+</div>
+<div class="objectLabel">Form Elements &#8681;</div>
+<div class="objectWrapper groupWrapper" style="border: 2px solid green;">
+  <div class="objectWrapper elementWrapper" style="border: 2px solid green;">
+    <div class="inputWrapper">
+      <div class="inputLabel">Form Element Type</div>
+      <select class="resetElement" name="webPage_webPage0_form_form0_formElement_formElement0_formElementType" formElementTypeSelect="yes">
+        <option value="" style="display: list-item;" selected>Select the Form Element Type</option>
+        <option value="dataElement" style="display: list-item;">Data Element</option>
+        <option value="objectElement" style="display: list-item;">Object Element</option>
+      </select>
     </div>
-    <button type="button" class="addNewFormElementButton" style="background-color: green;">Add New FormElement</button>
+    <button type="button" class="disabled controlObjectButton moveObjectUpButton blue" disabled>Move Up</button>
+    <button type="button" class="disabled controlObjectButton moveObjectDownButton blue" disabled>Move Down</button>
+    <button type="button" class="disabled controlObjectButton removeObjectButton red" disabled>Remove</button>
   </div>
-  <button type="button" class="disabled controlObjectButton moveObjectUpButton blue" disabled>Move Up</button>
-  <button type="button" class="disabled controlObjectButton moveObjectDownButton blue" disabled>Move Down</button>
-  <button type="button" class="disabled controlObjectButton removeObjectButton red" disabled>Remove</button>
+  <button type="button" class="addNewFormElementButton" style="background-color: green;">Add New FormElement</button>
+</div>
+<button type="button" class="disabled controlObjectButton moveObjectUpButton blue" disabled>Move Up</button>
+<button type="button" class="disabled controlObjectButton moveObjectDownButton blue" disabled>Move Down</button>
+<button type="button" class="disabled controlObjectButton removeObjectButton red" disabled>Remove</button>
 </script>
 
 
@@ -1418,6 +1441,12 @@ app.loadoContactAddPage = function()
       addNewObjectButton.addEventListener("click", onClickBehaviorForAddNewObjectButton);
     });
 
+    // Create an event listener for the onClick event of the new addNewDefaultElementButton. 
+    templateTarget.querySelectorAll('.addNewDefaultElementButton').forEach(function(currentaddNewDefaultElementButton)
+    {
+      currentaddNewDefaultElementButton.addEventListener("click", onClickBehaviorForAddNewDefaultElementButton);
+    });    
+
     // Set the state of the control buttons to match what they were at the start of this function.
     templateTarget.querySelectorAll(".controlObjectButton").forEach(function(controlButton)
     {
@@ -2035,7 +2064,7 @@ app.loadoContactAddPage = function()
 
 
   // Define the function that fires when the addNewFieldButton is selected.
-  // This function uses a template to add HTML for deciding between object or string type when adding a new field.
+  // This function uses a template to add HTML for a new field.
   // This template is in script tags between the HTML and the JavaScript.
   function onClickBehaviorForAddNewFieldButton (event)
   {
@@ -2128,7 +2157,7 @@ app.loadoContactAddPage = function()
     targetGroupWrapper.querySelectorAll(".moveObjectDownButton").forEach(function(moveObjectDownButton)
     {
       moveObjectDownButton.addEventListener("click", onClickBehaviorForMoveObjectDownButton);
-    });    
+    });      
 
     renumberNamedElementsInGroupWrapper(targetGroupWrapper);
 
@@ -2142,6 +2171,116 @@ app.loadoContactAddPage = function()
     currentaddNewFieldButton.addEventListener("click", onClickBehaviorForAddNewFieldButton);
   });  
   // End of: Bind the function above to the onClick event of the addNewFieldButton.
+
+
+  // Define the function that fires when the addNewDefaultElementButton is selected.
+  // This function uses a template to add HTML for adding a new default element.
+  // This template is in script tags between the HTML and the JavaScript.
+  function onClickBehaviorForAddNewDefaultElementButton (event)
+  {
+    // Stop it from redirecting anywhere
+    event.preventDefault();
+
+    // Create a handle for the groupWrapper which contains the addNewDefaultElementButton.
+    let targetGroupWrapper = event.target.parentNode;
+
+    // Initialize a pointer to the elementWrapper we will clone.
+    // We are cloning the last elementWrapper the groupWrapper.
+    let lastElementWrapper;
+
+    targetGroupWrapper.querySelectorAll(".elementWrapper").forEach(function(elementWrapper)
+    {
+      if(elementWrapper.parentNode === event.target.parentNode)
+      {
+        lastElementWrapper = elementWrapper;
+      }
+    });
+
+    // Here we clone the last elementWrapper.
+    // The false argument means clone just the element - nothing inside it
+    let elementWrapperClone = lastElementWrapper.cloneNode(false);
+
+    // Get the template.
+    let newDefaultElementTemplate = document.querySelector('[type="text/newDefaultElementTemplate"]');
+
+    // Gets rid of the <script> tags
+    let newHTML = newDefaultElementTemplate.textContent;   
+
+    // load HTML from the template into the empty clone.
+    elementWrapperClone.innerHTML = newHTML;     
+
+    // Disable the very top moveObjectUpButton
+    targetGroupWrapper.querySelectorAll(".moveObjectUpButton").forEach(function(moveObjectUpButton)
+    {
+      if(moveObjectUpButton.parentNode === targetGroupWrapper)
+      {
+        moveObjectUpButton.classList.add("disabled");
+        moveObjectUpButton.setAttribute("disabled", "");
+      }
+    }); 
+
+    // Enable all but clone's moveObjectDownButton
+    event.target.parentNode.querySelectorAll(".moveObjectDownButton").forEach(function(moveObjectDownButton)
+    {
+      if(moveObjectDownButton.parentNode.parentNode === event.target.parentNode)
+      {
+        moveObjectDownButton.classList.remove('disabled');
+        moveObjectDownButton.removeAttribute("disabled");
+      }  
+    });    
+
+    // Enable all but clone's removeObjectButton
+    targetGroupWrapper.querySelectorAll(".removeObjectButton").forEach(function(removeObjectButton)
+    {
+      if(removeObjectButton.parentNode.parentNode === targetGroupWrapper)
+      {
+        removeObjectButton.classList.remove('disabled');
+        removeObjectButton.removeAttribute("disabled");  
+      }   
+    });
+
+    // Append the cloned element wrapper to the groupWrapper just above the addNewFieldButton.
+    targetGroupWrapper.insertBefore(elementWrapperClone, targetGroupWrapper.lastElementChild);
+
+    // Create an event listener for the onChange event of the elementTypeSelect just created.
+    targetGroupWrapper.querySelectorAll('select').forEach(function(currentSelect)
+    {
+      if(currentSelect.getAttribute('elementTypeSelect'))
+      {
+        currentSelect.addEventListener("change", onChangeBehaviorForElementTypeSelectElement);
+      }
+    }); 
+
+    // Create an event listener for the onclick event of the clone's removeObjectButtons.
+    targetGroupWrapper.querySelectorAll(".removeObjectButton").forEach(function(removeObjectButton)
+    {
+      removeObjectButton.addEventListener("click", onClickBehaviorForRemoveObjectButton);
+    });
+    
+    // Create an event listener for the onclick event of the clone's moveObjectUpButtons.
+    targetGroupWrapper.querySelectorAll(".moveObjectUpButton").forEach(function(moveObjectUpButton)
+    {
+      moveObjectUpButton.addEventListener("click", onClickBehaviorForMoveObjectUpButton);
+    });    
+    
+    // Create an event listener for the onclick event of the clone's moveObjectDownButton.
+    targetGroupWrapper.querySelectorAll(".moveObjectDownButton").forEach(function(moveObjectDownButton)
+    {
+      moveObjectDownButton.addEventListener("click", onClickBehaviorForMoveObjectDownButton);
+    });    
+
+    renumberNamedElementsInGroupWrapper(targetGroupWrapper);
+
+  } // End of: function onClickBehaviorForAddNewDefaultElementButton (event)
+  // End of: // Define the function that fires when the addNewDefaultElementButton is selected.
+
+
+  // Bind the function above to the onClick event of the addNewDefaultElementButton.
+  document.querySelectorAll('.addNewDefaultElementButton').forEach(function(currentaddNewDefaultElementButton)
+  {
+    currentaddNewDefaultElementButton.addEventListener("click", onClickBehaviorForAddNewDefaultElementButton);
+  });  
+  // End of: Bind the function above to the onClick event of the addNewDefaultElementButton.
 
 
   // Define the function that fires when the addNewFormElementButton is selected.
@@ -2300,7 +2439,7 @@ app.loadoContactAddPage = function()
       }
     });
 
-    // Bind this function to the onChange event of the elementTypeSelect element if one was created.
+    // Bind this function to the onChange event of the elementTypeSelect element if one was created. ????
     cln.querySelectorAll('select').forEach(function(currentSelect)
     {
       if(currentSelect.getAttribute('elementTypeSelect'))
@@ -2497,7 +2636,7 @@ function renumberNamedElementsInGroupWrapper(groupWrapper)
     }
 
     // Start of: Grab the current groupWrapper's corresponding add button for coloring.
-    let addButtonList = elementWrapper.parentElement.querySelectorAll(".addNewObjectButton, .addNewFieldButton, .addNewFormElementButton");
+    let addButtonList = elementWrapper.parentElement.querySelectorAll(".addNewObjectButton, .addNewFieldButton, .addNewFormElementButton, .addNewDefaultElementButton");
 
     let addButtonCounter = 0;
     let currentAddButton;
