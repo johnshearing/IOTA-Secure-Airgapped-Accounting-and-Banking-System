@@ -96,7 +96,7 @@
             <button type="button" class="disabled controlObjectButton moveObjectDownButton blue" disabled>Move Down</button>
             <button type="button" class="disabled controlObjectButton removeObjectButton red" disabled>Remove</button>
           </div>
-          <button type="button" class="addNewObjectButton" style="background-color: red;">Add New Form</button>
+          <button type="button" class="addNewFormButton" style="background-color: red;">Add New Form</button>
         </div>
         <button type="button" class="disabled controlObjectButton moveObjectUpButton blue" disabled>Move Up</button>
         <button type="button" class="disabled controlObjectButton moveObjectDownButton blue" disabled>Move Down</button>
@@ -179,8 +179,8 @@
 </datalist>
 <datalist id="editPage">
   <option value="editForm"/>
-  <option value="deleteForm"/>
   <option value="customForm"/>  
+  <option value="deleteForm"/>  
 </datalist>
 
 
@@ -568,19 +568,6 @@
 </script>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 <script type="text/newWebPageTemplate">
 <div class="inputWrapper">
   <div class="inputLabel">WebPage Type</div>
@@ -634,17 +621,40 @@
 </script>
 
 
-
-
-
-
-
-
-
-
-
-
-
+<script type="text/newFormTemplate">
+<div class="inputWrapper">
+  <div class="inputLabel">Form Type</div>
+  <input class="resetElement" name="webPage_webPage0_form_form0_formType" type="text" rangeFor="formTypes"/>
+</div>
+<div class="inputWrapper">
+  <div class="inputLabel">Form Heading</div>
+  <input class="resetElement" name="webPage_webPage0_form_form0_formHeading" type="text"/>
+</div>
+<div class="inputWrapper">
+  <div class="inputLabel">Submit Button Text</div>
+  <input class="resetElement" name="webPage_webPage0_form_form0_submitButtonText" type="text"/>
+</div>
+<div class="objectLabel">Form Elements &#8681;</div>
+<div class="objectWrapper groupWrapper" style="border: 2px solid green;">
+  <div class="objectWrapper elementWrapper" style="border: 2px solid green;">
+    <div class="inputWrapper">
+      <div class="inputLabel">Form Element Type</div>
+      <select class="resetElement" name="webPage_webPage0_form_form0_formElement_formElement0_formElementType" formElementTypeSelect="yes">
+        <option value="" style="display: list-item;" selected>Select the Form Element Type</option>
+        <option value="dataElement" style="display: list-item;">Data Element</option>
+        <option value="objectElement" style="display: list-item;">Object Element</option>
+      </select>
+    </div>
+    <button type="button" class="disabled controlObjectButton moveObjectUpButton blue" disabled>Move Up</button>
+    <button type="button" class="disabled controlObjectButton moveObjectDownButton blue" disabled>Move Down</button>
+    <button type="button" class="disabled controlObjectButton removeObjectButton red" disabled>Remove</button>
+  </div>
+  <button type="button" class="addNewFormElementButton" style="background-color: green;">Add New FormElement</button>
+</div>
+<button type="button" class="controlObjectButton moveObjectUpButton blue">Move Up</button>
+<button type="button" class="disabled controlObjectButton moveObjectDownButton blue" disabled>Move Down</button>
+<button type="button" class="controlObjectButton removeObjectButton red">Remove</button>
+</script>
 
 
 <script type="text/formObjectTemplate">
@@ -1456,7 +1466,7 @@ app.loadoContactAddPage = function()
 
     // End of: Prepending "field_field0_" in the right amount depending on nestlevel to fieldNames of all elements which came the template.
 
-    // Bind this function to the onChange event of the dataTypeSelect element just created.
+    // Create an event listener for the onChange event of the dataTypeSelect element just created.
     templateTarget.querySelectorAll('select').forEach(function(currentSelect)
     {
       if(currentSelect.getAttribute('dataTypeSelect'))
@@ -1465,7 +1475,7 @@ app.loadoContactAddPage = function()
       }
     });  
 
-    // Bind this function to the onChange event of the elementTypeSelect element just created.
+    // Create an event listener for the onChange event of the elementTypeSelect element just created.
     templateTarget.querySelectorAll('select').forEach(function(currentSelect)
     {
       if(currentSelect.getAttribute('elementTypeSelect'))
@@ -1722,7 +1732,7 @@ app.loadoContactAddPage = function()
 
     // End of: Prepending "field_field0_" in the right amount depending on nestlevel to fieldNames of all elements which came the template.
 
-    // Bind this function to the onChange event of the elementTypeSelect element just created.
+    // Create an event listener for the onChange event of the elementTypeSelect element just created.
     templateTarget.querySelectorAll('select').forEach(function(currentSelect)
     {
       if(currentSelect.getAttribute('elementTypeSelect'))
@@ -2034,7 +2044,7 @@ app.loadoContactAddPage = function()
 
     // End of: Insert "formElement_formElement0_" (in the right amount depending on nestLevel) between fieldNames and path for all elements in the template.
 
-    // Bind this function to the onChange event of the formElementTypeSelect element just created.
+    // Create an event listener for the onChange event of the formElementTypeSelect element just created.
     templateTarget.querySelectorAll('select').forEach(function(currentSelect)
     {
       if(currentSelect.getAttribute('formElementTypeSelect'))
@@ -2212,7 +2222,7 @@ app.loadoContactAddPage = function()
     // Append the cloned element wrapper to the groupWrapper just above the addNewFieldButton.
     targetGroupWrapper.insertBefore(elementWrapperClone, targetGroupWrapper.lastElementChild);
 
-    // Bind this function to the onChange event of the dataTypeSelect element just created.
+    // Create an event listener for the onChange event of the dataTypeSelect element just created.
     targetGroupWrapper.querySelectorAll('select').forEach(function(currentSelect)
     {
       if(currentSelect.getAttribute('dataTypeSelect'))
@@ -2363,22 +2373,6 @@ app.loadoContactAddPage = function()
   // End of: Bind the function above to the onClick event of the addNewDefaultElementButton.
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   // Define the function that fires when the addNewWebPageButton is selected.
   // This function uses a template to add HTML when a new webpage is to be defined.
   // This template is in script tags between the HTML and the JavaScript.
@@ -2387,7 +2381,7 @@ app.loadoContactAddPage = function()
     // Stop it from redirecting anywhere
     event.preventDefault();
 
-    // Create a handle for the groupWrapper which contains the addNewFormElementButton.
+    // Create a handle for the groupWrapper which contains the addNewWebPageButton.
     let targetGroupWrapper = event.target.parentNode;
 
     // Initialize a pointer to the elementWrapper we will clone.
@@ -2448,14 +2442,23 @@ app.loadoContactAddPage = function()
     // Append the cloned element wrapper to the groupWrapper just above the addNewFieldButton.
     targetGroupWrapper.insertBefore(elementWrapperClone, targetGroupWrapper.lastElementChild);
 
-    // Bind this function to the onChange event of the formElementTypeSelect element just created.
+    // Create an event listener for the onChange event of the formElementTypeSelect element just created.
     targetGroupWrapper.querySelectorAll('select').forEach(function(currentSelect)
     {
       if(currentSelect.getAttribute('formElementTypeSelect'))
       {
         currentSelect.addEventListener("change", onChangeBehaviorForFormElementTypeSelectElement);
       }
-    });     
+    });   
+
+    // Create an event listener for the onChange event of the input elements.
+    document.querySelectorAll("input").forEach(function(currentInput)
+    {
+      if(currentInput.getAttribute('domainFor'))
+      {
+        currentInput.addEventListener("change", onChangeBehaviorForDomainElement, true);
+      }
+    });
 
     // Create an event listener for the onclick event of the clone's removeObjectButtons.
     targetGroupWrapper.querySelectorAll(".removeObjectButton").forEach(function(removeObjectButton)
@@ -2477,8 +2480,8 @@ app.loadoContactAddPage = function()
 
     renumberNamedElementsInGroupWrapper(targetGroupWrapper);
 
-  } // End of: function onClickBehaviorForAddNewFormElementButton (event)
-  // End of: // Define the function that fires when the addNewFormElementButton is selected.
+  } // End of: function onClickBehaviorForAddNewWebPageButton (event)
+  // End of: // Define the function that fires when the addNewWebPageButton is selected.
 
   // Bind the function above to the onClick event of the addNewWebPageButton.
   document.querySelectorAll('.addNewWebPageButton').forEach(function(currentaddNewWebPageButton)
@@ -2488,18 +2491,134 @@ app.loadoContactAddPage = function()
   // End of: Bind the function above to the onClick event of the addNewWebPageButton.
 
 
+  // Define the function that fires when the addNewFormButton is selected.
+  // This function uses a template to add HTML when a new form is to be defined.
+  // This template is in script tags between the HTML and the JavaScript.
+  function onClickBehaviorForAddNewFormButton (event)
+  {
+    // Stop it from redirecting anywhere
+    event.preventDefault();
 
+    debugger;
 
+    // Create a handle for the groupWrapper which contains the addNewFormButton.
+    let targetGroupWrapper = event.target.parentNode;
 
+    // Initialize a pointer to the elementWrapper we will clone.
+    // We are cloning the last elementWrapper in the groupWrapper.
+    let lastElementWrapper;
 
+    targetGroupWrapper.querySelectorAll(".elementWrapper").forEach(function(elementWrapper)
+    {
+      if(elementWrapper.parentNode === event.target.parentNode)
+      {
+        lastElementWrapper = elementWrapper;
+      }
+    });
 
+    // Here we clone the last elementWrapper.
+    // The false argument means clone just the element - nothing inside it
+    let elementWrapperClone = lastElementWrapper.cloneNode(false);
 
+    // Get the template.
+    let newFormTemplate = document.querySelector('[type="text/newFormTemplate"]');
 
+    // Gets rid of the <script> tags
+    let newHTML = newFormTemplate.textContent;
 
+    // load HTML from the template into the empty clone.
+    elementWrapperClone.innerHTML = newHTML;     
 
+    // Disable the very top moveObjectUpButton
+    targetGroupWrapper.querySelectorAll(".moveObjectUpButton").forEach(function(moveObjectUpButton)
+    {
+      if(moveObjectUpButton.parentNode === targetGroupWrapper)
+      {
+        moveObjectUpButton.classList.add("disabled");
+        moveObjectUpButton.setAttribute("disabled", "");
+      }
+    }); 
 
+    // Enable all but clone's moveObjectDownButton
+    event.target.parentNode.querySelectorAll(".moveObjectDownButton").forEach(function(moveObjectDownButton)
+    {
+      if(moveObjectDownButton.parentNode.parentNode === event.target.parentNode)
+      {
+        moveObjectDownButton.classList.remove('disabled');
+        moveObjectDownButton.removeAttribute("disabled");
+      }  
+    });    
 
+    // Enable all but clone's removeObjectButton
+    targetGroupWrapper.querySelectorAll(".removeObjectButton").forEach(function(removeObjectButton)
+    {
+      if(removeObjectButton.parentNode.parentNode === targetGroupWrapper)
+      {
+        removeObjectButton.classList.remove('disabled');
+        removeObjectButton.removeAttribute("disabled");  
+      }   
+    });
 
+    // Append the cloned element wrapper to the groupWrapper just above the addNewFieldButton.
+    targetGroupWrapper.insertBefore(elementWrapperClone, targetGroupWrapper.lastElementChild);
+
+    // Create an event listener for the onChange event of the formElementTypeSelect element just created.
+    targetGroupWrapper.querySelectorAll('select').forEach(function(currentSelect)
+    {
+      if(currentSelect.getAttribute('formElementTypeSelect'))
+      {
+        currentSelect.addEventListener("change", onChangeBehaviorForFormElementTypeSelectElement);
+      }
+    });   
+
+    // Running the onChange event of the webPageType input programmatically.
+    // Really, running the onChange event of any input that has a domainFor attribute.
+    // This ensures that newly created rangeFor inputs get connected to their associated lists.
+    targetGroupWrapper.parentNode.querySelectorAll("input").forEach(function(currentInput)
+    {
+      if(currentInput.getAttribute('domainFor'))
+      {
+        let event = new Event('change');
+        currentInput.dispatchEvent(event)
+      }
+    });  
+
+    // Create an event listener for the onclick event of the clone's removeObjectButtons.
+    targetGroupWrapper.querySelectorAll(".removeObjectButton").forEach(function(removeObjectButton)
+    {
+      removeObjectButton.addEventListener("click", onClickBehaviorForRemoveObjectButton);
+    });
+    
+    // Create an event listener for the onclick event of the clone's moveObjectUpButtons.
+    targetGroupWrapper.querySelectorAll(".moveObjectUpButton").forEach(function(moveObjectUpButton)
+    {
+      moveObjectUpButton.addEventListener("click", onClickBehaviorForMoveObjectUpButton);
+    });    
+    
+    // Create an event listener for the onclick event of the clone's moveObjectDownButton.
+    targetGroupWrapper.querySelectorAll(".moveObjectDownButton").forEach(function(moveObjectDownButton)
+    {
+      moveObjectDownButton.addEventListener("click", onClickBehaviorForMoveObjectDownButton);
+    });    
+
+    // Create an event listener for the onclick event of the addNewFormElementButton/s.
+    targetGroupWrapper.querySelectorAll('.addNewFormElementButton').forEach(function(currentaddNewFormElementButton)
+    {
+      currentaddNewFormElementButton.addEventListener("click", onClickBehaviorForAddNewFormElementButton);
+    });  
+    // End of: Create an event listener for the onclick event of the addNewFormElementButton/s.
+
+    renumberNamedElementsInGroupWrapper(targetGroupWrapper);
+
+  } // End of: function onClickBehaviorForAddNewFormButton (event)
+  // End of: // Define the function that fires when the addNewFormButton is selected.
+
+  // Bind the function above to the onClick event of the addNewFormButton.
+  document.querySelectorAll('.addNewFormButton').forEach(function(currentaddNewFormButton)
+  {
+    currentaddNewFormButton.addEventListener("click", onClickBehaviorForAddNewFormButton);
+  });  
+  // End of: Bind the function above to the onClick event of the addNewFormButton.
 
 
   // Define the function that fires when the addNewFormElementButton is selected.
@@ -2571,7 +2690,7 @@ app.loadoContactAddPage = function()
     // Append the cloned element wrapper to the groupWrapper just above the addNewFieldButton.
     targetGroupWrapper.insertBefore(elementWrapperClone, targetGroupWrapper.lastElementChild);
 
-    // Bind this function to the onChange event of the formElementTypeSelect element just created.
+    // Create an event listener for the onChange event of the formElementTypeSelect element just created.
     targetGroupWrapper.querySelectorAll('select').forEach(function(currentSelect)
     {
       if(currentSelect.getAttribute('formElementTypeSelect'))
@@ -2658,7 +2777,7 @@ app.loadoContactAddPage = function()
       }
     });
 
-    // Bind this function to the onChange event of the elementTypeSelect element if one was created.
+    // Create an event listener for the onChange event of the elementTypeSelect element if one was created.
     cln.querySelectorAll('select').forEach(function(currentSelect)
     {
       if(currentSelect.getAttribute('elementTypeSelect'))
@@ -2667,7 +2786,7 @@ app.loadoContactAddPage = function()
       }
     });     
 
-    // Bind this function to the onChange event of the formElementTypeSelect if one was created.
+    // Create an event listener for the onChange event of the formElementTypeSelect if one was created.
     cln.querySelectorAll('select').forEach(function(currentSelect)
     {
       if(currentSelect.getAttribute('formElementTypeSelect'))
@@ -2855,7 +2974,7 @@ function renumberNamedElementsInGroupWrapper(groupWrapper)
     }
 
     // Start of: Grab the current groupWrapper's corresponding add button for coloring.
-    let addButtonList = elementWrapper.parentElement.querySelectorAll(".addNewObjectButton, .addNewFieldButton, .addNewFormElementButton, .addNewDefaultElementButton, .addNewWebPageButton");
+    let addButtonList = elementWrapper.parentElement.querySelectorAll(".addNewObjectButton, .addNewFieldButton, .addNewFormElementButton, .addNewDefaultElementButton, .addNewFormButton, .addNewWebPageButton");
 
     let addButtonCounter = 0;
     let currentAddButton;
@@ -2864,7 +2983,6 @@ function renumberNamedElementsInGroupWrapper(groupWrapper)
     {
       currentAddButton = addButtonList[addButtonCounter]
 
-      debugger;
       if(
           currentAddButton.parentElement === elementWrapper.parentElement
         )
