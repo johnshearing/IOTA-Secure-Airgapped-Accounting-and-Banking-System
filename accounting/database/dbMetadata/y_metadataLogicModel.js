@@ -337,9 +337,8 @@ metadata._metadata.post = function(data, callback)
   
   if
   (
-      addRoutes !== "yes"
-      && addRoutes !== "no"
-    
+    addRoutes !== "yes"
+    && addRoutes !== "no"
   )
   {
     return callback(400, {'Error' : 'No addRoutes was selected from menu'});
@@ -360,9 +359,8 @@ metadata._metadata.post = function(data, callback)
   
   if
   (
-      allowCodeGeneration !== "yes"
-      && allowCodeGeneration !== "no"
-    
+    allowCodeGeneration !== "yes"
+    && allowCodeGeneration !== "no"
   )
   {
     return callback(400, {'Error' : 'No allowCodeGeneration was selected from menu'});
@@ -402,6 +400,8 @@ metadata._metadata.post = function(data, callback)
       passedValidation = false;
       return false;  //Break this .every() loop      
     }
+
+    return true;  //Continue this .every() loop
   });
 
   if(!passedValidation){return};  
@@ -418,11 +418,30 @@ metadata._metadata.post = function(data, callback)
   // Start of: Validate elements in the fieldNameArray
   // passIfString&NotEmptyThenTrim
   // Behavior from meta.js at fkb3ulfqr09ryyc0rb0d
-  fieldNameArray.forEach(function(arrayElement)
+  fieldNameArray.every(function(arrayElement)
   {
-    if(typeof(arrayElement[1]) != 'string'){return callback(400, {'Error' : 'fieldName must be of datatype string'});}
-    if(!arrayElement[1] || arrayElement[1].trim().length === 0){return callback(400, {'Error' : 'No fieldName was entered'});}else{arrayElement[1] = arrayElement[1].trim()}
+    if(typeof(arrayElement[1]) != 'string')
+    {
+      callback(400, {'Error' : 'fieldName must be of datatype string'});
+      passedValidation = false;
+      return false;  //Break this .every() loop      
+    }
+
+    if(!arrayElement[1] || arrayElement[1].trim().length === 0)
+    {
+      callback(400, {'Error' : 'No fieldName was entered'});
+      passedValidation = false;
+      return false;  //Break this .every() loop      
+    }
+    else
+    {
+      arrayElement[1] = arrayElement[1].trim()     
+    }
+
+    return true;  //Continue this .every() loop 
   });
+
+  if(!passedValidation){return};
   // End of: Validate elements in the fieldNameArray
 
 
@@ -436,11 +455,13 @@ metadata._metadata.post = function(data, callback)
   // Start of: Validate elements in the uniqueArray
   // passMenuItemsOnly
   // Behavior from meta.js at 69nq4ck9lcdakwpb58o6
-  uniqueArray.forEach(function(arrayElement)
+  uniqueArray.every(function(arrayElement)
   {
     if(typeof(arrayElement[1]) != 'string')
     {
-      return callback(400, {'Error' : 'unique must be of datatype string'});
+      callback(400, {'Error' : 'unique must be of datatype string'});
+      passedValidation = false;
+      return false;  //Break this .every() loop      
     }
   
     if
@@ -449,9 +470,15 @@ metadata._metadata.post = function(data, callback)
       && arrayElement[1] !== "no"
     )
     {
-      return callback(400, {'Error' : 'unique does not match menu options'});
+      callback(400, {'Error' : 'unique does not match menu options'});
+      passedValidation = false;
+      return false;  //Break this .every() loop      
     }
+
+    return true;  //Continue this .every() loop    
   });
+
+  if(!passedValidation){return};    
   // End of: Validate elements in the uniqueArray
 
 
@@ -465,11 +492,13 @@ metadata._metadata.post = function(data, callback)
   // Start of: Validate elements in the publishedArray
   // passMenuItemsOnly
   // Behavior from meta.js at 69nq4ck9lcdakwpb58o6
-  publishedArray.forEach(function(arrayElement)
+  publishedArray.every(function(arrayElement)
   {
     if(typeof(arrayElement[1]) != 'string')
     {
-      return callback(400, {'Error' : 'published must be of datatype string'});
+      callback(400, {'Error' : 'published must be of datatype string'});
+      passedValidation = false;
+      return false;  //Break this .every() loop      
     }
   
     if
@@ -478,9 +507,15 @@ metadata._metadata.post = function(data, callback)
       && arrayElement[1] !== "no"
     )
     {
-      return callback(400, {'Error' : 'published does not match menu options'});
+      callback(400, {'Error' : 'published does not match menu options'});
+      passedValidation = false;
+      return false;  //Break this .every() loop       
     }
+
+    return true;  //Continue this .every() loop     
   });
+
+  if(!passedValidation){return};  
   // End of: Validate elements in the publishedArray
 
 
@@ -494,11 +529,30 @@ metadata._metadata.post = function(data, callback)
   // Start of: Validate elements in the elementNameArray
   // passIfString&NotEmptyThenTrim
   // Behavior from meta.js at fkb3ulfqr09ryyc0rb0d
-  elementNameArray.forEach(function(arrayElement)
+  elementNameArray.every(function(arrayElement)
   {
-    if(typeof(arrayElement[1]) != 'string'){return callback(400, {'Error' : 'elementName must be of datatype string'});}
-    if(!arrayElement[1] || arrayElement[1].trim().length === 0){return callback(400, {'Error' : 'No elementName was entered'});}else{arrayElement[1] = arrayElement[1].trim()}
+    if(typeof(arrayElement[1]) != 'string')
+    {
+      callback(400, {'Error' : 'elementName must be of datatype string'});
+      passedValidation = false;
+      return false;  //Break this .every() loop      
+    }
+
+    if(!arrayElement[1] || arrayElement[1].trim().length === 0)
+    {
+      callback(400, {'Error' : 'No elementName was entered'});
+      passedValidation = false;
+      return false;  //Break this .every() loop      
+    }
+    else
+    {
+      arrayElement[1] = arrayElement[1].trim()
+    }
+
+    return true;  //Continue this .every() loop     
   });
+
+  if(!passedValidation){return};   
   // End of: Validate elements in the elementNameArray
 
 
@@ -512,11 +566,30 @@ metadata._metadata.post = function(data, callback)
   // Start of: Validate elements in the labelTextArray
   // passIfString&NotEmptyThenTrim
   // Behavior from meta.js at fkb3ulfqr09ryyc0rb0d
-  labelTextArray.forEach(function(arrayElement)
+  labelTextArray.every(function(arrayElement)
   {
-    if(typeof(arrayElement[1]) != 'string'){return callback(400, {'Error' : 'labelText must be of datatype string'});}
-    if(!arrayElement[1] || arrayElement[1].trim().length === 0){return callback(400, {'Error' : 'No labelText was entered'});}else{arrayElement[1] = arrayElement[1].trim()}
+    if(typeof(arrayElement[1]) != 'string')
+    {
+      callback(400, {'Error' : 'labelText must be of datatype string'});
+      passedValidation = false;
+      return false;  //Break this .every() loop       
+    }
+
+    if(!arrayElement[1] || arrayElement[1].trim().length === 0)
+    {
+      callback(400, {'Error' : 'No labelText was entered'});
+      passedValidation = false;
+      return false;  //Break this .every() loop       
+    }
+    else
+    {
+      arrayElement[1] = arrayElement[1].trim()
+    }
+
+    return true;  //Continue this .every() loop    
   });
+
+  if(!passedValidation){return};
   // End of: Validate elements in the labelTextArray
 
 
@@ -530,11 +603,13 @@ metadata._metadata.post = function(data, callback)
   // Start of: Validate elements in the elementTypeArray
   // passMenuItemsOnly
   // Behavior from meta.js at 69nq4ck9lcdakwpb58o6
-  elementTypeArray.forEach(function(arrayElement)
+  elementTypeArray.every(function(arrayElement)
   {
     if(typeof(arrayElement[1]) != 'string')
     {
-      return callback(400, {'Error' : 'elementType must be of datatype string'});
+      callback(400, {'Error' : 'elementType must be of datatype string'});
+      passedValidation = false;
+      return false;  //Break this .every() loop   
     }
   
     if
@@ -543,9 +618,15 @@ metadata._metadata.post = function(data, callback)
       && arrayElement[1] !== "select"
     )
     {
-      return callback(400, {'Error' : 'elementType does not match menu options'});
+      callback(400, {'Error' : 'elementType does not match menu options'});
+      passedValidation = false;
+      return false;  //Break this .every() loop      
     }
+
+    return true;  //Continue this .every() loop  
   });
+
+  if(!passedValidation){return};
   // End of: Validate elements in the elementTypeArray
 
 
@@ -559,10 +640,19 @@ metadata._metadata.post = function(data, callback)
   // Start of: Validate elements in the attributeNameArray
   // passIfString
   // Behavior from meta.js at 7n1wj6bz5asgucz6nmkp
-  attributeNameArray.forEach(function(arrayElement)
+  attributeNameArray.every(function(arrayElement)
   {
-    if(typeof(arrayElement[1]) != 'string'){return callback(400, {'Error' : 'attributeName must be of datatype string'});}
+    if(typeof(arrayElement[1]) != 'string')
+    {
+      callback(400, {'Error' : 'attributeName must be of datatype string'});
+      passedValidation = false;
+      return false;  //Break this .every() loop       
+    }
+
+    return true;  //Continue this .every() loop      
   });
+
+  if(!passedValidation){return};  
   // End of: Validate elements in the attributeNameArray
 
 
@@ -576,10 +666,19 @@ metadata._metadata.post = function(data, callback)
   // Start of: Validate elements in the attributeValueArray
   // passIfString
   // Behavior from meta.js at 7n1wj6bz5asgucz6nmkp
-  attributeValueArray.forEach(function(arrayElement)
+  attributeValueArray.every(function(arrayElement)
   {
-    if(typeof(arrayElement[1]) != 'string'){return callback(400, {'Error' : 'attributeValue must be of datatype string'});}
+    if(typeof(arrayElement[1]) != 'string')
+    {
+      callback(400, {'Error' : 'attributeValue must be of datatype string'});
+      passedValidation = false;
+      return false;  //Break this .every() loop       
+    }
+
+    return true;  //Continue this .every() loop      
   });
+
+  if(!passedValidation){return};  
   // End of: Validate elements in the attributeValueArray
 
 
@@ -593,10 +692,19 @@ metadata._metadata.post = function(data, callback)
   // Start of: Validate elements in the optionValueArray
   // passIfString
   // Behavior from meta.js at 7n1wj6bz5asgucz6nmkp
-  optionValueArray.forEach(function(arrayElement)
+  optionValueArray.every(function(arrayElement)
   {
-    if(typeof(arrayElement[1]) != 'string'){return callback(400, {'Error' : 'optionValue must be of datatype string'});}
+    if(typeof(arrayElement[1]) != 'string')
+    {
+      callback(400, {'Error' : 'optionValue must be of datatype string'});
+      passedValidation = false;
+      return false;  //Break this .every() loop      
+    }
+
+    return true;  //Continue this .every() loop    
   });
+
+  if(!passedValidation){return};  
   // End of: Validate elements in the optionValueArray
 
 
@@ -610,11 +718,30 @@ metadata._metadata.post = function(data, callback)
   // Start of: Validate elements in the optionTextArray
   // passIfString&NotEmptyThenTrim
   // Behavior from meta.js at fkb3ulfqr09ryyc0rb0d
-  optionTextArray.forEach(function(arrayElement)
+  optionTextArray.every(function(arrayElement)
   {
-    if(typeof(arrayElement[1]) != 'string'){return callback(400, {'Error' : 'optionText must be of datatype string'});}
-    if(!arrayElement[1] || arrayElement[1].trim().length === 0){return callback(400, {'Error' : 'No optionText was entered'});}else{arrayElement[1] = arrayElement[1].trim()}
+    if(typeof(arrayElement[1]) != 'string')
+    {
+      callback(400, {'Error' : 'optionText must be of datatype string'});
+      passedValidation = false;
+      return false;  //Break this .every() loop
+    }
+    
+    if(!arrayElement[1] || arrayElement[1].trim().length === 0)
+    {
+      callback(400, {'Error' : 'No optionText was entered'});
+      passedValidation = false;
+      return false;  //Break this .every() loop      
+    }
+    else
+    {
+      arrayElement[1] = arrayElement[1].trim()
+    }
+
+    return true;  //Continue this .every() loop    
   });
+
+  if(!passedValidation){return};
   // End of: Validate elements in the optionTextArray
 
 
@@ -628,10 +755,19 @@ metadata._metadata.post = function(data, callback)
   // Start of: Validate elements in the defaultValidationNameArray
   // passIfString
   // Behavior from meta.js at 7n1wj6bz5asgucz6nmkp
-  defaultValidationNameArray.forEach(function(arrayElement)
+  defaultValidationNameArray.every(function(arrayElement)
   {
-    if(typeof(arrayElement[1]) != 'string'){return callback(400, {'Error' : 'defaultValidationName must be of datatype string'});}
+    if(typeof(arrayElement[1]) != 'string')
+    {
+      callback(400, {'Error' : 'defaultValidationName must be of datatype string'});
+      passedValidation = false;
+      return false;  //Break this .every() loop      
+    }
+
+    return true;  //Continue this .every() loop    
   });
+
+  if(!passedValidation){return};
   // End of: Validate elements in the defaultValidationNameArray
 
 
@@ -645,10 +781,19 @@ metadata._metadata.post = function(data, callback)
   // Start of: Validate elements in the defaultValidationValueArray
   // passIfString
   // Behavior from meta.js at 7n1wj6bz5asgucz6nmkp
-  defaultValidationValueArray.forEach(function(arrayElement)
+  defaultValidationValueArray.every(function(arrayElement)
   {
-    if(typeof(arrayElement[1]) != 'string'){return callback(400, {'Error' : 'defaultValidationValue must be of datatype string'});}
+    if(typeof(arrayElement[1]) != 'string')
+    {
+      callback(400, {'Error' : 'defaultValidationValue must be of datatype string'});
+      passedValidation = false;
+      return false;  //Break this .every() loop    
+    }
+
+    return true;  //Continue this .every() loop
   });
+
+  if(!passedValidation){return};
   // End of: Validate elements in the defaultValidationValueArray
 
 
@@ -662,10 +807,19 @@ metadata._metadata.post = function(data, callback)
   // Start of: Validate elements in the postValidationNameArray
   // passIfString
   // Behavior from meta.js at 7n1wj6bz5asgucz6nmkp
-  postValidationNameArray.forEach(function(arrayElement)
+  postValidationNameArray.every(function(arrayElement)
   {
-    if(typeof(arrayElement[1]) != 'string'){return callback(400, {'Error' : 'postValidationName must be of datatype string'});}
+    if(typeof(arrayElement[1]) != 'string')
+    {
+      callback(400, {'Error' : 'postValidationName must be of datatype string'});
+      passedValidation = false;
+      return false;  //Break this .every() loop
+    }
+
+    return true;  //Continue this .every() loop
   });
+
+  if(!passedValidation){return};
   // End of: Validate elements in the postValidationNameArray
 
 
@@ -679,10 +833,19 @@ metadata._metadata.post = function(data, callback)
   // Start of: Validate elements in the postValidationValueArray
   // passIfString
   // Behavior from meta.js at 7n1wj6bz5asgucz6nmkp
-  postValidationValueArray.forEach(function(arrayElement)
+  postValidationValueArray.every(function(arrayElement)
   {
-    if(typeof(arrayElement[1]) != 'string'){return callback(400, {'Error' : 'postValidationValue must be of datatype string'});}
+    if(typeof(arrayElement[1]) != 'string')
+    {
+      callback(400, {'Error' : 'postValidationValue must be of datatype string'});
+      passedValidation = false;
+      return false;  //Break this .every() loop
+    }
+
+    return true;  //Continue this .every() loop
   });
+
+  if(!passedValidation){return};
   // End of: Validate elements in the postValidationValueArray
 
 
@@ -696,10 +859,19 @@ metadata._metadata.post = function(data, callback)
   // Start of: Validate elements in the putValidationNameArray
   // passIfString
   // Behavior from meta.js at 7n1wj6bz5asgucz6nmkp
-  putValidationNameArray.forEach(function(arrayElement)
+  putValidationNameArray.every(function(arrayElement)
   {
-    if(typeof(arrayElement[1]) != 'string'){return callback(400, {'Error' : 'putValidationName must be of datatype string'});}
+    if(typeof(arrayElement[1]) != 'string')
+    {
+      callback(400, {'Error' : 'putValidationName must be of datatype string'});
+      passedValidation = false;
+      return false;  //Break this .every() loop
+    }
+
+    return true;  //Continue this .every() loop
   });
+
+  if(!passedValidation){return};
   // End of: Validate elements in the putValidationNameArray
 
 
@@ -713,10 +885,19 @@ metadata._metadata.post = function(data, callback)
   // Start of: Validate elements in the putValidationValueArray
   // passIfString
   // Behavior from meta.js at 7n1wj6bz5asgucz6nmkp
-  putValidationValueArray.forEach(function(arrayElement)
+  putValidationValueArray.every(function(arrayElement)
   {
-    if(typeof(arrayElement[1]) != 'string'){return callback(400, {'Error' : 'putValidationValue must be of datatype string'});}
+    if(typeof(arrayElement[1]) != 'string')
+    {
+      callback(400, {'Error' : 'putValidationValue must be of datatype string'});
+      passedValidation = false;
+      return false;  //Break this .every() loop
+    }
+
+    return true;  //Continue this .every() loop
   });
+
+  if(!passedValidation){return};
   // End of: Validate elements in the putValidationValueArray
 
 
@@ -748,8 +929,9 @@ metadata._metadata.post = function(data, callback)
     else
     {
       arrayElement[1] = arrayElement[1].trim()
-      return true;  //Continue this .every() loop
     }
+
+    return true;  //Continue this .every() loop    
   });
 
   if(!passedValidation){return};  
@@ -765,10 +947,19 @@ metadata._metadata.post = function(data, callback)
   // Start of: Validate elements in the calculationValueArray
   // passIfString
   // Behavior from meta.js at 7n1wj6bz5asgucz6nmkp
-  calculationValueArray.forEach(function(arrayElement)
+  calculationValueArray.every(function(arrayElement)
   {
-    if(typeof(arrayElement[1]) != 'string'){return callback(400, {'Error' : 'calculationValue must be of datatype string'});}
+    if(typeof(arrayElement[1]) != 'string')
+    {
+      callback(400, {'Error' : 'calculationValue must be of datatype string'});
+      passedValidation = false;
+      return false;  //Break this .every() loop
+    }
+
+    return true;  //Continue this .every() loop
   });
+
+  if(!passedValidation){return};
   // End of: Validate elements in the calculationValueArray
 
 
@@ -782,11 +973,30 @@ metadata._metadata.post = function(data, callback)
   // Start of: Validate elements in the webPageTypeArray
   // passIfString&NotEmptyThenTrim
   // Behavior from meta.js at fkb3ulfqr09ryyc0rb0d
-  webPageTypeArray.forEach(function(arrayElement)
+  webPageTypeArray.every(function(arrayElement)
   {
-    if(typeof(arrayElement[1]) != 'string'){return callback(400, {'Error' : 'webPageType must be of datatype string'});}
-    if(!arrayElement[1] || arrayElement[1].trim().length === 0){return callback(400, {'Error' : 'No webPageType was entered'});}else{arrayElement[1] = arrayElement[1].trim()}
+    if(typeof(arrayElement[1]) != 'string')
+    {
+      callback(400, {'Error' : 'webPageType must be of datatype string'});
+      passedValidation = false;
+      return false;  //Break this .every() loop
+    }
+
+    if(!arrayElement[1] || arrayElement[1].trim().length === 0)
+    {
+      callback(400, {'Error' : 'No webPageType was entered'});
+      passedValidation = false;
+      return false;  //Break this .every() loop
+    }
+    else
+    {
+      arrayElement[1] = arrayElement[1].trim()
+    }
+
+    return true;  //Continue this .every() loop
   });
+
+  if(!passedValidation){return};
   // End of: Validate elements in the webPageTypeArray
 
 
@@ -800,11 +1010,30 @@ metadata._metadata.post = function(data, callback)
   // Start of: Validate elements in the webPageHeadingArray
   // passIfString&NotEmptyThenTrim
   // Behavior from meta.js at fkb3ulfqr09ryyc0rb0d
-  webPageHeadingArray.forEach(function(arrayElement)
+  webPageHeadingArray.every(function(arrayElement)
   {
-    if(typeof(arrayElement[1]) != 'string'){return callback(400, {'Error' : 'webPageHeading must be of datatype string'});}
-    if(!arrayElement[1] || arrayElement[1].trim().length === 0){return callback(400, {'Error' : 'No webPageHeading was entered'});}else{arrayElement[1] = arrayElement[1].trim()}
+    if(typeof(arrayElement[1]) != 'string')
+    {
+      callback(400, {'Error' : 'webPageHeading must be of datatype string'});
+      passedValidation = false;
+      return false;  //Break this .every() loop
+    }
+
+    if(!arrayElement[1] || arrayElement[1].trim().length === 0)
+    {
+      callback(400, {'Error' : 'No webPageHeading was entered'});
+      passedValidation = false;
+      return false;  //Break this .every() loop
+    }
+    else
+    {
+      arrayElement[1] = arrayElement[1].trim()
+    }
+
+    return true;  //Continue this .every() loop
   });
+
+  if(!passedValidation){return};
   // End of: Validate elements in the webPageHeadingArray
 
 
@@ -818,11 +1047,30 @@ metadata._metadata.post = function(data, callback)
   // Start of: Validate elements in the formTypeArray
   // passIfString&NotEmptyThenTrim
   // Behavior from meta.js at fkb3ulfqr09ryyc0rb0d
-  formTypeArray.forEach(function(arrayElement)
+  formTypeArray.every(function(arrayElement)
   {
-    if(typeof(arrayElement[1]) != 'string'){return callback(400, {'Error' : 'formType must be of datatype string'});}
-    if(!arrayElement[1] || arrayElement[1].trim().length === 0){return callback(400, {'Error' : 'No formType was entered'});}else{arrayElement[1] = arrayElement[1].trim()}
+    if(typeof(arrayElement[1]) != 'string')
+    {
+      callback(400, {'Error' : 'formType must be of datatype string'});
+      passedValidation = false;
+      return false;  //Break this .every() loop
+    }
+    
+    if(!arrayElement[1] || arrayElement[1].trim().length === 0)
+    {
+      callback(400, {'Error' : 'No formType was entered'});
+      passedValidation = false;
+      return false;  //Break this .every() loop
+    }
+    else
+    {
+      arrayElement[1] = arrayElement[1].trim()
+    }
+
+    return true;  //Continue this .every() loop
   });
+
+  if(!passedValidation){return};
   // End of: Validate elements in the formTypeArray
 
 
@@ -836,11 +1084,29 @@ metadata._metadata.post = function(data, callback)
   // Start of: Validate elements in the formHeadingArray
   // passIfString&NotEmptyThenTrim
   // Behavior from meta.js at fkb3ulfqr09ryyc0rb0d
-  formHeadingArray.forEach(function(arrayElement)
+  formHeadingArray.every(function(arrayElement)
   {
-    if(typeof(arrayElement[1]) != 'string'){return callback(400, {'Error' : 'formHeading must be of datatype string'});}
-    if(!arrayElement[1] || arrayElement[1].trim().length === 0){return callback(400, {'Error' : 'No formHeading was entered'});}else{arrayElement[1] = arrayElement[1].trim()}
+    if(typeof(arrayElement[1]) != 'string')
+    {
+      callback(400, {'Error' : 'formHeading must be of datatype string'});
+      passedValidation = false;
+      return false;  //Break this .every() loop
+    }
+    if(!arrayElement[1] || arrayElement[1].trim().length === 0)
+    {
+      callback(400, {'Error' : 'No formHeading was entered'});
+      passedValidation = false;
+      return false;  //Break this .every() loop    
+    }
+    else
+    {
+      arrayElement[1] = arrayElement[1].trim()
+    }
+
+    return true;  //Continue this .every() loop
   });
+
+  if(!passedValidation){return};
   // End of: Validate elements in the formHeadingArray
 
 
@@ -854,10 +1120,19 @@ metadata._metadata.post = function(data, callback)
   // Start of: Validate elements in the successMessageArray
   // passIfString
   // Behavior from meta.js at 7n1wj6bz5asgucz6nmkp
-  successMessageArray.forEach(function(arrayElement)
+  successMessageArray.every(function(arrayElement)
   {
-    if(typeof(arrayElement[1]) != 'string'){return callback(400, {'Error' : 'successMessage must be of datatype string'});}
+    if(typeof(arrayElement[1]) != 'string')
+    {
+      callback(400, {'Error' : 'successMessage must be of datatype string'});
+      passedValidation = false;
+      return false;  //Break this .every() loop
+    }
+
+    return true;  //Continue this .every() loop
   });
+
+  if(!passedValidation){return};
   // End of: Validate elements in the successMessageArray
 
 
@@ -871,10 +1146,19 @@ metadata._metadata.post = function(data, callback)
   // Start of: Validate elements in the submitButtonTextArray
   // passIfString
   // Behavior from meta.js at 7n1wj6bz5asgucz6nmkp
-  submitButtonTextArray.forEach(function(arrayElement)
+  submitButtonTextArray.every(function(arrayElement)
   {
-    if(typeof(arrayElement[1]) != 'string'){return callback(400, {'Error' : 'submitButtonText must be of datatype string'});}
+    if(typeof(arrayElement[1]) != 'string')
+    {
+      callback(400, {'Error' : 'submitButtonText must be of datatype string'});
+      passedValidation = false;
+      return false;  //Break this .every() loop
+    }
+
+    return true;  //Continue this .every() loop
   });
+
+  if(!passedValidation){return};
   // End of: Validate elements in the submitButtonTextArray
 
 
@@ -888,11 +1172,13 @@ metadata._metadata.post = function(data, callback)
   // Start of: Validate elements in the formElementTypeArray
   // passMenuItemsOnly
   // Behavior from meta.js at 69nq4ck9lcdakwpb58o6
-  formElementTypeArray.forEach(function(arrayElement)
+  formElementTypeArray.every(function(arrayElement)
   {
     if(typeof(arrayElement[1]) != 'string')
     {
-      return callback(400, {'Error' : 'formElementType must be of datatype string'});
+      callback(400, {'Error' : 'formElementType must be of datatype string'});
+      passedValidation = false;
+      return false;  //Break this .every() loop
     }
   
     if
@@ -901,9 +1187,15 @@ metadata._metadata.post = function(data, callback)
       && arrayElement[1] !== "objectElement"
     )
     {
-      return callback(400, {'Error' : 'formElementType does not match menu options'});
+      callback(400, {'Error' : 'formElementType does not match menu options'});
+      passedValidation = false;
+      return false;  //Break this .every() loop
     }
+
+    return true;  //Continue this .every() loop
   });
+
+  if(!passedValidation){return};
   // End of: Validate elements in the formElementTypeArray
 
 
@@ -917,10 +1209,19 @@ metadata._metadata.post = function(data, callback)
   // Start of: Validate elements in the formElementNameArray
   // passIfString
   // Behavior from meta.js at 7n1wj6bz5asgucz6nmkp
-  formElementNameArray.forEach(function(arrayElement)
+  formElementNameArray.every(function(arrayElement)
   {
-    if(typeof(arrayElement[1]) != 'string'){return callback(400, {'Error' : 'formElementName must be of datatype string'});}
+    if(typeof(arrayElement[1]) != 'string')
+    {
+      callback(400, {'Error' : 'formElementName must be of datatype string'});
+      passedValidation = false;
+      return false;  //Break this .every() loop    
+    }
+
+    return true;  //Continue this .every() loop
   });
+
+  if(!passedValidation){return};
   // End of: Validate elements in the formElementNameArray
 
 
@@ -934,10 +1235,19 @@ metadata._metadata.post = function(data, callback)
   // Start of: Validate elements in the formElementLabelTextArray
   // passIfString
   // Behavior from meta.js at 7n1wj6bz5asgucz6nmkp
-  formElementLabelTextArray.forEach(function(arrayElement)
+  formElementLabelTextArray.every(function(arrayElement)
   {
-    if(typeof(arrayElement[1]) != 'string'){return callback(400, {'Error' : 'formElementLabelText must be of datatype string'});}
+    if(typeof(arrayElement[1]) != 'string')
+    {
+      callback(400, {'Error' : 'formElementLabelText must be of datatype string'});
+      passedValidation = false;
+      return false;  //Break this .every() loop
+    }
+
+    return true;  //Continue this .every() loop
   });
+
+  if(!passedValidation){return};
   // End of: Validate elements in the formElementLabelTextArray
 
 
@@ -951,10 +1261,19 @@ metadata._metadata.post = function(data, callback)
   // Start of: Validate elements in the feAttributeNameArray
   // passIfString
   // Behavior from meta.js at 7n1wj6bz5asgucz6nmkp
-  feAttributeNameArray.forEach(function(arrayElement)
+  feAttributeNameArray.every(function(arrayElement)
   {
-    if(typeof(arrayElement[1]) != 'string'){return callback(400, {'Error' : 'feAttributeName must be of datatype string'});}
+    if(typeof(arrayElement[1]) != 'string')
+    {
+      callback(400, {'Error' : 'feAttributeName must be of datatype string'});
+      passedValidation = false;
+      return false;  //Break this .every() loop
+    }
+
+    return true;  //Continue this .every() loop
   });
+
+  if(!passedValidation){return};
   // End of: Validate elements in the feAttributeNameArray
 
 
@@ -968,10 +1287,19 @@ metadata._metadata.post = function(data, callback)
   // Start of: Validate elements in the feAttributeValueArray
   // passIfString
   // Behavior from meta.js at 7n1wj6bz5asgucz6nmkp
-  feAttributeValueArray.forEach(function(arrayElement)
+  feAttributeValueArray.every(function(arrayElement)
   {
-    if(typeof(arrayElement[1]) != 'string'){return callback(400, {'Error' : 'feAttributeValue must be of datatype string'});}
+    if(typeof(arrayElement[1]) != 'string')
+    {
+      callback(400, {'Error' : 'feAttributeValue must be of datatype string'});
+      passedValidation = false;
+      return false;  //Break this .every() loop
+    }
+
+    return true;  //Continue this .every() loop
   });
+
+  if(!passedValidation){return};
   // End of: Validate elements in the feAttributeValueArray
 
 
