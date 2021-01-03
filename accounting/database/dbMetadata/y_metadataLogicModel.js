@@ -527,8 +527,8 @@ metadata._metadata.post = function(data, callback)
   // End of: Load the elementNameArray dynamically once the payload is known. 
                   
   // Start of: Validate elements in the elementNameArray
-  // passIfString&NotEmptyThenTrim
-  // Behavior from meta.js at fkb3ulfqr09ryyc0rb0d
+  // passIfString
+  // Behavior from meta.js at 7n1wj6bz5asgucz6nmkp
   elementNameArray.every(function(arrayElement)
   {
     if(typeof(arrayElement[1]) != 'string')
@@ -536,17 +536,6 @@ metadata._metadata.post = function(data, callback)
       callback(400, {'Error' : 'elementName must be of datatype string'});
       passedValidation = false;
       return false;  //Break this .every() loop      
-    }
-
-    if(!arrayElement[1] || arrayElement[1].trim().length === 0)
-    {
-      callback(400, {'Error' : 'No elementName was entered'});
-      passedValidation = false;
-      return false;  //Break this .every() loop      
-    }
-    else
-    {
-      arrayElement[1] = arrayElement[1].trim()
     }
 
     return true;  //Continue this .every() loop     
@@ -564,8 +553,8 @@ metadata._metadata.post = function(data, callback)
   // End of: Load the labelTextArray dynamically once the payload is known. 
                   
   // Start of: Validate elements in the labelTextArray
-  // passIfString&NotEmptyThenTrim
-  // Behavior from meta.js at fkb3ulfqr09ryyc0rb0d
+  // passIfString
+  // Behavior from meta.js at 7n1wj6bz5asgucz6nmkp
   labelTextArray.every(function(arrayElement)
   {
     if(typeof(arrayElement[1]) != 'string')
@@ -573,17 +562,6 @@ metadata._metadata.post = function(data, callback)
       callback(400, {'Error' : 'labelText must be of datatype string'});
       passedValidation = false;
       return false;  //Break this .every() loop       
-    }
-
-    if(!arrayElement[1] || arrayElement[1].trim().length === 0)
-    {
-      callback(400, {'Error' : 'No labelText was entered'});
-      passedValidation = false;
-      return false;  //Break this .every() loop       
-    }
-    else
-    {
-      arrayElement[1] = arrayElement[1].trim()
     }
 
     return true;  //Continue this .every() loop    
@@ -601,8 +579,8 @@ metadata._metadata.post = function(data, callback)
   // End of: Load the elementTypeArray dynamically once the payload is known. 
   
   // Start of: Validate elements in the elementTypeArray
-  // passMenuItemsOnly
-  // Behavior from meta.js at 69nq4ck9lcdakwpb58o6
+  // passMenuItemsOnly_AllowNoSelection
+  // Behavior from meta.js at cl77lbypw93ps7o8tk5d
   elementTypeArray.every(function(arrayElement)
   {
     if(typeof(arrayElement[1]) != 'string')
@@ -614,7 +592,8 @@ metadata._metadata.post = function(data, callback)
   
     if
     (
-      arrayElement[1] !== "input"
+      arrayElement[1] !== ""
+      && arrayElement[1] !== "input"
       && arrayElement[1] !== "select"
     )
     {
