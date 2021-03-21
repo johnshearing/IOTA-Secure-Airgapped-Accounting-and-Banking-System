@@ -135,11 +135,5 @@ Most people need to know what they are going to make before they start their wor
 But I have discovered that it is possible to accomplish tasks that are way beyond the limits of my own intellect by letting go of the big plan and just doing the work set down in front of me. This is exactly what nature does.  
 I feel blessed and I love God. The work you see here is the result.  
 
-The code may not be particularly well written - maybe it is - I don't know - I am learning and changing it as I go.  
-But the system itself is used to edit the data dictionary (its own genes).  
-So when poor code is replaced with better code, the changes replicate throughout the entire system when you run the generator.  
-The editor is kind of like [CRISPR](https://en.wikipedia.org/wiki/CRISPR_gene_editing) which is used to edit DNA and the generator is kind of like [Gene Therapy](https://en.wikipedia.org/wiki/Gene_therapy) because it propagates those changes throughout the entire system.  
-That's why others may wish to investigate this code, its applications, and the spirit in which it was created.  
-
 Thanks, John  
 
