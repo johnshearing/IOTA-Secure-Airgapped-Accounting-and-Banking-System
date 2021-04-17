@@ -1034,6 +1034,7 @@ app.loadoContactAddPage = function()
   } // End of: function onChangeBehaviorForAttributeName (event)
   // End of: Define the function that fires when we click on a the global expand control.
 
+
   // Bind the function above to the onClick event of the label elements.
   document.querySelectorAll(".expandControl").forEach(function(currentControl)
   {
@@ -1057,6 +1058,7 @@ app.loadoContactAddPage = function()
     });
   } // End of: function onClickBehaviorForCollapseControl (event)
   // End of: Define the function that fires when we click on a the global collapse control.
+
 
   // Bind the function above to the onClick event of the label elements.
   document.querySelectorAll(".collapseControl").forEach(function(currentControl)
@@ -1089,6 +1091,7 @@ app.loadoContactAddPage = function()
   } // End of: function onClickBehaviorForLabelElement (event)
   // End of: Define the function that fires when we click on a label.
 
+
   // Bind the function above to the onClick event of the label elements.
   document.querySelectorAll(".objectLabel").forEach(function(currentLabel)
   {
@@ -1120,6 +1123,7 @@ app.loadoContactAddPage = function()
     };
   } // End of: function onChangeBehaviorForAttributeName (event)
   // Define the function that fires when an attribute is selected.
+
 
   // Bind the function above to the onChange event of the input element.
   document.querySelectorAll("input").forEach(function(currentInput)
@@ -1179,6 +1183,7 @@ app.loadoContactAddPage = function()
   } // End of: function onClickBehaviorForMoveObjectUpButton (event)
   // End of: Define the function that fires when the moveObjectUpButton is pressed.
 
+
   // Bind the function above to the onClick event of the moveObjectUpButton.
   document.querySelectorAll('.moveObjectUpButton').forEach(function(currentButton)
   {
@@ -1233,6 +1238,7 @@ app.loadoContactAddPage = function()
 
   } // End of: function onClickBehaviorForMoveObjectDownButton (event)
   // End of: Define the function that fires when the moveObjectDownButton is pressed.
+
 
   // Bind the function above to the onClick event of the moveObjectDownButton.
   document.querySelectorAll('.moveObjectDownButton').forEach(function(currentButton)
@@ -1299,6 +1305,7 @@ app.loadoContactAddPage = function()
 
   } // End of: function onClickBehaviorForRemoveObjectButton (event){...}
   // End of: Define the function that fires when the removeObjectButton is selected.
+
 
   // Bind the function above to the onClick event of the removeObjectButtons.
   document.querySelectorAll('.removeObjectButton').forEach(function(currentButton)
@@ -2483,6 +2490,7 @@ app.loadoContactAddPage = function()
   } // End of: function onClickBehaviorForAddNewWebPageButton (event)
   // End of: // Define the function that fires when the addNewWebPageButton is selected.
 
+
   // Bind the function above to the onClick event of the addNewWebPageButton.
   document.querySelectorAll('.addNewWebPageButton').forEach(function(currentaddNewWebPageButton)
   {
@@ -2579,7 +2587,7 @@ app.loadoContactAddPage = function()
       if(currentInput.getAttribute('domainFor'))
       {
         let event = new Event('change');
-        currentInput.dispatchEvent(event)
+        currentInput.dispatchEvent(event);
       }
     });  
 
@@ -2612,6 +2620,7 @@ app.loadoContactAddPage = function()
 
   } // End of: function onClickBehaviorForAddNewFormButton (event)
   // End of: // Define the function that fires when the addNewFormButton is selected.
+
 
   // Bind the function above to the onClick event of the addNewFormButton.
   document.querySelectorAll('.addNewFormButton').forEach(function(currentaddNewFormButton)
