@@ -813,9 +813,9 @@
     </div>
     <button type="button" class="addNewFormButton" style="background-color: red;">Add New Form</button>
   </div>
-  <button type="button" class="disabled controlObjectButton moveObjectUpButton blue" disabled>Move Up</button>
+  <button type="button" class="controlObjectButton moveObjectUpButton blue">Move Up</button>
   <button type="button" class="disabled controlObjectButton moveObjectDownButton blue" disabled>Move Down</button>
-  <button type="button" class="disabled controlObjectButton removeObjectButton red" disabled>Remove</button>
+  <button type="button" class="controlObjectButton removeObjectButton red">Remove</button>
   </script>
   
   
@@ -2257,12 +2257,18 @@ app.loadmetadataEditPage = async function()
     let structureTemplate;
     let structureType = "dataElement";
 
-    // Apply the template selected by the user.
-    if(event.target.value === "dataElement")
+    // Apply the template.
+    // If the user wants to start with a new form element and later chose if it will represent an object or a data element...
+    // But more likely if the value is empty then this function has been called when the user pressed the Add New Form Element button.
+    if(event.target.value === "")  
+    {
+      structureTemplate = document.querySelector('[type="text/newFormElementTemplate"]');
+    }    
+    else if(event.target.value === "dataElement") // The user specified that the form element will hold a data element.
     {
       structureTemplate = document.querySelector('[type="text/formElementTemplate"]');
     }
-    else // Object was selected
+    else // The user specified that the form element will be a container (an object) for data elements.
     {
       structureTemplate = document.querySelector('[type="text/formObjectTemplate"]');
       structureType = "objectElement";
@@ -2874,6 +2880,18 @@ app.loadmetadataEditPage = async function()
       }
     });
 
+    // Create an event listener for the onclick event of the clone's addNewFormButtons.
+    targetGroupWrapper.querySelectorAll(".addNewFormButton").forEach(function(addNewFormButton)
+    {
+      addNewFormButton.addEventListener("click", onClickBehaviorForAddNewFormButton);
+    });
+
+    // Create an event listener for the onclick event of the clone's addNewFormElementButton.
+    targetGroupWrapper.querySelectorAll(".addNewFormElementButton").forEach(function(addNewFormElementButton)
+    {
+      addNewFormElementButton.addEventListener("click", onClickBehaviorForAddNewFormElementButton);
+    });    
+
     // Create an event listener for the onclick event of the clone's removeObjectButtons.
     targetGroupWrapper.querySelectorAll(".removeObjectButton").forEach(function(removeObjectButton)
     {
@@ -3015,9 +3033,9 @@ app.loadmetadataEditPage = async function()
     });    
 
     // Create an event listener for the onclick event of the addNewFormElementButton/s.
-    targetGroupWrapper.querySelectorAll('.addNewFormElementButton').forEach(function(currentaddNewFormElementButton)
+    targetGroupWrapper.querySelectorAll('.addNewFormElementButton').forEach(function(currentAddNewFormElementButton)
     {
-      currentaddNewFormElementButton.addEventListener("click", onClickBehaviorForAddNewFormElementButton);
+      currentAddNewFormElementButton.addEventListener("click", onClickBehaviorForAddNewFormElementButton);
     });  
     // End of: Create an event listener for the onclick event of the addNewFormElementButton/s.
 
@@ -3145,9 +3163,9 @@ app.loadmetadataEditPage = async function()
 
 
   // Bind the function above to the onClick event of the addNewFormElementButton.
-  document.querySelectorAll('.addNewFormElementButton').forEach(function(currentaddNewFormElementButton)
+  document.querySelectorAll('.addNewFormElementButton').forEach(function(currentAddNewFormElementButton)
   {
-    currentaddNewFormElementButton.addEventListener("click", onClickBehaviorForAddNewFormElementButton);
+    currentAddNewFormElementButton.addEventListener("click", onClickBehaviorForAddNewFormElementButton);
   });  
   // End of: Bind the function above to the onClick event of the addNewFormElementButton.  
 

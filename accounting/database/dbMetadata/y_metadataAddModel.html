@@ -615,9 +615,9 @@
   </div>
   <button type="button" class="addNewFormButton" style="background-color: red;">Add New Form</button>
 </div>
-<button type="button" class="disabled controlObjectButton moveObjectUpButton blue" disabled>Move Up</button>
+<button type="button" class="controlObjectButton moveObjectUpButton blue">Move Up</button>
 <button type="button" class="disabled controlObjectButton moveObjectDownButton blue" disabled>Move Down</button>
-<button type="button" class="disabled controlObjectButton removeObjectButton red" disabled>Remove</button>
+<button type="button" class="controlObjectButton removeObjectButton red">Remove</button>
 </script>
 
 
@@ -2467,6 +2467,18 @@ app.loadoContactAddPage = function()
       }
     });
 
+    // Create an event listener for the onclick event of the clone's addNewFormButtons.
+    targetGroupWrapper.querySelectorAll(".addNewFormButton").forEach(function(addNewFormButton)
+    {
+      addNewFormButton.addEventListener("click", onClickBehaviorForAddNewFormButton);
+    });
+
+    // Create an event listener for the onclick event of the clone's addNewFormElementButton.
+    targetGroupWrapper.querySelectorAll(".addNewFormElementButton").forEach(function(addNewFormElementButton)
+    {
+      addNewFormElementButton.addEventListener("click", onClickBehaviorForAddNewFormElementButton);
+    });    
+
     // Create an event listener for the onclick event of the clone's removeObjectButtons.
     targetGroupWrapper.querySelectorAll(".removeObjectButton").forEach(function(removeObjectButton)
     {
@@ -2506,8 +2518,6 @@ app.loadoContactAddPage = function()
   {
     // Stop it from redirecting anywhere
     event.preventDefault();
-
-    debugger;
 
     // Create a handle for the groupWrapper which contains the addNewFormButton.
     let targetGroupWrapper = event.target.parentNode;
@@ -2610,9 +2620,9 @@ app.loadoContactAddPage = function()
     });    
 
     // Create an event listener for the onclick event of the addNewFormElementButton/s.
-    targetGroupWrapper.querySelectorAll('.addNewFormElementButton').forEach(function(currentaddNewFormElementButton)
+    targetGroupWrapper.querySelectorAll('.addNewFormElementButton').forEach(function(currentAddNewFormElementButton)
     {
-      currentaddNewFormElementButton.addEventListener("click", onClickBehaviorForAddNewFormElementButton);
+      currentAddNewFormElementButton.addEventListener("click", onClickBehaviorForAddNewFormElementButton);
     });  
     // End of: Create an event listener for the onclick event of the addNewFormElementButton/s.
 
@@ -2733,9 +2743,9 @@ app.loadoContactAddPage = function()
 
 
   // Bind the function above to the onClick event of the addNewFormElementButton.
-  document.querySelectorAll('.addNewFormElementButton').forEach(function(currentaddNewFormElementButton)
+  document.querySelectorAll('.addNewFormElementButton').forEach(function(currentAddNewFormElementButton)
   {
-    currentaddNewFormElementButton.addEventListener("click", onClickBehaviorForAddNewFormElementButton);
+    currentAddNewFormElementButton.addEventListener("click", onClickBehaviorForAddNewFormElementButton);
   });  
   // End of: Bind the function above to the onClick event of the addNewFormElementButton.
 

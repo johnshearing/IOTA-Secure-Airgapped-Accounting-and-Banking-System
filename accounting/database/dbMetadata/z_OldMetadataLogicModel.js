@@ -315,8 +315,7 @@ metadata._metadata.post = function(data, callback)
   // Get tableName from payload
   let tableName = data.payload["tableName"];
 
-  // passIfString&NotEmptyThenTrim 
-  // Default behavior from meta.js at ulg5xxvzgr7efln9xur9
+  // passIfString&NotEmptyThenTrim Default behavior from meta.js at ulg5xxvzgr7efln9xur9
   if(typeof(tableName) != 'string'){return callback(400, {'Error' : 'tableName must be of datatype string'});}
   if(!tableName || tableName.trim().length === 0){return callback(400, {'Error' : 'No tableName was entered'});}else{tableName = tableName.trim()}
 
@@ -539,7 +538,7 @@ metadata._metadata.post = function(data, callback)
       return false;  //Break this .every() loop      
     }
 
-    return true;  //Continue this .every() loop  
+    return true;  //Continue this .every() loop     
   });
 
   if(!passedValidation){return};   
@@ -1779,24 +1778,13 @@ metadata._metadata.post = function(data, callback)
 metadata._metadata.put = function(data, callback)
 {
   // Field validation starts here.
-  let passedValidation = true;
-
-  // Field validation starts here.
   // Get metadataId from payload
   let metadataId = data.payload.metadataId;
 
   // PrimaryKey validation. 
   // Default behavior from meta.js at o65yzg6ddze2fkvcgw5s
-  // If metadataId is a valid string then convert it to a number. 
-  if (typeof(metadataId) === 'string')
-  {
-    metadataId = parseInt(metadataId, 10);
-  }
-  else
-  {
-    return callback(400, {'Error' : 'metadataId must be a of string type'});
-  }
-
+  // If metadataId is a valid string then convert it to a number.  
+  if (typeof(metadataId) === 'string'){metadataId = parseInt(metadataId, 10);}else{return callback(400, {'Error' : 'metadataId must be a of string type'});}
 
   // Get tableName from payload
   let tableName = data.payload["tableName"];
@@ -1826,7 +1814,6 @@ metadata._metadata.put = function(data, callback)
     } 
   }
 
-
   // Get directory from payload
   let directory = data.payload["directory"];
 
@@ -1854,7 +1841,6 @@ metadata._metadata.put = function(data, callback)
       return callback(400, {'Error' : 'Not a valid directory'}); 
     } 
   }
-
 
   // Get addRoutes from payload
   let addRoutes = data.payload["addRoutes"];
@@ -1890,7 +1876,6 @@ metadata._metadata.put = function(data, callback)
     }
   }
 
-
   // Get allowCodeGeneration from payload
   let allowCodeGeneration = data.payload["allowCodeGeneration"];
 
@@ -1925,7 +1910,6 @@ metadata._metadata.put = function(data, callback)
     }
   }
 
-
   // Start of: Load the dataTypeArray dynamically once the payload is known.
   // Behavior from meta.js at 8cz4imaqb2wagvl14q9t
   let dataTypeKeyArray = ["field", "dataType"]
@@ -1936,7 +1920,7 @@ metadata._metadata.put = function(data, callback)
   // Start of: Validate elements in the dataTypeArray
   // passMenuItemsOnly
   // Behavior from meta.js at v4a99s97u4c9idr0b71g
-  dataTypeArray.every(function(arrayElement)
+  dataTypeArray.forEach(function(arrayElement)
   {
     if(typeof(arrayElement[1]) === 'string')
     {
@@ -1946,33 +1930,25 @@ metadata._metadata.put = function(data, callback)
         && arrayElement[1] !== "object"
       )
       {
-        callback(400, {'Error' : 'dataType does not match menu options'});
-        passedValidation = false;
-        return false;  //Break this .every() loop        
+        return callback(400, {'Error' : 'dataType does not match menu options'});
       }
     }
     else // Not a string
     {
       // If the user entered nothing: 
-      if(arrayElement[1] === undefined) 
+      if(dataType === undefined) 
       { 
         // Then user is likely trying to delete a record.
         // So change the value to false and continue processing.
-        arrayElement[1] = false
+        dataType = false
       } 
       else
       {
-        callback(400, {'Error' : 'dataType must be of datatype string'});
-        passedValidation = false;
-        return false;  //Break this .every() loop        
+        return callback(400, {'Error' : 'dataType must be of datatype string'});
       }  
-    }        
-    return true;  //Continue this .every() loop                
-  }); // End of: dataTypeArray.every(function(arrayElement)
-
-  if(!passedValidation){return};  
+    }                    
+  });
   // End of: Validate elements in the dataTypeArray
-
 
   // Start of: Load the fieldNameArray dynamically once the payload is known.
   // Behavior from meta.js at 8cz4imaqb2wagvl14q9t
@@ -1983,22 +1959,18 @@ metadata._metadata.put = function(data, callback)
 
   // Start of: Validate elements in the fieldNameArray
   // passIfString&NotEmptyThenTrim
-  // Behavior from meta.js at ohw0ivijs2al2rwf1
-  fieldNameArray.every(function(arrayElement)
+  // Behavior from meta.js at ohw0ivijs2au0nt2rwf1
+  fieldNameArray.forEach(function(arrayElement)
   {
     // If fieldName is of string type and is not empty 
-    if 
-    (
-      typeof(arrayElement[1]) === 'string' 
-      && arrayElement[1].trim().length > 0
-    ) 
+    if (typeof(arrayElement[1]) === 'string' && arrayElement[1].trim().length > 0) 
     { 
       // The user entered something in the edit form
       arrayElement[1] = arrayElement[1].trim()
     } 
     // Else, the user may have entered some other datatype like a number or 
     // perhaps nothing at all if using the Delete form or if just using the API. 
-    else
+    else 
     { 
       // If the user entered nothing: 
       if(arrayElement[1] === undefined) 
@@ -2009,18 +1981,11 @@ metadata._metadata.put = function(data, callback)
       } 
       else // The user entered something invalid so reject the edit. 
       { 
-        callback(400, {'Error' : 'fieldName must be of type string and not empty'}); 
-        passedValidation = false;
-        return false;  //Break this .every() loop         
+        return callback(400, {'Error' : 'Not a valid ' + arrayElement[1]}); 
       } 
     }
-
-    return true;  //Continue this .every() loop     
-  }); // End of: fieldNameArray.every(function(arrayElement)
-
-  if(!passedValidation){return};  
+  }); // End of: fieldNameArray.forEach(function(arrayElement)
   // End of: Validate elements in the fieldNameArray 
-
 
   // Start of: Load the uniqueArray dynamically once the payload is known.
   // Behavior from meta.js at 8cz4imaqb2wagvl14q9t
@@ -2032,44 +1997,35 @@ metadata._metadata.put = function(data, callback)
   // Start of: Validate elements in the uniqueArray
   // passMenuItemsOnly
   // Behavior from meta.js at v4a99s97u4c9idr0b71g
-  uniqueArray.every(function(arrayElement)
+  uniqueArray.forEach(function(arrayElement)
   {
     if(typeof(arrayElement[1]) === 'string')
     {
-      if // unique does not match the menu options...
+      if
       (
         arrayElement[1] !== "yes"
         && arrayElement[1] !== "no"
       )
       {
-        callback(400, {'Error' : 'unique does not match menu options'});
-        passedValidation = false;
-        return false;  //Break this .every() loop         
+        return callback(400, {'Error' : 'unique does not match menu options'});
       }
     }
     else // Not a string
     {
       // If the user entered nothing: 
-      if(arrayElement[1] === undefined) 
+      if(unique === undefined) 
       { 
         // Then user is likely trying to delete a record.
         // So change the value to false and continue processing.
-        arrayElement[1] = false
+        unique = false
       } 
       else
       {
-        callback(400, {'Error' : 'unique must be of datatype string'});
-        passedValidation = false;
-        return false;  //Break this .every() loop         
+        return callback(400, {'Error' : 'unique must be of datatype string'});
       }  
-    }      
-    
-    return true;  //Continue this .every() loop     
-  }); // End of: uniqueArray.every(function(arrayElement)...
-
-  if(!passedValidation){return};  
+    }                    
+  });
   // End of: Validate elements in the uniqueArray
-
 
   // Start of: Load the publishedArray dynamically once the payload is known.
   // Behavior from meta.js at 8cz4imaqb2wagvl14q9t
@@ -2081,64 +2037,58 @@ metadata._metadata.put = function(data, callback)
   // Start of: Validate elements in the publishedArray
   // passMenuItemsOnly
   // Behavior from meta.js at v4a99s97u4c9idr0b71g
-  publishedArray.every(function(arrayElement)
+  publishedArray.forEach(function(arrayElement)
   {
-    
     if(typeof(arrayElement[1]) === 'string')
     {
-      if // the user did not select a menu item...
+      if
       (
         arrayElement[1] !== "yes"
         && arrayElement[1] !== "no"
       )
       {
-        callback(400, {'Error' : 'published does not match menu options'});
-        passedValidation = false;
-        return false;  //Break this .every() loop         
+        return callback(400, {'Error' : 'published does not match menu options'});
       }
     }
     else // Not a string
     {
       // If the user entered nothing: 
-      if(arrayElement[1] === undefined) 
+      if(published === undefined) 
       { 
         // Then user is likely trying to delete a record.
         // So change the value to false and continue processing.
-        arrayElement[1] = false
+        published = false
       } 
       else
       {
-        callback(400, {'Error' : 'published must be of datatype string'});
-        passedValidation = false;
-        return false;  //Break this .every() loop         
+        return callback(400, {'Error' : 'published must be of datatype string'});
       }  
-    }    
-    
-    return true;  //Continue this .every() loop    
-  }); // End of: publishedArray.every(function(arrayElement){...}
-
-  if(!passedValidation){return};  
+    }                    
+  });
   // End of: Validate elements in the publishedArray
-
 
   // Start of: Load the elementNameArray dynamically once the payload is known.
   // Behavior from meta.js at 8cz4imaqb2wagvl14q9t
   let elementNameKeyArray = ["field", "defaultElement", "elementName"]
 
   let elementNameArray = loadPayloadArray(elementNameKeyArray, data.payload);
-  // End of: Load the elementNameArray dynamically once the payload is known.
+  // End of: Load the elementNameArray dynamically once the payload is known. 
 
   // Start of: Validate elements in the elementNameArray
-  // passIfString
-  // Behavior from meta.js at
-  elementNameArray.every(function(arrayElement)
+  // passIfString&NotEmptyThenTrim
+  // Behavior from meta.js at ohw0ivijs2au0nt2rwf1
+  elementNameArray.forEach(function(arrayElement)
   {
-    // If elementName is not of string type 
-    if (typeof(arrayElement[1]) != 'string') 
+    // If elementName is of string type and is not empty 
+    if (typeof(arrayElement[1]) === 'string' && arrayElement[1].trim().length > 0) 
     { 
-      // The user may have entered another datatype or perhaps 
-      // nothing if using the Delete form or if just using the API. 
-
+      // The user entered something in the edit form
+      arrayElement[1] = arrayElement[1].trim()
+    } 
+    // Else, the user may have entered some other datatype like a number or 
+    // perhaps nothing at all if using the Delete form or if just using the API. 
+    else 
+    { 
       // If the user entered nothing: 
       if(arrayElement[1] === undefined) 
       { 
@@ -2146,20 +2096,13 @@ metadata._metadata.put = function(data, callback)
         // So change the value to false and continue processing.
         arrayElement[1] = false 
       } 
-      else // The user entered some other datatype so reject the edit. 
+      else // The user entered something invalid so reject the edit. 
       { 
-        callback(400, {'Error' : 'elementName must be of string datatype'}); 
-        passedValidation = false;
-        return false;  //Break this .every() loop        
-      }
-    } 
-
-    return true;  //Continue this .every() loop
-  }); // End of: elementNameArray.every(function(arrayElement)
-
-  if(!passedValidation){return};   
-  // End of: Validate elements in the elementNameArray
-
+        return callback(400, {'Error' : 'Not a valid ' + arrayElement[1]}); 
+      } 
+    }
+  }); // End of: elementNameArray.forEach(function(arrayElement)
+  // End of: Validate elements in the elementNameArray 
 
   // Start of: Load the labelTextArray dynamically once the payload is known.
   // Behavior from meta.js at 8cz4imaqb2wagvl14q9t
@@ -2169,16 +2112,20 @@ metadata._metadata.put = function(data, callback)
   // End of: Load the labelTextArray dynamically once the payload is known. 
 
   // Start of: Validate elements in the labelTextArray
-  // passIfString
-  // Behavior from meta.js at 
-  labelTextArray.every(function(arrayElement)
+  // passIfString&NotEmptyThenTrim
+  // Behavior from meta.js at ohw0ivijs2au0nt2rwf1
+  labelTextArray.forEach(function(arrayElement)
   {
-    // If labelText is not of string type
-    if (typeof(arrayElement[1]) != 'string') 
+    // If labelText is of string type and is not empty 
+    if (typeof(arrayElement[1]) === 'string' && arrayElement[1].trim().length > 0) 
     { 
-      // The user may have entered some other datatype or perhaps 
-      // nothing if using the Delete form or if just using the API.
-
+      // The user entered something in the edit form
+      arrayElement[1] = arrayElement[1].trim()
+    } 
+    // Else, the user may have entered some other datatype like a number or 
+    // perhaps nothing at all if using the Delete form or if just using the API. 
+    else 
+    { 
       // If the user entered nothing: 
       if(arrayElement[1] === undefined) 
       { 
@@ -2186,19 +2133,13 @@ metadata._metadata.put = function(data, callback)
         // So change the value to false and continue processing.
         arrayElement[1] = false 
       } 
-      else // The user entered some other datatype so reject the edit. 
+      else // The user entered something invalid so reject the edit. 
       { 
-        callback(400, {'Error' : 'labelText must be of string datatype'});
-        passedValidation = false;
-        return false;  //Break this .every() loop         
+        return callback(400, {'Error' : 'Not a valid ' + arrayElement[1]}); //????
       } 
-    } 
-    return true;  //Continue this .every() loop    
-  }); // End of: labelTextArray.every(function(arrayElement)
-
-  if(!passedValidation){return};  
+    }
+  }); // End of: labelTextArray.forEach(function(arrayElement)
   // End of: Validate elements in the labelTextArray 
-
 
   // Start of: Load the elementTypeArray dynamically once the payload is known.
   // Behavior from meta.js at 8cz4imaqb2wagvl14q9t
@@ -2210,44 +2151,35 @@ metadata._metadata.put = function(data, callback)
   // Start of: Validate elements in the elementTypeArray
   // passMenuItemsOnly
   // Behavior from meta.js at v4a99s97u4c9idr0b71g
-  elementTypeArray.every(function(arrayElement)
+  elementTypeArray.forEach(function(arrayElement)
   {
     if(typeof(arrayElement[1]) === 'string')
     {
-      if // no menu item was selected...
+      if
       (
-        arrayElement[1] !== ""
-        && arrayElement[1] !== "input"
+        arrayElement[1] !== "input"
         && arrayElement[1] !== "select"
       )
       {
-        callback(400, {'Error' : 'elementType does not match menu options'});
-        passedValidation = false;
-        return false;  //Break this .every() loop        
+        return callback(400, {'Error' : 'elementType does not match menu options'});
       }
     }
     else // Not a string
     {
       // If the user entered nothing: 
-      if(arrayElement[1] === undefined) 
+      if(elementType === undefined) 
       { 
         // Then user is likely trying to delete a record.
         // So change the value to false and continue processing.
-        arrayElement[1] = false
+        elementType = false
       } 
-      else // The user entered some other datatype so reject the edit.
+      else
       {
-        callback(400, {'Error' : 'elementType must be of datatype string'});
-        passedValidation = false;
-        return false;  //Break this .every() loop        
+        return callback(400, {'Error' : 'elementType must be of datatype string'});
       }  
-    }
-    return true;  //Continue this .every() loop                    
-  }); // End of: elementTypeArray.every(function(arrayElement){...}
-
-  if(!passedValidation){return};  
+    }                    
+  });
   // End of: Validate elements in the elementTypeArray
-
 
   // Start of: Load the attributeNameArray dynamically once the payload is known.
   // Behavior from meta.js at 8cz4imaqb2wagvl14q9t
@@ -2256,77 +2188,32 @@ metadata._metadata.put = function(data, callback)
   let attributeNameArray = loadPayloadArray(attributeNameKeyArray, data.payload);
   // End of: Load the attributeNameArray dynamically once the payload is known. 
 
-
+                  
   // Start of: Validate elements in the attributeNameArray
   // passIfString
-  // Behavior from meta.js at 
-  attributeNameArray.every(function(arrayElement)
+  // Behavior from meta.js at 7n1wj6bz5asgucz6nmkp
+  attributeNameArray.forEach(function(arrayElement)
   {
-    // If attributeName is not of string type
-    if (typeof(arrayElement[1]) != 'string') 
-    { 
-      // The user may have entered some other datatype or perhaps 
-      // nothing if using the Delete form or if just using the API.
-
-      // If the user entered nothing: 
-      if(arrayElement[1] === undefined) 
-      { 
-        // Then user is likely trying to delete a record.
-        // So change the value to false and continue processing.
-        arrayElement[1] = false 
-      } 
-      else // The user entered some other datatype so reject the edit. 
-      { 
-        callback(400, {'Error' : 'attributeName must be of datatype string'});
-        passedValidation = false;
-        return false;  //Break this .every() loop         
-      } 
-    } 
-    return true;  //Continue this .every() loop    
-  }); // End of: attributeNameArray.every(function(arrayElement)
-
-  if(!passedValidation){return};  
-  // End of: Validate elements in the attributeNameArray  
-
+    if(typeof(arrayElement[1]) != 'string'){return callback(400, {'Error' : 'attributeName must be of datatype string'});}
+  });
+  // End of: Validate elements in the attributeNameArray
 
   // Start of: Load the attributeValueArray dynamically once the payload is known.
   // Behavior from meta.js at 8cz4imaqb2wagvl14q9t
   let attributeValueKeyArray = ["field", "defaultElement", "attribute", "attributeValue"]
 
   let attributeValueArray = loadPayloadArray(attributeValueKeyArray, data.payload);
-  // End of: Load the attributeValueArray dynamically once the payload is known. l
+  // End of: Load the attributeValueArray dynamically once the payload is known. 
 
+                  
   // Start of: Validate elements in the attributeValueArray
   // passIfString
-  // Behavior from meta.js at 
-  attributeValueArray.every(function(arrayElement)
+  // Behavior from meta.js at 7n1wj6bz5asgucz6nmkp
+  attributeValueArray.forEach(function(arrayElement)
   {
-    // If attributeValue is not of string type
-    if (typeof(arrayElement[1]) != 'string') 
-    { 
-      // The user may have entered some other datatype or perhaps 
-      // nothing if using the Delete form or if just using the API.
-
-      // If the user entered nothing: 
-      if(arrayElement[1] === undefined) 
-      { 
-        // Then user is likely trying to delete a record.
-        // So change the value to false and continue processing.
-        arrayElement[1] = false 
-      } 
-      else // The user entered some other datatype so reject the edit. 
-      { 
-        callback(400, {'Error' : 'attributeValue must be of datatype string'});
-        passedValidation = false;
-        return false;  //Break this .every() loop         
-      } 
-    } 
-    return true;  //Continue this .every() loop    
-  }); // End of: attributeValueArray.every(function(arrayElement){...}
-
-  if(!passedValidation){return};  
-  // End of: Validate elements in the attributeValueArray  
-
+    if(typeof(arrayElement[1]) != 'string'){return callback(400, {'Error' : 'attributeValue must be of datatype string'});}
+  });
+  // End of: Validate elements in the attributeValueArray
 
   // Start of: Load the optionValueArray dynamically once the payload is known.
   // Behavior from meta.js at 8cz4imaqb2wagvl14q9t
@@ -2335,37 +2222,15 @@ metadata._metadata.put = function(data, callback)
   let optionValueArray = loadPayloadArray(optionValueKeyArray, data.payload);
   // End of: Load the optionValueArray dynamically once the payload is known. 
 
+                  
   // Start of: Validate elements in the optionValueArray
   // passIfString
-  // Behavior from meta.js at 
-  optionValueArray.every(function(arrayElement)
+  // Behavior from meta.js at 7n1wj6bz5asgucz6nmkp
+  optionValueArray.forEach(function(arrayElement)
   {
-    // If optionValue is not of string type
-    if (typeof(arrayElement[1]) != 'string') 
-    { 
-      // The user may have entered some other datatype or perhaps 
-      // nothing if using the Delete form or if just using the API.
-
-      // If the user entered nothing: 
-      if(arrayElement[1] === undefined) 
-      { 
-        // Then user is likely trying to delete a record.
-        // So change the value to false and continue processing.
-        arrayElement[1] = false 
-      } 
-      else // The user entered some other datatype so reject the edit. 
-      { 
-        callback(400, {'Error' : 'optionValue must be of datatype string'});
-        passedValidation = false;
-        return false;  //Break this .every() loop         
-      } 
-    } 
-    return true;  //Continue this .every() loop    
-  }); // End of: optionValueArray.every(function(arrayElement){...}
-
-  if(!passedValidation){return};  
+    if(typeof(arrayElement[1]) != 'string'){return callback(400, {'Error' : 'optionValue must be of datatype string'});}
+  });
   // End of: Validate elements in the optionValueArray
-
 
   // Start of: Load the optionTextArray dynamically once the payload is known.
   // Behavior from meta.js at 8cz4imaqb2wagvl14q9t
@@ -2375,290 +2240,12 @@ metadata._metadata.put = function(data, callback)
   // End of: Load the optionTextArray dynamically once the payload is known. 
 
   // Start of: Validate elements in the optionTextArray
-  // passIfString
-  // Behavior from meta.js at 
-  optionTextArray.every(function(arrayElement)
-  {
-    // If optionText is not of string type
-    if (typeof(arrayElement[1]) != 'string') 
-    { 
-      // The user may have entered some other datatype or perhaps 
-      // nothing if using the Delete form or if just using the API.
-
-      // If the user entered nothing: 
-      if(arrayElement[1] === undefined) 
-      { 
-        // Then user is likely trying to delete a record.
-        // So change the value to false and continue processing.
-        arrayElement[1] = false 
-      } 
-      else // The user entered some other datatype so reject the edit. 
-      { 
-        callback(400, {'Error' : 'optionText must be of datatype string'});
-        passedValidation = false;
-        return false;  //Break this .every() loop         
-      } 
-    } 
-    return true;  //Continue this .every() loop    
-  }); // End of: optionTextArray.every(function(arrayElement){...}
-
-  if(!passedValidation){return};  
-  // End of: Validate elements in the optionTextArray  
-
-
-  // Start of: Load the defaultValidationNameArray dynamically once the payload is known.
-  // Behavior from meta.js at 8cz4imaqb2wagvl14q9t
-  let defaultValidationNameKeyArray = ["field", "defaultElement", "validation", "default", "defaultValidationName"]
-
-  let defaultValidationNameArray = loadPayloadArray(defaultValidationNameKeyArray, data.payload);
-  // End of: Load the defaultValidationNameArray dynamically once the payload is known. 
-
-  // Start of: Validate elements in the defaultValidationNameArray
-  // passIfString
-  // Behavior from meta.js at 
-  defaultValidationNameArray.every(function(arrayElement)
-  {
-    // If defaultValidationName is not of string type
-    if (typeof(arrayElement[1]) != 'string') 
-    { 
-      // The user may have entered some other datatype or perhaps 
-      // nothing if using the Delete form or if just using the API.
-
-      // If the user entered nothing: 
-      if(arrayElement[1] === undefined) 
-      { 
-        // Then user is likely trying to delete a record.
-        // So change the value to false and continue processing.
-        arrayElement[1] = false 
-      } 
-      else // The user entered some other datatype so reject the edit. 
-      { 
-        callback(400, {'Error' : 'defaultValidationName must be of datatype string'});
-        passedValidation = false;
-        return false;  //Break this .every() loop         
-      } 
-    } 
-    return true;  //Continue this .every() loop    
-  }); // End of: defaultValidationNameArray.every(function(arrayElement){...}
-
-  if(!passedValidation){return};  
-  // End of: Validate elements in the defaultValidationNameArray
-
-
-  // Start of: Load the defaultValidationValueArray dynamically once the payload is known.
-  // Behavior from meta.js at 8cz4imaqb2wagvl14q9t
-  let defaultValidationValueKeyArray = ["field", "defaultElement", "validation", "default", "defaultValidationValue"]
-
-  let defaultValidationValueArray = loadPayloadArray(defaultValidationValueKeyArray, data.payload);
-  // End of: Load the defaultValidationValueArray dynamically once the payload is known. 
-
-  // Start of: Validate elements in the defaultValidationValueArray
-  // passIfString
-  // Behavior from meta.js at 
-  defaultValidationValueArray.every(function(arrayElement)
-  {
-    // If defaultValidationValue is not of string type
-    if (typeof(arrayElement[1]) != 'string') 
-    { 
-      // The user may have entered some other datatype or perhaps 
-      // nothing if using the Delete form or if just using the API.
-
-      // If the user entered nothing: 
-      if(arrayElement[1] === undefined) 
-      { 
-        // Then user is likely trying to delete a record.
-        // So change the value to false and continue processing.
-        arrayElement[1] = false 
-      } 
-      else // The user entered some other datatype so reject the edit. 
-      { 
-        callback(400, {'Error' : 'defaultValidationValue must be of datatype string'});
-        passedValidation = false;
-        return false;  //Break this .every() loop         
-      } 
-    } 
-    return true;  //Continue this .every() loop    
-  }); // End of: defaultValidationValueArray.every(function(arrayElement){...}
-
-  if(!passedValidation){return};  
-  // End of: Validate elements in the defaultValidationValueArray
-
-  
-  // Start of: Load the postValidationNameArray dynamically once the payload is known.
-  // Behavior from meta.js at 8cz4imaqb2wagvl14q9t
-  let postValidationNameKeyArray = ["field", "defaultElement", "validation", "post", "postValidationName"]
-
-  let postValidationNameArray = loadPayloadArray(postValidationNameKeyArray, data.payload);
-  // End of: Load the postValidationNameArray dynamically once the payload is known. 
-
-  // Start of: Validate elements in the postValidationNameArray
-  // passIfString
-  // Behavior from meta.js at 
-  postValidationNameArray.every(function(arrayElement)
-  {
-    // If postValidationName is not of string type
-    if (typeof(arrayElement[1]) != 'string') 
-    { 
-      // The user may have entered some other datatype or perhaps 
-      // nothing if using the Delete form or if just using the API.
-
-      // If the user entered nothing: 
-      if(arrayElement[1] === undefined) 
-      { 
-        // Then user is likely trying to delete a record.
-        // So change the value to false and continue processing.
-        arrayElement[1] = false 
-      } 
-      else // The user entered some other datatype so reject the edit. 
-      { 
-        callback(400, {'Error' : 'postValidationName must be of datatype string'});
-        passedValidation = false;
-        return false;  //Break this .every() loop         
-      } 
-    } 
-    return true;  //Continue this .every() loop    
-  }); // End of: postValidationNameArray.every(function(arrayElement){...}
-
-  if(!passedValidation){return};  
-  // End of: Validate elements in the postValidationNameArray
-
-
-  // Start of: Load the postValidationValueArray dynamically once the payload is known.
-  // Behavior from meta.js at 8cz4imaqb2wagvl14q9t
-  let postValidationValueKeyArray = ["field", "defaultElement", "validation", "post", "postValidationValue"]
-
-  let postValidationValueArray = loadPayloadArray(postValidationValueKeyArray, data.payload);
-  // End of: Load the postValidationValueArray dynamically once the payload is known. 
-
-  // Start of: Validate elements in the postValidationValueArray
-  // passIfString
-  // Behavior from meta.js at 
-  postValidationValueArray.every(function(arrayElement)
-  {
-    // If postValidationValue is not of string type
-    if (typeof(arrayElement[1]) != 'string') 
-    { 
-      // The user may have entered some other datatype or perhaps 
-      // nothing if using the Delete form or if just using the API.
-
-      // If the user entered nothing: 
-      if(arrayElement[1] === undefined) 
-      { 
-        // Then user is likely trying to delete a record.
-        // So change the value to false and continue processing.
-        arrayElement[1] = false 
-      } 
-      else // The user entered some other datatype so reject the edit. 
-      { 
-        callback(400, {'Error' : 'postValidationValue must be of datatype string'});
-        passedValidation = false;
-        return false;  //Break this .every() loop         
-      } 
-    } 
-    return true;  //Continue this .every() loop    
-  }); // End of: postValidationValueArray.every(function(arrayElement)
-
-  if(!passedValidation){return};  
-  // End of: Validate elements in the postValidationValueArray
-
-
-  // Start of: Load the putValidationNameArray dynamically once the payload is known.
-  // Behavior from meta.js at 8cz4imaqb2wagvl14q9t
-  let putValidationNameKeyArray = ["field", "defaultElement", "validation", "put", "putValidationName"]
-
-  let putValidationNameArray = loadPayloadArray(putValidationNameKeyArray, data.payload);
-  // End of: Load the putValidationNameArray dynamically once the payload is known. 
-
-  // Start of: Validate elements in the putValidationNameArray
-  // passIfString
-  // Behavior from meta.js at 
-  putValidationNameArray.every(function(arrayElement)
-  {
-    // If putValidationName is not of string type
-    if (typeof(arrayElement[1]) != 'string') 
-    { 
-      // The user may have entered some other datatype or perhaps 
-      // nothing if using the Delete form or if just using the API.
-
-      // If the user entered nothing: 
-      if(arrayElement[1] === undefined) 
-      { 
-        // Then user is likely trying to delete a record.
-        // So change the value to false and continue processing.
-        arrayElement[1] = false 
-      } 
-      else // The user entered some other datatype so reject the edit. 
-      { 
-        callback(400, {'Error' : 'putValidationName must be of datatype string'});
-        passedValidation = false;
-        return false;  //Break this .every() loop         
-      } 
-    } 
-    return true;  //Continue this .every() loop    
-  }); // End of: putValidationNameArray.every(function(arrayElement)
-
-  if(!passedValidation){return};  
-  // End of: Validate elements in the putValidationNameArray
-
-
-  // Start of: Load the putValidationValueArray dynamically once the payload is known.
-  // Behavior from meta.js at 8cz4imaqb2wagvl14q9t
-  let putValidationValueKeyArray = ["field", "defaultElement", "validation", "put", "putValidationValue"]
-
-  let putValidationValueArray = loadPayloadArray(putValidationValueKeyArray, data.payload);
-  // End of: Load the putValidationValueArray dynamically once the payload is known. 
-
-  // Start of: Validate elements in the putValidationValueArray
-  // passIfString
-  // Behavior from meta.js at 
-  putValidationValueArray.every(function(arrayElement)
-  {
-    // If putValidationValue is not of string type
-    if (typeof(arrayElement[1]) != 'string') 
-    { 
-      // The user may have entered some other datatype or perhaps 
-      // nothing if using the Delete form or if just using the API.
-
-      // If the user entered nothing: 
-      if(arrayElement[1] === undefined) 
-      { 
-        // Then user is likely trying to delete a record.
-        // So change the value to false and continue processing.
-        arrayElement[1] = false 
-      } 
-      else // The user entered some other datatype so reject the edit. 
-      { 
-        callback(400, {'Error' : 'putValidationValue must be of datatype string'});
-        passedValidation = false;
-        return false;  //Break this .every() loop         
-      } 
-    } 
-    return true;  //Continue this .every() loop    
-  }); // End of: putValidationValueArray.every(function(arrayElement)
-
-  if(!passedValidation){return};  
-  // End of: Validate elements in the putValidationValueArray
-
-
-  // Start of: Load the calculationNameArray dynamically once the payload is known.
-  // Behavior from meta.js at 8cz4imaqb2wagvl14q9t
-  let calculationNameKeyArray = ["field", "calculation", "calculationName"]
-
-  let calculationNameArray = loadPayloadArray(calculationNameKeyArray, data.payload);
-  // End of: Load the calculationNameArray dynamically once the payload is known. 
-
-
-  // Start of: Validate elements in the calculationNameArray
   // passIfString&NotEmptyThenTrim
-  // Behavior from meta.js at ohw0ivijs2al2rwf1
-  calculationNameArray.every(function(arrayElement)
+  // Behavior from meta.js at ohw0ivijs2au0nt2rwf1
+  optionTextArray.forEach(function(arrayElement)
   {
-    // If calculationName is of string type and is not empty 
-    if 
-    (
-      typeof(arrayElement[1]) === 'string' 
-      && arrayElement[1].trim().length > 0
-    ) 
+    // If optionText is of string type and is not empty 
+    if (typeof(arrayElement[1]) === 'string' && arrayElement[1].trim().length > 0) 
     { 
       // The user entered something in the edit form
       arrayElement[1] = arrayElement[1].trim()
@@ -2676,18 +2263,150 @@ metadata._metadata.put = function(data, callback)
       } 
       else // The user entered something invalid so reject the edit. 
       { 
-        callback(400, {'Error' : 'calculationName must be of string type and not empty'}); 
-        passedValidation = false;
-        return false;  //Break this .every() loop         
+        return callback(400, {'Error' : 'Not a valid ' + arrayElement[1]}); 
       } 
     }
+  }); // End of: optionTextArray.forEach(function(arrayElement)
+  // End of: Validate elements in the optionTextArray 
 
-    return true;  //Continue this .every() loop     
-  }); // End of: calculationNameArray.every(function(arrayElement)
+  // Start of: Load the defaultValidationNameArray dynamically once the payload is known.
+  // Behavior from meta.js at 8cz4imaqb2wagvl14q9t
+  let defaultValidationNameKeyArray = ["field", "defaultElement", "validation", "default", "defaultValidationName"]
 
-  if(!passedValidation){return};  
-  // End of: Validate elements in the calculationNameArray
+  let defaultValidationNameArray = loadPayloadArray(defaultValidationNameKeyArray, data.payload);
+  // End of: Load the defaultValidationNameArray dynamically once the payload is known. 
 
+                  
+  // Start of: Validate elements in the defaultValidationNameArray
+  // passIfString
+  // Behavior from meta.js at 7n1wj6bz5asgucz6nmkp
+  defaultValidationNameArray.forEach(function(arrayElement)
+  {
+    if(typeof(arrayElement[1]) != 'string'){return callback(400, {'Error' : 'defaultValidationName must be of datatype string'});}
+  });
+  // End of: Validate elements in the defaultValidationNameArray
+
+  // Start of: Load the defaultValidationValueArray dynamically once the payload is known.
+  // Behavior from meta.js at 8cz4imaqb2wagvl14q9t
+  let defaultValidationValueKeyArray = ["field", "defaultElement", "validation", "default", "defaultValidationValue"]
+
+  let defaultValidationValueArray = loadPayloadArray(defaultValidationValueKeyArray, data.payload);
+  // End of: Load the defaultValidationValueArray dynamically once the payload is known. 
+
+                  
+  // Start of: Validate elements in the defaultValidationValueArray
+  // passIfString
+  // Behavior from meta.js at 7n1wj6bz5asgucz6nmkp
+  defaultValidationValueArray.forEach(function(arrayElement)
+  {
+    if(typeof(arrayElement[1]) != 'string'){return callback(400, {'Error' : 'defaultValidationValue must be of datatype string'});}
+  });
+  // End of: Validate elements in the defaultValidationValueArray
+
+  // Start of: Load the postValidationNameArray dynamically once the payload is known.
+  // Behavior from meta.js at 8cz4imaqb2wagvl14q9t
+  let postValidationNameKeyArray = ["field", "defaultElement", "validation", "post", "postValidationName"]
+
+  let postValidationNameArray = loadPayloadArray(postValidationNameKeyArray, data.payload);
+  // End of: Load the postValidationNameArray dynamically once the payload is known. 
+
+                  
+  // Start of: Validate elements in the postValidationNameArray
+  // passIfString
+  // Behavior from meta.js at 7n1wj6bz5asgucz6nmkp
+  postValidationNameArray.forEach(function(arrayElement)
+  {
+    if(typeof(arrayElement[1]) != 'string'){return callback(400, {'Error' : 'postValidationName must be of datatype string'});}
+  });
+  // End of: Validate elements in the postValidationNameArray
+
+  // Start of: Load the postValidationValueArray dynamically once the payload is known.
+  // Behavior from meta.js at 8cz4imaqb2wagvl14q9t
+  let postValidationValueKeyArray = ["field", "defaultElement", "validation", "post", "postValidationValue"]
+
+  let postValidationValueArray = loadPayloadArray(postValidationValueKeyArray, data.payload);
+  // End of: Load the postValidationValueArray dynamically once the payload is known. 
+
+                  
+  // Start of: Validate elements in the postValidationValueArray
+  // passIfString
+  // Behavior from meta.js at 7n1wj6bz5asgucz6nmkp
+  postValidationValueArray.forEach(function(arrayElement)
+  {
+    if(typeof(arrayElement[1]) != 'string'){return callback(400, {'Error' : 'postValidationValue must be of datatype string'});}
+  });
+  // End of: Validate elements in the postValidationValueArray
+
+  // Start of: Load the putValidationNameArray dynamically once the payload is known.
+  // Behavior from meta.js at 8cz4imaqb2wagvl14q9t
+  let putValidationNameKeyArray = ["field", "defaultElement", "validation", "put", "putValidationName"]
+
+  let putValidationNameArray = loadPayloadArray(putValidationNameKeyArray, data.payload);
+  // End of: Load the putValidationNameArray dynamically once the payload is known. 
+
+                  
+  // Start of: Validate elements in the putValidationNameArray
+  // passIfString
+  // Behavior from meta.js at 7n1wj6bz5asgucz6nmkp
+  putValidationNameArray.forEach(function(arrayElement)
+  {
+    if(typeof(arrayElement[1]) != 'string'){return callback(400, {'Error' : 'putValidationName must be of datatype string'});}
+  });
+  // End of: Validate elements in the putValidationNameArray
+
+  // Start of: Load the putValidationValueArray dynamically once the payload is known.
+  // Behavior from meta.js at 8cz4imaqb2wagvl14q9t
+  let putValidationValueKeyArray = ["field", "defaultElement", "validation", "put", "putValidationValue"]
+
+  let putValidationValueArray = loadPayloadArray(putValidationValueKeyArray, data.payload);
+  // End of: Load the putValidationValueArray dynamically once the payload is known. 
+
+                  
+  // Start of: Validate elements in the putValidationValueArray
+  // passIfString
+  // Behavior from meta.js at 7n1wj6bz5asgucz6nmkp
+  putValidationValueArray.forEach(function(arrayElement)
+  {
+    if(typeof(arrayElement[1]) != 'string'){return callback(400, {'Error' : 'putValidationValue must be of datatype string'});}
+  });
+  // End of: Validate elements in the putValidationValueArray
+
+  // Start of: Load the calculationNameArray dynamically once the payload is known.
+  // Behavior from meta.js at 8cz4imaqb2wagvl14q9t
+  let calculationNameKeyArray = ["field", "calculation", "calculationName"]
+
+  let calculationNameArray = loadPayloadArray(calculationNameKeyArray, data.payload);
+  // End of: Load the calculationNameArray dynamically once the payload is known. 
+
+  // Start of: Validate elements in the calculationNameArray
+  // passIfString&NotEmptyThenTrim
+  // Behavior from meta.js at ohw0ivijs2au0nt2rwf1
+  calculationNameArray.forEach(function(arrayElement)
+  {
+    // If calculationName is of string type and is not empty 
+    if (typeof(arrayElement[1]) === 'string' && arrayElement[1].trim().length > 0) 
+    { 
+      // The user entered something in the edit form
+      arrayElement[1] = arrayElement[1].trim()
+    } 
+    // Else, the user may have entered some other datatype like a number or 
+    // perhaps nothing at all if using the Delete form or if just using the API. 
+    else 
+    { 
+      // If the user entered nothing: 
+      if(arrayElement[1] === undefined) 
+      { 
+        // Then user is likely trying to delete a record.
+        // So change the value to false and continue processing.
+        arrayElement[1] = false 
+      } 
+      else // The user entered something invalid so reject the edit. 
+      { 
+        return callback(400, {'Error' : 'Not a valid ' + arrayElement[1]}); 
+      } 
+    }
+  }); // End of: calculationNameArray.forEach(function(arrayElement)
+  // End of: Validate elements in the calculationNameArray 
 
   // Start of: Load the calculationValueArray dynamically once the payload is known.
   // Behavior from meta.js at 8cz4imaqb2wagvl14q9t
@@ -2696,37 +2415,15 @@ metadata._metadata.put = function(data, callback)
   let calculationValueArray = loadPayloadArray(calculationValueKeyArray, data.payload);
   // End of: Load the calculationValueArray dynamically once the payload is known. 
 
+                  
   // Start of: Validate elements in the calculationValueArray
   // passIfString
-  // Behavior from meta.js at 
-  calculationValueArray.every(function(arrayElement)
+  // Behavior from meta.js at 7n1wj6bz5asgucz6nmkp
+  calculationValueArray.forEach(function(arrayElement)
   {
-    // If calculationValue is not of string type
-    if (typeof(arrayElement[1]) != 'string') 
-    { 
-      // The user may have entered some other datatype or perhaps 
-      // nothing if using the Delete form or if just using the API.
-
-      // If the user entered nothing: 
-      if(arrayElement[1] === undefined) 
-      { 
-        // Then user is likely trying to delete a record.
-        // So change the value to false and continue processing.
-        arrayElement[1] = false 
-      } 
-      else // The user entered some other datatype so reject the edit. 
-      { 
-        callback(400, {'Error' : 'calculationValue must be of datatype string'});
-        passedValidation = false;
-        return false;  //Break this .every() loop         
-      } 
-    } 
-    return true;  //Continue this .every() loop    
-  }); // End of: calculationValueArray.every(function(arrayElement)
-
-  if(!passedValidation){return};  
+    if(typeof(arrayElement[1]) != 'string'){return callback(400, {'Error' : 'calculationValue must be of datatype string'});}
+  });
   // End of: Validate elements in the calculationValueArray
-
 
   // Start of: Load the webPageTypeArray dynamically once the payload is known.
   // Behavior from meta.js at 8cz4imaqb2wagvl14q9t
@@ -2737,15 +2434,11 @@ metadata._metadata.put = function(data, callback)
 
   // Start of: Validate elements in the webPageTypeArray
   // passIfString&NotEmptyThenTrim
-  // Behavior from meta.js at ohw0ivijs2al2rwf1
-  webPageTypeArray.every(function(arrayElement)
+  // Behavior from meta.js at ohw0ivijs2au0nt2rwf1
+  webPageTypeArray.forEach(function(arrayElement)
   {
     // If webPageType is of string type and is not empty 
-    if 
-    (
-      typeof(arrayElement[1]) === 'string' 
-      && arrayElement[1].trim().length > 0
-    ) 
+    if (typeof(arrayElement[1]) === 'string' && arrayElement[1].trim().length > 0) 
     { 
       // The user entered something in the edit form
       arrayElement[1] = arrayElement[1].trim()
@@ -2763,18 +2456,11 @@ metadata._metadata.put = function(data, callback)
       } 
       else // The user entered something invalid so reject the edit. 
       { 
-        callback(400, {'Error' : 'webPageType must be of datatype string and not empty'}); 
-        passedValidation = false;
-        return false;  //Break this .every() loop         
+        return callback(400, {'Error' : 'Not a valid ' + arrayElement[1]}); 
       } 
     }
-
-    return true;  //Continue this .every() loop     
-  }); // End of: webPageTypeArray.every(function(arrayElement){...}
-
-  if(!passedValidation){return};  
-  // End of: Validate elements in the webPageTypeArray  
-
+  }); // End of: webPageTypeArray.forEach(function(arrayElement)
+  // End of: Validate elements in the webPageTypeArray 
 
   // Start of: Load the webPageHeadingArray dynamically once the payload is known.
   // Behavior from meta.js at 8cz4imaqb2wagvl14q9t
@@ -2785,15 +2471,11 @@ metadata._metadata.put = function(data, callback)
 
   // Start of: Validate elements in the webPageHeadingArray
   // passIfString&NotEmptyThenTrim
-  // Behavior from meta.js at ohw0ivijs2al2rwf1
-  webPageHeadingArray.every(function(arrayElement)
+  // Behavior from meta.js at ohw0ivijs2au0nt2rwf1
+  webPageHeadingArray.forEach(function(arrayElement)
   {
     // If webPageHeading is of string type and is not empty 
-    if 
-    (
-      typeof(arrayElement[1]) === 'string' 
-      && arrayElement[1].trim().length > 0
-    ) 
+    if (typeof(arrayElement[1]) === 'string' && arrayElement[1].trim().length > 0) 
     { 
       // The user entered something in the edit form
       arrayElement[1] = arrayElement[1].trim()
@@ -2811,18 +2493,11 @@ metadata._metadata.put = function(data, callback)
       } 
       else // The user entered something invalid so reject the edit. 
       { 
-        callback(400, {'Error' : 'webPageHeading must be of datatype string and not empty'}); 
-        passedValidation = false;
-        return false;  //Break this .every() loop         
+        return callback(400, {'Error' : 'Not a valid ' + arrayElement[1]}); 
       } 
     }
-
-    return true;  //Continue this .every() loop     
-  }); // End of: webPageHeadingArray.every(function(arrayElement){...}
-
-  if(!passedValidation){return};  
-  // End of: Validate elements in the webPageHeadingArray  
-
+  }); // End of: webPageHeadingArray.forEach(function(arrayElement)
+  // End of: Validate elements in the webPageHeadingArray 
 
   // Start of: Load the formTypeArray dynamically once the payload is known.
   // Behavior from meta.js at 8cz4imaqb2wagvl14q9t
@@ -2833,15 +2508,11 @@ metadata._metadata.put = function(data, callback)
 
   // Start of: Validate elements in the formTypeArray
   // passIfString&NotEmptyThenTrim
-  // Behavior from meta.js at ohw0ivijs2al2rwf1
-  formTypeArray.every(function(arrayElement)
+  // Behavior from meta.js at ohw0ivijs2au0nt2rwf1
+  formTypeArray.forEach(function(arrayElement)
   {
     // If formType is of string type and is not empty 
-    if 
-    (
-      typeof(arrayElement[1]) === 'string' 
-      && arrayElement[1].trim().length > 0
-    ) 
+    if (typeof(arrayElement[1]) === 'string' && arrayElement[1].trim().length > 0) 
     { 
       // The user entered something in the edit form
       arrayElement[1] = arrayElement[1].trim()
@@ -2859,17 +2530,11 @@ metadata._metadata.put = function(data, callback)
       } 
       else // The user entered something invalid so reject the edit. 
       { 
-        callback(400, {'Error' : 'formType must be of datatype string and not empty'}); 
-        passedValidation = false;
-        return false;  //Break this .every() loop         
+        return callback(400, {'Error' : 'Not a valid ' + arrayElement[1]}); 
       } 
     }
-
-    return true;  //Continue this .every() loop     
-  }); // End of: formTypeArray.every(function(arrayElement){...}
-
-  if(!passedValidation){return};  
-  // End of: Validate elements in the formTypeArray
+  }); // End of: formTypeArray.forEach(function(arrayElement)
+  // End of: Validate elements in the formTypeArray 
 
   // Start of: Load the formHeadingArray dynamically once the payload is known.
   // Behavior from meta.js at 8cz4imaqb2wagvl14q9t
@@ -2880,15 +2545,11 @@ metadata._metadata.put = function(data, callback)
 
   // Start of: Validate elements in the formHeadingArray
   // passIfString&NotEmptyThenTrim
-  // Behavior from meta.js at ohw0ivijs2al2rwf1
-  formHeadingArray.every(function(arrayElement)
+  // Behavior from meta.js at ohw0ivijs2au0nt2rwf1
+  formHeadingArray.forEach(function(arrayElement)
   {
     // If formHeading is of string type and is not empty 
-    if 
-    (
-      typeof(arrayElement[1]) === 'string' 
-      && arrayElement[1].trim().length > 0
-    ) 
+    if (typeof(arrayElement[1]) === 'string' && arrayElement[1].trim().length > 0) 
     { 
       // The user entered something in the edit form
       arrayElement[1] = arrayElement[1].trim()
@@ -2906,17 +2567,11 @@ metadata._metadata.put = function(data, callback)
       } 
       else // The user entered something invalid so reject the edit. 
       { 
-        callback(400, {'Error' : 'formHeading must be of datatype string and not empty'}); 
-        passedValidation = false;
-        return false;  //Break this .every() loop         
+        return callback(400, {'Error' : 'Not a valid ' + arrayElement[1]}); 
       } 
     }
-
-    return true;  //Continue this .every() loop     
-  }); // End of: formHeadingArray.every(function(arrayElement){...}
-
-  if(!passedValidation){return};  
-  // End of: Validate elements in the formHeadingArray
+  }); // End of: formHeadingArray.forEach(function(arrayElement)
+  // End of: Validate elements in the formHeadingArray 
 
   // Start of: Load the successMessageArray dynamically once the payload is known.
   // Behavior from meta.js at 8cz4imaqb2wagvl14q9t
@@ -2925,37 +2580,15 @@ metadata._metadata.put = function(data, callback)
   let successMessageArray = loadPayloadArray(successMessageKeyArray, data.payload);
   // End of: Load the successMessageArray dynamically once the payload is known. 
 
+                  
   // Start of: Validate elements in the successMessageArray
   // passIfString
-  // Behavior from meta.js at 
-  successMessageArray.every(function(arrayElement)
+  // Behavior from meta.js at 7n1wj6bz5asgucz6nmkp
+  successMessageArray.forEach(function(arrayElement)
   {
-    // If successMessage is not of string type
-    if (typeof(arrayElement[1]) != 'string') 
-    { 
-      // The user may have entered some other datatype or perhaps 
-      // nothing if using the Delete form or if just using the API.
-
-      // If the user entered nothing: 
-      if(arrayElement[1] === undefined) 
-      { 
-        // Then user is likely trying to delete a record.
-        // So change the value to false and continue processing.
-        arrayElement[1] = false 
-      } 
-      else // The user entered some other datatype so reject the edit. 
-      { 
-        callback(400, {'Error' : 'successMessage must be of datatype string and not empty'});
-        passedValidation = false;
-        return false;  //Break this .every() loop         
-      } 
-    } 
-    return true;  //Continue this .every() loop    
-  }); // End of: successMessageArray.every(function(arrayElement){...}
-
-  if(!passedValidation){return};  
+    if(typeof(arrayElement[1]) != 'string'){return callback(400, {'Error' : 'successMessage must be of datatype string'});}
+  });
   // End of: Validate elements in the successMessageArray
-
 
   // Start of: Load the submitButtonTextArray dynamically once the payload is known.
   // Behavior from meta.js at 8cz4imaqb2wagvl14q9t
@@ -2964,37 +2597,15 @@ metadata._metadata.put = function(data, callback)
   let submitButtonTextArray = loadPayloadArray(submitButtonTextKeyArray, data.payload);
   // End of: Load the submitButtonTextArray dynamically once the payload is known. 
 
+                  
   // Start of: Validate elements in the submitButtonTextArray
   // passIfString
-  // Behavior from meta.js at 
-  submitButtonTextArray.every(function(arrayElement)
+  // Behavior from meta.js at 7n1wj6bz5asgucz6nmkp
+  submitButtonTextArray.forEach(function(arrayElement)
   {
-    // If submitButtonText is not of string type
-    if (typeof(arrayElement[1]) != 'string') 
-    { 
-      // The user may have entered some other datatype or perhaps 
-      // nothing if using the Delete form or if just using the API.
-
-      // If the user entered nothing: 
-      if(arrayElement[1] === undefined) 
-      { 
-        // Then user is likely trying to delete a record.
-        // So change the value to false and continue processing.
-        arrayElement[1] = false 
-      } 
-      else // The user entered some other datatype so reject the edit. 
-      { 
-        callback(400, {'Error' : 'submitButtonText must be of datatype string'});
-        passedValidation = false;
-        return false;  //Break this .every() loop         
-      } 
-    } 
-    return true;  //Continue this .every() loop    
-  }); // End of: submitButtonTextArray.every(function(arrayElement){...}
-
-  if(!passedValidation){return};  
+    if(typeof(arrayElement[1]) != 'string'){return callback(400, {'Error' : 'submitButtonText must be of datatype string'});}
+  });
   // End of: Validate elements in the submitButtonTextArray
-
 
   // Start of: Load the formElementTypeArray dynamically once the payload is known.
   // Behavior from meta.js at 8cz4imaqb2wagvl14q9t
@@ -3006,7 +2617,7 @@ metadata._metadata.put = function(data, callback)
   // Start of: Validate elements in the formElementTypeArray
   // passMenuItemsOnly
   // Behavior from meta.js at v4a99s97u4c9idr0b71g
-  formElementTypeArray.every(function(arrayElement)
+  formElementTypeArray.forEach(function(arrayElement)
   {
     if(typeof(arrayElement[1]) === 'string')
     {
@@ -3016,33 +2627,25 @@ metadata._metadata.put = function(data, callback)
         && arrayElement[1] !== "objectElement"
       )
       {
-        callback(400, {'Error' : 'formElementType does not match menu options'});
-        passedValidation = false;
-        return false;  //Break this .every() loop        
+        return callback(400, {'Error' : 'formElementType does not match menu options'});
       }
     }
     else // Not a string
     {
       // If the user entered nothing: 
-      if(arrayElement[1] === undefined) 
+      if(formElementType === undefined) 
       { 
         // Then user is likely trying to delete a record.
         // So change the value to false and continue processing.
-        arrayElement[1] = false
+        formElementType = false
       } 
-      else // The user entered some other datatype so reject the edit.
+      else
       {
-        callback(400, {'Error' : 'formElementType must be of datatype string'});
-        passedValidation = false;
-        return false;  //Break this .every() loop        
+        return callback(400, {'Error' : 'formElementType must be of datatype string'});
       }  
-    }
-    return true;  //Continue this .every() loop                    
-  }); // End of: formElementTypeArray.every(function(arrayElement){...}
-
-  if(!passedValidation){return};  
+    }                    
+  });
   // End of: Validate elements in the formElementTypeArray
-
 
   // Start of: Load the formElementNameArray dynamically once the payload is known.
   // Behavior from meta.js at 8cz4imaqb2wagvl14q9t
@@ -3051,37 +2654,15 @@ metadata._metadata.put = function(data, callback)
   let formElementNameArray = loadPayloadArray(formElementNameKeyArray, data.payload);
   // End of: Load the formElementNameArray dynamically once the payload is known. 
 
+                  
   // Start of: Validate elements in the formElementNameArray
   // passIfString
-  // Behavior from meta.js at 
-  formElementNameArray.every(function(arrayElement)
+  // Behavior from meta.js at 7n1wj6bz5asgucz6nmkp
+  formElementNameArray.forEach(function(arrayElement)
   {
-    // If formElementName is not of string type
-    if (typeof(arrayElement[1]) != 'string') 
-    { 
-      // The user may have entered some other datatype or perhaps 
-      // nothing if using the Delete form or if just using the API.
-
-      // If the user entered nothing: 
-      if(arrayElement[1] === undefined) 
-      { 
-        // Then user is likely trying to delete a record.
-        // So change the value to false and continue processing.
-        arrayElement[1] = false 
-      } 
-      else // The user entered some other datatype so reject the edit. 
-      { 
-        callback(400, {'Error' : 'formElementName must be of datatype string'});
-        passedValidation = false;
-        return false;  //Break this .every() loop         
-      } 
-    } 
-    return true;  //Continue this .every() loop    
-  }); // End of: formElementNameArray.every(function(arrayElement){...}
-
-  if(!passedValidation){return};  
+    if(typeof(arrayElement[1]) != 'string'){return callback(400, {'Error' : 'formElementName must be of datatype string'});}
+  });
   // End of: Validate elements in the formElementNameArray
-
 
   // Start of: Load the formElementLabelTextArray dynamically once the payload is known.
   // Behavior from meta.js at 8cz4imaqb2wagvl14q9t
@@ -3090,37 +2671,15 @@ metadata._metadata.put = function(data, callback)
   let formElementLabelTextArray = loadPayloadArray(formElementLabelTextKeyArray, data.payload);
   // End of: Load the formElementLabelTextArray dynamically once the payload is known. 
 
+                  
   // Start of: Validate elements in the formElementLabelTextArray
   // passIfString
-  // Behavior from meta.js at 
-  formElementLabelTextArray.every(function(arrayElement)
+  // Behavior from meta.js at 7n1wj6bz5asgucz6nmkp
+  formElementLabelTextArray.forEach(function(arrayElement)
   {
-    // If formElementLabelText is not of string type
-    if (typeof(arrayElement[1]) != 'string') 
-    { 
-      // The user may have entered some other datatype or perhaps 
-      // nothing if using the Delete form or if just using the API.
-
-      // If the user entered nothing: 
-      if(arrayElement[1] === undefined) 
-      { 
-        // Then user is likely trying to delete a record.
-        // So change the value to false and continue processing.
-        arrayElement[1] = false 
-      } 
-      else // The user entered some other datatype so reject the edit. 
-      { 
-        callback(400, {'Error' : 'formElementLabelText must be of datatype string'});
-        passedValidation = false;
-        return false;  //Break this .every() loop         
-      } 
-    } 
-    return true;  //Continue this .every() loop    
-  }); // End of: formElementLabelTextArray.every(function(arrayElement){...}
-
-  if(!passedValidation){return};  
+    if(typeof(arrayElement[1]) != 'string'){return callback(400, {'Error' : 'formElementLabelText must be of datatype string'});}
+  });
   // End of: Validate elements in the formElementLabelTextArray
-
 
   // Start of: Load the feAttributeNameArray dynamically once the payload is known.
   // Behavior from meta.js at 8cz4imaqb2wagvl14q9t
@@ -3129,37 +2688,15 @@ metadata._metadata.put = function(data, callback)
   let feAttributeNameArray = loadPayloadArray(feAttributeNameKeyArray, data.payload);
   // End of: Load the feAttributeNameArray dynamically once the payload is known. 
 
+                  
   // Start of: Validate elements in the feAttributeNameArray
   // passIfString
-  // Behavior from meta.js at 
-  feAttributeNameArray.every(function(arrayElement)
+  // Behavior from meta.js at 7n1wj6bz5asgucz6nmkp
+  feAttributeNameArray.forEach(function(arrayElement)
   {
-    // If feAttributeName is not of string type
-    if (typeof(arrayElement[1]) != 'string') 
-    { 
-      // The user may have entered some other datatype or perhaps 
-      // nothing if using the Delete form or if just using the API.
-
-      // If the user entered nothing: 
-      if(arrayElement[1] === undefined) 
-      { 
-        // Then user is likely trying to delete a record.
-        // So change the value to false and continue processing.
-        arrayElement[1] = false 
-      } 
-      else // The user entered some other datatype so reject the edit. 
-      { 
-        callback(400, {'Error' : 'feAttributeName must be of datatype string'});
-        passedValidation = false;
-        return false;  //Break this .every() loop         
-      } 
-    } 
-    return true;  //Continue this .every() loop    
-  }); // End of: feAttributeNameArray.every(function(arrayElement){...}
-
-  if(!passedValidation){return};  
+    if(typeof(arrayElement[1]) != 'string'){return callback(400, {'Error' : 'feAttributeName must be of datatype string'});}
+  });
   // End of: Validate elements in the feAttributeNameArray
-
 
   // Start of: Load the feAttributeValueArray dynamically once the payload is known.
   // Behavior from meta.js at 8cz4imaqb2wagvl14q9t
@@ -3168,7 +2705,7 @@ metadata._metadata.put = function(data, callback)
   let feAttributeValueArray = loadPayloadArray(feAttributeValueKeyArray, data.payload);
   // End of: Load the feAttributeValueArray dynamically once the payload is known. 
 
-  /*              
+                  
   // Start of: Validate elements in the feAttributeValueArray
   // passIfString
   // Behavior from meta.js at 7n1wj6bz5asgucz6nmkp
@@ -3176,38 +2713,6 @@ metadata._metadata.put = function(data, callback)
   {
     if(typeof(arrayElement[1]) != 'string'){return callback(400, {'Error' : 'feAttributeValue must be of datatype string'});}
   });
-  // End of: Validate elements in the feAttributeValueArray
-  */
-
-  // Start of: Validate elements in the feAttributeValueArray
-  // passIfString
-  // Behavior from meta.js at 
-  feAttributeValueArray.every(function(arrayElement)
-  {
-    // If feAttributeValue is not of string type
-    if (typeof(arrayElement[1]) != 'string') 
-    { 
-      // The user may have entered some other datatype or perhaps 
-      // nothing if using the Delete form or if just using the API.
-
-      // If the user entered nothing: 
-      if(arrayElement[1] === undefined) 
-      { 
-        // Then user is likely trying to delete a record.
-        // So change the value to false and continue processing.
-        arrayElement[1] = false 
-      } 
-      else // The user entered some other datatype so reject the edit. 
-      { 
-        callback(400, {'Error' : 'feAttributeValue must be of datatype string'});
-        passedValidation = false;
-        return false;  //Break this .every() loop         
-      } 
-    } 
-    return true;  //Continue this .every() loop    
-  }); // End of: feAttributeValueArray.every(function(arrayElement){...}
-
-  if(!passedValidation){return};  
   // End of: Validate elements in the feAttributeValueArray
 
   
@@ -3218,12 +2723,7 @@ metadata._metadata.put = function(data, callback)
   let deleted = typeof(data.payload.deleted) === 'string' && data.payload.deleted === "true" ? true : false;
 
   
-  // if all fields fail validation then exit this process without writing changes to the table.
-  // We need this because the validation above changes undefined field values to false.
-  // This is because the delete function on the edit webpage only defines one value (delete = "true").
-  // All other fields are undefined and then set to boolean false by the validation above.
-  // This is to prevent errors when undefined values are encountered during processing.
-  // The following handles the case where all values were undefined but delete was not intended.
+  //if all fields fail validation then exit this process without writing changes to the table.
   if
   (
     !tableName
