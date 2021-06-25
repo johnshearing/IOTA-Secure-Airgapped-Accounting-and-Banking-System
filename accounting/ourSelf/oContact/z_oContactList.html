@@ -315,10 +315,10 @@ app.loadoContactListPage = async function()
   // Define a function to load the query form from the template.
   function loadQueryForm()
   {
-    let templateClone = formTemplate.cloneNode(true);
-    let templateHTMl = templateClone.textContent;
-    let templateTarget = document.querySelector(".formWrapper");
-    templateTarget.innerHTML = templateHTMl; 
+  let templateClone = formTemplate.cloneNode(true);
+  let templateHTMl = templateClone.textContent;
+  let templateTarget = document.querySelector(".formWrapper");
+  templateTarget.innerHTML = templateHTMl; 
   };
 
   // Call the function above to load a new clean queryForm onto the webpage.

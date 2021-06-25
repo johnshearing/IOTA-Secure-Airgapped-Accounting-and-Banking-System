@@ -155,6 +155,19 @@
   <option value="url"/>
   <option value="week"/>
 </datalist>
+<datalist id="selectAttributes">
+  <option value="autofocus"/>
+  <option value="disabled"/>
+  <option value="form"/>  
+  <option value="multiple"/>
+  <option value="name"/>  
+  <option value="required"/>
+  <option value="size"/>
+</datalist>
+<datalist id="autofocus">
+  <option value="on"/>
+  <option value="off"/>
+</datalist>
 <datalist id="validation">
   <option value="passIfNotEmpty"/>
   <option value="passIfString"/>
@@ -325,7 +338,6 @@
 <div class="inputWrapper">
   <div class="inputLabel">Element Type</div>
   <select class="resetElement" name="field_field0_defaultElement_defaultElement0_elementType" elementTypeSelect="yes">
-    <option value="" style="display: list-item;">Select the Element Type</option>
     <option value="input" style="display: list-item;">Input</option>
     <option value="select" style="display: list-item;">Select</option>
   </select>
@@ -425,7 +437,6 @@
 <div class="inputWrapper">
   <div class="inputLabel">Element Type</div>
   <select class="resetElement" name="field_field0_defaultElement_defaultElement0_elementType" elementTypeSelect="yes">
-    <option value="" style="display: list-item;">Select the Element Type</option>
     <option value="input" style="display: list-item;">Input</option>
     <option value="select" style="display: list-item;">Select</option>
   </select>
@@ -435,7 +446,7 @@
   <div class="objectWrapper elementWrapper" style="border: 2px solid green;">
     <div class="inputWrapper">
       <div class="inputLabel">Attribute Name</div>
-      <input class="resetElement" name="field_field0_defaultElement_defaultElement0_attribute_attribute0_attributeName" type="text" list="inputAttributes" domainFor="attributes"/>
+      <input class="resetElement" name="field_field0_defaultElement_defaultElement0_attribute_attribute0_attributeName" type="text" list="selectAttributes" domainFor="attributes"/>
     </div>
     <div class="inputWrapper">
       <div class="inputLabel">Attribute Value</div>
