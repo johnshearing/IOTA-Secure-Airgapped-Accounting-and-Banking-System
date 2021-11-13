@@ -136,3 +136,4 @@ I feel blessed and I love God. The work you see here is the result.
 
 Thanks, John  
 
+## <a href="https://johnshearing.github.io/">Click Here To See Our Other Projects</a> 
