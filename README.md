@@ -27,25 +27,25 @@ The code generator and all the generated code is extremely well commented and ve
    
    
     
-* Build queries to search for records and save your queries for later use.  
+#### Build queries to search for records and save your queries for later use.  
 <img src="/images/SearchDatabase.jpg">
    
    
    
    
-* Build JSON structures according to schemas of unlimited length and unlimited nesting levels.  
+#### Build JSON structures according to schemas of unlimited length and unlimited nesting levels.  
 <img src="/images/NestingStruct01.jpg">  
   
   
   
   
-* Embed custom functionality into generic generated screens or make them completely custom.  
+#### Embed custom functionality into generic generated screens or make them completely custom.  
 <img src="/images/CustomFunctions.jpg">  
    
    
    
    
-* The application is even used to describe and build itself.  
+#### The application is even used to describe and build itself.  
 <img src="/images/NestingStruct03.jpg"> 
    
    
