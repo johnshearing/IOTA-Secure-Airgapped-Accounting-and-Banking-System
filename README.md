@@ -8,7 +8,7 @@ The generated user interface runs in the browser.
 
 This software generates secure accounting/banking systems for cryptocurrency that individuals, corporations, and governments can use for managing their business and for cooperating with each other. 
 
-<img src="/images/NestingStruct01.jpg">  
+<img src="/images/NestingStruct02.jpg">  
 Build JSON structures according to schema of unlimited length and unlimited nesting.   
 
 Built to run on a single airgapped [PrivateKeyVault](https://github.com/johnshearing/PrivateKeyVault) for individuals or on an airgapped network for large institutions or government. All this code will run on any device that can run NodeJS.  
