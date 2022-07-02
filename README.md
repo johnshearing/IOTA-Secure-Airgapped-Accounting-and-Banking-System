@@ -35,8 +35,8 @@ Search for records and save your queries to use again.
    
    
 #### Each record is just a JSON entry.
-The generated apps just a collection of JSON editors.
-Unlimited length, unlimited nesting levels, schema enforced.  
+#### The generated apps just a collection of JSON editors.
+#### Unlimited length, unlimited nesting levels, schema enforced.  
 <img src="/images/NestingStruct01.jpg">  
   
   
