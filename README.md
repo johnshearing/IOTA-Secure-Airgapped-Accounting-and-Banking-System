@@ -36,7 +36,7 @@ Search for records and save your queries to use again.<br>
 <br>
 <b>Each record is just a JSON entry<br>    
 A generated app is just a collection of JSON editors.<br>   
-JSON records support unlimited length, unlimited nesting levels, and enforce your schema.<br>   
+JSON editors support records of unlimited length, unlimited nesting levels, and enforce your schema.<br>   
 <img src="/images/NestingStruct01.jpg"></b><br>    
 <br>
   
