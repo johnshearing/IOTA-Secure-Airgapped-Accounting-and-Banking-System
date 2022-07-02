@@ -27,29 +27,29 @@ The code generator and all the generated code is extremely well commented and ve
    
    
 <br>    
-Generates a query screen for each table.  
-Search for records and save your queries to use again.  
-<img src="/images/SearchDatabase.jpg">  
+Generates a query screen for each table.<br>  
+Search for records and save your queries to use again.<br>  
+<img src="/images/SearchDatabase.jpg"><br>  
 <br>
    
    
 <br>
-Each record is just a JSON entry.   
-The generated apps just a collection of JSON editors.  
-Unlimited length, unlimited nesting levels, schema enforced.  
-<img src="/images/NestingStruct01.jpg">   
+Each record is just a JSON entry<br>    
+The generated apps just a collection of JSON editors.<br>   
+Unlimited length, unlimited nesting levels, schema enforced.<br>   
+<img src="/images/NestingStruct01.jpg"><br>    
 <br>
   
   
 <br>  
-Embed custom functionality into generic screens or generate them completely custom.   
-<img src="/images/CustomFunctions.jpg">   
+Embed custom functionality into generic screens or generate them completely custom.<br>   
+<img src="/images/CustomFunctions.jpg"><br>   
 <br>   
    
    
 <br>   
-The application is even used to describe and build itself.   
-<img src="/images/NestingStruct03.jpg">   
+The application is even used to describe and build itself.<br>   
+<img src="/images/NestingStruct03.jpg"><br>   
 <br>   
    
    
