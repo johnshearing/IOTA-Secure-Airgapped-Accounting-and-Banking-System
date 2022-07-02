@@ -5,15 +5,18 @@ This makes for manageable security auditing.
 A code generator reads metadata from a data dictionary and creates the client side user interface and the server side code which is the same for all tables in the system. So once the generator and the data dictionary have been audited, then the system as a whole is largely proven to be secure. That's because the generator creates the same basic code throughout the entire system. Changes to the code are made in one place a ripple down to all parts of the system automatically when the system is regenerated.  
 The server side code will run on most any computer using most any operating system.  
 The generated user interface runs in the browser.  
-  
+
 This software generates secure accounting/banking systems for cryptocurrency that individuals, corporations, and governments can use for managing their business and for cooperating with each other. 
+
+<img src="/images/NestingStruct.jpg">  
+Build JSON structures according to schema of unlimited length and unlimited nesting.   
 
 Built to run on a single airgapped [PrivateKeyVault](https://github.com/johnshearing/PrivateKeyVault) for individuals or on an airgapped network for large institutions or government. All this code will run on any device that can run NodeJS.  
 This is the last piece of the puzzle in [The PrivateKeyVault family of repositories](https://github.com/johnshearing).   
  
 The code generator and all the generated code is extremely well commented and very easy read so as to facilitate an audit. Everything including the generator was written in plain vanilla javascript, HTML, and CSS without using anyone else's frameworks, databases or tools. A video tutorial will be made soon explaining how it all works and what each line of code does. This will also facilitate an audit.  
 
-#### Features:  
+#### Features:
 * Database Functionality.  
   * JSON database is human readable and easy to reason about.  
   * Locking is used to make the application multiuser. 
