@@ -140,12 +140,12 @@ Finally, open your browser and enter the following address:
 `http://localhost:3000/`  
 You should see the application running in your browser.
  
-The app runs well but it doesn't do anything IOTA related yet.  
-IOTA functionality will be built in very shortly.  
+The app runs well but it doesn't do anything IOTA or Cardano related yet.  
+Functionality to manage cryptocurrency will be built in very shortly.  
 The focus now is on getting the framework right.  
 Then building on top of this framework will go quickly.  
  
-Since this project depends upon the IOTA JavaScript library there are unaudited dependencies. So we are trusting that the IOTA foundation as taken all the necessary steps to secure this library and all it's dependencies. In the future we can write and audit our own library to interact with the IOTA Tangle but this is not an appropriate place to start our work.  
+This project depends upon IOTA and Cardano libraries. So we are trusting that the IOTA foundation and IOG have taken all the necessary steps to secure their libraries and all dependencies. In the future we can write and audit our own libraries to interact with the IOTA Tangle and the Cardano Blockchain but this is not an appropriate place to start our work.  
 
 #### An Unexpected Result  
 This code has evolved into a system which is capable of describing and changing its own data dictionary - its own DNA if you will. The generator reads JSON from the data dictionary which contain instructions to build all the forms and code required to make and manage JSON documents. These generated forms and code are descriptive enough to make valid entries in the data dictionary which created the forms and code in the first place. So this application generator can now be used to build, maintain, and change itself as well as to build other types of database applications and data transformation utilities. Oddly, while the JSON produced from the generated forms can contain all the same data as the JSON in the data dictionary from which it was produced, the data structure of the new JSON is different from the original and so will require a different generator to produce a form which is capable of replicating the original JSON from the data dictionary. It seems it may be difficult or impossible to build a machine that can reproduce it's own exact form. I wonder if we are bumping into [Godel's Incompleteness Theorems](https://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems). In any case, this experiment shows that it is possible for a machine to produce a different (complementary) machine which is capable of producing it's parent in exact detail. This is how DNA replicates.   
