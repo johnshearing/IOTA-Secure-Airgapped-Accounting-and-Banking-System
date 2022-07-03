@@ -58,7 +58,7 @@ As seen below, the application generator is even used to describe and build itse
   
 <br>  
 <b>Insert custom functionality into generically generated screens.<br>
-To illustrate the point, all tables will require edit and delete functionality.<br>
+To illustrate the point, all tables require edit and delete functionality.<br>
 You get that functionality just by describing the data and generating the application.<br>
 But the need to enter and hash a password is unique to a table of users.<br>
 So we insert that extra functionality without changing any of the generic code for managing the table.<br>
