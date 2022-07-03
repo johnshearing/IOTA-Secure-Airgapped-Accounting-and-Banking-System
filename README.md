@@ -29,7 +29,7 @@ The code generator and all the generated code is extremely well commented and ve
 <br>    
 <b>Generates a query screen for each table in the system.<br>  
 Search for records and save your queries to use again.<br>  
-<img src="/images/SearchDatabase.jpg"><b><br>  
+<img src="/images/SearchDatabase.jpg"></b><br>  
 <br>
    
    
@@ -47,17 +47,19 @@ JSON editors support records (JSON lines) of unlimited length, unlimited nesting
   
   
 <br>   
-<b>The application is even used to describe and build itself.</b><br>   
+<b>Just describe your data in the data dictionary and then run the generator to get your application.<br>
+As seen below, the application generator is even used to describe and build itself.</b><br>   
 <img src="/images/NestingStruct03.jpg"><br>   
 <br>  
   
   
 <br>  
-<b>Insert custom functionality into generated screens.</b><br>
+<b>Insert custom functionality into generically generated screens.<br>
 To illustrate the point, all tables will require edit and delete functionality.<br>
+You get that functionality just by describing the data and generating the application.<br>
 But the need to enter and hash a password is unique to a table of users.<br>
 So we insert that extra functionality without changing any of the generic code for managing the table.<br>
-When custom functionality is added to a screen it persists no matter how else the system is changed and regenerated.<br>
+When custom functionality is added to a screen it just shows up and persists everytime the system is regenerated.</b><br>
 <br>
 <img src="/images/CustomFunctions.jpg"><br>   
 <br>
