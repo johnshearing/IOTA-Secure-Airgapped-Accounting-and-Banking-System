@@ -40,7 +40,7 @@ Search for records and save your queries to use again.<br>
 <b>This is a NoSQL database application generator.<br>
 Generate tables for:<br> 
   * General Ledger, Inventory, Purchase Orders, Accounts Payable, Customers, Vendors...<br>
-  * Generate the system for what ever you need to manage, just like any accounting system.<br>
+  * Generate the system for whatever you need to manage, just like any accounting system.<br>
 Each record is just a line of JSON in a table.<br>    
 Each table is just a text file full of JSON lines.<br> 
 A generated app is just a collection of JSON editors, each generated to handle a particular JSON table.<br>   
