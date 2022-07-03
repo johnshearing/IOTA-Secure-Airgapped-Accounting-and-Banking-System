@@ -78,7 +78,7 @@ When custom functionality is added to a screen it just shows up and persists eve
   * This is for increased reporting performance and to track required information which is not captured on the blockchain.
   * This also makes tripple entry accounting possible:
     * This means that not only does the ledger balance within a company but ledgers balance across companies, banks, and government agencies.
-    * This is the ultimate in transparancy to the public and will help to fight corruption and theft.
+    * This is the ultimate in transparancy and will help the public make good decisions and fight corruption.
   * To illustrate how this works, it is not be necessary to go to the Distributed Public Ledger in order to get the balance for a seed in the case of IOTA or master key in the case of Cardano. The online database/accounting system which broadcasts all transactions keeps track of the account balances. Think of it this way: The controller of a company does not ask the bank how much he has in his bank account - he already knows from looking in his own accounting system. In the same way a modern accounting system for cryptocurrency must track balances without needing to query the blockchain. This system works as follows: The seller's accounting system generates a smart contract when the sale is made. The customer enters into the contract. At the approriate time, the contract notifies the customer that it is time to make a payment. Following the typical path through the contract, the customer pays the contract and the contract notifies the accounting system. The accounting system is updated automatically and the smart contract is closed.  
   
 #### What's Different and Where's the Opportunity?
