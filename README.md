@@ -121,6 +121,8 @@ To use this application simply follow the instructions below.
   * Next install the iota.js library by executing the following command at the bash console.  
   * `npm install @iota/core`  
 
+#### Instructions for installing Cardano core libraries are coming soon.  
+  
 #### Install the iotaAirgappedClientServerWallet repository    
 * Then execute the following command at the BASH console.   
 * `git clone https://github.com/johnshearing/IOTA-Secure-Airgapped-Accounting-System.git`  
