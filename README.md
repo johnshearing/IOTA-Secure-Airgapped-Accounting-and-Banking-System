@@ -48,9 +48,10 @@ JSON editors support records of unlimited length, unlimited nesting levels, and 
   
   
 <br>  
-<b>Insert your custom functionality into generated screens or generate custom stand-alone screens to interact with data.</b><br>
-The need to enter and hash a password is unique to a table of users.<br>
-But most all tables will require edit and delete functionality.<br>
+<b>Insert custom functionality into generated screens.</b><br>
+To illustrate the point, all tables will require edit and delete functionality.<br>
+But the need to enter and hash a password is unique to a table of users.<br>
+So we insert that extra functionality without changing any of the generic code for managing the table.<br>
 When custom functionality is added to a screen it persists no matter how else the system is changed and regenerated.<br>
 <br>
 <img src="/images/CustomFunctions.jpg"><br>   
