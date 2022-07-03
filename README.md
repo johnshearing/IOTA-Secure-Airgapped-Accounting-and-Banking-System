@@ -5,7 +5,7 @@ Everything including the generator was written in plain vanilla javascript, HTML
 **There are no packages or dependencies other than NodeJS itself and the javascript libraries for the currencies you may wish to use**.  
 This makes for manageable security auditing.  
 
-A code generator reads metadata from a data dictionary and creates the client side user interface and the server side code which is the same for all tables in the system. So once the generator and the data dictionary have been audited, then the system as a whole is largely proven to be secure. That's because the generator creates the same basic code throughout the entire system. Changes to the code are made in one place a ripple down to all parts of the system automatically when the system is regenerated.  
+A code generator reads metadata from a data dictionary and creates the client side user interface and the server side code which is the same for all tables in the system. So once the generator and the data dictionary have been audited, then the system as a whole is largely proven to be secure. That's because the generator creates the same basic code throughout the entire system. Changes to the code are made in one place and ripple down to all parts of the system automatically when the system is regenerated.  
 The generated server side code will run on most any computer using most any operating system.  
 The generated user interface runs in the browser.  
 
@@ -14,7 +14,7 @@ This software generates secure accounting/banking systems for cryptocurrency tha
 Built to run on a single airgapped [PrivateKeyVault](https://github.com/johnshearing/PrivateKeyVault) for individuals or on an airgapped network for large institutions or government. All this code will run on any device that can run NodeJS.  
 This is the last piece of the puzzle in [The PrivateKeyVault family of repositories](https://github.com/johnshearing).   
  
-The code generator and all the generated code is extremely well commented and very easy read so as to facilitate an audit. A video tutorial will be made soon explaining how it all works and what each line of code does. This will also facilitate an audit.  
+The code generator and all the generated code is extremely well commented and very easy to read so as to facilitate an audit. A video tutorial will be made soon explaining how it all works and what each line of code does. This will also facilitate an audit.  
 
 #### Features:
 * Database Functionality.  
@@ -79,10 +79,10 @@ When custom functionality is added to a screen it just shows up and persists eve
 * Like any accounting system, this application maintains it's own ledger. 
   * The system does not rely on the blockchain ledger to report balance information although both ledgers must reconcile correctly.
   * This is for increased reporting performance and to track required information which is not captured on the blockchain.
-  * This also makes tripple entry accounting possible:
+  * This also makes triple entry accounting possible:
     * This means that not only does the ledger balance within a company but ledgers balance across companies, banks, and government agencies.
     * This is the ultimate in transparancy and will help the public make good decisions and fight corruption.
-  * To illustrate how this works, it is not be necessary to go to the Distributed Public Ledger in order to get the balance for a seed in the case of IOTA or master key in the case of Cardano. The online database/accounting system which broadcasts all transactions keeps track of the account balances. Think of it this way: The controller of a company does not ask the bank how much he has in his bank account - he already knows from looking in his own accounting system. In the same way a modern accounting system for cryptocurrency must track balances without needing to query the blockchain. This system works as follows: The seller's accounting system generates a smart contract when the sale is made. The customer enters into the contract. At the approriate time, the contract notifies the customer that it is time to make a payment. Following the typical path through the contract, the customer pays the contract and the contract notifies the accounting system. The accounting system is updated automatically and the smart contract is closed.  
+  * To illustrate how this works, it is not necessary to go to the Distributed Public Ledger in order to get the balance for a seed in the case of IOTA or master key in the case of Cardano. The online database/accounting system which broadcasts all transactions keeps track of the account balances. Think of it this way: The controller of a company does not ask the bank how much he has in his bank account - he already knows from looking in his own accounting system. In the same way a modern accounting system for cryptocurrency must track balances without needing to query the blockchain. This system works as follows: The seller's accounting system generates a smart contract when the sale is made. The customer enters into the contract. At the appropriate time, the contract notifies the customer that it is time to make a payment. Following the typical path through the contract, the customer pays the contract and the contract notifies the accounting system. The accounting system is updated automatically and the smart contract is closed.  
   
 #### What's Different and Where's the Opportunity?
 Large centralized systems are very hard to secure. That's why we keep hearing about hacks at large institutions. Large means lots of vulnerabilities and complex means that these weaknesses are very hard to see. This doesn't matter so much with a large accounting system when the actual funds they track are secured by banks. But an accounting system for cryptocurrency also protects the currency from theft. It must be both accounting system and bank.  
