@@ -34,8 +34,13 @@ Search for records and save your queries to use again.<br>
    
    
 <br>
-<b>Each record is just a JSON entry<br>    
-A generated app is just a collection of JSON editors.<br>   
+<b>This is a NoSQL database application generator.
+Generate tables for: 
+  * General Ledger, Inventory, Purchase Orders, Accounts Payable, Customers, Vendors... 
+  * Generate the system for what ever you need to manage, just like any accounting system.
+Each record is just a line of JSON in a table.<br>    
+Each table is just a text file full of JSON lines. 
+A generated app is just a collection of JSON editors, each generated to handle a particular JSON table.<br>   
 JSON editors support records of unlimited length, unlimited nesting levels, and enforce your schema.<br>   
 <img src="/images/NestingStruct01.jpg"></b><br>    
 <br>
