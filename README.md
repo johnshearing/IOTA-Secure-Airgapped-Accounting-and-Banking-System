@@ -41,7 +41,7 @@ Generate tables for:<br>
 Each record is just a line of JSON in a table.<br>    
 Each table is just a text file full of JSON lines.<br> 
 A generated app is just a collection of JSON editors, each generated to handle a particular JSON table.<br>   
-JSON editors support records of unlimited length, unlimited nesting levels, and enforce your schema.<br>   
+JSON editors support records (JSON lines) of unlimited length, unlimited nesting levels, and enforce your schema.<br>   
 <img src="/images/NestingStruct01.jpg"></b><br>    
 <br>
   
