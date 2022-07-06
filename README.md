@@ -1,6 +1,6 @@
 # IOTA-Secure-Airgapped-Accounting-and-Banking-System  
 ## For Government, Enterprise, Individuals, and Machines  
-This Air-gapped, stand alone, accounting system for IOTA and Cardano is a client/server database and application generator.  
+This Air-gapped, accounting system for IOTA and Cardano is a client/server database and application generator.  
 Everything including the generator was written in plain vanilla javascript, HTML, and CSS without anyone else's frameworks, databases or tools.  
 **There are no packages or dependencies other than NodeJS itself and the javascript libraries for the currencies you use**.  
 This makes for manageable security auditing.  
