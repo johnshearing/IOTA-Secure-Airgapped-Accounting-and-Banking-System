@@ -31,7 +31,6 @@ The second file in this folder is called transaction.json. If it does not exist 
 
 This along with the Global Sequential Unique ID allows the entire database to be reconstructed to represent any point in history.  
 
-The following has not been implemented yet but here is the plan:  
 The transaction.json file only gets appended to but it will be locked along with all other files that are part of the transaction. When the entire transaction has been completed then all the files will be unlocked. If the transaction can not be completed then everything will be rolled back to it's original state.  
 
 Most of the database system will be relational (table-joins and indexes) but the parts that deal with seeds and addresses will be NoSQL. Relational because most accounting functionality involves reporting which requires indexes and normalization for speed and schema so that there is consistent data to report on. However, when dealing with seeds and addresses, no reporting is involved but rather security is the primary concern.  
